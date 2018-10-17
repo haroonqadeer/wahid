@@ -30,16 +30,21 @@ export class UserprofileComponent implements OnInit {
   chart: Chart;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  dataSource = ELEMENT_DATA;
+  
+  public show:boolean = false;
+  public buttonName:any = 'Show';
 
   constructor() { }
 
   ngOnInit() {
     this.init();
+  }
+
+   //add me function
+   public add_me(){
+    this.show = !this.show;
+
   }
 
   init(){
