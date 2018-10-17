@@ -12,6 +12,13 @@ import { MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, Mat
     MatSelectModule,
     MatTableModule
   ],
-  declarations: []
+  exports:[
+    
+    MatInputModule, 
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatSelectModule,
+    MatTableModule
+  ]
 })
 export class MaterialModule { }
