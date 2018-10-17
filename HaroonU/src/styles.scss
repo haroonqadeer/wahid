@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+/* Common CSS Start */
+h1{
+    border: 1px solid red;
+}
+
+
+
+
+
+
+
+
+
+/* Common CSS End   */
+
+
+
+
+
+/* Dashboard CSS Start (Adnan) */
+
+.container_boxes{
+    border: 2px solid red;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+
+}
+
+
+.box_users{
+    border: 1px solid green;
+    width: 250px;
+    height: 130px;
+    margin: 10px;
+}
+
+
+
+.container_charts{
+    border: 2px solid blueviolet;
+    width: 100%;
+    height: 500px;
+    margin-top: 15px;
+}
+
+.container_charts .pie_chart{
+    border: 1px solid black;
+    width: 40%;
+    height: 90%;
+    margin: 2%; 
+    position: absolute;
+    left: 0;
+}
+
+.container_charts .line_chart{
+    border: 1px solid black;
+    width: 40%;
+    height: 90%;
+    margin: 2%; 
+    position: absolute;
+    right: 0;
+}
+/* Dashboard CSS End */
+
+
+
+
+
+
+
+
+
