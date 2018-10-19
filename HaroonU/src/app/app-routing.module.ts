@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent} from './components/dashboard.component';
+import { DashboardComponent } from './components/dashboard.component';
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path:'home',
     component: DashboardComponent
+  },
+  {
+    path:'userprofile',
+    component: UserprofileComponent
   }
 ];
 
