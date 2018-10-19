@@ -8,6 +8,16 @@
     </h1>
     <hr>    
   </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2" *ngIf="edited">
+    <div class="example-container mat-elevation-z8" style="background:#32CD32;color:white;">
+      <div class="example-table-container">
+        <div class="alert box-msg" role="alert">
+          Action Successfully Executed
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,6 +68,7 @@
           <mat-tab-group>
             <mat-tab label="Employee">
               <br>
+              
               <div class="hidden" [(ngModel)]="userId" ngDefaultControl></div> 
               <div class="row">
                 <div class="col-md-12">

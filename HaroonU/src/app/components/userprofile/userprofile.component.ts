@@ -29,6 +29,8 @@ export class UserprofileComponent implements OnInit {
   chart: Chart;
   eName = '';
   
+  public edited = false;
+
   //page ngModels
   UserId = 0;
   cmbEmployee: '';
@@ -51,6 +53,7 @@ export class UserprofileComponent implements OnInit {
   txtdPin = '';
   employeeId = 0;
   userName = '';
+  
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
 
  //use in combobox
@@ -131,9 +134,27 @@ roles: Role[] = [
     //var date =new Date();
     if(this.UserId!=0){
       this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
+      
+      this.edited = true;
+      
+      //wait 3 Seconds and hide
+      setTimeout(function() {
+          this.edited = false;
+          console.log(this.edited);
+      }.bind(this), 4000);
+
     }else{
       this.UserId=1+this.userDetail.length;
       this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
+      
+      this.edited = true;
+      
+      //wait 3 Seconds and hide
+      setTimeout(function() {
+          this.edited = false;
+          console.log(this.edited);
+      }.bind(this), 2000);
+
     }
     this.clear();
   }
