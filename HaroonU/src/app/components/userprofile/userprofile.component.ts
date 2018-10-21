@@ -27,14 +27,9 @@ export interface Role {
 export class UserprofileComponent implements OnInit {
   chart: Chart;
   eName = '';
-<<<<<<< HEAD
-  // page ngModels
-=======
   
   public edited = false;
 
-  //page ngModels
->>>>>>> 65d3614ff7ddf6f18b4a1c55a3da3071258b7399
   UserId = 0;
   cmbEmployee: '';
   txtPassword = '';
@@ -56,11 +51,7 @@ export class UserprofileComponent implements OnInit {
   txtdPin = '';
   employeeId = 0;
   userName = '';
-<<<<<<< HEAD
- 
-=======
-  
->>>>>>> 65d3614ff7ddf6f18b4a1c55a3da3071258b7399
+
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
 
  // use in combobox
@@ -155,10 +146,9 @@ roles: Role[] = [
 
     }else{
       this.UserId=1+this.userDetail.length;
-<<<<<<< HEAD
 
 this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
-=======
+
       this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
       
       this.edited = true;
@@ -168,8 +158,6 @@ this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: thi
           this.edited = false;
           console.log(this.edited);
       }.bind(this), 2000);
-
->>>>>>> 65d3614ff7ddf6f18b4a1c55a3da3071258b7399
     }
     this.clear();
   }
