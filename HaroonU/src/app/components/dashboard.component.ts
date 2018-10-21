@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
-//import * as CanvasJS from './canvasjs.min';
+// import * as CanvasJS from './canvasjs.min';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +18,9 @@ export class DashboardComponent implements OnInit {
     this.PieChart_init();
   }
 
-  PieChart_init(){
+  PieChart_init() {
 
+    // tslint:disable-next-line:prefer-const
     let chart = new Chart({
       chart: {
         type: 'pie'
@@ -32,7 +33,6 @@ export class DashboardComponent implements OnInit {
       },
       plotOptions: {
         pie: {
-          
           showInLegend: true
         }
       },
@@ -53,20 +53,11 @@ export class DashboardComponent implements OnInit {
         }]
       }]
     });
-    
     this.Pie_Chart = chart;
-
   }
 
-
-
-
-
-
-  
-
-
   LineChart_init() {
+    // tslint:disable-next-line:prefer-const
     let chart = new Chart({
       chart: {
         type: 'line'
@@ -84,9 +75,5 @@ export class DashboardComponent implements OnInit {
     });
     chart.addPoint(4);
     this.Line_chart = chart;
-
-  
   }
-
-
 }

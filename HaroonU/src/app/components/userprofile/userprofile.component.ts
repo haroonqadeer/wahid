@@ -1,40 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-//use in combobox
+// use in combobox
 export interface Employee {
   eId: string;
   eName: string;
   eDept: string;
 }
-//use in combobox
+// use in combobox
 export interface Party {
   value: string;
   viewValue: string;
 }
-//use in combobox
+// use in combobox
 export interface Role {
   rId: string;
   rName: string;
 }
 
-@Component({
-  selector: 'app-userprofile',
-  templateUrl: './userprofile.component.html',
-  styleUrls: ['./userprofile.component.scss']
-})
+ @Component({
+   selector: 'app-userprofile',
+   templateUrl: './userprofile.component.html',
+   styleUrls: ['./userprofile.component.scss']
+ })
 export class UserprofileComponent implements OnInit {
-  
   chart: Chart;
   eName = '';
   
-  //page ngModels
+  public edited = false;
+
   UserId = 0;
   cmbEmployee: '';
-  txtPassword = "";
-  txtCnfrmPassword = "";
-  cmbRole = "";
+  txtPassword = '';
+  txtCnfrmPassword = '';
+  cmbRole = '';
   txtPin = '';
   txtCnfrmPin = '';
   txtfrstName = '';
@@ -46,27 +46,30 @@ export class UserprofileComponent implements OnInit {
   cmbParty = '';
   txtContact = '';
   txtEmail = '';
-  txtRemarks = ''; 
+  txtRemarks = '';
   txtdPassword = '';
   txtdPin = '';
   employeeId = 0;
   userName = '';
+
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
 
- //use in combobox
+ // use in combobox
+ 
  parties: Party[] = [
   {value: '1', viewValue: 'Adnan'},
   {value: '2', viewValue: 'Amir'},
   {value: '3', viewValue: 'Haroon'},
   {value: '4', viewValue: 'Nabeel'}
-]
-//use in combobox
+];
+// use in combobox
 roles: Role[] = [
   {rId: '1', rName: 'Super Admin'},
   {rId: '2', rName: 'Admin'},
   {rId: '3', rName: 'Visitor'}
-]
-  //use in combobox
+];
+  // use in combobox
+
   employees: Employee[] = [
     {eId: '1', eName: 'Adnan', eDept: 'IT'},
     {eId: '2', eName: 'Ahmed', eDept: 'Accounts'},
@@ -88,10 +91,10 @@ roles: Role[] = [
     this.init();
   }
 
-  //use this data in chart
-  init(){
+  // use this data in chart
+  init() {
 
-    let chart = new Chart({
+    const chart = new Chart({
       chart: {
         type: 'area'
       },
@@ -117,30 +120,50 @@ roles: Role[] = [
         data: [1, 1, 1, 100, 500, 800, 450]
     }]
     });
-    
+
     this.chart = chart;
 
   }
 
   //onchange Employee
-  onEmployeeChange(item){    
-    this.eName = this.employees.find( x=> x.eId == item).eName.replace(/['"]+/g, '');    
-  }  
+  onEmployeeChange(item){
+    this.eName = this.employees.find( x=> x.eId == item).eName.replace(/['"]+/g, '');
+  }
 
   saveVisitor(){
-    //var date =new Date();
+    var date =new Date();
     if(this.UserId!=0){
+
       this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
+      
+      this.edited = true;
+      
+      //wait 3 Seconds and hide
+      setTimeout(function() {
+          this.edited = false;
+          console.log(this.edited);
+      }.bind(this), 4000);
+
     }else{
       this.UserId=1+this.userDetail.length;
+
+this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
+
       this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
+      
+      this.edited = true;
+      
+      //wait 3 Seconds and hide
+      setTimeout(function() {
+          this.edited = false;
+          console.log(this.edited);
+      }.bind(this), 2000);
     }
     this.clear();
   }
 clear(){
 
-    
-    //if you want to clear input
+    // if you want to clear input
     this.UserId = 0;
     this.txtUName = '';
     this.txtEmail = '';
@@ -159,7 +182,6 @@ del(item){
 
   this.userName = item.UserName;
   this.employeeId = item.userId;
-  
 }
 
 edit(item){
@@ -181,7 +203,6 @@ edit(item){
       this.userDetail.splice(i, 1);
     }
   }
-  
 }
 
   delete(){

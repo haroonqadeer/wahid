@@ -3,8 +3,14 @@
 
 
 /* Common CSS Start */
+<<<<<<< HEAD
 html, body{
     height: 100%;
+=======
+h1{
+    border: 0px solid red;
+    font-size: 150px;
+>>>>>>> 5a9d8f343958075e996508fb218704302e154873
 }
 
 body{
@@ -28,6 +34,7 @@ h1{
     overflow: hidden;    
 }
 
+<<<<<<< HEAD
 .h1Login{
     background-color: #f44336;
     color:#fff;
@@ -38,6 +45,9 @@ h1{
     //text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
     font-weight: bold;
 }
+=======
+/* Common CSS End   */
+>>>>>>> 5a9d8f343958075e996508fb218704302e154873
 
 
 /* login panel */
@@ -61,6 +71,7 @@ h1{
     width: 100% !important;
 }
 
+<<<<<<< HEAD
 // side nav angular material
 .example-container{
     height: 100% !important;    
@@ -72,26 +83,66 @@ h1{
 
 .example-saidenave-content{
     
-}
-
-/* Common CSS End   */
-
+=======
 /* Dashboard CSS Start (Adnan) */
 
 .container_boxes{
     border: 0px solid red;
     width: 100%;
-    height: 150px;
+    height: 100px;
     overflow: hidden;
-
+>>>>>>> 5a9d8f343958075e996508fb218704302e154873
 }
 
 
-.box_users{
-    border: 1px solid green;
-    width: 200px;
-    height: 80px;
-    margin: 10px;
+<<<<<<< HEAD
+/* Dashboard CSS Start (Adnan) */
+=======
+.container_boxes .box_users{
+    border: 1px solid #ddd;
+    width: 222px;
+    height: 75px;
+    margin: 20px;
+    position: relative;
+    float: left;
+}
+
+
+
+
+.container_boxes .box_users:hover{
+    cursor: pointer;
+}
+>>>>>>> 5a9d8f343958075e996508fb218704302e154873
+
+
+.container_boxes .box_users .uper_div{
+    border: 0px solid red;
+    width: 15%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background: #000;
+    -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+    transition: width 2s;
+}
+
+.container_boxes .box_users .caption{
+    border: 1px solid #000;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    text-align: center;
+    padding: 0px 10px;
+}
+
+.container_boxes .box_users .icon{
+    border: 1px solid #000;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 35%;
+    text-align: center;
 }
 
 
@@ -99,26 +150,66 @@ h1{
 .container_charts{
     border: 0px solid blueviolet;
     width: 100%;
-    height: 500px;
+    height: 520px;
     margin-top: 15px;
+    overflow: hidden;
 }
 
 .container_charts .pie_chart{
-    border: 0px solid black;
+    border: 1px solid #ddd;
     width: 40%;
-    height: 90%;
-    margin: 2%; 
+    height: 70%;
+    margin: 40px; 
     position: absolute;
     left: 0;
 }
 
 .container_charts .line_chart{
-    border: 0px solid black;
+    border: 1px solid #ddd;
     width: 40%;
-    height: 90%;
-    margin: 2%; 
+    height: 70%;
+    margin: 40px; 
     position: absolute;
     right: 0;
+}
+
+
+
+
+.container_galary{
+    border: 0px solid red;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+
+.container_galary .galary_left{
+    border: 1px solid #ddd;
+    width: 40%;
+    height: 150px;
+    margin: 10px 40px; 
+    position: absolute;
+    left: 0;
+}
+
+.container_galary .galary_right{
+    border: 1px solid #ddd;
+    width: 40%;
+    height: 150px;
+    margin: 10px 40px; 
+    position: absolute;
+    right: 0;
+}
+
+.container_galary .caption{
+    border: 0px solid #ddd;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: -30px;
+    background: #ddd;
+    text-align: center;
 }
 /* Dashboard CSS End */
 
