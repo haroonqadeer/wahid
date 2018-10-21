@@ -22,4 +22,55 @@
     -moz-box-shadow:    0 0 5px #32CD32;
     box-shadow:         0 0 5px black;
 }
-  
+
+.box_border{
+
+  border-left:1px solid black;
+  border-right:1px solid black; 
+  border-bottom:1px solid black;
+}
+
+.user_box{
+  background: #5291C3; 
+  color:white;
+}
+.user_det_box{
+  background: white; 
+  color:#5291C3;
+}
+
+.role_box{
+  background: #FD9927; 
+  color:white;
+}
+.role_det_box{
+  background: white; 
+  color:#FD9927;
+}
+
+.menu_box{
+  background: #76A728; 
+  color:white;
+}
+.menu_det_box{
+  background: white; 
+  color:#76A728;
+}
+
+.user_rol_box{
+  background: #B1379E; 
+  color:white;
+}
+.user_rol_det_box{
+  background: white; 
+  color:#B1379E;
+}
+
+.role_req_box{
+  background: #27AFB8; 
+  color:white;
+}
+.role_req_det_box{
+  background: white; 
+  color:#27AFB8;
+}

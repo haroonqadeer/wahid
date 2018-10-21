@@ -28,7 +28,6 @@ export class DashboardComponent implements OnInit {
     this.PieChart_init();
   }
 
-<<<<<<< HEAD
   acceptData(){
 
     this.edited = true;
@@ -62,9 +61,6 @@ export class DashboardComponent implements OnInit {
   }
 
   PieChart_init(){
-=======
-  PieChart_init() {
->>>>>>> 4d3dc4b51994c1e0cc7b866e350831215203523d
 
     // tslint:disable-next-line:prefer-const
     let chart = new Chart({
@@ -102,10 +98,6 @@ export class DashboardComponent implements OnInit {
     this.Pie_Chart = chart;
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4d3dc4b51994c1e0cc7b866e350831215203523d
   LineChart_init() {
     // tslint:disable-next-line:prefer-const
     let chart = new Chart({
@@ -126,10 +118,6 @@ export class DashboardComponent implements OnInit {
     chart.addPoint(4);
     this.Line_chart = chart;
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> 4d3dc4b51994c1e0cc7b866e350831215203523d
 }
 
 

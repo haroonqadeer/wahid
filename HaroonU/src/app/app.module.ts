@@ -9,24 +9,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { DashboardComponent } from './components/dashboard.component';
-import { UserprofileComponent } from './components/userprofile/userprofile.component';
-<<<<<<< HEAD
 import { LoginComponent } from './components/login/login.component';
-=======
 import { UserrolesComponent } from './components/userroles/userroles.component';
->>>>>>> 5a9d8f343958075e996508fb218704302e154873
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     DashboardComponent,
-    UserprofileComponent,
-<<<<<<< HEAD
-    LoginComponent
-=======
-    UserrolesComponent
->>>>>>> 5a9d8f343958075e996508fb218704302e154873
+    LoginComponent,
+    UserrolesComponent,
+    UserprofileComponent
   ],
   imports: [
     BrowserModule,

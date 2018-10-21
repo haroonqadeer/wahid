@@ -1,13 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-import { MatExpansionModule, MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatButtonModule } from '@angular/material';
-=======
-
-import { MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatCardModule } from '@angular/material';
-
->>>>>>> 4d3dc4b51994c1e0cc7b866e350831215203523d
-
+import { MatSidenavModule, MatCardModule, MatExpansionModule, MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,15 +13,9 @@ import { MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, Ma
     MatPaginatorModule,
     MatDialogModule,
     MatTabsModule,
-<<<<<<< HEAD
-    MatExpansionModule
-=======
-
+    MatExpansionModule,
     MatSidenavModule,
-
     MatCardModule 
-
->>>>>>> 4d3dc4b51994c1e0cc7b866e350831215203523d
   ],
   exports:[
     
@@ -40,15 +27,9 @@ import { MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, Ma
     MatPaginatorModule,
     MatDialogModule,
     MatTabsModule,
-<<<<<<< HEAD
-    MatExpansionModule
-=======
-
+    MatExpansionModule,
     MatSidenavModule,
-
     MatCardModule 
-
->>>>>>> 4d3dc4b51994c1e0cc7b866e350831215203523d
-  ]
+]
 })
 export class MaterialModule { }

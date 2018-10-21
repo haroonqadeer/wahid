@@ -7,3 +7,18 @@ table {
     width: 100%;
   }
   
+  #note {
+    position: absolute;
+    z-index: 101;
+    top: 10;
+    left: 70em;
+    right: 2em;
+    background: #32CD32;
+    color:white;
+    text-align: center;
+    line-height: 5.5;
+    overflow: hidden; 
+    -webkit-box-shadow: 0 0 5px #32CD32;
+    -moz-box-shadow:    0 0 5px #32CD32;
+    box-shadow:         0 0 5px black;
+}
