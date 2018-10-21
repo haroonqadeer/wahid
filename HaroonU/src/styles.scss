@@ -1,20 +1,86 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import './assets/font.scss';
 
 
 /* Common CSS Start */
+
+html, body{
+    height: 100%;
+}
+
 h1{
     border: 0px solid red;
     font-size: 150px;
+
+}
+
+body{
+    // background-color: #ebecef !important;
+    background-image: linear-gradient(135deg,#fff, #ccc);
+    overflow: hidden;    
+}
+
+///// headings
+h1{
+    border: 0px solid red;
+}
+
+//loginbody
+.loginbody{
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    // background-color: #ebecef !important;
+    background-image: linear-gradient(45deg,#4c4c4c,#666, #7f7f7f);
+    overflow: hidden;    
 }
 
 
-
+.h1Login{
+    background-color: #f44336;
+    color:#fff;
+    height: 3em;
+    padding-top: 0.7em;
+    font-family: Oswald;
+    letter-spacing: 5px;
+    //text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    font-weight: bold;
+}
 
 /* Common CSS End   */
 
 
 
+/* login panel */
+.loginPanel{
+    height: 35em !important;
+    //background-image: linear-gradient(#4c4c4c, #323232);
+    background-color: #fff;    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+/* login div footer */
+.loginFooter{
+    bottom: 0 !important;
+    width: 100%;
+    position: absolute !important;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);    
+}
+
+/* 100% width*/
+.fullwidth{
+    width: 100% !important;
+}
+
+
+// side nav angular material
+.example-container{
+    height: 100% !important;    
+}
+.example-sidenav{
+    padding: 1em !important;
+    background-image: linear-gradient(135deg,#222,#333, #4c4c4c) !important;
+}
 
 /* Dashboard CSS Start (Adnan) */
 
@@ -25,6 +91,7 @@ h1{
     overflow: hidden;
 }
 
+/* Dashboard CSS Start (Adnan) */
 
 .container_boxes .box_users{
     border: 1px solid #ddd;
@@ -41,7 +108,6 @@ h1{
 .container_boxes .box_users:hover{
     cursor: pointer;
 }
-
 
 .container_boxes .box_users .uper_div{
     border: 0px solid red;
@@ -140,14 +206,6 @@ h1{
 }
 /* Dashboard CSS End */
 
-
-
-
-
-
-
-
-
 /*User profile page CSS start*/
 .up_headbox{
     border: 1px solid #555;
@@ -157,6 +215,3 @@ h1{
     float: left;
     margin-left: -1px;
 }
-
-
-/*User profile page CSS end*/
