@@ -1,3 +1,131 @@
-<p>
-  userroles works!
-</p>
+<br/>
+<h1 style="margin-left: 35px;">
+  User Role
+</h1>
+
+<button class="btn" mat-raised-button color="primary" data-toggle="modal" data-target="#myModal">New Role</button>
+
+<ul>
+  <li>
+    <div class="row">
+      <div class="col-md-1">
+        <span class="sno"><br/><br/>01</span> 
+      </div>
+      <div class="col-md-3">
+        <br/>
+        <p>For Administrator</p>
+        <h3>Super Users</h3>
+        <span class="fa fa-edit" data-toggle="modal" data-target="#editModal"></span>
+        &nbsp;
+        <span class="fa fa-remove" data-toggle="modal" data-target="#delModal"></span>
+      </div>
+
+      <div class="col-me-6">
+          <br/>
+          <p>Permissions</p>
+          <h3>Financial (20) Admin HR (5)</h3>
+          <span class="fa fa-edit"></span>
+          &nbsp;
+          <span class="fa fa-remove" data-toggle="modal" data-target="#delModal"></span>
+        </div>
+    </div>   
+  </li>
+
+  <li>
+    <div class="row">
+      <div class="col-md-1">
+          <span class="sno"><br/><br/>02</span> 
+      </div>
+      <!--2nd col-->
+      <div class="col-md-3">
+        <br/>
+        <p>For Administrator</p>
+        <h3>Finance Users</h3>
+        <span class="fa fa-edit" data-toggle="modal" data-target="#editModal"></span>
+        &nbsp;
+        <span class="fa fa-remove" data-toggle="modal" data-target="#delModal"></span>
+      </div>
+
+      <!--3rd col-->
+      <div class="col-me-6">
+        <br/>
+        <p>Permissions</p>
+        <h3>Financial (5) Admin HR (2)</h3>
+        <span class="fa fa-edit"></span>
+        &nbsp;
+        <span class="fa fa-remove" data-toggle="modal" data-target="#delModal"></span>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+<!--Add new role model-->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add new role</h4>
+      </div>
+      <div class="modal-body">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Role Name">
+        </mat-form-field>
+        <button mat-raised-button color="primary">Save</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Edit User Role Model -->
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Role Name</h4>
+        </div>
+        <div class="modal-body">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Role Name">
+          </mat-form-field>
+          <button mat-raised-button color="primary">Save</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--Delete Model -->
+<div class="modal fade" id="delModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Role</h4>
+        </div>
+        <div class="modal-body">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Enter Password">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Enter Password">
+            </mat-form-field>
+          <button mat-raised-button color="primary">Send</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
