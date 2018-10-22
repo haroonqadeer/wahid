@@ -2,29 +2,43 @@
 
 <mat-drawer-container class="example-container" autosize>
 <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-    Toggle extra text
-    </button>
+    <!-- Side Menu Title -->
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="noneOutLine sideMenuHome borderbottom"  mat-flat-button color="primary">
+                <span class="fa fa-home"></span>
+            </button>
+        </div>
+        <div class="col-md-8">
+            <h5 class="sideMenuTitle text-center">Menu</h5>
+        </div>
+    </div><!-- end Side Menu Title -->
+    <br><br>
+    <!-- UMIS Menu -->
+    <div class="row">
+        <button mat-flat-button routerLink="dashboard" color="warn" class="fullwidth noneOutLine text-left">&nbsp;&nbsp;Dashboard</button>
+        <button mat-flat-button color="warn" routerLink="userprofile" class="fullwidth noneOutLine text-left">&nbsp;&nbsp;User Profile</button>
+        <button mat-flat-button color="warn" routerLink="userroles" class="fullwidth noneOutLine text-left">&nbsp;&nbsp;User Role</button>
+    </div><!-- end UMIS Menu -->
+
 </mat-drawer>
 
 <div class="example-sidenav-content">
     <div class="row bgWhite bottomBorder">
         <div class="col-md-1">
-            <button type="button" class="noneOutLine"  mat-button (click)="drawer.toggle()">
+            <button type="button" class="noneOutLine"  mat-flat-button color="warn" (click)="drawer.toggle()">
                 <span class="fa fa-bars sideMenubar"></span>
             </button>
         </div>
         <div class="col-md-5">
-            <h4>Provisional Disaster Management Authority</h4>
+            <h4>UMIS</h4>
         </div>
         <div class="col-md-6 text-right">
             <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
                 Haroon Qadeer
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item class="noneOutLine">
+                <button mat-menu-item class="noneOutLine" routerLink="">
                     <!-- <mat-icon>dialpad</mat-icon> -->
                     <span class="fa fa-sign-out"></span>
                     <span>  Log out</span>

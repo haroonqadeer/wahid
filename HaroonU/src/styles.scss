@@ -51,12 +51,23 @@ h1{
     background-color: #fff !important;
 }
 
+.bgblack{
+    background-color: #f44336 !important;    
+}
+
+.fontWhite{
+    color: #e5e5e5 !important;
+}
+
 .bottomBorder{
     border-bottom: 1px solid #ccc !important;
 }
 /* Common CSS End   */
 
 
+.modal{
+    z-index: 999999 !important;
+}
 
 /* login panel */
 .loginPanel{
@@ -88,12 +99,23 @@ h1{
 .example-container{
     height: 100% !important;    
 }
-.example-sidenav{
-    padding: 1em !important;
+.example-sidenav{    
+    width: 15em !important;
     background-image: linear-gradient(135deg,#222,#333, #4c4c4c) !important;
 }
 .sideMenubar{
+    font-size: 1.5em !important;
+}
+.sideMenuHome{
     font-size: 2.0em !important;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+.sideMenuTitle{
+    color: #e5e5e5 !important;
+    background-color: #4c4c4c !important;
+    padding-top: 1.2em !important;
+    padding-bottom: 1.0em !important;    
 }
 
 /* Dashboard CSS Start (Adnan) */
@@ -115,9 +137,6 @@ h1{
     position: relative;
     float: left;
 }
-
-
-
 
 .container_boxes .box_users:hover{
     cursor: pointer;
@@ -151,8 +170,6 @@ h1{
     width: 35%;
     text-align: center;
 }
-
-
 
 .container_charts{
     border: 0px solid blueviolet;
