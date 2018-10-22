@@ -221,6 +221,14 @@ export class DashboardComponent implements OnInit {
       series: [{
         name: 'Line 1',
         data: [1, 2, 3]
+      },
+      {
+        name: 'Line 2',
+        data: [2, 4, 8, 6]
+      },
+      {
+        name: 'Line 3',
+        data: [3, 5, 7, 2]
       }]
     });
     chart.addPoint(4);
