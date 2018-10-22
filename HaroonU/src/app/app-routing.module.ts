@@ -9,11 +9,9 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent
-  },
+  },  
   {
-
     path:'dashboard',  
-
     component: DashboardComponent
   },
   {
@@ -21,9 +19,7 @@ const routes: Routes = [
     component: UserrolesComponent
   },
   {
-
     path:'userprofile',  
-
     component: UserprofileComponent
   }
 ];

@@ -4,20 +4,22 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartModule } from 'angular-highcharts';
 import { FormsModule} from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { DashboardComponent } from './components/dashboard.component';
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
-import { UserprofileComponent } from './components/userprofile/userprofile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     DashboardComponent,
+    UserprofileComponent,
+    LoginComponent,
+    UserrolesComponent,
     LoginComponent,
     UserrolesComponent,
     UserprofileComponent
