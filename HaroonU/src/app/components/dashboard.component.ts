@@ -11,6 +11,16 @@ export class DashboardComponent implements OnInit {
   Line_chart: Chart;
   Pie_Chart: Chart;
 
+  public edited = false;
+  
+  public acceptReq = false;
+
+  public finUser = false;
+
+  public hrUser = false;
+
+  panelOpenState = false;
+  
   constructor() { }
 
   ngOnInit() {
@@ -18,7 +28,39 @@ export class DashboardComponent implements OnInit {
     this.PieChart_init();
   }
 
-  PieChart_init() {
+  acceptData(){
+
+    this.edited = true;
+      
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+  }
+
+  send(){
+
+    this.edited = true;
+      
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+  }
+
+  editFin(){
+    this.finUser = true;
+    this.hrUser = false;
+  }
+
+  editHr(){
+    this.finUser = false;
+    this.hrUser = true;
+  }
+
+  PieChart_init(){
 
     // tslint:disable-next-line:prefer-const
     let chart = new Chart({
@@ -77,3 +119,5 @@ export class DashboardComponent implements OnInit {
     this.Line_chart = chart;
   }
 }
+
+
