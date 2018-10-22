@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 //use in combobox
 export interface Employee {
@@ -29,6 +30,7 @@ export class UserprofileComponent implements OnInit {
   eName = '';
   
   public edited = false;
+  public edited1 = false;
 
   //page ngModels
   UserId = 0;
@@ -54,6 +56,8 @@ export class UserprofileComponent implements OnInit {
   userName = '';
   
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
+
+  closeResult: string;
 
  //use in combobox
  parties: Party[] = [
@@ -84,7 +88,34 @@ roles: Role[] = [
 
   disabled = true;
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
+
+  
+  openUserModal(userContent) {
+    this.modalService.open(userContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openDUserModal(dUserContent) {
+    this.modalService.open(dUserContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 
   ngOnInit() {
     this.init();
@@ -135,7 +166,7 @@ roles: Role[] = [
       this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
       
       this.edited = true;
-      
+
       //wait 3 Seconds and hide
       setTimeout(function() {
           this.edited = false;
@@ -178,8 +209,7 @@ clear(){
 del(item){
 
   this.userName = item.UserName;
-  this.employeeId = item.userId;
-  
+  this.employeeId = item.userId;  
 }
 
 edit(item){
@@ -213,5 +243,13 @@ edit(item){
       }
     }
     this.clear();
-  }
+      
+    this.edited1 = true;
+        
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited1 = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+    }
 }

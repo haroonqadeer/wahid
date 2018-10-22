@@ -11,6 +11,8 @@ import { DashboardComponent } from './components/dashboard.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
+import { ModalDialogModule } from 'ngx-modal-dialog';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UserrolesComponent } from './components/userroles/userroles.component';
     MaterialModule,
     ChartModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot(),
+    ModalDialogModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

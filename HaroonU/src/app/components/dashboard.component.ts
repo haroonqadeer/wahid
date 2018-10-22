@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 // import * as CanvasJS from './canvasjs.min';
 
 @Component({
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit {
   Pie_Chart: Chart;
 
   public edited = false;
-  
+ 
   public acceptReq = false;
 
   public finUser = false;
@@ -21,12 +22,110 @@ export class DashboardComponent implements OnInit {
 
   panelOpenState = false;
   
-  constructor() { }
+  closeResult: string;
+
+  constructor(private modalService: NgbModal) { }
+
+  openUserModal(userContent) {
+    this.modalService.open(userContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openLogModal(logContent) {
+    this.modalService.open(logContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openRoleModal(userRoleContent) {
+    this.modalService.open(userRoleContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openMenuModal(menuContent) {
+    this.modalService.open(menuContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openUReqModal(userReqContent) {
+    this.modalService.open(userReqContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openRReqModal(roleReqContent) {
+    this.modalService.open(roleReqContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openRAcceptModal(ReqAcceptContent) {
+    this.modalService.open(ReqAcceptContent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openMsgModal(msgContent) {
+    this.modalService.open(msgContent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
+  openFinModal(roleMenuContent) {
+    this.modalService.open(roleMenuContent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+
+    this.editFin();
+  }
+
+  openHrModal(roleMenuContent) {
+    this.modalService.open(roleMenuContent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+
+    this.editHr();
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 
   ngOnInit() {
     this.LineChart_init();
     this.PieChart_init();
   }
+
+  
 
   acceptData(){
 
@@ -42,7 +141,6 @@ export class DashboardComponent implements OnInit {
   send(){
 
     this.edited = true;
-      
     //wait 3 Seconds and hide
     setTimeout(function() {
         this.edited = false;
