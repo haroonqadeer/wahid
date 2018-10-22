@@ -67,7 +67,7 @@
             <div class="row">
               <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                      <mat-select style="z-index: 1000;" placeholder="Employee" [(ngModel)]="cmbEmployee" (ngModelChange)="onEmployeeChange($event)"  multiple required>
+                      <mat-select placeholder="Employee" [(ngModel)]="cmbEmployee" (ngModelChange)="onEmployeeChange($event)"  multiple required>
                           <input type="text" class="form-control" [(ngModel)]="searchEmployee" (keydown)="onSearchChange($event)">
                         <mat-option *ngFor="  let employee of employees | search:'eId,eName,eDept':searchEmployee" [value]="employee.eId" >
                             {{ employee.eId }} - {{ employee.eName }} - {{ employee.eDept }}
@@ -271,7 +271,7 @@
             </table>
           </div>
           </div>
-          <mat-paginator [length]="resultsLength" [pageSize]="5"></mat-paginator>
+          <!-- <mat-paginator [length]="resultsLength" [pageSize]="5" showFirstLastButtons></mat-paginator> -->
           
   </div>
 </div>

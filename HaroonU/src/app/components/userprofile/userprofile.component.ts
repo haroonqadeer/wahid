@@ -58,7 +58,7 @@ export class UserprofileComponent implements OnInit {
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
 
   closeResult: string;
-
+  
  //use in combobox
  parties: Party[] = [
   {value: '1', viewValue: 'Adnan'},
@@ -118,7 +118,7 @@ roles: Role[] = [
   }
 
   ngOnInit() {
-    this.init();
+    this.init(); 
   }
 
   //use this data in chart

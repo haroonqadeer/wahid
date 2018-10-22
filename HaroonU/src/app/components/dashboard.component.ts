@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   Pie_Chart: Chart;
 
   public edited = false;
+  public edited1 = false;
  
   public acceptReq = false;
 
@@ -129,21 +130,20 @@ export class DashboardComponent implements OnInit {
 
   acceptData(){
 
-    this.edited = true;
-      
+    this.edited1 = true;
     //wait 3 Seconds and hide
     setTimeout(function() {
-        this.edited = false;
+        this.edited1 = false;
         console.log(this.edited);
     }.bind(this), 2000);
   }
 
   send(){
 
-    this.edited = true;
+    this.edited1 = true;
     //wait 3 Seconds and hide
     setTimeout(function() {
-        this.edited = false;
+        this.edited1 = false;
         console.log(this.edited);
     }.bind(this), 2000);
   }
