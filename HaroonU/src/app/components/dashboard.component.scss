@@ -7,7 +7,7 @@
     cursor: pointer;
   }
 
-  #note {
+  #alert_msg {
     position: absolute;
     z-index: 101;
     top: 10;
@@ -21,6 +21,22 @@
     -webkit-box-shadow: 0 0 5px #32CD32;
     -moz-box-shadow:    0 0 5px #32CD32;
     box-shadow:         0 0 5px black;
+}
+
+#alert_msg1 {
+  position: absolute;
+  z-index: 101;
+  top: 1;
+  left: 70em;
+  right: 2em;
+  background: #32CD32;
+  color:white;
+  text-align: center;
+  line-height: 3;
+  overflow: hidden; 
+  -webkit-box-shadow: 0 0 5px black;
+  -moz-box-shadow:    0 0 5px black;
+  box-shadow:         0 0 5px black;
 }
 
 .box_border{

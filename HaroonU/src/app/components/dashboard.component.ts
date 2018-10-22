@@ -60,9 +60,19 @@ export class DashboardComponent implements OnInit {
     this.hrUser = true;
   }
 
+  pie_data(){
+
+    this.edited = true;
+      
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+  }
+
   PieChart_init(){
 
-    // tslint:disable-next-line:prefer-const
     let chart = new Chart({
       chart: {
         type: 'pie'
@@ -99,7 +109,7 @@ export class DashboardComponent implements OnInit {
   }
 
   LineChart_init() {
-    // tslint:disable-next-line:prefer-const
+    
     let chart = new Chart({
       chart: {
         type: 'line'

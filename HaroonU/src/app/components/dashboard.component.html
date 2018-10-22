@@ -1,4 +1,7 @@
 <br/>
+<div id="alert_msg1" *ngIf="edited">
+  Action Successfully Generated
+</div>
 
 <div class="row">
   <div class="col-md-6">
@@ -657,7 +660,7 @@
       <!-- Start Modal Window for Users Request to Accept user Request -->
       <div class="modal fade" id="reqAcceptModal" role="dialog">
           <br/><br/>
-          <div id="note" *ngIf="edited">
+          <div id="alert_msg" *ngIf="edited">
             Action Successfully Saved
           </div>
   
@@ -707,7 +710,7 @@
         <!-- Start Modal Window for Users to send message -->
         <div class="modal fade" id="msgModal" role="dialog">
             <br/><br/>
-            <div id="note" *ngIf="edited">
+            <div id="alert_msg" *ngIf="edited">
               Message Send Successfully
             </div>
   
@@ -758,14 +761,13 @@
           </div>
         </div>
         <!-- End Modal Window for Users to send message -->
-  
 
 <!-- Charts HTML Start -->
 <div class="container_charts">
   
   <!--Pie chart-->
   <div class="pie_chart">
-    <div [chart]="Pie_Chart"></div>
+    <div [chart]="Pie_Chart" (click)="pie_data()"></div>
   </div>
 
   
