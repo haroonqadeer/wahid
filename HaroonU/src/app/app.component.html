@@ -10,9 +10,35 @@
 </mat-drawer>
 
 <div class="example-sidenav-content">
-    <button type="button"  mat-button (click)="drawer.toggle()">
-        Menu<span class="glyphicon glyphicon-envelope"></span>
-    </button>
+    <div class="row bgWhite bottomBorder">
+        <div class="col-md-1">
+            <button type="button" class="noneOutLine"  mat-button (click)="drawer.toggle()">
+                <span class="fa fa-bars sideMenubar"></span>
+            </button>
+        </div>
+        <div class="col-md-5">
+            <h4>Provisional Disaster Management Authority</h4>
+        </div>
+        <div class="col-md-6 text-right">
+            <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
+                Haroon Qadeer
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item class="noneOutLine">
+                    <!-- <mat-icon>dialpad</mat-icon> -->
+                    <span class="fa fa-sign-out"></span>
+                    <span>  Log out</span>
+                </button>
+                <button mat-menu-item class="noneOutLine">
+                    <!-- <mat-icon>voicemail</mat-icon> -->
+                    <span class="fa fa-user"></span>
+                    <span>  Haroonqd</span>
+                </button>                
+            </mat-menu>
+        </div>
+        
+    </div>
+    
     <router-outlet></router-outlet>
 </div>
 

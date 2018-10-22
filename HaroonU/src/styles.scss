@@ -47,6 +47,13 @@ h1{
     font-weight: bold;
 }
 
+.bgWhite{
+    background-color: #fff !important;
+}
+
+.bottomBorder{
+    border-bottom: 1px solid #ccc !important;
+}
 /* Common CSS End   */
 
 
@@ -72,6 +79,10 @@ h1{
     width: 100% !important;
 }
 
+// button's outline set to zero
+.noneOutLine{
+    outline: 0 !important;
+}
 
 // side nav angular material
 .example-container{
@@ -80,6 +91,9 @@ h1{
 .example-sidenav{
     padding: 1em !important;
     background-image: linear-gradient(135deg,#222,#333, #4c4c4c) !important;
+}
+.sideMenubar{
+    font-size: 2.0em !important;
 }
 
 /* Dashboard CSS Start (Adnan) */

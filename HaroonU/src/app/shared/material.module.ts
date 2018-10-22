@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatCardModule } from '@angular/material';
+import { MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatCardModule, MatMenuModule } from '@angular/material';
 
 
 
@@ -16,9 +16,8 @@ import { MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, Ma
     MatPaginatorModule,
     MatDialogModule,
     MatTabsModule,
-
+    MatMenuModule,
     MatSidenavModule,
-
     MatCardModule 
 
   ],
@@ -32,9 +31,8 @@ import { MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, Ma
     MatPaginatorModule,
     MatDialogModule,
     MatTabsModule,
-
+    MatMenuModule,
     MatSidenavModule,
-
     MatCardModule 
 
   ]
