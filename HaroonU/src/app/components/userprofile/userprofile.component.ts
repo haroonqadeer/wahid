@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {MatDialog} from '@angular/material';
+import { NewUserDialogComponent } from '../new-user-dialog/new-user-dialog.component'
 
 //use in combobox
 export interface Employee {
@@ -29,9 +30,6 @@ export class UserprofileComponent implements OnInit {
   chart: Chart;
   eName = '';
   
-  public edited = false;
-  public edited1 = false;
-
   //page ngModels
   UserId = 0;
   cmbEmployee: '';
@@ -54,11 +52,8 @@ export class UserprofileComponent implements OnInit {
   txtdPin = '';
   employeeId = 0;
   userName = '';
-  
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
 
-  closeResult: string;
-  
  //use in combobox
  parties: Party[] = [
   {value: '1', viewValue: 'Adnan'},
@@ -88,37 +83,10 @@ roles: Role[] = [
 
   disabled = true;
 
-  constructor(private modalService: NgbModal) { }
-
-  
-  openUserModal(userContent) {
-    this.modalService.open(userContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  openDUserModal(dUserContent) {
-    this.modalService.open(dUserContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.init(); 
+    this.init();
   }
 
   //use this data in chart
@@ -160,96 +128,77 @@ roles: Role[] = [
     this.eName = this.employees.find( x=> x.eId == item).eName.replace(/['"]+/g, '');    
   }  
 
-  saveVisitor(){
-    //var date =new Date();
-    if(this.UserId!=0){
-      this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
-      
-      this.edited = true;
-
-      //wait 3 Seconds and hide
-      setTimeout(function() {
-          this.edited = false;
-          console.log(this.edited);
-      }.bind(this), 4000);
-
-    }else{
-      this.UserId=1+this.userDetail.length;
-      this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
-      
-      this.edited = true;
-      
-      //wait 3 Seconds and hide
-      setTimeout(function() {
-          this.edited = false;
-          console.log(this.edited);
-      }.bind(this), 2000);
-
-    }
-    this.clear();
+  openDialog() {
+    this.dialog.open(NewUserDialogComponent);
+    
   }
 
-clear(){
+  // saveVisitor(){
+  //   //var date =new Date();
+  //   if(this.UserId!=0){
+  //     this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
+  //   }else{
+  //     this.UserId=1+this.userDetail.length;
+  //     this.userDetail.push( { userId: this.UserId, UserName: this.txtUName, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact } );
+  //   }
+  //   this.clear();
+  // }
+// clear(){
 
-    //if you want to clear input
-    this.UserId = 0;
-    this.txtUName = '';
-    this.txtEmail = '';
-    this.cmbParty = '';
-    this.cmbvRole = '';
-    this.txtRemarks = '';
-    this.txtfrstName = '';
-    this.txtlstName = '';
-    this.txtvCnfrmPassword = '';
-    this.txtvPassword = '';
-    this.txtContact = '';
+    
+//     //if you want to clear input
+//     this.UserId = 0;
+//     this.txtUName = '';
+//     this.txtEmail = '';
+//     this.cmbParty = '';
+//     this.cmbvRole = '';
+//     this.txtRemarks = '';
+//     this.txtfrstName = '';
+//     this.txtlstName = '';
+//     this.txtvCnfrmPassword = '';
+//     this.txtvPassword = '';
+//     this.txtContact = '';
 
-}
+// }
 
-del(item){
+// del(item){
 
-  this.userName = item.UserName;
-  this.employeeId = item.userId;  
-}
-
-edit(item){
-  this.UserId = item.userId;
-  this.txtUName = item.UserName;
-  this.txtEmail = item.Email;
-  this.cmbParty = item.loginDate;
-  this.cmbvRole = item.Role;
-  this.txtRemarks = item.udate;
-  this.txtfrstName = item.FirstName;
-  this.txtlstName = item.LastName;
-  this.txtvPassword = item.vPassword;
-  this.txtvCnfrmPassword = item.vPassword;
-  this.txtContact = item.Contact;
-
-  for (var i=0; i<this.userDetail.length;i++)
-  {
-    if(this.userDetail[i]["userId"]== item.userId){
-      this.userDetail.splice(i, 1);
-    }
-  }
+//   this.userName = item.UserName;
+//   this.employeeId = item.userId;
   
+// }
+
+// edit(item){
+//   this.UserId = item.userId;
+//   this.txtUName = item.UserName;
+//   this.txtEmail = item.Email;
+//   this.cmbParty = item.loginDate;
+//   this.cmbvRole = item.Role;
+//   this.txtRemarks = item.udate;
+//   this.txtfrstName = item.FirstName;
+//   this.txtlstName = item.LastName;
+//   this.txtvPassword = item.vPassword;
+//   this.txtvCnfrmPassword = item.vPassword;
+//   this.txtContact = item.Contact;
+
+//   for (var i=0; i<this.userDetail.length;i++)
+//   {
+//     if(this.userDetail[i]["userId"]== item.userId){
+//       this.userDetail.splice(i, 1);
+//     }
+//   }
+  
+// }
+
+//   delete(){
+
+//     for (var i=0; i<this.userDetail.length;i++)
+//     {
+//       if(this.userDetail[i]["userId"]== this.employeeId){
+//         this.userDetail.splice(i, 1);
+//       }
+//     }
+//     this.clear();
+//   }
 }
 
-  delete(){
-
-    for (var i=0; i<this.userDetail.length;i++)
-    {
-      if(this.userDetail[i]["userId"]== this.employeeId){
-        this.userDetail.splice(i, 1);
-      }
-    }
-    this.clear();
-      
-    this.edited1 = true;
-        
-    //wait 3 Seconds and hide
-    setTimeout(function() {
-        this.edited1 = false;
-        console.log(this.edited);
-    }.bind(this), 2000);
-  }
-}
