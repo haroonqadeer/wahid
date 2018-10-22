@@ -3,25 +3,6 @@
     font-size: 14px;
     width: 100%;
   }
-  .pointerCursor{
-    cursor: pointer;
-  }
-
-  #alert_msg {
-    position: absolute;
-  z-index: 101;
-  top: 1;
-  left: 70em;
-  right: 2em;
-  background: #32CD32;
-  color:white;
-  text-align: center;
-  line-height: 5;
-  overflow: hidden; 
-  -webkit-box-shadow: 0 0 5px black;
-  -moz-box-shadow:    0 0 5px black;
-  box-shadow:         0 0 5px black;
-}
 
 .box_border{
 

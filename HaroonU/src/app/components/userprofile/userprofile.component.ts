@@ -188,9 +188,9 @@ roles: Role[] = [
     }
     this.clear();
   }
+
 clear(){
 
-    
     //if you want to clear input
     this.UserId = 0;
     this.txtUName = '';
@@ -251,5 +251,5 @@ edit(item){
         this.edited1 = false;
         console.log(this.edited);
     }.bind(this), 2000);
-    }
+  }
 }

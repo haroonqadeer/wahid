@@ -261,7 +261,7 @@
                   <td class="col-1">{{item.Role}}</td>
                   <td class="col-2">{{item.udate}}</td>
                   <td class="col-2">{{item.loginDate}}</td>
-                  <td class="col-2"><span class="fa fa-edit" (click)="edit(item)" (click)="openUserModal(userContent)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash" (click)="openDUserModal(dUserContent)" (click)="del(item)"></span></td>
+                  <td class="col-2"><span class="fa fa-edit pointerCursor" (click)="edit(item)" (click)="openUserModal(userContent)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash pointerCursor" (click)="openDUserModal(dUserContent)" (click)="del(item)"></span></td>
                   <td style="display:none;">{{item.FirstName}}</td>
                   <td style="display:none;">{{item.LastName}}</td>
                   <td style="display:none;">{{item.vPassword}}</td>
@@ -280,7 +280,7 @@
 
 
 
-<!-- Start Modal Window to send message -->
+<!-- Start Modal Window to Delete User -->
 <ng-template #dUserContent let-modal>
     <div class="modal-body">
         <br>
@@ -317,4 +317,4 @@
       <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
     </div>
   </ng-template>
-<!-- End Modal Window to send message -->
+<!-- End Modal Window to Delete User -->
