@@ -81,8 +81,6 @@ roles: Role[] = [
 
   ];
 
-  disabled = true;
-
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
