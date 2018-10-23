@@ -21,6 +21,9 @@ export interface Role {
   rName: string;
 }
 
+//declare jQuery
+declare var $: any;
+
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
@@ -100,6 +103,7 @@ roles: Role[] = [
 
   ngOnInit() {
     this.init();
+    $('#modal_dialog').hide();
   }
 
   //use this data in chart
@@ -136,11 +140,12 @@ roles: Role[] = [
 
   }
 
-  openTestModal(){
-    this.edited2=true;
+  openTestModal(){    
+    $('#modal_dialog').fadeIn(500);
   }
+
   close(){
-    this.edited2=false;
+    $('#modal_dialog').fadeOut(500);
   }
   //onchange Employee
   onEmployeeChange(item){    
@@ -265,6 +270,12 @@ edit(item){
         this.edited1 = false;
         console.log(this.edited);
     }.bind(this), 2000);
+  }
+
+  animateIt(anim, obj){
+    $(obj).removeClass(anim + ' animated').addClass(anim + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+      $(obj).removeClass(anim + ' animated');
+    });
   }
 }
 
