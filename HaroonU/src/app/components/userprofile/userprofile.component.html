@@ -1,104 +1,107 @@
-<br><br>
+<br>
+<!-- heading row -->
 <div class="row">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="col-md-1"></div>
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">User Profiles</h1>        
+  </div>
+</div><!-- end heading row -->
+<br>
+<!-- box container -->
+<div class="container">
+    <div class="row">    
+      <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
+        <br/>
+        <h2>15</h2>
+        <h3>additions</h3><br>
+        for last 2 months
+      </div>
+      <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
+        <br/>
+        <h2>10</h2>
+        <h3>Updations</h3><br>
+        for last 2 months    
+      </div>
+      <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
+        <br/>
+        <h2>05</h2>
+        <h3>Banned</h3><br>
+        for last 2 months    
+      </div>
+      <div class="col-md-4">
+          <div [chart]="chart" style=" height: 200px;width:560px;" class="allBorder"></div>
+      </div>
+    </div>
+</div><!-- end box container -->
+
+<br>
+
+<div class="row">    
   <div class="col-md-6">
-    <h1>
-      User Profiles
-    </h1>
-    <hr>    
-  </div>
-</div>
-<div class="row">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <div class="col-md-1"></div>
-  <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
-    <br/>
-    <h1>15</h1>
-    <h3>additions</h3><br>
-    for last 2 months
-  </div>
-  <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
-    <br/>
-    <h1>10</h1>
-    <h3>Updations</h3><br>
-    for last 2 months    
-  </div>
-  <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
-    <br/>
-    <h1>05</h1>
-    <h3>Banned</h3><br>
-    for last 2 months    
-  </div>
-  <div class="col-md-4">
-      <div [chart]="chart" style=" height: 200px;width:450px;"></div>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-2">
-      <button mat-raised-button color="warn">Print</button>
-  </div>
-  <div class="col-md-7">
-    
-  </div>
-  <div class="col-md-2">
-      <button mat-raised-button color="primary" (click)="openDialog()">Add New</button>
+    <button mat-raised-button color="warn">Print</button>
+  </div>    
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" (click)="openDialog()">Add New</button>
   </div>
 </div>
 <br>
 
-
-<!--Start table Row-->
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-
-          <mat-form-field>
-            <input matInput [(ngModel)]="query" placeholder="Search">
-          </mat-form-field>
-          
-          <i class="fab fa-accessible-icon"></i>
-
-    <div class="example-container mat-elevation-z8">
-      <div class="example-table-container">
-          
-          <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-1'>Sr No.</th>
-                  <th class='col-2'>User Name</th>
-                  <th class='col-2'>Email</th>
-                  <th class='col-1'>Role</th>
-                  <th class='col-2'>User Since</th>
-                  <th class='col-2'>Last Login</th>
-                  <th class="col-2">Action</th>          
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'>
-                  <td class="col-1">{{item.userId}}</td>
-                  <td class="col-2">{{item.UserName}}</td>
-                  <td class="col-2">{{item.Email}}</td>
-                  <td class="col-1">{{item.Role}}</td>
-                  <td class="col-2">{{item.udate}}</td>
-                  <td class="col-2">{{item.loginDate}}</td>
-                  <td class="col-2"><span class="fa fa-edit" data-toggle="modal" data-target="#myModal" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash" data-toggle="modal" data-target="#myModal1"  (click)="del(item)"></span></td>
-                  <td style="display:none;">{{item.FirstName}}</td>
-                  <td style="display:none;">{{item.LastName}}</td>
-                  <td style="display:none;">{{item.vPassword}}</td>
-                  <td style="display:none;">{{item.Contact}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          </div>
-          <mat-paginator [length]="resultsLength" [pageSize]="5"></mat-paginator>
-          
+<!-- User Profile Container -->
+<div class="container bgWhite allBorder">
+  <br>  
+  <!--Start table Row-->
+  <div class="row">
+    <div class="col-md-12">  
+      <mat-form-field>
+        <input matInput [(ngModel)]="query" placeholder="Search">
+      </mat-form-field>      
+      <i class="fab fa-accessible-icon"></i>
+    </div>
   </div>
+  
+  <div class="row">  
+    <div class="example-container mat-elevation-z8 fullwidth">
+      <div class="example-table-container fullwidth">            
+        <table class="table table-striped fullwidth">
+          <thead>
+            <tr class='d-flex'>
+              <th class='col-1'>Sr No.</th>
+              <th class='col-2'>User Name</th>
+              <th class='col-2'>Email</th>
+              <th class='col-1'>Role</th>
+              <th class='col-2'>User Since</th>
+              <th class='col-2'>Last Login</th>
+              <th class="col-2">Action</th>          
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'>
+              <td class="col-1">{{item.userId}}</td>
+              <td class="col-2">{{item.UserName}}</td>
+              <td class="col-2">{{item.Email}}</td>
+              <td class="col-1">{{item.Role}}</td>
+              <td class="col-2">{{item.udate}}</td>
+              <td class="col-2">{{item.loginDate}}</td>
+              <td class="col-2"><span class="fa fa-edit" data-toggle="modal" data-target="#myModal" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash" data-toggle="modal" data-target="#myModal1"  (click)="del(item)"></span></td>
+              <td style="display:none;">{{item.FirstName}}</td>
+              <td style="display:none;">{{item.LastName}}</td>
+              <td style="display:none;">{{item.vPassword}}</td>
+              <td style="display:none;">{{item.Contact}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div><!-- end table row -->
+  <br>
+  <!-- row - paginater -->
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <mat-paginator [length]="resultsLength" [pageSize]="5"></mat-paginator>
+    </div>
+  </div>
+  <!--end table row-->
 </div>
-<!--end table row-->
+
 
 
 <!-- Modal -->
