@@ -141,11 +141,11 @@ roles: Role[] = [
   }
 
   openTestModal(){    
-    $('#modal_dialog').fadeIn(500);
+    $('#modal_dialog').fadeIn(300);    
   }
 
   close(){
-    $('#modal_dialog').fadeOut(500);
+    $('#modal_dialog').fadeOut(300);
   }
   //onchange Employee
   onEmployeeChange(item){    
