@@ -13,7 +13,6 @@ import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { NewUserDialogComponent } from './components/new-user-dialog/new-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { NewUserDialogComponent } from './components/new-user-dialog/new-user-di
     LoginComponent,
     UserrolesComponent,
     UserprofileComponent,
-    NewUserDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +35,6 @@ import { NewUserDialogComponent } from './components/new-user-dialog/new-user-di
     FormsModule,
     NgbModule.forRoot(),
     ModalDialogModule.forRoot()
-  ],
-  entryComponents: [
-    NewUserDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
