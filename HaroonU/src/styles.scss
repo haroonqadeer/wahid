@@ -107,9 +107,9 @@ h1{
     font-size: 1.5em !important;
 }
 .sideMenuHome{
-    font-size: 2.0em !important;
-    padding-top: 0.5em !important;
-    padding-bottom: 0.5em !important;
+    font-size: 1.5em !important;
+    padding-top: 0.4em !important;
+    padding-bottom: 0.4em !important;
 }
 .sideMenuTitle{
     color: #e5e5e5 !important;
@@ -287,3 +287,8 @@ h1{
   -moz-box-shadow:    0 0 5px black;
   box-shadow:         0 0 5px black;
 }
+
+// set select box on modal window
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 99999 !important;
+ }
