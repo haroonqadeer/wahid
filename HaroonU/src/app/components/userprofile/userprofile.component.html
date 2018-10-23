@@ -8,7 +8,7 @@
   </div>
   
   <br/>
-  
+ <div (click)="close()"> 
 <!-- heading row -->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -44,6 +44,220 @@
 </div><!-- end box container -->
 
 <br>
+
+
+</div>
+
+<button mat-raised-button color="primary" (click)="openTestModal()">Print</button>
+<!--<div [@bounce]="bounce">-->
+  <div id="modal_dialog" [@bounce]="bounce" *ngIf="edited2">
+    <br/>
+      <div class="container">
+        <div [@zoom]="zoom" class="row bottomBorder">
+          <div class="col-md-6" style="text-align:left;">
+            <h4>New User</h4>
+          </div>
+          <div class="col-md-6" style="text-align: right;">
+              <span class="fa fa-times-circle pointerCursor" (click)="close()"></span>
+          </div>
+          <!-- <div class="col-md-4 text-right" style="border:1px solid black">
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>    
+          </div> -->
+        </div>
+        
+      </div>
+      <mat-tab-group>
+          <mat-tab label="Employee">
+            <br>
+            <div class="container">
+              <div class="hidden" [(ngModel)]="userId" ngDefaultControl></div> 
+              <div class="row">
+              <div class="col-md-12">
+                  <!-- <select class="form-control" [(ngModel)]="cmbEmployee">
+                      <option value="">Select Employee</option>
+                      <option value="Adnan">Adnan</option>
+                      <option value="Amir">Amir</option>
+                      <option value="Haroon">Haroon</option>
+                      <option value="Nabeel">Nabeel</option>
+                  </select> -->
+                  <mat-form-field class="example-full-width">
+                      <mat-select placeholder="Employee" [(ngModel)]="cmbEmployee" (ngModelChange)="onEmployeeChange($event)"  multiple required>
+                          <input type="text" class="form-control" [(ngModel)]="searchEmployee" (keydown)="onSearchChange($event)">
+                          <mat-option *ngFor="  let employee of employees | search:'eId,eName,eDept':searchEmployee" [value]="employee.eId" >
+                              {{ employee.eId }} - {{ employee.eName }} - {{ employee.eDept }}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+              </div><br>
+              <div class="row">
+              <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Password" type="password" [(ngModel)]="txtPassword" required>
+                  </mat-form-field>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Confirm Password" type="password" [(ngModel)]="txtCnfrmPassword" required>
+                  </mat-form-field>
+              </div>
+              </div><br>
+              <div class="row">
+                  <div class="col-md-12">
+                      <!-- <select class="form-control" [(ngModel)]="cmbRole">
+                          <option value="">Select Role</option>
+                          <option value="Super Admin">Super Admin</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Visitor">Visitor</option>
+                      </select> -->
+                      <mat-form-field class="example-full-width">
+                          <mat-select placeholder="Roles" [(ngModel)]="cmbRole" required>
+                          <mat-option *ngFor="  let role of roles" [value]="role.rId" >
+                              {{role.rName}}
+                          </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                  </div>
+              </div><br>
+              <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                      <input matInput placeholder="PIN" type="password" [(ngModel)]="txtPin" [disabled]="disabled">
+                  </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Confirm PIN" type="password" [(ngModel)]="txtcnfrmPin" [disabled]="disabled">
+                  </mat-form-field>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-md-6">
+                  <section class="example-section">
+                      <mat-checkbox class="example-margin" [(ngModel)]="disabled">Enable PIN</mat-checkbox>
+                      </section>
+              </div>
+              </div>
+              <br>
+              <div class="row">
+              <div class="col-md-6">
+                  <button mat-raised-button color="primary" (click)="modal.dismiss('Cross click')"  (click)="save()">Save</button>
+              </div>
+              </div>
+              <br/>
+            </div>
+        </mat-tab>
+        <mat-tab label="Visitor"> 
+            <br> 
+            <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First Name" [(ngModel)]="txtfrstName">
+                    </mat-form-field>
+                </div>
+            </div>
+            <br/>
+            <div class="row">  
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" [(ngModel)]="txtlstName">
+                    </mat-form-field>
+                </div>
+            </div>
+            <br/>
+            <div class="row">  
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="User Name" [(ngModel)]="txtUName">
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Password" type="password" [(ngModel)]="txtvPassword">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Confirm Password" type="password" [(ngModel)]="txtvCnfrmPassword">
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                        <!-- <select class="form-control" [(ngModel)]="cmbvRole">
+                            <option value="">Select Role</option>
+                            <option value="Super Admin">Super Admin</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Visitor">Visitor</option>
+                        </select> -->
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Roles" [(ngModel)]="cmbvRole">
+                            <mat-option *ngFor="  let role of roles" [value]="role.rId" >
+                                {{role.rName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                </div><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <select class="form-control" [(ngModel)]="cmbParty">
+                        <option value="">Select Party</option>
+                        <option value="Ahmed">Ahmed</option>
+                        <option value="Ali">Ali</option>
+                        <option value="Qureshi">Qureshi</option>
+                    </select> -->
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Party" [(ngModel)]="cmbParty">
+                            <mat-option *ngFor="  let party of parties" [value]="party.value" >
+                                {{party.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                </div><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Contact number" [(ngModel)]="txtContact">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" type="email" [(ngModel)]="txtEmail">
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Remarks" [(ngModel)]="txtRemarks">
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>  
+            <div class="row">
+                <div class="col-md-6">
+                    <button mat-raised-button color="primary" (click)="modal.dismiss('Cross click')" (click)="saveVisitor()">Save</button>
+                </div>
+            </div>
+            <br/>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+  </div>
+<!-- </div> -->
+
 
 <div class="row">    
   <div class="col-md-6">
@@ -111,8 +325,6 @@
   </div>
   <!--end table row-->
 </div>
-
-
 
 
 <!-- Start Modal Window to add & update new user -->

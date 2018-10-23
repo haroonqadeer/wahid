@@ -6,4 +6,25 @@ table {
     font-size: 14px;
     width: 100%;
   }
-  
+
+
+
+
+
+  /*start modal window css */
+
+
+  #modal_dialog {
+    position: absolute;
+    z-index: 101;
+    top: 3em;
+    left: 10em;
+    right: 10em;
+    bottom: 5em;
+    background: whitesmoke;
+    text-align: center;
+    overflow: scroll;
+    -webkit-box-shadow: 1px 0px 124px 27px rgba(0,0,0,1);
+    -moz-box-shadow: 1px 0px 124px 27px rgba(0,0,0,1);
+    box-shadow: 1px 0px 124px 27px rgba(0,0,0,1);
+}

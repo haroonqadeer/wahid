@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { zoomIn, zoomOut } from 'ng-animate';
+ 
 //use in combobox
 export interface Employee {
   eId: string;
@@ -22,9 +24,16 @@ export interface Role {
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
-  styleUrls: ['./userprofile.component.scss']
+  styleUrls: ['./userprofile.component.scss'],
+  animations: [
+    trigger('bounce', [transition('* => *', useAnimation(zoomIn))]),
+    trigger('zoom', [transition('* => *', useAnimation(zoomOut))])
+  ],
 })
 export class UserprofileComponent implements OnInit {
+  
+  bounce: any;
+  zoom:any;
   
   chart: Chart;
   eName = '';
@@ -32,6 +41,8 @@ export class UserprofileComponent implements OnInit {
   public edited = false;
   public edited1 = false;
   
+  public edited2 = false;
+    
   //page ngModels
   UserId = 0;
   cmbEmployee: '';
@@ -125,6 +136,12 @@ roles: Role[] = [
 
   }
 
+  openTestModal(){
+    this.edited2=true;
+  }
+  close(){
+    this.edited2=false;
+  }
   //onchange Employee
   onEmployeeChange(item){    
     this.eName = this.employees.find( x=> x.eId == item).eName.replace(/['"]+/g, '');    
