@@ -9,9 +9,12 @@ html, body{
 }
 
 h1{
-    border: 0px solid red;
-    font-size: 150px;
+    font-family: Josefin !important;
+    letter-spacing: 0.2em !important;
+}
 
+.h1{
+    font-family: Mukta !important;
 }
 
 body{
@@ -47,6 +50,9 @@ h1{
     font-weight: bold;
 }
 
+/////////////////////////////////////////
+//////////// Back Groudn ////////////////
+/////////////////////////////////////////
 .bgWhite{
     background-color: #fff !important;
 }
@@ -55,12 +61,43 @@ h1{
     background-color: #f44336 !important;    
 }
 
+
+/////////////////////////////////////////
+//////////// Font Colors ////////////////
+/////////////////////////////////////////
+
 .fontWhite{
     color: #e5e5e5 !important;
 }
+.fontRed{
+    color: #f44336 !important;
+}
+.fontPrimary{
+    color: #3f51b5 !important;
+}
+
+/////////////////////////////////////////
+//////////// Borders Styles /////////////
+/////////////////////////////////////////
 
 .bottomBorder{
     border-bottom: 1px solid #ccc !important;
+}
+.allBorder{
+    border:1px solid #ccc !important;
+}
+.bottomBorderOnBlackBg{
+    border-bottom: 1px solid #666 !important;
+}
+.topBorderOnBlackBg{
+    border-top:  1px solid #666 !important;
+}
+
+///////////////////////////////////////////
+//////////// Shadows //////////////////////
+///////////////////////////////////////////
+boxShadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 /* Common CSS End   */
 
@@ -107,15 +144,17 @@ h1{
     font-size: 1.5em !important;
 }
 .sideMenuHome{
-    font-size: 2.0em !important;
-    padding-top: 0.5em !important;
-    padding-bottom: 0.5em !important;
+    font-size: 1.5em !important;
+    padding-top: 0.4em !important;
+    padding-bottom: 0.4em !important;
 }
 .sideMenuTitle{
     color: #e5e5e5 !important;
-    background-color: #4c4c4c !important;
-    padding-top: 1.2em !important;
-    padding-bottom: 1.0em !important;    
+    font-family: Mukta;
+    //background-color: #4c4c4c !important;
+    border-bottom: 1px solid #666;
+    padding-top: 0.8em !important;
+    padding-bottom: 0.7em !important;    
 }
 
 /* Dashboard CSS Start (Adnan) */
@@ -163,7 +202,7 @@ h1{
 }
 
 .container_boxes .box_users .icon{
-    border: 1px solid #000;
+    border: 1px solid #000;    
     position: absolute;
     left: 0;
     height: 100%;
@@ -239,7 +278,8 @@ h1{
 
 /*User profile page CSS start*/
 .up_headbox{
-    border: 1px solid #555;
+    border: 1px solid #ccc;
+    background-color: #fff !important;
     height: 200px;
     width: 200px;
     position: relative;
@@ -287,3 +327,8 @@ h1{
   -moz-box-shadow:    0 0 5px black;
   box-shadow:         0 0 5px black;
 }
+
+// set select box on modal window
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 99999 !important;
+ }

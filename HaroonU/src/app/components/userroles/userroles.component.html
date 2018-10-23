@@ -9,66 +9,77 @@
 
 <br/>
 
-<h1 style="margin-left: 35px;">
-  User Role
-</h1>
+<!-- heading - row -->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">User Role</h1>    
+  </div>
+</div><!-- end - heading - row -->
 
-<button class="btn" mat-raised-button color="primary" (click)="openeUserModal(eUserContent)">New Role</button>
+<br>
+<!-- button row -->
+<div class="row">
+  <div class="col-md-12 text-right">
+    <button class="btn" mat-raised-button color="primary" (click)="openeUserModal(eUserContent)">New Role</button>
+  </div>
+</div><!-- end button - row -->
 
-<ul>
-  <li>
-    <div class="row">
-      <div class="col-md-1">
-        <span class="sno"><br/><br/>01</span> 
-      </div>
-      <div class="col-md-3">
-        <br/>
-        <p>For Administrator</p>
-        <h3>Super Users</h3>
-        <span class="fa fa-edit pointerCursor" (click)="openeUserModal(eUserContent)"></span>
-        &nbsp;
-        <span class="fa fa-remove pointerCursor" (click)="opendUserModal(dUserContent)"></span>
-      </div>
-
-      <div class="col-me-6">
-          <br/>
-          <p>Permissions</p>
-          <h3>Financial (20) Admin HR (5)</h3>
-          <span class="fa fa-edit pointerCursor" (click)="openMenuModal(menuContent)"></span>
-          &nbsp;
-          <span class="fa fa-remove pointerCursor" (click)="opendUserModal(dUserContent)"></span>
+<div class="container bgWhite allBorder">
+    <br>
+    <ul>
+      <li>
+        <div class="row">
+          <div class="col-md-1 text-center">
+            <span class="Sr#"><br/><br/>01</span> 
+          </div>
+          <div class="col-md-3">
+            <br/>
+            <p class="fontPrimary">For Administrator</p>
+            <h3>Super Users</h3>
+            <span class="fa fa-edit pointerCursor fontRed" (click)="openeUserModal(eUserContent)"></span>
+            &nbsp;
+            <span class="fa fa-trash pointerCursor fontRed" (click)="opendUserModal(dUserContent)"></span>
+          </div>
+    
+          <div class="col-me-6">
+              <br/>
+              <p class="fontPrimary">Permissions</p>
+              <h3>Financial (20) Admin HR (5)</h3>
+              <span class="fa fa-edit pointerCursor fontRed" (click)="openMenuModal(menuContent)"></span>
+              &nbsp;
+              <span class="fa fa-trash pointerCursor fontRed" (click)="opendUserModal(dUserContent)"></span>
+            </div>
+        </div>   
+      </li>
+    
+      <li>
+        <div class="row">
+          <div class="col-md-1 text-center">
+              <span class="sno"><br/><br/>02</span> 
+          </div>
+          <!--2nd col-->
+          <div class="col-md-3">
+            <br/>
+            <p class="fontPrimary">For Administrator</p>
+            <h3>Finance Users</h3>
+            <span class="fa fa-edit pointerCursor fontRed" (click)="openeUserModal(eUserContent)"></span>
+            &nbsp;
+            <span class="fa fa-trash pointerCursor fontRed" (click)="opendUserModal(dUserContent)"></span>
+          </div>
+    
+          <!--3rd col-->
+          <div class="col-me-6">
+            <br/>
+            <p class="fontPrimary">Permissions</p>
+            <h3>Financial (5) Admin HR (2)</h3>
+            <span class="fa fa-edit pointerCursor fontRed" (click)="openMenuModal(menuContent)"></span>
+            &nbsp;
+            <span class="fa fa-trash pointerCursor fontRed" (click)="opendUserModal(dUserContent)"></span>
+          </div>
         </div>
-    </div>   
-  </li>
-
-  <li>
-    <div class="row">
-      <div class="col-md-1">
-          <span class="sno"><br/><br/>02</span> 
-      </div>
-      <!--2nd col-->
-      <div class="col-md-3">
-        <br/>
-        <p>For Administrator</p>
-        <h3>Finance Users</h3>
-        <span class="fa fa-edit pointerCursor" (click)="openeUserModal(eUserContent)"></span>
-        &nbsp;
-        <span class="fa fa-remove pointerCursor" (click)="opendUserModal(dUserContent)"></span>
-      </div>
-
-      <!--3rd col-->
-      <div class="col-me-6">
-        <br/>
-        <p>Permissions</p>
-        <h3>Financial (5) Admin HR (2)</h3>
-        <span class="fa fa-edit pointerCursor" (click)="openMenuModal(menuContent)"></span>
-        &nbsp;
-        <span class="fa fa-remove pointerCursor" (click)="opendUserModal(dUserContent)"></span>
-      </div>
-    </div>
-  </li>
-</ul>
-
+      </li>
+    </ul>
+</div>
 
 <!--Start Add User Role Model -->
 <ng-template #eUserContent let-modal>
