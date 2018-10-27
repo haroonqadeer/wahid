@@ -1,0 +1,60 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <!-- Side Menu Title -->
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="noneOutLine sideMenuHome borderbottom"  mat-flat-button color="primary">
+                    <span class="fa fa-home"></span>
+                </button>
+            </div>
+            <div class="col-md-8">
+                <h5 class="sideMenuTitle text-center">Menu</h5>
+            </div>
+        </div><!-- end Side Menu Title -->
+        <br><br>
+        <!-- UMIS Menu -->
+        <div class="row">
+            <button mat-button class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg topBorderOnBlackBg"> &nbsp;&nbsp;Dashboard</button>
+            <button mat-button class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;User Profile</button>
+            <button mat-button class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;User Role</button>
+        </div><!-- end UMIS Menu -->
+    
+    </mat-drawer>
+    
+    <div class="example-sidenav-content">
+        <div class="row bgWhite bottomBorder">
+            <div class="col-md-1">
+                <button type="button" class="noneOutLine"  mat-flat-button color="warn" (click)="drawer.toggle()">
+                    <span class="fa fa-bars sideMenubar"></span>
+                </button>
+            </div>
+            <div class="col-md-5">
+                <h4>UMIS</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
+                    Haroon Qadeer
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item class="noneOutLine" routerLink="">
+                        <!-- <mat-icon>dialpad</mat-icon> -->
+                        <span class="fa fa-sign-out"></span>
+                        <span>  Log out</span>
+                    </button>
+                    <button mat-menu-item class="noneOutLine">
+                        <!-- <mat-icon>voicemail</mat-icon> -->
+                        <span class="fa fa-user"></span>
+                        <span>  Haroonqd</span>
+                    </button>                
+                </mat-menu>
+            </div>
+            
+        </div>
+        
+        <router-outlet></router-outlet>
+    </div>
+    
+    </mat-drawer-container>
+    

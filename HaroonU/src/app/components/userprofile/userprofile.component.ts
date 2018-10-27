@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { zoomIn, zoomOut } from 'ng-animate';
  
@@ -20,6 +19,9 @@ export interface Role {
   rId: string;
   rName: string;
 }
+
+//declare jQuery
+declare var $: any;
 
 @Component({
   selector: 'app-userprofile',
@@ -41,8 +43,6 @@ export class UserprofileComponent implements OnInit {
   public edited = false;
   public edited1 = false;
   
-  public edited2 = false;
-    
   //page ngModels
   UserId = 0;
   cmbEmployee: '';
@@ -66,8 +66,6 @@ export class UserprofileComponent implements OnInit {
   employeeId = 0;
   userName = '';
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
-
-  closeResult: string;
 
  //use in combobox
  parties: Party[] = [
@@ -96,7 +94,7 @@ roles: Role[] = [
 
   ];
 
-  constructor(private modalService: NgbModal) { }
+  constructor() { }
 
   ngOnInit() {
     this.init();
@@ -125,7 +123,7 @@ roles: Role[] = [
         data: [300, 500, 250, 200, 800, 1000, 2000]
     }, {
         name: 'Banned',
-        data: [250, 100, 200, 350, 450, 800, 600]
+        data: [250, 100, 300, 650, 450, 800, 600]
     }, {
         name: 'Additions',
         data: [1, 1, 1, 100, 500, 800, 450]
@@ -136,43 +134,12 @@ roles: Role[] = [
 
   }
 
-  openTestModal(){
-    this.edited2=true;
-  }
-  close(){
-    this.edited2=false;
-  }
   //onchange Employee
   onEmployeeChange(item){    
     this.eName = this.employees.find( x=> x.eId == item).eName.replace(/['"]+/g, '');    
   }  
 
-  openUserModal(userContent) {
-    this.modalService.open(userContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
   
-  opendUserModal(deleteContent) {
-    this.modalService.open(deleteContent, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-  
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
-
   saveVisitor(){
     //var date =new Date();
     if(this.UserId!=0){
@@ -265,6 +232,12 @@ edit(item){
         this.edited1 = false;
         console.log(this.edited);
     }.bind(this), 2000);
+  }
+
+  animateIt(anim, obj){
+    $(obj).removeClass(anim + ' animated').addClass(anim + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+      $(obj).removeClass(anim + ' animated');
+    });
   }
 }
 

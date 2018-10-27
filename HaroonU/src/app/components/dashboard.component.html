@@ -30,7 +30,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-2">
             <!-- <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#userModal"></span> -->
-            <span class="fa fa-arrow-right pointerCursor" (click)="openUserModal(userContent)"></span>
+            <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#userModal"></span>
         </div>
       </div>
   </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2">
-          <span class="fa fa-arrow-right pointerCursor" (click)="openRoleModal(userRoleContent)"></span>
+          <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#roleModal"></span>
         </div>
       </div>
   </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2">
-            <span class="fa fa-arrow-right pointerCursor" (click)="openMenuModal(menuContent)"></span>
+            <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#menuModal"></span>
         </div>
       </div>
   </div>
@@ -93,7 +93,7 @@
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2">
-          <span class="fa fa-arrow-right pointerCursor" (click)="openUReqModal(userReqContent)"></span>
+          <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#userReqModal"></span>
         </div>
       </div>
   </div>
@@ -113,513 +113,599 @@
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2">
-          <span class="fa fa-arrow-right pointerCursor" (click)="openRReqModal(roleReqContent)"></span>
+          <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#roleReqModal"></span>
         </div>
       </div>
   </div>
 </div>
 <!--End boxes row-->
 
-<!-- Start Modal Window for Users to view logs data -->
-<ng-template #logContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Event Log</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      
-       
-        <div class="example-container mat-elevation-z8">
-          <div class="example-table-container">
-            
-            <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-2'>Sr#</th>
-                  <th class='col-3'>Action</th>
-                  <th class='col-4'>Action Date Time</th>
-                  <th class='col-2'>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-2">1</td>
-                  <td class="col-3">Addition</td>
-                  <td class="col-4">15-Oct-2018 15:34</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" (click)="openMsgModal(msgContent)"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-2">2</td>
-                  <td class="col-3">Deletion</td>
-                  <td class="col-4">15-Oct-2018 15:35</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" (click)="openMsgModal(msgContent)"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-2">3</td>
-                  <td class="col-3">Deletion</td>
-                  <td class="col-4">15-Oct-2018 15:36</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" (click)="openMsgModal(msgContent)"></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-      <div *ngIf="edited1" style="margin-right: 30em; border:1px solid #32CD32; background:#32CD32;color:white;left:2em;right:70em;line-height: 4;">
-        Action Successfully Saved
-      </div>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-  </ng-template>
-<!-- End Modal Window for Users to view logs data -->
+<!-- Bootstrap Modal Windows -->
 
 <!-- Start Modal Window for Users to view users data -->
-<ng-template #userContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Users</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      
-        <div class="example-container mat-elevation-z8">
-          <div class="example-table-container">
-            
-            <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-1'>Sr#</th>
-                  <th class='col-2'>User Name</th>
-                  <th class='col-2'>Full Name</th>
-                  <th class='col-3'>Email</th>
-                  <th class='col-2'>Role</th>
-                  <th class="col-2">View Log</th>          
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-1">1</td>
-                  <td class="col-2">Nabeel</td>
-                  <td class="col-2">Nabeel Ahmed</td>
-                  <td class="col-3">nabeel@gmail.com</td>
-                  <td class="col-2">Admin</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" (click)="openLogModal(logContent)"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-1">2</td>
-                  <td class="col-2">Adnan</td>
-                  <td class="col-2">Adnan Ali</td>
-                  <td class="col-3">adnan@yahoo.com</td>
-                  <td class="col-2">Visitor</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" (click)="openLogModal(logContent)"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-1">3</td>
-                  <td class="col-2">Amir</td>
-                  <td class="col-2">Amir Qureshi</td>
-                  <td class="col-3">amir@hotmail.com</td>
-                  <td class="col-2">Visitor</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" (click)="openLogModal(logContent)"></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<div class="modal fade" id="userModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Users</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+        <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+         
+        <div class="example-container mat-elevation-z8">
+            <div class="example-table-container">
+              
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1'>Sr#</th>
+                    <th class='col-2'>User Name</th>
+                    <th class='col-2'>Full Name</th>
+                    <th class='col-3'>Email</th>
+                    <th class='col-2'>Role</th>
+                    <th class="col-2">View Log</th>          
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class="col-1">1</td>
+                    <td class="col-2">Nabeel</td>
+                    <td class="col-2">Nabeel Ahmed</td>
+                    <td class="col-3">nabeel@gmail.com</td>
+                    <td class="col-2">Admin</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
+                  </tr>
+                  <tr class='d-flex'>
+                    <td class="col-1">2</td>
+                    <td class="col-2">Adnan</td>
+                    <td class="col-2">Adnan Ali</td>
+                    <td class="col-3">adnan@yahoo.com</td>
+                    <td class="col-2">Visitor</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
+                  </tr>
+                  <tr class='d-flex'>
+                    <td class="col-1">3</td>
+                    <td class="col-2">Amir</td>
+                    <td class="col-2">Amir Qureshi</td>
+                    <td class="col-3">amir@hotmail.com</td>
+                    <td class="col-2">Visitor</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-  </ng-template>
+</div>
 <!-- End Modal Window for Users to view users data -->
 
+
+<!-- Start Modal Window for Users to view logs data -->
+<div class="modal fade" id="userLogModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Event Log</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+          
+        <div class="example-container mat-elevation-z8">
+            <div class="example-table-container">
+              
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-2'>Sr#</th>
+                    <th class='col-3'>Action</th>
+                    <th class='col-4'>Action Date Time</th>
+                    <th class='col-2'>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class="col-2">1</td>
+                    <td class="col-3">Addition</td>
+                    <td class="col-4">15-Oct-2018 15:34</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                  </tr>
+                  <tr class='d-flex'>
+                    <td class="col-2">2</td>
+                    <td class="col-3">Deletion</td>
+                    <td class="col-4">15-Oct-2018 15:35</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                  </tr>
+                  <tr class='d-flex'>
+                    <td class="col-2">3</td>
+                    <td class="col-3">Deletion</td>
+                    <td class="col-4">15-Oct-2018 15:36</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
+    </div>
+</div>
+<!-- End Modal Window for Users to view logs data -->
+
+
 <!-- Start Modal Window to view Roles data -->
-<ng-template #userRoleContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">User Roles</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div class="example-container mat-elevation-z8">
-          <div class="example-table-container">
-            
-            <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-2'>Sr#</th>
-                  <th class='col-3'>Role Title</th>
-                  <th class='col-4'>Permissions</th>
-                  <th class='col-2'>Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-2">1</td>
-                  <td class="col-3">Financial User</td>
-                  <td class="col-4">Financial (10), HR (2)</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" (click)="openFinModal(roleMenuContent)"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-2">2</td>
-                  <td class="col-3">Admin & HR User</td>
-                  <td class="col-4">HR & Admin (15)</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" (click)="openHrModal(roleMenuContent)"></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<div class="modal fade" id="roleModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">User Roles</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-</ng-template>
-<!-- End Modal Window to view role data -->
-
-<!-- Start Modal Window to assign roles -->
-<ng-template #roleMenuContent let-modal>
-    <div class="modal-body">
-        <br>
-        <div *ngIf="finUser">
-          <div class="row">
-            <h2>Finance User</h2>
-          </div>
-          <br/>
-          <div class="row">
-            <div class="col-md-12">
-              <mat-accordion>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Inventory Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Accounts Payable Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-                <mat-expansion-panel (opened)="panelOpenState = true"
-                                      (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      General Ledger Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-                
-                <mat-expansion-panel (opened)="panelOpenState = true"
-                                      (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Financial Statements Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </div>
-              
-          </div>
-        
-        </div>
-
-        <div *ngIf="hrUser">
-          <div class="row">
-            <h2>Admin & HR User</h2>
-          </div>
-          <br/>
-          <div class="row">
-            <div class="col-md-12">
-              <mat-accordion>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Online Recruitment Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-                <mat-expansion-panel (opened)="panelOpenState = true"
-                                      (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Auto Enrollment Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-                <mat-expansion-panel (opened)="panelOpenState = true"
-                                      (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Training  Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-                <mat-expansion-panel (opened)="panelOpenState = true"
-                                      (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Payroll  Module
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                  </section>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </div>
-              
-          </div>
-        
-        </div> 
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-</ng-template>
-<!-- End Modal Window for Menu Items -->
-
-<!-- Start Modal Window to view User Request Data -->
-<ng-template #userReqContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">User Requests</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>  
-    <div class="modal-body">
-        
+        <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+          
         <div class="example-container mat-elevation-z8">
-          <div class="example-table-container">
+            <div class="example-table-container">
              
             <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-1'>Sr#</th>
-                  <th class='col-2'>Sender</th>
-                  <th class='col-3'>User Name</th>
-                  <th class='col-2'>Subject</th>
-                  <th class='col-2'>Subject</th>
-                  <th class='col-2'>Subject</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-1">1</td>
-                  <td class="col-2">Iqbal Shami - DD(Accounts) - Finance</td>
-                  <td class="col-3">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>
-                  <td class="col-2">Creation of Login for Employee</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" (click)="openRAcceptModal(ReqAcceptContent)"></span></td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" (click)="openMsgModal(msgContent)"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-1">2</td>
-                  <td class="col-2">Shahid Ahmed - Dir(Admin) - Administration</td>
-                  <td class="col-3">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>
-                  <td class="col-2">Creation of Login for Auditor (Visitor)</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" (click)="openRAcceptModal(ReqAcceptContent)"></span></td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" (click)="openMsgModal(msgContent)"></span></td>
-                </tr>
-              </tbody>
-            </table>
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-2'>Sr#</th>
+                    <th class='col-3'>Role Title</th>
+                    <th class='col-4'>Permissions</th>
+                    <th class='col-2'>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class="col-2">1</td>
+                    <td class="col-3">Financial User</td>
+                    <td class="col-4">Financial (10), HR (2)</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#roleMenuModal" (click)="finUsr()"></span></td>
+                  </tr>
+                  <tr class='d-flex'>
+                    <td class="col-2">2</td>
+                    <td class="col-3">Admin & HR User</td>
+                    <td class="col-4">HR & Admin (15)</td>
+                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#roleMenuModal" (click)="hrUsr()"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+          </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
-        
+        <!--end Modal footer -->
+
+      </div>
     </div>
-    <div class="modal-footer">
-        <div *ngIf="edited1" style="margin-right: 30em; border:1px solid #32CD32; background:#32CD32;color:white;left:2em;right:70em;line-height: 4;">
-          Action Successfully Saved
+</div>
+<!-- End Modal Window to view role data -->
+
+
+<!-- Start Modal Window to assign roles -->
+<div class="modal fade" id="roleMenuModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+            <br>
+            <div *ngIf="finUser">
+              <div class="row">
+                <div class="col-md-6">
+                  <h2>Finance User</h2>
+                </div>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Inventory Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Accounts Payable Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          General Ledger Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                    
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Financial Statements Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+                  
+              </div>
+            
+            </div>
+    
+            <div *ngIf="hrUser">
+              <div class="row">
+                <div class="col-md-6">
+                    <h2>Admin & HR User</h2>
+                </div>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Online Recruitment Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Auto Enrollment Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Training  Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          Payroll  Module
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      </section>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+                  
+              </div>
+            
+            </div> 
+        
         </div>
-        
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close all</button>
-      
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
     </div>
-</ng-template>
+</div>
+<!-- End Modal Window for Menu Items -->
+
+
+<!-- Start Modal Window to view User Request Data -->
+<div class="modal fade" id="userReqModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">User Requests</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+        
+            <div class="example-container mat-elevation-z8">
+                <div class="example-table-container">
+                   
+                  <table class="table table-striped">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-1'>Sr#</th>
+                        <th class='col-2'>Sender</th>
+                        <th class='col-3'>User Name</th>
+                        <th class='col-2'>Subject</th>
+                        <th class='col-2'>Subject</th>
+                        <th class='col-2'>Subject</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                      <tr class='d-flex'>
+                        <td class="col-1">1</td>
+                        <td class="col-2">Iqbal Shami - DD(Accounts) - Finance</td>
+                        <td class="col-3">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>
+                        <td class="col-2">Creation of Login for Employee</td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                      </tr>
+                      <tr class='d-flex'>
+                        <td class="col-1">2</td>
+                        <td class="col-2">Shahid Ahmed - Dir(Admin) - Administration</td>
+                        <td class="col-3">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>
+                        <td class="col-2">Creation of Login for Auditor (Visitor)</td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
+    </div>
+</div>
 <!-- End Modal Window to view User Request Data -->
 
+
 <!-- Start Modal Window to view User Role Request Data -->
-<ng-template #roleReqContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Role Requests</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>  
-    <div class="modal-body">
+<div class="modal fade" id="roleReqModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
         
-        <div class="example-container mat-elevation-z8">
-          <div class="example-table-container">
-            
-            <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-1'>Sr#</th>
-                  <th class='col-2'>Sender</th>
-                  <th class='col-3'>User Name</th>
-                  <th class='col-2'>Subject</th>
-                  <th class='col-2'>Subject</th>
-                  <th class='col-2'>Subject</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-1">1</td>
-                  <td class="col-2">Iqbal Shami - DD(Accounts) - Finance</td>
-                  <td class="col-3">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>
-                  <td class="col-2">Creation of Login for Employee</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" (click)="openRAcceptModal(ReqAcceptContent)"></span></td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" (click)="openMsgModal(msgContent)"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-1">2</td>
-                  <td class="col-2">Shahid Ahmed - Dir(Admin) - Administration</td>
-                  <td class="col-3">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>
-                  <td class="col-2">Creation of Login for Auditor (Visitor)</td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" (click)="openRAcceptModal(ReqAcceptContent)"></span></td>
-                  <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" (click)="openMsgModal(msgContent)"></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Role Requests</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-    </div>
-    <div class="modal-footer">
-      <div *ngIf="edited1" style="margin-right: 30em; border:1px solid #32CD32; background:#32CD32;color:white;left:2em;right:70em;line-height: 4;">
-        Action Successfully Saved
+        <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+        
+            <div class="example-container mat-elevation-z8">
+                <div class="example-table-container">
+                      
+                  <table class="table table-striped">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-1'>Sr#</th>
+                        <th class='col-2'>Sender</th>
+                        <th class='col-3'>User Name</th>
+                        <th class='col-2'>Subject</th>
+                        <th class='col-2'>Subject</th>
+                        <th class='col-2'>Subject</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                      <tr class='d-flex'>
+                        <td class="col-1">1</td>
+                        <td class="col-2">Iqbal Shami - DD(Accounts) - Finance</td>
+                        <td class="col-3">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>
+                        <td class="col-2">Creation of Login for Employee</td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                      </tr>
+                      <tr class='d-flex'>
+                        <td class="col-1">2</td>
+                        <td class="col-2">Shahid Ahmed - Dir(Admin) - Administration</td>
+                        <td class="col-3">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>
+                        <td class="col-2">Creation of Login for Auditor (Visitor)</td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>  
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
       </div>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
     </div>
-</ng-template>
+</div>
 <!-- End Modal Window to view User Role Request Data -->
 
- <!-- Start Modal Window for Menu Items -->
-<ng-template #menuContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Menu Items</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>    
-  <div class="modal-body">
-    <br>
-    <div class="row">
-      <div class="col-md-12">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Finance Module
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <section class="example-section">
-              <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-            </section>
-          </mat-expansion-panel>
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                                (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                HR & Admin Module
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <section class="example-section">
-              <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-            </section>
-          </mat-expansion-panel>
-          
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                                (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                User Management Module
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <section class="example-section">
-              <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-              <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-            </section>
-          </mat-expansion-panel>
-        </mat-accordion>
+
+<!-- Start Modal Window for Menu Items -->
+<div class="modal fade" id="menuModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Menu Items</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Finance Module
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section">
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel (opened)="panelOpenState = true"
+                                        (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        HR & Admin Module
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section">
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+                  
+                  <mat-expansion-panel (opened)="panelOpenState = true"
+                                        (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        User Management Module
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section">
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                      <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                    </section>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+              
+            </div> 
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
       </div>
-      
     </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-</ng-template>
+</div>
 <!-- End Modal Window for Menu Items -->
 
 
 <!-- Start Modal Window Users Request to Accept user Request -->
-<ng-template #ReqAcceptContent let-modal>
-  <div class="modal-body">
-      
+<div class="modal fade" id="reqAcceptModal">
+    <div class="modal-dialog shadow-lg-dark">
+      <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+             
       <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-8">
@@ -642,62 +728,80 @@
       </div><br>
       <div class="row">
         <div class="col-md-6">
-            <button mat-raised-button color="primary" (click)="acceptData()" (click)="modal.dismiss('Cross click')">Accept</button>
+            <button mat-raised-button color="primary" (click)="acceptData()" data-dismiss="modal">Accept</button>
         </div>
       </div>
       <br/>
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-</ng-template>
+</div>
 <!-- End Modal Window Users Request to Accept user Request -->
 
 
 <!-- Start Modal Window to send message -->
-<ng-template #msgContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Message</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Subject" [(ngModel)]="txtSubject">
-              </mat-form-field>
+<div class="modal fade" id="msgModal">
+    <div class="modal-dialog shadow-lg-dark">
+      <div class="modal-content">
+        
+        <!--start Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Message</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-        </div><br>
-        <div class="row">
-          <div class="col-md-12">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Message Here" [(ngModel)]="txtMessage">
-              </mat-form-field>
-          </div>
-        </div><br>
-        <div class="row">
-          <div class="col-md-6">
-              <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
-              </mat-form-field>
-          </div>
+          <!--end Modal Header -->
+    
+        <!--start Modal body -->
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Subject" [(ngModel)]="txtSubject">
+                    </mat-form-field>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Message Here" [(ngModel)]="txtMessage">
+                    </mat-form-field>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+                    </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                    <button mat-raised-button color="primary" (click)="send()" data-dismiss="modal">Send</button>
+                </div>
+              </div>
+              <br/>
         </div>
-        <br>
-        <div class="row">
-          <div class="col-md-6">
-              <button mat-raised-button color="primary" (click)="send()" (click)="modal.dismiss('Cross click')">Send</button>
-          </div>
-        </div>
-        <br/>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-  </ng-template>
-<!-- End Modal Window to send message -->
+        <!--end Modal body -->
 
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
+    </div>
+</div>
+<!-- End Modal Window to send message -->
 
 
 <!-- Charts HTML Start -->
