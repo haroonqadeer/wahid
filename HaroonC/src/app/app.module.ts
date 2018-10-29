@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material.module';
+import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
@@ -24,7 +25,9 @@ import { CompanydashboardComponent } from './components/companydashboard/company
     BrowserAnimationsModule,
     FormsModule,
     ChartModule,
-    OrgChartModule
+    OrgChartModule,
+    ReactiveFormsModule,
+    PNPrimeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
