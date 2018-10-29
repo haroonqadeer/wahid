@@ -19,68 +19,75 @@
 <br>
 <!-- button row -->
 <div class="row">
-  <div class="col-md-12 text-right">
-    <button class="btn" mat-raised-button color="primary" data-toggle="modal" data-target="#userRoleModal">New Role</button>
+  <div class="col-md-6">
+    <button class="noneOutline" mat-raised-button color="warn">Print</button>    
+  </div>
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#userRoleModal">New Role</button>
   </div>
 </div><!-- end button - row -->
 
-<div class="container bgWhite allBorder">
-    <br>
-    <ul>
-      <li>
-        <div class="row">
-          <div class="col-md-1 text-center">
-            <span class="Sr#"><br/><br/>01</span> 
-          </div>
-          <div class="col-md-3">
-            <br/>
-            <p class="fontPrimary">For Administrator</p>
-            <h3>Super Users</h3>
-            <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#userRoleModal"></span>
-            &nbsp;
-            <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
-          </div>
-    
-          <div class="col-me-6">
-              <br/>
-              <p class="fontPrimary">Permissions</p>
-              <h3>Financial (20) Admin HR (5)</h3>
-              <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#roleMenuModal"></span>
-              &nbsp;
-              <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
-            </div>
-        </div>   
-      </li>
-    
-      <li>
-        <div class="row">
-          <div class="col-md-1 text-center">
-              <span class="sno"><br/><br/>02</span> 
-          </div>
-          <!--2nd col-->
-          <div class="col-md-3">
-            <br/>
-            <p class="fontPrimary">For Administrator</p>
-            <h3>Finance Users</h3>
-            <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#userRoleModal"></span>
-            &nbsp;
-            <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
-          </div>
-    
-          <!--3rd col-->
-          <div class="col-me-6">
-            <br/>
-            <p class="fontPrimary">Permissions</p>
-            <h3>Financial (5) Admin HR (2)</h3>
-            <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#roleMenuModal"></span>
-            &nbsp;
-            <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
-          </div>
-        </div>
-      </li>
-    </ul>
-</div>
+<!-- container -->
+<div class="container">
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Filter Role by Module">
+      <mat-option value="1">Financial Module</mat-option>
+      <mat-option value="1">HR & Admin Module</mat-option>
+      <mat-option value="1">Procurement Module</mat-option>
+      <mat-option value="1">Wareouse & Inventory Module</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <!-- roles -->
+  <mat-card>
+    <div class="row">
+      <div class="col-md-1 text-center">
+        <span class="Sr#">01</span> 
+      </div>
+      <div class="col-md-3">          
+        <p class="fontPrimary">For Administrator</p>
+        <h5>Super Users</h5>
+        <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#userRoleModal"></span>
+        &nbsp;
+        <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
+      </div>
 
+      <div class="col-me-6">            
+        <p class="fontPrimary">Permissions</p>
+        <h5>Financial (20) Admin HR (5)</h5>
+        <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#roleMenuModal"></span>
+        &nbsp;
+        <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
+      </div>
+    </div>   
+  </mat-card>
+  <br>
+  <mat-card>
+    <div class="row">
+      <div class="col-md-1 text-center">
+          <span class="sno">02</span> 
+      </div>
+      <!--2nd col-->
+      <div class="col-md-3">          
+        <p class="fontPrimary">For Administrator</p>
+        <h5>Finance Users</h5>
+        <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#userRoleModal"></span>
+        &nbsp;
+        <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
+      </div>
+
+      <!--3rd col-->
+      <div class="col-me-6">          
+        <p class="fontPrimary">Permissions</p>
+        <h5>Financial (5) Admin HR (2)</h5>
+        <span class="fa fa-edit pointerCursor fontRed" data-toggle="modal" data-target="#roleMenuModal"></span>
+        &nbsp;
+        <span class="fa fa-trash pointerCursor fontRed" data-toggle="modal" data-target="#dUserRoleModal"></span>
+      </div>
+    </div>
+  </mat-card><!-- end roles -->    
+</div><!-- end container -->
 
 <!-- Bootstrap Modal Windows -->
 
@@ -151,14 +158,14 @@
           <div class="row">
             <div class="col-md-12">
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+                  <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
                 </mat-form-field>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-6">
-                <button mat-raised-button color="warn" (click)="delete()" data-dismiss="modal">Delete</button>
+              <button mat-raised-button color="warn" (click)="delete()" data-dismiss="modal">Delete</button>
             </div>
           </div>
           <br/>

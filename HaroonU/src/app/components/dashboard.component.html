@@ -5,193 +5,134 @@
 
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Dashboard</h1>    
+    <h1 class="bottomBorder">User Management Dashboard</h1>    
   </div>
 </div>
-<br/>
 
-<!--Start boxes row-->
-<div class="row">
-  <!-- Start Users and Detail box -->
-  <div class="col-md-2" style="margin-left: 35px;">
-      <div class="row user_box">
-        <div class="col-md-6">
-            <h1 class="h1">12</h1>
-            <h5>Users</h5>
-        </div>
-        <div class="col-md-6">          
-        </div>
-      </div>
-      
-      <div class="row box_border user_det_box">
-        <div class="col-md-8">
-            <h6>View Details</h6>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-            <!-- <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#userModal"></span> -->
-            <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#userModal"></span>
-        </div>
-      </div>
-  </div>
-  <!-- End Users and Detail box -->
+<br/><br>
 
-  <!-- Start Roles and Detail box -->
-  <div class="col-md-2" style="margin-left: 35px;">
-      <div class="row role_box">
-        <div class="col-md-6">
-          <h1 class="h1">5</h1>
-          <h5>Roles</h5>
+<!-- container -->
+<div class="container">
+  
+  <!-- box row -->
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-pink hover-expand-effect" data-toggle="modal" data-target="#userModal">
+        <div class="icon">
+          <i class="fa fa-users"></i>
         </div>
-        <div class="col-md-6">
+        <div class="content">
+          <div class="text">Users</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">12</div>                                                                
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-cyan hover-expand-effect" data-toggle="modal" data-target="#roleModal">
+        <div class="icon">
+          <i class="fa fa-wrench"></i>
+        </div>
+        <div class="content">
+          <div class="text">Roles</div>
+          <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">5</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-light-green hover-expand-effect" data-toggle="modal" data-target="#userReqModal">
+        <div class="icon">
+          <i class="fa fa-exchange"></i>
+        </div>
+        <div class="content">
+          <div class="text">User Request</div>
+          <div class="number count-to"  data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">1</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-indigo hover-expand-effect" data-toggle="modal" data-target="#roleReqModal">
+        <div class="icon">
+          <i class="fa fa-book"></i>
+        </div>
+        <div class="content">
+          <div class="text">Role Request</div>
+          <div class="number count-to"  data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">1</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end box row -->  
 
-        </div>
-      </div>
-      <div class="row box_border role_det_box">
-        <div class="col-md-8">
-            <h6>View Details</h6>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#roleModal"></span>
-        </div>
-      </div>
-  </div>
-  <!-- End Roles and Detail box -->
-
-  <!-- Start Menu Item and Detail box -->
-  <div class="col-md-2" style="margin-left: 35px;">
-      <div class="row menu_box">
-        <div class="col-md-12">
-          <h1 class="h1">5</h1>
-          <h5>Menu Items</h5>
-        </div>
-      </div>
-      <div class="row box_border menu_det_box">
-        <div class="col-md-8">
-            <h6>View Details</h6>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-            <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#menuModal"></span>
-        </div>
-      </div>
-  </div>
-  <!-- End Menu Items and Detail box -->
-
-  <!-- Start User Request and Detail box -->
-  <div class="col-md-2" style="margin-left: 35px;">
-      <div class="row user_rol_box">
-        <div class="col-md-12">
-          <h1 class="h1">1</h1>
-          <h5>Users Request</h5>
-        </div>
-      </div>
-      <div class="row box_border user_rol_det_box">
-        <div class="col-md-8">
-            <h6>View Details</h6>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#userReqModal"></span>
-        </div>
-      </div>
-  </div>
-  <!-- End User Request and Detail box -->
-
-  <!-- Start Roles Request and Detail box -->
-  <div class="col-md-2" style="margin-left: 35px;">
-      <div class="row role_req_box">
-        <div class="col-md-12">
-            <h1 class="h1">5</h1>
-            <h5>Roles Request</h5>
-        </div>
-      </div>
-      <div class="row box_border role_req_det_box">
-        <div class="col-md-8">
-            <h6>View Details</h6>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <span class="fa fa-arrow-right pointerCursor" data-toggle="modal" data-target="#roleReqModal"></span>
-        </div>
-      </div>
-  </div>
-</div>
-<!--End boxes row-->
+</div><!-- end container -->
 
 <!-- Bootstrap Modal Windows -->
 
 <!-- Start Modal Window for Users to view users data -->
 <div class="modal fade" id="userModal">
-    <div class="modal-dialog shadow-lg-dark modal-lg">
-      <div class="modal-content">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Users List</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
         
-        <!--start Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Users</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">            
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>Sr#</th>
+                <th class='col-2'>User Name</th>
+                <th class='col-3'>Full Name</th>
+                <th class='col-3'>Email</th>
+                <th class='col-2'>Role</th>
+                <th class="col-1">Log</th>          
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+              <tr class='d-flex'>
+                <td class="col-1 text-center">1</td>
+                <td class="col-2">Nabeel</td>
+                <td class="col-3">Nabeel Ahmed</td>
+                <td class="col-3">nabeel@gmail.com</td>
+                <td class="col-2">Admin</td>
+                <td class="col-1 text-center"><span class="fa fa-file fontPrimary pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
+              </tr>
+              <tr class='d-flex' style="color:red !important">
+                <td class="col-1 text-center">2</td>
+                <td class="col-2">Adnan</td>
+                <td class="col-3">Adnan Ali</td>
+                <td class="col-3">adnan@yahoo.com</td>
+                <td class="col-2">Visitor</td>
+                <td class="col-1 text-center"><span class="fa fa-file fontPrimary pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
+              </tr>
+              <tr class='d-flex'>
+                <td class="col-1 text-center">3</td>
+                <td class="col-2">Amir</td>
+                <td class="col-3">Amir Qureshi</td>
+                <td class="col-3">amir@hotmail.com</td>
+                <td class="col-2">Visitor</td>
+                <td class="col-1 text-center"><span class="fa fa-file fontPrimary pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <!--end Modal Header -->
-  
-        <!--start Modal body -->
-        <div class="modal-body">
-         
-        <div class="example-container mat-elevation-z8">
-            <div class="example-table-container">
-              
-              <table class="table table-striped">
-                <thead>
-                  <tr class='d-flex'>
-                    <th class='col-1'>Sr#</th>
-                    <th class='col-2'>User Name</th>
-                    <th class='col-2'>Full Name</th>
-                    <th class='col-3'>Email</th>
-                    <th class='col-2'>Role</th>
-                    <th class="col-2">View Log</th>          
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                  <tr class='d-flex'>
-                    <td class="col-1">1</td>
-                    <td class="col-2">Nabeel</td>
-                    <td class="col-2">Nabeel Ahmed</td>
-                    <td class="col-3">nabeel@gmail.com</td>
-                    <td class="col-2">Admin</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
-                  </tr>
-                  <tr class='d-flex'>
-                    <td class="col-1">2</td>
-                    <td class="col-2">Adnan</td>
-                    <td class="col-2">Adnan Ali</td>
-                    <td class="col-3">adnan@yahoo.com</td>
-                    <td class="col-2">Visitor</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
-                  </tr>
-                  <tr class='d-flex'>
-                    <td class="col-1">3</td>
-                    <td class="col-2">Amir</td>
-                    <td class="col-2">Amir Qureshi</td>
-                    <td class="col-3">amir@hotmail.com</td>
-                    <td class="col-2">Visitor</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#userLogModal"></span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          </div>
-        <!--end Modal body -->
-
-        <!--start Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        <!--end Modal footer -->
-
       </div>
     </div>
+    <!--end Modal body -->
+
+    <!--start Modal footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    </div><!--end Modal footer -->
+    </div>
+  </div>
 </div>
 <!-- End Modal Window for Users to view users data -->
 
@@ -217,31 +158,31 @@
               <table class="table table-striped">
                 <thead>
                   <tr class='d-flex'>
-                    <th class='col-2'>Sr#</th>
+                    <th class='col-2 text-center'>Sr#</th>
                     <th class='col-3'>Action</th>
-                    <th class='col-4'>Action Date Time</th>
-                    <th class='col-2'>Actions</th>
+                    <th class='col-5'>Action Date Time</th>
+                    <th class='col-2 text-center'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
                   <tr class='d-flex'>
-                    <td class="col-2">1</td>
+                    <td class="col-2 text-center">1</td>
                     <td class="col-3">Addition</td>
-                    <td class="col-4">15-Oct-2018 15:34</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                    <td class="col-5">15-Oct-2018 15:34</td>
+                    <td class="col-2 text-center"><span class="fa fa-envelope pointerCursor fontRed" data-toggle="modal" data-target="#msgModal"></span></td>
                   </tr>
                   <tr class='d-flex'>
-                    <td class="col-2">2</td>
+                    <td class="col-2 text-center">2</td>
                     <td class="col-3">Deletion</td>
-                    <td class="col-4">15-Oct-2018 15:35</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                    <td class="col-5">15-Oct-2018 15:35</td>
+                    <td class="col-2 text-center"><span class="fa fa-envelope pointerCursor fontRed" data-toggle="modal" data-target="#msgModal"></span></td>
                   </tr>
                   <tr class='d-flex'>
-                    <td class="col-2">3</td>
+                    <td class="col-2 text-center">3</td>
                     <td class="col-3">Deletion</td>
-                    <td class="col-4">15-Oct-2018 15:36</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-paper-plane pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                    <td class="col-5">15-Oct-2018 15:36</td>
+                    <td class="col-2 text-center"><span class="fa fa-envelope pointerCursor fontRed" data-toggle="modal" data-target="#msgModal"></span></td>
                   </tr>
                 </tbody>
               </table>
@@ -283,25 +224,25 @@
             <table class="table table-striped">
                 <thead>
                   <tr class='d-flex'>
-                    <th class='col-2'>Sr#</th>
+                    <th class='col-2 text-center'>Sr#</th>
                     <th class='col-3'>Role Title</th>
-                    <th class='col-4'>Permissions</th>
-                    <th class='col-2'>Details</th>
+                    <th class='col-5'>Permissions</th>
+                    <th class='col-2 text-center'>Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
                   <tr class='d-flex'>
-                    <td class="col-2">1</td>
+                    <td class="col-2 text-center">1</td>
                     <td class="col-3">Financial User</td>
-                    <td class="col-4">Financial (10), HR (2)</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#roleMenuModal" (click)="finUsr()"></span></td>
+                    <td class="col-5">Financial (10), HR (2)</td>
+                    <td class="col-2 text-center"><span class="fa fa-info-circle fontPrimary pointerCursor" data-toggle="modal" data-target="#roleMenuModal" (click)="finUsr()"></span></td>
                   </tr>
                   <tr class='d-flex'>
-                    <td class="col-2">2</td>
+                    <td class="col-2 text-center">2</td>
                     <td class="col-3">Admin & HR User</td>
-                    <td class="col-4">HR & Admin (15)</td>
-                    <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#roleMenuModal" (click)="hrUsr()"></span></td>
+                    <td class="col-5">HR & Admin (15)</td>
+                    <td class="col-2 text-center"><span class="fa fa-info-circle fontPrimary pointerCursor" data-toggle="modal" data-target="#roleMenuModal" (click)="hrUsr()"></span></td>
                   </tr>
                 </tbody>
               </table>
@@ -346,10 +287,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                        <div class="row">
+                          <div class="col-md-4">                              
+                          </div>
+                          <div class="col-md-2 text-center">
+                            Addition    
+                          </div>
+                          <div class="col-md-2 text-center">
+                            Updation
+                          </div>
+                          <div class="col-md-2 text-center">
+                            Deletion
+                          </div>
+                          <div class="col-md-2 text-center">
+                            View
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            Inventory Module
+                          </div>
+                          <div class="col-md-2 text-center">
+                            <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                          </div>
+                          <div class="col-md-2 text-center">
+                            <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                          </div>
+                          <div class="col-md-2 text-center">
+                              <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                          </div>
+                          <div class="col-md-2 text-center">
+                              <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                          </div>
+                        </div>                        
                       </section>
                     </mat-expansion-panel>
                     <mat-expansion-panel>
@@ -359,10 +329,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                      <div class="row">
+                          <div class="col-md-4">                              
+                          </div>
+                          <div class="col-md-2 text-center">
+                            Addition    
+                          </div>
+                          <div class="col-md-2 text-center">
+                            Updation
+                          </div>
+                          <div class="col-md-2 text-center">
+                            Deletion
+                          </div>
+                          <div class="col-md-2 text-center">
+                            View
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            Accounts Payable Module
+                          </div>
+                          <div class="col-md-2 text-center">
+                            <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                          </div>
+                          <div class="col-md-2 text-center">
+                            <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                          </div>
+                          <div class="col-md-2 text-center">
+                              <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                          </div>
+                          <div class="col-md-2 text-center">
+                              <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                          </div>
+                        </div>                        
                       </section>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -373,10 +372,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                          <div class="row">
+                              <div class="col-md-4">                              
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Addition    
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Updation
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Deletion
+                              </div>
+                              <div class="col-md-2 text-center">
+                                View
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                General Ledger Module
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              </div>
+                            </div>                        
                       </section>
                     </mat-expansion-panel>
                     
@@ -388,10 +416,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                          <div class="row">
+                              <div class="col-md-4">                              
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Addition    
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Updation
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Deletion
+                              </div>
+                              <div class="col-md-2 text-center">
+                                View
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                Financial Statement Module
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              </div>
+                            </div>                        
                       </section>
                     </mat-expansion-panel>
                   </mat-accordion>
@@ -418,10 +475,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                          <div class="row">
+                              <div class="col-md-4">                              
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Addition    
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Updation
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Deletion
+                              </div>
+                              <div class="col-md-2 text-center">
+                                View
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                Online Recruitment Module
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              </div>
+                            </div>                        
                       </section>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -432,10 +518,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                          <div class="row">
+                              <div class="col-md-4">                              
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Addition    
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Updation
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Deletion
+                              </div>
+                              <div class="col-md-2 text-center">
+                                View
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                Auto Enrollment Module
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              </div>
+                            </div>
                       </section>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -446,10 +561,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                          <div class="row">
+                              <div class="col-md-4">                              
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Addition    
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Updation
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Deletion
+                              </div>
+                              <div class="col-md-2 text-center">
+                                View
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                Training Module
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              </div>
+                            </div>
                       </section>
                     </mat-expansion-panel>
                     <mat-expansion-panel (opened)="panelOpenState = true"
@@ -460,10 +604,39 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <section class="example-section">
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                        <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
+                          <div class="row">
+                              <div class="col-md-4">                              
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Addition    
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Updation
+                              </div>
+                              <div class="col-md-2 text-center">
+                                Deletion
+                              </div>
+                              <div class="col-md-2 text-center">
+                                View
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                Payroll Module
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              </div>
+                            </div>
                       </section>
                     </mat-expansion-panel>
                   </mat-accordion>
@@ -509,31 +682,28 @@
                   <table class="table table-striped">
                     <thead>
                       <tr class='d-flex'>
-                        <th class='col-1'>Sr#</th>
-                        <th class='col-2'>Sender</th>
-                        <th class='col-3'>User Name</th>
-                        <th class='col-2'>Subject</th>
-                        <th class='col-2'>Subject</th>
-                        <th class='col-2'>Subject</th>
+                        <th class='col-1 text-center'>Sr#</th>
+                        <th class='col-4'>Sender</th>
+                        <th class='col-5'>User Name</th>                        
+                        <th class='col-1 text-center'>Accept</th>
+                        <th class='col-1 text-center'>Query</th>
                       </tr>
                     </thead>
                     <tbody>
                       <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
                       <tr class='d-flex'>
-                        <td class="col-1">1</td>
-                        <td class="col-2">Iqbal Shami - DD(Accounts) - Finance</td>
-                        <td class="col-3">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>
-                        <td class="col-2">Creation of Login for Employee</td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                        <td class="col-1 text-center">1</td>
+                        <td class="col-4">Iqbal Shami - DD(Accounts) - Finance</td>
+                        <td class="col-5">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>                        
+                        <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                        <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
                       </tr>
                       <tr class='d-flex'>
-                        <td class="col-1">2</td>
-                        <td class="col-2">Shahid Ahmed - Dir(Admin) - Administration</td>
-                        <td class="col-3">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>
-                        <td class="col-2">Creation of Login for Auditor (Visitor)</td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                        <td class="col-1 text-center">2</td>
+                        <td class="col-4">Shahid Ahmed - Dir(Admin) - Administration</td>
+                        <td class="col-5">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>                        
+                        <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                        <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -567,44 +737,39 @@
         <!--end Modal Header -->
   
         <!--start Modal body -->
-        <div class="modal-body">
-        
-            <div class="example-container mat-elevation-z8">
-                <div class="example-table-container">
-                      
-                  <table class="table table-striped">
-                    <thead>
-                      <tr class='d-flex'>
-                        <th class='col-1'>Sr#</th>
-                        <th class='col-2'>Sender</th>
-                        <th class='col-3'>User Name</th>
-                        <th class='col-2'>Subject</th>
-                        <th class='col-2'>Subject</th>
-                        <th class='col-2'>Subject</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                      <tr class='d-flex'>
-                        <td class="col-1">1</td>
-                        <td class="col-2">Iqbal Shami - DD(Accounts) - Finance</td>
-                        <td class="col-3">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>
-                        <td class="col-2">Creation of Login for Employee</td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
-                      </tr>
-                      <tr class='d-flex'>
-                        <td class="col-1">2</td>
-                        <td class="col-2">Shahid Ahmed - Dir(Admin) - Administration</td>
-                        <td class="col-3">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>
-                        <td class="col-2">Creation of Login for Auditor (Visitor)</td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-check-circle pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
-                        <td class="col-2">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-list-alt pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>  
+        <div class="modal-body">        
+          <div class="example-container mat-elevation-z8">
+            <div class="example-table-container">                      
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1 text-center'>Sr#</th>
+                    <th class='col-5'>Sender</th>
+                    <th class='col-4'>Role Name</th>                    
+                    <th class='col-1 text-center'>Accept</th>
+                    <th class='col-1 text-center'>Query</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class="col-1 text-center">1</td>
+                    <td class="col-5">Muhammad Abdullah - Director(Accounts) - Finance</td>
+                    <td class="col-4">Financial Simple Role</td>                    
+                    <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                    <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                  </tr>
+                  <tr class='d-flex'>
+                    <td class="col-1 text-center">2</td>
+                    <td class="col-5">Nazim Ali - DD(Admin) - Administration</td>
+                    <td class="col-4">Medical Sanctions Role</td>                    
+                    <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal" data-target="#reqAcceptModal"></span></td>
+                    <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal" data-target="#msgModal"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>  
         </div>
         <!--end Modal body -->
 
@@ -618,86 +783,6 @@
     </div>
 </div>
 <!-- End Modal Window to view User Role Request Data -->
-
-
-<!-- Start Modal Window for Menu Items -->
-<div class="modal fade" id="menuModal">
-    <div class="modal-dialog shadow-lg-dark modal-lg">
-      <div class="modal-content">
-        
-        <!--start Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Menu Items</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <!--end Modal Header -->
-  
-        <!--start Modal body -->
-        <div class="modal-body">
-            <br>
-            <div class="row">
-              <div class="col-md-12">
-                <mat-accordion>
-                  <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        Finance Module
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <section class="example-section">
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                    </section>
-                  </mat-expansion-panel>
-                  <mat-expansion-panel (opened)="panelOpenState = true"
-                                        (closed)="panelOpenState = false">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        HR & Admin Module
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <section class="example-section">
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                    </section>
-                  </mat-expansion-panel>
-                  
-                  <mat-expansion-panel (opened)="panelOpenState = true"
-                                        (closed)="panelOpenState = false">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        User Management Module
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <section class="example-section">
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
-                      <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
-                    </section>
-                  </mat-expansion-panel>
-                </mat-accordion>
-              </div>
-              
-            </div> 
-        </div>
-        <!--end Modal body -->
-
-        <!--start Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        <!--end Modal footer -->
-
-      </div>
-    </div>
-</div>
-<!-- End Modal Window for Menu Items -->
-
 
 <!-- Start Modal Window Users Request to Accept user Request -->
 <div class="modal fade" id="reqAcceptModal">
@@ -754,41 +839,43 @@
         
         <!--start Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Message</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
+          <h4 class="modal-title">Message</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
           <!--end Modal Header -->
     
         <!--start Modal body -->
         <div class="modal-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Subject" [(ngModel)]="txtSubject">
-                    </mat-form-field>
-                </div>
-              </div><br>
-              <div class="row">
-                <div class="col-md-12">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Message Here" [(ngModel)]="txtMessage">
-                    </mat-form-field>
-                </div>
-              </div><br>
-              <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
-                    </mat-form-field>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-md-6">
-                    <button mat-raised-button color="primary" (click)="send()" data-dismiss="modal">Send</button>
-                </div>
-              </div>
-              <br/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Subject" [(ngModel)]="txtSubject">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Message Here" [(ngModel)]="txtMessage">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+                </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+                <button mat-raised-button color="primary" (click)="send()" data-dismiss="modal"><span class="fa fa-paper-plane"></span></button>
+            </div>
+          </div>
+          <br/>
         </div>
         <!--end Modal body -->
 
@@ -803,34 +890,20 @@
 </div>
 <!-- End Modal Window to send message -->
 
-
-<!-- Charts HTML Start -->
-<div class="container_charts">
-  
-  <!--Pie chart-->
-  <div class="pie_chart">
-    <div [chart]="Pie_Chart" (click)="pie_data()"></div>
+<!-- row - charts -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 shadow-md">
+      <!-- pie-chart -->
+      <div class="pie_chart">
+        <div [chart]="Pie_Chart" (click)="pie_data()"></div>
+      </div>
+    </div>
+    <div class="col-md-6 shadow-md">
+      <!--Line chart-->
+      <div class="line_chart">
+        <div [chart]="Line_chart"></div>
+      </div>
+    </div>
   </div>
-
-  
-  <!--Line chart-->
-  <div class="line_chart">
-    <div [chart]="Line_chart"></div>
-  </div>
-
-</div>
-<!-- Charts HTML End-->
-
-
-<!-- Galary HTML Start-->
-<div class="container_galary">
-  <div class="galary_left">
-    <div class="caption">Regular User</div>
-  </div>
-
-  <div class="galary_right">
-    <div class="caption">Silent User</div>
-  </div>
-</div>
-<!-- Galary HTML End-->
-
+</div><!-- end row - charts -->

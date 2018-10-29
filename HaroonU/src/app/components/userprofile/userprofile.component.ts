@@ -42,6 +42,15 @@ export class UserprofileComponent implements OnInit {
   
   public edited = false;
   public edited1 = false;
+
+  /// declaration
+  query = '';
+  resultsLength = '';
+  userId = '';
+  searchEmployee = '';
+  disabled = '';
+  txtcnfrmPin = '';  
+  onSearchChange = '';
   
   //page ngModels
   UserId = 0;
@@ -139,7 +148,13 @@ roles: Role[] = [
     this.eName = this.employees.find( x=> x.eId == item).eName.replace(/['"]+/g, '');    
   }  
 
+  save(){
+
+  }
   
+  close(){
+
+  }
   saveVisitor(){
     //var date =new Date();
     if(this.UserId!=0){

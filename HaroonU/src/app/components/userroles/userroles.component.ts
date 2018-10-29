@@ -9,6 +9,18 @@ export class UserrolesComponent implements OnInit {
 
   public edited = false;
   public edited1 = false;
+
+  /// declaration
+  employeeId = '';
+  userName = '';
+  txtdPassword = '';
+  txtdPin = '';
+  chkAdd = '';
+  chkUpdate = '';
+  chkDelete = '';
+  chkView = '';
+  panelOpenState = true;
+
   
   constructor() { }
 

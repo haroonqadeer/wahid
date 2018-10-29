@@ -10,6 +10,13 @@ export class DashboardComponent implements OnInit {
   Line_chart: Chart;
   Pie_Chart: Chart;
 
+  // page ngModel
+  txtPassword='';
+  txtPin='';
+  txtMessage='';
+  txtdPin='';
+  txtSubject='';
+  
   public edited = false;
   
   public acceptReq = false;
