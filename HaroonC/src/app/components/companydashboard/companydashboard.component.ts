@@ -18,6 +18,8 @@ export interface CompanyType {
   selector: 'app-companydashboard',
   templateUrl: './companydashboard.component.html',
   styleUrls: ['./companydashboard.component.scss'],
+  
+encapsulation: ViewEncapsulation.None
  
 })
 export class CompanydashboardComponent implements OnInit {
@@ -52,60 +54,10 @@ export class CompanydashboardComponent implements OnInit {
     {TId: '4', TName: 'Private Limited Company'}
   ];
 
-  //company organiztional chart 
-  topEmployee = {
-    name: 'M/s Indus Motor',
-    subordinates: [
-        {
-            name: 'Karachi HQ',
-            subordinates: [
-                {
-                    name: 'Finance',
-                    subordinates: []
-                },
-                {
-                    name: 'Admin',
-                    subordinates: []
-                },
-                {
-                  name: 'Production',
-                  subordinates: []
-                }
-            ]
-        },
-        {
-            name: 'Lahore Branch',
-            subordinates: [
-                {
-                    name: 'Sales',
-                    subordinates: []
-                },
-                {
-                    name: 'Support',
-                    subordinates: []
-                }
-            ]
-        },
-        {
-            name: 'Kyber Motors',
-            subordinates: []
-        },
-        {
-            name: 'Islamabad Motors',
-            subordinates: []
-        },
-        {
-            name: 'Toyota Motors',
-            subordinates: []
-        }
-    ]
-};
-
 //ngprime organization chart 
-    data1: TreeNode[];
+data1: TreeNode[];
 
-    selectedNode: TreeNode;
-
+selectedNode: TreeNode;
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -135,56 +87,56 @@ export class CompanydashboardComponent implements OnInit {
                 expanded: true,
                 data: {name:'Karachi HQ'},
                 children:[{
-                    label: 'Tax',
+                    label: 'Finance',
                     styleClass: 'department-cfo'
                 },
                 {
-                    label: 'Legal',
+                    label: 'Admin',
+                    styleClass: 'department-cfo'
+                },
+                {
+                    label: 'Production',
                     styleClass: 'department-cfo'
                 }],
             },
             {
-                label: 'COO',
+                label: 'Lahore Branch',
                 type: 'person',
                 styleClass: 'ui-person',
                 expanded: true,
-                data: {name:'Mike E.'},
+                data: {name:'Lahore Branch'},
                 children:[{
-                    label: 'Operations',
+                    label: 'Sales',
+                    styleClass: 'department-coo'
+                },
+                {
+                    label: 'Support',
                     styleClass: 'department-coo'
                 }]
             },
             {
-                label: 'CTO',
+                label: 'Khyber Motors',
                 type: 'person',
                 styleClass: 'ui-person',
                 expanded: true,
-                data: {name:'Jesse Pinkman'},
-                children:[{
-                    label: 'Development',
-                    styleClass: 'department-cto',
-                    expanded: true,
-                    children:[{
-                        label: 'Analysis',
-                        styleClass: 'department-cto'
-                    },
-                    {
-                        label: 'Front End',
-                        styleClass: 'department-cto'
-                    },
-                    {
-                        label: 'Back End',
-                        styleClass: 'department-cto'
-                    }]
-                },
-                {
-                    label: 'QA',
-                    styleClass: 'department-cto'
-                },
-                {
-                    label: 'R&D',
-                    styleClass: 'department-cto'
-                }]
+                data: {name:'Khyber Motors'},
+                children:[]
+            },
+            {
+                label: 'Islamabad Captial Motors',
+                type: 'person',
+                styleClass: 'ui-person',
+                expanded: true,
+                data: {name:'Islamabad Captial Motors'},
+                children:[]
+            },
+            {
+                label: 'Toyota G.T Motors',
+                type: 'person',
+                styleClass: 'ui-person',
+                expanded: true,
+                data: {name:'Toyota G.T Motors'},
+                children:[]
             }
         ]
     }];
