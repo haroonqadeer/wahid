@@ -30,9 +30,12 @@
     "font-awesome": "^4.7.0",
     "highcharts": "^6.2.0",
     "jquery": "^3.3.1",
+    "ng-org-chart": "^1.2.0",
     "ng2-org-chart": "^1.1.2",
     "ngx-bootstrap": "^3.0.1",
     "popper.js": "^1.14.4",
+    "primeicons": "^1.0.0",
+    "primeng": "^7.0.0-beta.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

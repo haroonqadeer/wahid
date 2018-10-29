@@ -350,3 +350,30 @@ boxShadow{
     background-color: #32CD32 !important;
     display: none;
 }
+
+
+
+
+//////////////////////////////////////////
+////// organization chart style css /////
+////////////////////////////////////////
+
+.oc-border {
+	border: 1px solid dodgerblue;
+}
+
+.oc-background {
+    background-color: transparent;
+}
+
+.oc-name {
+	font-family: serif;
+    white-space: nowrap;
+}
+
+.oc-designation {
+	font-family: sans-serif;
+	font-style: italic;
+	white-space: nowrap;
+}
+
