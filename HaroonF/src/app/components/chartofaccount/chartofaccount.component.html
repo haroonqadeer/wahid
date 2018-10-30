@@ -1,0 +1,62 @@
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Saved
+</div>
+  
+<div class="row">
+<div class="col-md-12 text-center">
+  <h1 class="bottomBorder">Financial Module</h1>    
+</div>
+</div>
+<br/>
+<!--start company dashboard container without white background and borders-->
+
+<!--start row-->
+<div class="row">    
+  <!--start company select box column-->
+  <div class="col-md-6">
+    <button mat-raised-button color="warn">Print</button>
+  </div>
+  <!--end company select box column-->
+  
+  <!--start add new role button column-->
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#coaModal">Add New</button>
+  </div>
+  <!--end add new role button column-->
+</div>
+<!--end row-->
+
+<!--end company dashboard container without white background and borders-->
+<br/>
+
+<!--bootstrap modal window -->
+
+
+<!-- Start chart of account Modal Window -->
+<div class="modal fade" id="coaModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Chart of Account</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+  <!-- End chart of account Modal Window  -->
+  
