@@ -9,11 +9,13 @@ import { ChartModule } from 'angular-highcharts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchPipe
+    SearchPipe,
+    ChartofaccountComponent
   ],
   imports: [
     BrowserModule,
