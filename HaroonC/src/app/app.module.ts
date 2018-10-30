@@ -6,7 +6,6 @@ import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
-import { OrgChartModule } from 'ng2-org-chart';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +24,6 @@ import { CompanydashboardComponent } from './components/companydashboard/company
     BrowserAnimationsModule,
     FormsModule,
     ChartModule,
-    OrgChartModule,
     ReactiveFormsModule,
     PNPrimeModule
   ],
