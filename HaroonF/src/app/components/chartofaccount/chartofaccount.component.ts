@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {dataNodeTree} from '../../nodeTree/dataNodeTree';
+import {NodeServiceModule} from '../../nodeTree/node-service/node-service.module';
+
 
 @Component({
   selector: 'app-chartofaccount',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartofaccountComponent implements OnInit {
 
-  constructor() { }
+  files1: dataNodeTree[];
 
-  ngOnInit() {
+  constructor(private nodeService: NodeServiceModule) { }
+
+  ngOnInit() {    
+
+    this.nodeService.getFilesystem().then(files => this.files1 = files);
+
   }
 
 }
