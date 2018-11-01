@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {dataNodeTree} from '../../nodeTree/dataNodeTree';
-import {NodeServiceModule} from '../../nodeTree/node-service/node-service.module';
+
 
 
 @Component({
@@ -10,13 +9,13 @@ import {NodeServiceModule} from '../../nodeTree/node-service/node-service.module
 })
 export class ChartofaccountComponent implements OnInit {
 
-  files1: dataNodeTree[];
+  
 
-  constructor(private nodeService: NodeServiceModule) { }
+  constructor() { }
 
   ngOnInit() {    
 
-    this.nodeService.getFilesystem().then(files => this.files1 = files);
+    
 
   }
 
