@@ -2,14 +2,14 @@
 <div id="alert_msg_success" *ngIf="edited">
   Action Successfully Saved
 </div>
-  
+<!--start heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
     <h1 class="bottomBorder">Chart of Account</h1>    
   </div>
 </div>
+<!--end heading row-->
 <br/>
-<!--start company dashboard container without white background and borders-->
 
 <!--start row-->
 <div class="row">    
@@ -29,33 +29,31 @@
 
 <div class="container">
   <!--start table row-->
-  <div class="row" style="border: 1px solid;">    
-    <!--start company select box column-->
-    <div class="col-md-12">
-      
-        <p-treeTable [value]="files">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Name</th>
-                    <th>Size</th>
-                    <th>Type</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-                <tr>
-                    <td>
-                        <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                        {{rowData.name}}
-                    </td>
-                    <td>{{rowData.size}}</td>
-                    <td>{{rowData.type}}</td>
-                </tr>
-            </ng-template>
-        </p-treeTable>
-
-    </div>
-    <!--end company select box column-->
-</div>
+  <div class="row">    
+      <!--start company select box column-->
+      <div class="col-md-12">
+          <p-treeTable [value]="files">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>Name</th>
+                      <th>Size</th>
+                      <th>Type</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                  <tr>
+                      <td>
+                          <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                          {{rowData.name}}
+                      </td>
+                      <td>{{rowData.size}}</td>
+                      <td>{{rowData.type}}</td>
+                  </tr>
+              </ng-template>
+          </p-treeTable>
+      </div>
+      <!--end company select box column-->
+  </div>
 <!--end row-->
 </div>
 <!--end company dashboard container without white background and borders-->

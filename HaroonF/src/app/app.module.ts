@@ -7,22 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import {TreeTableModule} from "ng-treetable";
-<<<<<<< HEAD
-=======
-
->>>>>>> 344f93a885ac8a6ff46c299905fd704a03c34083
+import {HttpModule} from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
 import { BudgetsComponent } from './components/budgets/budgets.component';
+import { TaxsectionComponent } from './components/taxsection/taxsection.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     ChartofaccountComponent,
-    BudgetsComponent
+    BudgetsComponent,
+    TaxsectionComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,8 @@ import { BudgetsComponent } from './components/budgets/budgets.component';
     ChartModule,
     ReactiveFormsModule,
     PNPrimeModule,
-    TreeTableModule
+    TreeTableModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
