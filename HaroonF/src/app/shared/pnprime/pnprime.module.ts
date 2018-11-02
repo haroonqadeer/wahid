@@ -6,6 +6,8 @@ import {DialogModule} from 'primeng/dialog';
 import {TreeTableModule} from 'primeng/treetable';
 import {DropdownModule} from 'primeng/dropdown';
 import {ToastModule} from 'primeng/toast';
+import {MultiSelectModule} from 'primeng/multiselect';
+
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import {ToastModule} from 'primeng/toast';
     DialogModule,
     TreeTableModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    MultiSelectModule
   ],
   exports: [
     OrganizationChartModule,
@@ -23,7 +26,8 @@ import {ToastModule} from 'primeng/toast';
     DialogModule,
     TreeTableModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    MultiSelectModule
   ],
   declarations: []
 })
