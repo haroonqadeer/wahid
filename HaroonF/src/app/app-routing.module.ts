@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
 import { BudgetsComponent } from './components/budgets/budgets.component';
 import { TaxsectionComponent } from './components/taxsection/taxsection.component';
+import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
+
 
 const routes: Routes = [
   {
@@ -20,7 +22,11 @@ const routes: Routes = [
   {
     path:'taxSection',  
     component: TaxsectionComponent
-  }    
+  },
+  {
+    path:'bankAccount',  
+    component: BankaccountComponent
+  } 
 ];
 
 @NgModule({

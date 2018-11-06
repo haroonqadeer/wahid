@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
 import { BudgetsComponent } from './components/budgets/budgets.component';
 import { TaxsectionComponent } from './components/taxsection/taxsection.component';
+import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
 
 
 
@@ -23,7 +24,8 @@ import { TaxsectionComponent } from './components/taxsection/taxsection.componen
     SearchPipe,
     ChartofaccountComponent,
     BudgetsComponent,
-    TaxsectionComponent
+    TaxsectionComponent,
+    BankaccountComponent
   ],
   imports: [
     BrowserModule,
