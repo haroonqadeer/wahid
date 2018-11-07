@@ -6,14 +6,26 @@ import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
+import {TreeTableModule} from "ng-treetable";
+import {HttpModule} from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
+import { BudgetsComponent } from './components/budgets/budgets.component';
+import { TaxsectionComponent } from './components/taxsection/taxsection.component';
+import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchPipe
+    SearchPipe,
+    ChartofaccountComponent,
+    BudgetsComponent,
+    TaxsectionComponent,
+    BankaccountComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +35,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     ChartModule,
     ReactiveFormsModule,
-    PNPrimeModule
+    PNPrimeModule,
+    TreeTableModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

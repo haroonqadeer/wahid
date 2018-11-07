@@ -1,0 +1,100 @@
+<div id="alert_msg_success" *ngIf="edited">
+    Action Successfully Saved
+</div>
+<!--start heading row-->    
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Company Profile</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--start button row-->
+<div class="row">
+  <div class="col-md-6">
+    <button mat-raised-button color="warn">Print</button>
+  </div>
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#cityModal">Add Currency</button>
+  </div>
+</div>
+<!--end button row-->
+<br/>
+
+<!-- Start AddCity Modal Window -->
+<div class="modal fade" id="cityModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Currency</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start 1st row-->
+        <div class="row">
+          <div class="col-md-6">            
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Currency Name" [(ngModel)]="txtCurrency" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">            
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Country Name" [(ngModel)]="txtCountry" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--button tag-->
+        <button mat-raised-button color="primary" data-dismiss="modal" (click)="saveCurrency()">Save</button>
+        <br/><br/>
+        <!--start table row with container-->
+        <div class="example-container mat-elevation-z8 fullwidth">
+          <div class="example-table-container fullwidth">            
+            <table class="table table-striped fullwidth">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-3'>Sr No.</th>
+                  <th class='col-4'>Currency Name</th>
+                  <th class='col-4'>Country Name</th>          
+                </tr>
+              </thead>
+              <tbody>
+                <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of currencyDetail" class='d-flex'> -->
+                  <td class='col-3'>1</td>
+                  <td class='col-4'>Dollar</td>
+                  <td class='col-4'>America</td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-3'>2</td>
+                  <td class='col-4'>Rupee</td>
+                  <td class='col-4'>Pakistan</td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-3'>3</td>
+                  <td class='col-4'>Pound</td>
+                  <td class='col-4'>England</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row with container-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+    </div>
+  </div>
+</div>
+<!-- End add city Modal Window  -->
+    

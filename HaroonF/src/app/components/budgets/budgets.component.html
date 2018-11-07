@@ -1,0 +1,336 @@
+<br/>
+<!--alert message-->
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Saved
+</div>
+  
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Budget</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--start 1st row budget year combo box and budget type label-->
+<div class="row">
+  <div class="col-md-6">
+    <mat-form-field>
+      <mat-select placeholder="Budget Year" [(ngModel)]="bYear" (ngModelChange)="onBudgetChange($event)">
+        <mat-option *ngFor="let year of years" [value]="year.code">
+          {{year.bName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-6 text-right">
+    <label><strong>Budget Type: </strong></label><label [(ngModel)]="lblbYear">&nbsp;{{lblbYear}}</label>
+  </div>
+</div>
+<!--end 1st row budget year combo box and budget type label-->
+<br/>
+
+<!--Start Floating Sidebar Buttons-->
+<div class="sticky-container">
+  <ul class="sticky">
+    <li>
+      <span class="fa fa-upload" style="color:black;font-size:1.5em;"></span>
+      <p><a data-toggle="modal" data-target="#ImportModal">Import</a></p>
+    </li>
+    <li>
+      <span class="fa fa-money" style="color:black;font-size:1.5em;"></span>
+      <p><a data-toggle="modal" data-target="#bTypeModal">Budget Type</a></p>
+    </li>
+  </ul>
+</div>
+<!--End Floating Sidebar Buttons-->
+
+<!--start tab container-->
+<div class="container bgWhite">
+  <mat-tab-group>
+    <!--start 1st tab-->
+    <mat-tab label="G/L Account Wise">
+      <!--Start 1st tab table Row-->
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">            
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1'>Code</th>
+                <th class='col-2'>Title</th>
+                <th class='col-1'>Total</th>
+                <th class='col-1'>Daily</th>
+                <th class='col-1'>Weekly</th>
+                <th class='col-1'>Monthly</th>
+                <th class='col-1'>Quarterly</th>
+                <th class="col-2">Half Yearly</th>          
+                <th class="col-2">Yearly</th>          
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1'>1</td>
+                <td class='col-2'>abcdef</td>
+                <td class='col-1'>280</td>
+                <td class='col-1'>2</td>
+                <td class='col-1'>12</td>
+                <td class='col-1'>30</td>
+                <td class='col-1'>48</td>
+                <td class="col-2">80</td>          
+                <td class="col-2">108</td>   
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- end 1st tab table row -->
+    </mat-tab>
+    <!--end 1st tab-->
+    <!--start 2nd tab-->
+    <mat-tab label="Department Wise">
+      <!--Start 2nd tab table Row-->
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">            
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-2'>Code</th>
+                <th class='col-2'>Title</th>
+                <th class='col-2'>Total</th>
+                <th class='col-2'>Admin</th>
+                <th class='col-2'>Finance</th>
+                <th class='col-2'>Marketing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>1</td>
+                <td class='col-2'>abc</td>
+                <td class='col-2'>32</td>
+                <td class='col-2'>14</td>
+                <td class='col-2'>8</td>
+                <td class='col-2'>10</td>   
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- end 2nd tab table row -->
+    </mat-tab>
+    <!--end 2nd tab-->
+    <!--start 3rd tab-->
+    <mat-tab label="Branch Wise">
+      <!--Start 3rd tab table Row-->
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">            
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-2'>Code</th>
+                <th class='col-2'>Title</th>
+                <th class='col-2'>Total</th>
+                <th class='col-2'>HQ</th>
+                <th class='col-2'>Lahore</th>
+                <th class='col-2'>Peshawar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>1</td>
+                <td class='col-2'>aawsdds</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>3</td>
+                <td class='col-2'>1</td>   
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- end 3rd tab table row -->
+    </mat-tab>
+    <!--end 3rd tab-->
+    <!--start 4th tab-->
+    <mat-tab label="Project Wise">
+      <!--Start 4th tab table Row-->
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">            
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-2'>Code</th>
+                <th class='col-2'>Title</th>
+                <th class='col-2'>Total</th>
+                <th class='col-2'>GWD-RTD</th>
+                <th class='col-2'>MCHP</th>
+                <th class='col-2'>LTP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>1</td>
+                <td class='col-2'>aawsdds</td>
+                <td class='col-2'>52</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>12</td>   
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- end 4th tab table row -->
+    </mat-tab>
+    <!--end 4th tab-->
+  </mat-tab-group>
+</div>
+<!--end tab container-->
+<br/>
+ 
+<!--start footer row-->
+<div class="container">
+  <mat-card>
+    <div class="row">
+      <div class="col-md-2">
+        <button mat-stroked-button color="primary"><strong>1</strong></button>
+      </div>
+      <div class="col-md-2">
+        <button mat-stroked-button color="primary"><strong>7</strong></button>
+      </div>
+      <div class="col-md-2">
+        <button mat-stroked-button color="primary"><strong>31</strong></button>
+      </div>
+      <div class="col-md-2">
+        <button mat-stroked-button color="primary"><strong>3</strong></button>
+      </div>
+      <div class="col-md-2">
+        <button mat-stroked-button color="primary"><strong>6</strong></button>
+      </div>
+      <div class="col-md-2">
+        <button mat-stroked-button color="primary"><strong>1</strong></button>
+      </div>
+    </div>
+  </mat-card>      
+</div>
+<br/>
+<!--end footer row-->
+
+<!-- Start Import budget Modal Window -->
+<div class="modal fade" id="ImportModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Import Budget</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start 1st row-->
+        <div class="row">
+          <div class="col-md-6">  
+            <br/>          
+            <p-dropdown [options]="types" [(ngModel)]="selectedType" placeholder="Select Type" optionLabel="bType" [showClear]="true"></p-dropdown>
+          </div>
+          <div class="col-md-6">            
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="% Increase/Decrease" [(ngModel)]="txtIncDec" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--start 2nd row-->
+        <div class="row">
+          <div class="col-md-12">            
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Remarks" [(ngModel)]="txtRemarks" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--button tag-->
+        <button mat-raised-button color="primary" data-dismiss="modal" (click)="ImportBudget()">Import</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Import budget Modal Window  -->
+    
+<!-- Start Import budget Modal Window -->
+<div class="modal fade" id="bTypeModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Budget Type</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start 1st row-->
+        <div class="row">
+          <div class="col-md-6">  
+            <p-dropdown [options]="years" [(ngModel)]="selectedYearFrom" placeholder="Budget Year From" optionLabel="bName" [showClear]="true"></p-dropdown>
+          </div>
+          <div class="col-md-6">            
+            <p-dropdown [options]="years" [(ngModel)]="selectedYearTo" placeholder="Budget Year To" optionLabel="bName" [showClear]="true"></p-dropdown>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--start 2nd row-->
+        <div class="row">
+          <div class="col-md-12">            
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="% Increase/Decrease" [(ngModel)]="txtIncDec" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--start 2nd row-->
+        <div class="row">
+          <div class="col-md-12">            
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Remarks" [(ngModel)]="txtRemarks" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--button tag-->
+        <button mat-raised-button color="primary" data-dismiss="modal" (click)="Create()">Create</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Import budget Modal Window  -->
+    

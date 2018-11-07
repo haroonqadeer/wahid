@@ -12,8 +12,14 @@ export interface Company {
 export interface CompanyType {
     TId: string;
     TName: string;
-  }
+}
   
+//use class in company type combobox
+export interface City {
+    cId: string;
+    cName: string;
+}
+
 @Component({
   selector: 'app-companydashboard',
   templateUrl: './companydashboard.component.html',
@@ -52,6 +58,14 @@ export class CompanydashboardComponent implements OnInit {
     {TId: '2', TName: 'Partnership'},
     {TId: '3', TName: 'Public Limited Company'},
     {TId: '4', TName: 'Private Limited Company'}
+  ];
+
+  //use in city combobox
+  cities: City[] = [
+    {cId: '1', cName: 'Islamabad'},
+    {cId: '2', cName: 'Karachi'},
+    {cId: '3', cName: 'Lahore'},
+    {cId: '4', cName: 'Quetta'}
   ];
 
 //ngprime organization chart 
@@ -191,6 +205,16 @@ selectedNode: TreeNode;
 
   save(){
    
+    this.edited = true;
+          
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+  }
+  saveCity(){
+      
     this.edited = true;
           
     //wait 3 Seconds and hide

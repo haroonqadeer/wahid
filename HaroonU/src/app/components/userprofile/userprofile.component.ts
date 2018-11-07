@@ -148,8 +148,14 @@ roles: Role[] = [
     this.eName = this.employees.find( x=> x.eId == item).eName.replace(/['"]+/g, '');    
   }  
 
-  save(){
-
+  saveEmp(){
+    this.edited = true;
+          
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
   }
   
   close(){
