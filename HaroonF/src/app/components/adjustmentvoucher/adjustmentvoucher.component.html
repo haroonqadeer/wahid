@@ -1,0 +1,475 @@
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Created
+</div>
+
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div>
+  
+<!--Start heading row-->
+<div class="row">
+    <div class="col-md-12 text-center">
+      <h1 class="bottomBorder">Adjustment Voucher</h1>    
+    </div>
+  </div>
+  <!--end heading row-->
+  <br/>
+  <!--start row-->
+  <div class="row">    
+    <!--start button column-->
+    <div class="col-md-6">
+      <button mat-raised-button color="warn">Print</button>
+    </div>
+    <!--end button column-->
+    
+    <!--start add new role button column-->
+    <div class="col-md-6 text-right">
+      <button mat-raised-button color="primary" data-toggle="modal" data-target="#adjustmentModal">Add New</button>
+    </div>
+    <!--end add new role button column-->
+  </div>
+  <!--end row-->
+  <br/>
+  <!--start date picker row-->
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <mat-form-field>
+        <input matInput [matDatepicker]="frompicker" placeholder="From Date">
+        <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+        <mat-datepicker #frompicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 text-center">
+      <mat-form-field>
+        <input matInput [matDatepicker]="topicker" placeholder="To Date">
+        <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+        <mat-datepicker #topicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <!--end date picker row-->
+  <br/>
+  
+  
+  <!-- Start adjustment table Container -->
+  <div class="container bgWhite allBorder">
+    <br>
+    <!--Start search textbox Row-->
+    <div class="row">
+        <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+                <input matInput [(ngModel)]="query" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+        </div>
+    </div>
+    <!--end search textbox Row-->
+    <!--Start table Row-->
+    <div class="row">  
+      <div class="example-container mat-elevation-z8 fullwidth">
+        <div class="example-table-container fullwidth">            
+          <table class="table table-striped fullwidth">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-2'>Voucher Date</th>
+                <th class='col-2'>Voucher No.</th>
+                <th class='col-4'>Party</th>
+                <th class='col-2'>Amount</th>
+                <th class="col-2">Action</th>          
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class="col-2">10-07-2018</td>
+                <td class="col-2">2316512</td>
+                <td class="col-4">Nabeel Ahmed Khan</td>
+                <td class="col-2">3000</td>
+                <td class="col-2"><span class="fa fa-edit fontPrimary pointerCursor" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#dAdjustmentModal" (click)="del(item)"></span></td>              
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- end table row -->
+    <br/>
+  </div>
+  <!-- End tax section table Container -->
+  <br/>
+  
+  
+  <!-- Start Modal Window to delete adjustment voucher data -->
+  <div class="modal fade" id="dAdjustmentModal">
+    <div class="modal-dialog shadow-lg-dark">
+      <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+          <br>
+          <div class="hidden" [(ngModel)]="employeeId" ngDefaultControl></div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h2>Delete Adjusment Data</h2>
+              <!-- <h2 [(ngModel)]="userName">{{userName}}</h2> -->
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+              </mat-form-field>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+            </div>
+          </div>
+          <br/>
+        </div>
+        <!--end Modal body -->
+  
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+  
+      </div>
+    </div>
+  </div>
+  <!-- End Modal Window to delete adjustment voucher data -->
+  
+  
+<!-- Start Modal Window to Add or update adjustment voucher data -->
+<div class="modal fade" id="adjustmentModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Voucher</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <p-calendar [(ngModel)]="voucherDate" placeholder="Voucher Date" [showIcon]="true"></p-calendar>
+          </div>
+          <div class="col-md-4">
+            <p-dropdown [options]="departments" [(ngModel)]="cmbDept" placeholder="Reference Department" optionLabel="dName" [showClear]="true"></p-dropdown>           
+          </div>
+          <div class="col-md-4">
+            <p-dropdown [options]="documents" [(ngModel)]="cmbDoc" placeholder="Reference Document" optionLabel="docName" [showClear]="true"></p-dropdown>           
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-md-4">
+            <br/>
+            <p-dropdown [options]="banks" [(ngModel)]="selectedBank" placeholder="Select Bank" [style]="{'width':'150px'}" [showClear]="true">
+              <ng-template let-item pTemplate="selectedItem">
+                <span>{{item.value}} - {{item.label}}</span>
+              </ng-template>
+              <ng-template let-bank pTemplate="item">
+                <div class="ui-helper-clearfix">
+                  <div>{{bank.value}} - {{bank.label}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+          <div class="col-md-4">
+            <br/>
+            <p-dropdown [options]="banks" [(ngModel)]="selectedCurrency" placeholder="Select Currency" [style]="{'width':'150px'}" [showClear]="true">
+              <ng-template let-item pTemplate="selectedItem">
+                <span>{{item.value}} - {{item.label}}</span>
+              </ng-template>
+              <ng-template let-currency pTemplate="item">
+                <div class="ui-helper-clearfix">
+                  <div>{{currency.value}} - {{currency.label}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Amount" [(ngModel)]="txtAmount" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <br/>
+        <div class="container shadow-lg-dark">
+          <mat-tab-group>
+            <mat-tab label="Party"> 
+              <br/>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-checkbox (click)="NTax()" [(ngModel)]="disabled">Include Tax</mat-checkbox>
+                  </div>
+                  <div class="col-md-6">
+                    <button mat-raised-button color="primary" [disabled]="disabled">Exemption Certificate</button>
+                  </div>
+                </div>
+                <br/>
+                <!--Start table Row-->
+                <div class="row">  
+                  <div class="example-container mat-elevation-z8 fullwidth">
+                    <div class="example-table-container fullwidth">            
+                      <table class="table table-striped fullwidth">
+                        <thead>
+                          <tr class='d-flex'>
+                            <th class='col-3'>G/L Account</th>
+                            <th class='col-3'>Party Name</th>
+                            <th class='col-2'>Debit</th>
+                            <th class='col-2'>Credit</th>
+                            <th class="col-2">Action</th>          
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class='d-flex'>
+                          <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                            <td class="col-3">
+                              <br/>
+                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
+                                <ng-template let-item pTemplate="selectedItem">
+                                  <span>{{item.label}} - {{item.value}}</span>
+                                </ng-template>
+                                <ng-template let-account pTemplate="item">
+                                  <div class="ui-helper-clearfix">
+                                    <div>{{account.label}} - {{account.value}}</div>
+                                  </div>
+                                </ng-template>
+                              </p-dropdown>
+                            </td>
+                            <td class="col-3">
+                              <br/>
+                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Party Name" optionLabel="pName" ></p-dropdown>
+                            </td>
+                            <td class="col-2">
+                              <mat-form-field class="fullwidth">
+                                <input matInput placeholder="Debit" [(ngModel)]="txtpDebit" required>
+                              </mat-form-field>
+                            </td>
+                            <td class="col-2">
+                              <mat-form-field class="fullwidth">
+                                <input matInput placeholder="Credit" [(ngModel)]="txtpCredit" required>
+                              </mat-form-field>
+                            </td>
+                            <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary pointerCursor" (click)="add()"></span></td>              
+                          </tr>
+                          
+                            <tr *ngFor="let item of partyDetail" class='d-flex'>
+                            <td class="col-3">{{item.AccountTitle}}</td>
+                            <td class="col-3">{{item.PartyName}}</td>
+                            <td class="col-2">{{item.Debit}}</td>
+                            <td class="col-2">{{item.Credit}}</td>
+                            <td class="col-2 text-center"><span class="fa fa-trash pointerCursor" (click)="del(item)"></span></td>              
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- end table row -->
+              </div>
+            </mat-tab>
+            <mat-tab label="Employee">
+            
+              <br/>
+              <!--Start table Row-->
+              <div class="row">  
+                <div class="example-container mat-elevation-z8 fullwidth">
+                  <div class="example-table-container fullwidth">            
+                    <table class="table table-striped fullwidth">
+                      <thead>
+                        <tr class='d-flex'>
+                          <th class='col-3'>G/L Account</th>
+                          <th class='col-3'>Employee Name</th>
+                          <th class='col-2'>Debit</th>
+                          <th class='col-2'>Credit</th>
+                          <th class="col-2">Action</th>          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class='d-flex'>
+                        <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                          <td class="col-3">
+                            <br/>
+                            <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
+                              <ng-template let-item pTemplate="selectedItem">
+                                <span>{{item.label}} - {{item.value}}</span>
+                              </ng-template>
+                              <ng-template let-account pTemplate="item">
+                                <div class="ui-helper-clearfix">
+                                  <div>{{account.label}} - {{account.value}}</div>
+                                </div>
+                              </ng-template>
+                            </p-dropdown>
+                          </td>
+                          <td class="col-3">
+                            <br/>
+                            <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" ></p-dropdown>
+                          </td>
+                          <td class="col-2">
+                            <mat-form-field class="fullwidth">
+                              <input matInput placeholder="Debit" [(ngModel)]="txtpDebit" required>
+                            </mat-form-field>
+                          </td>
+                          <td class="col-2">
+                            <mat-form-field class="fullwidth">
+                              <input matInput placeholder="Credit" [(ngModel)]="txtpCredit" required>
+                            </mat-form-field>
+                          </td>
+                          <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary" (click)="add()"></span></td>              
+                        </tr>
+                        
+                          <tr *ngFor="let item of partyDetail" class='d-flex'>
+                          <td class="col-3">{{item.AccountTitle}}</td>
+                          <td class="col-3">{{item.PartyName}}</td>
+                          <td class="col-2">{{item.Debit}}</td>
+                          <td class="col-2">{{item.Credit}}</td>
+                          <td class="col-2 text-center"><span class="fa fa-trash" (click)="del(item)"></span></td>              
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- end table row -->
+            </mat-tab>
+            <mat-tab label="Both"> 
+              <br/>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                      <p-dropdown [options]="parties" [(ngModel)]="selectedParty" placeholder="Select Party" [style]="{'width':'150px'}" filter="true">
+                        <ng-template let-item pTemplate="selectedItem">
+                          <span>{{item.pId}} - {{item.pName}}</span>
+                        </ng-template>
+                        <ng-template let-party pTemplate="item">
+                          <div class="ui-helper-clearfix">
+                            <div>{{party.pId}} - {{party.pName}}</div>
+                          </div>
+                        </ng-template>
+                      </p-dropdown>
+                  </div>
+                </div>
+                <br/>
+                <!--Start table Row-->
+                <div class="row">  
+                  <div class="example-container mat-elevation-z8 fullwidth">
+                    <div class="example-table-container fullwidth">            
+                      <table class="table table-striped fullwidth">
+                        <thead>
+                          <tr class='d-flex'>
+                            <th class='col-3'>G/L Account</th>
+                            <th class='col-3'>Employee Name</th>
+                            <th class='col-2'>Debit</th>
+                            <th class='col-2'>Credit</th>
+                            <th class="col-2">Action</th>          
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class='d-flex'>
+                          <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                            <td class="col-3">
+                              <br/>
+                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
+                                <ng-template let-item pTemplate="selectedItem">
+                                  <span>{{item.label}} - {{item.value}}</span>
+                                </ng-template>
+                                <ng-template let-account pTemplate="item">
+                                  <div class="ui-helper-clearfix">
+                                    <div>{{account.label}} - {{account.value}}</div>
+                                  </div>
+                                </ng-template>
+                              </p-dropdown>
+                            </td>
+                            <td class="col-3">
+                              <br/>
+                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" ></p-dropdown>
+                            </td>
+                            <td class="col-2">
+                              <mat-form-field class="fullwidth">
+                                <input matInput placeholder="Debit" [(ngModel)]="txtpDebit" required>
+                              </mat-form-field>
+                            </td>
+                            <td class="col-2">
+                              <mat-form-field class="fullwidth">
+                                <input matInput placeholder="Credit" [(ngModel)]="txtpCredit" required>
+                              </mat-form-field>
+                            </td>
+                            <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary" (click)="add()"></span></td>              
+                          </tr>
+                          
+                            <tr *ngFor="let item of partyDetail" class='d-flex'>
+                            <td class="col-3">{{item.AccountTitle}}</td>
+                            <td class="col-3">{{item.PartyName}}</td>
+                            <td class="col-2">{{item.Debit}}</td>
+                            <td class="col-2">{{item.Credit}}</td>
+                            <td class="col-2 text-center"><span class="fa fa-trash" (click)="del(item)"></span></td>              
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- end table row -->
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+        
+        <br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Description" [(ngModel)]="txtDescription" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Debit" [(ngModel)]="txtDebit" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Credit" [(ngModel)]="txtCredit" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Balance" [(ngModel)]="txtBalance" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--button tag-->
+        <button mat-raised-button color="primary" data-dismiss="modal" (click)="save()">Create</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+  <!-- End Modal Window to Add or update adjustment voucher data -->
+  
