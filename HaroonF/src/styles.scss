@@ -20,7 +20,7 @@ h1{
 body{
     // background-color: #ebecef !important;
     background-image: linear-gradient(135deg,#fff, #ccc);
-    overflow: hidden;    
+    overflow: auto;    
 }
 
 ///// headings
@@ -82,6 +82,9 @@ h1{
 
 .bottomBorder{
     border-bottom: 1px solid #ccc !important;
+}
+.topBorder{
+    border-top: 1px solid #ccc !important;
 }
 .allBorder{
     border:1px solid #ccc !important;

@@ -8,12 +8,19 @@ import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import {TreeTableModule} from "ng-treetable";
 import {HttpModule} from '@angular/http';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
 import { BudgetsComponent } from './components/budgets/budgets.component';
 import { TaxsectionComponent } from './components/taxsection/taxsection.component';
+import { FinancedashboardComponent } from './components/financedashboard/financedashboard.component';
+import { PaymentvoucherComponent } from './components/paymentvoucher/paymentvoucher.component';
+import { ReceiptvoucherComponent } from './components/receiptvoucher/receiptvoucher.component';
+import { AdjustmentvoucherComponent } from './components/adjustmentvoucher/adjustmentvoucher.component';
+import { LedgerComponent } from './components/ledger/ledger.component';
+import { FixassetComponent } from './components/fixasset/fixasset.component';
 
 
 
@@ -23,7 +30,13 @@ import { TaxsectionComponent } from './components/taxsection/taxsection.componen
     SearchPipe,
     ChartofaccountComponent,
     BudgetsComponent,
-    TaxsectionComponent
+    TaxsectionComponent,
+    FinancedashboardComponent,
+    PaymentvoucherComponent,
+    ReceiptvoucherComponent,
+    AdjustmentvoucherComponent,
+    LedgerComponent,
+    FixassetComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +48,10 @@ import { TaxsectionComponent } from './components/taxsection/taxsection.componen
     ReactiveFormsModule,
     PNPrimeModule,
     TreeTableModule,
-    HttpModule
+    HttpModule,
+    NgCircleProgressModule.forRoot({
+      
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
