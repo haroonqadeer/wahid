@@ -22,6 +22,7 @@ import { AdjustmentvoucherComponent } from './components/adjustmentvoucher/adjus
 import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
+import { ReconciliationComponent } from './components/reconciliation/reconciliation.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { BankaccountComponent } from './components/bankaccount/bankaccount.compo
     AdjustmentvoucherComponent,
     LedgerComponent,
     FixassetComponent,
-    BankaccountComponent
+    BankaccountComponent,
+    ReconciliationComponent
   ],
   imports: [
     BrowserModule,
