@@ -15,6 +15,7 @@ import { ChartofaccountComponent } from './components/chartofaccount/chartofacco
 import { BudgetsComponent } from './components/budgets/budgets.component';
 import { TaxsectionComponent } from './components/taxsection/taxsection.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
+import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
 
 
 
@@ -25,7 +26,8 @@ import { BankaccountComponent } from './components/bankaccount/bankaccount.compo
     ChartofaccountComponent,
     BudgetsComponent,
     TaxsectionComponent,
-    BankaccountComponent
+    BankaccountComponent,
+    TrailbalanceComponent
   ],
   imports: [
     BrowserModule,
