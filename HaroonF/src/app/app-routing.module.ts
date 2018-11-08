@@ -10,10 +10,8 @@ import { AdjustmentvoucherComponent } from './components/adjustmentvoucher/adjus
 import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
-<<<<<<< HEAD
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
-=======
->>>>>>> 4a74e49af0d69494baf15df5ae7344425c78afc9
+
 
 const routes: Routes = [
   {

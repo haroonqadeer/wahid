@@ -23,6 +23,7 @@ import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
+//import { FixassetComponent } from './components/fixasset/fixasset.component';
 
 
 @NgModule({
@@ -32,10 +33,9 @@ import { TrailbalanceComponent } from './components/trailbalance/trailbalance.co
     ChartofaccountComponent,
     BudgetsComponent,
     TaxsectionComponent,
-<<<<<<< HEAD
     BankaccountComponent,
-    TrailbalanceComponent
-=======
+    TrailbalanceComponent,
+    FixassetComponent,
     FinancedashboardComponent,
     PaymentvoucherComponent,
     ReceiptvoucherComponent,
@@ -43,7 +43,6 @@ import { TrailbalanceComponent } from './components/trailbalance/trailbalance.co
     LedgerComponent,
     FixassetComponent,
     BankaccountComponent
->>>>>>> 4a74e49af0d69494baf15df5ae7344425c78afc9
   ],
   imports: [
     BrowserModule,
