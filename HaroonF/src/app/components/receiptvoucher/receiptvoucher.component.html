@@ -1,3 +1,11 @@
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Created
+</div>
+
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div>
+    
 <!--Start heading row-->
 <div class="row">
     <div class="col-md-12 text-center">
@@ -74,10 +82,10 @@
               <tr class='d-flex'>
               <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
                 <td class="col-2">10-07-2018</td>
-                <td class="col-2">2316512</td>
-                <td class="col-4">Nabeel Ahmed Khan</td>
-                <td class="col-2">3000</td>
-                <td class="col-2"><span class="fa fa-edit fontPrimary" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash" data-toggle="modal" data-target="#dReceiptModal" (click)="del(item)"></span></td>              
+                <td class="col-2">12345544</td>
+                <td class="col-4">Amir Quershi</td>
+                <td class="col-2">8000</td>
+                <td class="col-2"><span class="fa fa-edit fontPrimary pointerCursor" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#dReceiptModal" (click)="del(item)"></span></td>              
               </tr>
             </tbody>
           </table>
@@ -234,11 +242,11 @@
                               <br/>
                               <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
                                 <ng-template let-item pTemplate="selectedItem">
-                                  <span>{{item.value}} - {{item.label}}</span>
+                                  <span>{{item.label}} - {{item.value}}</span>
                                 </ng-template>
                                 <ng-template let-account pTemplate="item">
                                   <div class="ui-helper-clearfix">
-                                    <div>{{account.value}} - {{account.label}}</div>
+                                    <div>{{account.label}} - {{account.value}}</div>
                                   </div>
                                 </ng-template>
                               </p-dropdown>
@@ -257,7 +265,7 @@
                                 <input matInput placeholder="Credit" [(ngModel)]="txtpCredit" required>
                               </mat-form-field>
                             </td>
-                            <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary" (click)="add()"></span></td>              
+                            <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary pointerCursor" (click)="add()"></span></td>              
                           </tr>
                           
                             <tr *ngFor="let item of partyDetail" class='d-flex'>
@@ -265,7 +273,7 @@
                             <td class="col-3">{{item.PartyName}}</td>
                             <td class="col-2">{{item.Debit}}</td>
                             <td class="col-2">{{item.Credit}}</td>
-                            <td class="col-2 text-center"><span class="fa fa-trash" (click)="del(item)"></span></td>              
+                            <td class="col-2 text-center"><span class="fa fa-trash pointerCursor" (click)="del(item)"></span></td>              
                           </tr>
                         </tbody>
                       </table>
@@ -299,11 +307,11 @@
                             <br/>
                             <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
                               <ng-template let-item pTemplate="selectedItem">
-                                <span>{{item.value}} - {{item.label}}</span>
+                                <span>{{item.label}} - {{item.value}}</span>
                               </ng-template>
                               <ng-template let-account pTemplate="item">
                                 <div class="ui-helper-clearfix">
-                                  <div>{{account.value}} - {{account.label}}</div>
+                                  <div>{{account.label}} - {{account.value}}</div>
                                 </div>
                               </ng-template>
                             </p-dropdown>
@@ -378,11 +386,11 @@
                               <br/>
                               <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
                                 <ng-template let-item pTemplate="selectedItem">
-                                  <span>{{item.value}} - {{item.label}}</span>
+                                  <span>{{item.label}} - {{item.value}}</span>
                                 </ng-template>
                                 <ng-template let-account pTemplate="item">
                                   <div class="ui-helper-clearfix">
-                                    <div>{{account.value}} - {{account.label}}</div>
+                                    <div>{{account.label}} - {{account.value}}</div>
                                   </div>
                                 </ng-template>
                               </p-dropdown>

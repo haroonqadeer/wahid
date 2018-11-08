@@ -22,12 +22,17 @@ export interface Bank {
   label: string;
   value: string;
 }
+
 @Component({
   selector: 'app-paymentvoucher',
   templateUrl: './paymentvoucher.component.html',
   styleUrls: ['./paymentvoucher.component.scss']
 })
 export class PaymentvoucherComponent implements OnInit {
+  
+  public edited = false;
+  public edited1 = false;
+
   checked = true;
   disabled=true;
   chkTax='';
@@ -77,10 +82,19 @@ export class PaymentvoucherComponent implements OnInit {
   }
 
   save(){
-    //window.alert(this.cmbDept.dId);
+      
+    this.edited = true;
+          
+    //wait 2 Seconds and hide
+    setTimeout(function() {
+        this.edited = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
   }
   add(){   
     this.partyDetail.push( { AccountTitle: this.selectedAccount, PartyName: this.cmbParty.pName, Debit: this.txtpDebit, Credit: this.txtpCredit } );
+
+    this.clear();
   }
   del(item){
 
@@ -91,7 +105,21 @@ export class PaymentvoucherComponent implements OnInit {
       }
     }
   }
+
+  delete(){
+      
+    this.edited1 = true;
+          
+    //wait 2 Seconds and hide
+    setTimeout(function() {
+        this.edited1 = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+  }
   clear(){
     this.selectedAccount={label:'-1',value:'Select Account'};
+    this.cmbParty={pId:'-1',pName:'Party Name'};
+    this.txtpCredit=0;
+    this.txtpDebit=0;
   }
 }
