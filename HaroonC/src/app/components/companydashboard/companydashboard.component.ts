@@ -88,68 +88,76 @@ selectedNode: TreeNode;
 
     //ngprime organizational chart data
     this.data1 = [{
-        label: 'M/s Indus Motor',
+        label: 'Mobilink Pakistan (jazz)',
         type: 'person',
         styleClass: 'ui-person',
         expanded: true,
-        data: {name:'M/s Indus Motor'},
+        data: {name:''},
         children: [
             {
-                label: 'Karachi HQ',
+                label: 'Karachi',
                 type: 'person',
                 styleClass: 'ui-person',
                 expanded: true,
-                data: {name:'Karachi HQ'},
+                data: {name:''},
                 children:[{
                     label: 'Finance',
-                    styleClass: 'department-cfo'
+                    styleClass: 'department-cfo',
+                    children:[{
+                        label: 'Audit',
+                        styleClass: 'department-cto'
+                    },
+                    {
+                        label: 'Tax',
+                        styleClass: 'department-cto'
+                    }]
                 },
                 {
                     label: 'Admin',
-                    styleClass: 'department-cfo'
+                    styleClass: 'department-cfo',
+                    children:[{
+                        label: 'Security',
+                        styleClass: 'department-cto'
+                    },
+                    {
+                        label: 'Operations',
+                        styleClass: 'department-cto'
+                    }]
                 },
                 {
                     label: 'Production',
-                    styleClass: 'department-cfo'
+                    styleClass: 'department-cfo',
+                    children:[{
+                        label: 'Calling Cards',
+                        styleClass: 'department-cto'
+                    },
+                    {
+                        label: 'Sim',
+                        styleClass: 'department-cto'
+                    }]
                 }],
             },
             {
-                label: 'Lahore Branch',
+                label: 'Lahore',
                 type: 'person',
                 styleClass: 'ui-person',
                 expanded: true,
-                data: {name:'Lahore Branch'},
-                children:[{
-                    label: 'Sales',
-                    styleClass: 'department-coo'
-                },
-                {
-                    label: 'Support',
-                    styleClass: 'department-coo'
-                }]
+                data: {name:''}
             },
             {
-                label: 'Khyber Motors',
+                label: 'Peshawar',
                 type: 'person',
                 styleClass: 'ui-person',
                 expanded: true,
-                data: {name:'Khyber Motors'},
+                data: {name:''},
                 children:[]
             },
             {
-                label: 'Islamabad Captial Motors',
+                label: 'Federal Capital',
                 type: 'person',
                 styleClass: 'ui-person',
                 expanded: true,
-                data: {name:'Islamabad Captial Motors'},
-                children:[]
-            },
-            {
-                label: 'Toyota G.T Motors',
-                type: 'person',
-                styleClass: 'ui-person',
-                expanded: true,
-                data: {name:'Toyota G.T Motors'},
+                data: {name:''},
                 children:[]
             }
         ]

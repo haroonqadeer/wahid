@@ -1,0 +1,266 @@
+<!--Start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Finance Dashboard</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start container with boxes-->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Total Income</div>
+          <h4>4 719,00</h4>
+          <label class="fontPrimary"><strong>16,1%</strong></label>
+          <div><label>vs previous month</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Total Expense</div>
+          <h4>3 270,00</h4>
+          <label class="fontPrimary"><strong>25,1%</strong></label>
+          <div><label>vs previous month</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Accounts Receivable</div>
+          <h4>609,00</h4>
+          <label class="fontPrimary"><strong>-5,1%</strong></label>
+          <div><label>vs previous month</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Accounts Payable</div>
+          <h4>538,00</h4>
+          <label class="fontPrimary"><strong>-15,7%</strong></label>
+          <div><label>vs previous month</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-4 shadow-md text-center bgWhite">
+      <h5>% of Icome Budget</h5><br/>
+      <circle-progress
+      [radius]="70"
+      [space]="-20"
+      [outerStrokeWidth]="20"
+      [innerStrokeWidth]="-20"
+      [outerStrokeColor]="'#20B2AA'"
+      [innerStrokeColor]="'#e7e8ea'"
+      [animation]="true"
+      [animationDuration]="1000"
+      [clockwise]="false"
+      [percent]="94"
+      [titleFontSize]="30"
+      [showSubtitle]= "false"
+      [unitsFontSize]= "30"
+      [outerStrokeLinecap] = "'square'"
+      ></circle-progress>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          Budget
+        </div>
+        <div class="col-md-6 text-center">
+          5000,00
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          Balance
+        </div>
+        <div class="col-md-6 text-center">
+          -281,00
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 shadow-md text-center bgWhite">
+      <h5>Net Profit Margin %</h5>
+      <circle-progress
+      [radius]="100"
+      [space]="-26"
+      [outerStrokeWidth]="26"
+      [innerStrokeWidth]="-26"
+      [outerStrokeColor]="'#FB5A56'"
+      [innerStrokeColor]="'#e7e8ea'"
+      [animation]="true"
+      [animationDuration]="1000"
+      [clockwise]="false"
+      [percent]="73.3"
+      [titleFontSize]="50"
+      [showSubtitle]= "false"
+      [unitsFontSize]= "50"
+      [outerStrokeLinecap] = "'square'"
+      ></circle-progress>
+      <div class="row">
+        <div class="col-md-6 text-right">
+          Target
+        </div>
+        <div class="col-md-3 text-center">
+          12,0%
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 shadow-md text-center bgWhite">
+      <h5>% of Expense Budget</h5><br/>
+      <circle-progress
+      [radius]="70"
+      [space]="-20"
+      [outerStrokeWidth]="20"
+      [innerStrokeWidth]="-20"
+      [outerStrokeColor]="'#20B2AA'"
+      [innerStrokeColor]="'#e7e8ea'"
+      [animation]="true"
+      [animationDuration]="1000"
+      [clockwise]="false"
+      [percent]="93"
+      [titleFontSize]="30"
+      [showSubtitle]= "false"
+      [unitsFontSize]= "30"
+      [outerStrokeLinecap] = "'square'"
+      ></circle-progress>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          Budget
+        </div>
+        <div class="col-md-6 text-center">
+          3 5000,00
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          Balance
+        </div>
+        <div class="col-md-6 text-center">
+          -280,00
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="row shadow-md bgWhite">
+        <div class="col-md-12">
+          <div [chart]="Column_Chart" style=" height: 200px;width:100%;"></div>
+        </div>
+      </div>
+      <br/>
+      <div class="row shadow-md bgWhite">
+        <div class="col-md-12">
+          <div [chart]="Line_chart" style=" height: 200px;width:100%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="info-box shadow-md bgWhite" style="height:100%">
+        <br/>
+        <div class="content text-center">
+          <div class="bottomBorder">Income Statement</div>
+        </div>
+        <br/>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">Total Income</div>
+            <div class="col-md-3 text-right">4 719,00</div>
+            <div class="col-md-3 text-right">100%</div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">Cost of Goods Sold</div>
+            <div class="col-md-3 text-right bottomBorder">( 1663,00)</div>
+            <div class="col-md-3 text-right bottomBorder">-35%</div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6"><strong>Gross Profit</strong></div>
+            <div class="col-md-3 text-right"><strong>3 056,00</strong></div>
+            <div class="col-md-3 text-right"><strong>65%</strong></div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">Total Operating Expense</div>
+            <div class="col-md-3 text-right bottomBorder">(1 607,00)</div>
+            <div class="col-md-3 text-right bottomBorder">-34%</div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6"><strong>Operating Profit (EBIT)</strong></div>
+            <div class="col-md-3 text-right"><strong>1 449,00</strong></div>
+            <div class="col-md-3 text-right"><strong>31%</strong></div>
+          </div>
+          <br/>
+          <div class="row bottomBorder">
+            <div class="col-md-6">Taxes</div>
+            <div class="col-md-3 text-right">(820,00)</div>
+            <div class="col-md-3 text-right">-17%</div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6"><strong>Net Profit</strong></div>
+            <div class="col-md-3 text-right"><strong>629,00</strong></div>
+            <div class="col-md-3 text-right"><strong>13%</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Net Profit</div>
+          <h4>629,00</h4>
+          <label class="fontRed"><strong>-8,8%</strong></label>
+          <div><label>vs previous month</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Cash at end of month</div>
+          <h4>7 684,00</h4>
+          <label class="fontPrimary"><strong>4,9%</strong></label>
+          <div><label>vs previous month</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Quick Ratio</div>
+          <h4>1,02</h4>
+          <label><strong>1 or higher</strong></label>
+          <div><label>Quick Ratio Target</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bgWhite">
+        <div class="content text-center">
+          <div class="bottomBorder">Current Ratio</div>
+          <h4>3,02</h4>
+          <label><strong>3 or higher</strong></label>
+          <div><label>Current Ratio Target</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end container with boxes-->

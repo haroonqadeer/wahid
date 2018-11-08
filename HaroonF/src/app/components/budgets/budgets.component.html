@@ -14,7 +14,7 @@
 <br/>
 <!--start 1st row budget year combo box and budget type label-->
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 text-center">
     <mat-form-field>
       <mat-select placeholder="Budget Year" [(ngModel)]="bYear" (ngModelChange)="onBudgetChange($event)">
         <mat-option *ngFor="let year of years" [value]="year.code">
@@ -23,7 +23,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="col-md-6 text-right">
+  <div class="col-md-6 text-center">
     <label><strong>Budget Type: </strong></label><label [(ngModel)]="lblbYear">&nbsp;{{lblbYear}}</label>
   </div>
 </div>

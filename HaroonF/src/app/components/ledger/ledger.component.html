@@ -1,0 +1,211 @@
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Ledger</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--start date picker and combobox row-->
+<div class="row">
+  <div class="col-md-4 text-center">
+    <mat-form-field>
+      <input matInput [matDatepicker]="frompicker" placeholder="From Date">
+      <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+      <mat-datepicker #frompicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="col-md-4 text-center">
+    <mat-form-field>
+      <input matInput [matDatepicker]="topicker" placeholder="To Date">
+      <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+      <mat-datepicker #topicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="col-md-4 text-center">
+    <mat-form-field>
+      <mat-select placeholder="Account Code" [(ngModel)]="cmbACode">
+        <mat-option *ngFor="let title of codes" [value]="title.cId">
+          {{title.cId}} - {{title.cTitle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<!--end date picker and combobox row-->
+<br/>
+<!-- Start ledger table Container -->
+<div class="container bgWhite allBorder">
+  <br>
+  <!--Start search textbox Row-->
+  <div class="row">
+      <div class="col-md-12">
+          <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="query" placeholder="Search">
+          </mat-form-field>
+          <i class="fab fa-accessible-icon"></i>
+      </div>
+  </div>
+  <!--end search textbox Row-->
+  <!--Start table Row-->
+  <div class="row">  
+    <div class="example-container mat-elevation-z8 fullwidth">
+      <div class="example-table-container fullwidth">            
+        <table class="table table-striped fullwidth">
+          <thead>
+            <tr class='d-flex'>
+              <th class='col-1'>#</th>
+              <th class='col-1'>Date</th>
+              <th class='col-1'>Voucher No</th>
+              <th class='col-5'>Description</th>
+              <th class='col-1'>Debit</th>
+              <th class="col-1">Credit</th>          
+              <th class="col-1">Chq No</th>          
+              <th class="col-1">Detail</th>          
+            </tr>
+          </thead>
+          <tbody>
+            <tr class='d-flex'>
+            <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+              <td class="col-1">1</td>
+              <td class="col-1">June 1, 2018</td>
+              <td class="col-1">EST- Jun/2017-9(J)</td>
+              <td class="col-5">Being amount adjusted on a/c of merger of 1% S.A Trails into Establishment Trails on the recommendation of Audtitors with consulation of Financial Analysts</td>
+              <td class="col-1">13,006,505</td>
+              <td class="col-1">0</td>
+              <td class="col-1"></td>
+              <td class="col-1"><span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#ledgerModal"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- end table row -->
+  <br/>
+  <!--start total row-->
+  <div class="row">
+    <div class="col-md-7 text-right">
+      <strong>Opening Balance</strong>
+    </div>
+    <div class="col-md-2 text-right">0</div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-7 text-right">
+      <strong>Periodic Balance</strong>
+    </div>
+    <div class="col-md-2 text-right">13,006,505</div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-7 text-right">
+      <strong>Closing Balance</strong>
+    </div>
+    <div class="col-md-2 topBorder bottomBorder text-right">13,006,505</div>
+  </div>
+  <br/>
+  <!--end total row-->
+</div>
+<!-- End ledger table Container -->
+
+
+<!-- Start Modal Window to view ledger detail -->
+<div class="modal fade" id="ledgerModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">EST- Jun/2017-9(J)</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body"> 
+        <!--start table row-->       
+        <div class="example-container mat-elevation-z8">
+          <div class="example-table-container">                      
+            <table class="table table-striped">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-1 text-center'>#</th>
+                  <th class='col-2'>Voucher Date</th>
+                  <th class='col-2'>Account Code</th>                    
+                  <th class='col-5'>Account Title</th>
+                  <th class='col-1'>Debit</th>
+                  <th class='col-1'>Credit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class="col-1 text-center">1</td>
+                  <td class='col-2'>Jun 28, 2018</td>
+                  <td class='col-2'>711802</td>                    
+                  <td class='col-5'>RENTAL CHARGES-EMPLOYEES/STAFF ACCOMODATION</td>
+                  <td class='col-1'>854,196</td>
+                  <td class='col-1'>0</td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class="col-1 text-center">2</td>
+                  <td class='col-2'>Jun 28, 2018</td>
+                  <td class='col-2'>711802</td>                    
+                  <td class='col-5'>UBL-RDF 945-9 (1% Special Allocation)</td>
+                  <td class='col-1'>0</td>
+                  <td class='col-1'>854,196</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->    
+        <br/>
+        <div class="row">
+          <div class="col-md-3">
+            <strong>Description: </strong>
+          </div>
+          <div class="col-md-9">
+              Being amount adjusted on A/c of Arrears of 25% Increase In Hiring W.e.f 13.07.2018 in R/o Officer BS-18 
+          </div>
+        </div>    
+        <br/>
+        <div class="row topBorder">
+          <div class="col-md-3">
+            <strong>Party: </strong>
+          </div>
+          <div class="col-md-3">
+              UBL,Br G-9/1 Islamabad
+          </div> 
+        </div>   
+        <br/>
+        <div class="row topBorder">
+          <div class="col-md-4">
+            <strong>Cheque/Receipt No: </strong>
+          </div>
+          <div class="col-md-2">
+              30981889
+          </div>
+          <div class="col-md-4">
+            <strong>Cheque/Receipt Date: </strong>
+          </div>
+          <div class="col-md-2">
+            Jul 1, 2018
+          </div>
+        </div>    
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to view ledger detail -->
+
+<br/>
