@@ -21,7 +21,7 @@ import { MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatSteppe
     MatStepperModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule    
   ],
   exports:[    
     MatInputModule, 
@@ -40,7 +40,7 @@ import { MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatSteppe
     MatStepperModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule    
 ]
 })
 export class MaterialModule { }
