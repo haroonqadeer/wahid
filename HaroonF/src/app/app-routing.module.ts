@@ -9,6 +9,7 @@ import { ReceiptvoucherComponent } from './components/receiptvoucher/receiptvouc
 import { AdjustmentvoucherComponent } from './components/adjustmentvoucher/adjustmentvoucher.component';
 import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
+import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,11 @@ const routes: Routes = [
   {
     path:'fixAsset',  
     component: FixassetComponent
-  }     
+  },
+  {
+    path:'bankAccount',  
+    component: BankaccountComponent
+  } 
 ];
 
 @NgModule({

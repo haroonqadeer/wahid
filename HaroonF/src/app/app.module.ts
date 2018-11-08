@@ -21,7 +21,7 @@ import { ReceiptvoucherComponent } from './components/receiptvoucher/receiptvouc
 import { AdjustmentvoucherComponent } from './components/adjustmentvoucher/adjustmentvoucher.component';
 import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
-
+import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
 
 
 @NgModule({
@@ -36,7 +36,8 @@ import { FixassetComponent } from './components/fixasset/fixasset.component';
     ReceiptvoucherComponent,
     AdjustmentvoucherComponent,
     LedgerComponent,
-    FixassetComponent
+    FixassetComponent,
+    BankaccountComponent
   ],
   imports: [
     BrowserModule,
