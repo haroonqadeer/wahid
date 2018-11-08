@@ -1,0 +1,424 @@
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Trail Balance</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start container-->
+<div class="container bgWhite allBorder">
+
+  <!--Row #1-->
+  <div class="row">
+    <!--start col # 1-->
+    <div class="col-md-3">
+      <mat-form-field>
+          <mat-select placeholder="Trail Grouping">
+            <mat-option value="option1">Askari Bank</mat-option>
+            <mat-option value="option2">Habib Bank</mat-option>
+            <mat-option value="option3">United Bank</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <!--end col # 1-->
+
+    <!--start col # 2-->
+    <div class="col-md-3">
+      <mat-form-field>
+          <mat-select placeholder="Location">
+            <mat-option value="option1">Rawalpindi/Saddar</mat-option>
+            <mat-option value="option2">Islamabad/F8 Markaz</mat-option>
+            <mat-option value="option3">Rawalpindi/Raja Bazar </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <!--end col # 2-->
+
+    <!--start col # 3-->
+    <div class="col-md-2">
+      <mat-form-field>
+          <mat-select placeholder="Section/Project">
+            <mat-option value="option1">PKR</mat-option>
+            <mat-option value="option2">Doller</mat-option>
+            <mat-option value="option3">PKR</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <!--end col # 3-->
+
+    <!--start col # 4-->
+    <div class="col-md-2">
+      <mat-form-field>
+          <mat-select placeholder="Year">
+            <mat-option value="option1">2016</mat-option>
+            <mat-option value="option2">2017</mat-option>
+            <mat-option value="option3">2018</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <!--end col # 4-->
+
+    <!--start col # 5-->
+    <div class="col-md-2">
+      <mat-form-field>
+          <mat-select placeholder="Month">
+            <mat-option value="option1">01</mat-option>
+            <mat-option value="option2">02</mat-option>
+            <mat-option value="option3">03</mat-option>
+            <mat-option value="option1">04</mat-option>
+            <mat-option value="option2">05</mat-option>
+            <mat-option value="option3">06</mat-option>
+            <mat-option value="option1">07</mat-option>
+            <mat-option value="option2">08</mat-option>
+            <mat-option value="option3">09</mat-option>
+            <mat-option value="option1">10</mat-option>
+            <mat-option value="option2">11</mat-option>
+            <mat-option value="option3">12</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <!--end col # 5-->
+    
+  </div>
+  <!--End row #1-->
+  
+
+</div>
+<!-- End container -->
+
+<br/>
+
+<!--start 2nd container -->
+<div class="container">
+  <div class="row">
+    
+    <!--start prnt btn col-->
+    <div class="col-md-1">
+      <button mat-raised-button color="warn">REPORT</button>
+    </div>
+    <!-- end prnt btn col-->
+
+    <!--start prnt btn col-->
+    <div class="col-md-3">
+        <button mat-raised-button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-print fontPrimary"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>
+    </div>
+    <!-- end prnt btn col-->
+
+    <!--start rounded btn 1 col -->
+    <div class="col-md-1 text-right">
+        <button mat-fab mat-raised-button data-toggle="modal" data-target="#mdlRBalance">1
+        </button>
+    </div>
+    <!--end rounded btn 1 col-->
+
+    <!--start slash  col -->
+    <div class="col-md-1 text-center">
+        <span style="font-size: 22px; font-weight: bold; ">/</span>
+    </div>
+    <!--end slash  col-->
+
+    <!--start rounded btn 1 col -->
+    <div class="col-md-5">
+        <button mat-fab mat-raised-button data-toggle="modal" data-target="#mdAllRBalance">2
+        </button>
+    </div>
+    <!--end rounded btn 1 col-->
+
+    <!--start refresh btn col -->
+    <div class="col-md-1 text-right">
+        <button mat-raised-button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-refresh fontPrimary"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>
+    </div>
+    <!--end refresh btn col -->
+  </div>
+</div>
+<!--end 2nd container -->
+
+<br/>
+
+<!--start 3rd container-->
+<div class="container bgWhite allBorder">
+
+  <!--Start table Row-->
+  <div class="row">  
+    <!-- <div class="example-container mat-elevation-z8 fullwidth">
+      <div class="example-table-container fullwidth">             -->
+        <table class="table table-striped fullwidth">
+          <thead>
+              <tr class='d-flex'>
+                  <td class='col-1'></td>
+                  <td class='col-3'></td>
+                  <th class='col-2 text-center' colspan="2">Opening</th>
+                  <th class='col-2 text-center' colspan="2">Yearly</th>
+                  <th class='col-2 text-center' colspan="2">Closing</th>
+                  <td class='col-1'></td>
+                  <td class='col-1'></td>
+                </tr>
+            <tr class='d-flex'>
+              <td class='col-1'><b>Code</b></td>
+              <td class='col-3'><b>Account Title</b></td>
+              <td class='col-1 text-right'>Debit</td>
+              <td class='col-1 text-right'>Credit</td>
+              <td class='col-1 text-right'>Debit</td>
+              <td class='col-1 text-right'>Credit</td>
+              <td class='col-1 text-right'>Debit</td>
+              <td class='col-1 text-right'>Credit</td>
+              <td class='col-1 text-center'>Detail</td>
+              <td class='col-1 text-center'>Remarks</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class='d-flex'>
+              <td class='col-1'>0108</td>
+              <td class='col-3'>PLANT AND MACHINERY</td>
+              <td class='col-1 text-right'>0</td>
+              <td class='col-1 text-right'>0</td>
+              <td class='col-1 text-right'>383,939</td>
+              <td class='col-1 text-right'>0</td>
+              <td class='col-1 text-right'>383,939</td>
+              <td class='col-1 text-right'>0</td>
+              <td class='col-1 text-center'><span class="fa fa-save" data-toggle="modal" data-target="#mdlDetail"></span></td>
+              <td class='col-1 text-center'><span class="fa fa-bell" data-toggle="modal" data-target="#mdlChat"></span></td>
+            </tr>
+
+            <tr class='d-flex'>
+                <td class='col-1'>0109</td>
+                <td class='col-3'>VEHICLES</td>
+                <td class='col-1 text-right'>0</td>
+                <td class='col-1 text-right'>0</td>
+                <td class='col-1 text-right'>6,750,000</td>
+                <td class='col-1 text-right'>0</td>
+                <td class='col-1 text-right'>6,750,000</td>
+                <td class='col-1 text-right'>0</td>
+                <td class='col-1 text-center'><span class="fa fa-save"></span></td>
+                <td class='col-1 text-center'><span class="fa fa-bell"></span></td>
+              </tr>
+
+              <tr class='d-flex'>
+                  <td class='col-1'>0110</td>
+                  <td class='col-3'>DRAWING, SURVEY AND TESTING EQUIPMENT</td>
+                  <td class='col-1 text-right'>807,893</td>
+                  <td class='col-1 text-right'>1</td>
+                  <td class='col-1 text-right'>0</td>
+                  <td class='col-1 text-right'>0</td>
+                  <td class='col-1 text-right'>807,893</td>
+                  <td class='col-1 text-right'>0</td>
+                  <td class='col-1 text-center'><span class="fa fa-save"></span></td>
+                  <td class='col-1 text-center'><span class="fa fa-bell"></span></td>
+                </tr>
+          </tbody>
+        </table>
+      <!-- </div>
+    </div> -->
+  </div>
+  <!-- end table row -->
+
+</div>
+<!--end 3rd container-->
+
+
+
+
+<!-- Start Bank Account Detail Modal Window  -->
+<div class="modal fade" id="mdlChat">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Chat Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        
+          <div class="row">  
+              <!-- <div class="example-container mat-elevation-z8 fullwidth">
+                <div class="example-table-container fullwidth">             -->
+                  <table class="table">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-1'>#</th>
+                        <th class='col-6'>Name</th>
+                        <th class='col-5'>Detail</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class='d-flex'>
+                        <td class='col-1'>1</td>
+                        <td class='col-6'>Logix</td>
+                        <td class='col-5'>Rawalpindi</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <!-- </div>
+              </div> -->
+          </div>
+
+        </div>
+        <!--end Modal body -->
+  
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+      </div>
+    </div>
+</div>
+<!-- End Tax section Modal Window  -->
+
+<!-- Start Ladger Modal Window   -->
+<div class="modal fade" id="mdlDetail">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Detail Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+            <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+          
+            <div class="row">  
+                <!-- <div class="example-container mat-elevation-z8 fullwidth">
+                  <div class="example-table-container fullwidth">             -->
+                    <table class="table">
+                      <thead>
+                        <tr class='d-flex'>
+                          <th class='col-1'>#</th>
+                          <th class='col-6'>Name</th>
+                          <th class='col-5'>Detail</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class='d-flex'>
+                          <td class='col-1'>1</td>
+                          <td class='col-6'>Logix</td>
+                          <td class='col-5'>Rawalpindi</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  <!-- </div>
+                </div> -->
+            </div>
+
+        </div>
+        <!--end Modal body -->
+  
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+      </div>
+    </div>
+</div>
+<!-- End Ladger Modal Window -->
+
+<!--Remaining balance modal window-->
+<div class="modal fade" id="mdlRBalance">
+    <div class="modal-dialog shadow-lg-dark modal-md">
+      <div class="modal-content">
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Remaining Trial Balances</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+            <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+            <div class="row">  
+                <!-- <div class="example-container mat-elevation-z8 fullwidth">
+                  <div class="example-table-container fullwidth">             -->
+                    <table class="table">
+                      <thead>
+                        <tr class='d-flex'>
+                          <th class='col-1'>#</th>
+                          <th class='col-6'>Trial Balance</th>
+                          <th class='col-5'>Location</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class='d-flex'>
+                          <td class='col-1'>1</td>
+                          <td class='col-6'>Logix Balance</td>
+                          <td class='col-5'>Rawalpindi</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  <!-- </div>
+                </div> -->
+            </div>
+        </div>
+        <!--end Modal body -->
+  
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+      </div>
+    </div>
+</div>
+
+<!--All balance modal window-->
+<div class="modal fade" id="mdAllRBalance">
+    <div class="modal-dialog shadow-lg-dark modal-md">
+      <div class="modal-content">
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Remaining Trial Balances</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+            <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body">
+            <div class="row">  
+                <!-- <div class="example-container mat-elevation-z8 fullwidth">
+                  <div class="example-table-container fullwidth">             -->
+                    <table class="table">
+                      <thead>
+                        <tr class='d-flex'>
+                          <th class='col-1'>#</th>
+                          <th class='col-6'>Trial Balance</th>
+                          <th class='col-5'>Location</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class='d-flex'>
+                          <td class='col-1'>1</td>
+                          <td class='col-6'>Indux</td>
+                          <td class='col-5'>Islamabad</td>
+                        </tr>
+                        <tr class='d-flex'>
+                            <td class='col-1'>2</td>
+                            <td class='col-6'>Logix Balance</td>
+                            <td class='col-5'>Rawalpindi</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  <!-- </div>
+                </div> -->
+              </div>
+        </div>
+        <!--end Modal body -->
+  
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+      </div>
+    </div>
+</div>

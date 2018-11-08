@@ -23,7 +23,7 @@ import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
 import { ReconciliationComponent } from './components/reconciliation/reconciliation.component';
-
+import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,9 @@ import { ReconciliationComponent } from './components/reconciliation/reconciliat
     ChartofaccountComponent,
     BudgetsComponent,
     TaxsectionComponent,
+    BankaccountComponent,
+    TrailbalanceComponent,
+    FixassetComponent,
     FinancedashboardComponent,
     PaymentvoucherComponent,
     ReceiptvoucherComponent,

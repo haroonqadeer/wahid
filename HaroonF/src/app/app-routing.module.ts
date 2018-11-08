@@ -11,6 +11,7 @@ import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
 import { ReconciliationComponent } from './components/reconciliation/reconciliation.component';
+import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
 
 const routes: Routes = [
   {
@@ -56,7 +57,11 @@ const routes: Routes = [
   {
     path:'bankRecon',  
     component: ReconciliationComponent
-  }  
+  },
+  {
+    path: 'trailbalance',
+    component: TrailbalanceComponent
+  }
 ];
 
 @NgModule({
