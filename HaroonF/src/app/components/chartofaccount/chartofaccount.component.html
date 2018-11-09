@@ -38,19 +38,29 @@
           <p-treeTable [value]="files">
               <ng-template pTemplate="header">
                   <tr>
-                      <th>Name</th>
-                      <th>Size</th>
-                      <th>Type</th>
+                      <th>Account Code</th>
+                      <th>Title</th>
+                      <th>Income/Balance</th>
+                      <th>Account Type</th>
+                      <th>Gen. Posting Type</th>
+                      <th>Currency Allowed</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
                   <tr>
                       <td>
                           <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                          {{rowData.name}}
+                          {{rowData.accCode}}
                       </td>
-                      <td>{{rowData.size}}</td>
+                      <td>{{rowData.title}}</td>
+                      <td>{{rowData.ib}}</td>
                       <td>{{rowData.type}}</td>
+                      <td>{{rowData.postingtype}}</td>
+                      <td>{{rowData.cAllow}}</td>
+                      <td class="text-center"><span class="fa fa-edit pointerCursor"></span></td>
+                      <td class="text-center"><span class="fa fa-remove pointerCursor"></span></td>
                   </tr>
               </ng-template>
           </p-treeTable>
