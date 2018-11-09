@@ -23,7 +23,7 @@ export class BudgetsComponent implements OnInit {
   years: BYear[];
   types: Type[];
   bName = '';
-  lblbYear='';
+  lblbYear='';  
 
   constructor() {
     

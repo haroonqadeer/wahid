@@ -2,51 +2,49 @@
 <!--alert message-->
 <div id="alert_msg_success" *ngIf="edited">
   Action Successfully Saved
-</div>
-  
+</div> 
 <!--start heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Budget</h1>    
+    <h1 class="bottomBorder">Budgeting</h1>    
   </div>
 </div>
 <!--end heading row-->
-<br/>
-<!--start 1st row budget year combo box and budget type label-->
-<div class="row">
-  <div class="col-md-6 text-center">
-    <mat-form-field>
-      <mat-select placeholder="Budget Year" [(ngModel)]="bYear" (ngModelChange)="onBudgetChange($event)">
-        <mat-option *ngFor="let year of years" [value]="year.code">
-          {{year.bName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="col-md-6 text-center">
-    <label><strong>Budget Type: </strong></label><label [(ngModel)]="lblbYear">&nbsp;{{lblbYear}}</label>
-  </div>
-</div>
-<!--end 1st row budget year combo box and budget type label-->
-<br/>
 
-<!--Start Floating Sidebar Buttons-->
-<div class="sticky-container">
-  <ul class="sticky">
-    <li>
-      <span class="fa fa-upload" style="color:black;font-size:1.5em;"></span>
-      <p><a data-toggle="modal" data-target="#ImportModal">Import</a></p>
-    </li>
-    <li>
-      <span class="fa fa-money" style="color:black;font-size:1.5em;"></span>
-      <p><a data-toggle="modal" data-target="#bTypeModal">Budget Type</a></p>
-    </li>
-  </ul>
-</div>
-<!--End Floating Sidebar Buttons-->
+<!-- option container -->
+<div class="container">
+  <mat-card>
+    <!--start 1st row budget year combo box and budget type label-->
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field>
+          <mat-select placeholder="Budget Year" [(ngModel)]="bYear" (ngModelChange)="onBudgetChange($event)">
+            <mat-option *ngFor="let year of years" [value]="year.code">
+              {{year.bName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 text-right">
+        <p style='margin-top: 1.2em' class='fontPrimary'>Budget Type:&nbsp;&nbsp;<strong [(ngModel)]="lblbYear">&nbsp;{{lblbYear}}</strong></p>
+      </div>
+      <div class="col-md-2 fullwidth">
+        <button style='margin-top: 1.2em' mat-raised-button color='warn' [matMenuTriggerFor]="menu" class='noneOutLine fullwidth'>Options</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item class='noneOutLine' data-toggle="modal" data-target="#bTypeModal">Import Budget</button>
+          <button mat-menu-item class='noneOutLine' data-toggle="modal" data-target="#ImportModal">Budget Types </button>          
+        </mat-menu> 
+      </div>
+    </div>
+    <!--end 1st row budget year combo box and budget type label-->
+  </mat-card>
+</div><!-- end option container -->
 
+<br>
 <!--start tab container-->
-<div class="container bgWhite">
+<div class="container bgWhite allBorder">         
+  
+  <!-- tabs -->
   <mat-tab-group>
     <!--start 1st tab-->
     <mat-tab label="G/L Account Wise">
@@ -70,8 +68,56 @@
             <tbody>
               <tr class='d-flex'>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <td class='col-1'>1</td>
-                <td class='col-2'>abcdef</td>
+                <td class='col-1'>7101</td>
+                <td class='col-2'>Salary Officers</td>
+                <td class='col-1'>280</td>
+                <td class='col-1'>2</td>
+                <td class='col-1'>12</td>
+                <td class='col-1'>30</td>
+                <td class='col-1'>48</td>
+                <td class="col-2">80</td>          
+                <td class="col-2">108</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1'>7102</td>
+                <td class='col-2'>Salary Staff</td>
+                <td class='col-1'>280</td>
+                <td class='col-1'>2</td>
+                <td class='col-1'>12</td>
+                <td class='col-1'>30</td>
+                <td class='col-1'>48</td>
+                <td class="col-2">80</td>          
+                <td class="col-2">108</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1'>7103</td>
+                <td class='col-2'>Medical</td>
+                <td class='col-1'>280</td>
+                <td class='col-1'>2</td>
+                <td class='col-1'>12</td>
+                <td class='col-1'>30</td>
+                <td class='col-1'>48</td>
+                <td class="col-2">80</td>          
+                <td class="col-2">108</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1'>7104</td>
+                <td class='col-2'>Overtime</td>
+                <td class='col-1'>280</td>
+                <td class='col-1'>2</td>
+                <td class='col-1'>12</td>
+                <td class='col-1'>30</td>
+                <td class='col-1'>48</td>
+                <td class="col-2">80</td>          
+                <td class="col-2">108</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1'>7105</td>
+                <td class='col-2'>House Hiring</td>
                 <td class='col-1'>280</td>
                 <td class='col-1'>2</td>
                 <td class='col-1'>12</td>
@@ -106,8 +152,44 @@
             <tbody>
               <tr class='d-flex'>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <td class='col-2'>1</td>
-                <td class='col-2'>abc</td>
+                <td class='col-2'>7101</td>
+                <td class='col-2'>Salary Officer</td>
+                <td class='col-2'>32</td>
+                <td class='col-2'>14</td>
+                <td class='col-2'>8</td>
+                <td class='col-2'>10</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7102</td>
+                <td class='col-2'>Salary Staff</td>
+                <td class='col-2'>32</td>
+                <td class='col-2'>14</td>
+                <td class='col-2'>8</td>
+                <td class='col-2'>10</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7103</td>
+                <td class='col-2'>Medical</td>
+                <td class='col-2'>32</td>
+                <td class='col-2'>14</td>
+                <td class='col-2'>8</td>
+                <td class='col-2'>10</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7104</td>
+                <td class='col-2'>Overtime</td>
+                <td class='col-2'>32</td>
+                <td class='col-2'>14</td>
+                <td class='col-2'>8</td>
+                <td class='col-2'>10</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7105</td>
+                <td class='col-2'>House Hiring</td>
                 <td class='col-2'>32</td>
                 <td class='col-2'>14</td>
                 <td class='col-2'>8</td>
@@ -139,8 +221,44 @@
             <tbody>
               <tr class='d-flex'>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <td class='col-2'>1</td>
-                <td class='col-2'>aawsdds</td>
+                <td class='col-2'>7101</td>
+                <td class='col-2'>Salary Officers</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>3</td>
+                <td class='col-2'>1</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7102</td>
+                <td class='col-2'>Salary Staff</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>3</td>
+                <td class='col-2'>1</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7103</td>
+                <td class='col-2'>Medical</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>3</td>
+                <td class='col-2'>1</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7104</td>
+                <td class='col-2'>Overtime</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>3</td>
+                <td class='col-2'>1</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7105</td>
+                <td class='col-2'>House Hiring</td>
                 <td class='col-2'>22</td>
                 <td class='col-2'>18</td>
                 <td class='col-2'>3</td>
@@ -172,8 +290,44 @@
             <tbody>
               <tr class='d-flex'>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <td class='col-2'>1</td>
-                <td class='col-2'>aawsdds</td>
+                <td class='col-2'>7101</td>
+                <td class='col-2'>Salary Officer</td>
+                <td class='col-2'>52</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>12</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7102</td>
+                <td class='col-2'>Salary Staff</td>
+                <td class='col-2'>52</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>12</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7103</td>
+                <td class='col-2'>Medical</td>
+                <td class='col-2'>52</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>12</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7104</td>
+                <td class='col-2'>Overtime</td>
+                <td class='col-2'>52</td>
+                <td class='col-2'>22</td>
+                <td class='col-2'>18</td>
+                <td class='col-2'>12</td>   
+              </tr>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-2'>7105</td>
+                <td class='col-2'>House Hiring</td>
                 <td class='col-2'>52</td>
                 <td class='col-2'>22</td>
                 <td class='col-2'>18</td>
@@ -194,26 +348,14 @@
 <!--start footer row-->
 <div class="container">
   <mat-card>
-    <div class="row">
-      <div class="col-md-2">
-        <button mat-stroked-button color="primary"><strong>1</strong></button>
-      </div>
-      <div class="col-md-2">
-        <button mat-stroked-button color="primary"><strong>7</strong></button>
-      </div>
-      <div class="col-md-2">
-        <button mat-stroked-button color="primary"><strong>31</strong></button>
-      </div>
-      <div class="col-md-2">
-        <button mat-stroked-button color="primary"><strong>3</strong></button>
-      </div>
-      <div class="col-md-2">
-        <button mat-stroked-button color="primary"><strong>6</strong></button>
-      </div>
-      <div class="col-md-2">
-        <button mat-stroked-button color="primary"><strong>1</strong></button>
-      </div>
-    </div>
+    <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle class='bg-light-green noneOutLine' value="left">Day</mat-button-toggle>
+      <mat-button-toggle class='bg-light-green noneOutLine' value="center">Week</mat-button-toggle>
+      <mat-button-toggle class='bg-light-green noneOutLine' value="right">Month</mat-button-toggle>
+      <mat-button-toggle class='bg-light-green noneOutLine' value="justify">Quarter</mat-button-toggle>
+      <mat-button-toggle class='bg-light-green noneOutLine' value="justify">Half Year</mat-button-toggle>
+      <mat-button-toggle class='bg-light-green noneOutLine' value="justify">Year</mat-button-toggle>
+    </mat-button-toggle-group>    
   </mat-card>      
 </div>
 <br/>
@@ -226,10 +368,10 @@
 
       <!--start Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Import Budget</h4>
+        <h4 class="modal-title">Budget Types</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-          <!--end Modal Header -->
+      <!--end Modal Header -->
 
       <!--start Modal body -->
       <div class="modal-body">
@@ -258,7 +400,7 @@
         <!--end 2nd row-->
         <br/>
         <!--button tag-->
-        <button mat-raised-button color="primary" data-dismiss="modal" (click)="ImportBudget()">Import</button>
+        <button mat-raised-button color="primary" data-dismiss="modal" (click)="ImportBudget()">Generate</button>
       </div>
       <!--end Modal body -->
 
@@ -280,7 +422,7 @@
 
       <!--start Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Budget Type</h4>
+        <h4 class="modal-title">Import Budget</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
           <!--end Modal Header -->
@@ -319,7 +461,7 @@
         <!--end 2nd row-->
         <br/>
         <!--button tag-->
-        <button mat-raised-button color="primary" data-dismiss="modal" (click)="Create()">Create</button>
+        <button mat-raised-button color="primary" data-dismiss="modal" (click)="Create()">Import</button>
       </div>
       <!--end Modal body -->
 

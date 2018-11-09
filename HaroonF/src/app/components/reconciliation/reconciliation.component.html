@@ -5,7 +5,8 @@
 <div id="alert_msg_warn" *ngIf="edited1">
   Action Successfully Deleted
 </div>
-  
+
+<br>
 <!--Start heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -14,42 +15,47 @@
 </div>
 <!--end heading row-->
 <br/>
-<div class="row">
-  <div class="col-md-6 text-center">
-    <mat-form-field>
-      <mat-select placeholder="Account No" [(ngModel)]="cmbAccount">
-        <mat-option *ngFor="let account of accounts" [value]="account.aNo">
-          {{account.aNo}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="col-md-6 text-center">
-    <mat-form-field>
-      <input matInput [matDatepicker]="voucherpicker" placeholder="Voucher Date">
-      <mat-datepicker-toggle matSuffix [for]="voucherpicker"></mat-datepicker-toggle>
-      <mat-datepicker #voucherpicker></mat-datepicker>
-    </mat-form-field>
-  </div>
+<!-- start option-->
+<div class="container">
+  <mat-card>
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <mat-form-field>
+          <mat-select placeholder="Account No" [(ngModel)]="cmbAccount">
+            <mat-option *ngFor="let account of accounts" [value]="account.aNo">
+              {{account.aNo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 text-center">
+        <mat-form-field>
+          <input matInput [matDatepicker]="voucherpicker" placeholder="Voucher Date">
+          <mat-datepicker-toggle matSuffix [for]="voucherpicker"></mat-datepicker-toggle>
+          <mat-datepicker #voucherpicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
 </div>
 <br/>
 <!--start button row-->
 <div class="row">
-  <div class="col-md-3 text-center">
+  <div class="col-md-3">
     <button mat-raised-button color="warn">Import</button>
   </div>
-  <div class="col-md-3 text-center">
+  <div class="col-md-3 text-right">
     <button mat-raised-button color="primary">Suggest</button>
   </div>
-  <div class="col-md-3 text-center">
-    <button mat-raised-button color="primary">Add</button>
+  <div class="col-md-3">
+    <button mat-raised-button color="warn">Add</button>
   </div>
-  <div class="col-md-3 text-center">
+  <div class="col-md-3 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#ReconModal">Show Data</button>
   </div>
 </div>
 <!--end button row-->
-<br/>
+
 <div class="row">
   <div class="col-md-6 text-center">
     <h4>Bank Statement</h4>
@@ -128,13 +134,13 @@
 <br/>
 <!--start label row-->
 <div class="row">
-  <div class="col-md-4 text-center">
+  <div class="col-md-4 text-right">
     <strong>Bank Statement Bal.</strong>
   </div>
   <div class="col-md-2 text-center topBorder">
     130,000
   </div>
-  <div class="col-md-4 text-center">
+  <div class="col-md-4 text-right">
     <strong>Bank Ledger Bal.</strong>
   </div>
   <div class="col-md-2 text-right topBorder">
@@ -144,7 +150,7 @@
 <!--end label row-->
 <br/>
 <div class="row">
-  <div class="col-md-10 text-center">
+  <div class="offset-md-6 col-md-4 text-right">
     <strong>Difference:</strong>
   </div>
   <div class="col-md-2 text-right topBorder">

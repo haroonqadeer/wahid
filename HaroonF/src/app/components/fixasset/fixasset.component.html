@@ -5,7 +5,7 @@
 <div id="alert_msg_warn" *ngIf="edited1">
     Action Successfully Deleted
 </div>
-  
+<br>
 <!--start heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -25,19 +25,26 @@
 </div>
 <!--end button row-->
 <br/>
-<!-- Start fix asset table Container -->
-<div class="container bgWhite allBorder">
-  <br>
-  <!--Start search textbox Row-->
-  <div class="row">
+
+<!--  filter container -->
+<div class="container">
+  <mat-card>
+    <!--Start search textbox Row-->
+    <div class="row">
       <div class="col-md-12">
           <mat-form-field class="fullwidth">
               <input matInput [(ngModel)]="query" placeholder="Search">
           </mat-form-field>
           <i class="fab fa-accessible-icon"></i>
       </div>
-  </div>
-  <!--end search textbox Row-->
+    </div>
+    <!--end search textbox Row-->
+  </mat-card>
+</div><!-- end filter conatiner -->
+
+<br>
+<!-- Start fix asset table Container -->
+<div class="container">
   <!--Start table Row-->
   <div class="row">  
     <div class="example-container mat-elevation-z8 fullwidth">
@@ -220,8 +227,11 @@
       <div class="modal-body"> 
         <!--start date row-->
         <div class="row">
-          <div class="col-md-12">
-            <p-calendar [(ngModel)]="voucherDate" placeholder="Voucher Date" [showIcon]="true"></p-calendar>
+          <div class="col-md-4">
+            <p-calendar [(ngModel)]="voucherDate" placeholder="Voucher Date" [showIcon]="true"></p-calendar>            
+          </div>
+          <div class="col-md-2">
+            <button mat-raised-button color='primary'>Generate</button>
           </div>
         </div>
         <!--end date row-->
