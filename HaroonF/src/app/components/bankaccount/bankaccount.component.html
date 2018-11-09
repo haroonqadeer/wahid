@@ -1,4 +1,5 @@
 <!--start heading row-->
+<br>
 <div class="row">
   <div class="col-md-12 text-center">
     <h1 class="bottomBorder">Bank Account</h1>    
@@ -7,54 +8,58 @@
 <!--end heading row-->
 <br/>
 
-<!--start container-->
-<div class="container bgWhite allBorder">
-
-  <!--Row #1-->
+<!-- container for options -->
+<div class="container">
+  <mat-card>
+    <!--Row #1-->
   <div class="row">
-    <!--start Branch col-->
-    <div class="col-md-4">
-      <mat-form-field>
-          <mat-select placeholder="Bank">
-            <mat-option value="option1">Askari Bank</mat-option>
-            <mat-option value="option2">Habib Bank</mat-option>
-            <mat-option value="option3">United Bank</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <!--start Branch col-->
+      <div class="col-md-4">
+        <mat-form-field>
+            <mat-select placeholder="Bank">
+              <mat-option value="option1">Askari Bank</mat-option>
+              <mat-option value="option2">Habib Bank</mat-option>
+              <mat-option value="option3">United Bank</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+      <!--end Branch col-->
+  
+      <!--start Bank col-->
+      <div class="col-md-4">
+        <mat-form-field>
+            <mat-select placeholder="Branch">
+              <mat-option value="option1">Rawalpindi/Saddar</mat-option>
+              <mat-option value="option2">Islamabad/F8 Markaz</mat-option>
+              <mat-option value="option3">Rawalpindi/Raja Bazar </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+      <!--end Bank col-->
+  
+      <!--start Currency col-->
+      <div class="col-md-4">
+        <mat-form-field>
+            <mat-select placeholder="Currency">
+              <mat-option value="option1">PKR</mat-option>
+              <mat-option value="option2">Doller</mat-option>
+              <mat-option value="option3">PKR</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+      <!--end currency col-->  
     </div>
-    <!--end Branch col-->
+    <!--End row #1-->
+  </mat-card>
+</div><!-- end option container -->
 
-    <!--start Bank col-->
-    <div class="col-md-4">
-      <mat-form-field>
-          <mat-select placeholder="Branch">
-            <mat-option value="option1">Rawalpindi/Saddar</mat-option>
-            <mat-option value="option2">Islamabad/F8 Markaz</mat-option>
-            <mat-option value="option3">Rawalpindi/Raja Bazar </mat-option>
-          </mat-select>
-        </mat-form-field>
-    </div>
-    <!--end Bank col-->
-
-    <!--start Currency col-->
-    <div class="col-md-4">
-      <mat-form-field>
-          <mat-select placeholder="Currency">
-            <mat-option value="option1">PKR</mat-option>
-            <mat-option value="option2">Doller</mat-option>
-            <mat-option value="option3">PKR</mat-option>
-          </mat-select>
-        </mat-form-field>
-    </div>
-    <!--end currency col-->
-
-  </div>
-  <!--End row #1-->
-
+<br>
+<!--start container-->
+<div class="container">
   <!--Start table Row-->
   <div class="row">  
-    <!-- <div class="example-container mat-elevation-z8 fullwidth">
-      <div class="example-table-container fullwidth">             -->
+    <div class="example-container mat-elevation-z8 fullwidth">
+      <div class="example-table-container fullwidth">            
         <table class="table table-striped fullwidth">
           <thead>
             <tr class='d-flex'>
@@ -92,8 +97,8 @@
             </tr>
           </tbody>
         </table>
-      <!-- </div>
-    </div> -->
+      </div>
+    </div>
   </div>
   <!-- end table row -->
 

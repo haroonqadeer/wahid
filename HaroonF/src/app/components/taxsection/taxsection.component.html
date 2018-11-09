@@ -5,7 +5,7 @@
 <div id="alert_msg_warn" *ngIf="edited1">
     Action Successfully Deleted
 </div>
-
+<br>
 <!--start heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -26,20 +26,25 @@
 <!--end button row-->
 <br/>
  
+<!-- option container -->
+<div class="container">
+  <mat-card>
+    <!--Start search textbox Row-->
+    <div class="row">
+        <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+                <input matInput [(ngModel)]="query" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+        </div>
+    </div>
+    <!--end search textbox Row-->
+  </mat-card>
+</div><!-- end option container -->
 
+<br>
 <!-- Start tax section table Container -->
-<div class="container bgWhite allBorder">
-  <br>
-  <!--Start search textbox Row-->
-  <div class="row">
-      <div class="col-md-12">
-          <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="query" placeholder="Search">
-          </mat-form-field>
-          <i class="fab fa-accessible-icon"></i>
-      </div>
-  </div>
-  <!--end search textbox Row-->
+<div class="container">    
   <!--Start table Row-->
   <div class="row">  
     <div class="example-container mat-elevation-z8 fullwidth">
@@ -59,24 +64,24 @@
             <tr class='d-flex'>
             <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
               <td class="col-1">1</td>
-              <td class="col-2">abacsaa</td>
-              <td class="col-3">asdgh skjdhaj sjdsah</td>
+              <td class="col-2">153(1)(a)</td>
+              <td class="col-3">Payment on contract services</td>
               <td class="col-2">Resident</td>
               <td class="col-2">Cash</td>
               <td class="col-2"><span class="fa fa-edit fontPrimary" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash" data-toggle="modal" data-target="#dTaxModal" (click)="del(item)"></span></td>              
             </tr>
             <tr class='d-flex'>
               <td class="col-1">2</td>
-              <td class="col-2">ajk vsjkh </td>
-              <td class="col-3">this is the test</td>
+              <td class="col-2">153(1)(b) </td>
+              <td class="col-3">Payment of Services</td>
               <td class="col-2">Non-Resident</td>
               <td class="col-2">Account Receivable</td>
               <td class="col-2"><span class="fa fa-edit fontPrimary" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash" data-toggle="modal" data-target="#dTaxModal" (click)="del(item)"></span></td>              
             </tr>
             <tr class='d-flex'>
               <td class="col-1">3</td>
-              <td class="col-2">aaaaq dsd </td>
-              <td class="col-3">this is not a test</td>
+              <td class="col-2">153(1)(c) </td>
+              <td class="col-3">Payment of Supplies</td>
               <td class="col-2">Non-Resident</td>
               <td class="col-2">Inventory</td>
               <td class="col-2"><span class="fa fa-edit fontPrimary" (click)="edit(item)"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-trash" data-toggle="modal" data-target="#dTaxModal" (click)="del(item)"></span></td>              

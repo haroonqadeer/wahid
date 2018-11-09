@@ -1,3 +1,4 @@
+<br>
 <!--start heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -6,37 +7,46 @@
 </div>
 <!--end heading row-->
 <br/>
-<!--start date picker and combobox row-->
-<div class="row">
-  <div class="col-md-4 text-center">
-    <mat-form-field>
-      <input matInput [matDatepicker]="frompicker" placeholder="From Date">
-      <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
-      <mat-datepicker #frompicker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="col-md-4 text-center">
-    <mat-form-field>
-      <input matInput [matDatepicker]="topicker" placeholder="To Date">
-      <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
-      <mat-datepicker #topicker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="col-md-4 text-center">
-    <mat-form-field>
-      <mat-select placeholder="Account Code" [(ngModel)]="cmbACode">
-        <mat-option *ngFor="let title of codes" [value]="title.cId">
-          {{title.cId}} - {{title.cTitle}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-</div>
-<!--end date picker and combobox row-->
+
+<!-- filter container -->
+<div class="container">
+  <mat-card>
+    <!--start date picker and combobox row-->
+    <div class="row">
+      <div class="col-md-3">
+        <mat-form-field class='fullwidth'>
+          <input matInput [matDatepicker]="frompicker" placeholder="From Date">
+          <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+          <mat-datepicker #frompicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field class='fullwidth'>
+          <input matInput [matDatepicker]="topicker" placeholder="To Date">
+          <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+          <mat-datepicker #topicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field class='fullwidth'>
+          <mat-select placeholder="Account Code" [(ngModel)]="cmbACode">
+            <mat-option *ngFor="let title of codes" [value]="title.cId">
+              {{title.cId}} - {{title.cTitle}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <button style='margin-top:1.0em;' mat-raised-button color="primary">Report</button>
+      </div>
+    </div>    
+    <!--end date picker and combobox row-->
+  </mat-card>
+</div><!-- end filter container-->
+
 <br/>
 <!-- Start ledger table Container -->
-<div class="container bgWhite allBorder">
-  <br>
+<div class="container">  
   <!--Start search textbox Row-->
   <div class="row">
       <div class="col-md-12">
@@ -83,32 +93,38 @@
   </div>
   <!-- end table row -->
   <br/>
-  <!--start total row-->
-  <div class="row">
-    <div class="col-md-7 text-right">
-      <strong>Opening Balance</strong>
-    </div>
-    <div class="col-md-2 text-right">0</div>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-md-7 text-right">
-      <strong>Periodic Balance</strong>
-    </div>
-    <div class="col-md-2 text-right">13,006,505</div>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-md-7 text-right">
-      <strong>Closing Balance</strong>
-    </div>
-    <div class="col-md-2 topBorder bottomBorder text-right">13,006,505</div>
-  </div>
-  <br/>
-  <!--end total row-->
+  
 </div>
 <!-- End ledger table Container -->
 
+<!-- total container -->
+<div class="container">  
+  <mat-card>
+    <!--start total row-->
+    <div class="row">
+      <div class="col-md-10 text-right">
+        <strong>Opening Balance</strong>
+      </div>
+      <div class="col-md-2 text-right">0</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-10 text-right">
+        <strong>Periodic Balance</strong>
+      </div>
+      <div class="col-md-2 text-right">13,006,505</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-10 text-right">
+        <strong>Closing Balance</strong>
+      </div>
+      <div class="col-md-2 topBorder bottomBorder text-right">13,006,505</div>
+    </div>
+    <br/>
+    <!--end total row-->
+  </mat-card>
+</div><!-- end total container -->
 
 <!-- Start Modal Window to view ledger detail -->
 <div class="modal fade" id="ledgerModal">
