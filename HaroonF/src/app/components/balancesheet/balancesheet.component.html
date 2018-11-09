@@ -1,0 +1,789 @@
+ <!--Start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Balance Sheet</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--start 1st row combo box-->
+<div class="row">
+  <div class="col-md-4 text-center">
+    <mat-form-field>
+      <mat-select placeholder="Type" [(ngModel)]="cmbType">
+        <mat-option *ngFor="let type of types" [value]="type.tId">
+          {{type.tName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-4 text-center">
+    <mat-form-field>
+      <mat-select placeholder="Year" [(ngModel)]="cmbYear" (ngModelChange)="onYearChange($event)">
+        <mat-option *ngFor="let year of years" [value]="year.code">
+          {{year.bName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-4 text-center">
+    <mat-form-field>
+      <mat-select placeholder="Month" [(ngModel)]="cmbMonth">
+        <mat-option *ngFor="let month of months" [value]="month.mId">
+          {{month.mName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<!--end 1st row combo box-->
+<br/>
+ <!--start row-->
+ <div class="row">    
+    <!--start button column-->
+    <div class="col-md-6">
+      <button mat-raised-button color="warn">Print</button>
+    </div>
+    <!--end button column-->
+    
+    <!--start add new role button column-->
+    <div class="col-md-6 text-right">
+      <button mat-raised-button color="primary">Refresh</button>
+    </div>
+    <!--end add new role button column-->
+  </div>
+  <!--end row-->
+  <br/>
+  <div class="container bgWhite allBorder">
+    <br/>
+    <h4 class="text-center text-danger">Balance Sheet Account for the year ended 2016</h4>
+    <hr>
+    <br/>
+    <!--start assets heading-->
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-success">ASSETS</h4>
+      </div>
+      <div class="col-md-3">
+        <h4 class="text-right text-success">2016</h4>
+      </div>
+      <div class="col-md-3">
+        <h4 class="text-center text-success">2015</h4>
+      </div>
+    </div>
+    <!--end assets heading-->
+    <br/>
+    <!--start assets table-->
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>#</th>
+            <th class='col-4'>Description</th>
+            <th class='col-2 text-right'>Notes</th>
+            <th class='col-2 text-right'>Amount</th>
+            <th class='col-2 text-right'>Amount</th>
+            <th class='col-1 text-center'>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><h4 class="text-danger">NON-CURRENT ASSETS</h4></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+            <td class='col-1 text-center'>1</td>
+            <td class='col-4'>Advances against capital work in progress</td>
+            <td class='col-2 text-right'>6</td>
+            <td class='col-2 text-right'>-270,000</td>
+            <td class='col-2 text-right'>0</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>2</td>
+            <td class='col-4'>Property, plant and equipment</td>
+            <td class='col-2 text-right'>4</td>
+            <td class='col-2 text-right'>303,680</td>
+            <td class='col-2 text-right'>0</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><b>TOTAL NON-CURRENT ASSETS</b></td>
+            <td class="col-2"></td>
+            <td class="col-2 text-right"><b>33,680</b></td>
+            <td class="col-2 text-right"><b>0</b></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><h4 class="text-danger">CURRENT ASSETS</h4></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>1</td>
+            <td class='col-4'>Advances, deposits, prepayments and other receivables</td>
+            <td class='col-2 text-right'>8</td>
+            <td class='col-2 text-right'>73,287</td>
+            <td class='col-2 text-right'>0</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>2</td>
+            <td class='col-4'>Cash and bank balances</td>
+            <td class='col-2 text-right'>10</td>
+            <td class='col-2 text-right'>-69,448,280</td>
+            <td class='col-2 text-right'>0</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><b>TOTAL CURRENT ASSETS</b></td>
+            <td class="col-2"></td>
+            <td class="col-2 text-right"><b>-69,374,993</b></td>
+            <td class="col-2 text-right"><b>0</b></td>
+            <td class="col-1"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bottomBorder"></div>
+    <!--end assets table-->
+    <br/>
+    <!--start assets total row-->
+    <div class="row">
+      <div class="col-md-7 text-right">
+        <b>TOTAL ASSETS</b>
+      </div>
+      <div class="col-md-2 text-right bottomBorder">
+        <b>-69,341,313</b>
+      </div>
+      <div class="col-md-2 text-right bottomBorder">
+        <b>0</b>
+      </div>
+    </div>
+    <!--end assets total row-->
+    <br/>
+    <!--start liabilities heading row-->
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-success">LIABILITIES</h4>
+      </div>
+      <div class="col-md-3">
+        <h4 class="text-right text-success">2016</h4>
+      </div>
+      <div class="col-md-3">
+        <h4 class="text-center text-success">2015</h4>
+      </div>
+    </div>
+    <!--end liabilities row-->
+    <br/>
+    <!--start liabilities table row-->
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>#</th>
+            <th class='col-4'>Description</th>
+            <th class='col-2 text-right'>Notes</th>
+            <th class='col-2 text-right'>Amount</th>
+            <th class='col-2 text-right'>Amount</th>
+            <th class='col-1 text-center'>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><h4 class="text-danger">ACCUMULATED DEFICIT AND LIABILITIES</h4></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+            <td class='col-1 text-center'>1</td>
+            <td class='col-4'>Accumulated deficit</td>
+            <td class='col-2 text-right'> </td>
+            <td class='col-2 text-right'>7,443,196,921</td>
+            <td class='col-2 text-right'>0</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><b>TOTAL ACCUMULATED DEFICIT AND LIABILITIES</b></td>
+            <td class="col-2"></td>
+            <td class="col-2 text-right"><b>7,443,196,921</b></td>
+            <td class="col-2 text-right"><b>0</b></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><h4 class="text-danger">NON-CURRENT LIABILITIES</h4></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+            <td class='col-1 text-center'>1</td>
+            <td class='col-4'>Deferred grants</td>
+            <td class='col-2 text-right'>12</td>
+            <td class='col-2 text-right'>-12,255,861,472</td>
+            <td class='col-2 text-right'>-12,255,861,472</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>2</td>
+            <td class='col-4'>Employees post retirement benefits</td>
+            <td class='col-2 text-right'> </td>
+            <td class='col-2 text-right'>-5,745,575,472</td>
+            <td class='col-2 text-right'>-5,745,575,472</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><b>TOTAL NON-CURRENT LIABILITIES</b></td>
+            <td class="col-2"></td>
+            <td class="col-2 text-right"><b>-18,001,436,944</b></td>
+            <td class="col-2 text-right"><b>-18,001,436,944</b></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><h4 class="text-danger">CURRENT LIABILITIES</h4></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-1"></td>
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>1</td>
+            <td class='col-4'>Accrued and other liabilities</td>
+            <td class='col-2 text-right'>15</td>
+            <td class='col-2 text-right'>-209,603,738</td>
+            <td class='col-2 text-right'>0</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>2</td>
+            <td class='col-4'>Retention money and deposits</td>
+            <td class='col-2 text-right'>15</td>
+            <td class='col-2 text-right'>531,650</td>
+            <td class='col-2 text-right'>0</td>
+            <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#myModal">click here</a></td>   
+          </tr>
+          <tr class='d-flex'>
+            <td class="col-1"></td>
+            <td class="col-4"><b>TOTAL CURRENT LIABILITIES</b></td>
+            <td class="col-2"></td>
+            <td class="col-2 text-right"><b>-209,072,088</b></td>
+            <td class="col-2 text-right"><b>0</b></td>
+            <td class="col-1"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bottomBorder"></div>
+    <!--end liabilities table row-->
+    <br/>
+    <!--start liabilities total row-->
+    <div class="row">
+      <div class="col-md-7 text-right">
+        <b>TOTAL LIABILITIES</b>
+      </div>
+      <div class="col-md-2 text-right bottomBorder">
+        <b>-10,767,312,111</b>
+      </div>
+      <div class="col-md-2 text-right bottomBorder">
+        <b>-18,001,436,944</b>
+      </div>
+    </div>
+    <!--end liabilities total row-->
+    <br/>
+  </div>
+  <br/>
+    
+<!-- Start Modal Window -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Assets and Liabilities</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start table row-->
+        <div class="row bottomBorder">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>#</th>
+                <th class='col-4'>Description</th>
+                <th class='col-2 text-right'>Opening</th>
+                <th class='col-2 text-right'>Yearly</th>
+                <th class='col-2 text-right'>Closing</th>
+                <th class='col-1 text-center'>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1 text-center'>1</td>
+                <td class='col-4'>Amounts withheld from contractors and suppliers</td>
+                <td class='col-2 text-right'>-3,187,073,200</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-3,187,073,200</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#mySubModal">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>2</td>
+                <td class='col-4'>Commitment charges</td>
+                <td class='col-2 text-right'>-160,303,264</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-160,303,264</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#mySubModal">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>3</td>
+                <td class='col-4'>Mark-up on long term loans</td>
+                <td class='col-2 text-right'>-451,091,999,890</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-451,091,999,890</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#mySubModal">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class="col-1"></td>
+                <td class="col-4"><b>Total Assets and Liabilities</b></td>
+                <td class="col-2"><b>-454,439,376,354</b></td>
+                <td class="col-2 text-right"><b>0</b></td>
+                <td class="col-2 text-right"><b>-454,439,376,354</b></td>
+                <td class="col-1"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+ 
+<!-- Start Sub Modal Window -->
+<div class="modal fade" id="mySubModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Assets and Liabilities Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start table row-->
+        <div class="row bottomBorder">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>#</th>
+                <th class='col-1'>Code</th>
+                <th class='col-3'>Description</th>
+                <th class='col-2 text-right'>Opening</th>
+                <th class='col-2 text-right'>Yearly</th>
+                <th class='col-2 text-right'>Closing</th>
+                <th class='col-1 text-center'>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1 text-center'>1</td>
+                <td class='col-1'>5915</td>
+                <td class='col-3'>INTEREST/MARKUP PAYABLE ON FOREIGN CURRENCY LOAN</td>
+                <td class='col-2 text-right'>-180,176,792,755</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-180,176,792,755</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#accountHeadModal">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>2</td>
+                <td class='col-1'>5914</td>
+                <td class='col-3'>INTEREST/MARKUP PAYABLE ON LOCAL CURRENCY LOAN</td>
+                <td class='col-2 text-right'>-270,915,207,135</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-270,915,207,135</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#accountHeadModal">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class="col-1"></td>
+                <td class="col-1"></td>
+                <td class="col-3"><b>Total Assets and Liabilities Detail</b></td>
+                <td class="col-2"><b>-451,091,999,890</b></td>
+                <td class="col-2 text-right"><b>0</b></td>
+                <td class="col-2 text-right"><b>-451,091,999,890</b></td>
+                <td class="col-1"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End sub Modal Window  -->
+
+
+<!-- Start account Head Modal Window -->
+<div class="modal fade" id="accountHeadModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Account Head Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start table row-->
+        <div class="row bottomBorder">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>#</th>
+                <th class='col-4'>Location</th>
+                <th class='col-2 text-right'>Opening</th>
+                <th class='col-2 text-right'>Yearly</th>
+                <th class='col-2 text-right'>Closing</th>
+                <th class='col-1 text-center'>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1 text-center'>1</td>
+                <td class='col-4'>AP</td>
+                <td class='col-2 text-right'>-132,868,901,353</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-132,868,901,353</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#accountHeadPrjModal">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>2</td>
+                <td class='col-4'>IPMP</td>
+                <td class='col-2 text-right'>-4,881,112,316</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-4,881,112,316</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#accountHeadPrjModal">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class="col-1"></td>
+                <td class="col-4"><b>Total Account Head Detail</b></td>
+                <td class="col-2"><b>-137,750,013,669</b></td>
+                <td class="col-2 text-right"><b>0</b></td>
+                <td class="col-2 text-right"><b>-137,750,013,669</b></td>
+                <td class="col-1"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End account Head Modal Window  -->
+
+<!-- Start account Head project Modal Window -->
+<div class="modal fade" id="accountHeadPrjModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Account Head Project Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start table row-->
+        <div class="row bottomBorder">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>#</th>
+                <th class='col-4'>Description</th>
+                <th class='col-2 text-right'>Opening</th>
+                <th class='col-2 text-right'>Yearly</th>
+                <th class='col-2 text-right'>Closing</th>
+                <th class='col-1 text-center'>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1 text-center'>1</td>
+                <td class='col-4'>ADB(NWFP)</td>
+                <td class='col-2 text-right'>-5,797,505,765</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-5,797,505,765</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#modalLedger">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>2</td>
+                <td class='col-4'>IPMP</td>
+                <td class='col-2 text-right'>-4,881,112,316</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-4,881,112,316</td>
+                <td class='col-1 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#modalLedger">click...</a></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class="col-1"></td>
+                <td class="col-4"><b>Total Account HeadProject Detail</b></td>
+                <td class="col-2"><b>-10,678,618,081</b></td>
+                <td class="col-2 text-right"><b>0</b></td>
+                <td class="col-2 text-right"><b>-10,678,618,081</b></td>
+                <td class="col-1"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End account Head project Modal Window  -->
+
+<!-- Start Ledger Modal Window -->
+<div class="modal fade" id="modalLedger">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ledger</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start table row-->
+        <div class="row bottomBorder">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>#</th>
+                <th class='col-4'>Description</th>
+                <th class='col-2 text-right'>Opening</th>
+                <th class='col-2 text-right'>Yearly</th>
+                <th class='col-2 text-right'>Closing</th>
+                <th class='col-1 text-center'>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1 text-center'>1</td>
+                <td class='col-4'>ADB(NWFP)</td>
+                <td class='col-2 text-right'>-5,797,505,765</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-5,797,505,765</td>
+                <td class='col-1 text-center'><span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#modalVoucher"></span></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>2</td>
+                <td class='col-4'>IPMP</td>
+                <td class='col-2 text-right'>-4,881,112,316</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>-4,881,112,316</td>
+                <td class='col-1 text-center'><span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#modalVoucher"></span></td>   
+              </tr>
+              <tr class='d-flex'>
+                <td class="col-1"></td>
+                <td class="col-4"><b>Total Ledger</b></td>
+                <td class="col-2"><b>-10,678,618,081</b></td>
+                <td class="col-2 text-right"><b>0</b></td>
+                <td class="col-2 text-right"><b>-10,678,618,081</b></td>
+                <td class="col-1"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Ledger Modal Window  -->
+
+<!-- Start Voucher Modal Window -->
+<div class="modal fade" id="modalVoucher">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Voucher Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start table row-->
+        <div class="row bottomBorder">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>#</th>
+                <th class='col-2'>Voucher Date</th>
+                <th class='col-1'>Account Code</th>
+                <th class='col-4'>Account Title</th>
+                <th class='col-2 text-right'>Debit</th>
+                <th class='col-2 text-right'>Credit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='d-flex'>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class='col-1 text-center'>1</td>
+                <td class='col-2'>Jun 30, 2016</td>
+                <td class='col-1'>7501</td>
+                <td class='col-4'>MARK-UP/INTEREST ON LONG TERM LOANS</td>
+                <td class='col-2 text-right'>869,564,588</td>
+                <td class='col-2 text-right'>0</td>
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>2</td>
+                <td class='col-2'>Jun 30, 2016</td>
+                <td class='col-1'>5915</td>
+                <td class='col-4'>INTEREST/MARKUP PAYABLE ON FOREIGN CURRENCY LOAN</td>
+                <td class='col-2 text-right'>0</td>
+                <td class='col-2 text-right'>869,564,588</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+        <br/>
+        <!--start 2nd row-->
+        <div class="row">
+          <div class="col-md-3">
+            <b>Description:</b>
+          </div>
+          <div class="col-md-9">
+            Amount Adjusted on a/c of Above against Interest for the year 2016 as entered in audited accounts 2016
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <hr>
+        
+        <!--start 3rd row-->
+        <div class="row">
+          <div class="col-md-3">
+            <b>Party:</b>
+          </div>
+          <div class="col-md-9">
+            -
+          </div>
+        </div>
+        <!--end 3rd row-->
+        <br/>
+        <hr>
+        
+        <!--start 4th row-->
+        <div class="row">
+          <div class="col-md-3">
+            <b>Cheque/Receipt No:</b>
+          </div>
+          <div class="col-md-3">
+            -
+          </div>
+          <div class="col-md-3">
+            <b>Cheque/Receipt Date</b>
+          </div>
+          <div class="col-md-3">
+          </div>
+        </div>
+        <!--end 4th row-->
+        <br/>
+        <hr>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Voucher Modal Window  -->

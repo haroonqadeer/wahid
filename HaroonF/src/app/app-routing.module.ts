@@ -12,6 +12,8 @@ import { FixassetComponent } from './components/fixasset/fixasset.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
 import { ReconciliationComponent } from './components/reconciliation/reconciliation.component';
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
+import { BalancesheetComponent } from './components/balancesheet/balancesheet.component';
+import { IncomestatementComponent } from './components/incomestatement/incomestatement.component';
 
 const routes: Routes = [
   {
@@ -61,6 +63,14 @@ const routes: Routes = [
   {
     path: 'trailbalance',
     component: TrailbalanceComponent
+  },
+  {
+    path: 'balanceSheet',
+    component: BalancesheetComponent
+  },
+  {
+    path: 'incomeStatement',
+    component: IncomestatementComponent
   }
 ];
 
