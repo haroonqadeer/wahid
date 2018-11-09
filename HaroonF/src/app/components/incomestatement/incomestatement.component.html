@@ -11,43 +11,50 @@
 </div>
 
 <!-- Type Year Month Starts -->
-<div class="container">
-    <!-- Row 1 -->
-    <div class="row">
-        <div class="col-md-1">
-            <label>Type:</label>
-        </div>
-        <div class="col-md-3">
-            <p-dropdown [options]="finType" [(ngModel)]="cmbFinancialType" placeholder="Select Type" optionLabel="nameType" [showClear]="true" [style]="{'width':'200px'}"></p-dropdown>
-        </div>
-        <div class="col-md-1">
-            <label>Year:</label>
-        </div>
-        <div class="col-md-3">
-            <p-dropdown [options]="finYear" [(ngModel)]="cmbFinancialYear" placeholder="Select Year" optionLabel="nameYear" [showClear]="true" [style]="{'width':'200px'}"></p-dropdown>
-        </div>
-        <div class="col-md-1">
-            <label>Month:</label>
-        </div>
-        <div class="col-md-3">
-            <p-dropdown [options]="finMonth" [(ngModel)]="cmbFinancialMonth" placeholder="Select Month" optionLabel="nameMonth" [showClear]="true" [style]="{'width':'200px'}"></p-dropdown>
-        </div>
+<!-- Row 1 -->
+<div class="row">
+    <div class="col-md-4 text-center">
+        <mat-form-field>
+            <mat-select placeholder="Select Type" [(ngModel)]="cmbFinancialType">
+                <mat-option *ngFor="let type of finType" [value]="type.nameType">
+                {{type.nameType}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
-    <br>
+    <div class="col-md-4 text-center">
+        <mat-form-field>
+            <mat-select placeholder="Select Year" [(ngModel)]="cmbFinancialYear">
+                <mat-option *ngFor="let year of finYear" [value]="year.nameYear">
+                {{year.nameYear}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-md-4 text-center">
+        <mat-form-field>
+            <mat-select placeholder="Select Month" [(ngModel)]="cmbFinancialMonth">
+                <mat-option *ngFor="let month of finMonth" [value]="month.nameMonth">
+                {{month.nameMonth}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<br>
 
-    <!-- Button Row 2 -->
-    <div class="row">
-        <div class="col-md-6">
-            <button mat-raised-button color="warn"><i class="fa fa-print" aria-hidden="true"></i></button>
-        </div>
-        <div class="col-md-6 text-right">
-            <button mat-raised-button color="primary"><i class="fa fa-refresh"></i></button>
-        </div>
+<!-- Button Row 2 -->
+<div class="row">
+    <div class="col-md-6">
+        <button mat-raised-button color="warn"><i class="fa fa-print" aria-hidden="true"></i></button>
+    </div>
+    <div class="col-md-6 text-right">
+        <button mat-raised-button color="primary"><i class="fa fa-refresh"></i></button>
     </div>
 </div>
 <br>
 <!-- Container 2 -->
-<div class="container bgWhite">
+<div class="container bgWhite allBorder">
     <br>
     <div class="row">
         <div class="col-md-12 text-uppercase text-center text-danger">
@@ -59,30 +66,33 @@
         <h4>Incomes</h4>
     </div>
     <div class="row">
-        <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-            <div class="example-table-container fullwidth">
-                <table class="table table-striped fullwidth">
-                    <thead>
-                        <tr class='d-flex'>
-                            <th class='col-1 font-weight-bold'>#</th>
-                            <th class='col-5 font-weight-bold'>Description</th>
-                            <th class='col-2 text-center font-weight-bold'>Notes</th>
-                            <th class='col-2 text-center font-weight-bold'>Amount</th>
-                            <th class='col-2 text-center font-weight-bold'>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class='d-flex'>
-                            <td class='col-1'>AAAAA</td>
-                            <td class='col-5'>BBBBBBB</td>
-                            <td class='col-2 text-center'>C</td>
-                            <td class='col-2 text-center'>D</td>
-                            <td class='col-2 text-center'><button class="mat-button" data-toggle="modal" data-target="#financeIncomeModalOne">Click Here</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <table class="table table-striped fullwidth">
+            <thead>
+                <tr class='d-flex'>
+                    <th class='col-1 font-weight-bold'>#</th>
+                    <th class='col-5 font-weight-bold'>Description</th>
+                    <th class='col-2 text-center font-weight-bold'>Notes</th>
+                    <th class='col-2 text-center font-weight-bold'>Amount</th>
+                    <th class='col-2 text-center font-weight-bold'>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='d-flex'>
+                    <td class='col-1'>1</td>
+                    <td class='col-5'>Other Income</td>
+                    <td class='col-2 text-center'> </td>
+                    <td class='col-2 text-center'>-7,144,531</td>
+                    <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalOne">click here</a></td>
+                </tr>
+                <tr class='d-flex bottomBorder'>
+                    <td class='col-1'></td>
+                    <td class='col-5'><b>TOTAL INCOMES</b></td>
+                    <td class='col-2 text-center'></td>
+                    <td class='col-2 text-center'><b>-7,144,531</b></td>
+                    <td class='col-2 text-center'></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- Income Table Ends -->
     <br><br>
@@ -91,32 +101,60 @@
         <h4>Expenses</h4>
     </div>
     <div class="row">
-        <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-            <div class="example-table-container fullwidth">
-                <table class="table table-striped fullwidth">
-                    <thead>
-                        <tr class='d-flex'>
-                            <th class='col-1 font-weight-bold'>#</th>
-                            <th class='col-5 font-weight-bold'>Description</th>
-                            <th class='col-2 text-center font-weight-bold'>Notes</th>
-                            <th class='col-2 text-center font-weight-bold'>Amount</th>
-                            <th class='col-2 text-center font-weight-bold'>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class='d-flex'>
-                            <td class='col-1'>A</td>
-                            <td class='col-5'>B</td>
-                            <td class='col-2 text-center'>C</td>
-                            <td class='col-2 text-center'>D</td>
-                            <td class='col-2 text-center'><button class="mat-button" data-toggle="modal" data-target="#financeExpenseModalOne">Click Here</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <table class="table table-striped fullwidth">
+            <thead>
+                <tr class='d-flex'>
+                    <th class='col-1 font-weight-bold'>#</th>
+                    <th class='col-5 font-weight-bold'>Description</th>
+                    <th class='col-2 text-center font-weight-bold'>Notes</th>
+                    <th class='col-2 text-center font-weight-bold'>Amount</th>
+                    <th class='col-2 text-center font-weight-bold'>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='d-flex'>
+                    <td class='col-1'>1</td>
+                    <td class='col-5'>Finance Cost</td>
+                    <td class='col-2 text-center'>27</td>
+                    <td class='col-2 text-center'>11,273</td>
+                    <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalOne">click here</a></td>
+                </tr>
+                <tr class='d-flex'>
+                    <td class='col-1'>2</td>
+                    <td class='col-5'>Operating Expense</td>
+                    <td class='col-2 text-center'>25</td>
+                    <td class='col-2 text-center'>121,531,932</td>
+                    <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalOne">click here</a></td>
+                </tr>
+                <tr class='d-flex'>
+                    <td class='col-1'>3</td>
+                    <td class='col-5'>General and Adminstrative Expenses</td>
+                    <td class='col-2 text-center'>26</td>
+                    <td class='col-2 text-center'>193,132,396</td>
+                    <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalOne">click here</a></td>
+                </tr>
+                <tr class='d-flex bottomBorder'>
+                    <td class='col-1'></td>
+                    <td class='col-5'><b>TOTAL ASSETS</b></td>
+                    <td class='col-2 text-center'></td>
+                    <td class='col-2 text-center'><b>314,675,601</b></td>
+                    <td class='col-2 text-center'></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- Expense Table Ends -->
+    <br/>
+    <!--start assets total row-->
+    <div class="row">
+      <div class="col-md-8 text-right">
+        <b>DEFICIT FOR THE YEAR AFTER TAXATION</b>
+      </div>
+      <div class="col-md-2 bottomBorder text-center">
+        <b>-307,531,070</b>
+      </div>
+    </div>
+    <!--end assets total row-->
     <br>
 </div>
 
@@ -137,36 +175,36 @@
             <div class="modal-body">
                 <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
                 <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-7'>Description</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-2 text-center'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-7'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-2 text-center'><button class="mat-button" data-toggle="modal" data-target="#financeIncomeModalTwo">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-7 text-uppercase font-weight-bold'>Total Other Income</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-2 text-center'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
+                    <table class="table table-striped fullwidth">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class='col-1'>#</th>
+                                <th class='col-7'>Description</th>
+                                <th class='col-2 text-center'>Amount</th>
+                                <th class='col-2 text-center'>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <td class='col-1'>1</td>
+                                <td class='col-7'>Advertisement and publicity</td>
+                                <td class='col-2 text-center'>12,500</td>
+                                <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalTwo">click here</a></td>
+                            </tr>
+                            <tr class='d-flex'>
+                                <td class='col-1'>1</td>
+                                <td class='col-7'>Communication </td>
+                                <td class='col-2 text-center'>299,228</td>
+                                <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalTwo">click here</a></td>
+                            </tr>
+                            <tr class='d-flex bottomBorder'>
+                              <td class="col-1"></td>
+                              <td class="col-7"><b>Total Expense</b></td>
+                              <td class="col-2 text-center"><b>311,728</b></td>
+                              <td class="col-2 text-right"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Modal footer -->
@@ -183,46 +221,47 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Income 2</h4>
+                <h4 class="modal-title  text-uppercase text-danger">Income Detail</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
                 <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-2'>Account Head</th>
-                                        <th class='col-5'>Description</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-2 text-center'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-2'>2312</td>
-                                        <td class='col-5'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-2 text-center'><button class="mat-button" data-toggle="modal" data-target="#financeIncomeModalThree">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-2'></td>
-                                        <td class='col-5 text-uppercase font-weight-bold'>Total Other Income 2</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-2 text-center'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
+                    <table class="table table-striped fullwidth">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class='col-1'>#</th>
+                                <th class='col-2'>Account Head</th>
+                                <th class='col-5'>Description</th>
+                                <th class='col-2 text-center'>Amount</th>
+                                <th class='col-2 text-center'>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <td class='col-1'>1</td>
+                                <td class='col-2'>71300501</td>
+                                <td class='col-5'>DEPRECIATION ON REVALUED BUILDING AND CIVIL CONSTRUCTION ON FREEHOLD LAND</td>
+                                <td class='col-2 text-center'>2,007,032</td>
+                                <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalThree">click here</a></td>
+                            </tr>
+                            <tr class='d-flex'>
+                                <td class='col-1'>2</td>
+                                <td class='col-2'>71300201</td>
+                                <td class='col-5'>DEPRECIATION ON REVALUED ROADS ON FREEHOLD LAND</td>
+                                <td class='col-2 text-center'>35,388,729</td>
+                                <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalThree">click here</a></td>
+                            </tr>
+                            <tr class='d-flex bottomBorder'>
+                                <td class="col-1"></td>
+                                <td class="col-2"></td>
+                                <td class="col-5"><b>Total Income</b></td>
+                                <td class="col-2 text-center"><b>37,395,761</b></td>
+                                <td class="col-2 text-right"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Modal footer -->
@@ -239,43 +278,37 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Income 3</h4>
+                <h4 class="modal-title  text-uppercase text-danger">Account Head Detail</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
                 <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-6'>Location</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-3 text-right'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-6'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-3 text-right'><button class="mat-button" data-toggle="modal" data-target="#financeIncomeModalFour">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-6 text-uppercase font-weight-bold'>Total Other Income 3</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-3 text-right'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
+                    <table class="table table-striped fullwidth">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class='col-1'>#</th>
+                                <th class='col-6'>Location</th>
+                                <th class='col-2 text-center'>Amount</th>
+                                <th class='col-3 text-right'>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <td class='col-1'>1</td>
+                                <td class='col-5'>KallarKahar1</td>
+                                <td class='col-3 text-center'>35,388,729</td>
+                                <td class='col-3 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalFour">click here</a></td>
+                            </tr>
+                            <tr class='d-flex bottomBorder'>
+                                <td class="col-1"></td>
+                                <td class="col-5"><b>Account Head Total</b></td>
+                                <td class="col-3 text-center"><b>35,388,729</b></td>
+                                <td class="col-3 text-right"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Modal footer -->
@@ -292,43 +325,37 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Income 4</h4>
+                <h4 class="modal-title  text-uppercase text-danger">Account Head Project Detail</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
                 <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-6'>Description</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-3 text-right'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-6'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-3 text-right'><button class="mat-button" data-toggle="modal" data-target="#financeIncomeModalFive">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-6 text-uppercase font-weight-bold'>Total Other Income 4</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-3 text-right'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
+                    <table class="table table-striped fullwidth">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class='col-1'>#</th>
+                                <th class='col-6'>Description</th>
+                                <th class='col-2 text-center'>Amount</th>
+                                <th class='col-3 text-right'>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <td class='col-1'>1</td>
+                                <td class='col-5'>KallarKahar1</td>
+                                <td class='col-3 text-center'>35,388,729</td>
+                                <td class='col-3 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalFive">click here</a></td>
+                            </tr>
+                            <tr class='d-flex bottomBorder'>
+                                <td class="col-1"></td>
+                                <td class="col-5"><b>Account Head Total</b></td>
+                                <td class="col-3 text-center"><b>35,388,729</b></td>
+                                <td class="col-3 text-right"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Modal footer -->
@@ -345,43 +372,39 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Income 5</h4>
+                <h4 class="modal-title  text-uppercase text-danger">Ledger Detail</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
                 <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-1'>Date</th>
-                                        <th class='col-2 text-center'>Voucher No</th>
-                                        <th class='col-3 text-center'>Description</th>
-                                        <th class='col-1 text-center'>Debit</th>
-                                        <th class='col-1 text-center'>Credit</th>
-                                        <th class='col-1 text-center'>Cheq No</th>
-                                        <th class='col-2 text-center'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>4</td>
-                                        <td class='col-1'>Jun 12, 2018</td>
-                                        <td class='col-2 text-center'>1234-Vou</td>
-                                        <td class='col-3 text-center'>ABCD</td>
-                                        <td class='col-1'>1000</td>
-                                        <td class='col-1'>500</td>
-                                        <td class='col-1'>abc123</td>
-                                        <td><button class="mat-button" data-toggle="modal" data-target="#financeIncomeModalSix">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <table class="table table-striped fullwidth">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class='col-1'>#</th>
+                                <th class='col-1'>Date</th>
+                                <th class='col-2'>Voucher No</th>
+                                <th class='col-4'>Description</th>
+                                <th class='col-1 text-right'>Debit</th>
+                                <th class='col-1 text-right'>Credit</th>
+                                <th class='col-1'>Cheq No</th>
+                                <th class='col-1 text-center'>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <td class='col-1'>1</td>
+                                <td class='col-1'>Jun 30, 2016</td>
+                                <td class='col-2'>M-2 (Maint)-Jun/2016</td>
+                                <td class='col-4'>Amount Adjusted on a/c of Above head as suggested by Book keeping & Consolidation Section.</td>
+                                <td class='col-1 text-right'>2,112,666</td>
+                                <td class='col-1 text-right'>0</td>
+                                <td class='col-1'> </td>
+                                <td class='col-1 text-center'><span class="fa fa-file pointerCursor" data-toggle="modal" data-target="#financeIncomeModalSix"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Modal footer -->
@@ -392,408 +415,110 @@
     </div>
 </div>
 
-<!-- Income-Modal 6 -->
+
+<!-- Start Voucher Modal Window -->
 <div class="modal fade" id="financeIncomeModalSix">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
         <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Income 6</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+    
+        <!--start Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Voucher Detail</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+            <!--end Modal Header -->
+    
+        <!--start Modal body -->
+        <div class="modal-body">
+            <!--start table row-->
+            <div class="row bottomBorder">
+            <table class="table table-striped">
+                <thead>
+                <tr class='d-flex'>
+                    <th class='col-1 text-center'>#</th>
+                    <th class='col-2'>Voucher Date</th>
+                    <th class='col-1'>Account Code</th>
+                    <th class='col-4'>Account Title</th>
+                    <th class='col-2 text-right'>Debit</th>
+                    <th class='col-2 text-right'>Credit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class='d-flex'>
+                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                    <td class='col-1 text-center'>1</td>
+                    <td class='col-2'>Jun 30, 2016</td>
+                    <td class='col-1'>7501</td>
+                    <td class='col-4'>MARK-UP/INTEREST ON LONG TERM LOANS</td>
+                    <td class='col-2 text-right'>869,564,588</td>
+                    <td class='col-2 text-right'>0</td>
+                </tr>
+                <tr class='d-flex'>
+                    <td class='col-1 text-center'>2</td>
+                    <td class='col-2'>Jun 30, 2016</td>
+                    <td class='col-1'>5915</td>
+                    <td class='col-4'>INTEREST/MARKUP PAYABLE ON FOREIGN CURRENCY LOAN</td>
+                    <td class='col-2 text-right'>0</td>
+                    <td class='col-2 text-right'>869,564,588</td>
+                </tr>
+                </tbody>
+            </table>
             </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
-                <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-2'>Voucher Date</th>
-                                        <th class='col-2 text-center'>Account Code</th>
-                                        <th class='col-3'>Account Title</th>
-                                        <th class='col-2 text-center'>Debit</th>
-                                        <th class='col-2 text-center'>Credit</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>21</th>
-                                        <th class='col-2'>Jun 23, 2018</th>
-                                        <th class='col-2 text-center'>123123-abcd</th>
-                                        <th class='col-3'>Pakistan</th>
-                                        <th class='col-2 text-center'>200000</th>
-                                        <th class='col-2 text-center'>500000</th>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-3 font-weight-bold'>Description: </td>
-                                        <td class='col-1'></td>
-                                        <td class='col-8'>Total Income 6</td>
-                                    </tr>
-                                    <tr class='d-flex'>
-                                        <td class='col-3 font-weight-bold'>Party: </td>
-                                        <td class='col-1'></td>
-                                        <td class='col-8'>Total Income 6</td>
-                                    </tr>
-                                    <tr class='d-flex'>
-                                        <td class='col-3 font-weight-bold'>Cheque/Receipt No:</td>
-                                        <td class='col-3 text-uppercase '>abcd-12314</td>
-                                        <td class='col-3 font-weight-bold'>Cheque/Receipt Date:</td>
-                                        <td class='col-3 text-center'>Aug 25, 2018</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+            <!--end table row-->
+            <br/>
+            <!--start 2nd row-->
+            <div class="row">
+            <div class="col-md-3">
+                <b>Description:</b>
             </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button color="warn" data-dismiss="modal">Close</button>
+            <div class="col-md-9">
+                Amount Adjusted on a/c of Above against Interest for the year 2016 as entered in audited accounts 2016
             </div>
+            </div>
+            <!--end 2nd row-->
+            <br/>
+            <hr>
+            
+            <!--start 3rd row-->
+            <div class="row">
+            <div class="col-md-3">
+                <b>Party:</b>
+            </div>
+            <div class="col-md-9">
+                -
+            </div>
+            </div>
+            <!--end 3rd row-->
+            <br/>
+            <hr>
+            
+            <!--start 4th row-->
+            <div class="row">
+            <div class="col-md-3">
+                <b>Cheque/Receipt No:</b>
+            </div>
+            <div class="col-md-3">
+                -
+            </div>
+            <div class="col-md-3">
+                <b>Cheque/Receipt Date</b>
+            </div>
+            <div class="col-md-3">
+            </div>
+            </div>
+            <!--end 4th row-->
+            <br/>
+            <hr>
+        </div>
+        <!--end Modal body -->
+    
+        <!--start Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+    
         </div>
     </div>
 </div>
-
-<!-- ----------------------------------------------------------------------------------------------------------------------------- -->
-<!-- ------------------------------------------------------- Expense Modals ------------------------------------------------------ -->
-<!-- ----------------------------------------------------------------------------------------------------------------------------- -->
-
-<!-- Expense-Modal 1 -->
-<div class="modal fade" id="financeExpenseModalOne">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Expense</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
-                <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-7'>Description</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-2 text-center'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-7'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-2 text-center'><button class="mat-button" data-toggle="modal" data-target="#financeExpenseModalTwo">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-7 text-uppercase font-weight-bold'>Total Other Expense</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-2 text-center'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button color="warn" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Expense-Modal 2 -->
-<div class="modal fade" id="financeExpenseModalTwo">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Expense 2</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
-                <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-2'>Account Head</th>
-                                        <th class='col-5'>Description</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-2 text-center'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-2'>2312</td>
-                                        <td class='col-5'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-2 text-center'><button class="mat-button" data-toggle="modal" data-target="#financeExpenseModalThree">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-2'></td>
-                                        <td class='col-5 text-uppercase font-weight-bold'>Total Other Expense 2</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-2 text-center'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button color="warn" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Expense-Modal 3 -->
-<div class="modal fade" id="financeExpenseModalThree">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Expense 3</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
-                <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-6'>Location</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-3 text-right'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-6'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-3 text-right'><button class="mat-button" data-toggle="modal" data-target="#financeExpenseModalFour">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-6 text-uppercase font-weight-bold'>Total Other Expense 3</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-3 text-right'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button color="warn" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Expense-Modal 4 -->
-<div class="modal fade" id="financeExpenseModalFour">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Expense 4</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
-                <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-6'>Description</th>
-                                        <th class='col-2 text-center'>Amount</th>
-                                        <th class='col-3 text-right'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>A</td>
-                                        <td class='col-6'>B</td>
-                                        <td class='col-2 text-center'>D</td>
-                                        <td class='col-3 text-right'><button class="mat-button" data-toggle="modal" data-target="#financeExpenseModalFive">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'></td>
-                                        <td class='col-6 text-uppercase font-weight-bold'>Total Other Expense 4</td>
-                                        <td class='col-2 text-center font-weight-bold'>12182368</td>
-                                        <td class='col-3 text-right'></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button color="warn" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Expense-Modal 5 -->
-<div class="modal fade" id="financeExpenseModalFive">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Expense 5</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
-                <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-1'>Date</th>
-                                        <th class='col-2 text-center'>Voucher No</th>
-                                        <th class='col-3 text-center'>Description</th>
-                                        <th class='col-1 text-center'>Debit</th>
-                                        <th class='col-1 text-center'>Credit</th>
-                                        <th class='col-1 text-center'>Cheq No</th>
-                                        <th class='col-2 text-center'>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <td class='col-1'>4</td>
-                                        <td class='col-1'>Jun 12, 2018</td>
-                                        <td class='col-2 text-center'>1234-Vou</td>
-                                        <td class='col-3 text-center'>ABCD</td>
-                                        <td class='col-1'>1000</td>
-                                        <td class='col-1'>500</td>
-                                        <td class='col-1'>abc123</td>
-                                        <td><button class="mat-button" data-toggle="modal" data-target="#financeExpenseModalSix">Click Here</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button color="warn" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Expense-Modal 6 -->
-<div class="modal fade" id="financeExpenseModalSix">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title  text-uppercase text-danger">Other Expense 6</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <!-- <div class="hidden" [(ngModel)]="FMainId" ngDefaultControl></div> -->
-                <div class="row">
-                    <div class="example-container mat-elevation-z8 fullwidth col-md-12">
-                        <div class="example-table-container fullwidth">
-                            <table class="table table-striped fullwidth">
-                                <thead>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>#</th>
-                                        <th class='col-2'>Voucher Date</th>
-                                        <th class='col-2 text-center'>Account Code</th>
-                                        <th class='col-3'>Account Title</th>
-                                        <th class='col-2 text-center'>Debit</th>
-                                        <th class='col-2 text-center'>Credit</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class='d-flex'>
-                                        <th class='col-1'>21</th>
-                                        <th class='col-2'>Jun 23, 2018</th>
-                                        <th class='col-2 text-center'>123123-abcd</th>
-                                        <th class='col-3'>Pakistan</th>
-                                        <th class='col-2 text-center'>200000</th>
-                                        <th class='col-2 text-center'>500000</th>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr class='d-flex'>
-                                        <td class='col-3 font-weight-bold'>Description: </td>
-                                        <td class='col-1'></td>
-                                        <td class='col-8'>Total Expense 6</td>
-                                    </tr>
-                                    <tr class='d-flex'>
-                                        <td class='col-3 font-weight-bold'>Party: </td>
-                                        <td class='col-1'></td>
-                                        <td class='col-8'>Total Expense 6</td>
-                                    </tr>
-                                    <tr class='d-flex'>
-                                        <td class='col-3 font-weight-bold'>Cheque/Receipt No:</td>
-                                        <td class='col-3 text-uppercase '>abcd-12314</td>
-                                        <td class='col-3 font-weight-bold'>Cheque/Receipt Date:</td>
-                                        <td class='col-3 text-center'>Aug 25, 2018</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button color="warn" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- End Voucher Modal Window  -->
