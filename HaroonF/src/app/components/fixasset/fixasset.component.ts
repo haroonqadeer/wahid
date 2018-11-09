@@ -14,6 +14,7 @@ export class FixassetComponent implements OnInit {
 
   ngOnInit() {
   }
+
   delete(){
       
     this.edited1 = true;
@@ -24,6 +25,7 @@ export class FixassetComponent implements OnInit {
         console.log(this.edited);
     }.bind(this), 2000);
   }
+  
   post(){
       
     this.edited = true;

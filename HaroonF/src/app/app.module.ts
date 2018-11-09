@@ -22,9 +22,8 @@ import { AdjustmentvoucherComponent } from './components/adjustmentvoucher/adjus
 import { LedgerComponent } from './components/ledger/ledger.component';
 import { FixassetComponent } from './components/fixasset/fixasset.component';
 import { BankaccountComponent } from './components/bankaccount/bankaccount.component';
+import { ReconciliationComponent } from './components/reconciliation/reconciliation.component';
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
-//import { FixassetComponent } from './components/fixasset/fixasset.component';
-
 
 @NgModule({
   declarations: [
@@ -42,7 +41,8 @@ import { TrailbalanceComponent } from './components/trailbalance/trailbalance.co
     AdjustmentvoucherComponent,
     LedgerComponent,
     FixassetComponent,
-    BankaccountComponent
+    BankaccountComponent,
+    ReconciliationComponent
   ],
   imports: [
     BrowserModule,

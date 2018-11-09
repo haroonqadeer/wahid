@@ -15,6 +15,9 @@ interface City {
 })
 export class ChartofaccountComponent implements OnInit {
 
+  public edited = false;
+  public edited1 = false;
+
   files: TreeNode[];
 
   constructor(private nodeService: NodeService) { }
@@ -22,24 +25,26 @@ export class ChartofaccountComponent implements OnInit {
   ngOnInit() {    
     this.nodeService.getFileSystem().then(files => this.files = files);
   }
-  // cars: SelectItem[];
 
-  // selectedCars1: string[] = [];
-
-  // selectedCars2: string[] = [];
-
-
-  // constructor() {
-    
-  //   this.cars = [
-  //     {label: 'Pkr', value: 'Pkr'},
-  //     {label: 'Doller', value: 'Doller'},
-  // ];
-
-  //  }
-
-  // ngOnInit() {    
-
-  // }
-
+  delete(){
+      
+    this.edited1 = true;
+          
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited1 = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+  }
+  
+  post(){
+      
+    this.edited = true;
+          
+    //wait 3 Seconds and hide
+    setTimeout(function() {
+        this.edited = false;
+        console.log(this.edited);
+    }.bind(this), 2000);
+  }
 }
