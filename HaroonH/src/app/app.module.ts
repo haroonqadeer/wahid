@@ -10,11 +10,13 @@ import {HttpModule} from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { JobprofileComponent } from './components/jobprofile/jobprofile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchPipe
+    SearchPipe,
+    JobprofileComponent
   ],
   imports: [
     BrowserModule,

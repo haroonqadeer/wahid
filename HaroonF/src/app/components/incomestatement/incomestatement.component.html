@@ -17,7 +17,7 @@
         <mat-form-field>
             <mat-select placeholder="Select Type" [(ngModel)]="cmbFinancialType">
                 <mat-option *ngFor="let type of finType" [value]="type.nameType">
-                {{type.nameType}}
+                    {{type.nameType}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -26,7 +26,7 @@
         <mat-form-field>
             <mat-select placeholder="Select Year" [(ngModel)]="cmbFinancialYear">
                 <mat-option *ngFor="let year of finYear" [value]="year.nameYear">
-                {{year.nameYear}}
+                    {{year.nameYear}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -35,7 +35,7 @@
         <mat-form-field>
             <mat-select placeholder="Select Month" [(ngModel)]="cmbFinancialMonth">
                 <mat-option *ngFor="let month of finMonth" [value]="month.nameMonth">
-                {{month.nameMonth}}
+                    {{month.nameMonth}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -147,12 +147,12 @@
     <br/>
     <!--start assets total row-->
     <div class="row">
-      <div class="col-md-8 text-right">
-        <b>DEFICIT FOR THE YEAR AFTER TAXATION</b>
-      </div>
-      <div class="col-md-2 bottomBorder text-center">
-        <b>-307,531,070</b>
-      </div>
+        <div class="col-md-8 text-right">
+            <b>DEFICIT FOR THE YEAR AFTER TAXATION</b>
+        </div>
+        <div class="col-md-2 bottomBorder text-center">
+            <b>-307,531,070</b>
+        </div>
     </div>
     <!--end assets total row-->
     <br>
@@ -198,10 +198,10 @@
                                 <td class='col-2 text-center'><a class="cursorPointer" href="" data-toggle="modal" data-target="#financeIncomeModalTwo">click here</a></td>
                             </tr>
                             <tr class='d-flex bottomBorder'>
-                              <td class="col-1"></td>
-                              <td class="col-7"><b>Total Expense</b></td>
-                              <td class="col-2 text-center"><b>311,728</b></td>
-                              <td class="col-2 text-right"></td>
+                                <td class="col-1"></td>
+                                <td class="col-7"><b>Total Expense</b></td>
+                                <td class="col-2 text-center"><b>311,728</b></td>
+                                <td class="col-2 text-right"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -289,9 +289,9 @@
                         <thead>
                             <tr class='d-flex'>
                                 <th class='col-1'>#</th>
-                                <th class='col-6'>Location</th>
-                                <th class='col-2 text-center'>Amount</th>
-                                <th class='col-3 text-right'>Details</th>
+                                <th class='col-5'>Location</th>
+                                <th class='col-3 text-center'>Amount</th>
+                                <th class='col-3 text-center'>Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -336,9 +336,9 @@
                         <thead>
                             <tr class='d-flex'>
                                 <th class='col-1'>#</th>
-                                <th class='col-6'>Description</th>
-                                <th class='col-2 text-center'>Amount</th>
-                                <th class='col-3 text-right'>Details</th>
+                                <th class='col-5'>Description</th>
+                                <th class='col-3 text-center'>Amount</th>
+                                <th class='col-3 text-center'>Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -420,104 +420,104 @@
 <div class="modal fade" id="financeIncomeModalSix">
     <div class="modal-dialog shadow-lg-dark modal-lg">
         <div class="modal-content">
-    
-        <!--start Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title">Voucher Detail</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+
+            <!--start Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Voucher Detail</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
             <!--end Modal Header -->
-    
-        <!--start Modal body -->
-        <div class="modal-body">
-            <!--start table row-->
-            <div class="row bottomBorder">
-            <table class="table table-striped">
-                <thead>
-                <tr class='d-flex'>
-                    <th class='col-1 text-center'>#</th>
-                    <th class='col-2'>Voucher Date</th>
-                    <th class='col-1'>Account Code</th>
-                    <th class='col-4'>Account Title</th>
-                    <th class='col-2 text-right'>Debit</th>
-                    <th class='col-2 text-right'>Credit</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class='d-flex'>
-                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                    <td class='col-1 text-center'>1</td>
-                    <td class='col-2'>Jun 30, 2016</td>
-                    <td class='col-1'>7501</td>
-                    <td class='col-4'>MARK-UP/INTEREST ON LONG TERM LOANS</td>
-                    <td class='col-2 text-right'>869,564,588</td>
-                    <td class='col-2 text-right'>0</td>
-                </tr>
-                <tr class='d-flex'>
-                    <td class='col-1 text-center'>2</td>
-                    <td class='col-2'>Jun 30, 2016</td>
-                    <td class='col-1'>5915</td>
-                    <td class='col-4'>INTEREST/MARKUP PAYABLE ON FOREIGN CURRENCY LOAN</td>
-                    <td class='col-2 text-right'>0</td>
-                    <td class='col-2 text-right'>869,564,588</td>
-                </tr>
-                </tbody>
-            </table>
+
+            <!--start Modal body -->
+            <div class="modal-body">
+                <!--start table row-->
+                <div class="row bottomBorder">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class='col-1 text-center'>#</th>
+                                <th class='col-2'>Voucher Date</th>
+                                <th class='col-1'>Account Code</th>
+                                <th class='col-4'>Account Title</th>
+                                <th class='col-2 text-right'>Debit</th>
+                                <th class='col-2 text-right'>Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                <td class='col-1 text-center'>1</td>
+                                <td class='col-2'>Jun 30, 2016</td>
+                                <td class='col-1'>7501</td>
+                                <td class='col-4'>MARK-UP/INTEREST ON LONG TERM LOANS</td>
+                                <td class='col-2 text-right'>869,564,588</td>
+                                <td class='col-2 text-right'>0</td>
+                            </tr>
+                            <tr class='d-flex'>
+                                <td class='col-1 text-center'>2</td>
+                                <td class='col-2'>Jun 30, 2016</td>
+                                <td class='col-1'>5915</td>
+                                <td class='col-4'>INTEREST/MARKUP PAYABLE ON FOREIGN CURRENCY LOAN</td>
+                                <td class='col-2 text-right'>0</td>
+                                <td class='col-2 text-right'>869,564,588</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--end table row-->
+                <br/>
+                <!--start 2nd row-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Description:</b>
+                    </div>
+                    <div class="col-md-9">
+                        Amount Adjusted on a/c of Above against Interest for the year 2016 as entered in audited accounts 2016
+                    </div>
+                </div>
+                <!--end 2nd row-->
+                <br/>
+                <hr>
+
+                <!--start 3rd row-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Party:</b>
+                    </div>
+                    <div class="col-md-9">
+                        -
+                    </div>
+                </div>
+                <!--end 3rd row-->
+                <br/>
+                <hr>
+
+                <!--start 4th row-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <b>Cheque/Receipt No:</b>
+                    </div>
+                    <div class="col-md-3">
+                        -
+                    </div>
+                    <div class="col-md-3">
+                        <b>Cheque/Receipt Date</b>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <!--end 4th row-->
+                <br/>
+                <hr>
             </div>
-            <!--end table row-->
-            <br/>
-            <!--start 2nd row-->
-            <div class="row">
-            <div class="col-md-3">
-                <b>Description:</b>
+            <!--end Modal body -->
+
+            <!--start Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-            <div class="col-md-9">
-                Amount Adjusted on a/c of Above against Interest for the year 2016 as entered in audited accounts 2016
-            </div>
-            </div>
-            <!--end 2nd row-->
-            <br/>
-            <hr>
-            
-            <!--start 3rd row-->
-            <div class="row">
-            <div class="col-md-3">
-                <b>Party:</b>
-            </div>
-            <div class="col-md-9">
-                -
-            </div>
-            </div>
-            <!--end 3rd row-->
-            <br/>
-            <hr>
-            
-            <!--start 4th row-->
-            <div class="row">
-            <div class="col-md-3">
-                <b>Cheque/Receipt No:</b>
-            </div>
-            <div class="col-md-3">
-                -
-            </div>
-            <div class="col-md-3">
-                <b>Cheque/Receipt Date</b>
-            </div>
-            <div class="col-md-3">
-            </div>
-            </div>
-            <!--end 4th row-->
-            <br/>
-            <hr>
-        </div>
-        <!--end Modal body -->
-    
-        <!--start Modal footer -->
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        <!--end Modal footer -->
-    
+            <!--end Modal footer -->
+
         </div>
     </div>
 </div>
