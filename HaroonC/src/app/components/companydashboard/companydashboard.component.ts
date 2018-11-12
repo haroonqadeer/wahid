@@ -30,6 +30,25 @@ encapsulation: ViewEncapsulation.None
 })
 export class CompanydashboardComponent implements OnInit {
 
+    txtNTN = '';
+    txtSTRN = '';
+    txtTitle = '';
+    txtNature = '';
+    txtDescription = '';
+    txtBAddress = '';
+    txtMAddress = '';
+    txtTelephone = '';
+    txtMobile = '';
+    txtEmail = '';
+    txtWebsite = '';
+    txtfacebook = '';
+    txtAddress = '';
+    cmbCity = '';
+    txtCity = '';
+    cmbCompany = '';
+    txtCountry = '';
+    txtCurrency = '';
+    saveCurrency = '';
     
     public edited = false;
 

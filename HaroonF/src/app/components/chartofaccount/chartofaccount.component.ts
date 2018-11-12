@@ -17,6 +17,10 @@ export class ChartofaccountComponent implements OnInit {
 
   public edited = false;
   public edited1 = false;
+  cars = '';
+  selectedCars1 = '';
+  voucherDate = '';
+  
 
   files: TreeNode[];
 

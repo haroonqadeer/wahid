@@ -25,7 +25,27 @@ export class TaxsectionComponent implements OnInit {
 
   public edited = false;
   public edited1 = false;
-
+  query = '';
+  txtTSection = '';
+  txtPSection = '';
+  txtDescription = '';
+  cmbTPType = '';
+  cmbTPNature = '';
+  txtPNature = '';
+  cmbACode = '';
+  txtTCode = '';
+  txtFTax ='';
+  txtNFTax = '';
+  chkTSStatus = '';
+  employeeId = '';
+  txtdPassword = '';
+  txtdPin = '';
+  edit = '';
+  item = '';
+  
+  del(){
+    
+  }
   //use in  tax payer type combobox
   types: TaxType[] = [
     {tId: '1', tName: 'Resident'},

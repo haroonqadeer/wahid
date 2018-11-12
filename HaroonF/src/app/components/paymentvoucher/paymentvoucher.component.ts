@@ -41,7 +41,16 @@ export class PaymentvoucherComponent implements OnInit {
   cmbParty : Party;
   selectedAccount : Account;
   accountTitle='';
-
+  query = '';
+  employeeId = '';
+  txtdPassword = '';
+  txtdPin = '';
+  voucherDate = '';
+  documents = '';
+  cmbDoc = '';
+  selectedBank = '';
+  selectedCurrency = '';
+  
   cmbDept:Department;
 
   //use in  Department combobox

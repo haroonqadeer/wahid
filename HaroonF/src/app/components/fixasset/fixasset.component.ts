@@ -9,6 +9,9 @@ export class FixassetComponent implements OnInit {
 
   public edited = false;
   public edited1 = false;
+  query = '';
+  voucherDate = '';
+  
 
   constructor() { }
 
