@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyprofileComponent implements OnInit {
 
+  edited = '';
+  txtCurrency = '';
+  txtCountry = '';
+  
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  saveCurrency(){
+    
   }
 
 }

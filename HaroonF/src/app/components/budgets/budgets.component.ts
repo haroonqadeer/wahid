@@ -19,6 +19,13 @@ export interface Type {
 export class BudgetsComponent implements OnInit {
   
   public edited = false;
+  bYear = '';
+  selectedType = '';
+  txtIncDec = '';
+  txtRemarks = '';
+  selectedYearFrom = '';
+  selectedYearTo = '';
+  
 
   years: BYear[];
   types: Type[];
