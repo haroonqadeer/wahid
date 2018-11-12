@@ -10,14 +10,12 @@ import { ChartModule } from 'angular-highcharts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
-import { CompanyprofileComponent } from './components/companyprofile/companyprofile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
-    CompanydashboardComponent,
-    CompanyprofileComponent
+    CompanydashboardComponent
   ],
   imports: [
     BrowserModule,

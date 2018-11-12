@@ -48,7 +48,7 @@ export class CompanydashboardComponent implements OnInit {
     cmbCompany = '';
     txtCountry = '';
     txtCurrency = '';
-    saveCurrency = '';
+    txtSection = '';
     
     public edited = false;
 
@@ -250,4 +250,8 @@ selectedNode: TreeNode;
         console.log(this.edited);
     }.bind(this), 2000);
   }
+
+  saveSection(){}
+
+  saveCurrency(){}
 }
