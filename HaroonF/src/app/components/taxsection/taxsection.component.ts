@@ -40,11 +40,10 @@ export class TaxsectionComponent implements OnInit {
   employeeId = '';
   txtdPassword = '';
   txtdPin = '';
-  edit = '';
   item = '';
   
-  del(){
-    
+  del(item){
+    item;
   }
   //use in  tax payer type combobox
   types: TaxType[] = [
@@ -92,5 +91,8 @@ export class TaxsectionComponent implements OnInit {
         this.edited1 = false;
         console.log(this.edited1);
     }.bind(this), 2000);
+  }
+  edit(item){
+    item;
   }
 }

@@ -13,6 +13,9 @@ export interface ACode {
 })
 export class LedgerComponent implements OnInit {
 
+  cmbACode='';
+  query='';
+  
   //use in account code combobox
   codes: ACode[] = [
     {cId: '1', cTitle: 'Cash'},

@@ -24,6 +24,10 @@ export interface Month {
   styleUrls: ['./balancesheet.component.scss']
 })
 export class BalancesheetComponent implements OnInit {
+
+  cmbType='';
+  cmbYear='';
+  cmbMonth='';
   
   years: BYear[];
   types: Type[];

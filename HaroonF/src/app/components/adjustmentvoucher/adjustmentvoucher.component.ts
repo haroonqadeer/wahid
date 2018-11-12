@@ -39,7 +39,23 @@ export class AdjustmentvoucherComponent implements OnInit {
   cmbParty : Party;
   selectedAccount : Account;
   accountTitle='';
-
+  query='';
+  adjustmentId='';
+  txtdPassword='';
+  txtdPin='';
+  voucherDate='';
+  documents='';
+  cmbDoc='';
+  selectedBank='';
+  selectedCurrency='';
+  txtAmount=0;
+  selectedParty='';
+  txtDescription='';
+  txtDebit='';
+  txtCredit='';
+  txtBalance='';
+  item='';
+  
   cmbDept:Department;
 
   //use in  Department combobox
@@ -120,4 +136,8 @@ export class AdjustmentvoucherComponent implements OnInit {
     this.txtpCredit=0;
     this.txtpDebit=0;
   }
+  edit(item){
+    item;
+  }
+  NTax(){}
 }

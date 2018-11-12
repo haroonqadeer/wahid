@@ -13,7 +13,13 @@ export class ReconciliationComponent implements OnInit {
  
   public edited = false;
   public edited1 = false;
-
+  query='';
+  ReconId='';
+  txtdPassword='';
+  txtdPin='';
+  cmbAccount='';
+  item='';
+  
   accounts:Account[];
   
   constructor() { 
@@ -38,5 +44,13 @@ export class ReconciliationComponent implements OnInit {
         this.edited1 = false;
         console.log(this.edited1);
     }.bind(this), 2000);
+  }
+
+  edit(item){
+    item;
+  }
+  
+  del(item){
+    item;
   }
 }

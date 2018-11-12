@@ -50,6 +50,13 @@ export class PaymentvoucherComponent implements OnInit {
   cmbDoc = '';
   selectedBank = '';
   selectedCurrency = '';
+  txtAmount=0;
+  selectedParty='';
+  txtDescription='';
+  txtDebit=0;
+  txtCredit=0;
+  txtBalance=0;
+  item='';
   
   cmbDept:Department;
 
@@ -131,4 +138,8 @@ export class PaymentvoucherComponent implements OnInit {
     this.txtpCredit=0;
     this.txtpDebit=0;
   }
+  edit(item){
+    item;
+  }
+  NTax(){}
 }

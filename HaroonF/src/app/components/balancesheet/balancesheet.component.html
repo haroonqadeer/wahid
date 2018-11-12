@@ -20,7 +20,7 @@
   </div>
   <div class="col-md-4 text-center">
     <mat-form-field>
-      <mat-select placeholder="Year" [(ngModel)]="cmbYear" (ngModelChange)="onYearChange($event)">
+      <mat-select placeholder="Year" [(ngModel)]="cmbYear">
         <mat-option *ngFor="let year of years" [value]="year.code">
           {{year.bName}}
         </mat-option>
