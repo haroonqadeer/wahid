@@ -11,14 +11,12 @@ import {HttpModule} from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobprofileComponent } from './components/jobprofile/jobprofile.component';
-import { PostsComponent } from './components/posts/posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     JobprofileComponent,
-    PostsComponent
   ],
   imports: [
     BrowserModule,
