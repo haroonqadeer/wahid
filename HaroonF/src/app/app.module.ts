@@ -10,6 +10,8 @@ import {TreeTableModule} from "ng-treetable";
 import {HttpModule} from '@angular/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
+import { OrgChartModule } from 'ng2-org-chart';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
@@ -26,6 +28,8 @@ import { ReconciliationComponent } from './components/reconciliation/reconciliat
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
 import { BalancesheetComponent } from './components/balancesheet/balancesheet.component';
 import { IncomestatementComponent } from './components/incomestatement/incomestatement.component';
+import { PostComponent } from './components/post/post.component';
+import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,9 @@ import { IncomestatementComponent } from './components/incomestatement/incomesta
     BankaccountComponent,
     ReconciliationComponent,
     BalancesheetComponent,
-    IncomestatementComponent
+    IncomestatementComponent,
+    PostComponent,
+    RecruitmentComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +65,7 @@ import { IncomestatementComponent } from './components/incomestatement/incomesta
     PNPrimeModule,
     TreeTableModule,
     HttpModule,
+    OrgChartModule,
     NgCircleProgressModule.forRoot({
       
     })

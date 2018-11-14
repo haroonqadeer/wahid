@@ -19,8 +19,9 @@ import { RecruitmentComponent } from './components/recruitment/recruitment.compo
     AppComponent,
     SearchPipe,
     JobprofileComponent,
-    PostsComponent,
+        PostsComponent,
     RecruitmentComponent
+
   ],
   imports: [
     BrowserModule,

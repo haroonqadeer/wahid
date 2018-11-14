@@ -1,0 +1,266 @@
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Post
+</div>
+
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div>
+<br>  
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Posts</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start row-->
+<div class="row">
+  
+  <!--start add new  button column    -->
+  <div class="col-md-12 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#postModal">Add New</button>
+    <br/><br/>
+    <!-- <button mat-raised-button color="primary" data-toggle="modal" data-target="#gDepModal">Generate Depriciation</button>
+    <br/><br/> -->
+  </div>
+  <!--end add new button column-->
+</div>
+<!--end row-->
+
+<div class="container">
+  <!--start table row-->       
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">                      
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1'>Sr #</th>
+            <th class='col-3'>Office</th>
+            <th class='col-2'>Department</th>
+            <th class='col-2'>Section</th>
+            <th class='col-3'>Job Title</th>
+            <th class='col-1'>Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-1'>1</td> 
+            <td class='col-3'>Fizaiya Office</td>             
+            <td class='col-2'>IT</td>
+            <td class='col-2'>ERP</td>
+            <td class='col-3'>Job Title</td>
+            <td class='col-1'>4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+</div>
+<!--end container -->
+
+
+<br/>
+
+<!--bootstrap modal window -->
+
+
+<!-- Start chart of account Modal Window -->
+<div class="modal fade" id="postModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Posts</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+          <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--Row #1-->  
+        <div class="row">
+          <!-- Office -->
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="Office">
+                <mat-option value="option1">Fizaiya Office</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <!-- Department -->
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="Department">
+                <mat-option value="option1">IT</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Section -->
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="Section">
+                <mat-option value="option1">ERP</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+        </div><!--end of row #1 -->
+
+        <!--Row #2-->  
+        <div class="row">
+          <!--Chart-->
+          <div class="col-md-12">
+            <ng2-org-chart [topEmployee]="topEmployee"></ng2-org-chart>
+          </div>
+        </div><!--end of row #2 -->
+
+        <div class="row">
+          <div class="col-md-12">
+
+            
+
+          </div>
+        </div>
+
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- End chart of account Modal Window  -->
+  
+
+  <!-- Start Modal Window to generate depriciation modal -->
+<div class="modal fade" id="gDepModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate Depriciation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body"> 
+        <!--start date row  -->
+        <div class="row">
+          <div class="col-md-12">
+            <p-calendar [(ngModel)]="voucherDate" placeholder="Voucher Date" [showIcon]="true"></p-calendar>
+          </div>
+        </div>
+        <!--end date row-->
+        <br/>
+        <!--start table row-->       
+        <div class="example-container mat-elevation-z8">
+          <div class="example-table-container">                      
+            <table class="table table-striped">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-2'>G/L Code</th>
+                  <th class='col-5'>Description</th>
+                  <th class='col-3'>Dep. Amount</th>
+                  <th class='col-1'>Detail</th>
+                  <th class='col-1'>Post</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class='col-2'>100100</td>             
+                  <td class='col-5'>Vehicle</td>
+                  <td class='col-3'>550,000</td>
+                  <td class='col-1 text-right'><span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#gDepDetailModal"></span></td>
+                  <td class='col-1 text-right'><span class="fa fa-check-circle pointerCursor" (click)="post()" data-dismiss="modal"></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->    
+        <br/>   
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to generate depriciation modal -->
+ 
+<!-- Start Modal Window to generate depriciation detail modal -->
+<div class="modal fade" id="gDepDetailModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Generate Depriciation Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body"> 
+        <!--start table row-->       
+        <div class="example-container mat-elevation-z8">
+          <div class="example-table-container">                      
+            <table class="table table-striped">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-4'>Item</th>
+                  <th class='col-2'>Amount Before Dep.</th>
+                  <th class='col-2'>Dep.</th>
+                  <th class='col-2'>Amount After Dep.</th>
+                  <th class='col-2 text-right'>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class='col-4'>Corolla XLI</td>             
+                  <td class='col-2'>1,400,000</td>
+                  <td class='col-2'>50,000</td>
+                  <td class='col-2'>1,350,000</td>
+                  <td class='col-2 text-right'><span class="fa fa-trash pointerCursor text-right" (click)="delete()" data-dismiss="modal"></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->    
+        <br/>   
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to generate depriciation detail modal -->
+  
