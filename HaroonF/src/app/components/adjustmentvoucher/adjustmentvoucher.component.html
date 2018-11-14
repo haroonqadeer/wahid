@@ -121,55 +121,55 @@
   <br/>
   
   
-  <!-- Start Modal Window to delete adjustment voucher data -->
-  <div class="modal fade" id="dAdjustmentModal">
-    <div class="modal-dialog shadow-lg-dark">
-      <div class="modal-content">
-        <!--start Modal body -->
-        <div class="modal-body">
-          <br>
-          <div class="hidden" [(ngModel)]="adjustmentId" ngDefaultControl></div>
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <h2>Delete Adjusment Data</h2>
-              <!-- <h2 [(ngModel)]="userName">{{userName}}</h2> -->
-            </div>
-          </div><br/>
-          <div class="row">
-            <div class="col-md-12">
-              <mat-form-field class="fullwidth">
-                <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
-              </mat-form-field>
-            </div>
-          </div><br>
-          <div class="row">
-            <div class="col-md-12">
-              <mat-form-field class="fullwidth">
-                <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
-              </mat-form-field>
-            </div>
+<!-- Start Modal Window to delete adjustment voucher data -->
+<div class="modal fade" id="dAdjustmentModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="hidden" [(ngModel)]="adjustmentId" ngDefaultControl></div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2>Delete Adjusment Data</h2>
+            <!-- <h2 [(ngModel)]="userName">{{userName}}</h2> -->
           </div>
-          <br>
-          <div class="row">
-            <div class="col-md-6">
-              <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
-            </div>
+        </div><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+            </mat-form-field>
           </div>
-          <br/>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+            </mat-form-field>
+          </div>
         </div>
-        <!--end Modal body -->
-  
-        <!--start Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+          </div>
         </div>
-        <!--end Modal footer -->
-  
+        <br/>
       </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
     </div>
   </div>
-  <!-- End Modal Window to delete adjustment voucher data -->
-  
+</div>
+<!-- End Modal Window to delete adjustment voucher data -->
+
   
 <!-- Start Modal Window to Add or update adjustment voucher data -->
 <div class="modal fade" id="adjustmentModal">
