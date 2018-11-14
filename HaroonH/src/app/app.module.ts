@@ -11,7 +11,7 @@ import {HttpModule} from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobprofileComponent } from './components/jobprofile/jobprofile.component';
-import { PostsComponent } from './components/posts/posts.component';
+// import { PostsComponent } from './components/posts/posts.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { RecruitmentComponent } from './components/recruitment/recruitment.compo
     AppComponent,
     SearchPipe,
     JobprofileComponent,
-        PostsComponent,
+    // PostsComponent,
     RecruitmentComponent
 
   ],
