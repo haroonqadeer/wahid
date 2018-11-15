@@ -14,6 +14,10 @@ import { JobprofileComponent } from './components/jobprofile/jobprofile.componen
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { PostComponent } from './components/post/post.component';
 import { RecruitmentappComponent } from './components/recruitmentapp/recruitmentapp.component';
+import { LeaverulesComponent } from './components/leaverules/leaverules.component';
+import { PerformanceStandComponent } from './components/performance-stand/performance-stand.component';
+import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
+import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { RecruitmentappComponent } from './components/recruitmentapp/recruitment
     JobprofileComponent,
     PostComponent,
     RecruitmentComponent,
-    RecruitmentappComponent
+    RecruitmentappComponent,
+    LeaverulesComponent,
+    PerformanceStandComponent,
+    PerformanceEvaComponent,
+    LeavetypeComponent
 
   ],
   imports: [

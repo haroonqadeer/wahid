@@ -630,7 +630,7 @@
             </div>
           </div>
           <div class="col-md-6 shadow-md bgWhite">
-            <div [chart]="Line_chart" style=" height: auto;width:100%;"></div>
+            <div [chart]="Line_chart" style=" height: 100%;width:100%;"></div>
           </div>
         </div>
         <!--end table row-->
@@ -790,25 +790,68 @@
 
       <!--start Modal body -->
       <div class="modal-body">
-        <mat-card>
-          <div class="row">
-            <div class="col-md-4"><b>Officer</b></div>
-            <div class="col-md-4"><b>Subject</b></div>
-            <div class="col-md-4"><b>Date</b></div>
+        <!--Row #1-->  
+        <div class="row">
+          <div class="col-md-7">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Usman Ali</mat-card-title>
+                <mat-card-subtitle>VB.Net</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-10 text-center">
+                    <p>
+                      Sept 11, 2018
+                    </p>
+                  </div>
+                </div>
+                
+              </mat-card-content>
+              <mat-card-actions class="text-right">
+                <span class="fa fa-share"></span>
+              </mat-card-actions>
+            </mat-card>
           </div>
+          </div>
+          <!--end of row #1 -->
+
           <br/>
+          
+          <!--start row #2-->
           <div class="row">
-            <div class="col-md-4">Ali</div>
-            <div class="col-md-4">VB.Net</div>
-            <div class="col-md-4">Sept 11, 2018</div>
+            <div class="col-md-5"></div> 
+            <div class="col-md-offset-5 col-md-7">
+              <mat-card class="example-card-r">
+
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image-r"></div>
+                  <mat-card-title>Ali Khan</mat-card-title>
+                  <mat-card-subtitle>English</mat-card-subtitle>
+                  
+                </mat-card-header>
+
+                <mat-card-content>
+                  <div class="row">
+                    <div class="col-md-10 text-center">
+                      <p>
+                        Sept 23, 2018
+                      </p>
+                    </div>
+                  </div>  
+                </mat-card-content>
+                <mat-card-actions class="">
+                  <span class="fa fa-reply"></span>
+                </mat-card-actions>
+              </mat-card>
+            </div>
           </div>
+          <!--end row 2-->
+
           <br/>
-          <div class="row">
-            <div class="col-md-4">Qureshi</div>
-            <div class="col-md-4">English</div>
-            <div class="col-md-4">Sept 23, 2018</div>
-          </div>
-        </mat-card>
+
       </div>
       <!--end Modal body -->
 
