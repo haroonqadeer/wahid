@@ -11,16 +11,18 @@ import {HttpModule} from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobprofileComponent } from './components/jobprofile/jobprofile.component';
-// import { PostsComponent } from './components/posts/posts.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
+import { PostComponent } from './components/post/post.component';
+import { RecruitmentappComponent } from './components/recruitmentapp/recruitmentapp.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     JobprofileComponent,
-    // PostsComponent,
-    RecruitmentComponent
+    PostComponent,
+    RecruitmentComponent,
+    RecruitmentappComponent
 
   ],
   imports: [
