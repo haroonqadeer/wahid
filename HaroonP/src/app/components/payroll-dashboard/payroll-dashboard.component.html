@@ -14,7 +14,7 @@
       <div class="col-md-12 text-center">
         <circle-progress
           [percent]="85"
-          [radius]="50"
+          [radius]="60"
           [space]="-12"
           [outerStrokeWidth]="12"
           [innerStrokeWidth]="-12"
@@ -26,6 +26,7 @@
           [clockwise] = "false"
           [showSubtitle]= "false"
         ></circle-progress>
+        <h4>154</h4>
         <h5>Employees</h5>
       </div>
     </div>
@@ -33,8 +34,8 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <circle-progress
-          [percent]="25"
-          [radius]="50"
+          [percent]="65"
+          [radius]="60"
           [space]="-12"
           [outerStrokeWidth]="12"
           [innerStrokeWidth]="-12"
@@ -46,6 +47,7 @@
           [clockwise] = "false"
           [showSubtitle]= "false"
         ></circle-progress>
+        <h4>15</h4>
         <h5>Officers</h5>
       </div>
     </div>
@@ -53,8 +55,8 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <circle-progress
-          [percent]="12"
-          [radius]="50"
+          [percent]="72"
+          [radius]="60"
           [space]="-12"
           [outerStrokeWidth]="12"
           [innerStrokeWidth]="-12"
@@ -66,6 +68,7 @@
           [clockwise] = "false"
           [showSubtitle]= "false"
         ></circle-progress>
+        <h4>9</h4>
         <h5>Departments</h5>
       </div>
     </div>
@@ -74,7 +77,6 @@
 
   <!--chart and combo column-->
   <div class="col-md-9">
-    <br/><br/>
     <!--combo box row-->
     <div class="row bgWhite allBorder">
       <div class="col-md-6 text-right">
@@ -114,6 +116,51 @@
       </div>
     </div>
     <!--end chart row-->
+    <br/>
+    <!--chart and table row-->
+    <div class="row">
+      <!--chart column-->
+      <div class="col-md-6">
+        <div class=" shadow-md" [chart]="Column_Chart" style=" height: 100%;width:100%;"></div>
+      </div>
+      <!--end chart column-->
+      <!--table column-->
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 shadow-md">
+            <table class="table table-striped bottomBorder">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-1 text-center'>Sr #</th>
+                  <th class='col-7 text-center'>Description</th>
+                  <th class='col-4 text-center'>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class='col-1 text-center'>1</td> 
+                  <td class='col-7 text-center'>House Building</td>             
+                  <td class='col-4 text-center'>200,000</td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-1 text-center'>2</td> 
+                  <td class='col-7 text-center'>Car Advance</td>             
+                  <td class='col-4 text-center'>50,000</td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-1 text-center'>3</td> 
+                  <td class='col-7 text-center'>Salary</td>             
+                  <td class='col-4 text-center'>20,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--end table column-->
+    </div>
+    <!--end chart and table row-->
   </div>
   <!--end chart and combo column-->
 </div>
@@ -121,54 +168,8 @@
 <br/>
 <!--container row-->
 <div class="container">
-  <!--chart and table row-->
-  <div class="row">
-    <!--chart column-->
-    <div class="col-md-6">
-      <div class=" shadow-md" [chart]="Column_Chart" style=" height: 100%;width:100%;"></div>
-    </div>
-    <!--end chart column-->
-    <!--table column-->
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-12 shadow-md">
-          <table class="table table-striped bottomBorder">
-            <thead>
-              <tr class='d-flex'>
-                <th class='col-1 text-center'>Sr #</th>
-                <th class='col-7 text-center'>Description</th>
-                <th class='col-4 text-center'>Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-              <tr class='d-flex'>
-                <td class='col-1 text-center'>1</td> 
-                <td class='col-7 text-center'>House Building</td>             
-                <td class='col-4 text-center'>200,000</td>
-              </tr>
-              <tr class='d-flex'>
-                <td class='col-1 text-center'>2</td> 
-                <td class='col-7 text-center'>Car Advance</td>             
-                <td class='col-4 text-center'>50,000</td>
-              </tr>
-              <tr class='d-flex'>
-                <td class='col-1 text-center'>3</td> 
-                <td class='col-7 text-center'>Salary</td>             
-                <td class='col-4 text-center'>20,000</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <!--end table column-->
-  </div>
-  <!--end chart and table row-->
-  <br/>
   <!-- box row -->
   <div class="row">
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12"></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="info-box bg-orange hover-expand-effect">
         <div class="icon">
@@ -180,6 +181,7 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12"></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="info-box bg-indigo hover-expand-effect">
         <div class="icon">
@@ -191,6 +193,7 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12"></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="info-box bg-pink hover-expand-effect">
         <div class="icon">
