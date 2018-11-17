@@ -113,7 +113,7 @@ export class PayrollDashboardComponent implements OnInit {
       {
         type: 'spline',
         name: 'Net Profit',
-        data: [2, 1, -2, 1, 3, 4, 2, -3, -1, 3, 4,-2]
+        data: [2, 1, 5, 1, 3, 4, 2, 6, 4, 3, 4,2]
       }]
     });
     this.Column_Chart = chart;

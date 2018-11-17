@@ -16,6 +16,7 @@ import { JobprofileComponent } from './components/jobprofile/jobprofile.componen
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { PostComponent } from './components/post/post.component';
 import { RecruitmentappComponent } from './components/recruitmentapp/recruitmentapp.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { TestComponent } from './components/test/test.component';
 import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
@@ -29,6 +30,7 @@ import { LeaverulesComponent } from './components/leaverules/leaverules.componen
 import { PerformanceStandComponent } from './components/performance-stand/performance-stand.component';
 import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
+import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { LeavetypeComponent } from './components/leavetype/leavetype.component';
     LeaverulesComponent,
     PerformanceStandComponent,
     PerformanceEvaComponent,
-    LeavetypeComponent
+    LeavetypeComponent,
+    HRDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { LeavetypeComponent } from './components/leavetype/leavetype.component';
     ReactiveFormsModule,
     PNPrimeModule,
     HttpModule,
-    MatRadioModule
+    MatRadioModule,
+    NgCircleProgressModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

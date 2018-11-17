@@ -10,11 +10,12 @@
 <div class="row">
   <!--progress bar column-->
   <div class="col-md-2">
+    <br/><br/><br/><br/><br/>
     <div class="row">
       <div class="col-md-12 text-center">
         <circle-progress
           [percent]="85"
-          [radius]="60"
+          [radius]="65"
           [space]="-12"
           [outerStrokeWidth]="12"
           [innerStrokeWidth]="-12"
@@ -26,8 +27,8 @@
           [clockwise] = "false"
           [showSubtitle]= "false"
         ></circle-progress>
-        <h4>154</h4>
-        <h5>Employees</h5>
+        <h3>154</h3>
+        <h4>Employees</h4>
       </div>
     </div>
     <br/>
@@ -35,7 +36,7 @@
       <div class="col-md-12 text-center">
         <circle-progress
           [percent]="65"
-          [radius]="60"
+          [radius]="65"
           [space]="-12"
           [outerStrokeWidth]="12"
           [innerStrokeWidth]="-12"
@@ -47,8 +48,8 @@
           [clockwise] = "false"
           [showSubtitle]= "false"
         ></circle-progress>
-        <h4>15</h4>
-        <h5>Officers</h5>
+        <h3>15</h3>
+        <h4>Officers</h4>
       </div>
     </div>
     <br/>
@@ -56,7 +57,7 @@
       <div class="col-md-12 text-center">
         <circle-progress
           [percent]="72"
-          [radius]="60"
+          [radius]="65"
           [space]="-12"
           [outerStrokeWidth]="12"
           [innerStrokeWidth]="-12"
@@ -68,8 +69,8 @@
           [clockwise] = "false"
           [showSubtitle]= "false"
         ></circle-progress>
-        <h4>9</h4>
-        <h5>Departments</h5>
+        <h3>9</h3>
+        <h4>Departments</h4>
       </div>
     </div>
   </div>
@@ -161,63 +162,68 @@
       <!--end table column-->
     </div>
     <!--end chart and table row-->
+    <br/>
+    <!--box and chart-->
+    <div class="row">
+      <div class="col-md-9">
+         <!--chart row-->
+         <div class="row">
+         <div class="col-md-12">
+           <!--Line chart-->
+           <div class="line_chart shadow-md">
+             <div [chart]="Sal_Line_chart" style=" height: 300px;width:100%;"></div>
+           </div>
+         </div>
+       </div>
+       <!--end chart row-->
+      </div>
+      <!-- box column -->
+      <div class="col-md-3">
+        <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+             <div class="info-box bg-orange hover-expand-effect">
+               <div class="icon">
+                 <i class="fa fa-line-chart"></i>
+               </div>
+               <div class="content">
+                 <div class="text">Hiring Admin</div>
+                 <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">15</div>                                                                
+               </div>
+             </div>
+           </div>
+        </div>
+        <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+             <div class="info-box bg-indigo hover-expand-effect">
+               <div class="icon">
+                 <i class="fa fa-gavel"></i>
+               </div>
+               <div class="content">
+                 <div class="text">House Rent</div>
+                 <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">25</div>
+               </div>
+             </div>
+           </div>
+        </div>
+        <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+             <div class="info-box bg-pink hover-expand-effect">
+               <div class="icon">
+                 <i class="fa fa-sign-in"></i>
+               </div>
+               <div class="content">
+                 <div class="text">Hiring</div>
+                 <div class="number count-to"  data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">500</div>
+               </div>
+             </div>
+           </div>
+        </div>
+      </div>
+      <!-- end box row -->
+    </div>
+    <!--end box and chart-->
   </div>
   <!--end chart and combo column-->
 </div>
 <!--end 1st row-->
-<br/>
-<!--container row-->
-<div class="container">
-  <!-- box row -->
-  <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box bg-orange hover-expand-effect">
-        <div class="icon">
-          <i class="fa fa-line-chart"></i>
-        </div>
-        <div class="content">
-          <div class="text">Hiring Admin</div>
-          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">15</div>                                                                
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12"></div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box bg-indigo hover-expand-effect">
-        <div class="icon">
-          <i class="fa fa-gavel"></i>
-        </div>
-        <div class="content">
-          <div class="text">House Rent</div>
-          <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">25</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12"></div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box bg-pink hover-expand-effect">
-        <div class="icon">
-          <i class="fa fa-sign-in"></i>
-        </div>
-        <div class="content">
-          <div class="text">Hiring</div>
-          <div class="number count-to"  data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">500</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end box row -->  
-  <br/>
-  <!--chart row-->
-  <div class="row">
-    <div class="col-md-12">
-      <!--Line chart-->
-      <div class="line_chart shadow-md">
-        <div [chart]="Sal_Line_chart" style=" height: 250px;width:100%;"></div>
-      </div>
-    </div>
-  </div>
-  <!--end chart row-->
-</div>
-<!--end container row-->
 <br/>

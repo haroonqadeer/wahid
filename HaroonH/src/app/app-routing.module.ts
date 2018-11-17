@@ -18,12 +18,13 @@ import { LeaverulesComponent } from './components/leaverules/leaverules.componen
 import { PerformanceStandComponent } from './components/performance-stand/performance-stand.component';
 import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
+import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: RecruitmentComponent
+    component: HRDashboardComponent
   },
   {
     path: 'recruitmentApproval',

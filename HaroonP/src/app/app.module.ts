@@ -17,6 +17,7 @@ import { PayrollConComponent } from './components/payroll-con/payroll-con.compon
 import { PayFixComponent } from './components/pay-fix/pay-fix.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
 import { PayrollDashboardComponent } from './components/payroll-dashboard/payroll-dashboard.component';
+import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { PayrollDashboardComponent } from './components/payroll-dashboard/payrol
     PayrollConComponent,
     PayFixComponent,
     PayrollComponent,
-    PayrollDashboardComponent
+    PayrollDashboardComponent,
+    HRDashboardComponent
   ],
   imports: [
     BrowserModule,
