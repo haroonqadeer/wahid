@@ -8,6 +8,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ToastModule} from 'primeng/toast';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {CalendarModule} from 'primeng/calendar';
+import {SlideMenuModule} from 'primeng/slidemenu';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {CalendarModule} from 'primeng/calendar';
     DropdownModule,
     ToastModule,
     MultiSelectModule,
-    CalendarModule
+    CalendarModule,
+    SlideMenuModule
   ],
   exports: [
     OrganizationChartModule,
@@ -29,7 +31,8 @@ import {CalendarModule} from 'primeng/calendar';
     DropdownModule,
     ToastModule,
     MultiSelectModule,
-    CalendarModule
+    CalendarModule,
+    SlideMenuModule
   ],
   declarations: []
 })

@@ -77,10 +77,10 @@ export class RecruitmentComponent implements OnInit {
       },
       series: [{
         name: 'English',
-        data: [10,32]
+        data: [1,4]
       },{
         name: 'VB.Net',
-        data: [15,20]
+        data: [2,5]
       }]
     });
     this.Line_chart = chart;
