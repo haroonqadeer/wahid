@@ -1,0 +1,323 @@
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Approving Authority</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start container 1-->
+<div class="container">
+  <!--start table row-->       
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">                      
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1'>Sr #</th>
+            <th class='col-5'>Job Profile</th>
+            <th class='col-2'>Range From</th>
+            <th class='col-2'>Range To</th>
+            <th class='col-2 text-center'>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-1'>1</td> 
+            <td class='col-5'>AD</td>
+            <td class='col-2'>0</td>
+            <td class='col-2'>50,000</td>
+            <td class='col-2 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-1'>1</td> 
+            <td class='col-5'>DD</td>
+            <td class='col-2'>50,000</td>
+            <td class='col-2'>70,000</td>
+            <td class='col-2 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-1'>3</td> 
+            <td class='col-5'>Director</td>
+            <td class='col-2'>70,000</td>
+            <td class='col-2'>100,000</td>
+            <td class='col-2 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-10'></td>
+            <td class='col-2 text-center'>
+              <span class="fa fa-plus pointerCursor"></span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+</div>
+<!--end container 1-->
+
+<br/>
+
+<!--start add new button row -->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h2>Sanctions</h2>
+  </div>
+
+  <div class="col-md-12 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#addSanctionModal"> Add New </button>
+  </div>
+</div>
+<!--end add new button row -->
+
+<br/>
+
+<!--start container 2-->
+<div class="container">
+  <!--start table row-->       
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">                      
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1'>Sr #</th>
+            <th class='col-4'>Sanctions</th>
+            <th class='col-2'>Date</th>
+            <th class='col-1'>Amount</th>
+            <th class='col-2'>Status</th>
+            <th class='col-1 text-center'>Detail</th>
+            <th class='col-1 text-center'>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-1'>1</td> 
+            <td class='col-4'>Medial</td>
+            <td class='col-2'>11-Nov-2018</td>
+            <td class='col-1'>40,000</td>
+            <td class='col-2'>Approved</td>
+            <td class='col-1 text-center'>
+                <span class="fa fa-edit pointerCursor"></span>
+              </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-1'>2</td> 
+            <td class='col-4'>TA/DA</td>
+            <td class='col-2'>12-Nov-2018</td>
+            <td class='col-1'>3,000</td>
+            <td class='col-2'>Paid</td>
+            <td class='col-1 text-center'>
+                <span class="fa fa-edit pointerCursor"></span>
+              </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-1'>3</td> 
+            <td class='col-4'>Car</td>
+            <td class='col-2'>13-Nov-2018</td>
+            <td class='col-1'>18,000</td>
+            <td class='col-2'>In Process</td>
+            <td class='col-1 text-center'>
+                <span class="fa fa-edit pointerCursor"></span>
+              </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+</div>
+<!--end container 2-->
+
+<br/>
+
+<!--bootstrap modal window -->
+
+
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="addSanctionModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Sanctions</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Sanction">
+                <mat-option value="1">Medical</mat-option>
+                <mat-option value="2">TA/DA</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 1-->
+
+        <!--start table row 2-->       
+        <div class="example-container mat-elevation-z8">
+          <div class="example-table-container">                      
+            <table class="table table-striped">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-1'>Sr #</th>
+                  <th class='col-5'>Party</th>
+                  <th class='col-2'>Amount</th>
+                  <th class='col-2 text-center'>Edit</th>
+                  <th class='col-2 text-center'>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class='col-1'>1</td> 
+                  <td class='col-5'>Ali Ahmed</td>
+                  <td class='col-2'>500</td>
+                  <td class='col-2'>
+                    <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                  </td>
+                  <td class='col-2 text-center'>
+                    <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                  </td>
+                </tr>
+                
+                <tr class='d-flex'>
+                  <td class='col-1'>2</td> 
+                  <td class='col-5'>Waqar Ali</td>
+                  <td class='col-2'>350</td>
+                  <td class='col-2'>
+                    <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                  </td>
+                  <td class='col-2 text-center'>
+                    <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                  </td>
+                </tr>
+
+                <tr class='d-flex'>
+                  <td class='col-10'></td> 
+                  <td class='col-2 text-center'>
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row 2-->
+
+        <br/>
+        
+        <!--start row 3-->
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary"> Save </button>
+          </div>
+        </div>
+          <!-- end row 3-->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+
+
+<!-- Start Modal Window to delete leave rule -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+          <br>
+          <div class="hidden" ngDefaultControl></div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <h2>Delete Entry</h2>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+              </mat-form-field>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+            </div>
+          </div>
+          <br/>
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+  <!-- End Modal Window to delete leave rule -->

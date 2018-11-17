@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import {HttpModule} from '@angular/http';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +16,13 @@ import { JobprofileComponent } from './components/jobprofile/jobprofile.componen
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { PostComponent } from './components/post/post.component';
 import { RecruitmentappComponent } from './components/recruitmentapp/recruitmentapp.component';
+import { TestComponent } from './components/test/test.component';
+import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
+import { SkillstandardComponent } from './components/skillstandard/skillstandard.component';
+import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
+import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
+import { TrainingrequirementsComponent } from './components/trainingrequirements/trainingrequirements.component';
+import { YearcalendarComponent } from './components/yearcalendar/yearcalendar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +31,14 @@ import { RecruitmentappComponent } from './components/recruitmentapp/recruitment
     JobprofileComponent,
     PostComponent,
     RecruitmentComponent,
-    RecruitmentappComponent
+    RecruitmentappComponent,
+    TestComponent,
+    EmpolyeeprofileComponent,
+    SkillstandardComponent,
+    SanctionruleComponent,
+    ApprovingauthorityComponent,
+    TrainingrequirementsComponent,
+    YearcalendarComponent
 
   ],
   imports: [
@@ -34,7 +50,8 @@ import { RecruitmentappComponent } from './components/recruitmentapp/recruitment
     ChartModule,
     ReactiveFormsModule,
     PNPrimeModule,
-    HttpModule
+    HttpModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
