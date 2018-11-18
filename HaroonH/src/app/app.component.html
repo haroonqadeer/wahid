@@ -4,24 +4,65 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <!-- Side Menu Title -->
         <div class="row">
-            <div class="col-md-4">
-                <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome borderbottom"  mat-flat-button>
-                    <span class="fa fa-home"></span>
-                </button>
+            <div class="col-md-12 bg-light-green">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome rightBorderWhite"  mat-flat-button>
+                            <span class="fa fa-home"></span>
+                        </button>
+                    </div>
+                    <div class="col-md-8">
+                        <p style="margin-top: 1.0em !important">HRMIS - Menu</p>
+                    </div>
+                </div>                
             </div>        
         </div><!-- end Side Menu Title -->
-        <br><br>
+        <br>
 
-        <!-- Menue Title -->
+        <!-- Circle Log -->
         <div class="row">
-            <div class="col-md-12">
-                <h5 class="sideMenuTitle bg-indigo text-center">Menu</h5>
+            <div class="col-md-12 mx-auto">                
+                <img class="mx-auto d-block" src="../assets/images/logo.png" alt="" width="100em" height="100em">                
             </div>
-        </div><!-- end menu title -->
-
+        </div><!--end Circle Logo -->        
+        <br>
         <!-- UMIS Menu -->
         <div class="row">
-            <p-slideMenu [model]="items" [viewportHeight]="250"></p-slideMenu>
+            <div class="col-md-12">
+                <ul class="nav">
+                    <li routerLinkActive='active'>
+                        <a routerLink='recruitment'>
+                            <span class="fa fa-home"></span>
+                            <span class="text">home</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='job'>
+                            <span class="icon-user"></span>
+                            <span class="text">about</span>
+                        </a>
+                    </li>
+                    <li routerLink='post' routerLinkActive='active'>
+                        <a routerLink='post'>
+                            <span class="icon-headphones"></span>
+                            <span class="text">Audio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon-picture"></span>
+                            <span class="text">Portfolio</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon-facetime-video"></span><span class="text">video</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- <p-slideMenu [model]="items" [viewportHeight]="250"></p-slideMenu> -->
         
             <!-- <button mat-button routerLink="budget" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg topBorderOnBlackBg"> &nbsp;&nbsp;Budgeting</button>
             <button mat-button routerLink="coa" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;G/L Accounts</button>
@@ -61,7 +102,7 @@
                         <span class="fa fa-sign-out"></span>
                         <span>  Log out</span>
                     </button>
-                    <button mat-menu-item class="noneOutLine">
+                    <button mat-menu-item class="noneOutLine" (click)=showBottom()>
                         <!-- <mat-icon>voicemail</mat-icon> -->
                         <span class="fa fa-user"></span>
                         <span>  Haroonqd</span>

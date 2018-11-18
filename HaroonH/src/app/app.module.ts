@@ -18,6 +18,9 @@ import { LeaverulesComponent } from './components/leaverules/leaverules.componen
 import { PerformanceStandComponent } from './components/performance-stand/performance-stand.component';
 import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
+import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+
+
 
 @NgModule({
   declarations: [
@@ -30,8 +33,8 @@ import { LeavetypeComponent } from './components/leavetype/leavetype.component';
     LeaverulesComponent,
     PerformanceStandComponent,
     PerformanceEvaComponent,
-    LeavetypeComponent
-
+    LeavetypeComponent,
+    ErpBottomSheetComponent    
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { LeavetypeComponent } from './components/leavetype/leavetype.component';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErpBottomSheetComponent],  
 })
 export class AppModule { }

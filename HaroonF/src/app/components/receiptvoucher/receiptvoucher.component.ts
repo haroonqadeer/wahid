@@ -39,24 +39,9 @@ export class ReceiptvoucherComponent implements OnInit {
   cmbParty : Party;
   selectedAccount : Account;
   accountTitle='';
-  query='';
-  receiptId='';
-  txtdPassword='';
-  txtdPin='';
-  voucherDate='';
-  documents='';
-  cmbDoc='';
-  selectedBank='';
-  selectedCurrency='';
-  txtAmount=0;
-  selectedParty='';
-  txtDescription='';
-  txtDebit='';
-  txtCredit='';
-  txtBalance='';
-  item='';
 
   cmbDept:Department;
+  
 
   //use in  Department combobox
   departments: Department[] = [
@@ -136,8 +121,4 @@ export class ReceiptvoucherComponent implements OnInit {
     this.txtpCredit=0;
     this.txtpDebit=0;
   }
-  edit(item){
-    item;
-  }
-  NTax(){}
 }
