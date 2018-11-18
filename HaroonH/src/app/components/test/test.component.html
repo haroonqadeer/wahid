@@ -1,0 +1,487 @@
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Post
+</div>
+
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div>
+<br>  
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Test</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+
+<div class="container">
+  <!--start table row-->       
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">                      
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-2'>Sr #</th>
+            <th class='col-4'>Subject</th>
+            <th class='col-3'>Num of Questions</th>
+            <th class='col-3'>Job Profile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-2'>1</td> 
+            <td class='col-4'>English</td>             
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#questionsModal">70</a></td>
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#jobProfileModal">2</a></td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-2'>2</td> 
+            <td class='col-4'>C++</td>             
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#questionsModal">55</a></td>
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#jobProfileModal">3</a></td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-2'>3</td> 
+            <td class='col-4'>Visual Code</td>             
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#questionsModal">45</a></td>
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#jobProfileModal">4</a></td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-2'>4</td> 
+            <td class='col-4'>Marketing</td>             
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#questionsModal">100</a></td>
+            <td class='col-3'><a href="" data-toggle="modal" data-target="#jobProfileModal">2</a></td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-2'></td> 
+            <td class='col-4'></td>             
+            <td class='col-3'></td>
+            <td class='col-3'>
+              <span class="fa fa-plus pointerCursor" data-toggle="modal" data-target="#addSubject"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+</div>
+<!--end container -->
+
+
+<br/>
+
+<!--bootstrap modal window -->
+
+
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="questionsModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Number of Questions</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#addQuestionsModal">Add New</button>
+          </div>
+        </div>
+        <!--end row 1-->
+
+        <br/>
+
+        <!--Start row 2-->
+        <div class="row">
+          <div class="col-md-12">
+            <!--start table row-->       
+            <div class="example-container mat-elevation-z8">
+              <div class="example-table-container">                      
+                <table class="table table-striped">
+                  <thead>
+                    <tr class='d-flex'>
+                      <th class='col-1'>Sr #</th>
+                      <th class='col-6'>Question</th>
+                      <th class='col-1'>Marks</th>
+                      <th class='col-1'>Options</th>
+                      <th class='col-1'>Answer</th>
+                      <th class='col-1'>Edit</th>
+                      <th class='col-1'>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                    <tr class='d-flex'>
+                      <td class='col-1'>1</td> 
+                      <td class='col-6'>DOM stand for</td>             
+                      <td class='col-1'>1</td>
+                      <td class='col-1'>4</td>
+                      <td class='col-1'>3</td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#addQuestionsModal"></span>
+                      </td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                      </td>
+                    </tr>
+
+                    <tr class='d-flex'>
+                      <td class='col-1'>2</td> 
+                      <td class='col-6'>OOPS stand for</td>             
+                      <td class='col-1'>1</td>
+                      <td class='col-1'>4</td>
+                      <td class='col-1'>1</td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#addQuestionsModal"></span>
+                      </td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!--end table row-->
+          </div>
+        </div>
+        <!--end row 2-->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+<!-- Start edit subject modal -->
+<div class="modal fade" id="jobProfileModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Job Profile</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+  
+        <!--start Modal body -->
+        <div class="modal-body"> 
+          <!--start row 1  -->
+          <div class="row">
+            <div class="col-md-3">
+              <br/>Subject:
+            </div>
+            <div class="col-md-3">
+              <br/>English
+            </div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <mat-select placeholder="Job Profile">
+                  <mat-option value="1">Accountant</mat-option>
+                  <mat-option value="2">AD</mat-option>
+                  <mat-option value="3">DD</mat-option>
+                  <mat-option value="4">Director</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <!--end row 1-->
+
+          <br/>
+          
+          <!--start row 2  -->
+          <div class="row">
+            <div class="col-md-12">
+                <button mat-raised-button color="primary">Save</button>
+            </div>
+          </div>
+          <!--end row 2-->
+          
+          <hr/>
+
+          <h4>Saved Data</h4>
+          
+          <!--start table row-->       
+          <div class="example-container mat-elevation-z8">
+            <div class="example-table-container">                      
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1'>Sr #</th>
+                    <th class='col-9'>Job Profile</th>
+                    <th class='col-2 text-center'>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-1'>1</td>             
+                    <td class='col-9'>Accountant</td>
+                    <td class='col-2 text-center'><span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span></td>
+                  </tr>
+
+                  <tr class='d-flex'>
+                    <td class='col-1'>2</td>             
+                    <td class='col-9'>AD</td>
+                    <td class='col-2 text-center'><span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span></td>
+                  </tr>
+
+                  <tr class='d-flex'>
+                    <td class='col-1'>3</td>             
+                    <td class='col-9'>DD</td>
+                    <td class='col-2 text-center'><span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span></td>
+                  </tr>
+
+                  <tr class='d-flex'>
+                    <td class='col-1'>4</td>             
+                    <td class='col-9'>Director</td>
+                    <td class='col-2 text-center'><span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->    
+          <br/>   
+        </div>
+        <!--end Modal body -->
+  
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+  
+      </div>
+    </div>
+</div>
+<!-- End edit subject modal -->
+
+<!-- Start Add Questions  modal -->
+<div class="modal fade" id="addQuestionsModal">
+  <div class="modal-dialog shadow-md-dark modal-md">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Questions</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body"> 
+        <!--start row 1  -->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput placeholder="Question">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end row 1-->
+
+        <!--start row 2  -->
+        <div class="row">
+          <!--option textbox -->
+          <div class="col-md-6">
+            <!-- Test box opt 1-->
+            <mat-form-field>
+              <input matInput placeholder="Option 1">
+            </mat-form-field>
+
+            <br/>
+
+            <!-- Test box opt 2-->
+            <mat-form-field>
+              <input matInput placeholder="Option 2">
+            </mat-form-field>
+            
+            <br/>
+
+            <!-- Test box opt 3-->
+            <mat-form-field>
+              <input matInput placeholder="Option 3">
+            </mat-form-field>
+
+            <br/>
+
+            <!-- Test box opt 4-->
+            <mat-form-field>
+              <input matInput placeholder="Option 4">
+            </mat-form-field>
+
+          </div>
+
+          <!-- option buttons -->
+          <div class="col-md-6">
+            <mat-radio-group class="example-radio-group">
+              <mat-radio-button class="example-radio-button" value="1">Option 1</mat-radio-button>
+              <mat-radio-button class="example-radio-button" value="2">Option 2</mat-radio-button>
+              <mat-radio-button class="example-radio-button" value="3">Option 3</mat-radio-button>
+              <mat-radio-button class="example-radio-button" value="4">Option 4</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <!--end row 2-->
+
+        <!--start row 3-->
+        <div class="row">
+          <div class="col-md-12">
+            <button mat-raised-button color="primary">Save</button>
+          </div>
+        </div>
+        <!--end row 3-->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Add Questions modal -->
+
+<!-- Start add subject modal -->
+<div class="modal fade" id="addSubject">
+  <div class="modal-dialog shadow-md-dark modal-md">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Subject</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body"> 
+        <!--start row #1-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-select placeholder="Subject">
+                <mat-option value="English">English</mat-option>
+                <mat-option value="C++">C++</mat-option>
+                <mat-option value="Visual Code">Visual Code</mat-option>
+                <mat-option value="Marketing">Marketing</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <button mat-raised-button color="primary">Add</button>
+          </div>
+        </div>
+        <!--end row #1-->
+
+        <hr/>
+        <h4>Save new subject</h4>
+
+        <!--start row #2-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput placeholder="Subject">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <button mat-raised-button color="primary">Save</button>
+          </div>
+        </div>
+        <!--end row #2-->
+        
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End add subject modal -->
+
+<!-- Start Modal Window to delete leave rule -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+          <br>
+          <div class="hidden" ngDefaultControl></div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <h2>Delete</h2>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+              </mat-form-field>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+            </div>
+          </div>
+          <br/>
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+  <!-- End Modal Window to delete leave rule -->

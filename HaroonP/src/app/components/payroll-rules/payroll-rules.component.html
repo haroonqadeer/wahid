@@ -1,0 +1,861 @@
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Created
+</div>
+
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div>
+  
+<!--heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Payroll Rules</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--container row-->
+<div class="container bgWhite allBorder">
+  <mat-tab-group>
+    <mat-tab label="BPS Rules"> 
+      <br/>
+      <!--1st row-->
+      <div class="row">
+        <div class="col-md-2">
+          <mat-form-field class="fullwidth">
+            <input matInput [matDatepicker]="picker" placeholder="Select Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field class="fullwidth">
+            <mat-select placeholder="Select Type Allowance or Deduction" [(ngModel)]="cmbType">
+              <mat-option *ngFor="let type of types" [value]="type.tId">
+                {{type.tName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field class="fullwidth">
+            <mat-select placeholder="Select" [(ngModel)]="cmbselect">
+              <mat-option *ngFor="let type of types" [value]="type.tId">
+                {{type.tName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--end 1st row-->
+      <br/>
+      <!--2nd row-->
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="fullwidth">
+            <mat-select placeholder="Select Saved Date" [(ngModel)]="cmbDate">
+              <mat-option *ngFor="let date of dates" [value]="date.dId">
+                {{date.dName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--end 2nd row-->
+      <br/>
+      <!--table row-->
+      <div class="row">
+        <table class="table table-striped bottomBorder">
+          <thead>
+            <tr class='d-flex'>
+              <th class='col-2 text-center'>BPS</th>
+              <th class='col-2 text-center'>Rule Type</th>
+              <th class='col-2 text-center'>Salary Type</th>
+              <th class='col-3 text-center'>Fix Amount</th>
+              <th class='col-3 text-center'>Percent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>1</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>2</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>3</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>4</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>5</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>6</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>7</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>8</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>9</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>10</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>11</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>12</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>13</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>14</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>15</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>16</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>17</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>18</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>19</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>20</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr class='d-flex'>
+              <td class='col-2 text-center'>21</td> 
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>   
+              <td class='col-2 text-center'>
+                <mat-form-field class="fullwidth">
+                  <mat-select  [(ngModel)]="cmbType">
+                    <mat-option *ngFor="let type of types" [value]="type.tId">
+                      {{type.tName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>             
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Fix Amount">
+                </mat-form-field>
+              </td>
+              <td class='col-3 text-center'>
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Percent">
+                </mat-form-field>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--end table row-->
+      <br/>
+      <!--button tag-->
+      <button mat-raised-button color="primary">Save</button>
+      <br/>
+    </mat-tab>
+    <mat-tab label="Range Rules">
+      <br/>
+      <!--1st row-->
+      <div class="row">
+        <div class="col-md-2">
+          <mat-form-field class="fullwidth">
+            <input matInput [matDatepicker]="picker1" placeholder="Select Date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field class="fullwidth">
+            <mat-select placeholder="Select Type Allowance or Deduction" [(ngModel)]="cmbType">
+              <mat-option *ngFor="let type of types" [value]="type.tId">
+                {{type.tName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-5">
+          <mat-form-field class="fullwidth">
+            <mat-select placeholder="Select" [(ngModel)]="cmbselect">
+              <mat-option *ngFor="let type of types" [value]="type.tId">
+                {{type.tName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--end 1st row-->
+      <br/>
+      <!--2nd row-->
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="fullwidth">
+            <mat-select placeholder="Select Saved Date" [(ngModel)]="cmbDate">
+              <mat-option *ngFor="let date of dates" [value]="date.dId">
+                {{date.dName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--end 2nd row-->
+      <br/>
+      
+      <!--table row-->
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped bottomBorder">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>#</th>
+                <th class='col-2 text-center'>Basic Pay From</th>
+                <th class='col-2 text-center'>Basic Pay To</th>
+                <th class='col-1 text-center'>Rule Type</th>
+                <th class='col-1 text-center'>Salary Type</th>
+                <th class='col-2 text-center'>Fix Amount</th>
+                <th class='col-2 text-center'>Percent</th>
+                <th class='col-1 text-center'>Add Row</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>1</td> 
+                <td class='col-2 text-center'>
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Basic Pay From">
+                  </mat-form-field>
+                </td>
+                <td class='col-2 text-center'>
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Basic Pay To">
+                  </mat-form-field>
+                </td>
+                <td class='col-1 text-center'>
+                  <mat-form-field class="fullwidth">
+                    <mat-select  [(ngModel)]="cmbType">
+                      <mat-option *ngFor="let type of types" [value]="type.tId">
+                        {{type.tName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>   
+                <td class='col-1 text-center'>
+                  <mat-form-field class="fullwidth">
+                    <mat-select  [(ngModel)]="cmbType">
+                      <mat-option *ngFor="let type of types" [value]="type.tId">
+                        {{type.tName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>             
+                <td class='col-2 text-center'>
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Fix Amount">
+                  </mat-form-field>
+                </td>
+                <td class='col-2 text-center'>
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Percent">
+                  </mat-form-field>
+                </td>
+                <td class="col-1 text-center">
+                  <span class="fa fa-plus"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--end table row-->
+      <br/>
+      <!--button tag-->
+      <button mat-raised-button color="primary">Save</button>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<!--end container row-->

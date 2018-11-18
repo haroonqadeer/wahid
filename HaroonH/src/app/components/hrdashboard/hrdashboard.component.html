@@ -1,0 +1,166 @@
+<!--heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">HR Dashboard</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--container row-->
+<div class="container">
+  <!--box row-->
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-indigo hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-users"></i>
+        </div>
+        <div class="content">
+          <div class="text">Employees</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">115</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-orange hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-line-chart"></i>
+        </div>
+        <div class="content">
+          <div class="text">Hiring</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">25</div>                                                                
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-cyan hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-plane"></i>
+        </div>
+        <div class="content">
+          <div class="text">Leaving</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">13</div>                                                                
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-light-green hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-gears"></i>
+        </div>
+        <div class="content">
+          <div class="text">Job Profile</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">56</div>                                                                
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end box row-->
+  <br/>
+  <!--chart row-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class=" shadow-md" [chart]="Type_Bar_Chart" style=" height: 200px;width:100%;"></div>
+    </div>
+  </div>
+  <!--end chart row-->
+  <br/>
+  <!--chart and bar row-->
+  <div class="row">
+    <div class="col-md-6">
+      <div class=" shadow-md" [chart]="Column_Chart" style=" height: 100%;width:100%;"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <div class=" shadow-md" [chart]="Gender_Bar_Chart" style=" height: 200px;width:100%;"></div>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-12">
+          <div class=" shadow-md" [chart]="Vacancy_Bar_Chart" style=" height: 200px;width:100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end chart and bar row-->
+  <br/>
+  <!--2nd chart and row-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class=" shadow-md" [chart]="Leave_Column_Chart" style=" height: 250px;width:100%;"></div>
+    </div>
+  </div>
+  <!--end 2nd chart row-->
+  <br/>
+  <!--progress bar row-->
+  <div class="row text-center">
+    <div class="col-md-4 shadow-md bgWhite">
+      <h4>Present</h4>
+      <circle-progress
+        [percent]="72"
+        [radius]="50"
+        [space]="-12"
+        [outerStrokeWidth]="12"
+        [innerStrokeWidth]="-12"
+        [outerStrokeColor]="'#32CD32'"
+        [innerStrokeColor]="'#e7e8ea'"
+        [animation]="true"
+        [animationDuration]="300"
+        [outerStrokeLinecap] = "'square'"
+        [clockwise] = "false"
+        [showSubtitle]= "false"
+      ></circle-progress>
+    </div>
+    <div class="col-md-4 shadow-md bgWhite">
+      <h4>Leave</h4>
+      <circle-progress
+        [percent]="45"
+        [radius]="50"
+        [space]="-12"
+        [outerStrokeWidth]="12"
+        [innerStrokeWidth]="-12"
+        [outerStrokeColor]="'#4882c2'"
+        [innerStrokeColor]="'#e7e8ea'"
+        [animation]="true"
+        [animationDuration]="300"
+        [outerStrokeLinecap] = "'square'"
+        [clockwise] = "false"
+        [showSubtitle]= "false"
+      ></circle-progress>
+    </div>
+    <div class="col-md-4 shadow-md bgWhite">
+      <h4>Absent</h4>
+      <circle-progress
+        [percent]="20"
+        [radius]="50"
+        [space]="-12"
+        [outerStrokeWidth]="12"
+        [innerStrokeWidth]="-12"
+        [outerStrokeColor]="'#FF6347'"
+        [innerStrokeColor]="'#e7e8ea'"
+        [animation]="true"
+        [animationDuration]="300"
+        [outerStrokeLinecap] = "'square'"
+        [clockwise] = "false"
+        [showSubtitle]= "false"
+      ></circle-progress>
+    </div>
+  </div>
+  <!--end progress bar row-->
+  <br/>
+  <!--3rd chart row-->
+  <div class="row">
+    <div class="col-md-6">
+      <div class=" shadow-md" [chart]="Off_Column_Chart" style=" height: 250px;width:100%;"></div>
+    </div>
+    <div class="col-md-6">
+      <div class=" shadow-md" [chart]="Dept_Column_Chart" style=" height: 250px;width:100%;"></div>
+    </div>
+  </div>
+  <!--end 3rd chart row-->
+</div>
+<!--end container row-->
+<br/>

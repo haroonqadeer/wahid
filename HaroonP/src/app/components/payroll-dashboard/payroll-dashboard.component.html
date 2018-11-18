@@ -1,0 +1,229 @@
+<!--heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Payroll Dashboard</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--1st row-->
+<div class="row">
+  <!--progress bar column-->
+  <div class="col-md-2">
+    <br/><br/><br/><br/><br/>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <circle-progress
+          [percent]="85"
+          [radius]="65"
+          [space]="-12"
+          [outerStrokeWidth]="12"
+          [innerStrokeWidth]="-12"
+          [outerStrokeColor]="'#4882c2'"
+          [innerStrokeColor]="'#e7e8ea'"
+          [animation]="true"
+          [animationDuration]="300"
+          [outerStrokeLinecap] = "'square'"
+          [clockwise] = "false"
+          [showSubtitle]= "false"
+        ></circle-progress>
+        <h3>154</h3>
+        <h4>Employees</h4>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <circle-progress
+          [percent]="65"
+          [radius]="65"
+          [space]="-12"
+          [outerStrokeWidth]="12"
+          [innerStrokeWidth]="-12"
+          [outerStrokeColor]="'#32CD32'"
+          [innerStrokeColor]="'#e7e8ea'"
+          [animation]="true"
+          [animationDuration]="300"
+          [outerStrokeLinecap] = "'square'"
+          [clockwise] = "false"
+          [showSubtitle]= "false"
+        ></circle-progress>
+        <h3>15</h3>
+        <h4>Officers</h4>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <circle-progress
+          [percent]="72"
+          [radius]="65"
+          [space]="-12"
+          [outerStrokeWidth]="12"
+          [innerStrokeWidth]="-12"
+          [outerStrokeColor]="'#FF6347'"
+          [innerStrokeColor]="'#e7e8ea'"
+          [animation]="true"
+          [animationDuration]="300"
+          [outerStrokeLinecap] = "'square'"
+          [clockwise] = "false"
+          [showSubtitle]= "false"
+        ></circle-progress>
+        <h3>9</h3>
+        <h4>Departments</h4>
+      </div>
+    </div>
+  </div>
+  <!--end progress bar column-->
+
+  <!--chart and combo column-->
+  <div class="col-md-9">
+    <!--combo box row-->
+    <div class="row bgWhite allBorder">
+      <div class="col-md-6 text-right">
+        <mat-form-field>
+          <mat-select  [(ngModel)]="cmbYear" placeholder="Year">
+            <mat-option *ngFor="let year of years" [value]="year.yId">
+              {{year.yName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field>
+          <mat-select  [(ngModel)]="cmbMonth" placeholder="Month">
+            <mat-option *ngFor="let month of months" [value]="month.mId">
+              {{month.mName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <!--end combo box row-->
+    <br/>
+    <!--chart row-->
+    <div class="row">
+      <div class="col-md-6">
+        <!-- pie-chart -->
+        <div class="pie_chart shadow-md">
+          <div [chart]="Pie_Chart"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <!--Line chart-->
+        <div class="line_chart shadow-md">
+          <div [chart]="Line_chart"></div>
+        </div>
+      </div>
+    </div>
+    <!--end chart row-->
+    <br/>
+    <!--chart and table row-->
+    <div class="row">
+      <!--chart column-->
+      <div class="col-md-6">
+        <div class=" shadow-md" [chart]="Column_Chart" style=" height: 100%;width:100%;"></div>
+      </div>
+      <!--end chart column-->
+      <!--table column-->
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 shadow-md">
+            <table class="table table-striped bottomBorder">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-1 text-center'>Sr #</th>
+                  <th class='col-7 text-center'>Description</th>
+                  <th class='col-4 text-center'>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class='col-1 text-center'>1</td> 
+                  <td class='col-7 text-center'>House Building</td>             
+                  <td class='col-4 text-center'>200,000</td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-1 text-center'>2</td> 
+                  <td class='col-7 text-center'>Car Advance</td>             
+                  <td class='col-4 text-center'>50,000</td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-1 text-center'>3</td> 
+                  <td class='col-7 text-center'>Salary</td>             
+                  <td class='col-4 text-center'>20,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--end table column-->
+    </div>
+    <!--end chart and table row-->
+    <br/>
+    <!--box and chart-->
+    <div class="row">
+      <div class="col-md-9">
+         <!--chart row-->
+         <div class="row">
+         <div class="col-md-12">
+           <!--Line chart-->
+           <div class="line_chart shadow-md">
+             <div [chart]="Sal_Line_chart" style=" height: 300px;width:100%;"></div>
+           </div>
+         </div>
+       </div>
+       <!--end chart row-->
+      </div>
+      <!-- box column -->
+      <div class="col-md-3">
+        <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+             <div class="info-box bg-orange hover-expand-effect">
+               <div class="icon">
+                 <i class="fa fa-line-chart"></i>
+               </div>
+               <div class="content">
+                 <div class="text">Hiring Admin</div>
+                 <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">15</div>                                                                
+               </div>
+             </div>
+           </div>
+        </div>
+        <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+             <div class="info-box bg-indigo hover-expand-effect">
+               <div class="icon">
+                 <i class="fa fa-gavel"></i>
+               </div>
+               <div class="content">
+                 <div class="text">House Rent</div>
+                 <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">25</div>
+               </div>
+             </div>
+           </div>
+        </div>
+        <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+             <div class="info-box bg-pink hover-expand-effect">
+               <div class="icon">
+                 <i class="fa fa-sign-in"></i>
+               </div>
+               <div class="content">
+                 <div class="text">Hiring</div>
+                 <div class="number count-to"  data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">500</div>
+               </div>
+             </div>
+           </div>
+        </div>
+      </div>
+      <!-- end box row -->
+    </div>
+    <!--end box and chart-->
+  </div>
+  <!--end chart and combo column-->
+</div>
+<!--end 1st row-->
+<br/>

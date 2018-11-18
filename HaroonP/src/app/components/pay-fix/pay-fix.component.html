@@ -1,0 +1,79 @@
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Created
+</div>
+
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div>
+  
+<!--heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Pay Fixation</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+ <!--container row-->
+ <div class="container bgWhite allBorder">
+  <!--1st row--> 
+  <div class="row">
+    <div class="col-md-6 text-right">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Fixation Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 text-left">
+      <br/>
+      <button mat-raised-button color="primary">Fixations</button>
+    </div>
+  </div>
+  <!--end 1st row-->
+  <br/>
+  <!--2nd row-->
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="fullwidth">
+        <mat-select placeholder="Employee Short Profile" [(ngModel)]="cmbEmployee">
+          <mat-option *ngFor="let emp of employees" [value]="emp.eId">
+            {{emp.eName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <!--end 2nd row-->
+  <br/>
+  <!--3rd row-->
+  <div class="row">
+    <div class="col-md-5 text-right">
+      <button mat-raised-button color="warn">
+        <span class="fa fa-plus"></span>
+      </button>
+    </div>
+    <div class="col-md-2 bottomBorder text-center">
+      
+    </div>
+    <div class="col-md-5 text-left">
+      <button mat-raised-button>
+        <span class="fa fa-minus"></span>
+      </button>
+    </div>
+  </div>
+  <!--end 3rd row-->
+  <br/>
+  <!--4th row-->
+  <div class="row">
+    <div class="col-md-5">
+      <h5 class="text-danger">Allowance</h5>
+    </div>
+    <div class="col-md-2 text-center">
+      <span class="fa fa-phone"></span>
+    </div>
+  </div>
+  <!--end 4th row-->
+  <br/>
+ </div>
+ <!--end container row--> 

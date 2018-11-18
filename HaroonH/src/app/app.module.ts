@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import {HttpModule} from '@angular/http';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,12 +16,22 @@ import { JobprofileComponent } from './components/jobprofile/jobprofile.componen
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { PostComponent } from './components/post/post.component';
 import { RecruitmentappComponent } from './components/recruitmentapp/recruitmentapp.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
+import { TestComponent } from './components/test/test.component';
+import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
+import { SkillstandardComponent } from './components/skillstandard/skillstandard.component';
+import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
+import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
+import { TrainingrequirementsComponent } from './components/trainingrequirements/trainingrequirements.component';
+import { YearcalendarComponent } from './components/yearcalendar/yearcalendar.component';
+
 import { LeaverulesComponent } from './components/leaverules/leaverules.component';
 import { PerformanceStandComponent } from './components/performance-stand/performance-stand.component';
 import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
-
+import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 
 
 @NgModule({
@@ -30,11 +42,19 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
     PostComponent,
     RecruitmentComponent,
     RecruitmentappComponent,
+    TestComponent,
+    EmpolyeeprofileComponent,
+    SkillstandardComponent,
+    SanctionruleComponent,
+    ApprovingauthorityComponent,
+    TrainingrequirementsComponent,
+    YearcalendarComponent,
     LeaverulesComponent,
     PerformanceStandComponent,
     PerformanceEvaComponent,
     LeavetypeComponent,
-    ErpBottomSheetComponent    
+    ErpBottomSheetComponent,
+    HRDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +65,9 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
     ChartModule,
     ReactiveFormsModule,
     PNPrimeModule,
-    HttpModule
+    HttpModule,
+    MatRadioModule,
+    NgCircleProgressModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent],
