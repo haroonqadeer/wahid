@@ -5,7 +5,7 @@
 <div id="alert_msg_warn" *ngIf="edited1">
   Action Successfully Deleted
 </div>
-  
+<br/> 
 <!--heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -191,7 +191,7 @@
         <!--2nd row-->
         <div class="row">
           <div class="col-md-12">
-            <p-dropdown class="fullwidth" [options]="officers" placeholder="Officers" optionLabel="oName" ></p-dropdown>
+            <p-dropdown class="fullwidth" [options]="officers" placeholder="Officers" optionLabel="oName" [style]="{'width':'100%'}"></p-dropdown>
           </div>
         </div>
         <!--end 2nd row-->
@@ -737,7 +737,7 @@
         <div class="row">
           <div class="col-md-6">
             <br/>
-            <p-dropdown class="fullwidth" [options]="status" [(ngModel)]="cmbStatus" placeholder="Status" optionLabel="sName" ></p-dropdown>
+            <p-dropdown class="fullwidth" [options]="status" [(ngModel)]="cmbStatus" placeholder="Status" optionLabel="sName" [style]="{'width':'100%'}"></p-dropdown>
           </div>
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
@@ -759,7 +759,7 @@
         <br/>
         <div class="row">
           <div class="col-md-12 text-right">
-            <button mat-raised-button color="primary" data-dismiss="modal" (click)="save()">Save</button>
+            <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
           </div>
         </div>
       </div>

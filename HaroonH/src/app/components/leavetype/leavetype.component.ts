@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeavetypeComponent implements OnInit {
 
+  edited = false;
+  edited1 = false;
+
+  txtdPassword = '';
+  txtdPin = '';
   constructor() { }
 
   ngOnInit() {

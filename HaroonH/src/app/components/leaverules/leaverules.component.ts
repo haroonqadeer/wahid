@@ -8,6 +8,14 @@ import { SelectItem } from 'primeng/api';
 })
 export class LeaverulesComponent implements OnInit {
 
+  edited = false;
+  edited1 = false;
+
+  leaveId = '';
+  dtpApplied = '';
+  txtdPassword = '';
+  txtdPin = '';
+  
   selectedType: string[] = [];
   selectedProfile: string[] = [];
   selectedAllowance: string[] = [];

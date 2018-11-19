@@ -14,8 +14,6 @@ import { ReconciliationComponent } from './components/reconciliation/reconciliat
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
 import { BalancesheetComponent } from './components/balancesheet/balancesheet.component';
 import { IncomestatementComponent } from './components/incomestatement/incomestatement.component';
-import { PostComponent } from './components/post/post.component';
-import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 
 const routes: Routes = [
   {
@@ -73,14 +71,6 @@ const routes: Routes = [
   {
     path: 'incomeStatement',
     component: IncomestatementComponent
-  },
-  {
-    path: 'post',
-    component: PostComponent
-  },
-  {
-    path: 'recruitment',
-    component: RecruitmentComponent
   }
 ];
 

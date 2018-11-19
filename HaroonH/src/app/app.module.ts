@@ -21,7 +21,6 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { TestComponent } from './components/test/test.component';
 import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
 import { SkillstandardComponent } from './components/skillstandard/skillstandard.component';
-import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
 import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
 import { TrainingrequirementsComponent } from './components/trainingrequirements/trainingrequirements.component';
 import { YearcalendarComponent } from './components/yearcalendar/yearcalendar.component';
@@ -45,7 +44,6 @@ import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.compo
     TestComponent,
     EmpolyeeprofileComponent,
     SkillstandardComponent,
-    SanctionruleComponent,
     ApprovingauthorityComponent,
     TrainingrequirementsComponent,
     YearcalendarComponent,

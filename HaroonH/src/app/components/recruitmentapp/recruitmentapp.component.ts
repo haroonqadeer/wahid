@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecruitmentappComponent implements OnInit {
 
+  edited = false;
+  edited1 = false;
+
   constructor() { }
 
   ngOnInit() {

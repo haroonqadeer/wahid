@@ -12,7 +12,9 @@ export class EmpolyeeprofileComponent implements OnInit {
 
   cmbJobType: string[] = [];
   types: SelectItem[];
-
+  txtdPassword = '';
+  txtdPin = '';
+  
   constructor() { }
 
   ngOnInit() {

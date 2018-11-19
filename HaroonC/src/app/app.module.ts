@@ -10,12 +10,14 @@ import { ChartModule } from 'angular-highcharts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
+import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
-    CompanydashboardComponent,    
+    CompanydashboardComponent,
+    ErpBottomSheetComponent    
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { CompanydashboardComponent } from './components/companydashboard/company
     PNPrimeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErpBottomSheetComponent],  
 })
 export class AppModule { }
