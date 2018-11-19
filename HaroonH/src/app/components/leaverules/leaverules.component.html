@@ -5,7 +5,7 @@
 <div id="alert_msg_warn" *ngIf="edited1">
   Action Successfully Deleted
 </div>
-  
+<br/>
 <!--heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -130,7 +130,7 @@
           <br>
           <div class="row">
             <div class="col-md-6">
-              <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+              <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
             </div>
           </div>
           <br/>
@@ -259,18 +259,18 @@
             <p-calendar [(ngModel)]="dtpApplied" placeholder="Date Applied" [showIcon]="true"></p-calendar>
           </div>
           <div class="col-md-6">
-            <p-dropdown [options]="types" [(ngModel)]="selectedType" placeholder="Leave Type" optionLabel="label" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="types" [(ngModel)]="selectedType" placeholder="Leave Type" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
         </div>
         <!--end 1st row-->
         <br/>
         <!--2nd row-->
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-6 text-right">
             <b>Job Profile:</b>
           </div>
           <div class="col-md-6">
-            <p-multiSelect [options]="profiles" [(ngModel)]="selectedProfile" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+            <p-multiSelect [options]="profiles" [(ngModel)]="selectedProfile" [panelStyle]="{minWidth:'12em'}" [style]="{'width':'100%'}"></p-multiSelect>
           </div>
         </div>
         <!--end 2nd row-->
@@ -333,7 +333,7 @@
                   <b>Allowance (per day): </b>
                 </div>
                 <div class="col-md-4 text-right">
-                  <p-multiSelect [options]="allowances" [(ngModel)]="selectedAllowance" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                  <p-multiSelect [options]="allowances" [(ngModel)]="selectedAllowance" [panelStyle]="{minWidth:'12em'}" [style]="{'width':'100%'}"></p-multiSelect>
                 </div>
                 <div class="col-md-3 text-right">
                   <h5>8%</h5>
@@ -347,7 +347,7 @@
                   <b>Deducion (per day): </b>
                 </div>
                 <div class="col-md-4 text-right">
-                  <p-multiSelect [options]="allowances" [(ngModel)]="selectedDeduction" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                  <p-multiSelect [options]="allowances" [(ngModel)]="selectedDeduction" [panelStyle]="{minWidth:'12em'}" [style]="{'width':'100%'}"></p-multiSelect>
                 </div>
                 <div class="col-md-3 text-right">
                   <h5>7%</h5>

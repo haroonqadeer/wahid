@@ -12,6 +12,11 @@ declare var $ :any;
 })
 export class PostComponent implements OnInit {
 
+  edited = false;
+  edited1 = false;
+
+  voucherDate = '';
+  
   //ngprime organization chart 
   data1: TreeNode[];
 

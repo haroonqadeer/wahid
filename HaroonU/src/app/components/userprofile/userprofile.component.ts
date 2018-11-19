@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import { zoomIn, zoomOut } from 'ng-animate';
  
 //use in combobox
 export interface Employee {
@@ -26,11 +25,7 @@ declare var $: any;
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
-  styleUrls: ['./userprofile.component.scss'],
-  animations: [
-    trigger('bounce', [transition('* => *', useAnimation(zoomIn))]),
-    trigger('zoom', [transition('* => *', useAnimation(zoomOut))])
-  ],
+  styleUrls: ['./userprofile.component.scss']
 })
 export class UserprofileComponent implements OnInit {
   

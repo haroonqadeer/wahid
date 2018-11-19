@@ -5,7 +5,7 @@
 <div id="alert_msg_warn" *ngIf="edited1">
     Action Successfully Deleted
 </div>
-    
+<br/>    
 <!--heading row-->
 <div class="row">
     <div class="col-md-12 text-center">
@@ -212,10 +212,10 @@
               <!--start 1st row-->
               <div class="row">
                 <div class="col-md-6">
-                  <p-dropdown [options]="offices" placeholder="Office" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="offices" placeholder="Office" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
                 <div class="col-md-6">
-                  <p-dropdown [options]="depts" placeholder="Department" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="depts" placeholder="Department" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
               </div>
               <!--end 1st row-->
@@ -223,10 +223,10 @@
               <!--start 2nd row-->
               <div class="row">
                 <div class="col-md-6">
-                  <p-dropdown [options]="sects" placeholder="Section" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="sects" placeholder="Section" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
                 <div class="col-md-6">
-                  <p-dropdown [options]="officers" placeholder="Officer" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="officers" placeholder="Officer" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
               </div>
               <!--end 2nd row-->
@@ -239,7 +239,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
-                  <p-dropdown [options]="scales" placeholder="Scale" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="scales" placeholder="Scale" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
               </div>
               <!--end 3rd row-->
@@ -247,7 +247,7 @@
               <!--start 4th row-->
               <div class="row">
                 <div class="col-md-6">
-                  <p-dropdown [options]="types" [(ngModel)]="cmbType" (ngModelChange)="onTypeChange($event)" formControlName="cmbType" placeholder="Type" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="types" [(ngModel)]="cmbType" (ngModelChange)="onTypeChange($event)" formControlName="cmbType" placeholder="Type" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
               </div>
               <!--end 4th row-->
@@ -290,7 +290,7 @@
               <!--start 1st row-->
               <div class="row">
                 <div class="col-md-6">
-                  <p-dropdown [options]="degrees" [(ngModel)]="cmbDegree" formControlName="cmbDegree" placeholder="Degree Title" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="degrees" [(ngModel)]="cmbDegree" formControlName="cmbDegree" placeholder="Degree Title" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
                 <div class="col-md-6">
                   <button mat-mini-fab color="primary" data-toggle="modal" data-target="#degreeModal"><span class="fa fa-plus"></span></button>
@@ -362,7 +362,7 @@
               <!--start 1st row-->
               <div class="row">
                 <div class="col-md-6">
-                  <p-dropdown [options]="certificates" [(ngModel)]="cmbCertificate" formControlName="cmbCertificate" placeholder="Certificate Title" optionLabel="label" [showClear]="true"></p-dropdown>
+                  <p-dropdown [options]="certificates" [(ngModel)]="cmbCertificate" formControlName="cmbCertificate" placeholder="Certificate Title" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                 </div>
                 <div class="col-md-6">
                   <button mat-mini-fab color="primary" data-toggle="modal" data-target="#certificateModal"><span class="fa fa-plus"></span></button>
@@ -517,7 +517,7 @@
                       </td>           
                       <td class='col-3'>
                         <br/>
-                        <p-dropdown [options]="roles" placeholder="ERP Role" optionLabel="label" [showClear]="true"></p-dropdown>
+                        <p-dropdown [options]="roles" placeholder="ERP Role" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
                       </td>             
                       <td class='col-2 text-center'>
                         <br/>
@@ -600,7 +600,7 @@
         <br>
         <div class="row">
           <div class="col-md-6">
-            <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+            <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
           </div>
         </div>
         <br/>
@@ -641,7 +641,7 @@
         </div><br>
         <div class="row">
           <div class="col-md-12">
-            <p-dropdown [options]="years" placeholder="Years" optionLabel="label" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="years" placeholder="Years" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
         </div>
         <br>
@@ -690,10 +690,10 @@
         <!--2nd row-->
         <div class="row">
           <div class="col-md-6">
-            <p-dropdown [options]="orgs" placeholder="Organization" optionLabel="label" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="orgs" placeholder="Organization" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
           <div class="col-md-6">
-            <p-dropdown [options]="times" placeholder="Time Period" optionLabel="label" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="times" placeholder="Time Period" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
         </div>
         <!--end 2nd row-->

@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Dropdown } from 'primeng/dropdown';
  
-
+//use in Currency combobox
+export interface Currency {
+  label: string;
+  value: string;
+}
+//use in Document combobox
+export interface Document {
+  docId: string;
+  docName: string;
+}
 //use in department combobox
 export interface Department {
   dId: string;
@@ -42,24 +51,34 @@ export class PaymentvoucherComponent implements OnInit {
   selectedAccount : Account;
   accountTitle='';
   query = '';
-  employeeId = '';
+  receiptId = '';
   txtdPassword = '';
   txtdPin = '';
   voucherDate = '';
-  documents = '';
   cmbDoc = '';
-  selectedBank = '';
-  selectedCurrency = '';
-  txtAmount=0;
-  selectedParty='';
-  txtDescription='';
-  txtDebit=0;
-  txtCredit=0;
-  txtBalance=0;
-  item='';
+  txtDescription = '';
+  txtDebit = '';
+  txtCredit = '';
+  txtBalance = '';
+  item = '';
+  paymentId = '';
+  txtAmount = '';
   
   cmbDept:Department;
+  selectedBank: Bank;
+  selectedCurrency: Currency;
+  selectedParty: Party;
 
+  //use in  Currency combobox
+  currencies: Currency[] = [
+    {label: '1', value: 'Dollar'},
+    {label: '2', value: 'Rupee'}
+  ];
+  //use in  Document combobox
+  documents: Document[] = [
+    {docId: '1', docName: 'CV'},
+    {docId: '2', docName: 'Certificates'}
+  ];
   //use in  Department combobox
   departments: Department[] = [
     {dId: '1', dName: 'Finance'},
@@ -121,7 +140,7 @@ export class PaymentvoucherComponent implements OnInit {
       }
     }
   }
-
+  
   delete(){
       
     this.edited1 = true;
@@ -138,8 +157,8 @@ export class PaymentvoucherComponent implements OnInit {
     this.txtpCredit=0;
     this.txtpDebit=0;
   }
+
   edit(item){
-    item;
+    
   }
-  NTax(){}
 }

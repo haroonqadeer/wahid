@@ -11,8 +11,8 @@ import { DashboardComponent } from './components/dashboard.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
-import { ModalDialogModule } from 'ngx-modal-dialog';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     UserrolesComponent,
     UserprofileComponent,
+    ErpBottomSheetComponent 
   ],
   imports: [
     BrowserModule,
@@ -33,10 +34,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ChartModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgbModule.forRoot(),
-    ModalDialogModule.forRoot()
+    PNPrimeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErpBottomSheetComponent], 
 })
 export class AppModule { }

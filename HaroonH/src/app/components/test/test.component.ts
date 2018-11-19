@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
+  edited = false;
+  edited1 = false;
+  txtdPassword = '';
+  txtdPin = '';
+  
   constructor() { }
 
   ngOnInit() {

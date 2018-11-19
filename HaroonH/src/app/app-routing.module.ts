@@ -9,7 +9,6 @@ import { RecruitmentappComponent } from './components/recruitmentapp/recruitment
 import { TestComponent } from './components/test/test.component';
 import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
 import { SkillstandardComponent } from './components/skillstandard/skillstandard.component';
-import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
 import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
 import { TrainingrequirementsComponent } from './components/trainingrequirements/trainingrequirements.component';
 import { YearcalendarComponent } from './components/yearcalendar/yearcalendar.component';
@@ -55,10 +54,6 @@ const routes: Routes = [
   {
     path: 'skillstandard',
     component: SkillstandardComponent
-  },
-  {
-    path: 'sanctionrule',
-    component: SanctionruleComponent
   },
   {
     path: 'approvingauthority',

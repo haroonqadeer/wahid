@@ -7,12 +7,23 @@ export interface Status {
   sId: string;
   sName: string;
 }
+
+//use in Officer combobox
+export interface Officer {
+  oId: string;
+  oName: string;
+}
+
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
   styleUrls: ['./recruitment.component.scss']
 })
 export class RecruitmentComponent implements OnInit {
+  
+  edited = false;
+  edited1 = false;
+
   Line_chart: Chart;
 
   formGroup1: FormGroup;
@@ -22,7 +33,7 @@ export class RecruitmentComponent implements OnInit {
   formGroup5: FormGroup;
   formGroup6: FormGroup;
 
-  //use in party combobox
+  //use in status combobox
   status: Status[] = [
     {sId: '1', sName: 'Accept'},
     {sId: '2', sName: 'Reject'},
@@ -30,6 +41,27 @@ export class RecruitmentComponent implements OnInit {
     {sId: '4', sName: 'Waiting'}
   ]
 
+  //use in officers combobox
+  officers: Officer[] = [
+    {oId: '1', oName: 'Ali'},
+    {oId: '2', oName: 'Razzaq'},
+    {oId: '3', oName: 'Fahad'},
+    {oId: '4', oName: 'Moin'}
+  ]
+
+  //use in types combobox
+  types: Officer[] = [
+    {oId: '1', oName: 'Ali'},
+    {oId: '2', oName: 'Razzaq'},
+    {oId: '3', oName: 'Fahad'},
+    {oId: '4', oName: 'Moin'}
+  ]
+
+  cmbCType = '';
+  cmbStatus = '';
+  txtNumber = '';
+  txtRemarks = '';
+  
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {

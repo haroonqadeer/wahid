@@ -4,41 +4,129 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <!-- Side Menu Title -->
         <div class="row">
-            <div class="col-md-4">
-                <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome borderbottom"  mat-flat-button>
-                    <span class="fa fa-home"></span>
-                </button>
+            <div class="col-md-12 bg-light-green">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome rightBorderWhite"  mat-flat-button>
+                            <span class="fa fa-home"></span>
+                        </button>
+                    </div>
+                    <div class="col-md-8">
+                        <p style="margin-top: 1.0em !important">FMIS - Menu</p>
+                    </div>
+                </div>                
             </div>        
         </div><!-- end Side Menu Title -->
-        <br><br>
+        <br>
 
-        <!-- Menue Title -->
+        <!-- Circle Log -->
         <div class="row">
-            <div class="col-md-12">
-                <h5 class="sideMenuTitle bg-indigo text-center">Menu</h5>
+            <div class="col-md-12 mx-auto">                
+                <img class="mx-auto d-block" src="../assets/images/logo.png" alt="" width="100em" height="100em">                
             </div>
-        </div><!-- end menu title -->
-
+        </div><!--end Circle Logo -->        
+        <br>
         <!-- UMIS Menu -->
         <div class="row">
-            <button mat-button routerLink="budget" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg topBorderOnBlackBg"> &nbsp;&nbsp;Budgeting</button>
-            <button mat-button routerLink="coa" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;G/L Accounts</button>
-            <button mat-button routerLink="bankAccount" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Bank Accounts</button>
-            <button mat-button routerLink="taxSection" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Tax Sections</button>
-            <button mat-button routerLink="payment" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Payment Transactions</button>
-            <button mat-button routerLink="receipt" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Receipt Transactions</button>
-            <button mat-button routerLink="adjustment" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Adjustmment Transactions</button>
-            <button mat-button routerLink="fixAsset" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Fix Asset Register</button>            
-            <button mat-button routerLink="ledger" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Ledger Accounts</button>
-            <button mat-button routerLink="trailbalance" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Trial Balance</button>
-            <button mat-button routerLink="bankRecon" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Bank Reconciliation</button>
-            <button mat-button routerLink="incomeStatement" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Income Statement</button>
-            <button mat-button routerLink="balanceSheet" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Balance Sheet</button>
-            <button mat-button routerLink="cashFlow" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Cash Flow Statement</button>
+            <div class="col-md-12">
+                <ul class="nav">
+                    <li routerLinkActive='active'>
+                        <a routerLink=''>
+                            <span class="fa fa-tachometer"></span>
+                            <span class="text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='budget'>
+                            <span class="fa fa-money"></span>
+                            <span class="text">Budgeting</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='coa'>
+                            <span class="fa fa-user-circle"></span>
+                            <span class="text">G/L Accounts</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="bankAccount">
+                            <span class="fa fa-university"></span>
+                            <span class="text">Bank Accounts</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="taxSection">
+                            <span class="fa fa-scissors"></span>
+                            <span class="text">Tax Sections</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="payment">
+                            <span class="fa fa-shopping-cart"></span>
+                            <span class="text">Payment Transactions</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="receipt">
+                            <span class="fa fa-file-text-o"></span>
+                            <span class="text">Receipt Transactions</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="adjustment">
+                            <span class="fa fa-wrench"></span>
+                            <span class="text">Adjustmment Transactions</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="fixAsset">
+                            <span class="fa fa-gg"></span>
+                            <span class="text">Fix Asset Register</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="ledger">
+                            <span class="fa fa-list"></span>
+                            <span class="text">Ledger Accounts</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="trailbalance">
+                            <span class="fa fa-balance-scale"></span>
+                            <span class="text">Trial Balance</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="bankRecon">
+                            <span class="fa fa-handshake-o"></span>
+                            <span class="text">Bank Reconciliation</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="incomeStatement">
+                            <span class="fa fa-line-chart"></span>
+                            <span class="text">Income Statement</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="balanceSheet">
+                            <span class="fa fa-bar-chart"></span>
+                            <span class="text">Balance Sheet</span>    
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink="cashFlow">
+                            <span class="fa fa-recycle"></span>
+                            <span class="text">Cash Flow Statement</span>    
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
         </div><!-- end UMIS Menu -->
 
     </mat-drawer>
-
+   
     <div class="example-sidenav-content">
         <div class="row bgWhite bottomBorder">
             <div class="col-md-1">
@@ -47,7 +135,7 @@
                 </button>
             </div>
             <div class="col-md-5">
-                <h4>Finance</h4>
+                <h4>FMIS</h4>
             </div>
             <div class="col-md-6 text-right">
                 <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
@@ -59,7 +147,7 @@
                         <span class="fa fa-sign-out"></span>
                         <span>  Log out</span>
                     </button>
-                    <button mat-menu-item class="noneOutLine">
+                    <button mat-menu-item class="noneOutLine" (click)=showBottom()>
                         <!-- <mat-icon>voicemail</mat-icon> -->
                         <span class="fa fa-user"></span>
                         <span>  Haroonqd</span>

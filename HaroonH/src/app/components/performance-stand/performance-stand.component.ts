@@ -8,8 +8,18 @@ import { SelectItem } from 'primeng/api';
 })
 export class PerformanceStandComponent implements OnInit {
 
+  edited = false;
+  edited1 = false;
+
+  performanceId = '';
+  txtdPassword = '';
+  txtdPin = '';
+  
+  selectedSkill: string[] = [];
+  selectedType: string[] = [];
   selectedDeduction: string[] = [];
   profiles: SelectItem[];
+  skills: SelectItem[];
   
   constructor() {
     this.profiles = [
@@ -17,7 +27,12 @@ export class PerformanceStandComponent implements OnInit {
       {label: 'Assistant', value: 'Assistant'},
       {label: 'Cashier', value: 'Cashier'}
     ];
-    
+    this.skills = [
+      {label: 'Communication Skills', value: 'Communication Skills'},
+      {label: 'PHP', value: 'PHP'},
+      {label: 'C#', value: 'C#'},
+      {label: 'Angular', value: 'Angular'}
+    ];
   }
 
   ngOnInit() {

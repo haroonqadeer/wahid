@@ -10,8 +10,6 @@ import {TreeTableModule} from "ng-treetable";
 import {HttpModule} from '@angular/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
-import { OrgChartModule } from 'ng2-org-chart';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartofaccountComponent } from './components/chartofaccount/chartofaccount.component';
@@ -28,8 +26,7 @@ import { ReconciliationComponent } from './components/reconciliation/reconciliat
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
 import { BalancesheetComponent } from './components/balancesheet/balancesheet.component';
 import { IncomestatementComponent } from './components/incomestatement/incomestatement.component';
-import { PostComponent } from './components/post/post.component';
-import { RecruitmentComponent } from './components/recruitment/recruitment.component';
+import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +48,7 @@ import { RecruitmentComponent } from './components/recruitment/recruitment.compo
     ReconciliationComponent,
     BalancesheetComponent,
     IncomestatementComponent,
-    PostComponent,
-    RecruitmentComponent
+    ErpBottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -65,12 +61,12 @@ import { RecruitmentComponent } from './components/recruitment/recruitment.compo
     PNPrimeModule,
     TreeTableModule,
     HttpModule,
-    OrgChartModule,
     NgCircleProgressModule.forRoot({
       
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],  
+  entryComponents: [ErpBottomSheetComponent],  
 })
 export class AppModule { }

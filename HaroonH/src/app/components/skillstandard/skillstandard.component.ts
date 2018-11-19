@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./skillstandard.component.scss']
 })
 export class SkillstandardComponent implements OnInit {
-
+  
+  txtdPassword = '';
+  txtdPin = '';
+  
   constructor() { }
 
   ngOnInit() {

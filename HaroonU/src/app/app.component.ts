@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {MenuItem} from 'primeng/api';
+import {MatBottomSheet} from '@angular/material';
+import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
   
+  constructor(private bottomSheet: MatBottomSheet){
+
+  }
+
+  title = 'HaroonU';
+  
+  items: MenuItem[];
+
+  //show bottom sheet
+  showBottom(){
+    this.bottomSheet.open(ErpBottomSheetComponent);
+  }
+
 }

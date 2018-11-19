@@ -9,6 +9,9 @@ import { SelectItem } from 'primeng/api';
 })
 export class JobprofileComponent implements OnInit {
 
+  edited = false;
+  edited1 = false;
+
   show=false;
 
   formGroup1: FormGroup;
@@ -38,6 +41,10 @@ export class JobprofileComponent implements OnInit {
   times: SelectItem[];
   depts: SelectItem[];
 
+  fourthCtrl = '';
+  txtdPassword = '';
+  txtdPin = '';
+  
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {

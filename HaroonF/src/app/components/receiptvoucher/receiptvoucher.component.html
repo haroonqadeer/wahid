@@ -172,17 +172,17 @@
             <p-calendar [(ngModel)]="voucherDate" placeholder="Voucher Date" [showIcon]="true"></p-calendar>
           </div>
           <div class="col-md-4">
-            <p-dropdown [options]="departments" [(ngModel)]="cmbDept" placeholder="Reference Department" optionLabel="dName" [showClear]="true"></p-dropdown>           
+            <p-dropdown [options]="departments" [(ngModel)]="cmbDept" placeholder="Reference Department" optionLabel="dName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>           
           </div>
           <div class="col-md-4">
-            <p-dropdown [options]="documents" [(ngModel)]="cmbDoc" placeholder="Reference Document" optionLabel="docName" [showClear]="true"></p-dropdown>           
+            <p-dropdown [options]="documents" [(ngModel)]="cmbDoc" placeholder="Reference Document" optionLabel="docName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>           
           </div>
         </div>
         <br/>
         <div class="row">
           <div class="col-md-4">
             <br/>
-            <p-dropdown [options]="banks" [(ngModel)]="selectedBank" placeholder="Select Bank" [style]="{'width':'150px'}" [showClear]="true">
+            <p-dropdown [options]="banks" [(ngModel)]="selectedBank" placeholder="Select Bank" [style]="{'width':'100%'}" [showClear]="true">
               <ng-template let-item pTemplate="selectedItem">
                 <span>{{item.value}} - {{item.label}}</span>
               </ng-template>
@@ -195,7 +195,7 @@
           </div>
           <div class="col-md-4">
             <br/>
-            <p-dropdown [options]="banks" [(ngModel)]="selectedCurrency" placeholder="Select Currency" [style]="{'width':'150px'}" [showClear]="true">
+            <p-dropdown [options]="currencies" [(ngModel)]="selectedCurrency" placeholder="Select Currency" [style]="{'width':'100%'}" [showClear]="true">
               <ng-template let-item pTemplate="selectedItem">
                 <span>{{item.value}} - {{item.label}}</span>
               </ng-template>
@@ -220,7 +220,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-6">
-                    <mat-checkbox (click)="NTax()" [(ngModel)]="disabled">Include Tax</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="disabled">Include Tax</mat-checkbox>
                   </div>
                   <div class="col-md-6">
                     <button mat-raised-button color="primary" [disabled]="disabled">Exemption Certificate</button>
@@ -246,7 +246,7 @@
                           <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
                             <td class="col-3">
                               <br/>
-                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
+                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
                                 <ng-template let-item pTemplate="selectedItem">
                                   <span>{{item.label}} - {{item.value}}</span>
                                 </ng-template>
@@ -259,7 +259,7 @@
                             </td>
                             <td class="col-3">
                               <br/>
-                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Party Name" optionLabel="pName" ></p-dropdown>
+                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Party Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
                             </td>
                             <td class="col-2">
                               <mat-form-field class="fullwidth">
@@ -311,7 +311,7 @@
                         <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
                           <td class="col-3">
                             <br/>
-                            <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
+                            <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
                               <ng-template let-item pTemplate="selectedItem">
                                 <span>{{item.label}} - {{item.value}}</span>
                               </ng-template>
@@ -324,7 +324,7 @@
                           </td>
                           <td class="col-3">
                             <br/>
-                            <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" ></p-dropdown>
+                            <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
                           </td>
                           <td class="col-2">
                             <mat-form-field class="fullwidth">
@@ -358,16 +358,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-6">
-                      <p-dropdown [options]="parties" [(ngModel)]="selectedParty" placeholder="Select Party" [style]="{'width':'150px'}" filter="true">
-                        <ng-template let-item pTemplate="selectedItem">
-                          <span>{{item.pId}} - {{item.pName}}</span>
-                        </ng-template>
-                        <ng-template let-party pTemplate="item">
-                          <div class="ui-helper-clearfix">
-                            <div>{{party.pId}} - {{party.pName}}</div>
-                          </div>
-                        </ng-template>
-                      </p-dropdown>
+                    <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Party Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
                   </div>
                 </div>
                 <br/>
@@ -390,7 +381,7 @@
                           <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
                             <td class="col-3">
                               <br/>
-                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'150px'}" filter="true">
+                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
                                 <ng-template let-item pTemplate="selectedItem">
                                   <span>{{item.label}} - {{item.value}}</span>
                                 </ng-template>
@@ -403,7 +394,7 @@
                             </td>
                             <td class="col-3">
                               <br/>
-                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" ></p-dropdown>
+                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
                             </td>
                             <td class="col-2">
                               <mat-form-field class="fullwidth">
