@@ -19,7 +19,7 @@ import { PerformanceStandComponent } from './components/performance-stand/perfor
 import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
-
+import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
 
 const routes: Routes = [
   {
@@ -85,6 +85,10 @@ const routes: Routes = [
   {
     path: 'performanceEvaluation',
     component: PerformanceEvaComponent
+  },
+  {
+    path: 'hiringagreement',
+    component: HiringagreementComponent
   }
 ];
 
