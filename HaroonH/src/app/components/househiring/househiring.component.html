@@ -1,0 +1,659 @@
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">House Hiring</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+
+<div class="container">
+
+  <!--Start Tabs  -->
+  <mat-tab-group>
+    <!--start tab 1-->
+    <mat-tab label="Monthly"> 
+      
+      <br/>
+      <!--start heading-->
+      <h5>Monthly</h5>
+      <!--end heading-->
+
+      <!-- start row 1-->
+      <div class="row tab-margin">
+        <div class="col-md-4">
+          <mat-form-field>
+            <input matInput [matDatepicker]="Date" placeholder="Date">
+            <mat-datepicker-toggle matSuffix [for]="Date"></mat-datepicker-toggle>
+            <mat-datepicker #Date></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field>
+            <input matInput [matDatepicker]="Year" placeholder="Year">
+            <mat-datepicker-toggle matSuffix [for]="Year"></mat-datepicker-toggle>
+            <mat-datepicker #Year startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field>
+            <input matInput [matDatepicker]="Month" placeholder="Month">
+            <mat-datepicker-toggle matSuffix [for]="Month"></mat-datepicker-toggle>
+            <mat-datepicker #Month startView="year"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end row 1-->
+
+      <!-- start row 2-->
+      <div class="row tab-margin">
+        <div class="col-md-12 text-right">
+          <button mat-raised-button color="primary" data-toggle="modal" data-target="#reconciliationModal"> Reconciliation </button>
+        </div>
+      </div>
+      <!-- end row 2-->
+
+      <br/>
+
+      <!--Start row 3-->
+      <div class="row tab-margin">
+        <div class="col-md-12">
+          <!--start table row-->       
+          <div class="example-container mat-elevation-z8">
+            <div class="example-table-container">                      
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1'>Sr #</th>
+                    <th class='col-2'>Employee</th>
+                    <th class='col-2'>Owner</th>
+                    <th class='col-2'>Agreement No.</th>
+                    <th class='col-1'>Amount</th>
+                    <th class='col-1'>Tax</th>
+                    <th class='col-1'>Net</th>
+                    <th class='col-1 text-center'>Select</th>
+                    <th class='col-1 text-center'>Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-1'>1</td> 
+                    <td class='col-2'>Nabeel</td>
+                    <td class='col-2'>Usama Khan</td>
+                    <td class='col-2'><a href="" data-toggle="modal" data-target="#agreementModal">1002</a></td>
+                    <td class='col-1'>1,000,000</td>
+                    <td class='col-1'><a href="" data-toggle="modal" data-target="#taxModal">40,000</a></td>
+                    <td class='col-1'>1,040,000</td>
+                    <td class='col-1 text-center'><mat-checkbox></mat-checkbox></td>
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#questionsModal"></span>
+                    </td>
+                  </tr>
+      
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->
+        </div>
+      </div>
+      <!--end row 3-->
+
+      <br/>
+
+    </mat-tab>
+    <!--end tab 1-->
+
+
+    <!--start tab 2-->
+    <mat-tab label="Advance">
+      
+      <br/>
+      <!--start heading-->
+      <h5>Advance</h5>
+      <!--end heading-->
+
+      <!-- start row 1-->
+      <div class="row tab-margin">
+        <div class="col-md-12 text-right">
+          <button mat-raised-button color="primary" data-toggle="modal" data-target="#advanceModal"> Add New </button>
+        </div>
+      </div>
+      <!-- end row 1-->
+
+      <br/>
+
+      <!--Start row 2-->
+      <div class="row tab-margin">
+        <div class="col-md-12">
+          <!--start table row-->       
+          <div class="example-container mat-elevation-z8">
+            <div class="example-table-container">                      
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1'>Sr #</th>
+                    <th class='col-2'>Employee</th>
+                    <th class='col-2'>Owner</th>
+                    <th class='col-1'>Agr. No</th>
+                    <th class='col-1'>Amount</th>
+                    <th class='col-1'>Tax</th>
+                    <th class='col-1'>Net</th>
+                    <th class='col-1'>Voucher</th>
+                    <th class='col-1 text-center'>Select</th>
+                    <th class='col-1 text-center'>Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-1'>1</td> 
+                    <td class='col-2'>Nabeel</td>
+                    <td class='col-2'>Usama Khan</td>
+                    <td class='col-1'><a href="" data-toggle="modal" data-target="#agreementModal">1002</a></td>
+                    <td class='col-1'>1,000,000</td>
+                    <td class='col-1'><a href="" data-toggle="modal" data-target="#taxModal">40,000</a></td>
+                    <td class='col-1'>1,040,000</td>
+                    <td class='col-1'>124</td>
+                    <td class='col-1 text-center'><mat-checkbox></mat-checkbox></td>
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#questionsModal"></span>
+                    </td>
+                  </tr>
+      
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->
+        </div>
+      </div>
+      <!--end row 2-->
+      
+
+      <br/>
+      
+  
+    </mat-tab>
+    <!--start tab 2-->
+
+  </mat-tab-group>
+  <!-- End tabs -->
+
+</div>
+<!--end container -->
+
+
+<br/>
+
+<!--bootstrap modal window -->
+
+
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="reconciliationModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Monthly Rent Reconciliation </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-2">
+            <mat-form-field>
+              <input matInput [matDatepicker]="fromYear" placeholder="Year">
+              <mat-datepicker-toggle matSuffix [for]="fromYear"></mat-datepicker-toggle>
+              <mat-datepicker #fromYear></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2">
+            <mat-form-field>
+              <input matInput [matDatepicker]="fromMonth" placeholder="Month">
+              <mat-datepicker-toggle matSuffix [for]="fromMonth"></mat-datepicker-toggle>
+              <mat-datepicker #fromMonth></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-4 text-center"><br/>Vs.</div>
+
+          <div class="col-md-2">
+              <mat-form-field>
+                <input matInput [matDatepicker]="toYear" placeholder="Year">
+                <mat-datepicker-toggle matSuffix [for]="toYear"></mat-datepicker-toggle>
+                <mat-datepicker #toYear></mat-datepicker>
+              </mat-form-field>
+            </div>
+  
+            <div class="col-md-2">
+              <mat-form-field>
+                <input matInput [matDatepicker]="toMonth" placeholder="Month">
+                <mat-datepicker-toggle matSuffix [for]="toMonth"></mat-datepicker-toggle>
+                <mat-datepicker #toMonth></mat-datepicker>
+              </mat-form-field>
+            </div>
+        </div>
+        <!--end row 1-->
+
+        <!--start table row-->       
+        <div class="example-container mat-elevation-z8">
+          <div class="example-table-container">                      
+            <table class="table table-striped">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-1'>Sr #</th>
+                  <th class='col-2'>Type</th>
+                  <th class='col-2'>Employee</th>
+                  <th class='col-2'>Owner</th>
+                  <th class='col-2'>From</th>
+                  <th class='col-2'>To</th>
+                  <th class='col-1'>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class='col-1'>1</td> 
+                  <td class='col-2'>Opening</td>             
+                  <td class='col-2'>-</td>
+                  <td class='col-2'>-</td>
+                  <td class='col-2'>-</td>
+                  <td class='col-2'>-</td>
+                  <td class='col-1'>500,000</td>
+                </tr>
+
+                <tr class='d-flex'>
+                  <td class='col-1'>2</td> 
+                  <td class='col-2'>Addition</td>             
+                  <td class='col-2'>Adnan</td>
+                  <td class='col-2'>Usama Khan</td>
+                  <td class='col-2'>01-Jan-2018</td>
+                  <td class='col-2'>31-Oct-2018</td>
+                  <td class='col-1'>20,000</td>
+                </tr>
+
+                <tr class='d-flex'>
+                  <td class='col-1'>3</td> 
+                  <td class='col-2'>Addition</td>             
+                  <td class='col-2'>Nabeel</td>
+                  <td class='col-2'>Usama Khan</td>
+                  <td class='col-2'>01-Jan-2018</td>
+                  <td class='col-2'>31-Oct-2018</td>
+                  <td class='col-1'>10,000</td>
+                </tr>
+
+                <tr class='d-flex'>
+                  <td class='col-1'>4</td> 
+                  <td class='col-2'>Substraction</td>             
+                  <td class='col-2'>Amir</td>
+                  <td class='col-2'>Waleed Khan</td>
+                  <td class='col-2'>01-Jan-2018</td>
+                  <td class='col-2'>31-Oct-2018</td>
+                  <td class='col-1'>(30,000)</td>
+                </tr>
+
+                <tr class='d-flex'> 
+                  <td class='col-1'>5</td> 
+                  <td class='col-2'>Closing</td>             
+                  <td class='col-2'>-</td>
+                  <td class='col-2'>-</td>
+                  <td class='col-2'>-</td>
+                  <td class='col-2'>-</td>
+                  <td class='col-1'>450,000</td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+
+        
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="agreementModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Agreement Detail</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-3">Agreement No</div>
+          <div class="col-md-3">1002</div>
+          <div class="col-md-3">Owner Name</div>
+          <div class="col-md-3">Usama Khan</div>
+        </div>
+        <!--end row 1-->
+
+        <br/>
+
+        <!--start row 2-->
+        <div class="row">
+          <div class="col-md-3">CNIC</div>
+          <div class="col-md-3">35202-5457415-5</div>
+          <div class="col-md-3">NTN</div>
+          <div class="col-md-3">101-225-63</div>
+        </div>
+        <!--end row 2-->
+
+        <br/>
+
+        <!--start row 3-->
+        <div class="row">
+          <div class="col-md-3">House</div>
+          <div class="col-md-3">House No. 23</div>
+          <div class="col-md-3">Street</div>
+          <div class="col-md-3">Street No. 5</div>
+        </div>
+        <!--end row 3-->
+
+        <br/>
+
+        <!--start row 4-->
+        <div class="row">
+          <div class="col-md-3">Mohallah</div>
+          <div class="col-md-3">Mohan Purra</div>
+          <div class="col-md-3">City</div>
+          <div class="col-md-3">Rawalpindi</div>
+        </div>
+        <!--end row 4-->
+        
+        <br/>
+
+        <!--start row 5-->
+        <div class="row">
+          <div class="col-md-3">Agreement From</div>
+          <div class="col-md-3">01-Nov-2018</div>
+          <div class="col-md-3">Agreement To</div>
+          <div class="col-md-3">31-Oct-2019</div>
+        </div>
+        <!--end row 5-->
+
+        <br/>
+
+        <!--start row 6-->
+        <div class="row">
+          <div class="col-md-3">Agreement Amount</div>
+          <div class="col-md-3">500,000</div>
+          <div class="col-md-3">Rent Amount</div>
+          <div class="col-md-3">25,000</div>
+        </div>
+        <!--end row 6-->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="taxModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Tax Calculation </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-3">Yearly Rent</div>
+          <div class="col-md-3">2,500,000</div>
+          <div class="col-md-2">0</div>
+          <div class="col-md-1">></div>
+          <div class="col-md-2">100,000</div>
+          <div class="col-md-1">5%</div>
+        </div>
+        <!--end row 1-->
+  
+        <br/>
+  
+        <!--start row 2-->
+        <div class="row">
+          <div class="col-md-3">Year Tax</div>
+          <div class="col-md-3">120,000</div>
+          <div class="col-md-2">100,000</div>
+          <div class="col-md-1">></div>
+          <div class="col-md-2">200,000</div>
+          <div class="col-md-1">7%</div>
+        </div>
+        <!--end row 2-->
+  
+        <br/>
+  
+        <!--start row 3-->
+        <div class="row">
+            <div class="col-md-3">Month Tax </div>
+            <div class="col-md-3">10,000</div>
+            <div class="col-md-2">200,000</div>
+            <div class="col-md-1">></div>
+            <div class="col-md-2">300,000</div>
+            <div class="col-md-1">10%</div>
+        </div>
+        <!--end row 3-->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="advanceModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Advance Hiring </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Agreement No">
+                <mat-option value="1">1002</mat-option>
+                <mat-option value="2">1003</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end row 1-->
+
+        <!--start row 2-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput [matDatepicker]="fDate" placeholder="From Date">
+              <mat-datepicker-toggle matSuffix [for]="fDate"></mat-datepicker-toggle>
+              <mat-datepicker #fDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput [matDatepicker]="tDate" placeholder="To Date">
+              <mat-datepicker-toggle matSuffix [for]="tDate"></mat-datepicker-toggle>
+              <mat-datepicker #tDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <!--end row 2-->
+
+        <br/>
+
+        <!--start row 3-->
+        <div class="row">
+          <div class="col-md-2">Year</div>
+          <div class="col-md-2">2018</div>
+
+          <div class="col-md-2">Month</div>
+          <div class="col-md-2">November</div>
+
+          <div class="col-md-2">Day</div>
+          <div class="col-md-2">05</div>
+        </div>
+        <!--end row 3-->
+        
+        <br/>
+        
+        <!--start row 4-->
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field>
+              <input matInput placeholder="Amount">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-4">
+            <mat-form-field>
+              <input matInput placeholder="Tax">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-4">
+            <mat-form-field>
+              <input matInput placeholder="Net">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end row 4-->
+
+        <!--start row 5-->
+        <div class="row">
+          <div class="col-md-2">
+            <button mat-raised-button color="primary"> Seek Approval </button>
+          </div>
+          <div class="col-md-2">
+            <button mat-raised-button color="primary"> Save </button>
+          </div>
+        </div>
+        <!--end row 5-->
+        
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+
+<!-- Start Modal Window to delete leave rule -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+          <br>
+          <div class="hidden" ngDefaultControl></div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <h2>Delete Entry</h2>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+              </mat-form-field>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+            </div>
+          </div>
+          <br/>
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete leave rule -->

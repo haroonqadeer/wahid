@@ -33,6 +33,7 @@ import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
+import { HousehiringComponent } from './components/househiring/househiring.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { HiringagreementComponent } from './components/hiringagreement/hiringagr
     LeavetypeComponent,
     ErpBottomSheetComponent,
     HRDashboardComponent,
-    HiringagreementComponent
+    HiringagreementComponent,
+    HousehiringComponent
   ],
   imports: [
     BrowserModule,

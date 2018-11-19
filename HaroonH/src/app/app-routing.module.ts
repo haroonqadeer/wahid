@@ -20,6 +20,8 @@ import { PerformanceEvaComponent } from './components/performance-eva/performanc
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
+import { HousehiringComponent } from './components/househiring/househiring.component';
+
 
 const routes: Routes = [
   {
@@ -89,6 +91,10 @@ const routes: Routes = [
   {
     path: 'hiringagreement',
     component: HiringagreementComponent
+  },
+  {
+    path: 'househiring',
+    component: HousehiringComponent
   }
 ];
 
