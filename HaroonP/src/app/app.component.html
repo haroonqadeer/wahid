@@ -4,38 +4,90 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <!-- Side Menu Title -->
         <div class="row">
-            <div class="col-md-4">
-                <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome borderbottom"  mat-flat-button>
-                    <span class="fa fa-home"></span>
-                </button>
+            <div class="col-md-12 bg-light-green">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome rightBorderWhite"  mat-flat-button>
+                            <span class="fa fa-home"></span>
+                        </button>
+                    </div>
+                    <div class="col-md-8">
+                        <p style="margin-top: 1.0em !important">PMIS - Menu</p>
+                    </div>
+                </div>                
             </div>        
         </div><!-- end Side Menu Title -->
-        <br><br>
+        <br>
 
-        <!-- Menue Title -->
+        <!-- Circle Log -->
         <div class="row">
-            <div class="col-md-12">
-                <h5 class="sideMenuTitle bg-indigo text-center">Menu</h5>
+            <div class="col-md-12 mx-auto">                
+                <img class="mx-auto d-block" src="../assets/images/logo.png" alt="" width="100em" height="100em">                
             </div>
-        </div><!-- end menu title -->
-
+        </div><!--end Circle Logo -->        
+        <br>
         <!-- UMIS Menu -->
         <div class="row">
-            <!-- <button mat-button routerLink="budget" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg topBorderOnBlackBg"> &nbsp;&nbsp;Budgeting</button>
-            <button mat-button routerLink="coa" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;G/L Accounts</button>
-            <button mat-button routerLink="bankAccount" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Bank Accounts</button>
-            <button mat-button routerLink="taxSection" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Tax Sections</button>
-            <button mat-button routerLink="payment" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Payment Transactions</button>
-            <button mat-button routerLink="receipt" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Receipt Transactions</button>
-            <button mat-button routerLink="adjustment" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Adjustmment Transactions</button>
-            <button mat-button routerLink="fixAsset" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Fix Asset Register</button>            
-            <button mat-button routerLink="ledger" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Ledger Accounts</button>
-            <button mat-button routerLink="trailbalance" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Trial Balance</button>
-            <button mat-button routerLink="bankRecon" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Bank Reconciliation</button>
-            <button mat-button routerLink="incomeStatement" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Income Statement</button>
-            <button mat-button routerLink="balanceSheet" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Balance Sheet</button>
-            <button mat-button routerLink="cashFlow" class="fullwidth noneOutLine text-left fontWhite bottomBorderOnBlackBg">&nbsp;&nbsp;Cash Flow Statement</button> -->
-        </div><!-- end UMIS Menu -->
+            <div class="col-md-12">
+                <ul class="nav">
+                    <li routerLinkActive='active'>
+                        <a routerLink=''>
+                            <span class="fa fa-tachometer"></span>
+                            <span class="text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='approvingAuthority'>
+                            <span class="fa fa-university"></span>
+                            <span class="text">Approving Authority</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='hiringAgreement'>
+                            <span class="fa fa-handshake-o"></span>
+                            <span class="text">Hiring Agreement</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='houseHiring'>
+                            <span class="fa fa-refresh"></span>
+                            <span class="text">House Hiring</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='payroll'>
+                            <span class="fa fa-money"></span>
+                            <span class="text">Payroll</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='payrollCon'>
+                            <span class="fa fa-cogs"></span>
+                            <span class="text">Payroll Configuration</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='payFixation'>
+                            <span class="fa fa-wrench"></span>
+                            <span class="text">Pay Fixation</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='payrollRule'>
+                            <span class="fa fa-file-text-o"></span>
+                            <span class="text">Payroll Rule</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='sanctionRule'>
+                            <span class="fa fa-calendar-check-o"></span>
+                            <span class="text">Sanction Rule</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- end UMIS Menu -->
 
     </mat-drawer>
 
@@ -59,7 +111,7 @@
                         <span class="fa fa-sign-out"></span>
                         <span>  Log out</span>
                     </button>
-                    <button mat-menu-item class="noneOutLine">
+                    <button mat-menu-item class="noneOutLine" (click)=showBottom()>
                         <!-- <mat-icon>voicemail</mat-icon> -->
                         <span class="fa fa-user"></span>
                         <span>  Haroonqd</span>

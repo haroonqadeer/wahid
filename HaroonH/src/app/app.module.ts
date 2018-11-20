@@ -21,7 +21,6 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { TestComponent } from './components/test/test.component';
 import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
 import { SkillstandardComponent } from './components/skillstandard/skillstandard.component';
-import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
 import { TrainingrequirementsComponent } from './components/trainingrequirements/trainingrequirements.component';
 import { YearcalendarComponent } from './components/yearcalendar/yearcalendar.component';
 
@@ -31,8 +30,6 @@ import { PerformanceEvaComponent } from './components/performance-eva/performanc
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
-import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
-import { HousehiringComponent } from './components/househiring/househiring.component';
 
 
 @NgModule({
@@ -46,7 +43,6 @@ import { HousehiringComponent } from './components/househiring/househiring.compo
     TestComponent,
     EmpolyeeprofileComponent,
     SkillstandardComponent,
-    ApprovingauthorityComponent,
     TrainingrequirementsComponent,
     YearcalendarComponent,
     LeaverulesComponent,
@@ -54,9 +50,7 @@ import { HousehiringComponent } from './components/househiring/househiring.compo
     PerformanceEvaComponent,
     LeavetypeComponent,
     ErpBottomSheetComponent,
-    HRDashboardComponent,
-    HiringagreementComponent,
-    HousehiringComponent
+    HRDashboardComponent
   ],
   imports: [
     BrowserModule,

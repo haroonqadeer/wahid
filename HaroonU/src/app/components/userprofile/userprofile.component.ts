@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
-import { trigger, transition, useAnimation } from '@angular/animations';
  
 //use in combobox
 export interface Employee {

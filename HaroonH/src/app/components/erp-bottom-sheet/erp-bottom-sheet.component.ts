@@ -28,21 +28,35 @@ export class ErpBottomSheetComponent implements OnInit {
     else if (val==3){
       $('#user').addClass('animated jello');
     }
+    else if (val==4){
+      $('#payroll').addClass('animated jello');
+    }
+    else if (val==5){
+      $('#company').addClass('animated jello');
+    }
   }
 
   //open ERP Module
   openModule(val){
     //finance
     if(val==1){
-
+      window.open('http://192.168.88.16:9004/')
     }
     //hr
     else if (val==2){
-
+      // window.open('http://192.168.88.16:9003/')
     }
     //user
     else if (val==3){
       window.open('http://192.168.88.16:9001/')
+    }
+    //payroll
+    else if (val==4){
+      window.open('http://192.168.88.16:9005/')
+    }
+    //company
+    else if (val==5){
+      window.open('http://192.168.88.16:9002/')
     }
   }
 }

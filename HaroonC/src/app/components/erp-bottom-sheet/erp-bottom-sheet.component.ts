@@ -29,6 +29,9 @@ export class ErpBottomSheetComponent implements OnInit {
       $('#user').addClass('animated jello');
     }
     else if (val==4){
+      $('#payroll').addClass('animated jello');
+    }
+    else if (val==5){
       $('#company').addClass('animated jello');
     }
   }
@@ -47,9 +50,13 @@ export class ErpBottomSheetComponent implements OnInit {
     else if (val==3){
       window.open('http://192.168.88.16:9001/')
     }
-    //company
+    //payroll
     else if (val==4){
-     
+      window.open('http://192.168.88.16:9005/')
+    }
+    //company
+    else if (val==5){
+      // window.open('http://192.168.88.16:9002/')
     }
   }
 }

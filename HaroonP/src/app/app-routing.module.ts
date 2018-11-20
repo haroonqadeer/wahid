@@ -5,6 +5,10 @@ import { PayrollRulesComponent } from './components/payroll-rules/payroll-rules.
 import { PayFixComponent } from './components/pay-fix/pay-fix.component';
 import { PayrollDashboardComponent } from './components/payroll-dashboard/payroll-dashboard.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
+import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
+import { HousehiringComponent } from './components/househiring/househiring.component';
+import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
+import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
 
 const routes: Routes = [
   {
@@ -26,6 +30,22 @@ const routes: Routes = [
   {
     path: 'payFixation',
     component: PayFixComponent
+  },
+  {
+    path: 'approvingAuthority',
+    component: ApprovingauthorityComponent
+  },
+  {
+    path: 'houseHiring',
+    component: HousehiringComponent
+  },
+  {
+    path: 'hiringAgreement',
+    component: HiringagreementComponent
+  },
+  {
+    path: 'sanctionRule',
+    component: SanctionruleComponent
   }
 ];
 

@@ -364,15 +364,15 @@ h1{
     list-style-type:none;
     margin:0;
     padding:0;
-  }  
-  .nav li{
+}  
+.nav li{
     height:2em;
     width:100%;     
     position:relative;
     text-decoration: none !important;
     background: linear-gradient(#0C121D, #090e17);    
-  }
-  .nav a {
+}
+.nav a {
     border-top: 1px solid rgba(255,255,255,0.1);
     border-bottom: 1px solid black;
     text-decoration:none !important;
@@ -382,34 +382,34 @@ h1{
     line-height:2em;
     color:#bbb;
     // text-transform: uppercase;
-    font-family: Dosis;    
-    padding-left:25%;
+    font-family: Dosis;
+    font-size: 0.8em;    
+    padding-left:20%;
     border-left:5px solid transparent;
     letter-spacing:1px;
     transition: all 0.3s linear;
-  }
-  .active a{
+}
+.active a{
     //color: #B93632;
     color:#FF6347;
     //border-left:5px solid #B93632;
     border-left: 5px solid #FF6347;
     background-color: #1B1B1B;
     outline:0;
-  }
-  .nav li:not(.active):hover a{
+}
+.nav li:not(.active):hover a{
     color: #eee;
     border-left: 5px solid #FCFCFC;
     background-color: #1B1B1B;
     text-decoration: none;
-  }  
-  .nav span[class ^= "fa"]{
+}  
+.nav span[class ^= "fa"]{
     position:absolute;
     top:0.2em; 
     left:20px;
     font-size: 1.5em;
     transition: all 0.3s linear;
-  }
-
+}
 
 ///////////////////////////////////////////
 //////////// Modal Window Setting /////////

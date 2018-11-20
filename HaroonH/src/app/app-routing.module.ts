@@ -9,7 +9,6 @@ import { RecruitmentappComponent } from './components/recruitmentapp/recruitment
 import { TestComponent } from './components/test/test.component';
 import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
 import { SkillstandardComponent } from './components/skillstandard/skillstandard.component';
-import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
 import { TrainingrequirementsComponent } from './components/trainingrequirements/trainingrequirements.component';
 import { YearcalendarComponent } from './components/yearcalendar/yearcalendar.component';
 
@@ -18,8 +17,6 @@ import { PerformanceStandComponent } from './components/performance-stand/perfor
 import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
-import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
-import { HousehiringComponent } from './components/househiring/househiring.component';
 
 
 const routes: Routes = [
@@ -56,10 +53,6 @@ const routes: Routes = [
     component: SkillstandardComponent
   },
   {
-    path: 'approvingauthority',
-    component: ApprovingauthorityComponent
-  },
-  {
     path: 'trainingreq',
     component: TrainingrequirementsComponent
   },
@@ -82,14 +75,6 @@ const routes: Routes = [
   {
     path: 'performanceEvaluation',
     component: PerformanceEvaComponent
-  },
-  {
-    path: 'hiringagreement',
-    component: HiringagreementComponent
-  },
-  {
-    path: 'househiring',
-    component: HousehiringComponent
   }
 ];
 

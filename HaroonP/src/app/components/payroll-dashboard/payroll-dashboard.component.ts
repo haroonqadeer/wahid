@@ -1,6 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 
+//use in month combobox
+export interface Month {
+  mId: string;
+  mName: string;
+}
+
+//use in Year combobox
+export interface Year {
+  yId: string;
+  yName: string;
+}
+
 @Component({
   selector: 'app-payroll-dashboard',
   templateUrl: './payroll-dashboard.component.html',
@@ -8,10 +20,28 @@ import { Chart } from 'angular-highcharts';
 })
 export class PayrollDashboardComponent implements OnInit {
   
+  cmbYear: Year;
+  cmbMonth: Month;
+
   Pie_Chart: Chart;
   Line_chart: Chart;
   Column_Chart: Chart;
   Sal_Line_chart: Chart;
+
+  //use in month combobox
+  months: Month[] = [
+    {mId: '1', mName: 'May'},
+    {mId: '2', mName: 'June'},
+    {mId: '3', mName: 'July'},
+    {mId: '4', mName: 'Aug'}
+  ];
+
+  //use in year combobox
+  years: Year[] = [
+    {yId: '1', yName: '2016'},
+    {yId: '2', yName: '2017'},
+    {yId: '3', yName: '2018'}
+  ];
 
   constructor() { }
 

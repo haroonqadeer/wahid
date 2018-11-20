@@ -17,7 +17,12 @@ import { PayrollConComponent } from './components/payroll-con/payroll-con.compon
 import { PayFixComponent } from './components/pay-fix/pay-fix.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
 import { PayrollDashboardComponent } from './components/payroll-dashboard/payroll-dashboard.component';
-import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
+import { HousehiringComponent } from './components/househiring/househiring.component';
+import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
+import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
+import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
+import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +32,11 @@ import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.compo
     PayFixComponent,
     PayrollComponent,
     PayrollDashboardComponent,
-    HRDashboardComponent
+    HousehiringComponent,
+    HiringagreementComponent,
+    ApprovingauthorityComponent,
+    SanctionruleComponent,
+    ErpBottomSheetComponent 
   ],
   imports: [
     BrowserModule,
@@ -42,6 +51,7 @@ import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.compo
     NgCircleProgressModule.forRoot({})
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErpBottomSheetComponent], 
 })
 export class AppModule { }

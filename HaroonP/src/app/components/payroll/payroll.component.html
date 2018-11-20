@@ -165,7 +165,7 @@
             <p-calendar [(ngModel)]="dtpDate" placeholder="Date" [showIcon]="true" [style]="{'width':'100%'}"></p-calendar>
           </div>
           <div class="col-md-6">
-            <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee" placeholder="Employee" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+            <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee" placeholder="Employee" optionLabel="eName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
         </div><br>
         <!--end 1st row-->
@@ -173,10 +173,10 @@
         <!--2nd row-->
         <div class="row">
           <div class="col-md-6">
-              <p-dropdown [options]="deds" [(ngModel)]="selectedDed" placeholder="Allow/Ded" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+              <p-dropdown [options]="deds" [(ngModel)]="selectedDed" placeholder="Allow/Ded" optionLabel="aName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
           <div class="col-md-6">
-            <p-dropdown [options]="titles" [(ngModel)]="selectedTitle" placeholder="Title" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+            <p-dropdown [options]="titles" [(ngModel)]="selectedTitle" placeholder="Title" optionLabel="tName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
         </div><br>
         <!--end 2nd row-->
@@ -202,7 +202,7 @@
         <div class="row" *ngIf="showType">
           <div class="col-md-4">
             <br/>
-            <p-dropdown [options]="salTypes" [(ngModel)]="selectedType" placeholder="Salary Type" optionLabel="label" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+            <p-dropdown [options]="salTypes" [(ngModel)]="selectedType" placeholder="Salary Type" optionLabel="tName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
           </div>
           <div class="col-md-2">
             <mat-form-field class="fullwidth">
@@ -498,7 +498,7 @@
         <br>
         <div class="row">
           <div class="col-md-6">
-            <button mat-raised-button color="warn" data-dismiss="modal" (click)="delete()">Delete</button>
+            <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
           </div>
         </div>
         <br/>

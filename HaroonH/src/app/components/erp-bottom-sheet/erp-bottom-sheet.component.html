@@ -2,18 +2,18 @@
 <!-- ERP Modules -->
 <div class="row">
   <div class="col-md-4 text-center">
-    <mat-card class="bg-light-green pointerCursor" id='finance' (mouseover)='showAnim(1)'>
+    <mat-card class="bg-light-green pointerCursor" id='finance' (mouseover)='showAnim(1)' (click)='openModule(1)'>
       <h5>Finance</h5>
     </mat-card>
   </div>
   <div class="col-md-4 text-center">
-    <mat-card class="bg-pink pointerCursor" id='hr' (mouseover)='showAnim(2)'>
+    <mat-card class="bg-pink pointerCursor" id='hr' (mouseover)='showAnim(2)' (click)='openModule(2)'>
       <h5>HR</h5>
     </mat-card>
   </div>
   <div class="col-md-4 text-center">
-    <mat-card class="bg-indigo pointerCursor" id='user' (mouseover)='showAnim(3)' (click)='openModule(3)'>
-      <h5>User</h5>
+    <mat-card class="bg-orange pointerCursor" id='payroll' (mouseover)='showAnim(4)' (click)='openModule(4)'>
+      <h5>Payroll</h5>
     </mat-card>
   </div>
 </div>
@@ -21,13 +21,13 @@
 <!-- row - 02 -->
 <div class="row">
   <div class="col-md-4 text-center">
-    <mat-card class="bg-orange pointerCursor" id='company' (mouseover)='showAnim(4)'>
-      <h5>Finance</h5>
+    <mat-card class="bg-indigo pointerCursor" id='user' (mouseover)='showAnim(3)' (click)='openModule(3)'>
+      <h5>User</h5>
     </mat-card>
   </div>
   <div class="col-md-4 text-center">
-    <mat-card class="bg-cyan pointerCursor" id='payroll' (mouseover)='showAnim(3)'>
-      <h5>HR</h5>
+    <mat-card class="bg-cyan pointerCursor" id='company' (mouseover)='showAnim(5)' (click)='openModule(5)'>
+      <h5>Company</h5>
     </mat-card>
   </div>  
 </div><!-- end row - 02 -->

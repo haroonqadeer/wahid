@@ -40,7 +40,7 @@ export class ErpBottomSheetComponent implements OnInit {
   openModule(val){
     //finance
     if(val==1){
-      // window.open('http://192.168.88.16:9004/')
+      window.open('http://192.168.88.16:9004/')
     }
     //hr
     else if (val==2){
@@ -52,7 +52,7 @@ export class ErpBottomSheetComponent implements OnInit {
     }
     //payroll
     else if (val==4){
-      window.open('http://192.168.88.16:9005/')
+      // window.open('http://192.168.88.16:9005/')
     }
     //company
     else if (val==5){
