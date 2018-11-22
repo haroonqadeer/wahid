@@ -66,14 +66,406 @@
   <br/>
   <!--4th row-->
   <div class="row">
-    <div class="col-md-5">
-      <h5 class="text-danger">Allowance</h5>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-1">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <span class="fa fa-bars"></span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Show All</span>
+            </button>
+            <button mat-menu-item>
+              <span>Show Filled</span>
+            </button>
+            <button mat-menu-item>
+              <span>Apply Rules</span>
+            </button>
+          </mat-menu>         
+        </div>
+        <div class="col-md-8 text-left">
+          <h3 class="text-success">Allowances</h3> 
+        </div>
+      </div>
     </div>
-    <div class="col-md-2 text-center">
-      <span class="fa fa-phone"></span>
+    <div class="col-md-6">
+      <div class="row text-right">
+        <div class="col-md-1">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <span class="fa fa-bars"></span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Show All</span>
+            </button>
+            <button mat-menu-item>
+              <span>Show Filled</span>
+            </button>
+            <button mat-menu-item>
+              <span>Apply Rules</span>
+            </button>
+          </mat-menu>         
+        </div>
+        <div class="col-md-8 text-left">
+          <h3 class="text-danger">Deduction</h3> 
+        </div>
+      </div>
     </div>
   </div>
   <!--end 4th row-->
   <br/>
- </div>
- <!--end container row--> 
+  <!--5th row-->
+  <div class="row">
+    <div class="col-md-6">
+      <!--table row-->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="example-container mat-elevation-z8">
+            <div class="example-table-container"> 
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class="col-md-4 text-center">
+                      Title
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Rule Type
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Salary Type
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Percent
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Amount
+                    </th>                            
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="d-flex">
+                    <td class="col-md-4 text-center">Pay Fixation Allowance</td>
+                    <td class="col-md-2 text-center">
+                      Percentage                                                                
+                      <!-- <mat-form-field class="fullwidth">
+                        <mat-select [(ngModel)]="cmbRType" (ngModelChange)="onRTypeChange($event)">
+                          <input type="text" class="form-control" [(ngModel)]="searchRType" >
+                          <mat-option *ngFor="  let rType of rTypes | search:'rId,rName':searchRType" [value]="rType.rId" >
+                            {{ rType.rName }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+                    </td>
+                    <td class="col-md-2 text-center">
+                      Running pay                                                               
+                      <!-- <mat-form-field class="fullwidth">
+                        <mat-select [(ngModel)]="cmbSType" (ngModelChange)="onSTypeChange($event)">
+                          <input type="text" class="form-control" [(ngModel)]="searchSType" >
+                          <mat-option *ngFor="  let sType of sTypes | search:'sId,sName':searchSType" [value]="sType.sId" >
+                            {{ sType.sName }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+                    </td>
+                    <td class="col-md-2 text-center">
+                      30%
+                      <!-- <mat-form-field class="fullwidth">
+                        <input matInput placeholder="Percent">
+                      </mat-form-field> -->
+                    </td>
+                    <td class="col-md-2 text-center">
+                      500,000
+                      <!-- <mat-form-field class="fullwidth">
+                        <input matInput placeholder="Amount">
+                      </mat-form-field> -->
+                    </td>                            
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-4 text-center">Transport</td>
+                    <td class="col-2 text-center">Percentage</td>
+                    <td class="col-2 text-center">Basic</td>
+                    <td class="col-2 text-center">5%</td>
+                    <td class="col-2 text-center">8000</td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-4 text-center">House Rent</td>
+                    <td class="col-2 text-center">Fix</td>
+                    <td class="col-2 text-center">-</td>
+                    <td class="col-2 text-center">-</td>
+                    <td class="col-2 text-center">20,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end table row-->
+    </div>
+    <div class="col-md-6">
+      <!--table row-->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="example-container mat-elevation-z8">
+            <div class="example-table-container"> 
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class="col-md-4 text-center">
+                      Title
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Rule Type
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Salary Type
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Percent
+                    </th>
+                    <th class="col-md-2 text-center">
+                      Amount
+                    </th>                            
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="d-flex">
+                    <td class="col-md-4 text-center">Pay Fixation Deduction</td>
+                    <td class="col-md-2 text-center">
+                      Fix                                                                
+                      <!-- <mat-form-field class="fullwidth">
+                        <mat-select [(ngModel)]="cmbRType" (ngModelChange)="onRTypeChange($event)">
+                          <input type="text" class="form-control" [(ngModel)]="searchRType" >
+                          <mat-option *ngFor="  let rType of rTypes | search:'rId,rName':searchRType" [value]="rType.rId" >
+                            {{ rType.rName }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+                    </td>
+                    <td class="col-md-2 text-center">
+                      -                                                                
+                      <!-- <mat-form-field class="fullwidth">
+                        <mat-select [(ngModel)]="cmbSType" (ngModelChange)="onSTypeChange($event)">
+                          <input type="text" class="form-control" [(ngModel)]="searchSType" >
+                          <mat-option *ngFor="  let sType of sTypes | search:'sId,sName':searchSType" [value]="sType.sId" >
+                            {{ sType.sName }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+                    </td>
+                    <td class="col-md-2 text-center">
+                      10%
+                      <!-- <mat-form-field class="fullwidth">
+                        <input matInput placeholder="Percent">
+                      </mat-form-field> -->
+                    </td>
+                    <td class="col-md-2 text-center">
+                      75,000
+                      <!-- <mat-form-field class="fullwidth">
+                        <input matInput placeholder="Amount">
+                      </mat-form-field> -->
+                    </td>                            
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-4 text-center">Advance Salary Loan</td>
+                    <td class="col-2 text-center">Percent</td>
+                    <td class="col-2 text-center">Basic</td>
+                    <td class="col-2 text-center">2%</td>
+                    <td class="col-2 text-center">2000</td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-4 text-center">House Building Loan</td>
+                    <td class="col-2 text-center">Fix</td>
+                    <td class="col-2 text-center">-</td>
+                    <td class="col-2 text-center">-</td>
+                    <td class="col-2 text-center">15,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end table row-->
+    </div>
+  </div>
+  <!--end 5th row-->
+  <br/>
+  <!--6th row-->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-1">
+          <button mat-icon-button [matMenuTriggerFor]="menu1">
+            <span class="fa fa-bars"></span>
+          </button>
+          <mat-menu #menu1="matMenu">
+            <button mat-menu-item>
+              <span>Show All</span>
+            </button>
+            <button mat-menu-item>
+              <span>Show Active</span>
+            </button>
+          </mat-menu>         
+        </div>
+        <div class="col-md-8 text-left">
+          <h3 class="text-danger">Employee Loans</h3> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end 6th row-->
+  <br/>
+  <!--7th row-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class="col-md-1 text-center">
+                  Title
+                </th>
+                <th class="col-md-2 text-center">
+                  Issue Date
+                </th>
+                <th class="col-md-2 text-center">
+                  Principle Amount
+                </th>
+                <th class="col-md-1 text-center">
+                  Deduction
+                </th>
+                <th class="col-md-2 text-center">
+                  Installments
+                </th>
+                <th class="col-md-1 text-center">
+                  Recovered
+                </th> 
+                <th class="col-md-2 text-center">
+                  Balance
+                </th>  
+                <th class="col-md-1 text-center">
+                  Add
+                </th>                            
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="d-flex">
+                <td class="col-md-1 text-center">
+                  Pay Fix Employee Loan 
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Title">
+                  </mat-form-field> -->
+                </td>
+                <td class="col-md-2 text-center">  
+                  June 23, 2018                                                              
+                  <!-- <p-calendar [showIcon]="true"></p-calendar> -->
+                </td>
+                <td class="col-md-2 text-center">
+                  200,000                                                                
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Principle Amount">
+                  </mat-form-field> -->
+                </td>
+                <td class="col-md-1 text-center">
+                  20,000
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Deduction">
+                  </mat-form-field> -->
+                </td>
+                <td class="col-md-2 text-center">
+                  8000
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Installments">
+                  </mat-form-field> -->
+                </td>    
+                <td class="col-md-1 text-center">
+                  50,000
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Recovered">
+                  </mat-form-field> -->
+                </td> 
+                <td class="col-md-2 text-center">
+                  150,000
+                  <!-- <mat-form-field>
+                    <input matInput placeholder="Balance">
+                  </mat-form-field> -->
+                </td>   
+                <td class="col-md-1 text-center">
+                  <span class="fa fa-plus"></span>
+                </td>                       
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end 7th row-->
+  <br/>
+  <!--button row-->
+  <div class="row">
+    <div class="col-md-offset-1 col-md-1">
+      <button mat-raised-button color="primary">Save</button>
+    </div>
+    <div class="col-md-1">
+      <button mat-raised-button>Clear</button>
+    </div>
+  </div>
+  <!--end button row-->
+  <br/>
+</div>
+<!--end container row--> 
+ <br/><br/><br/>
+ <!--fix footer-->
+<div class="row">
+   <div class="col-md-12">
+     <div class="footer">
+       <div class="row">
+         <div class="col-md-offset-1 col-md-2">
+           <h3 class="text-center borderRight" style="color:yellow">Summary</h3>
+         </div>
+         <div class="col-md-9">
+           <div class="row">
+              <div class="col-md-2 borderBottom text-center">
+                  <label style="color:#ccc;">Basic Pay</label>
+              </div>
+              <div class="col-md-2 borderBottom text-center">
+                  <label style="color:yellow;">Allowances</label>
+              </div>
+              <div class="col-md-2 borderBottom text-center">
+                  <label style="color:#b6ff00;">Gross Pay</label>
+              </div>
+              <div class="col-md-2 borderBottom text-center">
+                  <label style="color:orange;">Deductions</label>
+              </div>
+              <div class="col-md-2 borderBottom text-center">
+                  <label style="color:#b6ff00;">Net Pay</label>
+              </div>
+           </div>
+           <div class="row">
+              <div class="col-md-2 text-center">
+                  <label style="color:#ccc;">20,000</label>
+              </div>
+              <div class="col-md-2 text-center">
+                  <label style="color:yellow;">14,500</label>
+              </div>
+              <div class="col-md-2 text-center">
+                  <label style="color:#b6ff00;">34,500</label>
+              </div>
+              <div class="col-md-2 text-center">
+                  <label style="color:orange;">500</label>
+              </div>
+              <div class="col-md-2 text-center">
+                  <label style="color:#b6ff00;">34,000</label>
+              </div>
+          </div> 
+          <br/>         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end fix footer-->
