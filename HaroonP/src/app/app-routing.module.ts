@@ -9,6 +9,7 @@ import { ApprovingauthorityComponent } from './components/approvingauthority/app
 import { HousehiringComponent } from './components/househiring/househiring.component';
 import { HiringagreementComponent } from './components/hiringagreement/hiringagreement.component';
 import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
+import { SanctionsComponent } from './components/sanctions/sanctions.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'sanctionRule',
     component: SanctionruleComponent
+  },
+  {
+    path: 'sanction',
+    component: SanctionsComponent
   }
 ];
 

@@ -22,6 +22,7 @@ import { HiringagreementComponent } from './components/hiringagreement/hiringagr
 import { ApprovingauthorityComponent } from './components/approvingauthority/approvingauthority.component';
 import { SanctionruleComponent } from './components/sanctionrule/sanctionrule.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { SanctionsComponent } from './components/sanctions/sanctions.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
     HiringagreementComponent,
     ApprovingauthorityComponent,
     SanctionruleComponent,
-    ErpBottomSheetComponent 
+    ErpBottomSheetComponent,
+    SanctionsComponent 
   ],
   imports: [
     BrowserModule,
