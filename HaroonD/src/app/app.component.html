@@ -12,7 +12,7 @@
                         </button>
                     </div>
                     <div class="col-md-8">
-                        <p style="margin-top: 1.0em !important">PMIS - Menu</p>
+                        <p style="margin-top: 1.0em !important">DMIS - Menu</p>
                     </div>
                 </div>                
             </div>        
@@ -30,13 +30,19 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav">
-                    <li routerLinkActive='active'>
+                    <!-- <li routerLinkActive='active'>
                         <a routerLink=''>
                             <span class="fa fa-tachometer"></span>
                             <span class="text">Dashboard</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li routerLinkActive='active'>
+                        <a routerLink='area'>
+                            <span class="fa fa-globe"></span>
+                            <span class="text">Area</span>
+                        </a>
+                    </li>
+                    <!-- <li routerLinkActive='active'>
                         <a routerLink='approvingAuthority'>
                             <span class="fa fa-university"></span>
                             <span class="text">Approving Authority</span>
@@ -89,7 +95,7 @@
                             <span class="fa fa-calendar-check-o"></span>
                             <span class="text">Sanction Rule</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -105,7 +111,7 @@
                 </button>
             </div>
             <div class="col-md-5">
-                <h4>PMIS</h4>
+                <h4>DMIS</h4>
             </div>
             <div class="col-md-6 text-right">
                 <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
