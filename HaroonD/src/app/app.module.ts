@@ -13,13 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AreaComponent } from './components/area/area.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { HealthfacilitiesComponent } from './components/healthfacilities/healthfacilities.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     ErpBottomSheetComponent,
-    AreaComponent
+    AreaComponent,
+    HealthfacilitiesComponent
   ],
   imports: [
     BrowserModule,
