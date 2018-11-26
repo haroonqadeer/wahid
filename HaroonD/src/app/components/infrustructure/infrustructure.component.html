@@ -2,7 +2,7 @@
 <!--start heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Health Facilities</h1>    
+    <h1 class="bottomBorder">Infrustructure</h1>    
   </div>
 </div>
 <!--end heading row-->
@@ -10,51 +10,216 @@
 
 <!--start container-->
 <div class="container">
-  <!--start table row-->       
-  <div class="example-container mat-elevation-z8">
-    <div class="example-table-container">                      
-      <table class="table table-striped">
-        <thead>
-          <tr class='d-flex'>
-            <th class='col-1'>Sr #</th>
-            <th class='col-2'>Name</th>
-            <th class='col-2'>Type</th>
-            <th class='col-1'>Area</th>
-            <th class='col-2'>City</th>
-            <th class='col-2'>District</th>
-            <th class='col-1 text-center'>Detail</th>
-            <th class='col-1 text-center'>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-          <tr class='d-flex'>
-            <td class='col-1'>1</td> 
-            <td class='col-2'>Ali Hospital</td>
-            <td class='col-2'>Hospital</td>
-            <td class='col-1'>G-9</td>
-            <td class='col-2'>Islamabad</td>
-            <td class='col-2'>Islamabad</td>
-            <td class='col-1 text-center'>
-              <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#facilityDetaialModal"></span>
-            </td>
-            <td class='col-1 text-center'>
-              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
-            </td>
-          </tr>
+  
+  <!--tabs start -->
+  <mat-tab-group>
+    <!--Start Residence Tab -->
+    <mat-tab label="Residence"> 
+      
+      <div class="row tab-margin">
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-select placeholder="Area">
+              <mat-option value="1">F-8</mat-option>
+              <mat-option value="2">F-9</mat-option>
+              <mat-option value="3">F-10</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-          <tr class='d-flex'>
-            <td class='col-11'></td> 
-            <td class='col-1 text-center'>
-              <span class="fa fa-plus pointerCursor" data-toggle="modal" data-target="#addFacilityModal"></span>
-            </td>
-          </tr>
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-select placeholder="City">
+              <mat-option value="1">Hazroo</mat-option>
+              <mat-option value="2">Islamabad</mat-option>
+              <mat-option value="3">Rawalpindi</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <!--end table row-->
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-select placeholder="District">
+              <mat-option value="1">Attock</mat-option>
+              <mat-option value="2">Islamabad</mat-option>
+              <mat-option value="3">Rawalpindi</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br/>
+
+      <div class="row tab-margin">
+        <div class="col-md-12">
+
+          <!--start table row-->       
+          <div class="example-container mat-elevation-z8">
+            <div class="example-table-container">                      
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1'>Sr #</th>
+                    <th class='col-2'>Area</th>
+                    <th class='col-2'>City</th>
+                    <th class='col-3'>District</th>
+                    <th class='col-1 text-center'>Small</th>
+                    <th class='col-1 text-center'>Medium</th>
+                    <th class='col-1 text-center'>Large</th>
+                    <th class='col-1 text-center'>Submit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-1'>1</td> 
+                    <td class='col-2'>G-9</td>
+                    <td class='col-2'>Islamabad</td>
+                    <td class='col-3'>Islamabad</td>
+                    <td class='col-1'>
+                      <mat-form-field>
+                        <input matInput>
+                      </mat-form-field>
+                    </td>
+                    <td class='col-1'>
+                      <mat-form-field>
+                        <input matInput>
+                      </mat-form-field>
+                    </td>
+                    <td class='col-1 text-center'>
+                      <mat-form-field>
+                        <input matInput>
+                      </mat-form-field>
+                    </td>
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-save pointerCursor"></span>
+                    </td>
+                  </tr>
+
+                  <tr class='d-flex'>
+                    <td class='col-11'></td> 
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-plus pointerCursor"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->
+
+        </div>
+      </div>
+
+    </mat-tab>
+    <!--End Residence Tab -->
+
+    <!--Start Commercial Tab -->
+    <mat-tab label="Commercial"> 
+    
+        <div class="row tab-margin">
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="Area">
+                <mat-option value="1">F-8</mat-option>
+                <mat-option value="2">F-9</mat-option>
+                <mat-option value="3">F-10</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="City">
+                <mat-option value="1">Hazroo</mat-option>
+                <mat-option value="2">Islamabad</mat-option>
+                <mat-option value="3">Rawalpindi</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-4">
+            <mat-form-field>
+              <mat-select placeholder="District">
+                <mat-option value="1">Attock</mat-option>
+                <mat-option value="2">Islamabad</mat-option>
+                <mat-option value="3">Rawalpindi</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <br/>
+  
+        <div class="row tab-margin">
+          <div class="col-md-12">
+  
+            <!--start table row-->       
+            <div class="example-container mat-elevation-z8">
+              <div class="example-table-container">                      
+                <table class="table table-striped">
+                  <thead>
+                    <tr class='d-flex'>
+                      <th class='col-1'>Sr #</th>
+                      <th class='col-2'>Area</th>
+                      <th class='col-2'>City</th>
+                      <th class='col-3'>District</th>
+                      <th class='col-1 text-center'>Small</th>
+                      <th class='col-1 text-center'>Medium</th>
+                      <th class='col-1 text-center'>Large</th>
+                      <th class='col-1 text-center'>Submit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                    <tr class='d-flex'>
+                      <td class='col-1'>1</td> 
+                      <td class='col-2'>G-9</td>
+                      <td class='col-2'>Islamabad</td>
+                      <td class='col-3'>Islamabad</td>
+                      <td class='col-1'>
+                        <mat-form-field>
+                          <input matInput>
+                        </mat-form-field>
+                      </td>
+                      <td class='col-1'>
+                        <mat-form-field>
+                          <input matInput>
+                        </mat-form-field>
+                      </td>
+                      <td class='col-1 text-center'>
+                        <mat-form-field>
+                          <input matInput>
+                        </mat-form-field>
+                      </td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-save pointerCursor"></span>
+                      </td>
+                    </tr>
+  
+                    <tr class='d-flex'>
+                      <td class='col-11'></td> 
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-plus pointerCursor"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!--end table row-->
+  
+          </div>
+        </div>
+
+    </mat-tab>
+    <!--End Commercial Tab -->
+
+  </mat-tab-group>
+  <!--tabs end-->
+
+  <br/>
+
 </div>
 <!--end container-->
 

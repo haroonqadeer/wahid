@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import { AreaComponent } from './components/area/area.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { HealthfacilitiesComponent } from './components/healthfacilities/healthfacilities.component';
+import { EducationalInstitutesComponent } from './components/educational-institutes/educational-institutes.component';
+import { InfrustructureComponent } from './components/infrustructure/infrustructure.component';
+import { PopulationComponent } from './components/population/population.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { HealthfacilitiesComponent } from './components/healthfacilities/healthf
     SearchPipe,
     ErpBottomSheetComponent,
     AreaComponent,
-    HealthfacilitiesComponent
+    HealthfacilitiesComponent,
+    EducationalInstitutesComponent,
+    InfrustructureComponent,
+    PopulationComponent
   ],
   imports: [
     BrowserModule,
