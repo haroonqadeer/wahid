@@ -9,6 +9,7 @@ import { HealthfacilitiesComponent } from './components/healthfacilities/healthf
 import { EducationalInstitutesComponent } from './components/educational-institutes/educational-institutes.component';
 import { InfrustructureComponent } from './components/infrustructure/infrustructure.component';
 import { PopulationComponent } from './components/population/population.component';
+import { DisasterAlertComponent } from './components/disaster-alert/disaster-alert.component';
 
 const routes: Routes = [
   {
@@ -40,12 +41,16 @@ const routes: Routes = [
     component: EducationalInstitutesComponent
   },
   {
-    path: 'infrustructure',
+    path: 'infrastructure',
     component: InfrustructureComponent
   },
   {
     path: 'population',
     component: PopulationComponent
+  },
+  {
+    path: 'disasterAlerts',
+    component: DisasterAlertComponent
   }
 ];
 

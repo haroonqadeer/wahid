@@ -22,6 +22,7 @@ import { HealthfacilitiesComponent } from './components/healthfacilities/healthf
 import { EducationalInstitutesComponent } from './components/educational-institutes/educational-institutes.component';
 import { InfrustructureComponent } from './components/infrustructure/infrustructure.component';
 import { PopulationComponent } from './components/population/population.component';
+import { DisasterAlertComponent } from './components/disaster-alert/disaster-alert.component';
 
 @NgModule({
   declarations: [
@@ -29,18 +30,16 @@ import { PopulationComponent } from './components/population/population.componen
     SearchPipe,
     ErpBottomSheetComponent,
     AreaComponent,
-<<<<<<< HEAD
     HealthfacilitiesComponent,
     EducationalInstitutesComponent,
     InfrustructureComponent,
-    PopulationComponent
-=======
+    PopulationComponent,
     DashboardComponent,
     DmdashboardComponent,
     DisasterAreaComponent,
     DAreaWiseComponent,
-    HealthfacilitiesComponent
->>>>>>> 4a313282b7c4cc006618d0862e079196b5c3903f
+    HealthfacilitiesComponent,
+    DisasterAlertComponent
   ],
   imports: [
     BrowserModule,
