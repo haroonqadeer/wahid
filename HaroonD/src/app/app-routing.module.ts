@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DmdashboardComponent } from './components/dmdashboard/dmdashboard.component';
 import { DisasterAreaComponent } from './components/disaster-area/disaster-area.component';
 import { DAreaWiseComponent } from './components/d-area-wise/d-area-wise.component';
+import { HealthfacilitiesComponent } from './components/healthfacilities/healthfacilities.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'areaWise',
     component: DAreaWiseComponent
+  },
+  {
+    path: 'healthfacilities',
+    component: HealthfacilitiesComponent
   }
 ];
 

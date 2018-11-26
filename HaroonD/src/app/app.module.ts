@@ -18,6 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DmdashboardComponent } from './components/dmdashboard/dmdashboard.component';
 import { DisasterAreaComponent } from './components/disaster-area/disaster-area.component';
 import { DAreaWiseComponent } from './components/d-area-wise/d-area-wise.component';
+import { HealthfacilitiesComponent } from './components/healthfacilities/healthfacilities.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DAreaWiseComponent } from './components/d-area-wise/d-area-wise.compone
     DashboardComponent,
     DmdashboardComponent,
     DisasterAreaComponent,
-    DAreaWiseComponent
+    DAreaWiseComponent,
+    HealthfacilitiesComponent
   ],
   imports: [
     BrowserModule,
