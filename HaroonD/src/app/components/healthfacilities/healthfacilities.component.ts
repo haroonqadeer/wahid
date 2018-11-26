@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HealthfacilitiesComponent implements OnInit {
 
+  txtdPassword = '';
+  txtdPin = '';
+  
   constructor() { }
 
   ngOnInit() {

@@ -46,6 +46,9 @@ export class AreaComponent implements OnInit {
   selectedType: Type;
   selectedDesignation: Designation;
 
+  txtdPassword = '';
+  txtdPin = '';
+  
   //use in city combobox
   cities: City[] = [
     {cId: '1', cName: 'Attock'},

@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./d-area-wise.component.scss']
 })
 export class DAreaWiseComponent implements OnInit {
+  
+  panelOpenState=true;
 
   latitude = 30.3753;
   longitude = 69.3451;

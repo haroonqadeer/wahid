@@ -19,6 +19,9 @@ export interface Hospital {
 })
 export class DisasterAreaComponent implements OnInit {
 
+  txtdPassword = '';
+  txtdPin = '';
+  
   //use in city combobox
   insts: Institute[] = [
     {iId: '1', iName: 'School'},

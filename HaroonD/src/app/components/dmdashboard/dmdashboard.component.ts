@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DmdashboardComponent implements OnInit {
 
+  panelOpenState=true;
+
   constructor() { }
 
   ngOnInit() {

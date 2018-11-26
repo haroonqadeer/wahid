@@ -41,9 +41,9 @@ export interface MsgTemplateItems {
 export class DisasterAlertComponent implements OnInit {
 
   //Declaration
-  searchDistrict='';
-
-
+  searchDistrict = '';
+  searchCity = '';
+  searchArea = '';
 
   //Page Modals
   cmbDistrict='';
