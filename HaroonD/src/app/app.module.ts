@@ -8,11 +8,16 @@ import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import {HttpModule} from '@angular/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AreaComponent } from './components/area/area.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DmdashboardComponent } from './components/dmdashboard/dmdashboard.component';
+import { DisasterAreaComponent } from './components/disaster-area/disaster-area.component';
+import { DAreaWiseComponent } from './components/d-area-wise/d-area-wise.component';
 import { HealthfacilitiesComponent } from './components/healthfacilities/healthfacilities.component';
 import { EducationalInstitutesComponent } from './components/educational-institutes/educational-institutes.component';
 import { InfrustructureComponent } from './components/infrustructure/infrustructure.component';
@@ -24,10 +29,18 @@ import { PopulationComponent } from './components/population/population.componen
     SearchPipe,
     ErpBottomSheetComponent,
     AreaComponent,
+<<<<<<< HEAD
     HealthfacilitiesComponent,
     EducationalInstitutesComponent,
     InfrustructureComponent,
     PopulationComponent
+=======
+    DashboardComponent,
+    DmdashboardComponent,
+    DisasterAreaComponent,
+    DAreaWiseComponent,
+    HealthfacilitiesComponent
+>>>>>>> 4a313282b7c4cc006618d0862e079196b5c3903f
   ],
   imports: [
     BrowserModule,
@@ -39,7 +52,10 @@ import { PopulationComponent } from './components/population/population.componen
     ReactiveFormsModule,
     PNPrimeModule,
     HttpModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyApMV0SLs-Muha5rW1F1NudsS5i4YUqXQ0'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

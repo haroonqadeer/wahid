@@ -30,25 +30,25 @@ encapsulation: ViewEncapsulation.None
 })
 export class CompanydashboardComponent implements OnInit {
 
-    txtNTN = '';
-    txtSTRN = '';
-    txtTitle = '';
-    txtNature = '';
-    txtDescription = '';
-    txtBAddress = '';
-    txtMAddress = '';
-    txtTelephone = '';
-    txtMobile = '';
-    txtEmail = '';
-    txtWebsite = '';
-    txtfacebook = '';
-    txtAddress = '';
-    cmbCity = '';
-    txtCity = '';
+    // txtNTN = '';
+    // txtSTRN = '';
+    // txtTitle = '';
+    // txtNature = '';
+    // txtDescription = '';
+    // txtBAddress = '';
+    // txtMAddress = '';
+    // txtTelephone = '';
+    // txtMobile = '';
+    // txtEmail = '';
+    // txtWebsite = '';
+    // txtfacebook = '';
+    // txtAddress = '';
+    // cmbCity = '';
+    // txtCity = '';
     cmbCompany = '';
-    txtCountry = '';
-    txtCurrency = '';
-    txtSection = '';
+    // txtCountry = '';
+    // txtCurrency = '';
+    // txtSection = '';
     
     public edited = false;
 
@@ -63,7 +63,7 @@ export class CompanydashboardComponent implements OnInit {
 
     //ng modal variables
     cmbCType = '';
-    txtCType = '';
+    // txtCType = '';
 
   //use in company combobox
   companies: Company[] = [

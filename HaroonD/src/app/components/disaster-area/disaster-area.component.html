@@ -1,0 +1,943 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Disaster Area Entry Point</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--container row-->
+
+<div class="container bgWhite shadow-md">
+    <mat-tab-group>
+      <mat-tab label="Impact">
+        <div class="container">
+          <br/>
+          <!--heading row--> 
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="bottomBorder">Impact</h3>
+            </div>
+          </div> 
+          <!--end heading row-->
+          <br/>
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Impact %age">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4">
+                  <h5>Casualitites</h5>
+                </div>
+                <div class="col-md-4">image</div>
+                <div class="col-md-4">
+                  <button mat-mini-fab color="primary"><b>...</b></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--2nd row-->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Serious Injuries</h5>
+                </div>
+                <div class="col-md-4">image</div>
+                <div class="col-md-2">
+                    <button mat-mini-fab color="primary"><b>...</b></button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Injured</h5>
+                </div>
+                <div class="col-md-4">image</div>
+                <div class="col-md-2">
+                    <button mat-mini-fab color="primary"><b>...</b></button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>minor Injured</h5>
+                </div>
+                <div class="col-md-4">image</div>
+                <div class="col-md-2">
+                    <button mat-mini-fab color="primary"><b>...</b></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end 2nd row-->
+          <br/>
+          <!--button tag-->
+          <div class="row">
+            <button mat-raised-button color="primary">Save</button>
+          </div>
+          <br/>
+        </div>
+      </mat-tab>
+      <mat-tab label="Infrastructure"> 
+        <div class="container">
+          <br/>
+          <!--heading row--> 
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="bottomBorder">Infrastructure</h3>
+            </div>
+          </div> 
+          <!--end heading row-->
+          <br/>
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-offset-2 col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Houses</h5>
+                </div>
+                <div class="col-md-4">image</div>
+                <div class="col-md-2">
+                  <button mat-mini-fab color="primary"><b>...</b></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--2nd row-->
+          <div class="row text-center">
+            <div class="col-md-6">
+              <h4>Institues</h4>
+            </div>
+            <div class="col-md-6">
+              <h4>Hospitals</h4>
+            </div>
+          </div>
+          <!--end 2nd row-->
+          <br/>
+          <!--table row-->
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-2 text-center'>Sr #</th>
+                    <th class='col-4 text-center'>Name</th>
+                    <th class='col-3 text-center'>Status</th>
+                    <th class='col-3 text-center'>Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-2 text-center'>1</td> 
+                    <td class='col-4 text-center'>College</td>
+                    <td class='col-3 text-center'>-</td>
+                    <td class='col-3 text-center'>abc</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-2 text-center'>Sr #</th>
+                    <th class='col-4 text-center'>Name</th>
+                    <th class='col-3 text-center'>Status</th>
+                    <th class='col-3 text-center'>Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-2 text-center'>1</td> 
+                    <td class='col-4 text-center'>City Hospital</td>
+                    <td class='col-3 text-center'>-</td>
+                    <td class='col-3 text-center'>ssds</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->
+        </div>
+      </mat-tab>
+      <mat-tab label="Rescue">
+        <div class="container">
+          <br/>
+          <!--heading row--> 
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="bottomBorder">Rescue</h3>
+            </div>
+          </div> 
+          <!--end heading row-->
+          <br/>
+          <!--button tag-->
+          <button mat-raised-button color="primary" data-toggle="modal" data-target="#pointModal">Add</button>
+          <br/>
+          <!--table row-->
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1 text-center'>Sr #</th>
+                    <th class='col-3 text-center'>Point Name</th>
+                    <th class='col-4 text-center'>Latiitude</th>
+                    <th class='col-4 text-center'>Longitude</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-1 text-center'>1</td> 
+                    <td class='col-3 text-center'>Rawalpindi</td>
+                    <td class='col-4 text-center'>30.487548</td>
+                    <td class='col-4 text-center'>69.124574</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->
+        </div>
+      </mat-tab>
+      <mat-tab label="Shelter">  
+        <div class="container">
+          <br/>
+          <!--heading row--> 
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="bottomBorder">Shelter</h3>
+            </div>
+          </div> 
+          <!--end heading row-->
+          <br/>
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-8">
+                  <mat-form-field class="fullwidth">
+                    <mat-select placeholder="Institutes">
+                      <mat-option *ngFor="let inst of insts" [value]="inst.iId">
+                        {{inst.iName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button mat-raised-button color="primary">Add</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-8">
+                  <mat-form-field class="fullwidth">
+                    <mat-select placeholder="Hospitals">
+                      <mat-option *ngFor="let hosp of hosps" [value]="hosp.hId">
+                        {{hosp.hName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button mat-raised-button color="primary">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--table row-->
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1 text-center'>Sr #</th>
+                    <th class='col-3 text-center'>Name</th>
+                    <th class='col-2 text-center'>Type</th>
+                    <th class='col-5 text-center'>Address</th>
+                    <th class='col-1 text-center'>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-1 text-center'>1</td> 
+                    <td class='col-3 text-center'>Army College</td>
+                    <td class='col-2 text-center'>Institute</td>
+                    <td class='col-5 text-center'>House# 3, Street# 32, Rawalpindi</td>
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->
+        </div>
+      </mat-tab>
+      <mat-tab label="Food">  
+        <div class="container">
+          <br/>
+          <!--heading row--> 
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="bottomBorder">Food</h3>
+            </div>
+          </div> 
+          <!--end heading row-->
+          <br/>
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <b>Required</b>
+            </div>
+            <div class="col-md-2">
+              <b>In-transit</b>
+            </div>
+            <div class="col-md-2">
+              <b>Received</b>
+            </div>
+            <div class="col-md-2">
+              <b>Delivered</b>
+            </div>
+            <div class="col-md-2">
+              <b>Add</b>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--2nd row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Wheat</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 2nd row-->
+          <!--3rd row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Oil</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 3rd row-->
+          <!--4th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Rice</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 4th row-->
+          <!--5th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Dalen</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 5th row-->
+          <!--6th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Bread</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 6th row-->
+          <!--7th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Sugar</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 7th row-->
+        </div>
+      </mat-tab>
+      <mat-tab label="Health">
+        <div class="container">
+          <br/>
+          <!--heading row--> 
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="bottomBorder">Health</h3>
+            </div>
+          </div> 
+          <!--end heading row-->
+          <br/>
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <b>Required</b>
+            </div>
+            <div class="col-md-2">
+              <b>In-transit</b>
+            </div>
+            <div class="col-md-2">
+              <b>Received</b>
+            </div>
+            <div class="col-md-2">
+              <b>Delivered</b>
+            </div>
+            <div class="col-md-2">
+              <b>Add</b>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--2nd row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Doctors </b>(male)
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 2nd row-->
+          <!--3rd row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Doctors </b>(female)
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 3rd row-->
+          <!--4th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Nurse</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 4th row-->
+          <!--5th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Sweepers</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 5th row-->
+          <!--6th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Maid</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 6th row-->
+          <!--7th row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Compounder</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 7th row-->
+        </div>
+      </mat-tab>
+      <mat-tab label="Drugs">
+        <div class="container">
+          <br/>
+          <!--heading row--> 
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="bottomBorder">Drugs</h3>
+            </div>
+          </div> 
+          <!--end heading row-->
+          <br/>
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <b>Required</b>
+            </div>
+            <div class="col-md-2">
+              <b>In-transit</b>
+            </div>
+            <div class="col-md-2">
+              <b>Received</b>
+            </div>
+            <div class="col-md-2">
+              <b>Delivered</b>
+            </div>
+            <div class="col-md-2">
+              <b>Add</b>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--2nd row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Panadols</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 2nd row-->
+          <!--3rd row-->
+          <div class="row">
+            <div class="col-md-2">
+              <br/>
+              <b>Incide</b>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              label
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Quantity">
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <br/>
+              <span class="fa fa-plus"></span>
+            </div>
+          </div>
+          <!--end 3rd row-->
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+</div>
+<!--end container row-->
+
+<!--////////////////////////////////////-->
+<!--//////////Modal Window/////////////-->
+<!--////////////////////////////////////-->
+
+<!-- Start Modal Window to add points -->
+<div class="modal fade" id="pointModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Point</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Point Name">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Latitude">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Longitude">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--button tag-->
+        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add new area -->
+  
+<!-- Start Modal Window to delete shelter -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+          <br>
+          <div class="hidden" ngDefaultControl></div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <h2>Delete Entry</h2>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+              </mat-form-field>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+            </div>
+          </div>
+          <br/>
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete shelter -->
+  
