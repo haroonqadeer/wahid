@@ -17,6 +17,10 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
     path: 'area',
     component: AreaComponent
   },
