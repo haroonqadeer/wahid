@@ -12,14 +12,14 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VendorEnrollmentComponent } from './components/vendor-enrollment/vendor-enrollment.component';
+import { VendorRegistrationComponent } from './components/vendor-registration/vendor-registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     ErpBottomSheetComponent,
-    VendorEnrollmentComponent
+    VendorRegistrationComponent
   ],
   imports: [
     BrowserModule,
