@@ -13,13 +13,15 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VendorRegistrationComponent } from './components/vendor-registration/vendor-registration.component';
+import { VendorPanelComponent } from './components/vendor-panel/vendor-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     ErpBottomSheetComponent,
-    VendorRegistrationComponent
+    VendorRegistrationComponent,
+    VendorPanelComponent
   ],
   imports: [
     BrowserModule,

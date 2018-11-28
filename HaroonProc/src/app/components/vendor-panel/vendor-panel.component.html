@@ -1,0 +1,1436 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Vendor Panel</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--container row-->
+<div class="container bgWhite shadow-md">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-tab-group>
+        <mat-tab label="Registered">  
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-1 text-right">
+              <br/>
+              <h5>Search</h5>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Name">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Category">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Item">
+              </mat-form-field>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--table row-->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-striped">
+                  <thead>
+                    <tr class='d-flex'>
+                      <th class='col-1 text-center'>Sr #</th>
+                      <th class='col-2 text-center'>Name</th>
+                      <th class='col-2 text-center'>NTN/CNIC</th>
+                      <th class='col-1 text-center'>STRN</th>
+                      <th class='col-2 text-center'>Category</th>
+                      <th class='col-1 text-center'>Item</th>
+                      <th class='col-1 text-center'>Detail</th>
+                      <th class='col-1 text-center'>Black List</th>
+                      <th class='col-1 text-center'>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                    <tr class='d-flex'>
+                      <td class='col-1 text-center'>1</td> 
+                      <td class='col-2 text-center'>Ali Khan Naqvi</td>
+                      <td class='col-2 text-center'>31420-1547896-3</td>
+                      <td class='col-1 text-center'>127356112</td>
+                      <td class='col-2 text-center'>xyz</td>
+                      <td class='col-1 text-center'>aaanvbv</td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#detailModal"></span>
+                      </td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-times-circle pointerCursor text-danger" data-toggle="modal" data-target="#authorizeModal"></span>
+                      </td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!--end table row-->
+          <br/>
+        </mat-tab>
+        <mat-tab label="Requests">
+          <!--table row-->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-striped">
+                  <thead>
+                    <tr class='d-flex'>
+                      <th class='col-1 text-center'>Sr #</th>
+                      <th class='col-2 text-center'>Name</th>
+                      <th class='col-2 text-center'>NTN/CNIC</th>
+                      <th class='col-2 text-center'>STRN</th>
+                      <th class='col-2 text-center'>Category</th>
+                      <th class='col-1 text-center'>Item</th>
+                      <th class='col-1 text-center'>Status</th>
+                      <th class='col-1 text-center'>Seek Approval</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                    <tr class='d-flex'>
+                      <td class='col-1 text-center'>1</td> 
+                      <td class='col-2 text-center'>
+                        <a href="#" data-toggle="modal" data-target="#reqDetailModal">M/S Hassan &Co.</a>
+                      </td>
+                      <td class='col-2 text-center'>61101-1547896-3</td>
+                      <td class='col-2 text-center'>554744512</td>
+                      <td class='col-2 text-center'>xyz</td>
+                      <td class='col-1 text-center'>aaanvbv</td>
+                      <td class='col-1 text-center'>In-Process</td>
+                      <td class='col-1 text-center'>
+                        <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#approvalModal"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!--end table row-->
+          <br/>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+<!--end container row-->
+
+
+
+<!--//////////////////////////////////-->
+<!--//////////Modal Windows///////////-->
+<!--//////////////////////////////////-->
+
+<!-- Start Modal Window to check vendor detail -->
+<div class="modal fade" id="detailModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Vendor Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--container row-->
+        <div class="container">
+          <!--tabs row-->
+          <div class="row">
+            <div class="col-md-12">
+              <mat-tab-group>
+                <mat-tab label="Business Info">
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Vendor Name:</b>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <h5>Ali Khan</h5>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--2nd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Address:</b>
+                    </div>
+                    <div class="col-md-9 text-left">
+                      <h5>House# 56-A, Street# 68, G-10 Markaz Islamabad</h5>
+                    </div>
+                  </div>
+                  <!--end 2nd row-->
+                  <br/>
+                  <!--3rd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>City:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Islamabad</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Country:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Pakistan</h5>
+                    </div>
+                  </div>
+                  <!--end 3rd row-->
+                  <br/>
+                  <!--4th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Mobile:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>0321-2154478</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Phone:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>051-5214486</h5>
+                    </div>
+                  </div>
+                  <!--end 4th row-->
+                  <br/>
+                  <!--5th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Fax:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>051-5214486</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Email:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Ali.Naqvi@outlook.com</h5>
+                    </div>
+                  </div>
+                  <!--end 5th row-->
+                  <br/>
+                  <!--6th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Website:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>www.akngroup.com</h5>
+                    </div>
+                  </div>
+                  <!--end 6th row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Tax Info">
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Tax Department:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>FBR</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Tax Circle:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Attock</h5>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--2nd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Registration:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>6842155215</h5>
+                    </div>
+                  </div>
+                  <!--end 2nd row-->
+                  <br/>
+                  <!--3rd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Verified Address:</b>
+                    </div>
+                    <div class="col-md-9 text-left">
+                      <h5>House# A/92-C, Street# 20, Attock Punjab</h5>
+                    </div>
+                  </div>
+                  <!--end 3rd row-->
+                  <br/>
+                  <!--4th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Verified:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Yes</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Type:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Company</h5>
+                    </div>
+                  </div>
+                  <!--end 4th row-->
+                  <br/>
+                  <!--5th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Resident:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Yes</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Certificate:</b>
+                    </div>
+                    <div class="col-md-4 text-left">
+                      <h5>Computer Hardware</h5>
+                    </div>
+                  </div>
+                  <!--end 5th row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Representator">
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Representator Name:</b>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <h5>Nawaz Ali Rajpoot</h5>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--2nd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Designation:</b>
+                    </div>
+                    <div class="col-md-9 text-left">
+                      <h5>General Manager</h5>
+                    </div>
+                  </div>
+                  <!--end 2nd row-->
+                  <br/>
+                  <!--3rd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Mobile:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>0344-2212334</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Phone:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>051-3332456</h5>
+                    </div>
+                  </div>
+                  <!--end 3rd row-->
+                  <br/>
+                  <!--4th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Fax:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>051-3332456</h5>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Email:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>nawaz.ali@hotmail.com</h5>
+                    </div>
+                  </div>
+                  <!--end 4th row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Affiliation">
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Company Name:</b>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <h5>Naqvi Group of Companies</h5>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--2nd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Affiliation Type:</b>
+                    </div>
+                    <div class="col-md-9 text-left">
+                      <h5>Abccb Example</h5>
+                    </div>
+                  </div>
+                  <!--end 2nd row-->
+                  <br/>
+                  <!--3rd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Certificate:</b>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <h5>Computer Softwares</h5>
+                    </div>
+                  </div>
+                  <!--end 3rd row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Financial">
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Financial Year:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>2017-2018</h5>
+                    </div>
+                    <div class="col-md-3">
+                      <b>Income Statement:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Image</h5>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--2nd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Balance Sheet:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Image</h5>
+                    </div>
+                    <div class="col-md-3">
+                      <b>Year Turn Over:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>20,551,400</h5>
+                    </div>
+                  </div>
+                  <!--end 2nd row-->
+                  <br/>
+                  <!--3rd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Year Total Assets:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>1,551,400</h5>
+                    </div>
+                    <div class="col-md-3">
+                      <b>Year Current Assets:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>1,005,400</h5>
+                    </div>
+                  </div>
+                  <!--end 3rd row-->
+                  <br/>
+                  <!--4th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Year Current Liabilities:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>251,400</h5>
+                    </div>
+                    <div class="col-md-3">
+                      <b>Auditor:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Ali Group of Companies</h5>
+                    </div>
+                  </div>
+                  <!--end 4th row-->
+                  <br/>
+                  <!--5th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Ranking:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>28</h5>
+                    </div>
+                  </div>
+                  <!--end 5th row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Rating">
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Organization Name:</b>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <h5>Ali Group of Companies</h5>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--2nd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Ranking:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>14</h5>
+                    </div>
+                    <div class="col-md-3">
+                      <b>Ranking Health:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>22</h5>
+                    </div>
+                  </div>
+                  <!--end 2nd row-->
+                  <br/>
+                  <!--3rd row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Verification Link:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Image</h5>
+                    </div>
+                    <div class="col-md-3">
+                      <b>Verified:</b>
+                    </div>
+                    <div class="col-md-3 text-left">
+                      <h5>Yes</h5>
+                    </div>
+                  </div>
+                  <!--end 3rd row-->
+                  <br/>
+                  <!--4th row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Certificate:</b>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <h5>Computer Hardware & Software</h5>
+                    </div>
+                  </div>
+                  <!--end 4th row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Category">
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b>Category Type:</b>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <h5>Furniture & Fixture</h5>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+          <!--end tabs row-->
+        </div>
+        <!--end container row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to check vendor detail -->
+  
+<!-- Start Modal Window to check user authorization -->
+<div class="modal fade" id="authorizeModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="hidden" ngDefaultControl></div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <h2>Authorization Check</h2>
+          </div>
+        </div><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password">
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#reasonModal">OK</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to check user authorization -->
+
+<!-- Start Modal Window to add reason data -->
+<div class="modal fade" id="reasonModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Reason</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-2 text-center'>Sr #</th>
+                  <th class='col-8 text-center'>Reason</th>
+                  <th class='col-2 text-center'>Add</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'>
+                  <td class='col-2 text-center'>1</td> 
+                  <td class='col-8 text-center'>abc def ghi</td>
+                  <td class='col-2 text-center'>
+                  </td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-2 text-center'></td> 
+                  <td class='col-8 text-center'>
+                    <mat-form-field class="fullwidth">
+                      <input matInput>
+                    </mat-form-field>
+                  </td>
+                  <td class='col-2 text-center'>
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+                <tr class='d-flex'>
+                  <td class='col-2 text-center'></td> 
+                  <td class='col-8 text-center'>
+                    <mat-form-field class="fullwidth">
+                      <input matInput>
+                    </mat-form-field>
+                  </td>
+                  <td class='col-2 text-center'>
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#activityModal">Seek Approval</button>
+          </div>
+        </div>
+        <!--end button row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete data -->
+
+<!-- Start Activity Modal Window -->
+<div class="modal fade" id="activityModal">
+  <div class="modal-dialog shadow-lg-dark modal-md">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Activities</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--Row #1-->  
+        <div class="row">
+          <div class="col-md-7">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Usman Ali</mat-card-title>
+                <mat-card-subtitle>VB.Net</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-10 text-center">
+                    <p>
+                      Sept 11, 2018
+                    </p>
+                  </div>
+                </div>
+                
+              </mat-card-content>
+              <mat-card-actions class="text-right">
+                <span class="fa fa-share"></span>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          </div>
+          <!--end of row #1 -->
+
+          <br/>
+          
+          <!--start row #2-->
+          <div class="row">
+            <div class="col-md-5"></div> 
+            <div class="col-md-offset-5 col-md-7">
+              <mat-card class="example-card-r">
+
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image-r"></div>
+                  <mat-card-title>Ali Khan</mat-card-title>
+                  <mat-card-subtitle>English</mat-card-subtitle>
+                  
+                </mat-card-header>
+
+                <mat-card-content>
+                  <div class="row">
+                    <div class="col-md-10 text-center">
+                      <p>
+                        Sept 23, 2018
+                      </p>
+                    </div>
+                  </div>  
+                </mat-card-content>
+                <mat-card-actions class="">
+                  <span class="fa fa-reply"></span>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+          <!--end row 2-->
+
+          <br/>
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Activity Modal Window  -->
+
+<!-- Start Modal Window to view request detail -->
+<div class="modal fade" id="reqDetailModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Request Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--container row-->
+        <div class="container">
+          <!--1st row-->
+          <div class="row">
+            <div class="col-md-3">
+              <b>Vendor Name:</b>
+            </div>
+            <div class="col-md-6 text-left">
+              <h5 style="font-weight: normal;">Hassan Khan</h5>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--2nd row-->
+          <div class="row">
+            <div class="col-md-3">
+              <b>Address:</b>
+            </div>
+            <div class="col-md-9 text-left">
+              <h5 style="font-weight: normal;">House# 56-A, Street# 68, G-10 Markaz Islamabad</h5>
+            </div>
+          </div>
+          <!--end 2nd row-->
+          <br/>
+          <!--3rd row-->
+          <div class="row">
+            <div class="col-md-3">
+              <b>City:</b>
+            </div>
+            <div class="col-md-3 text-left">
+              <h5 style="font-weight: normal;">Islamabad</h5>
+            </div>
+            <div class="col-md-2">
+              <b>Country:</b>
+            </div>
+            <div class="col-md-3 text-left">
+              <h5 style="font-weight: normal;">Pakistan</h5>
+            </div>
+          </div>
+          <!--end 3rd row-->
+          <br/>
+          <!--4th row-->
+          <div class="row">
+            <div class="col-md-3">
+              <b>Mobile:</b>
+            </div>
+            <div class="col-md-3 text-left">
+              <h5 style="font-weight: normal;">0321-2154478</h5>
+            </div>
+            <div class="col-md-2">
+              <b>Phone:</b>
+            </div>
+            <div class="col-md-3 text-left">
+              <h5 style="font-weight: normal;">051-5214486</h5>
+            </div>
+          </div>
+          <!--end 4th row-->
+          <br/>
+          <!--5th row-->
+          <div class="row">
+            <div class="col-md-3">
+              <b>Fax:</b>
+            </div>
+            <div class="col-md-3 text-left">
+              <h5 style="font-weight: normal;">051-5214486</h5>
+            </div>
+            <div class="col-md-2">
+              <b>Email:</b>
+            </div>
+            <div class="col-md-3 text-left">
+              <h5 style="font-weight: normal;">hassan54@outlook.com</h5>
+            </div>
+          </div>
+          <!--end 5th row-->
+          <br/>
+          <!--6th row-->
+          <div class="row">
+            <div class="col-md-3">
+              <b>Website:</b>
+            </div>
+            <div class="col-md-3 text-left">
+              <h5 style="font-weight: normal;">www.akngroup.com</h5>
+            </div>
+          </div>
+          <!--end 6th row-->
+          <br/>
+        </div>
+        <!--end container row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to view request detail -->
+  
+<!-- Start Modal Window to add seek approvals -->
+<div class="modal fade" id="approvalModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Seek Approval</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--container row-->
+        <div class="container">
+          <!--tabs row-->
+          <div class="row">
+            <div class="col-md-12">
+              <mat-tab-group>
+                <mat-tab label="Registration">
+                  <br/>
+                  <!--heading row-->
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h3 class="bottomBorder">Registration</h3>
+                    </div>
+                  </div>
+                  <!--end heading row-->
+                  <br/>
+                  <!--table row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr class='d-flex'>
+                            <th class='col-2 text-center'>Sr #</th>
+                            <th class='col-3 text-center'>Tax Department</th>
+                            <th class='col-3 text-center'>Tax Circle</th>
+                            <th class='col-2 text-center'>Registration No.</th>
+                            <th class='col-2 text-center'>Verification</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>1</td> 
+                            <td class='col-3 text-center'></td>
+                            <td class='col-3 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <span class="fa fa-question text-danger"></span>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>2</td> 
+                            <td class='col-3 text-center'></td>
+                            <td class='col-3 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <span class="fa fa-check text-success"></span>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>3</td> 
+                            <td class='col-3 text-center'></td>
+                            <td class='col-3 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <span class="fa fa-question pointerCursor text-danger" data-toggle="modal" data-target="#registerModal"></span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end table row-->
+                  <br/>
+                  <div class="row">
+                    <div class="col-md-12 text-right">
+                      <button mat-raised-button color="primary">Verified</button>
+                    </div>
+                  </div>
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Affiliation">
+                  <!--heading row-->
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h3 class="bottomBorder">Affiliation</h3>
+                    </div>
+                  </div>
+                  <!--end heading row-->
+                  <br/>
+                  <!--table row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr class='d-flex'>
+                            <th class='col-2 text-center'>Sr #</th>
+                            <th class='col-3 text-center'>Organization</th>
+                            <th class='col-3 text-center'>Type</th>
+                            <th class='col-2 text-center'>Doc</th>
+                            <th class='col-2 text-center'>Verification</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>1</td> 
+                            <td class='col-3 text-center'></td>
+                            <td class='col-3 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <a href="#">view PDF File</a>
+                            </td>
+                            <td class='col-2 text-center'>
+                              <mat-checkbox></mat-checkbox>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>2</td> 
+                            <td class='col-3 text-center'></td>
+                            <td class='col-3 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <mat-checkbox></mat-checkbox>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>3</td> 
+                            <td class='col-3 text-center'></td>
+                            <td class='col-3 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <mat-checkbox></mat-checkbox>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end table row-->
+                  <br/>
+                  <!--button row-->
+                  <div class="row">
+                    <div class="col-md-12 text-right">
+                      <button mat-raised-button color="primary">Verified</button>
+                    </div>
+                  </div>
+                  <!--end button row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Rankings">
+                  <!--heading row-->
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h3 class="bottomBorder">Ranking</h3>
+                    </div>
+                  </div>
+                  <!--end heading row-->
+                  <br/>
+                  <!--table row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr class='d-flex'>
+                            <th class='col-2 text-center'>Sr #</th>
+                            <th class='col-2 text-center'>Organization</th>
+                            <th class='col-2 text-center'>Ranking Request</th>
+                            <th class='col-2 text-center'>Ranking Exist</th>
+                            <th class='col-2 text-center'>Doc</th>
+                            <th class='col-2 text-center'>Verification</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>1</td> 
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <a href="#">view PDF File</a>
+                            </td>
+                            <td class='col-2 text-center'>
+                              <mat-checkbox></mat-checkbox>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>2</td> 
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'></td>
+                            <td class='col-2 text-center'>
+                              <mat-checkbox></mat-checkbox>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end table row-->
+                  <br/>
+                  <!--button row-->
+                  <div class="row">
+                    <div class="col-md-12 text-right">
+                      <button mat-raised-button color="primary">Verified</button>
+                    </div>
+                  </div>
+                  <!--end button row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Financials">
+                  <!--heading row-->
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h3 class="bottomBorder">Financials</h3>
+                    </div>
+                  </div>
+                  <!--end heading row-->
+                  <br/>
+                  <!--sub heading row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Documents</h5>
+                    </div>
+                  </div>
+                  <!--end sub heading row-->
+                  <!--table row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr class='d-flex'>
+                            <th class='col-2 text-center'>Sr #</th>
+                            <th class='col-4 text-center'>Required</th>
+                            <th class='col-4 text-center'>Available</th>
+                            <th class='col-2 text-center'>Verify</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>1</td> 
+                            <td class='col-4 text-center'>Income Statement</td>
+                            <td class='col-4 text-center'>
+                              <a href="#">view PDF File</a>
+                            </td>
+                            <td class='col-2 text-center'>
+                              <mat-checkbox></mat-checkbox>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-2 text-center'>2</td> 
+                            <td class='col-4 text-center'>Balance Sheet</td>
+                            <td class='col-4 text-center'>
+                              <a href="#">view PDF File</a>
+                            </td>
+                            <td class='col-2 text-center'>
+                              <mat-checkbox></mat-checkbox>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end table row-->
+                  <br/>
+                  <!--2nd sub heading row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Data</h5>
+                    </div>
+                  </div>
+                  <!--end 2nd sub heading row-->
+                  <!--2nd table row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr class='d-flex'>
+                            <th class='col-4'></th>
+                            <th class='col-3 text-center'>Required</th>
+                            <th class='col-3 text-center'>Available</th>
+                            <th class='col-2 text-center'>Verify</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                          <tr class='d-flex'>
+                            <td class='col-4'>Min-Turn over</td> 
+                            <td class='col-3 text-center'>500,000</td>
+                            <td class='col-3 text-center'>750,000</td>
+                            <td class='col-2 text-center'>
+                              <span class="fa fa-check text-success"></span>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-4'>Min-Current Asset</td> 
+                            <td class='col-3 text-center'>100,000,000</td>
+                            <td class='col-3 text-center'>90,000,000</td>
+                            <td class='col-2 text-center'>
+                              <span class="fa fa-times text-danger"></span>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-4'>Min-Total Asset</td> 
+                            <td class='col-3 text-center'>500,000,000</td>
+                            <td class='col-3 text-center'>500,000,000</td>
+                            <td class='col-2 text-center'>
+                              <span class="fa fa-check text-success"></span>
+                            </td>
+                          </tr>
+                          <tr class='d-flex'>
+                            <td class='col-4 text-center'>Min-Current Liabilites</td> 
+                            <td class='col-3 text-center'>35,000,000</td>
+                            <td class='col-3 text-center'>30,000,000</td>
+                            <td class='col-2 text-center'>
+                              <span class="fa fa-check text-success"></span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end 2nd table row-->
+                  <br/>
+                  <!--3rd sub heading row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Audits</h5>
+                    </div>
+                  </div>
+                  <!--end 3rd sub heading row-->
+                  <!--check box row-->
+                  <div class="row">
+                    <div class="col-md-6 text-right">
+                        <mat-checkbox>
+                          <h5>Yes/No</h5>
+                        </mat-checkbox>
+                    </div>
+                  </div>
+                  <!--end check box row-->
+                  <br/>
+                  <!--button row-->
+                  <div class="row">
+                    <div class="col-md-12 text-right">
+                      <button mat-raised-button color="primary">Verified</button>
+                    </div>
+                  </div>
+                  <!--end button row-->
+                  <br/>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+          <!--end tabs row-->
+        </div>
+        <!--end container row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add seek approvals -->
+  
+<!-- Start Modal Window to check registered data -->
+<div class="modal fade" id="registerModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Verified Registration</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-4">
+            <b>Registration No:</b>
+          </div>
+          <div class="col-md-5 text-left">
+            <h5 style="font-weight: normal;">4541121543</h5>
+          </div>
+          <div class="col-md-3 text-left">
+            <mat-checkbox></mat-checkbox>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-4">
+            <b>Type:</b>
+          </div>
+          <div class="col-md-5 text-left">
+            <h5 style="font-weight: normal;">Individual</h5>
+          </div>
+          <div class="col-md-3 text-left">
+            <mat-checkbox></mat-checkbox>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--3rd row-->
+        <div class="row">
+          <div class="col-md-4">
+            <b>Resident/Non:</b>
+          </div>
+          <div class="col-md-5 text-left">
+            <h5 style="font-weight: normal;">No</h5>
+          </div>
+          <div class="col-md-3 text-left">
+            <mat-checkbox></mat-checkbox>
+          </div>
+        </div>
+        <!--end 3rd row-->
+        <br/>
+        <!--4th row-->
+        <div class="row">
+          <div class="col-md-4">
+            <b>Tax-Circle:</b>
+          </div>
+          <div class="col-md-5 text-left">
+            <h5 style="font-weight: normal;">abc shsdgh</h5>
+          </div>
+          <div class="col-md-3 text-left">
+            <mat-checkbox></mat-checkbox>
+          </div>
+        </div>
+        <!--end 4th row-->
+        <br/>
+        <!--5th row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Verified Link">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 5th row-->
+        <br/>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary" data-dismiss="modal">Verified</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to check registered data -->
+
+<!-- Start Modal Window to delete data -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="hidden" ngDefaultControl></div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <h2>Delete Entry</h2>
+          </div>
+        </div><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password">
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete data -->
