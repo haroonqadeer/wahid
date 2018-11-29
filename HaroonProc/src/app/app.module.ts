@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VendorRegistrationComponent } from './components/vendor-registration/vendor-registration.component';
 import { VendorPanelComponent } from './components/vendor-panel/vendor-panel.component';
+import { ItemsComponent } from './components/items/items.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { VendorPanelComponent } from './components/vendor-panel/vendor-panel.com
     SearchPipe,
     ErpBottomSheetComponent,
     VendorRegistrationComponent,
-    VendorPanelComponent
+    VendorPanelComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

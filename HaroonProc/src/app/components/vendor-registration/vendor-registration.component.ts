@@ -128,7 +128,7 @@ export class VendorRegistrationComponent implements OnInit {
     {tId: '1', tName: 'Individual'},
     {tId: '2', tName: 'AOP'},
     {tId: '3', tName: 'Firm'},
-    {tId: '3', tName: 'Company'}
+    {tId: '4', tName: 'Company'}
 
   ];
 
