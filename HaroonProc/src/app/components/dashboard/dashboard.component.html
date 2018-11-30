@@ -342,117 +342,127 @@
       </div>
       <br/>
       <!--end sub heading row-->
-      <div class="row">
-        <div class="col-md-3">
-          <div class="row">
-            <div class="col-md-2">
-              <br/><br/>
-              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
-              Pre-Order
-            </div>
-            <div class="col-md-9">
-              <circle-progress
-                [percent]="100"
-                [radius]="20"
-                [space]="-1"
-                [outerStrokeWidth]="50"
-                [innerStrokeWidth]="-10"
-                [outerStrokeColor]="'#6495ED'"
-                [innerStrokeColor]="'#6495ED'"
-                [titleColor]="'#FFFFFF'"
-                [clockwise] = "false"
-                [showSubtitle] = "false"
-                [title] = "['0.5d']"
-                [showUnits] = "false"
-                [titleFontSize] = "'20'"
-                [animation] = "false"
-              ></circle-progress>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="row">
-            <div class="col-md-2">
-              <br/><br/>
-              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
-              Approval
-            </div>
-            <div class="col-md-9">
-              <circle-progress
-                [percent]="100"
-                [radius]="20"
-                [space]="-1"
-                [outerStrokeWidth]="50"
-                [innerStrokeWidth]="-10"
-                [outerStrokeColor]="'#FFAA55'"
-                [innerStrokeColor]="'#FFAA55'"
-                [titleColor]="'#FFFFFF'"
-                [clockwise] = "false"
-                [showSubtitle] = "false"
-                [title] = "['7d']"
-                [showUnits] = "false"
-                [titleFontSize] = "'20'"
-                [animation] = "false"
-              ></circle-progress>
+      <!--container row-->
+      <div class="container">
+        <!--time cycle row-->
+        <div class="row">
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-2">
+                <br/><br/>
+                <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+                Pre-Order
+              </div>
+              <div class="col-md-9">
+                <circle-progress
+                  [percent]="100"
+                  [radius]="20"
+                  [space]="-1"
+                  [outerStrokeWidth]="50"
+                  [innerStrokeWidth]="-10"
+                  [outerStrokeColor]="'#6495ED'"
+                  [innerStrokeColor]="'#6495ED'"
+                  [titleColor]="'#FFFFFF'"
+                  [clockwise] = "false"
+                  [showSubtitle] = "false"
+                  [title] = "['0.5d']"
+                  [showUnits] = "false"
+                  [titleFontSize] = "'20'"
+                  [animation] = "false"
+                  [animationDuration]="0"
+                ></circle-progress>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="row">
-            <div class="col-md-2">
-              <br/><br/>
-              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
-              Order Placement
-            </div>
-            <div class="col-md-9">
-              <circle-progress
-                [percent]="100"
-                [radius]="20"
-                [space]="-1"
-                [outerStrokeWidth]="50"
-                [innerStrokeWidth]="-10"
-                [outerStrokeColor]="'#3CB371'"
-                [innerStrokeColor]="'#3CB371'"
-                [titleColor]="'#FFFFFF'"
-                [clockwise] = "false"
-                [showSubtitle] = "false"
-                [title] = "['0.4d']"
-                [showUnits] = "false"
-                [titleFontSize] = "'20'"
-                [animation] = "false"
-              ></circle-progress>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="row">
-            <div class="col-md-2">
-              <br/><br/>
-              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
-              Invoicing
-            </div>
-            <div class="col-md-9">
-              <circle-progress
-                [percent]="100"
-                [radius]="20"
-                [space]="-1"
-                [outerStrokeWidth]="50"
-                [innerStrokeWidth]="-10"
-                [outerStrokeColor]="'#FF6347'"
-                [innerStrokeColor]="'#FF6347'"
-                [titleColor]="'#FFFFFF'"
-                [clockwise] = "false"
-                [showSubtitle] = "false"
-                [title] = "['3d']"
-                [showUnits] = "false"
-                [titleFontSize] = "'20'"
-                [animation] = "false"
-              ></circle-progress>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-2">
+                <br/><br/>
+                <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+                Approval
+              </div>
+              <div class="col-md-9">
+                <circle-progress
+                  [percent]="100"
+                  [radius]="20"
+                  [space]="-1"
+                  [outerStrokeWidth]="50"
+                  [innerStrokeWidth]="-10"
+                  [outerStrokeColor]="'#FFAA55'"
+                  [innerStrokeColor]="'#FFAA55'"
+                  [titleColor]="'#FFFFFF'"
+                  [clockwise] = "false"
+                  [showSubtitle] = "false"
+                  [title] = "['7d']"
+                  [showUnits] = "false"
+                  [titleFontSize] = "'20'"
+                  [animation] = "false"
+                  [animationDuration]="0"
+                ></circle-progress>
+              </div>
             </div>
           </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-2">
+                <br/><br/>
+                <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+                Order Placement
+              </div>
+              <div class="col-md-9">
+                <circle-progress
+                  [percent]="100"
+                  [radius]="20"
+                  [space]="-1"
+                  [outerStrokeWidth]="50"
+                  [innerStrokeWidth]="-10"
+                  [outerStrokeColor]="'#3CB371'"
+                  [innerStrokeColor]="'#3CB371'"
+                  [titleColor]="'#FFFFFF'"
+                  [clockwise] = "false"
+                  [showSubtitle] = "false"
+                  [title] = "['0.4d']"
+                  [showUnits] = "false"
+                  [titleFontSize] = "'20'"
+                  [animation] = "false"
+                  [animationDuration]="0"
+                ></circle-progress>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-2">
+                <br/><br/>
+                <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+                Invoicing
+              </div>
+              <div class="col-md-9">
+                <circle-progress
+                  [percent]="100"
+                  [radius]="20"
+                  [space]="-1"
+                  [outerStrokeWidth]="50"
+                  [innerStrokeWidth]="-10"
+                  [outerStrokeColor]="'#FF6347'"
+                  [innerStrokeColor]="'#FF6347'"
+                  [titleColor]="'#FFFFFF'"
+                  [clockwise] = "false"
+                  [showSubtitle] = "false"
+                  [title] = "['3d']"
+                  [showUnits] = "false"
+                  [titleFontSize] = "'20'"
+                  [animation] = "false"
+                  [animationDuration]="0"
+                ></circle-progress>
+              </div>
+            </div>
+          </div>
+          <br/>
         </div>
-        <br/>
+        <!--end time cycle row-->
       </div>
+      <!--end container row-->
       <br/>
       <br/>
       <br/>
