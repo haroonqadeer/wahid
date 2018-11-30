@@ -44,7 +44,7 @@
             [space]="-10"
             [outerStrokeWidth]="10"
             [innerStrokeWidth]="-10"
-            [outerStrokeColor]="'#32CD32'"
+            [outerStrokeColor]="'#228B22'"
             [innerStrokeColor]="'#e7e8ea'"
             [animation]="true"
             [animationDuration]="3000"
@@ -64,7 +64,7 @@
             [space]="-10"
             [outerStrokeWidth]="10"
             [innerStrokeWidth]="-10"
-            [outerStrokeColor]="'#FF6347'"
+            [outerStrokeColor]="'#DC143C'"
             [innerStrokeColor]="'#e7e8ea'"
             [animation]="true"
             [animationDuration]="3000"
@@ -150,7 +150,7 @@
       <!--label 1 row-->
       <div class="row">
         <div class="col-md-3">
-          <span class="fa fa-th-large" style="font-size:2em"></span>
+          <span class="fa fa-th-large" style="color:#8B4513;font-size:2em"></span>
         </div>
         <div class="col-md-2">
           <h4 style="font-weight:normal;">1</h4>
@@ -164,7 +164,7 @@
       <!--label 2 row-->
       <div class="row">
         <div class="col-md-3">
-          <span class="fa fa-laptop" style="font-size:2em"></span>
+          <span class="fa fa-laptop" style="color:#4169E1;font-size:2em"></span>
         </div>
         <div class="col-md-2">
           <h4 style="font-weight:normal;">2</h4>
@@ -178,7 +178,7 @@
       <!--label 3 row-->
       <div class="row">
         <div class="col-md-3">
-          <span class="fa fa-print" style="font-size:2em"></span>
+          <span class="fa fa-print" style="color:#808080;font-size:2em"></span>
         </div>
         <div class="col-md-2">
           <h4 style="font-weight:normal;">3</h4>
@@ -342,11 +342,136 @@
       </div>
       <br/>
       <!--end sub heading row-->
+      <div class="row">
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-2">
+              <br/><br/>
+              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+              Pre-Order
+            </div>
+            <div class="col-md-9">
+              <circle-progress
+                [percent]="100"
+                [radius]="20"
+                [space]="-1"
+                [outerStrokeWidth]="50"
+                [innerStrokeWidth]="-10"
+                [outerStrokeColor]="'#6495ED'"
+                [innerStrokeColor]="'#6495ED'"
+                [titleColor]="'#FFFFFF'"
+                [clockwise] = "false"
+                [showSubtitle] = "false"
+                [title] = "['0.5d']"
+                [showUnits] = "false"
+                [titleFontSize] = "'20'"
+                [animation] = "false"
+              ></circle-progress>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-2">
+              <br/><br/>
+              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+              Approval
+            </div>
+            <div class="col-md-9">
+              <circle-progress
+                [percent]="100"
+                [radius]="20"
+                [space]="-1"
+                [outerStrokeWidth]="50"
+                [innerStrokeWidth]="-10"
+                [outerStrokeColor]="'#FFAA55'"
+                [innerStrokeColor]="'#FFAA55'"
+                [titleColor]="'#FFFFFF'"
+                [clockwise] = "false"
+                [showSubtitle] = "false"
+                [title] = "['7d']"
+                [showUnits] = "false"
+                [titleFontSize] = "'20'"
+                [animation] = "false"
+              ></circle-progress>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-2">
+              <br/><br/>
+              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+              Order Placement
+            </div>
+            <div class="col-md-9">
+              <circle-progress
+                [percent]="100"
+                [radius]="20"
+                [space]="-1"
+                [outerStrokeWidth]="50"
+                [innerStrokeWidth]="-10"
+                [outerStrokeColor]="'#3CB371'"
+                [innerStrokeColor]="'#3CB371'"
+                [titleColor]="'#FFFFFF'"
+                [clockwise] = "false"
+                [showSubtitle] = "false"
+                [title] = "['0.4d']"
+                [showUnits] = "false"
+                [titleFontSize] = "'20'"
+                [animation] = "false"
+              ></circle-progress>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-2">
+              <br/><br/>
+              <span class="fa fa-long-arrow-right" style="font-size:3em;font-weight:normal;"></span>
+              Invoicing
+            </div>
+            <div class="col-md-9">
+              <circle-progress
+                [percent]="100"
+                [radius]="20"
+                [space]="-1"
+                [outerStrokeWidth]="50"
+                [innerStrokeWidth]="-10"
+                [outerStrokeColor]="'#FF6347'"
+                [innerStrokeColor]="'#FF6347'"
+                [titleColor]="'#FFFFFF'"
+                [clockwise] = "false"
+                [showSubtitle] = "false"
+                [title] = "['3d']"
+                [showUnits] = "false"
+                [titleFontSize] = "'20'"
+                [animation] = "false"
+              ></circle-progress>
+            </div>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <br/>
+      <br/>
+      <br/>
     </div>
     <!--end container row-->
     <br/>
     <!--container row-->
-    <div class="container bgWhite shadow-md"></div>
+    <div class="container bgWhite shadow-md">
+      <!--chart row-->
+      <div class="row">
+        <div class="col-md-12">
+          <!--Line chart-->
+          <div class="line_chart">
+            <div [chart]="Line_chart" style=" height: 300px;width:100%;"></div>
+          </div>
+        </div>
+      </div>
+      <!--end chart row-->
+    </div>
     <!--end container row-->
     <br/>
   </div>
