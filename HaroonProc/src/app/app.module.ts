@@ -15,6 +15,12 @@ import { AppComponent } from './app.component';
 import { VendorRegistrationComponent } from './components/vendor-registration/vendor-registration.component';
 import { VendorPanelComponent } from './components/vendor-panel/vendor-panel.component';
 import { ItemsComponent } from './components/items/items.component';
+import { VendorsComponent } from './components/Vendors/Vendors.component';
+import { RegistrationCriteriaComponent } from './components/registration-criteria/registration-criteria.component';
+import { TenderRequestComponent } from './components/tender-request/tender-request.component';
+import { QuotationComponent } from './components/quotation/quotation.component';
+import { TenderComponent } from './components/tender/tender.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,13 @@ import { ItemsComponent } from './components/items/items.component';
     ErpBottomSheetComponent,
     VendorRegistrationComponent,
     VendorPanelComponent,
-    ItemsComponent
+    ItemsComponent,
+    VendorsComponent,
+    RegistrationCriteriaComponent,
+    TenderRequestComponent,
+    QuotationComponent,
+    TenderComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

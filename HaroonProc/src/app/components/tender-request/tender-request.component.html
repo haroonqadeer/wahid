@@ -1,0 +1,651 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Request for Quotation/Tender</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--button row-->
+<div class="row">
+  <div class="col-md-6">
+    <button mat-raised-button color="warn">Print</button>
+  </div>
+  <div class="col-md-6 text-right">
+      <button mat-raised-button color="primary" data-toggle="modal" data-target="#tenderModal">Add</button>
+  </div>
+</div>
+<!--end button row-->
+<br/>
+<!--container row-->
+<div class="container bgWhite">
+  <!--1st row-->
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field class="fullwidth">
+        <input matInput [matDatepicker]="picker" placeholder="From date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="fullwidth">
+        <input matInput [matDatepicker]="picker2" placeholder="To date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field class="fullwidth">
+        <mat-select placeholder="Select Vendor">
+          <mat-option *ngFor="let vendor of vendors" [value]="vendor.vId">
+            {{vendor.vName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <!--end 1st row-->
+  <br/>
+  <!--2nd row-->
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="fullwidth">
+        <mat-select placeholder="Select Category">
+          <mat-option *ngFor="let cat of cats" [value]="cat.cId">
+            {{cat.cName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="fullwidth">
+        <mat-select placeholder="Select Item">
+          <mat-option *ngFor="let item of items" [value]="item.iId">
+            {{item.iName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <!--end 2nd row-->
+  <br/>
+  <!--table row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped allBorder">
+        <thead>
+          <tr class="d-flex">
+            <th class="col-1 text-center">Sr #</th>
+            <th class="col-1 text-center">Request No.</th>
+            <th class="col-2 text-center">Vendor</th>
+            <th class="col-2 text-center">Category</th>
+            <th class="col-2 text-center">Items</th>
+            <th class="col-1 text-center">Type</th>
+            <th class="col-1 text-center">Approval</th>
+            <th class="col-1 text-center">Edit</th>
+            <th class="col-1 text-center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="d-flex">
+            <td class="col-1 text-center">1</td>
+            <td class="col-1 text-center">2155210</td>
+            <td class="col-2 text-center">Adnan Khan</td>
+            <td class="col-2 text-center">Computer</td>
+            <td class="col-2 text-center">Laptops</td>
+            <td class="col-1 text-center">RFP</td>
+            <td class="col-1 text-center"><a href="#">PDF File</a></td>
+            <td class="col-1 text-center">
+              <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#tenderModal"></span>
+            </td>
+            <td class="col-1 text-center">
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--table row-->
+</div>
+<!--end container row-->
+
+<!--/////////////////////////////////-->
+<!--/////////Modal Windows///////////-->
+<!--/////////////////////////////////-->
+
+<!-- Start Modal Window to add tender data -->
+<div class="modal fade" id="tenderModal">
+  <div class="modal-dialog shadow-lg-dark modal-xl">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Tender/Quotation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-12 text-right">
+              <button mat-raised-button color="primary" data-toggle="modal" data-target="#itemModal">Add Items</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped allBorder">
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-1 text-center">Sr #</th>
+                  <th class="col-1 text-center">Item</th>
+                  <th class="col-2 text-center">Variant</th>
+                  <th class="col-2 text-center">Category</th>
+                  <th class="col-1 text-center">Quantity</th>
+                  <th class="col-2 text-center">Total Price</th>
+                  <th class="col-1 text-center">Edit</th>
+                  <th class="col-1 text-center">Delete</th>
+                  <th class="col-1 text-center">Add</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-1 text-center">1</td>
+                  <td class="col-1 text-center">Laptops</td>
+                  <td class="col-2 text-center">abc</td>
+                  <td class="col-2 text-center">Computer</td>
+                  <td class="col-1 text-center">12</td>
+                  <td class="col-2 text-center">510,240</td>
+                  <td class="col-1 text-center">
+                    <span class="fa fa-edit pointerCursor"></span>
+                  </td>
+                  <td class="col-1 text-center">
+                    <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                  </td>
+                  <td class="col-1 text-center">
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-1 text-center">2</td>
+                  <td class="col-1 text-center">
+                    <p-dropdown [options]="qItems" optionLabel="iName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                  </td>
+                  <td class="col-2 text-center">
+                    <input type="text" class="form-control">
+                  </td>
+                  <td class="col-2 text-center">
+                    <p-dropdown [options]="itemCats" optionLabel="cName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                  </td>
+                  <td class="col-1 text-center">
+                    <input type="text" class="form-control">
+                  </td>
+                  <td class="col-2 text-center">
+                    <input type="text" class="form-control">
+                  </td>
+                  <td class="col-1 text-center"></td>
+                  <td class="col-1 text-center"></td>
+                  <td class="col-1 text-center">
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-1 text-center"></td>
+                  <td class="col-1 text-center"></td>
+                  <td class="col-2 text-center"><b>Total</b></td>
+                  <td class="col-2 text-center"></td>
+                  <td class="col-1 text-center"><b>(12)</b></td>
+                  <td class="col-2 text-center"><b>(510,240)</b></td>
+                  <td class="col-1 text-center"></td>
+                  <td class="col-1 text-center"></td>
+                  <td class="col-1 text-center"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--table row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#activityModal">Seek Approval</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-6 text-right">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#RFQModal">RFQ</button>
+          </div>
+          <div class="col-md-6 text-left">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#RFTModal">RFT</button>
+          </div>
+        </div>
+        <!--end button row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add tender data-->
+  
+<!-- Start Modal Window to add items -->
+<div class="modal fade" id="itemModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Items</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--container row-->
+        <div class="container">
+          <mat-tab-group class="allBorder">
+            <mat-tab label="MOL">
+              <br/>
+              <!--table row-->
+              <div class="container">
+                <!--button row-->
+                <div class="row">
+                  <div class="col-md-12 text-right">
+                    <button mat-raised-button color="primary">Add</button>
+                  </div>
+                </div>
+                <!--end button row-->
+                <br/>
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table table-striped allBorder">
+                      <thead>
+                        <tr class="d-flex">
+                          <th class="col-2 text-center">Sr #</th>
+                          <th class="col-2 text-center">Item</th>
+                          <th class="col-2 text-center">In Hand</th>
+                          <th class="col-2 text-center">Category</th>
+                          <th class="col-2 text-center">Quantity</th>
+                          <th class="col-2 text-center">Select</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="d-flex">
+                          <td class="col-2 text-center">1</td>
+                          <td class="col-2 text-center">Laptops</td>
+                          <td class="col-2 text-center">abc</td>
+                          <td class="col-2 text-center">Computer</td>
+                          <td class="col-2 text-center">
+                            <mat-form-field class="fullwidth">
+                              <input matInput>
+                            </mat-form-field>
+                          </td>
+                          <td class="col-2 text-center">
+                            <mat-checkbox></mat-checkbox>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!--table row-->
+            </mat-tab>
+            <mat-tab label="Requests">
+              <br/>
+              <!--table row-->
+              <div class="container">
+                <!--button row-->
+                <div class="row">
+                  <div class="col-md-12 text-right">
+                    <button mat-raised-button color="primary">Add</button>
+                  </div>
+                </div>
+                <!--end button row-->
+                <br/>
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table table-striped allBorder">
+                      <thead>
+                        <tr class="d-flex">
+                          <th class="col-1 text-center">Sr #</th>
+                          <th class="col-2 text-center">Item</th>
+                          <th class="col-2 text-center">Requested By</th>
+                          <th class="col-1 text-center">In Hand</th>
+                          <th class="col-2 text-center">Category</th>
+                          <th class="col-2 text-center">Quantity</th>
+                          <th class="col-2 text-center">Select</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="d-flex">
+                          <td class="col-1 text-center">1</td>
+                          <td class="col-2 text-center">Laptops</td>
+                          <td class="col-2 text-center">abc</td>
+                          <td class="col-1 text-center">xyz</td>
+                          <td class="col-2 text-center">Computer</td>
+                          <td class="col-2 text-center">
+                            <mat-form-field class="fullwidth">
+                              <input matInput>
+                            </mat-form-field>
+                          </td>
+                          <td class="col-2 text-center">
+                            <mat-checkbox></mat-checkbox>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!--table row-->
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+        <!--end container row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add tender data-->
+  
+<!-- Start Modal Window to add request for quotation -->
+<div class="modal fade" id="RFQModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Request for Quotation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped allBorder">
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-2 text-center">Sr #</th>
+                  <th class="col-6 text-center">Vendor</th>
+                  <th class="col-2 text-center">Ranking Points</th>
+                  <th class="col-2 text-center">Add</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">1</td>
+                  <td class="col-6 text-center">
+                    <p-dropdown [options]="qVendors" placeholder="Select Vendor" optionLabel="qName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                  </td>
+                  <td class="col-2 text-center">3</td>
+                  <td class="col-2 text-center">
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-12">
+            <p-calendar placeholder="Quotation Deadline" [showIcon]="true"></p-calendar>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-12">
+            <p-calendar placeholder="Delivery Deadline" [showIcon]="true"></p-calendar>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-9 text-right">
+            <button mat-raised-button color="primary">Email</button>
+          </div>
+          <div class="col-md-3 text-right">
+            <button mat-raised-button color="warn">Print PDF</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add request for quotation-->
+  
+<!-- Start Modal Window to add request for tender -->
+<div class="modal fade" id="RFTModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Request for Tender</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <table class="table table-striped allBorder">
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-2 text-center">Sr #</th>
+                  <th class="col-6 text-center">Description</th>
+                  <th class="col-2 text-center">Publish</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">1</td>
+                  <td class="col-6 text-center">Create WebLink</td>
+                  <td class="col-2 text-center">
+                    <a href="#">create</a>
+                  </td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">2</td>
+                  <td class="col-6 text-center">PDF Print</td>
+                  <td class="col-2 text-center">
+                    <a href="#">PDF</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add request for quotation-->
+  
+<!-- Start Activity Modal Window -->
+<div class="modal fade" id="activityModal">
+  <div class="modal-dialog shadow-lg-dark modal-md">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Activities</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--Row #1-->  
+        <div class="row">
+          <div class="col-md-7">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Usman Ali</mat-card-title>
+                <mat-card-subtitle>VB.Net</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-10 text-center">
+                    <p>
+                      Sept 11, 2018
+                    </p>
+                  </div>
+                </div>
+                
+              </mat-card-content>
+              <mat-card-actions class="text-right">
+                <span class="fa fa-share"></span>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          </div>
+          <!--end of row #1 -->
+
+          <br/>
+          
+          <!--start row #2-->
+          <div class="row">
+            <div class="col-md-5"></div> 
+            <div class="col-md-offset-5 col-md-7">
+              <mat-card class="example-card-r">
+
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image-r"></div>
+                  <mat-card-title>Ali Khan</mat-card-title>
+                  <mat-card-subtitle>English</mat-card-subtitle>
+                  
+                </mat-card-header>
+
+                <mat-card-content>
+                  <div class="row">
+                    <div class="col-md-10 text-center">
+                      <p>
+                        Sept 23, 2018
+                      </p>
+                    </div>
+                  </div>  
+                </mat-card-content>
+                <mat-card-actions class="">
+                  <span class="fa fa-reply"></span>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+          <!--end row 2-->
+
+          <br/>
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Activity Modal Window  -->
+  
+<!-- Start Modal Window to delete data -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="hidden" ngDefaultControl></div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <h2>Delete Entry</h2>
+          </div>
+        </div><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password">
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete data -->
+  

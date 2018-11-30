@@ -1,0 +1,1517 @@
+<br/>
+<!--heading row-->
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1 class="bottomBorder">Vendors</h1>
+    </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start button row-->
+<div class="row">
+    <div class="col-md-6">
+        <button mat-raised-button color="warn">Print</button>
+    </div>
+    <div class="col-md-6 text-right">
+        <button mat-raised-button color="primary" data-toggle="modal" data-target="#addVendorModal">Add New</button>
+    </div>
+</div>
+<!--end button row-->
+<br>
+
+<!-- Table Container Starts -->
+<div class="container bgWhite">
+    <div class="row">
+        <table class="table table-striped allBorder">
+            <thead>
+                <tr class='d-flex'>
+                    <th class="col-1 text-center">Sr. #</th>
+                    <th class="col-2 text-left">Title</th>
+                    <th class="col-2 text-left">NTN</th>
+                    <th class="col-2 text-left">CNIC</th>
+                    <th class="col-1 text-left">STRN</th>
+                    <th class="col-1 text-left">City</th>
+                    <th class="col-1 text-center">Business</th>
+                    <th class="col-1 text-center">Edit</th>
+                    <th class="col-1 text-center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='d-flex'>
+                    <td class="col-1 text-center">1</td>
+                    <td class="col-2 text-left">Student</td>
+                    <td class="col-2 text-left">12312</td>
+                    <td class="col-2 text-left">2342342</td>
+                    <td class="col-1 text-left">34534533</td>
+                    <td class="col-1 text-left">Islamabad</td>
+                    <td class="col-1 text-left">Teaching</td>
+                    <td class="col-1 text-center">
+                        <a href="regCriteria" data-toggle="modal" data-target="#editRegModal" class=" text-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="col-1 text-center">
+                        <a href="regCriteria" data-toggle="modal" data-target="#deleteRegModal" class=" text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Table Container Ends -->
+
+<!-- Add New Vendors Modal Window Starts -->
+<div class="modal fade" id="addVendorModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Vendor Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--container row-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-horizontal-stepper class="shadow-md" #stepper>
+                                <mat-step [stepControl]="firstFormGroup">
+                                    <form [formGroup]="firstFormGroup">
+                                        <ng-template matStepLabel>Business Info</ng-template>
+                                        <!--1st row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Vendor Name" formControlName="firstCtrl" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <!--end 1st row-->
+                                        <br/>
+                                        <!--2nd row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Address" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <!--end 2nd row-->
+                                        <br/>
+                                        <!--3rd row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="City" required>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Country" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <!--end 3rd row-->
+                                        <br/>
+                                        <!--4th row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Mobile" required>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Phone" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <!--end 4th row-->
+                                        <br/>
+                                        <!--5th row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Fax" required>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Email" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <!--end 5th row-->
+                                        <br/>
+                                        <!--6th row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Website" required>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <!--end 6th row-->
+                                        <br/>
+                                        <!--button row-->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Tax Info</ng-template>
+                                        <!--button row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button mat-raised-button color="warn">print</button>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <button mat-raised-button color="primary" data-toggle="modal" data-target="#taxModal">Add</button>
+                                            </div>
+                                        </div>
+                                        <!--end button row-->
+                                        <br/>
+                                        <!--table row-->
+                                        <div class="row">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr class='d-flex'>
+                                                        <th class='col-1 text-center'>Sr #</th>
+                                                        <th class='col-2 text-center'>Tax Department</th>
+                                                        <th class='col-2 text-center'>Tax Circle</th>
+                                                        <th class='col-1 text-center'>Registration No.</th>
+                                                        <th class='col-1 text-center'>Type</th>
+                                                        <th class='col-2 text-center'>Resident/ Non-Resident</th>
+                                                        <th class='col-1 text-center'>Certificate</th>
+                                                        <th class='col-1 text-center'>Edit</th>
+                                                        <th class='col-1 text-center'>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                                    <tr class='d-flex'>
+                                                        <td class='col-1 text-center'>1</td>
+                                                        <td class='col-2 text-center'>Audit</td>
+                                                        <td class='col-2 text-center'>abc</td>
+                                                        <td class='col-1 text-center'>f21344s</td>
+                                                        <td class='col-1 text-center'>xyz</td>
+                                                        <td class='col-2 text-center'>resident</td>
+                                                        <td class='col-1 text-center'>nothing</td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-edit pointerCursor"></span>
+                                                        </td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end table row-->
+                                        <br/>
+                                        <!--button row-->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Representator</ng-template>
+                                        <!--button row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button mat-raised-button color="warn">print</button>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <button mat-raised-button color="primary" data-toggle="modal" data-target="#representModal">Add</button>
+                                            </div>
+                                        </div>
+                                        <!--end button row-->
+                                        <br/>
+                                        <!--table row-->
+                                        <div class="row">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr class='d-flex'>
+                                                        <th class='col-1 text-center'>Sr #</th>
+                                                        <th class='col-3 text-center'>Name</th>
+                                                        <th class='col-2 text-center'>Designation</th>
+                                                        <th class='col-2 text-center'>Mobile</th>
+                                                        <th class='col-2 text-center'>Email</th>
+                                                        <th class='col-1 text-center'>Edit</th>
+                                                        <th class='col-1 text-center'>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                                    <tr class='d-flex'>
+                                                        <td class='col-1 text-center'>1</td>
+                                                        <td class='col-3 text-center'>Ali Rajpoot</td>
+                                                        <td class='col-2 text-center'>Accoutant</td>
+                                                        <td class='col-2 text-center'>03001234567</td>
+                                                        <td class='col-2 text-center'>abc@example.com</td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-edit pointerCursor"></span>
+                                                        </td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end table row-->
+                                        <br/>
+                                        <!--button row-->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Affiliation</ng-template>
+                                        <!--button row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button mat-raised-button color="warn">print</button>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <button mat-raised-button color="primary" data-toggle="modal" data-target="#affiliationModal">Add</button>
+                                            </div>
+                                        </div>
+                                        <!--end button row-->
+                                        <br/>
+                                        <!--table row-->
+                                        <div class="row">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr class='d-flex'>
+                                                        <th class='col-1 text-center'>Sr #</th>
+                                                        <th class='col-5 text-center'>Company</th>
+                                                        <th class='col-2 text-center'>Affiliation Type</th>
+                                                        <th class='col-2 text-center'>Certificate</th>
+                                                        <th class='col-1 text-center'>Edit</th>
+                                                        <th class='col-1 text-center'>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                                    <tr class='d-flex'>
+                                                        <td class='col-1 text-center'>1</td>
+                                                        <td class='col-5 text-center'>Zahdan Group of Company</td>
+                                                        <td class='col-2 text-center'>abc</td>
+                                                        <td class='col-2 text-center'>Security</td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-edit pointerCursor"></span>
+                                                        </td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end table row-->
+                                        <br/>
+                                        <!--button row-->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Financials</ng-template>
+                                        <!--heading row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5 class="text-center">Last 3 years financial are required</h5>
+                                            </div>
+                                        </div>
+                                        <!--end heading row-->
+                                        <br/>
+                                        <!--button row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button mat-raised-button color="warn">print</button>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <button mat-raised-button color="primary" data-toggle="modal" data-target="#financialModal">Add</button>
+                                            </div>
+                                        </div>
+                                        <!--end button row-->
+                                        <br/>
+                                        <!--table row-->
+                                        <div class="row">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr class='d-flex'>
+                                                        <th class='col-1 text-center'>Sr #</th>
+                                                        <th class='col-2 text-center'>Fin. Year</th>
+                                                        <th class='col-2 text-center'>Financials</th>
+                                                        <th class='col-2 text-center'>Auditor</th>
+                                                        <th class='col-2 text-center'>Ranking</th>
+                                                        <th class='col-1 text-center'>Import</th>
+                                                        <th class='col-1 text-center'>Edit</th>
+                                                        <th class='col-1 text-center'>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                                    <tr class='d-flex'>
+                                                        <td class='col-1 text-center'>1</td>
+                                                        <td class='col-2 text-center'>2017</td>
+                                                        <td class='col-2 text-center'>abc</td>
+                                                        <td class='col-2 text-center'>xyz</td>
+                                                        <td class='col-2 text-center'>36</td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-upload pointerCursor fontPrimary"></span>
+                                                        </td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-edit pointerCursor"></span>
+                                                        </td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end table row-->
+                                        <br/>
+                                        <!--button row-->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Rating</ng-template>
+
+                                        <!--button row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button mat-raised-button color="warn">print</button>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <button mat-raised-button color="primary" data-toggle="modal" data-target="#ratingModal">Add</button>
+                                            </div>
+                                        </div>
+                                        <!--end button row-->
+                                        <br/>
+                                        <!--table row-->
+                                        <div class="row">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr class='d-flex'>
+                                                        <th class='col-1 text-center'>Sr #</th>
+                                                        <th class='col-3 text-center'>Organization</th>
+                                                        <th class='col-2 text-center'>Ranking</th>
+                                                        <th class='col-2 text-center'>Ranking Health</th>
+                                                        <th class='col-2 text-center'>Certificate</th>
+                                                        <th class='col-1 text-center'>Edit</th>
+                                                        <th class='col-1 text-center'>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                                    <tr class='d-flex'>
+                                                        <td class='col-1 text-center'>1</td>
+                                                        <td class='col-3 text-center'>Ministry of Foreign Affairs</td>
+                                                        <td class='col-2 text-center'>1</td>
+                                                        <td class='col-2 text-center'>36</td>
+                                                        <td class='col-2 text-center'>All</td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-edit pointerCursor"></span>
+                                                        </td>
+                                                        <td class='col-1 text-center'>
+                                                            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end table row-->
+                                        <br/>
+                                        <!--button row-->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <mat-step>
+                                    <ng-template matStepLabel>Category</ng-template>
+
+                                    <!--table row-->
+                                    <div class="row">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr class='d-flex'>
+                                                    <th class='col-2 text-center'>Sr #</th>
+                                                    <th class='col-6 text-center'>Category</th>
+                                                    <th class='col-2 text-center'>Delete</th>
+                                                    <th class='col-2 text-center'>Add</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                                <tr class='d-flex'>
+                                                    <td class='col-2 text-center'>1</td>
+                                                    <td class='col-6 text-center'>Type</td>
+                                                    <td class='col-2 text-center'>
+                                                        <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                                                    </td>
+                                                    <td class='col-2 text-center'>
+                                                        <span class="fa fa-plus pointerCursor"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr class='d-flex'>
+                                                    <td class='col-2 text-center'></td>
+                                                    <td class='col-6 text-center'>
+                                                        <mat-form-field class="fullwidth">
+                                                            <mat-select placeholder="Category">
+                                                                <mat-option *ngFor="let cat of cats" [value]="cat.cId">
+                                                                    {{cat.cName}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </td>
+                                                    <td class='col-2 text-center'>
+                                                        <!-- <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span> -->
+                                                    </td>
+                                                    <td class='col-2 text-center'>
+                                                        <span class="fa fa-plus pointerCursor"></span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--end table row-->
+                                    <br/>
+                                    <!--button row-->
+                                    <div class="text-right">
+                                        <button mat-raised-button color="primary">Save</button>
+                                    </div>
+                                </mat-step>
+                            </mat-horizontal-stepper>
+                        </div>
+                    </div>
+                </div>
+                <!--end container row-->
+
+
+
+                <!--/////////////////////////////////////////-->
+                <!--//////////////Modal Windows//////////////-->
+                <!--/////////////////////////////////////////-->
+
+                <!-- Start Modal Window to add tax data -->
+                <div class="modal fade" id="taxModal">
+                    <div class="modal-dialog shadow-lg-dark modal-lg">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Tax</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="depts" placeholder="Tax Department" optionLabel="dName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary" data-toggle="modal" data-target="#deptModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br/>
+                                <!--2nd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="circles" placeholder="Tax Circle" optionLabel="cName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary" data-toggle="modal" data-target="#circleModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 2nd row-->
+                                <br/>
+                                <!--3rd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Registration">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 3rd row-->
+                                <br/>
+                                <!--4th row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Verified Address">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 4th row-->
+                                <br/>
+                                <!--5th row-->
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <h5>Verified</h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-radio-group>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <mat-radio-button value="yes">Yes</mat-radio-button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <mat-radio-button value="no">No</mat-radio-button>
+                                                </div>
+                                            </div>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <!--end 5th row-->
+                                <br/>
+                                <!--6th row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <mat-select placeholder="Type">
+                                                <mat-option *ngFor="let type of types" [value]="type.tId">
+                                                    {{type.tName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Resident</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-radio-group>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <mat-radio-button value="yes">Yes</mat-radio-button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <mat-radio-button value="no">No</mat-radio-button>
+                                                        </div>
+                                                    </div>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end 6th row-->
+                                <br/>
+                                <!--7th row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Certificate">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary">
+                    <b>...</b>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 7th row-->
+                                <br/>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add tax data -->
+
+                <!-- Start Modal Window to add Representators data -->
+                <div class="modal fade" id="representModal">
+                    <div class="modal-dialog shadow-lg-dark modal-lg">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Representator</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Name">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br/>
+                                <!--2nd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="designations" placeholder="Designation" optionLabel="dName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary" data-toggle="modal" data-target="#designationModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 2nd row-->
+                                <br/>
+                                <!--3rd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Mobile">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Phone">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 3rd row-->
+                                <br/>
+                                <!--4th row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Fax">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Email">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 4th row-->
+                                <br/>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add Representators data -->
+
+                <!-- Start Modal Window to add affiliation data -->
+                <div class="modal fade" id="affiliationModal">
+                    <div class="modal-dialog shadow-lg-dark modal-lg">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Affiliation</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="companies" placeholder="Company Name" optionLabel="cName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary" data-toggle="modal" data-target="#companyModal">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br/>
+                                <!--2nd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="affTypes" placeholder="Affiliation Type" optionLabel="aName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary" data-toggle="modal" data-target="#affTypeModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 2nd row-->
+                                <br/>
+                                <!--3rd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Certificate">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary">
+                    <b>...</b>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 3rd row-->
+                                <br/>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add affiliation data -->
+
+                <!-- Start Modal Window to add financial data -->
+                <div class="modal fade" id="financialModal">
+                    <div class="modal-dialog shadow-lg-dark modal-lg">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Financials</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="fYears" placeholder="Financial Year" optionLabel="fName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Income Statement</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button mat-mini-fab color="primary" class="noneOutLine">
+                          <b>...</b>
+                        </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br/>
+                                <!--2nd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Balance Sheet</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button mat-mini-fab color="primary" class="noneOutLine">
+                        <b>...</b>
+                      </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Year Turn Over">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 2nd row-->
+                                <br/>
+                                <!--3rd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Year Total Assets">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Year Current Assets">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 3rd row-->
+                                <br/>
+                                <!--4th row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Year Current Liabilities">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p-dropdown [options]="auditors" placeholder="Auditor" optionLabel="aName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#auditorModal">
+                        <span class="fa fa-plus"></span>
+                      </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end 4th row-->
+                                <br/>
+                                <!--5th row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Ranking">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 5th row-->
+                                <br/>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add financial data -->
+
+                <!-- Start Modal Window to add ranking data -->
+                <div class="modal fade" id="ratingModal">
+                    <div class="modal-dialog shadow-lg-dark modal-lg">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Rating</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="orgs" placeholder="Organization Name" optionLabel="oName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#organModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br/>
+                                <!--2nd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="ranks" placeholder="Ranking" optionLabel="rName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#rankModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 2nd row-->
+                                <br/>
+                                <!--3rd row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p-dropdown [options]="rHealths" placeholder="Ranking Health" optionLabel="hName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#rHealthModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 3rd row-->
+                                <br/>
+                                <!--4th row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <mat-form-field class="fullwidth">
+                                                    <input matInput placeholder="Verification Link">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button mat-mini-fab class="noneOutLine" color="primary">
+                        <b>...</b>
+                      </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Verified</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-radio-group>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <mat-radio-button value="yes">Yes</mat-radio-button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <mat-radio-button value="no">No</mat-radio-button>
+                                                        </div>
+                                                    </div>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end 4th row-->
+                                <br/>
+                                <!--5th row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Certificate">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-mini-fab class="noneOutLine" color="primary">
+                    <b>...</b>
+                  </button>
+                                    </div>
+                                </div>
+                                <!--end 5th row-->
+                                <br/>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add financial data -->
+
+                <!-- Start Modal Window to add department -->
+                <div class="modal fade" id="deptModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Department</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Department Name">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add department -->
+
+                <!-- Start Modal Window to add circle -->
+                <div class="modal fade" id="circleModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Circle</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Circle">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add Circle -->
+
+                <!-- Start Modal Window to add designation -->
+                <div class="modal fade" id="designationModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Designation</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Designation Name">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add designation -->
+
+                <!-- Start Modal Window to add Company -->
+                <div class="modal fade" id="companyModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Company</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Company Name">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add Company -->
+
+                <!-- Start Modal Window to add affiliation type -->
+                <div class="modal fade" id="affTypeModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Affiliation Type</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Affiliation Type">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add affiliation type -->
+
+                <!-- Start Modal Window to add auditor -->
+                <div class="modal fade" id="auditorModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Auditor</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Auditor">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add auditor -->
+
+                <!-- Start Modal Window to add Organization -->
+                <div class="modal fade" id="organModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Organization</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Organization Name">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add Organization -->
+
+                <!-- Start Modal Window to add Rank -->
+                <div class="modal fade" id="rankModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Rank</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Rank">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add Rank -->
+
+                <!-- Start Modal Window to add Rank Health -->
+                <div class="modal fade" id="rHealthModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Rank Health</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!--end Modal Header -->
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <!--1st row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Rank Health">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!--end 1st row-->
+                                <br>
+                                <!--button row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to add Rank Health -->
+
+                <!-- Start Modal Window to delete data -->
+                <div class="modal fade" id="deleteModal">
+                    <div class="modal-dialog shadow-lg-dark">
+                        <div class="modal-content">
+                            <!--start Modal body -->
+                            <div class="modal-body">
+                                <br>
+                                <div class="hidden" ngDefaultControl></div>
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10">
+                                        <h2>Delete Entry</h2>
+                                    </div>
+                                </div><br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Enter Password" type="password">
+                                        </mat-form-field>
+                                    </div>
+                                </div><br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="fullwidth">
+                                            <input matInput placeholder="Enter PIN" type="password">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <!--end Modal body -->
+
+                            <!--start Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <!--end Modal footer -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Window to delete data -->
+            </div>
+            <!-- modal body ends-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add New Vendors Modal Window Ends -->

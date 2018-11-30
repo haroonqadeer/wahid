@@ -398,28 +398,32 @@
                     <div class="row">
                       <div class="col-md-12">
                         <table class="table table-striped">
-                          <tr class="d-flex">
-                            <th class="col-1 text-center">Sr #</th>
-                            <th class="col-5 text-center">Description</th>
-                            <th class="col-2 text-center">Type</th>
-                            <th class="col-2 text-center">Qty</th>
-                            <th class="col-1 text-center">Delete</th>
-                            <th class="col-1 text-center">Add</th>
-                          </tr>
-                          <tr class="d-flex">
-                            <td class="col-1 text-center">1</td>
-                            <td class="col-5 text-center">Dozen Packing</td>
-                            <td class="col-2 text-center">
-                              <p-dropdown [options]="bTypes" placeholder="Select Type" optionLabel="bName" showlear="true" [style]="{'width':'100%'}"></p-dropdown> 
-                            </td>
-                            <td class="col-2 text-center">12</td>
-                            <td class="col-1 text-center">
-                              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
-                            </td>
-                            <td class="col-1 text-center">
-                              <span class="fa fa-plus pointerCursor"></span>
-                            </td>
-                          </tr>
+                          <thead>
+                            <tr class="d-flex">
+                              <th class="col-1 text-center">Sr #</th>
+                              <th class="col-5 text-center">Description</th>
+                              <th class="col-2 text-center">Type</th>
+                              <th class="col-2 text-center">Qty</th>
+                              <th class="col-1 text-center">Delete</th>
+                              <th class="col-1 text-center">Add</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="d-flex">
+                              <td class="col-1 text-center">1</td>
+                              <td class="col-5 text-center">Dozen Packing</td>
+                              <td class="col-2 text-center">
+                                <p-dropdown [options]="bTypes" placeholder="Select Type" optionLabel="bName" showlear="true" [style]="{'width':'100%'}"></p-dropdown> 
+                              </td>
+                              <td class="col-2 text-center">12</td>
+                              <td class="col-1 text-center">
+                                <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                              </td>
+                              <td class="col-1 text-center">
+                                <span class="fa fa-plus pointerCursor"></span>
+                              </td>
+                            </tr>
+                          </tbody>
                         </table>
                       </div>
                     </div>
@@ -528,28 +532,32 @@
               <div class="row">
                 <div class="col-md-12">
                   <table class="table table-striped">
-                    <tr class="d-flex">
-                      <th class="col-1 text-center">Sr #</th>
-                      <th class="col-5 text-center">Tax</th>
-                      <th class="col-2 text-center">Rate</th>
-                      <th class="col-2 text-center">Section</th>
-                      <th class="col-1 text-center">Delete</th>
-                      <th class="col-1 text-center">Add</th>
-                    </tr>
-                    <tr class="d-flex">
-                      <td class="col-1 text-center">1</td>
-                      <td class="col-5 text-center">
-                        <p-dropdown [options]="taxes" placeholder="Select Tax" optionLabel="tName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
-                      </td>
-                      <td class="col-2 text-center">label</td>
-                      <td class="col-2 text-center">label</td>
-                      <td class="col-1 text-center">
-                        <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
-                      </td>
-                      <td class="col-1 text-center">
-                        <span class="fa fa-plus pointerCursor"></span>
-                      </td>
-                    </tr>
+                    <thead>
+                      <tr class="d-flex">
+                        <th class="col-1 text-center">Sr #</th>
+                        <th class="col-5 text-center">Tax</th>
+                        <th class="col-2 text-center">Rate</th>
+                        <th class="col-2 text-center">Section</th>
+                        <th class="col-1 text-center">Delete</th>
+                        <th class="col-1 text-center">Add</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="d-flex">
+                        <td class="col-1 text-center">1</td>
+                        <td class="col-5 text-center">
+                          <p-dropdown [options]="taxes" placeholder="Select Tax" optionLabel="tName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                        </td>
+                        <td class="col-2 text-center">label</td>
+                        <td class="col-2 text-center">label</td>
+                        <td class="col-1 text-center">
+                          <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                        </td>
+                        <td class="col-1 text-center">
+                          <span class="fa fa-plus pointerCursor"></span>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -646,26 +654,30 @@
         <div class="row">
           <div class="col-md-12">
             <table class="table table-striped">
-              <tr class="d-flex">
-                <th class="col-2 text-center">Sr #</th>
-                <th class="col-6 text-center">Description</th>
-                <th class="col-2 text-center">Delete</th>
-                <th class="col-2 text-center">Add</th>
-              </tr>
-              <tr class="d-flex">
-                <td class="col-2 text-center">1</td>
-                <td class="col-6 text-center">
-                  <mat-form-field class="fullwidth">
-                    <input matInput >
-                  </mat-form-field>
-                </td>
-                <td class="col-2 text-center">
-                  <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
-                </td>
-                <td class="col-2 text-center">
-                  <span class="fa fa-plus pointerCursor"></span>
-                </td>
-              </tr>
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-2 text-center">Sr #</th>
+                  <th class="col-6 text-center">Description</th>
+                  <th class="col-2 text-center">Delete</th>
+                  <th class="col-2 text-center">Add</th>
+                </tr>      
+              </thead>
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">1</td>
+                  <td class="col-6 text-center">
+                    <mat-form-field class="fullwidth">
+                      <input matInput >
+                    </mat-form-field>
+                  </td>
+                  <td class="col-2 text-center">
+                    <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                  </td>
+                  <td class="col-2 text-center">
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -721,26 +733,30 @@
         <div class="row">
           <div class="col-md-12">
             <table class="table table-striped">
-              <tr class="d-flex">
-                <th class="col-3 text-center">Sr #</th>
-                <th class="col-8 text-left">Description</th>
-              </tr>
-              <tr class="d-flex">
-                <td class="col-3 text-center">1</td>
-                <td class="col-8 text-left">Hp Core i5</td>
-              </tr>
-              <tr class="d-flex">
-                <td class="col-3 text-center">2</td>
-                <td class="col-8 text-left">12 GB Ram</td>
-              </tr>
-              <tr class="d-flex">
-                <td class="col-3 text-center">3</td>
-                <td class="col-8 text-left">500 GB Hard Disk</td>
-              </tr>
-              <tr class="d-flex">
-                <td class="col-3 text-center">4</td>
-                <td class="col-8 text-left">2 GB Nvidia Card</td>
-              </tr>
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-3 text-center">Sr #</th>
+                  <th class="col-8 text-left">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-3 text-center">1</td>
+                  <td class="col-8 text-left">Hp Core i5</td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-3 text-center">2</td>
+                  <td class="col-8 text-left">12 GB Ram</td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-3 text-center">3</td>
+                  <td class="col-8 text-left">500 GB Hard Disk</td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-3 text-center">4</td>
+                  <td class="col-8 text-left">2 GB Nvidia Card</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -969,22 +985,26 @@
                         <div class="row">
                           <div class="col-md-12">
                             <table class="table table-striped">
-                              <tr class="d-flex">
-                                <th class="col-2 text-center">Sr #</th>
-                                <th class="col-9 text-center">Color</th>
-                              </tr>
-                              <tr class="d-flex">
-                                <td class="col-2 text-center">1</td>
-                                <td class="col-9 text-center">White</td>
-                              </tr>
-                              <tr class="d-flex">
-                                <td class="col-2 text-center">2</td>
-                                <td class="col-9 text-center">Red</td>
-                              </tr>
-                              <tr class="d-flex">
-                                <td class="col-2 text-center">3</td>
-                                <td class="col-9 text-center">Purple</td>
-                              </tr>
+                              <thead>
+                                <tr class="d-flex">
+                                  <th class="col-2 text-center">Sr #</th>
+                                  <th class="col-9 text-center">Color</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">1</td>
+                                  <td class="col-9 text-center">White</td>
+                                </tr>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">2</td>
+                                  <td class="col-9 text-center">Red</td>
+                                </tr>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">3</td>
+                                  <td class="col-9 text-center">Purple</td>
+                                </tr>
+                              </tbody>
                             </table>
                           </div>
                         </div>
@@ -1000,25 +1020,29 @@
                         <div class="row">
                           <div class="col-md-12">
                             <table class="table table-striped">
-                              <tr class="d-flex">
-                                <th class="col-2 text-center">Sr #</th>
-                                <th class="col-8 text-center">Specs</th>
-                                <th class="col-2 text-center">Detail</th>
-                              </tr>
-                              <tr class="d-flex">
-                                <td class="col-2 text-center">1</td>
-                                <td class="col-8 text-center">Lenovo Ideapad</td>
-                                <td class="col-2 text-center">
-                                  <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#specDetModal"></span>
-                                </td>
-                              </tr>
-                              <tr class="d-flex">
-                                <td class="col-2 text-center">2</td>
-                                <td class="col-8 text-center">Dell Inspiron</td>
-                                <td class="col-2 text-center">
-                                  <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#specDetModal"></span>
-                                </td>
-                              </tr>
+                              <thead>
+                                <tr class="d-flex">
+                                  <th class="col-2 text-center">Sr #</th>
+                                  <th class="col-8 text-center">Specs</th>
+                                  <th class="col-2 text-center">Detail</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">1</td>
+                                  <td class="col-8 text-center">Lenovo Ideapad</td>
+                                  <td class="col-2 text-center">
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#specDetModal"></span>
+                                  </td>
+                                </tr>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">2</td>
+                                  <td class="col-8 text-center">Dell Inspiron</td>
+                                  <td class="col-2 text-center">
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#specDetModal"></span>
+                                  </td>
+                                </tr>
+                              </tbody>
                             </table>
                           </div>
                         </div>
@@ -1065,18 +1089,22 @@
                         <div class="row">
                           <div class="col-md-12">
                             <table class="table table-striped">
-                              <tr class="d-flex">
-                                <th class="col-2 text-center">Sr #</th>
-                                <th class="col-6 text-center">Description</th>
-                                <th class="col-2 text-center">Type</th>
-                                <th class="col-2 text-center">Qty</th>
-                              </tr>
-                              <tr class="d-flex">
-                                <td class="col-2 text-center">1</td>
-                                <td class="col-6 text-center">Dozen Packing</td>
-                                <td class="col-2 text-center">Cotton Box</td>
-                                <td class="col-2 text-center">12</td>
-                              </tr>
+                              <thead>
+                                <tr class="d-flex">
+                                  <th class="col-2 text-center">Sr #</th>
+                                  <th class="col-6 text-center">Description</th>
+                                  <th class="col-2 text-center">Type</th>
+                                  <th class="col-2 text-center">Qty</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">1</td>
+                                  <td class="col-6 text-center">Dozen Packing</td>
+                                  <td class="col-2 text-center">Cotton Box</td>
+                                  <td class="col-2 text-center">12</td>
+                                </tr>
+                              </tbody>
                             </table>
                           </div>
                         </div>
@@ -1132,26 +1160,30 @@
                   <div class="row">
                     <div class="col-md-12">
                       <table class="table table-striped">
-                        <tr class="d-flex">
-                          <th class="col-2 text-center">Sr #</th>
-                          <th class="col-8 text-center">Vendor</th>
-                          <th class="col-2 text-center">Rating</th>
-                        </tr>
-                        <tr class="d-flex">
-                          <td class="col-2 text-center">1</td>
-                          <td class="col-8 text-center">Ali Khan</td>
-                          <td class="col-2 text-center">5</td>
-                        </tr>
-                        <tr class="d-flex">
-                          <td class="col-2 text-center">2</td>
-                          <td class="col-8 text-center">Rizwi Shah</td>
-                          <td class="col-2 text-center">4</td>
-                        </tr>
-                        <tr class="d-flex">
-                          <td class="col-2 text-center">3</td>
-                          <td class="col-8 text-center">Nawaz Rajpoot</td>
-                          <td class="col-2 text-center">5</td>
-                        </tr>
+                        <thead>
+                          <tr class="d-flex">
+                            <th class="col-2 text-center">Sr #</th>
+                            <th class="col-8 text-center">Vendor</th>
+                            <th class="col-2 text-center">Rating</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">1</td>
+                            <td class="col-8 text-center">Ali Khan</td>
+                            <td class="col-2 text-center">5</td>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">2</td>
+                            <td class="col-8 text-center">Rizwi Shah</td>
+                            <td class="col-2 text-center">4</td>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">3</td>
+                            <td class="col-8 text-center">Nawaz Rajpoot</td>
+                            <td class="col-2 text-center">5</td>
+                          </tr>
+                        </tbody>
                       </table>
                     </div>
                   </div>
@@ -1167,18 +1199,22 @@
                   <div class="row">
                     <div class="col-md-12">
                       <table class="table table-striped">
-                        <tr class="d-flex">
-                          <th class="col-2 text-center">Sr #</th>
-                          <th class="col-6 text-center">Tax</th>
-                          <th class="col-2 text-center">Rate</th>
-                          <th class="col-2 text-center">Section</th>
-                        </tr>
-                        <tr class="d-flex">
-                          <td class="col-2 text-center">1</td>
-                          <td class="col-6 text-center">Income tax</td>
-                          <td class="col-2 text-center">525,100</td>
-                          <td class="col-2 text-center">abc ssaasd</td>
-                        </tr>
+                        <thead>
+                          <tr class="d-flex">
+                            <th class="col-2 text-center">Sr #</th>
+                            <th class="col-6 text-center">Tax</th>
+                            <th class="col-2 text-center">Rate</th>
+                            <th class="col-2 text-center">Section</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">1</td>
+                            <td class="col-6 text-center">Income tax</td>
+                            <td class="col-2 text-center">525,100</td>
+                            <td class="col-2 text-center">abc ssaasd</td>
+                          </tr>
+                        </tbody>
                       </table>
                     </div>
                   </div>
@@ -1235,22 +1271,26 @@
           <div class="row">
             <div class="col-md-12">
               <table class="table table-striped">
-                <tr class="d-flex">
-                  <th class="col-2 text-center">Sr #</th>
-                  <th class="col-9 text-center">Description</th>
-                </tr>
-                <tr class="d-flex">
-                  <td class="col-2 text-center">1</td>
-                  <td class="col-9 text-center">Core i5</td>
-                </tr>
-                <tr class="d-flex">
-                  <td class="col-2 text-center">2</td>
-                  <td class="col-9 text-center">8 GB Ram</td>
-                </tr>
-                <tr class="d-flex">
-                  <td class="col-2 text-center">3</td>
-                  <td class="col-9 text-center">500 GB Hard Disk</td>
-                </tr>
+                <thead>
+                  <tr class="d-flex">
+                    <th class="col-2 text-center">Sr #</th>
+                    <th class="col-9 text-center">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="d-flex">
+                    <td class="col-2 text-center">1</td>
+                    <td class="col-9 text-center">Core i5</td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-2 text-center">2</td>
+                    <td class="col-9 text-center">8 GB Ram</td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-2 text-center">3</td>
+                    <td class="col-9 text-center">500 GB Hard Disk</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
