@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: '',
     component: FinancedashboardComponent
+  },
+  {
+    path: 'dashboard',
+    component: FinancedashboardComponent
   },  
   {
     path:'coa',  

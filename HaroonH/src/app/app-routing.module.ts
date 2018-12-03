@@ -25,6 +25,10 @@ const routes: Routes = [
     component: HRDashboardComponent
   },
   {
+    path: 'dashboard',
+    component: HRDashboardComponent
+  },
+  {
     path: 'recruitmentApproval',
     component: RecruitmentappComponent
   },

@@ -37,6 +37,9 @@ export class ErpBottomSheetComponent implements OnInit {
     else if (val==6){
       $('#disaster').addClass('animated jello');
     }
+    else if (val==7){
+      $('#procurement').addClass('animated jello');
+    }
   }
 
   //open ERP Module
@@ -63,7 +66,11 @@ export class ErpBottomSheetComponent implements OnInit {
     }
     //disaster
     else if (val==6){
-      //window.open('http://192.168.88.16:9006/')
+      window.open('http://192.168.88.16:9006/')
+    }
+    //procurement
+    else if (val==7){
+      //window.open('http://192.168.88.16:9007/')
     }
   }
 }
