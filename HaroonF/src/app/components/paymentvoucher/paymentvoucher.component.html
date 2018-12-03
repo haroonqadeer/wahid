@@ -157,7 +157,7 @@
 
 <!-- Start Modal Window to Add or update Payemnt voucher data -->
 <div class="modal fade" id="paymentModal">
-  <div class="modal-dialog shadow-lg-dark modal-lg">
+  <div class="modal-dialog shadow-lg-dark modal-xl">
     <div class="modal-content">
       <!--start Modal Header -->
       <div class="modal-header">
@@ -214,7 +214,7 @@
           </div>
         </div>
         <br/>
-        <div class="container shadow-lg-dark">
+        <div class="allBorder">
           <mat-tab-group>
             <mat-tab label="Party"> 
               <br/>
@@ -230,198 +230,170 @@
                 <br/>
                 <!--Start table Row-->
                 <div class="row">  
-                  <div class="example-container mat-elevation-z8 fullwidth">
-                    <div class="example-table-container fullwidth">            
-                      <table class="table table-striped fullwidth">
-                        <thead>
-                          <tr class='d-flex'>
-                            <th class='col-3'>G/L Account</th>
-                            <th class='col-3'>Party Name</th>
-                            <th class='col-2'>Debit</th>
-                            <th class='col-2'>Credit</th>
-                            <th class="col-2">Action</th>          
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class='d-flex'>
-                          <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                            <td class="col-3">
-                              <br/>
-                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
-                                <ng-template let-item pTemplate="selectedItem">
-                                  <span>{{item.label}} - {{item.value}}</span>
-                                </ng-template>
-                                <ng-template let-account pTemplate="item">
-                                  <div class="ui-helper-clearfix">
-                                    <div>{{account.label}} - {{account.value}}</div>
-                                  </div>
-                                </ng-template>
-                              </p-dropdown>
-                            </td>
-                            <td class="col-3">
-                              <br/>
-                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Party Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
-                            </td>
-                            <td class="col-2">
-                              <mat-form-field class="fullwidth">
-                                <input matInput placeholder="Debit" [(ngModel)]="txtpDebit" required>
-                              </mat-form-field>
-                            </td>
-                            <td class="col-2">
-                              <mat-form-field class="fullwidth">
-                                <input matInput placeholder="Credit" [(ngModel)]="txtpCredit" required>
-                              </mat-form-field>
-                            </td>
-                            <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary pointerCursor" (click)="add()"></span></td>              
-                          </tr>
-                          
-                            <tr *ngFor="let item of partyDetail" class='d-flex'>
-                            <td class="col-3">{{item.AccountTitle}}</td>
-                            <td class="col-3">{{item.PartyName}}</td>
-                            <td class="col-2">{{item.Debit}}</td>
-                            <td class="col-2">{{item.Credit}}</td>
-                            <td class="col-2 text-center"><span class="fa fa-trash pointerCursor" (click)="del(item)"></span></td>              
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  <table class="table table-striped fullwidth">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-3 text-center'>G/L Account</th>
+                        <th class='col-3 text-center'>Party Name</th>
+                        <th class='col-2 text-center'>Debit</th>
+                        <th class='col-2 text-center'>Credit</th>
+                        <th class="col-2 text-center">Action</th>          
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class='d-flex'>
+                      <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                        <td class="col-3 text-center">
+                          <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
+                            <ng-template let-item pTemplate="selectedItem">
+                              <span>{{item.label}} - {{item.value}}</span>
+                            </ng-template>
+                            <ng-template let-account pTemplate="item">
+                              <div class="ui-helper-clearfix">
+                                <div>{{account.label}} - {{account.value}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+                        <td class="col-3 text-center">
+                          <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Party Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
+                        </td>
+                        <td class="col-2 text-center">
+                          <input type="text" class="form-control" [(ngModel)]="txtpDebit">
+                        </td>
+                        <td class="col-2 text-center">
+                          <input type="text" class="form-control" [(ngModel)]="txtpCredit">
+                        </td>
+                        <td class="col-2 text-center"><span class="fa fa-floppy-o fontPrimary pointerCursor" (click)="add()"></span></td>              
+                      </tr>
+                      
+                        <tr *ngFor="let item of partyDetail" class='d-flex'>
+                        <td class="col-3 text-center">{{item.AccountTitle}}</td>
+                        <td class="col-3 text-center">{{item.PartyName}}</td>
+                        <td class="col-2 text-center">{{item.Debit}}</td>
+                        <td class="col-2 text-center">{{item.Credit}}</td>
+                        <td class="col-2 text-center"><span class="fa fa-trash pointerCursor" (click)="del(item)"></span></td>              
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <!-- end table row -->
               </div>
             </mat-tab>
             <mat-tab label="Employee">
-            
-              <br/>
-              <!--Start table Row-->
-              <div class="row">  
-                <div class="example-container mat-elevation-z8 fullwidth">
-                  <div class="example-table-container fullwidth">            
-                    <table class="table table-striped fullwidth">
-                      <thead>
-                        <tr class='d-flex'>
-                          <th class='col-3'>G/L Account</th>
-                          <th class='col-3'>Employee Name</th>
-                          <th class='col-2'>Debit</th>
-                          <th class='col-2'>Credit</th>
-                          <th class="col-2">Action</th>          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class='d-flex'>
-                        <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                          <td class="col-3">
-                            <br/>
-                            <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
-                              <ng-template let-item pTemplate="selectedItem">
-                                <span>{{item.label}} - {{item.value}}</span>
-                              </ng-template>
-                              <ng-template let-account pTemplate="item">
-                                <div class="ui-helper-clearfix">
-                                  <div>{{account.label}} - {{account.value}}</div>
-                                </div>
-                              </ng-template>
-                            </p-dropdown>
-                          </td>
-                          <td class="col-3">
-                            <br/>
-                            <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
-                          </td>
-                          <td class="col-2">
-                            <mat-form-field class="fullwidth">
-                              <input matInput placeholder="Debit" [(ngModel)]="txtpDebit" required>
-                            </mat-form-field>
-                          </td>
-                          <td class="col-2">
-                            <mat-form-field class="fullwidth">
-                              <input matInput placeholder="Credit" [(ngModel)]="txtpCredit" required>
-                            </mat-form-field>
-                          </td>
-                          <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary" (click)="add()"></span></td>              
-                        </tr>
-                        
-                          <tr *ngFor="let item of partyDetail" class='d-flex'>
-                          <td class="col-3">{{item.AccountTitle}}</td>
-                          <td class="col-3">{{item.PartyName}}</td>
-                          <td class="col-2">{{item.Debit}}</td>
-                          <td class="col-2">{{item.Credit}}</td>
-                          <td class="col-2 text-center"><span class="fa fa-trash" (click)="del(item)"></span></td>              
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+              <!--container row-->
+              <div class="container">    
+                <br/>
+                <!--Start table Row-->
+                <div class="row">  
+                  <table class="table table-striped fullwidth">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-3 text-center'>G/L Account</th>
+                        <th class='col-3 text-center'>Employee Name</th>
+                        <th class='col-2 text-center'>Debit</th>
+                        <th class='col-2 text-center'>Credit</th>
+                        <th class="col-2 text-center">Action</th>          
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class='d-flex'>
+                      <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                        <td class="col-3 text-center">
+                          <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
+                            <ng-template let-item pTemplate="selectedItem">
+                              <span>{{item.label}} - {{item.value}}</span>
+                            </ng-template>
+                            <ng-template let-account pTemplate="item">
+                              <div class="ui-helper-clearfix">
+                                <div>{{account.label}} - {{account.value}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+                        <td class="col-3 text-center">
+                          <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
+                        </td>
+                        <td class="col-2 text-center">
+                          <input type="text" class="form-control" [(ngModel)]="txtpDebit">
+                        </td>
+                        <td class="col-2 text-center">
+                          <input type="text" class="form-control" [(ngModel)]="txtpCredit">
+                        </td>
+                        <td class="col-2 text-center"><span class="fa fa-floppy-o fontPrimary" (click)="add()"></span></td>              
+                      </tr>
+                      
+                        <tr *ngFor="let item of partyDetail" class='d-flex'>
+                        <td class="col-3 text-center">{{item.AccountTitle}}</td>
+                        <td class="col-3 text-center">{{item.PartyName}}</td>
+                        <td class="col-2 text-center">{{item.Debit}}</td>
+                        <td class="col-2 text-center">{{item.Credit}}</td>
+                        <td class="col-2 text-center"><span class="fa fa-trash" (click)="del(item)"></span></td>              
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+                <!-- end table row -->
               </div>
-              <!-- end table row -->
+              <!--end container row-->
             </mat-tab>
             <mat-tab label="Both"> 
               <br/>
               <div class="container">
                 <div class="row">
                   <div class="col-md-6">
-                      <p-dropdown [options]="parties" [(ngModel)]="selectedParty" placeholder="Select Party" [style]="{'width':'100%'}" optionLabel="pName" filter="true">
-                      </p-dropdown>
+                    <p-dropdown [options]="parties" [(ngModel)]="selectedParty" placeholder="Select Party" [style]="{'width':'100%'}" optionLabel="pName" filter="true">
+                    </p-dropdown>
                   </div>
                 </div>
                 <br/>
                 <!--Start table Row-->
                 <div class="row">  
-                  <div class="example-container mat-elevation-z8 fullwidth">
-                    <div class="example-table-container fullwidth">            
-                      <table class="table table-striped fullwidth">
-                        <thead>
-                          <tr class='d-flex'>
-                            <th class='col-3'>G/L Account</th>
-                            <th class='col-3'>Employee Name</th>
-                            <th class='col-2'>Debit</th>
-                            <th class='col-2'>Credit</th>
-                            <th class="col-2">Action</th>          
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class='d-flex'>
-                          <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                            <td class="col-3">
-                              <br/>
-                              <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
-                                <ng-template let-item pTemplate="selectedItem">
-                                  <span>{{item.label}} - {{item.value}}</span>
-                                </ng-template>
-                                <ng-template let-account pTemplate="item">
-                                  <div class="ui-helper-clearfix">
-                                    <div>{{account.label}} - {{account.value}}</div>
-                                  </div>
-                                </ng-template>
-                              </p-dropdown>
-                            </td>
-                            <td class="col-3">
-                              <br/>
-                              <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
-                            </td>
-                            <td class="col-2">
-                              <mat-form-field class="fullwidth">
-                                <input matInput placeholder="Debit" [(ngModel)]="txtpDebit" required>
-                              </mat-form-field>
-                            </td>
-                            <td class="col-2">
-                              <mat-form-field class="fullwidth">
-                                <input matInput placeholder="Credit" [(ngModel)]="txtpCredit" required>
-                              </mat-form-field>
-                            </td>
-                            <td class="col-2 text-center"><br/><span class="fa fa-floppy-o fontPrimary" (click)="add()"></span></td>              
-                          </tr>
-                          
-                            <tr *ngFor="let item of partyDetail" class='d-flex'>
-                            <td class="col-3">{{item.AccountTitle}}</td>
-                            <td class="col-3">{{item.PartyName}}</td>
-                            <td class="col-2">{{item.Debit}}</td>
-                            <td class="col-2">{{item.Credit}}</td>
-                            <td class="col-2 text-center"><span class="fa fa-trash" (click)="del(item)"></span></td>              
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  <table class="table table-striped fullwidth">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-3 text-center'>G/L Account</th>
+                        <th class='col-3 text-center'>Employee Name</th>
+                        <th class='col-2 text-center'>Debit</th>
+                        <th class='col-2 text-center'>Credit</th>
+                        <th class="col-2 text-center">Action</th>          
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class='d-flex'>
+                      <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                        <td class="col-3">
+                          <p-dropdown [options]="accounts" [(ngModel)]="selectedAccount" placeholder="Select Account" [style]="{'width':'100%'}" filter="true">
+                            <ng-template let-item pTemplate="selectedItem">
+                              <span>{{item.label}} - {{item.value}}</span>
+                            </ng-template>
+                            <ng-template let-account pTemplate="item">
+                              <div class="ui-helper-clearfix">
+                                <div>{{account.label}} - {{account.value}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+                        <td class="col-3 text-center">
+                          <p-dropdown [options]="parties" [(ngModel)]="cmbParty" placeholder="Employee Name" optionLabel="pName" [style]="{'width':'100%'}"></p-dropdown>
+                        </td>
+                        <td class="col-2 text-center">
+                          <input type="text" class="form-control" [(ngModel)]="txtpDebit">
+                        </td>
+                        <td class="col-2 text-center">
+                          <input type="text" class="form-control" [(ngModel)]="txtpCredit">
+                        </td>
+                        <td class="col-2 text-center"><span class="fa fa-floppy-o fontPrimary" (click)="add()"></span></td>              
+                      </tr>
+                        <tr *ngFor="let item of partyDetail" class='d-flex'>
+                        <td class="col-3 text-center">{{item.AccountTitle}}</td>
+                        <td class="col-3 text-center">{{item.PartyName}}</td>
+                        <td class="col-2 text-center">{{item.Debit}}</td>
+                        <td class="col-2 text-center">{{item.Credit}}</td>
+                        <td class="col-2 text-center"><span class="fa fa-trash" (click)="del(item)"></span></td>              
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <!-- end table row -->
               </div>
