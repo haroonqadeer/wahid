@@ -36,22 +36,10 @@
             </mat-form-field>
         </div>
     </div>
-    <!-- Row 2 -->
-    <!--start button row-->
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <button mat-raised-button color="primary" data-toggle="modal" data-target="#regCriteriaModal">Search</button>
-        </div>
-    </div>
-    <!--end button row-->
     <br>
-</div>
-<!-- Search Row Ends -->
-<br>
-<!-- Table Container Starts -->
-<div class="container bgWhite">
+    <!--table row-->
     <div class="row">
-        <table class="table table-striped allBorder">
+        <table class="table table-striped">
             <thead>
                 <tr class='d-flex'>
                     <th class="col-1 text-center">Sr. #</th>
@@ -70,14 +58,15 @@
                     <td class="col-3 text-left">10-12-2018</td>
                     <td class="col-1 text-left">Pending</td>
                     <td class="col-1 text-center">
-                        <a href="orderMon" data-toggle="modal" data-target="#orderDetailModal" class=" text-primary"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                        <span class="fa fa-file-text pointerCursor" aria-hidden="true" data-toggle="modal" data-target="#orderDetailModal"></span>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <!--end table row-->
 </div>
-<!-- Table Container Ends -->
+<!-- Search Row Ends -->
 
 <!-- Order Detail Modal Starts -->
 <div class="modal fade" id="orderDetailModal">
@@ -96,7 +85,7 @@
                         <h6 class="font-weight-bold">Order No. </h6>
                     </div>
                     <div class="col-md-9">
-                        <h6 class="font-weight-light">12345345</h6>
+                        <h5 class="font-weight-light">12345345</h5>
                     </div>
                 </div>
                 <!-- Row 2 -->
@@ -105,7 +94,7 @@
                         <h6 class="font-weight-bold">Vendor Name: </h6>
                     </div>
                     <div class="col-md-9">
-                        <h6 class="font-weight-light">Munir Brother</h6>
+                        <h5 class="font-weight-light">Munir Brother</h5>
                     </div>
                 </div>
                 <!-- Row 3 -->
@@ -114,7 +103,7 @@
                         <h6 class="font-weight-bold">Representator: </h6>
                     </div>
                     <div class="col-md-9">
-                        <h6 class="font-weight-light">Munir Brother Limited.</h6>
+                        <h5 class="font-weight-light">Munir Brother Limited.</h5>
                     </div>
                 </div>
                 <!-- Row 4 -->
@@ -122,26 +111,23 @@
                     <div class="col-md-3">
                         <h6 class="font-weight-bold">Phone: </h6>
                     </div>
-                    <div class="col-md-9">
-                        <h6 class="font-weight-light">0512436465</h6>
+                    <div class="col-md-3">
+                        <h5 class="font-weight-light">0512436465</h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="font-weight-bold">Mobile: </h6>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="font-weight-light">03001234567</h5>
                     </div>
                 </div>
                 <!-- Row 5 -->
                 <div class="row">
                     <div class="col-md-3">
-                        <h6 class="font-weight-bold">Mobile: </h6>
-                    </div>
-                    <div class="col-md-9">
-                        <h6 class="font-weight-light">03001234567</h6>
-                    </div>
-                </div>
-                <!-- Row 6 -->
-                <div class="row">
-                    <div class="col-md-3">
                         <h6 class="font-weight-bold">Email: </h6>
                     </div>
                     <div class="col-md-9">
-                        <h6 class="font-weight-light">munir@gmail.com</h6>
+                        <h5 class="font-weight-light">munir@gmail.com</h5>
                     </div>
                 </div>
                 <br/>
@@ -153,7 +139,7 @@
                 </div>
                 <!-- Row 8 -->
                 <div class="row">
-                    <table class="table table-striped allBorder">
+                    <table class="table table-striped">
                         <thead>
                             <tr class='d-flex'>
                                 <th class="col-1 text-center">Sr. #</th>

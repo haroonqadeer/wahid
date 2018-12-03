@@ -32,19 +32,10 @@
         </div>
     </div>
     <!-- Row 2 -->
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <button mat-raised-button color="primary">Search</button>
-        </div>
-    </div>
     <br>
-</div>
-<!-- Search Row Ends -->
-<br>
-<!-- Table Container Starts -->
-<div class="container bgWhite">
+    <!--table row-->
     <div class="row">
-        <table class="table table-striped allBorder">
+        <table class="table table-striped">
             <thead>
                 <tr class='d-flex'>
                     <th class="col-1 text-center">Sr. #</th>
@@ -61,14 +52,16 @@
                     <td class="col-4 text-left">Munir Brothers</td>
                     <td class="col-2 text-left">Pending</td>
                     <td class="col-2 text-center">
-                        <a href="invoice" data-toggle="modal" data-target="#invoiceModal" class=" text-primary"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+                        <span class="fa fa-file-text pointerCursor" aria-hidden="true" data-toggle="modal" data-target="#invoiceModal"></span>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <!--end table row-->
 </div>
-<!-- Table Container Ends -->
+<!-- Search Row Ends -->
+<br>
 
 <!-- Invoicing Modal Starts -->
 <div class="modal fade" id="invoiceModal">
@@ -77,8 +70,8 @@
             <div class="modal-header">
                 <h5 class="modal-title">Delete Registration Criteria Modal</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <!-- Row 1 -->
@@ -95,7 +88,7 @@
                         </mat-form-field>
                     </div>
                     <div class="col-md-1">
-                        <button mat-mini-fab color="primary" data-toggle="modal" data-target="#attachAuthorityModal"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
+                        <button class="noneOutLine" mat-mini-fab color="primary" data-toggle="modal" data-target="#attachAuthorityModal"><i class="fa fa-paperclip" aria-hidden="true"></i></button>
                     </div>
                     <div class="col-md-4">
                         <mat-form-field class="fullwidth">
