@@ -9,6 +9,10 @@ import { TenderRequestComponent } from './components/tender-request/tender-reque
 import { QuotationComponent } from './components/quotation/quotation.component';
 import { TenderComponent } from './components/tender/tender.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InvoicingComponent } from './components/invoicing/invoicing.component';
+import { OrdersMonitoringComponent } from './components/orders-monitoring/orders-monitoring.component';
+import { ProcurementCommitteeComponent } from './components/procurement-committee/procurement-committee.component';
+import { ProcurementSettingComponent } from './components/procurement-setting/procurement-setting.component';
 
 const routes: Routes = [
   {
@@ -46,6 +50,22 @@ const routes: Routes = [
   {
     path: 'quotation',
     component: QuotationComponent
+  },
+  {
+    path: 'invoice',
+    component: InvoicingComponent
+  },
+  {
+    path: 'orderMonitor',
+    component: OrdersMonitoringComponent
+  },
+  {
+    path: 'procCommittee',
+    component: ProcurementCommitteeComponent
+  },
+  {
+    path: 'procSetting',
+    component: ProcurementSettingComponent
   },
   {
     path: 'tender',

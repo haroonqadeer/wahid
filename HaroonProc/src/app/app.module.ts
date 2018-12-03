@@ -21,6 +21,10 @@ import { TenderRequestComponent } from './components/tender-request/tender-reque
 import { QuotationComponent } from './components/quotation/quotation.component';
 import { TenderComponent } from './components/tender/tender.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InvoicingComponent } from './components/invoicing/invoicing.component';
+import { OrdersMonitoringComponent } from './components/orders-monitoring/orders-monitoring.component';
+import { ProcurementCommitteeComponent } from './components/procurement-committee/procurement-committee.component';
+import { ProcurementSettingComponent } from './components/procurement-setting/procurement-setting.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     TenderRequestComponent,
     QuotationComponent,
     TenderComponent,
-    DashboardComponent
+    DashboardComponent,
+    InvoicingComponent,
+    OrdersMonitoringComponent,
+    ProcurementCommitteeComponent,
+    ProcurementSettingComponent
   ],
   imports: [
     BrowserModule,

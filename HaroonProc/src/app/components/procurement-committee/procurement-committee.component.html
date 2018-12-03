@@ -1,0 +1,213 @@
+<br/>
+<!--heading row-->
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1 class="bottomBorder">Procurement Committee</h1>
+    </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start button row-->
+<div class="row">
+    <div class="col-md-6">
+        <button mat-raised-button color="warn">Print</button>
+    </div>
+    <div class="col-md-6 text-right">
+        <button mat-raised-button color="primary" data-toggle="modal" data-target="#addProCommitteeModal">Add New</button>
+    </div>
+</div>
+<!--end button row-->
+<br>
+
+<!-- Table Container Starts -->
+<div class="container bgWhite">
+    <div class="row">
+        <table class="table table-striped allBorder">
+            <thead>
+                <tr class='d-flex'>
+                    <th class="col-1 text-center">Sr. #</th>
+                    <th class="col-3 text-left">Title</th>
+                    <th class="col-3 text-left">Purpose</th>
+                    <th class="col-3 text-center">Categories</th>
+                    <th class="col-1 text-center">Edit</th>
+                    <th class="col-1 text-center">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='d-flex'>
+                    <td class="col-1 text-center"><br/>1</td>
+                    <td class="col-3 text-left"><br/>Student</td>
+                    <td class="col-3 text-left">
+                        <mat-form-field class="fullwidth">
+                            <mat-select placeholder="Approving Authority">
+                                <mat-option *ngFor="let pro of procure" [value]="pro.id">
+                                    {{pro.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td class="col-3 text-center"><br/>2</td>
+                    <td class="col-1 text-center"><br/>
+                        <a href="proComm" data-toggle="modal" data-target="#addProCommitteeModal" class=" text-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="col-1 text-center"><br/>
+                        <a href="proComm" data-toggle="modal" data-target="#detailProCommitteeModal" class=" text-danger"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Table Container Ends -->
+
+<!-- Add Procurement Committee Modal Starts -->
+<div class="modal fade" id="addProCommitteeModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Procurement Committee Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Row 1 -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5><br/>Committee Members</h5>
+                    </div>
+                    <div class="col-md-2"><br/>
+                        <button mat-mini-fab color="primary" data-toggle="modal" data-target="#showComMemModal"><i class="fa fa-list" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-md-3">
+                        <h5><br/>Approvel Limit</h5>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Approvel Limit">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <br/>
+                <!-- Row 2 -->
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class="col-1 text-center">Sr. #</th>
+                                <th class="col-4 text-left">Category</th>
+                                <th class="col-4 text-left">Item</th>
+                                <th class="col-1 text-center">Edit</th>
+                                <th class="col-1 text-center">Delete</th>
+                                <th class="col-1 text-center">Add</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <td class="col-1 text-center">1</td>
+                                <td class="col-4 text-left">Fruit</td>
+                                <td class="col-4 text-left">Apple</td>
+                                <td class="col-1 text-center">
+                                    <a href="proComm" data-toggle="modal" data-target="#editProComModal" class=" text-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                </td>
+                                <td class="col-1 text-center">
+                                    <a href="proComm" data-toggle="modal" data-target="#deleteProComModal" class=" text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </td>
+                                <td class="col-1 text-center">
+                                    <a href="proComm" data-toggle="modal" data-target="#addProComModal" class=" text-success"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Procurement Committee Modal Ends -->
+
+<!-- Delete Procurement Committee Starts -->
+<div class="modal fade" id="deleteProComModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Procurement Committee Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter Password">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter PIN">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Procurement Committee Modal Ends -->
+
+<!-- Show Procurement Committee Members Modal Starts -->
+<div class="modal fade" id="showComMemModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Procurement Committee Members Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class='d-flex'>
+                                <th class="col-1 text-center">Sr. #</th>
+                                <th class="col-3 text-left">Name</th>
+                                <th class="col-3 text-left">Role</th>
+                                <th class="col-3 text-left">Designation</th>
+                                <th class="col-1 text-center">Edit</th>
+                                <th class="col-1 text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class='d-flex'>
+                                <td class="col-1 text-center">1</td>
+                                <td class="col-3 text-left">Zeeshan</td>
+                                <td class="col-3 text-left">President</td>
+                                <td class="col-3 text-left">Director Procurement</td>
+                                <td class="col-1 text-center">
+                                    <a href="proComm" data-toggle="modal" data-target="#editShowComModal" class=" text-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                </td>
+                                <td class="col-1 text-center">
+                                    <a href="proComm" data-toggle="modal" data-target="#deleteProComModal" class=" text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Show Procurement Committee Members Modal Ends -->
