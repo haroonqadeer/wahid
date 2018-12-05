@@ -13,6 +13,8 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { StockAdjustmentComponent } from './components/stock-adjustment/stock-adjustment.component';
+import { ReceiptComponent } from './components/receipt/receipt.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     SearchPipe,
     ErpBottomSheetComponent,
     DashboardComponent,
+    StockAdjustmentComponent,
+    ReceiptComponent,
   ],
   imports: [
     BrowserModule,

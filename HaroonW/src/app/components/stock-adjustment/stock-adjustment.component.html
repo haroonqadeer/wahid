@@ -1,0 +1,100 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Inventory Adjustment</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start buttons row-->
+<div class="row">    
+  <div class="col-md-6">
+    <button mat-raised-button color="primary">Import</button>
+  </div>    
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="warn">Download</button>
+  </div>
+</div>
+<!--end buttons row-->
+<br>
+
+<!--container row-->
+<div class="container bgWhite allBorder">
+  <!--1st row-->
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="fullwidth">
+        <mat-select placeholder="Category" required>
+          <mat-option *ngFor="  let cat of cats" [value]="cat.cId" >
+            {{cat.cName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="fullwidth">
+        <mat-select placeholder="Item" required>
+          <mat-option *ngFor="  let item of items" [value]="item.iId" >
+            {{item.iName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <!--end 1st row-->
+  <br/>
+  <!--2nd row-->
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="fullwidth">
+        <input matInput placeholder="Barcode">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="fullwidth">
+        <input matInput placeholder="Hscode">
+      </mat-form-field>
+    </div>
+  </div>
+  <!--end 2nd row-->
+  <br/>
+  <!--table row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped bottomBorder">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>Sr #</th>
+            <th class='col-2 text-center'>Barcode</th>
+            <th class='col-2 text-center'>Hscode</th>
+            <th class='col-2 text-center'>Category</th>
+            <th class='col-2 text-center'>Item</th>
+            <th class='col-1 text-center'>Variant</th>
+            <th class="col-1 text-center">Qty</th>          
+            <th class="col-1 text-center">Edit</th>          
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class="d-flex">
+            <td class="col-1 text-center">1</td>
+            <td class="col-2 text-center">2332445312</td>
+            <td class="col-2 text-center">32423421</td>
+            <td class="col-2 text-center">abc</td>
+            <td class="col-2 text-center">30</td>
+            <td class="col-1 text-center">11</td>
+            <td class="col-1 text-center">52</td>
+            <td class="col-1 text-center">
+              <span class="fa fa-edit fontPrimary pointerCursor"></span>
+            </td>              
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+  <br/>
+</div>
+<!--end container row-->
