@@ -70,7 +70,7 @@ export class ErpBottomSheetComponent implements OnInit {
     }
     //procurement
     else if (val==7){
-      //window.open('http://192.168.88.16:9007/')
+      window.open('http://192.168.88.16:9007/')
     }
   }
 }
