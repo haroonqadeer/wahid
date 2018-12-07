@@ -48,7 +48,7 @@ export class JobprofileComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-   
+  
     this.formGroup1 = this._formBuilder.group({
       cmbType: ['', Validators.required]
     });

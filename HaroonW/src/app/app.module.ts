@@ -15,6 +15,9 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StockAdjustmentComponent } from './components/stock-adjustment/stock-adjustment.component';
 import { ReceiptComponent } from './components/receipt/receipt.component';
+import { ReturnComponent } from './components/return/return.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
+import { CarrierComponent } from './components/carrier/carrier.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { ReceiptComponent } from './components/receipt/receipt.component';
     DashboardComponent,
     StockAdjustmentComponent,
     ReceiptComponent,
+    ReturnComponent,
+    DeliveryComponent,
+    CarrierComponent,
   ],
   imports: [
     BrowserModule,
