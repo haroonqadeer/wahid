@@ -11,11 +11,13 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { QuestionaireComponent } from './components/questionaire/questionaire.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
+    QuestionaireComponent,
   ],
   imports: [
     BrowserModule,
