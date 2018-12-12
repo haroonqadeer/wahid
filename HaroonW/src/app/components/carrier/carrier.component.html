@@ -1,0 +1,269 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Carrier</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start buttons row-->
+<div class="row">    
+  <div class="col-md-6">
+    <button mat-raised-button color="warn">Print</button>
+  </div>    
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#carrierModal">Add</button>
+  </div>
+</div>
+<!--end buttons row-->
+<br>
+<!--container row-->
+<div class="container bgWhite allBorder">
+  <!--table row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped bottomBorder">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>Sr #</th>
+            <th class='col-3 text-center'>Carrier No.</th>
+            <th class='col-3 text-center'>Carrier Type</th>
+            <th class='col-3 text-center'>Driver Name</th>
+            <th class="col-1 text-center">Edit</th>          
+            <th class="col-1 text-center">Delete</th>          
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class="d-flex">
+            <td class="col-1 text-center">1</td>
+            <td class="col-3 text-center">234355332123</td>
+            <td class="col-3 text-center">abc shddgf asd</td>
+            <td class="col-3 text-center">Ali Khan Rajpoot</td>
+            <td class="col-1 text-center">
+              <span class="fa fa-edit fontPrimary pointerCursor" data-toggle="modal" data-target="#carrierModal"></span>
+            </td>              
+            <td class="col-1 text-center">
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>              
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+  <br/>
+</div>
+<!--end container row-->
+
+<!--////////////////////////////-->
+<!--///////Modal Windows////////-->
+<!--////////////////////////////-->
+
+
+<!-- Start Modal Window to add carrier data -->
+<div class="modal fade" id="carrierModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">        
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Add Carrier</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Carrier No.">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-4">
+            <p-dropdown [options]="types" placeholder="Carrier Type" optionLabel="tName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+          </div>
+          <div class="col-md-2">
+            <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#typeModal">
+              <span class="fa fa-plus"></span>
+            </button>
+          </div>
+          <div class="col-md-4">
+            <p-dropdown [options]="natures" placeholder="Carrier Nature" optionLabel="nName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+          </div>
+          <div class="col-md-2">
+            <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#natureModal">
+              <span class="fa fa-plus"></span>
+            </button>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-6">
+            <p-dropdown [options]="caps" placeholder="Carrier Capacity" optionLabel="cName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+          </div>
+          <div class="col-md-6">
+            <p-dropdown [options]="drivers" placeholder="Driver Name" optionLabel="dName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-2">
+            <button mat-raised-button color="primary">Save</button>
+          </div>
+        </div>
+        <!--end button row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add carrier data -->
+
+<!-- Start Modal Window to add carrier type -->
+<div class="modal fade" id="typeModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Carrier Type</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Carrier Type">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <!--end 1st row-->
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add Carrier type -->
+
+<!-- Start Modal Window to add carrier nature -->
+<div class="modal fade" id="natureModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Carrier Nature</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Carrier Nature">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <!--end 1st row-->
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to add Carrier nature -->
+
+<!-- Start Modal Window to delete data -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <h2>Delete Entry</h2>
+          </div>
+        </div><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password">
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete data -->
+  

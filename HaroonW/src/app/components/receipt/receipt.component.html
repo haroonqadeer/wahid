@@ -1,0 +1,205 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Receipts</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--container row-->
+<div class="container bgWhite allBorder">
+  <!--table row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped bottomBorder">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>Sr #</th>
+            <th class='col-3 text-center'>Order No.</th>
+            <th class='col-3 text-center'>Vendor</th>
+            <th class='col-3 text-center'>Delivery Date</th>
+            <th class='col-2 text-center'>Receive</th>          
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class="d-flex">
+            <td class="col-1 text-center">1</td>
+            <td class="col-3 text-center">45664</td>
+            <td class="col-3 text-center">Amir Khan Quershi</td>
+            <td class="col-3 text-center">Oct 23, 2018</td>
+            <td class="col-2 text-center">
+              <span class="fa fa-download pointerCursor" data-toggle="modal" data-target="#purOrderModal"></span>
+            </td>              
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+</div>
+<!--end container row-->
+
+
+<!--/////////////////////////////////////-->
+<!--///////////Modal Windows/////////////-->
+<!--/////////////////////////////////////-->
+
+
+<!-- Start Modal Window to edit purchase order -->
+<div class="modal fade" id="purOrderModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">        
+      <!--start user Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Purchase Order</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end user Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Ref. Invoice No.">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6"><br/>
+            <p-calendar placeholder="Ref. Invoice Date" [showIcon]="true"></p-calendar>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped bottomBorder">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-1 text-center'>Sr #</th>
+                  <th class='col-3 text-center'>Item</th>
+                  <th class='col-2 text-center'>Variant</th>
+                  <th class='col-2 text-center'>Ordered</th>
+                  <th class='col-2 text-center'>Received</th>          
+                  <th class='col-2 text-center'>Edit</th>          
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class="d-flex">
+                  <td class="col-1 text-center">1</td>
+                  <td class="col-3 text-center">abc</td>
+                  <td class="col-2 text-center">213</td>
+                  <td class="col-2 text-center">33</td>
+                  <td class="col-2 text-center">20</td>
+                  <td class="col-2 text-center">
+                    <span class="fa fa-edit pointerCursor"></span>
+                  </td>              
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-8 text-right">
+            <button mat-raised-button color="primary">Save</button>
+          </div>
+          <div class="col-md-2">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#backOrderModal">Back Order</button>
+          </div>
+          <div class="col-md-2">
+            <button mat-raised-button color="warn">Remaining</button>
+          </div>
+        </div>
+        <!--end button row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to edit purchase order -->
+
+
+
+<!-- Start Modal Window to view or edit back order -->
+<div class="modal fade" id="backOrderModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">        
+      <!--start user Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Back Order</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end user Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped bottomBorder">
+              <thead>
+                <tr class='d-flex'>
+                  <th class='col-1 text-center'>Sr #</th>
+                  <th class='col-2 text-center'>Barcode</th>
+                  <th class='col-2 text-center'>Hscode</th>
+                  <th class='col-2 text-center'>Category</th>
+                  <th class='col-2 text-center'>Item</th>
+                  <th class='col-2 text-center'>Remaining</th>          
+                  <th class="col-1 text-center">Edit</th>          
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class="d-flex">
+                  <td class="col-1 text-center">1</td>
+                  <td class="col-2 text-center">2332445312</td>
+                  <td class="col-2 text-center">32423421</td>
+                  <td class="col-2 text-center">abc</td>
+                  <td class="col-2 text-center">30</td>
+                  <td class="col-2 text-center">11</td>
+                  <td class="col-1 text-center">
+                    <span class="fa fa-edit fontPrimary pointerCursor"></span>
+                  </td>              
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button mat-raised-button color="primary">Generate Order Request</button>
+          </div>
+        </div>
+        <!--end button row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to view or edit back order -->
+
+  

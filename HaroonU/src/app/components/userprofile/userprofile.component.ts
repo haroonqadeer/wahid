@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
- 
+
 //use in combobox
 export interface Employee {
   eId: string;
@@ -70,8 +70,8 @@ export class UserprofileComponent implements OnInit {
   userName = '';
   public userDetail: Array<{userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string}> = [];
 
- //use in combobox
- parties: Party[] = [
+//use in combobox
+parties: Party[] = [
   {value: '1', viewValue: 'Adnan'},
   {value: '2', viewValue: 'Amir'},
   {value: '3', viewValue: 'Haroon'},

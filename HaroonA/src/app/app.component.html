@@ -1,0 +1,130 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <!-- Side Menu Title -->
+        <div class="row">
+            <div class="col-md-12 bg-light-green">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome rightBorderWhite"  mat-flat-button>
+                            <span class="fa fa-home"></span>
+                        </button>
+                    </div>
+                    <div class="col-md-8">
+                        <p style="margin-top: 1.0em !important">AMIS - Menu</p>
+                    </div>
+                </div>                
+            </div>        
+        </div><!-- end Side Menu Title -->
+        <br>
+
+        <!-- Circle Log -->
+        <div class="row">
+            <div class="col-md-12 mx-auto">                
+                <img class="mx-auto d-block" src="../assets/images/logo.png" alt="" width="100em" height="100em">                
+            </div>
+        </div><!--end Circle Logo -->        
+        <br>
+        <!-- UMIS Menu -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav">
+                    <!-- <li routerLinkActive='active'>
+                        <a routerLink='dashboard'>
+                            <span class="fa fa-tachometer"></span>
+                            <span class="text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='carrier'>
+                            <span class="fa fa-signal"></span>
+                            <span class="text">Carrier</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='delivery'>
+                            <span class="fa fa-truck"></span>
+                            <span class="text">Delivery</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='stockAdjustment'>
+                            <span class="fa fa-shopping-cart"></span>
+                            <span class="text">Inventory Adjustment</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='inventoryLocation'>
+                            <span class="fa fa-map-marker"></span>
+                            <span class="text">Inventory Location</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='inventoryRegister'>
+                            <span class="fa fa-list-alt"></span>
+                            <span class="text">Inventory Register</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='receipt'>
+                            <span class="fa fa-print"></span>
+                            <span class="text">Receipts</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='return'>
+                            <span class="fa fa-undo"></span>
+                            <span class="text">Return</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='scrap'>
+                            <span class="fa fa-recycle"></span>
+                            <span class="text">Scrap</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='warehouse'>
+                            <span class="fa fa-home"></span>
+                            <span class="text">Warehouse</span>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <!-- end UMIS Menu -->
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <div class="row bgWhite bottomBorder">
+            <div class="col-md-1">
+                <button type="button" class="noneOutLine"  mat-flat-button color="warn" (click)="drawer.toggle()">
+                    <span class="fa fa-bars sideMenubar"></span>
+                </button>
+            </div>
+            <div class="col-md-5">
+                <h4>AMIS</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
+                    Haroon Qadeer
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item class="noneOutLine" routerLink="">
+                        <!-- <mat-icon>dialpad</mat-icon> -->
+                        <span class="fa fa-sign-out"></span>
+                        <span>  Log out</span>
+                    </button>
+                    <button mat-menu-item class="noneOutLine" (click)=showBottom()>
+                        <!-- <mat-icon>voicemail</mat-icon> -->
+                        <span class="fa fa-sitemap"></span>
+                        <span>  Modules</span>
+                    </button>                
+                </mat-menu>
+            </div>
+        </div>  
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>
