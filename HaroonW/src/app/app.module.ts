@@ -18,6 +18,10 @@ import { ReceiptComponent } from './components/receipt/receipt.component';
 import { ReturnComponent } from './components/return/return.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { CarrierComponent } from './components/carrier/carrier.component';
+import { InventoryLocationComponent } from './components/inventory-location/inventory-location.component';
+import { InventoryRegisterComponent } from './components/inventory-register/inventory-register.component';
+import { ScrapComponent } from './components/scrap/scrap.component';
+import { WareHouseComponent } from './components/ware-house/ware-house.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { CarrierComponent } from './components/carrier/carrier.component';
     ReturnComponent,
     DeliveryComponent,
     CarrierComponent,
+    InventoryLocationComponent,
+    InventoryRegisterComponent,
+    ScrapComponent,
+    WareHouseComponent
   ],
   imports: [
     BrowserModule,
