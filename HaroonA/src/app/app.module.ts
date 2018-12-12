@@ -5,9 +5,9 @@ import { MaterialModule } from './shared/material.module';
 import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
-// import { ChartModule } from 'angular-highcharts';
 import {HttpModule} from '@angular/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ChartModule } from 'angular-highcharts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,11 +25,11 @@ import { QuestionaireComponent } from './components/questionaire/questionaire.co
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    // ChartModule,
     ReactiveFormsModule,
     PNPrimeModule,
     HttpModule,
     NgCircleProgressModule.forRoot({}),
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
