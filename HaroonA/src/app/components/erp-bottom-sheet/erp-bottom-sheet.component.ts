@@ -54,7 +54,7 @@ export class ErpBottomSheetComponent implements OnInit {
     }
     //user
     else if (val==3){
-      // window.open('http://192.168.88.16:9001/')
+      window.open('http://192.168.88.16:9001/')
     }
     //payroll
     else if (val==4){
@@ -75,6 +75,10 @@ export class ErpBottomSheetComponent implements OnInit {
     //warehouse
     else if (val==8){
       window.open('http://192.168.88.16:9008/')
+    }
+    //audit
+    else if (val==9){
+      // window.open('http://192.168.88.16:9009/')
     }
   }
 }

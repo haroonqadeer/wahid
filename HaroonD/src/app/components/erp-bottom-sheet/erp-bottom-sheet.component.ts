@@ -66,11 +66,15 @@ export class ErpBottomSheetComponent implements OnInit {
     }
     //disaster
     else if (val==6){
-      //window.open('http://192.168.88.16:9006/')
+      // window.open('http://192.168.88.16:9006/')
     }
     //procurement
     else if (val==7){
       window.open('http://192.168.88.16:9007/')
+    }
+    //warehouse
+    else if (val==8){
+      window.open('http://192.168.88.16:9008/')
     }
   }
 }

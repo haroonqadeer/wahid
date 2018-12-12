@@ -9,15 +9,21 @@ import {HttpModule} from '@angular/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ChartModule } from 'angular-highcharts';
 
+import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuestionaireComponent } from './components/questionaire/questionaire.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AuditComponent } from './components/audit/audit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
+    ErpBottomSheetComponent,
     QuestionaireComponent,
+    DashboardComponent,
+    AuditComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +38,7 @@ import { QuestionaireComponent } from './components/questionaire/questionaire.co
     ChartModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErpBottomSheetComponent],
 })
 export class AppModule { }
