@@ -1,0 +1,151 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+      <!-- Side Menu Title -->
+      <div class="row">
+          <div class="col-md-12 bg-light-green">
+              <div class="row">
+                  <div class="col-md-4">
+                      <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome rightBorderWhite"  mat-flat-button>
+                          <span class="fa fa-home"></span>
+                      </button>
+                  </div>
+                  <div class="col-md-8">
+                      <p style="margin-top: 1.0em !important">PMIS - Menu</p>
+                  </div>
+              </div>                
+          </div>        
+      </div><!-- end Side Menu Title -->
+      <br>
+
+      <!-- Circle Log -->
+      <div class="row">
+          <div class="col-md-12 mx-auto">                
+              <img class="mx-auto d-block" src="../assets/images/logo.png" alt="" width="100em" height="100em">                
+          </div>
+      </div><!--end Circle Logo -->        
+      <br>
+      <!-- UMIS Menu -->
+      <div class="row">
+          <div class="col-md-12">
+              <ul class="nav">
+                    <li routerLinkActive='active'>
+                        <a routerLink='dashboard'>
+                            <span class="fa fa-tachometer"></span>
+                            <span class="text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='invoice'>
+                            <span class="fa fa-calculator"></span>
+                            <span class="text">Invoicing</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='Items'>
+                            <span class="fa fa-shopping-cart"></span>
+                            <span class="text">Items</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='orderMonitor'>
+                            <span class="fa fa-cart-arrow-down"></span>
+                            <span class="text">Order Monitoring</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='procCommittee'>
+                            <span class="fa fa-recycle"></span>
+                            <span class="text">Procurement Committee</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='procSetting'>
+                            <span class="fa fa-cogs"></span>
+                            <span class="text">Procurement Setting</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='quotation'>
+                            <span class="fa fa-list"></span>
+                            <span class="text">Quotation</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='registration'>
+                            <span class="fa fa-list-alt"></span>
+                            <span class="text">Registration Criteria</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='tender'>
+                            <span class="fa fa-gavel"></span>
+                            <span class="text">Tender</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='tenderRequest'>
+                            <span class="fa fa-sign-out"></span>
+                            <span class="text">Tender Request</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='vendors'>
+                            <span class="fa fa-user-circle"></span>
+                            <span class="text">Vendors</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='vendorPanel'>
+                            <span class="fa fa-sliders"></span>
+                            <span class="text">Vendor Panel</span>
+                        </a>
+                    </li>
+                    <li routerLinkActive='active'>
+                        <a routerLink='vendorRegister'>
+                            <span class="fa fa-handshake-o"></span>
+                            <span class="text">Vendor Registration</span>
+                        </a>
+                    </li>
+              </ul>
+          </div>
+      </div>
+      <!-- end UMIS Menu -->
+
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+      <div class="row bgWhite bottomBorder">
+          <div class="col-md-1">
+              <button type="button" class="noneOutLine"  mat-flat-button color="warn" (click)="drawer.toggle()">
+                  <span class="fa fa-bars sideMenubar"></span>
+              </button>
+          </div>
+          <div class="col-md-5">
+              <h4>PMIS</h4>
+          </div>
+          <div class="col-md-6 text-right">
+              <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
+                  Haroon Qadeer
+              </button>
+              <mat-menu #menu="matMenu">
+                  <button mat-menu-item class="noneOutLine" routerLink="">
+                      <!-- <mat-icon>dialpad</mat-icon> -->
+                      <span class="fa fa-sign-out"></span>
+                      <span>  Log out</span>
+                  </button>
+                  <button mat-menu-item class="noneOutLine" (click)=showBottom()>
+                      <!-- <mat-icon>voicemail</mat-icon> -->
+                      <span class="fa fa-sitemap"></span>
+                      <span>  Modules</span>
+                  </button>                
+              </mat-menu>
+          </div>
+          
+      </div>
+      
+      <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

@@ -1,0 +1,537 @@
+<br/>
+<!--heading row-->
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1 class="bottomBorder">Registration Criteria</h1>
+    </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start button row-->
+<div class="row">
+    <div class="col-md-6">
+        <button mat-raised-button color="warn">Print</button>
+    </div>
+    <div class="col-md-6 text-right">
+        <button mat-raised-button color="primary" data-toggle="modal" data-target="#regCriteriaModal">Add New</button>
+    </div>
+</div>
+<!--end button row-->
+<br>
+
+<!-- Table Container Starts -->
+<div class="container bgWhite">
+    <div class="row">
+        <table class="table table-striped allBorder">
+            <thead>
+                <tr class='d-flex'>
+                    <th class="col-1 text-center">Sr. #</th>
+                    <th class="col-3 text-left">Criteria Title</th>
+                    <th class="col-3 text-left">Nature</th>
+                    <th class="col-3 text-left">Category Group</th>
+                    <th class="col-1 text-center">Edit</th>
+                    <th class="col-1 text-center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='d-flex'>
+                    <td class="col-1 text-center">1</td>
+                    <td class="col-3 text-left">Student</td>
+                    <td class="col-3 text-left">Learning</td>
+                    <td class="col-3 text-left">Education</td>
+                    <td class="col-1 text-center">
+                        <a href="regCriteria" data-toggle="modal" data-target="#editRegModal" class=" text-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="col-1 text-center">
+                        <a href="regCriteria" data-toggle="modal" data-target="#deleteRegModal" class=" text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Table Container Ends -->
+
+<!-- Registration Criteria Modal Starts -->
+<div class="modal fade" id="regCriteriaModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Registration Criteria Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="container">
+                            <mat-horizontal-stepper #stepper>
+                                <!-- Step 01 -->
+                                <mat-step [stepControl]="firstFormGroup">
+                                    <form [formGroup]="firstFormGroup">
+                                        <ng-template matStepLabel>Category</ng-template>
+                                        <!-- Table Starts -->
+                                        <div class="container">
+                                            <div class="row">
+                                                <table class="table table-striped allBorder">
+                                                    <thead>
+                                                        <tr class='d-flex'>
+                                                            <th class="col-1 text-center">Sr. #</th>
+                                                            <th class="col-3 text-left">Category</th>
+                                                            <th class="col-3 text-left">Items</th>
+                                                            <th class="col-2 text-center">Add Items</th>
+                                                            <th class="col-3 text-center">Add Category</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class='d-flex'>
+                                                            <td class="col-1 text-center">1</td>
+                                                            <td class="col-3 text-left">Student</td>
+                                                            <td class="col-3 text-left">Book</td>
+                                                            <td class="col-2 text-center">
+                                                                <a href="regCriteria" data-toggle="modal" data-target="#addItemModal" class=" text-primary"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                                            </td>
+                                                            <td class="col-3 text-center">
+                                                                <a href="regCriteria" data-toggle="modal" data-target="#addCategoryModal" class=" text-primary"><i class="fa fa-plus-square " aria-hidden="true"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- Table Ends -->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <!-- Step 02 -->
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Ranking</ng-template>
+                                        <!-- Table Starts -->
+                                        <div class="container">
+                                            <div class="row">
+                                                <table class="table table-striped allBorder">
+                                                    <thead>
+                                                        <tr class='d-flex'>
+                                                            <th class="col-1 text-center">Sr. #</th>
+                                                            <th class="col-3 text-left">Organization</th>
+                                                            <th class="col-3 text-left">Ranking</th>
+                                                            <th class="col-2 text-center">Delete</th>
+                                                            <th class="col-3 text-center">Add Organization</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class='d-flex'>
+                                                            <td class="col-1 text-center">1</td>
+                                                            <td class="col-3 text-left">SAF</td>
+                                                            <td class="col-3 text-left">4</td>
+                                                            <td class="col-2 text-center">
+                                                                <a href="regCriteria" data-toggle="modal" data-target="#deleteRegModal" class=" text-primary"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                            </td>
+                                                            <td class="col-3 text-center">
+                                                                <a href="regCriteria" data-toggle="modal" data-target="#addOrganizationModal" class=" text-primary"><i class="fa fa-plus-square " aria-hidden="true"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- Table Ends -->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <!-- Step 03 -->
+                                <mat-step [stepControl]="secondFormGroup">
+                                    <form [formGroup]="secondFormGroup">
+                                        <ng-template matStepLabel>Affiliation</ng-template>
+                                        <!-- Table Starts -->
+                                        <div class="container">
+                                            <div class="row">
+                                                <table class="table table-striped allBorder">
+                                                    <thead>
+                                                        <tr class='d-flex'>
+                                                            <th class="col-1 text-center">Sr. #</th>
+                                                            <th class="col-3 text-left">Organization</th>
+                                                            <th class="col-3 text-left">Affiliation Type</th>
+                                                            <th class="col-2 text-center">Delete</th>
+                                                            <th class="col-3 text-center">Add Type</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class='d-flex'>
+                                                            <td class="col-1 text-center">1</td>
+                                                            <td class="col-3 text-left">SAF</td>
+                                                            <td class="col-3 text-left">4</td>
+                                                            <td class="col-2 text-center">
+                                                                <a href="regCriteria" data-toggle="modal" data-target="#deleteRegModal" class=" text-primary"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                            </td>
+                                                            <td class="col-3 text-center">
+                                                                <a href="regCriteria" data-toggle="modal" data-target="#addTypeModal" class=" text-primary"><i class="fa fa-plus-square " aria-hidden="true"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- Table Ends -->
+                                        <div class="text-right">
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </form>
+                                </mat-step>
+                                <!-- Step 04 -->
+                                <mat-step>
+                                    <ng-template matStepLabel>Financials</ng-template>
+                                    <!--start button row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button mat-raised-button color="warn">Print</button>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <button mat-raised-button color="primary" data-toggle="modal" data-target="#addFinancialsModal">Add New</button>
+                                        </div>
+                                    </div>
+                                    <!--end button row-->
+                                    <br>
+                                    <!-- Table Starts -->
+                                    <div class="row">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr class='d-flex'>
+                                                    <th class="col-1 text-center">Sr. #</th>
+                                                    <th class="col-1 text-center">Docs</th>
+                                                    <th class="col-2 text-center">Min-Turn-Over</th>
+                                                    <th class="col-2 text-center">Min-CA</th>
+                                                    <th class="col-2 text-center">Min-Asset</th>
+                                                    <th class="col-1 text-center">Min-CL</th>
+                                                    <th class="col-1 text-center">Audit</th>
+                                                    <th class="col-1 text-center">Edit</th>
+                                                    <th class="col-1 text-center">Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class='d-flex'>
+                                                    <td class="col-1 text-center">1</td>
+                                                    <td class="col-1 text-center">SAF</td>
+                                                    <td class="col-2 text-center">4</td>
+                                                    <td class="col-2 text-center">1</td>
+                                                    <td class="col-2 text-center">SAF</td>
+                                                    <td class="col-1 text-center">4</td>
+                                                    <td class="col-1 text-center">4</td>
+                                                    <td class="col-1 text-center">
+                                                        <a href="regCriteria" data-toggle="modal" data-target="#addFinancialsModal" class=" text-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td class="col-1 text-center">
+                                                        <a href="regCriteria" data-toggle="modal" data-target="#deleteRegModal" class=" text-primary"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- Table Ends -->
+                                    <div class="text-right">
+                                        <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
+                                    </div>
+                                </mat-step>
+                            </mat-horizontal-stepper>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Registration Criteria Modal Ends -->
+
+<!-- Delete Registration Criteria Modal Starts -->
+<div class="modal fade" id="deleteRegModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Registration Criteria Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter Password">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter PIN">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Registration Criteria Modal Ends -->
+
+<!-- Add Financials Modal Starts -->
+<div class="modal fade" id="addFinancialsModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Financials Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Section 1 -->
+                <section>
+                    <h5>Documents Required</h5>
+                    <div class="row ">
+                        <div class="col-md-4 ">
+                            <mat-checkbox class="example-margin ">Income Statement</mat-checkbox>
+                        </div>
+                        <div class="col-md-4 ">
+                            <mat-checkbox class="example-margin ">Balance Sheet</mat-checkbox>
+                        </div>
+                    </div>
+                </section>
+                <!-- Row 1 -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="fullwidth">
+                            <input matInput type="text" placeholder="Minimum Turn-over">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="fullwidth">
+                            <input matInput type="text" placeholder="Minimum Current Asset">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="fullwidth">
+                            <input matInput type="text" placeholder="Minimum Total Asset">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="fullwidth">
+                            <input matInput type="text" placeholder="Minimum Current Liabilities">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <br/>
+                <!-- Row 3 Radio Buttons  -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Audited Accounts</h5>
+                    </div>
+                    <mat-radio-group>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-radio-button value="Yes">YES</mat-radio-button>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-radio-button value="No">NO</mat-radio-button>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                </div>
+                <br/>
+                <!-- Row 4 -->
+                <div class="container">
+                    <div class="row">
+                        <h5 class="text-danger">Audit Firm Ranking (Minimum)</h5>
+                        <!-- Table Starts -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class='d-flex'>
+                                    <th class="col-1 text-center">Sr. #</th>
+                                    <th class="col-4 text-center">Organization</th>
+                                    <th class="col-3 text-center">Min-Ranking</th>
+                                    <th class="col-2 text-center">Delete</th>
+                                    <th class="col-2 text-center">Add</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class='d-flex'>
+                                    <td class="col-1 text-center">1</td>
+                                    <td class="col-4 text-center">
+                                        <mat-form-field>
+                                            <select matNativeControl placeholder="Select Organization">
+                                                <option>Audit World</option>
+                                                <option>UK Audit</option>
+                                            </select>
+                                        </mat-form-field>
+                                    </td>
+                                    <td class="col-3 text-center">
+                                        <mat-form-field>
+                                            <select matNativeControl placeholder="Select Ranking">
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </mat-form-field>
+                                    </td>
+                                    <td class="col-2 text-center">
+                                        <a href="regCriteria" data-toggle="modal" data-target="#deleteRegModal" class=" text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                    <td class="col-2 text-center">
+                                        <a href="regCriteria" data-toggle="modal" data-target="#addFinModal" class=" text-primary"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Table Ends -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Financials Modal Ends -->
+
+<!-- Add Item Modal Starts -->
+<div class="modal fade" id="addItemModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Items Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter Item">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Item Modal Ends -->
+
+<!-- Add Category Modal Starts -->
+<div class="modal fade" id="addCategoryModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Category Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter Category">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Category Modal Ends -->
+
+<!-- Add Organization Modal Starts -->
+<div class="modal fade" id="addOrganizationModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Organization Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter Organization">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Organization Modal Ends -->
+
+<!-- Add Affiliation type Modal Starts -->
+<div class="modal fade" id="addTypeModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Affiliation Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="fullwidth">
+                            <input matInput placeholder="Enter Affiliation Type">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Affiliation Modal Ends -->

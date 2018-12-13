@@ -1,0 +1,341 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Disaster Management Dashboard</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--charts, map and table row-->
+<div class="row">
+  <div class="col-md-4">
+    <h4 class="bottomBorder">Population</h4>
+    <div class="shadow-md" [chart]="Bar_Chart" style=" height: 100%;width:100%;" style="border:1px solid transparent"></div>
+  </div>
+  <div class="col-md-3">
+    <h4 class="bottomBorder">Map</h4>
+    <div class="shadow-md">
+      <agm-map [latitude]="latitude" [longitude]="longitude">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="bottomBorder">History</h4>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+            <div class="info-box bg-pink hover-expand-effect" data-toggle="modal" data-target="#disDetailModal">
+              <div class="icon">
+                <i class="fa fa-heartbeat"></i>
+              </div>
+              <div class="content">
+                <div class="text">Earth Quake</div>
+              <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">15</div>                                                                
+             </div>
+           </div>
+         </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+            <div class="info-box bg-indigo hover-expand-effect" data-toggle="modal" data-target="#disDetailModal">
+              <div class="icon">
+                <i class="fa fa-ship"></i>
+              </div>
+              <div class="content">
+                <div class="text">Flood</div>
+                <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">25</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class="bottomBorder">Department Involve</h4>
+        <div class="container shadow-md bgWhite">
+          <!-- district departments icon row-->
+          <div class="row text-center">
+            <div class="col-md-12">
+              <span class="fa fa-map-marker fontPrimary" style="font-size: 3em;"></span>
+            </div>
+          </div>
+          <!--end district department icon row-->
+          <!-- district departments ;abe; row-->
+          <div class="row text-center">
+            <div class="col-md-12">
+              District Department
+            </div>
+          </div>
+          <!--end district department label row-->
+          <br/>
+          <!--rescue department icon row-->
+          <div class="row text-center">
+            <div class="col-md-12">
+              <span class="fa fa-medkit text-danger" style="font-size: 3em;"></span>
+            </div>
+          </div>
+          <!--end rescue department icon row-->
+          <!--rescue department label row-->
+          <div class="row text-center">
+            <div class="col-md-12">
+              Rescue Department
+            </div>
+          </div>
+          <!--end rescue department label row-->
+          <br/>
+        </div>
+      </div>
+    </div>
+    <h4 class="bottomBorder">Analysis</h4>
+    <div class="container shadow-md bgWhite text-center">
+      <div class="row">
+        <div class="col-md-4">
+          <circle-progress 
+            [percent]="85"
+            [radius]="40"
+            [space]="-12"
+            [outerStrokeWidth]="12"
+            [innerStrokeWidth]="-12"
+            [outerStrokeColor]="'#4882c2'"
+            [innerStrokeColor]="'#e7e8ea'"
+            [animation]="true"
+            [animationDuration]="300"
+            [outerStrokeLinecap] = "'square'"
+            [clockwise] = "false"
+            [showSubtitle]= "false"
+          ></circle-progress>
+          <h5>Health</h5>
+        </div>
+        <div class="col-md-4">
+          <circle-progress 
+            [percent]="85"
+            [radius]="40"
+            [space]="-12"
+            [outerStrokeWidth]="12"
+            [innerStrokeWidth]="-12"
+            [outerStrokeColor]="'#32CD32'"
+            [innerStrokeColor]="'#e7e8ea'"
+            [animation]="true"
+            [animationDuration]="300"
+            [outerStrokeLinecap] = "'square'"
+            [clockwise] = "false"
+            [showSubtitle]= "false"
+          ></circle-progress>
+          <h5>Food</h5>
+        </div>
+        <div class="col-md-4">
+          <circle-progress 
+            [percent]="85"
+            [radius]="40"
+            [space]="-12"
+            [outerStrokeWidth]="12"
+            [innerStrokeWidth]="-12"
+            [outerStrokeColor]="'#FF6347'"
+            [innerStrokeColor]="'#e7e8ea'"
+            [animation]="true"
+            [animationDuration]="300"
+            [outerStrokeLinecap] = "'square'"
+            [clockwise] = "false"
+            [showSubtitle]= "false"
+          ></circle-progress>
+          <h5>Medicines</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end chart row-->
+<br/>
+
+<!--charts and boxes row-->
+<div class="row">
+  <div class="col-md-3">
+    <h4 class="bottomBorder">Infrastructure</h4>
+    <div class="container bgWhite shadow-md">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-home fontPrimary" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">19,371.1K</h4>
+          Households
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-university" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">42,036</h4>
+          Villlages
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-life-ring text-danger" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">19,032</h4>
+          Evacuation Center
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-balance-scale fontPrimary" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">4,384K</h4>
+          Beneficiary Households
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4 class="bottomBorder">Enrollment </h4>
+    <div class="container">
+      <div class="row bgWhite shadow-md">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-3">
+              <div [chart]="Elem_Pie_Chart" style=" height: 200px;width:100%;"></div>
+            </div>
+            <div class="col-md-3">
+              <div [chart]="High_Pie_Chart" style=" height: 200px;width:100%;"></div>
+            </div>
+            <div class="col-md-3">
+              <div [chart]="Col_Pie_Chart" style=" height: 200px;width:100%;"></div>
+            </div>
+            <div class="col-md-3">
+              <div [chart]="Uni_Pie_Chart" style=" height: 200px;width:100%;"></div>
+            </div>
+          </div>
+          <br/>
+          <div class="row text-center">
+            <div class="col-md-3">
+              <h5 class="fontPrimary">3,450</h5>
+              Elementary
+            </div>
+            <div class="col-md-3">
+              <h5 class="fontPrimary">5,000</h5>
+              HighSchool
+            </div>
+            <div class="col-md-3">
+              <h5 class="fontPrimary">250</h5>
+              College
+            </div>
+            <div class="col-md-3">
+              <h5 class="fontPrimary">75</h5>
+              University
+            </div>
+          </div>
+          <br/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <h4 class="bottomBorder">Health Facilities</h4>
+    <div class="container bgWhite shadow-md">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-hospital-o text-danger" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">1,191</h4>
+          Private Hospital
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-h-square fontPrimary" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">750</h4>
+          Government Hospital
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-university" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">21,065</h4>
+          Dispensaries
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fa fa-calendar-plus-o text-danger" style="font-size: 3em;"></i>
+        </div>
+        <div class="col-md-8 text-center">
+          <h4 class="fontPrimary">2,594</h4>
+          Rural Health Unit
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end charts and boxes row-->
+<br/>
+
+<!-- Start Modal Window to view Disaster detail -->
+<div class="modal fade" id="disDetailModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Disaster Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--table row-->
+        <div class="row">
+          <table class="table table-striped shadow-md">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>Sr #</th>
+                <th class='col-3 text-center'>Disaster</th>
+                <th class='col-2 text-center'>Dated</th>
+                <th class='col-2 text-center'>Casualities</th>
+                <th class='col-2 text-center'>Loss</th>
+                <th class='col-2 text-center'>Cover Up</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>1</td> 
+                <td class='col-3 text-center'>Earth Quake</td>
+                <td class='col-2 text-center'>Oct 8, 2010</td>
+                <td class='col-2 text-center'>35%</td>
+                <td class='col-2 text-center'>59%</td>
+                <td class='col-2 text-center'>36%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+    <!--start Modal footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    </div><!--end Modal footer -->
+    </div>
+  </div>
+</div>
+<!-- End Modal Window for Users to view Disaster detail-->

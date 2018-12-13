@@ -1,0 +1,465 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Educational Institutes</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--start container-->
+<div class="container">
+  <!--start table row-->       
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">                      
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1'>Sr #</th>
+            <th class='col-2'>Name</th>
+            <th class='col-2'>Type</th>
+            <th class='col-1'>Area</th>
+            <th class='col-2'>City</th>
+            <th class='col-2'>District</th>
+            <th class='col-1 text-center'>Detail</th>
+            <th class='col-1 text-center'>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-1'>1</td> 
+            <td class='col-2'>Bahria</td>
+            <td class='col-2'>University</td>
+            <td class='col-1'>F-8</td>
+            <td class='col-2'>Islamabad</td>
+            <td class='col-2'>Islamabad</td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#instituteDetaialModal"></span>
+            </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+
+          <tr class='d-flex'>
+            <td class='col-11'></td> 
+            <td class='col-1 text-center'>
+              <span class="fa fa-plus pointerCursor" data-toggle="modal" data-target="#addInstituteModal"></span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+</div>
+<!--end container-->
+
+<br/>
+
+<!--bootstrap modal window -->
+
+
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="addInstituteModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Add Institute</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Name">
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 1-->
+
+        <!--start row 2-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Type">
+                <mat-option value="1">Primary School</mat-option>
+                <mat-option value="1">High School</mat-option>
+                <mat-option value="1">College</mat-option>
+                <mat-option value="1">University</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-select placeholder="Nature">
+                <mat-option value="1">Boys</mat-option>
+                <mat-option value="2">Girls</mat-option>
+                <mat-option value="3">Co-education</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 2-->
+
+        <!--start row 3-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput placeholder="Address">
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 3-->
+        
+        <!--start row 4-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Latitude">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Longitude">
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 4-->
+        
+        <!--start row 5-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Mobile">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Phone">
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 5-->
+
+        <!--start row 6-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Representator">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Email">
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 6-->
+
+        <!--start row 7-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Fax">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Rooms">
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 7-->
+
+        <!--start row 8-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Halls">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <input matInput placeholder="Bathrooms">
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row 8-->
+
+        <br/>
+        
+        <!--start row 9-->
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary"> Save </button>
+          </div>
+        </div>
+        <!-- end row 9-->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+<!-- Start Modal Window -->
+<div class="modal fade" id="instituteDetaialModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      
+      <!--start Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">Institute Detail</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+
+        <!--start row 1-->
+        <div class="row">
+          <div class="col-md-2">
+            Name:
+          </div>
+
+          <div class="col-md-4">
+            Bahria University
+          </div>
+        </div>
+        <!-- end row 1-->
+
+        <br/>
+
+        <!--start row 2-->
+        <div class="row">
+          <div class="col-md-2">
+            Type:
+          </div>
+         
+          <div class="col-md-4">
+            University
+          </div>
+
+          <div class="col-md-2">
+            Nature:
+          </div>
+          
+          <div class="col-md-4">
+            University
+          </div>
+        </div>
+        <!-- end row 2-->
+
+        <br/>
+
+        <!--start row 3-->
+        <div class="row">
+          <div class="col-md-2">
+            Address
+          </div>
+
+          <div class="col-md-10">
+            F-8
+          </div>
+        </div>
+        <!-- end row 3-->
+        
+        <br/>
+
+        <!--start row 4-->
+        <div class="row">
+          <div class="col-md-2">
+            Latitude
+          </div>
+          
+          <div class="col-md-4">
+            (Latitude)
+          </div>
+
+          <div class="col-md-2">
+            Longitude
+          </div>
+
+          <div class="col-md-4">
+            (Longitude)
+          </div>
+        </div>
+        <!-- end row 4-->
+        
+        <br/>
+
+        <!--start row 5-->
+        <div class="row">
+          <div class="col-md-2">
+            Mobile:
+          </div>
+
+          <div class="col-md-4">
+            0300-1234567
+          </div>
+
+          <div class="col-md-2">
+            Phone:
+          </div>
+  
+          <div class="col-md-4">
+            051-1234567
+          </div>
+        </div>
+        <!-- end row 5-->
+
+        <br/>
+
+        <!--start row 6-->
+        <div class="row">
+          <div class="col-md-2">
+            Representator
+          </div>
+
+          <div class="col-md-4">
+            (Representator)
+          </div>
+
+          <div class="col-md-2">
+            Email
+          </div>
+
+          <div class="col-md-4">
+            example@ia.com
+          </div>
+        </div>
+        <!-- end row 6-->
+
+        <br/>
+
+        <!--start row 7-->
+        <div class="row">
+            <div class="col-md-2">
+              Fax
+            </div>
+  
+            <div class="col-md-4">
+              051-1234567
+            </div>
+  
+            <div class="col-md-2">
+              Rooms
+            </div>
+  
+            <div class="col-md-4">
+              80
+            </div>
+          </div>
+        <!-- end row 7-->
+
+        <br/>
+
+        <!--start row 7-->
+        <div class="row">
+          <div class="col-md-2">
+            Halls
+          </div>
+
+          <div class="col-md-4">
+            30
+          </div>
+
+          <div class="col-md-2">
+            Bathrooms
+          </div>
+
+          <div class="col-md-4">
+            42
+          </div>
+        </div>
+        <!-- end row 7-->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window  -->
+
+<!-- Start Modal Window to delete leave rule -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+        <!--start Modal body -->
+        <div class="modal-body">
+          <br>
+          <div class="hidden" ngDefaultControl></div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <h2>Delete Entry</h2>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+              </mat-form-field>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+            </div>
+          </div>
+          <br/>
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete leave rule -->

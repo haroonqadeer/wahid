@@ -1,0 +1,290 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Tenders</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+<!--container row-->
+<div class="container bgWhite">
+  <br/>
+  <!--table row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>Sr #</th>
+            <th class='col-2 text-center'>Ref No</th>
+            <th class='col-3 text-center'>Deadline</th>
+            <th class='col-3 text-center'>Tenders</th>
+            <th class='col-2 text-center'>Status</th>
+            <th class='col-1 text-center'>Process</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>1</td> 
+            <td class='col-2 text-center'>95684221</td>
+            <td class='col-3 text-center'>May 28, 2019</td>
+            <td class='col-3 text-center'>Computer</td>
+            <td class='col-2 text-center'>In-Process</td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-retweet pointerCursor" data-toggle="modal" data-target="#processModal"></span>
+            </td>
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>2</td> 
+            <td class='col-2 text-center'>89866311</td>
+            <td class='col-3 text-center'>Feb 21, 2018</td>
+            <td class='col-3 text-center'>Furniture & Fix</td>
+            <td class='col-2 text-center'>Ordered</td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-retweet pointerCursor" data-toggle="modal" data-target="#processModal"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+</div>
+<!--end container row-->
+
+<!--///////////////////////////-->
+<!--///////Modal Windows///////-->
+<!--///////////////////////////-->
+
+<!-- Start Modal Window tender process -->
+<div class="modal fade" id="processModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Tender</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-3">
+            <b>Ref No:</b>
+          </div>
+          <div class="col-md-6">
+            <h5 style="font-weight:normal;">12335674325</h5>
+          </div>
+        </div><br>
+        <!--end 1st row-->
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped">
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-2 text-center">Sr #</th>
+                  <th class="col-6 text-center">Vendor</th>
+                  <th class="col-4 text-center">Rate Quoted</th>
+                </tr>
+              </thead>
+              <tr class="d-flex">
+                <td class="col-2 text-center">1</td>
+                <td class="col-6 text-center">Ali Khan</td>
+                <td class="col-6 text-center">5,122,451</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button mat-raised-button color="primary" data-toggle="modal" data-target="#activityModal">Seek Approval</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+        <!--sub heading row-->
+        <div class="row bottomBorder">
+          <div class="col-md-6">
+            <h4 style="font-weight:normal;">Committee Approval</h4>
+          </div>
+        </div>
+        <!--end sub heading row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-3">
+            <b>Chairman</b>
+          </div>
+          <div class="col-md-3">
+            <mat-button-toggle value="Approve">
+              Approve
+            </mat-button-toggle>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-6">
+                <b>Member 01</b>
+              </div>
+              <div class="col-md-6">
+                <mat-button-toggle value="Approve">
+                  Approve
+                </mat-button-toggle>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-6">
+                <b>Member 02</b>
+              </div>
+              <div class="col-md-6">
+                <mat-button-toggle value="Approve">
+                  Approve
+                </mat-button-toggle>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-6">
+                <b>Member 03</b>
+              </div>
+              <div class="col-md-6">
+                <mat-button-toggle value="Approve">
+                  Approve
+                </mat-button-toggle>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-12 text-right">
+              <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Purchase Order</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item class="noneOutLine">Email</button>
+                <button mat-menu-item class="noneOutLine">PDF Print</button>
+              </mat-menu>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window quotation process -->
+  
+<!-- Start Activity Modal Window -->
+<div class="modal fade" id="activityModal">
+  <div class="modal-dialog shadow-lg-dark modal-md">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Activities</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--Row #1-->  
+        <div class="row">
+          <div class="col-md-7">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Usman Ali</mat-card-title>
+                <mat-card-subtitle>VB.Net</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-10 text-center">
+                    <p>
+                      Sept 11, 2018
+                    </p>
+                  </div>
+                </div>
+                
+              </mat-card-content>
+              <mat-card-actions class="text-right">
+                <span class="fa fa-share"></span>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          </div>
+          <!--end of row #1 -->
+
+          <br/>
+          
+          <!--start row #2-->
+          <div class="row">
+            <div class="col-md-5"></div> 
+            <div class="col-md-offset-5 col-md-7">
+              <mat-card class="example-card-r">
+
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image-r"></div>
+                  <mat-card-title>Ali Khan</mat-card-title>
+                  <mat-card-subtitle>English</mat-card-subtitle>
+                  
+                </mat-card-header>
+
+                <mat-card-content>
+                  <div class="row">
+                    <div class="col-md-10 text-center">
+                      <p>
+                        Sept 23, 2018
+                      </p>
+                    </div>
+                  </div>  
+                </mat-card-content>
+                <mat-card-actions class="">
+                  <span class="fa fa-reply"></span>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+          <!--end row 2-->
+
+          <br/>
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Activity Modal Window  -->
+  

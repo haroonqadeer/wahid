@@ -1,0 +1,1371 @@
+<br/>
+<!--start heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Items</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--container row-->
+<div class="container bgWhite shadow-md">
+  <!--1st row-->
+  <div class="row">
+    <div class="col-md-1 text-right">
+      <br/>
+      <h5>Search</h5>
+    </div>
+    <div class="col-md-5">
+      <mat-form-field class="fullwidth">
+        <input matInput placeholder="Category">
+      </mat-form-field>
+    </div>
+    <div class="col-md-5">
+      <mat-form-field class="fullwidth">
+        <input matInput placeholder="Item">
+      </mat-form-field>
+    </div>
+  </div>
+  <!--end 1st row-->
+  <br/>
+  <!--button row-->
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button mat-raised-button color="primary" data-toggle="modal" data-target="#categoryModal">Add</button>
+    </div>
+  </div>
+  <!--end button row-->
+  <br/>
+  <!--table row-->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>Sr #</th>
+            <th class='col-2 text-center'>Item</th>
+            <th class='col-4 text-center'>Category</th>
+            <th class='col-2 text-center'>Status</th>
+            <th class='col-1 text-center'>Detail</th>
+            <th class='col-1 text-center'>Edit</th>
+            <th class='col-1 text-center'>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>1</td> 
+            <td class='col-2 text-center'>Sofa</td>
+            <td class='col-4 text-center'>Furniture</td>
+            <td class='col-2 text-center'>Pending</td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#detailModal"></span>
+            </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-edit pointerCursor fontPrimary" data-toggle="modal" data-target="#categoryModal"></span>
+            </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>2</td> 
+            <td class='col-2 text-center'>Chair</td>
+            <td class='col-4 text-center'>Furniture</td>
+            <td class='col-2 text-center'>Approval</td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#detailModal"></span>
+            </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-edit pointerCursor fontPrimary" data-toggle="modal" data-target="#categoryModal"></span>
+            </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>3</td> 
+            <td class='col-2 text-center'>Hp Laptop Core i5</td>
+            <td class='col-4 text-center'>Computer</td>
+            <td class='col-2 text-center'>In-Process</td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#detailModal"></span>
+            </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-edit pointerCursor fontPrimary" data-toggle="modal" data-target="#categoryModal"></span>
+            </td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--end table row-->
+
+  <br/>
+</div>
+<!--end container row-->
+  
+<!-- Start Modal Window to add items -->
+<div class="modal fade" id="categoryModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Items</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+       <!--1st row-->
+       <div class="row">
+         <div class="col-md-6">
+          <br/>
+          <p-dropdown [options]="cats" placeholder="Category" optionLabel="cName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+         </div>
+         <div class="col-md-6">
+          <mat-form-field class="fullwidth">
+            <input matInput placeholder="Name">
+          </mat-form-field>
+         </div>
+       </div>
+       <!--end 1st row-->
+       <br/>
+       <!--2nd row-->
+       <div class="row">
+         <div class="col-md-3">
+            <mat-checkbox>Official</mat-checkbox>
+         </div>
+         <div class="col-md-6">
+            <mat-checkbox>Disaster Management Requirement</mat-checkbox>
+         </div>
+       </div>
+       <!--end 2nd row-->
+       <!--tabs row-->
+       <div class="container">
+        <mat-tab-group class="allBorder">
+          <mat-tab label="General Info">
+            <!--container row-->
+            <div class="container">
+              <br/>
+              <!--1st sub row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <p-dropdown [options]="types" placeholder="Item Type" optionLabel="tName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                </div>
+                <div class="col-md-3 text-left">
+                  <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#typeModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <!--end 1st sub row-->
+              <br/>
+              <!--2nd sub row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <p-dropdown [options]="groups" placeholder="Grouping" optionLabel="gName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                </div>
+                <div class="col-md-3 text-left">
+                  <button mat-mini-fab color="primary" class="noneOutLine" data-toggle="modal" data-target="#groupModal">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <!--end 2nd sub row-->
+              <br/>
+              <!--sub heading row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Bar Codes</h5>
+                </div>
+                <div class="col-md-6">
+                  <h5>HS Codes</h5>
+                </div>
+              </div>
+              <!--end sub heading row-->
+              <!--table row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <table>
+                    <tr>
+                      <td>Barcode 1</td>
+                      <td>
+                        <mat-form-field class="fullwidth">
+                          <input matInput>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Barcode 2</td>
+                      <td>
+                        <mat-form-field class="fullwidth">
+                          <input matInput>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                        <span class="fa fa-plus"></span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <table>
+                    <tr>
+                      <td>Hscode 1</td>
+                      <td>
+                        <mat-form-field class="fullwidth">
+                          <input matInput>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Hscode 2</td>
+                      <td>
+                        <mat-form-field class="fullwidth">
+                          <input matInput>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                        <span class="fa fa-plus"></span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!--end table row-->
+              <br/>
+              <!--button row-->
+              <div class="row">
+                <div class="col-md-11 text-right">
+                  <button mat-raised-button color="primary">Save</button>
+                </div>
+              </div>
+              <!--end button row-->
+              <br/>
+            </div>
+            <!--end container row-->
+            <br/>
+          </mat-tab>
+          <mat-tab label="Variants">
+            <br/>
+            <!--container row-->
+            <div class="container">
+              <mat-tab-group class="allBorder">
+                <mat-tab label="Color">
+                  <!--container row-->
+                  <div class="container">
+                    <br/>
+                    <!--table row-->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <table class="table">
+                          <tr class="d-flex">
+                            <th class="col-2">Sr #</th>
+                            <th class="col-8">Color</th>
+                            <th class="col-2">Add</th>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2">1</td>
+                            <td class="col-8">White</td>
+                            <td class="col-2"></td>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2">2</td>
+                            <td class="col-8">Red</td>
+                            <td class="col-2"></td>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2">3</td>
+                            <td class="col-8">
+                              <mat-form-field class="fullwidth">
+                                <input matInput>
+                              </mat-form-field>
+                            </td>
+                            <td class="col-2">
+                              <span class="fa fa-plus pointerCursor"></span>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                    <!--end table row-->
+                    <br/>
+                    <!--button row-->
+                    <div class="row">
+                      <div class="col-md-11 text-right">
+                        <button mat-raised-button color="primary">Save</button>
+                      </div>
+                    </div>
+                    <!--end button row-->
+                  </div>
+                  <!--end container row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Specification">
+                  <!--container row-->
+                  <div class="container">
+                    <br/>
+                    <!--table row-->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <table class="table">
+                          <tr class="d-flex">
+                            <th class="col-2 text-center">Sr #</th>
+                            <th class="col-6 text-center">Specs</th>
+                            <th class="col-1 text-center">Detail</th>
+                            <th class="col-1 text-center">Edit</th>
+                            <th class="col-1 text-center">Delete</th>
+                            <th class="col-1 text-center" >Add</th>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">1</td>
+                            <td class="col-6 text-center">Computer</td>
+                            <td class="col-1 text-center">
+                              <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#specDetailModal"></span>
+                            </td>
+                            <td class="col-1 text-center">
+                              <span class="fa fa-edit pointerCursor"></span>
+                            </td>
+                            <td class="col-1 text-center">
+                              <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                            </td>
+                            <td class="col-1 text-center">
+                              <span class="fa fa-plus pointerCursor" data-toggle="modal" data-target="#specModal"></span>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                    <!--end table row-->
+                    <br/>  
+                  </div>
+                  <!--end container row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Expiry">
+                  <!--container row-->
+                  <div class="container">
+                    <!--1st row-->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <br/>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <h5>Batch No.</h5>
+                          </div>
+                          <div class="col-md-3">
+                            <mat-checkbox>Auto Generate</mat-checkbox>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker" placeholder="Expiry date">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <!--end 1st row-->
+                    <br/>
+                    <!--button row-->
+                    <div class="row">
+                      <div class="col-md-12 text-right">
+                        <button mat-raised-button color="primary">Save</button>
+                      </div>
+                    </div>
+                    <!--end button row-->
+                  </div>
+                  <!--end container row-->
+                  <br/>
+                </mat-tab>
+                <mat-tab label="Packing">
+                  <!--container row-->
+                  <div class="container">
+                    <br/>
+                    <!--table row-->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="d-flex">
+                              <th class="col-1 text-center">Sr #</th>
+                              <th class="col-5 text-center">Description</th>
+                              <th class="col-2 text-center">Type</th>
+                              <th class="col-2 text-center">Qty</th>
+                              <th class="col-1 text-center">Delete</th>
+                              <th class="col-1 text-center">Add</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="d-flex">
+                              <td class="col-1 text-center">1</td>
+                              <td class="col-5 text-center">Dozen Packing</td>
+                              <td class="col-2 text-center">
+                                <p-dropdown [options]="bTypes" placeholder="Select Type" optionLabel="bName" showlear="true" [style]="{'width':'100%'}"></p-dropdown> 
+                              </td>
+                              <td class="col-2 text-center">12</td>
+                              <td class="col-1 text-center">
+                                <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                              </td>
+                              <td class="col-1 text-center">
+                                <span class="fa fa-plus pointerCursor"></span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!--end table row-->
+                  </div>
+                  <!--end container row-->
+                  <br/>
+                </mat-tab>
+              </mat-tab-group>
+              <br/>
+            </div>
+            <!--end container row-->
+            <br/>
+          </mat-tab>
+          <mat-tab label="Vendor">
+            <!--container row-->
+            <div class="container">
+              <!--1st row-->
+              <br/>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-checkbox>Auto Generate Quotation</mat-checkbox>
+                </div>
+              </div>
+              <!--end 1st row-->
+              <br/>
+              <!--2nd row-->
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Minimum Level">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Maximum Level">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Order limit">
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 2nd row-->
+              <br/>
+              <!--table row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-2 text-center'>Sr #</th>
+                        <th class='col-3 text-center'>Vendor</th>
+                        <th class='col-3 text-center'>Rating</th>
+                        <th class='col-2 text-center'>Delete</th>
+                        <th class='col-2 text-center'>Add</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                      <tr class='d-flex'>
+                        <td class='col-2 text-center'>1</td> 
+                        <td class='col-3 text-center'></td>
+                        <td class='col-3 text-center'></td>
+                        <td class='col-2 text-center'>
+                          <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                        </td>
+                        <td class='col-2 text-center'>
+                          <span class="fa fa-plus pointerCursor"></span>
+                        </td>
+                      </tr>
+                      <tr class='d-flex'>
+                        <td class='col-2 text-center'>2</td> 
+                        <td class='col-3 text-center'></td>
+                        <td class='col-3 text-center'></td>
+                        <td class='col-2 text-center'>
+                          <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                        </td>
+                        <td class='col-2 text-center'>
+                          <span class="fa fa-plus pointerCursor"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--end table row-->
+              <br/>
+              <!--button row-->
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <button mat-raised-button color="primary">Save</button>
+                </div>
+              </div>
+              <!--end button row-->
+              <br/>
+            </div>
+            <!--end container row-->
+          </mat-tab>
+          <mat-tab label="Invoicing">
+            <br/>
+            <!--container row-->
+            <div class="container">
+              <!--table row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr class="d-flex">
+                        <th class="col-1 text-center">Sr #</th>
+                        <th class="col-5 text-center">Tax</th>
+                        <th class="col-2 text-center">Rate</th>
+                        <th class="col-2 text-center">Section</th>
+                        <th class="col-1 text-center">Delete</th>
+                        <th class="col-1 text-center">Add</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="d-flex">
+                        <td class="col-1 text-center">1</td>
+                        <td class="col-5 text-center">
+                          <p-dropdown [options]="taxes" placeholder="Select Tax" optionLabel="tName" [showClear]="true" [style]="{'width':'100%'}"></p-dropdown>
+                        </td>
+                        <td class="col-2 text-center">label</td>
+                        <td class="col-2 text-center">label</td>
+                        <td class="col-1 text-center">
+                          <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                        </td>
+                        <td class="col-1 text-center">
+                          <span class="fa fa-plus pointerCursor"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--end table row-->
+            </div>
+            <!--end container row-->
+            <br/>
+          </mat-tab>
+        </mat-tab-group>
+        <br/>
+       </div>
+       <!--end tabs row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete data -->
+
+<!-- Start Modal Window to add item type -->
+<div class="modal fade" id="typeModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Item Type</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Item Type">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <!--end 1st row-->
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to  add item type -->
+
+<!-- Start Modal Window to add specification -->
+<div class="modal fade" id="specModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Specification</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Spec Title">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <!--end 1st row-->
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped">
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-2 text-center">Sr #</th>
+                  <th class="col-6 text-center">Attributes</th>
+                  <th class="col-2 text-center">Values</th>
+                  <th class="col-2 text-center">Action</th>
+                </tr>      
+              </thead>
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">1</td>
+                  <td class="col-6 text-center">
+                    <input type="text" class="form-control">
+                  </td>
+                  <td class="col-2 text-center">
+                    <input type="text" class="form-control">
+                  </td>
+                  <td class="col-1 text-center">
+                    <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                  </td>
+                  <td class="col-1 text-center">
+                    <span class="fa fa-plus pointerCursor"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+        <br/>
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to  add item type -->
+    
+<!-- Start Modal Window to view specification detail -->
+<div class="modal fade" id="specDetailModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Specification Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-5">
+            <b>Specification Title:</b>
+          </div>
+          <div class="col-md-6">
+            <h5 style="font-weight: normal;">Computer</h5>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--table row-->
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped">
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-2 text-center">Sr #</th>
+                  <th class="col-8 text-left">Attribute</th>
+                  <th class="col-2 text-center">Values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">1</td>
+                  <td class="col-8 text-left">Hp Core i5</td>
+                  <td class="col-2 text-center">2</td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">2</td>
+                  <td class="col-8 text-left">12 GB Ram</td>
+                  <td class="col-2 text-center">5</td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">3</td>
+                  <td class="col-8 text-left">500 GB Hard Disk</td>
+                  <td class="col-2 text-center">8</td>
+                </tr>
+                <tr class="d-flex">
+                  <td class="col-2 text-center">4</td>
+                  <td class="col-8 text-left">2 GB Nvidia Card</td>
+                  <td class="col-2 text-center">12</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to view specification detail -->
+  
+<!-- Start Modal Window to add grouping -->
+<div class="modal fade" id="groupModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Grouping</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+  
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Grouping">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <!--end 1st row-->
+        <!--button row-->
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        <!--end button row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to  add grouping -->
+
+<!-- Start Modal Window to view items detail -->
+<div class="modal fade" id="detailModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Items Detail</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--1st row-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-3">
+                <b>Category:</b>
+              </div>
+              <div class="col-md-9 text-left">
+                <h5 style="font-weight:normal">Computer</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-3">
+                <b>Name:</b>
+              </div>
+              <div class="col-md-9 text-left">
+                <h5 style="font-weight:normal">Lenovo Ideapad</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br/>
+        <!--2nd row-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-3">
+                <b>Official:</b>
+              </div>
+              <div class="col-md-9 text-left">
+                <h5 style="font-weight:normal">Yes</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-3">
+                <b>Disaster Management Requirement:</b>
+              </div>
+              <div class="col-md-9 text-left">
+                <h5 style="font-weight:normal">No</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br/>
+        <!--tab row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-tab-group class="allBorder">
+              <mat-tab label="General Info">
+                <!--container row-->
+                <div class="container">
+                  <br/>
+                  <!--1st row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <b>Item Type:</b>
+                        </div>
+                        <div class="col-md-8 text-left">
+                          <h5 style="font-weight:normal">Stockable</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <b>Grouping:</b>
+                        </div>
+                        <div class="col-md-9 text-left">
+                          <h5 style="font-weight:normal">Computer</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--table rows-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <!--sub heading row-->
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h5 class="bottomBorder">Barcode</h5>
+                        </div>
+                      </div>
+                      <!--end sub heading row-->
+                      <!--table row without border-->
+                      <div class="row">
+                        <div class="col-md-12">
+                          <table>
+                            <tr class="d-flex">
+                              <td class="col-md-5"><b>Barcode 1</b></td>
+                              <td class="col-md-7">4652131454487</td>
+                            </tr>
+                            <tr class="d-flex">
+                              <td class="col-md-5"><b>Barcode 2</b></td>
+                              <td class="col-md-7">2133434554654</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                      <!--end table row without border-->
+                    </div>
+                    <div class="col-md-6">
+                      <!--sub heading row-->
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h5 class="bottomBorder">Hscode</h5>
+                        </div>
+                      </div>
+                      <!--end sub heading row-->
+                      <!--table row without border-->
+                      <div class="row">
+                        <div class="col-md-12">
+                          <table>
+                            <tr class="d-flex">
+                              <td class="col-md-5"><b>Hscode 1</b></td>
+                              <td class="col-md-7">123458798654</td>
+                            </tr>
+                            <tr class="d-flex">
+                              <td class="col-md-5"><b>Hscode 2</b></td>
+                              <td class="col-md-7">456789451232</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                      <!--end table row without border-->
+                    </div>
+                  </div>
+                  <!--end table rows-->
+                  <br/>
+                </div>
+                <!--end container row-->
+              </mat-tab>
+              <mat-tab label="Variants">
+                <!--container row-->
+                <br/>
+                <div class="container">
+                  <mat-tab-group class="allBorder">
+                    <mat-tab label="Color">
+                      <!--container row-->
+                      <div class="container">
+                        <br/>
+                        <!--table row-->
+                        <div class="row">
+                          <div class="col-md-12">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr class="d-flex">
+                                  <th class="col-2 text-center">Sr #</th>
+                                  <th class="col-9 text-center">Color</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">1</td>
+                                  <td class="col-9 text-center">White</td>
+                                </tr>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">2</td>
+                                  <td class="col-9 text-center">Red</td>
+                                </tr>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">3</td>
+                                  <td class="col-9 text-center">Purple</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <!--end table row-->
+                      </div>
+                      <!--end container row-->
+                    </mat-tab>
+                    <mat-tab label="Specification">
+                      <!--container row-->
+                      <div class="container">
+                        <br/>
+                        <!--table row-->
+                        <div class="row">
+                          <div class="col-md-12">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr class="d-flex">
+                                  <th class="col-2 text-center">Sr #</th>
+                                  <th class="col-8 text-center">Specs</th>
+                                  <th class="col-2 text-center">Detail</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">1</td>
+                                  <td class="col-8 text-center">Lenovo Ideapad</td>
+                                  <td class="col-2 text-center">
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#specDetModal"></span>
+                                  </td>
+                                </tr>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">2</td>
+                                  <td class="col-8 text-center">Dell Inspiron</td>
+                                  <td class="col-2 text-center">
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#specDetModal"></span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <!--end table row-->
+                      </div>
+                      <!--end container row-->
+                    </mat-tab>
+                    <mat-tab label="Expiry">
+                      <!--container row-->
+                      <div class="container">
+                        <!--1st row-->
+                        <br/>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <b>Batch No:</b>
+                              </div>
+                              <div class="col-md-6">
+                                <h5 style="font-weight:normal;">Ga-76788-Lko</h5>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <b>Expiry Date:</b>
+                              </div>
+                              <div class="col-md-6">
+                                <h5 style="font-weight:normal;">June 28, 2025</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end 1st row-->
+                      </div>
+                      <!--end container row-->
+                    </mat-tab>
+                    <mat-tab label="Packing">
+                       <!--container row-->
+                       <div class="container">
+                        <br/>
+                        <!--table row-->
+                        <div class="row">
+                          <div class="col-md-12">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr class="d-flex">
+                                  <th class="col-2 text-center">Sr #</th>
+                                  <th class="col-6 text-center">Description</th>
+                                  <th class="col-2 text-center">Type</th>
+                                  <th class="col-2 text-center">Qty</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="d-flex">
+                                  <td class="col-2 text-center">1</td>
+                                  <td class="col-6 text-center">Dozen Packing</td>
+                                  <td class="col-2 text-center">Cotton Box</td>
+                                  <td class="col-2 text-center">12</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <!--end table row-->
+                      </div>
+                      <!--end container row-->
+                    </mat-tab>
+                  </mat-tab-group>
+                  <br/>
+                </div>
+                <!--end conatiner row-->
+              </mat-tab>
+              <mat-tab label="Vendor">
+                <!--container row-->
+                <div class="container">
+                  <!--1st row-->
+                  <br/>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <b>Minimum Level</b>
+                        </div>
+                        <div class="col-md-6">
+                          <h5 style="font-weight:normal;">52</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <b>Maximum Level</b>
+                        </div>
+                        <div class="col-md-6">
+                          <h5 style="font-weight:normal;">50,000</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <b>Order Limit</b>
+                        </div>
+                        <div class="col-md-6">
+                          <h5 style="font-weight:normal;">52,510</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end 1st row-->
+                  <br/>
+                  <!--table row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr class="d-flex">
+                            <th class="col-2 text-center">Sr #</th>
+                            <th class="col-8 text-center">Vendor</th>
+                            <th class="col-2 text-center">Rating</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">1</td>
+                            <td class="col-8 text-center">Ali Khan</td>
+                            <td class="col-2 text-center">5</td>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">2</td>
+                            <td class="col-8 text-center">Rizwi Shah</td>
+                            <td class="col-2 text-center">4</td>
+                          </tr>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">3</td>
+                            <td class="col-8 text-center">Nawaz Rajpoot</td>
+                            <td class="col-2 text-center">5</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end table row-->
+                </div>
+                <!--end container row-->
+              </mat-tab>
+              <mat-tab label="Invoicing">
+                <!--container row-->
+                <div class="container">
+                  <br/>
+                  <!--table row-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr class="d-flex">
+                            <th class="col-2 text-center">Sr #</th>
+                            <th class="col-6 text-center">Tax</th>
+                            <th class="col-2 text-center">Rate</th>
+                            <th class="col-2 text-center">Section</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="d-flex">
+                            <td class="col-2 text-center">1</td>
+                            <td class="col-6 text-center">Income tax</td>
+                            <td class="col-2 text-center">525,100</td>
+                            <td class="col-2 text-center">abc ssaasd</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--end table row-->
+                </div>
+                <!--end container row-->
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+        <!--end tab row-->
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to view items detail -->
+    
+<!-- Start Modal Window to view Specification detail -->
+<div class="modal fade" id="specDetModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Specifications Detail</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--container row-->
+        <div class="container">
+          <!--1st row-->
+          <br/>
+          <div class="row">
+            <div class="col-md-5">
+              <b>Specification Title:</b>
+            </div>
+            <div class="col-md-7">
+              <h5 style="font-weight:normal;">Lenovo Ideapad</h5>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br/>
+          <!--table row-->
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr class="d-flex">
+                    <th class="col-2 text-center">Sr #</th>
+                    <th class="col-8 text-center">Attributes</th>
+                    <th class="col-2 text-center">Values</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="d-flex">
+                    <td class="col-2 text-center">1</td>
+                    <td class="col-8 text-center">Core i5</td>
+                    <td class="col-2 text-center">2</td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-2 text-center">2</td>
+                    <td class="col-8 text-center">8 GB Ram</td>
+                    <td class="col-2 text-center">8</td>
+                  </tr>
+                  <tr class="d-flex">
+                    <td class="col-2 text-center">3</td>
+                    <td class="col-8 text-center">500 GB Hard Disk</td>
+                    <td class="col-2 text-center">15</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--end table row-->
+        </div>
+        <!--end container row-->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to view Specification detail -->
+  
+<!-- Start Modal Window to delete data -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="hidden" ngDefaultControl></div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <h2>Delete Entry</h2>
+          </div>
+        </div><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password">
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete data -->

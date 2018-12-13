@@ -1,0 +1,89 @@
+<br/>
+<!--heading row-->
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1 class="bottomBorder">Inventory Register</h1>
+    </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!-- Search Section Starts -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <mat-form-field class="fullwidth">
+                <input matInput [matDatepicker]="fromPicker" placeholder="From">
+                <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+                <mat-datepicker #fromPicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field class="fullwidth">
+                <input matInput [matDatepicker]="toPicker" placeholder="To">
+                <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+                <mat-datepicker #toPicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field class="fullwidth">
+                <mat-select placeholder="Select category">
+                    <mat-option *ngFor="let item of items" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field class="fullwidth">
+                <mat-select placeholder="Select Item">
+                    <mat-option *ngFor="let item of items" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<!-- Search Section Ends -->
+<br>
+<!-- Table Container Starts -->
+<div class="container bgWhite">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr class='d-flex'>
+                    <th class="col-3 text-center"></th>
+                    <th class="col-1 text-center"></th>
+                    <th class="col-5 text-center">IN</th>
+                    <th class="col-3 text-center">OUT</th>
+                </tr>
+                <tr class='d-flex'>
+                    <th class="col-1 text-center">Sr. #</th>
+                    <th class="col-2 text-left">Category</th>
+                    <th class="col-1 text-left">Item</th>
+                    <th class="col-2 text-right">U.Price</th>
+                    <th class="col-1 text-center">Qty</th>
+                    <th class="col-1 text-left">T.Price</th>
+                    <th class="col-2 text-right">U.Price</th>
+                    <th class="col-1 text-center">Qty</th>
+                    <th class="col-1 text-left">T.Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='d-flex'>
+                    <td class="col-1 text-center">1</td>
+                    <td class="col-2 text-left">Sports</td>
+                    <td class="col-1 text-left">Football</td>
+                    <td class="col-2 text-right">1200</td>
+                    <td class="col-1 text-center">5</td>
+                    <td class="col-1 text-left">1500</td>
+                    <td class="col-2 text-right">2200</td>
+                    <td class="col-1 text-center">15</td>
+                    <td class="col-1 text-left">2500</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Table Container Ends -->
