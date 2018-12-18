@@ -12,12 +12,14 @@ import { ChartModule } from 'angular-highcharts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuestionaireComponent } from './components/questionaire/questionaire.component';
+import { AuditsComponent } from './components/audits/audits.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     QuestionaireComponent,
+    AuditsComponent,
   ],
   imports: [
     BrowserModule,

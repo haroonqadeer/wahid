@@ -1,3 +1,212 @@
-<p>
-  questionaire works!
-</p>
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Created
+</div>
+  
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div>
+<br/>    
+<!--heading row-->
+<div class="row">
+  <div class="col-md-12 text-center">
+      <h1 class="bottomBorder">Questionaire</h1>    
+  </div>
+</div>
+<!--end heading row-->
+<br/>
+
+<!--tabs row-->
+<div class="container bgWhite allBorder">
+
+  <!--table row-->
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr class='d-flex'>
+          <th class='col-1 text-center'>Sr #</th>
+          <th class='col-9'>Title</th>
+          <th class='col-1 text-center'>Edit</th>
+          <th class='col-1 text-center'>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+        <tr class='d-flex'>
+          <td class='col-1 text-center'>1</td> 
+          <td class='col-9'>What is your name?</td>
+          <td class='col-1 text-center'>
+            <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#questionaireModal"></span>
+          </td>
+          <td class='col-1 text-center'>
+            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+          </td>
+        </tr>
+        <tr class='d-flex'>
+          <td class='col-11'></td> 
+          <td class='col-1 text-center'>
+            <span class="fa fa-plus pointerCursor"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--end table row-->
+
+</div>
+<!--end tabs row-->
+
+
+
+
+<!-- Start Modal Window to add new job profile -->
+<div class="modal fade" id="questionaireModal">
+<div class="modal-dialog shadow-lg-dark modal-lg">
+  <div class="modal-content">
+    <!--start Modal Header -->
+    <div class="modal-header">
+      <h4 class="modal-title">Questionaire</h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <!--end Modal Header -->
+    <!--start Modal body -->
+    <div class="modal-body">
+        
+      <!--start 1st row-->
+      <div class="row">
+        <div class="col-md-3">
+          Title
+        </div>
+        <div class="col-md-9">
+          What is your name?
+        </div>             
+      </div>
+      <!--end 1st row-->
+
+      <br/>
+
+      <!--start 2nd row-->
+      <div class="row">
+        <!--table row-->
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr class='d-flex'>
+                <th class='col-1 text-center'>Sr #</th>
+                <th class='col-7'>Question</th>
+                <th class='col-1'>Docs</th>
+                <th class='col-1'>Req</th>
+                <th class='col-1 text-center'>Edit</th>
+                <th class='col-1 text-center'>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+              <tr class='d-flex'>
+                <td class='col-1 text-center'>1</td> 
+                <td class='col-7'>
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Question">
+                  </mat-form-field>
+                </td>
+                <td class='col-1'>
+                  <button mat-mini-fab color="primary">
+                    <span class="fa fa-paperclip"></span>
+                  </button>
+                </td>
+                <td class='col-1'>
+                  <button mat-mini-fab color="primary">
+                    <span class="fa fa-paperclip"></span>
+                  </button>
+                </td>
+                <td class='col-1 text-center'>
+                  <span class="fa fa-edit pointerCursor"></span>
+                </td>
+                <td class='col-1 text-center'>
+                  <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                </td>
+              </tr>
+              <tr class='d-flex'>
+                <td class='col-11'></td> 
+                <td class='col-1 text-center'>
+                  <span class="fa fa-plus pointerCursor"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--end table row-->
+      </div>
+      <!--end 2nd row-->
+
+      <br/>
+
+      <!--start save button div-->
+      <div class="text-right">
+        <button mat-raised-button color="primary" >Save</button>
+      </div>
+      <!--end save button div-->
+
+    </div>
+    <!--end Modal body -->
+
+    <!--start Modal footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    </div>
+    <!--end Modal footer -->
+
+  </div>
+</div>
+</div>
+<!-- End Modal Window to add new job profile -->
+
+
+
+
+<!-- Start Modal Window to delete job profile -->
+<div class="modal fade" id="deleteModal">
+<div class="modal-dialog shadow-lg-dark">
+  <div class="modal-content">
+    <!--start Modal body -->
+    <div class="modal-body">
+      <br>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <h2>Delete Job Profile</h2>
+        </div>
+      </div><br/>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="fullwidth">
+            <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+          </mat-form-field>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="fullwidth">
+            <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+          </mat-form-field>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+        </div>
+      </div>
+      <br/>
+    </div>
+    <!--end Modal body -->
+
+    <!--start Modal footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    </div>
+    <!--end Modal footer -->
+
+  </div>
+</div>
+</div>
+<!-- End Modal Window to delete job profile -->

@@ -1,0 +1,686 @@
+<div id="alert_msg_success" *ngIf="edited">
+    Action Successfully Created
+  </div>
+    
+  <div id="alert_msg_warn" *ngIf="edited1">
+    Action Successfully Deleted
+  </div>
+  <br/>    
+  <!--heading row-->
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <h1 class="bottomBorder">Audit</h1>    
+    </div>
+  </div>
+  <!--end heading row-->
+  <br/>
+  
+  <!--tabs row-->
+  <div class="container bgWhite allBorder">
+  
+    <!--table row-->
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-1 text-center'>Sr #</th>
+            <th class='col-4'>Audit Title</th>
+            <th class='col-2'>Start Date</th>
+            <th class='col-2'>End Date</th>
+            <th class='col-2'>Status</th>
+            <th class='col-1 text-center'>View</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+          <tr class='d-flex'>
+            <td class='col-1 text-center'>1</td> 
+            <td class='col-4'>What is your name?</td>
+            <td class='col-2'>01-Nov-2018</td>
+            <td class='col-2'>15-Nov-2018</td>
+            <td class='col-2'>Pending</td>
+            <td class='col-1 text-center'>
+              <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#detailModal"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--end table row-->
+  
+  </div>
+  <!--end tabs row-->
+  
+  
+  
+  
+  <!-- Start Modal Window to add new job profile -->
+  <div class="modal fade" id="detailModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Audits</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+      <!--start Modal body -->
+      <div class="modal-body">
+          
+        <!--start horizontal Stepper -->
+        <mat-horizontal-stepper linear>
+          <!--start 1st Step -->
+          <mat-step optional>
+            <!--stepper 1st label-->
+            <ng-template matStepLabel><b>Audits</b></ng-template>
+              <!--start 1st row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <br/>
+                  <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          <h6 class="font-weight-bold">1. Security Policies</h6>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <!-- Inner Panel Starts -->
+
+                      <!-- Expansion 1 -->
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                              <label>1.1 Assistant Director for Security</label>
+                          </mat-expansion-panel-header>
+
+                          <!-- Inner Row 1 Starts -->
+                          <!--table row-->
+                          <div class="row">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr class='d-flex'>
+                                  <th class='col-1 text-center'>Sr #</th>
+                                  <th class='col-3'>Question</th>
+                                  <th class='col-3'>Answer</th>
+                                  <th class='col-3'>Score</th>
+                                  <th class='col-1 text-center'>Docs</th>
+                                  <th class='col-1 text-center'>Obsr</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                <tr class='d-flex'>
+                                  <td class='col-1 text-center'>Q 1</td> 
+                                  <td class='col-3'>What is your name?</td>
+                                  <td class='col-3'>
+                                      <mat-radio-group>
+                                        <mat-radio-button value="1">Yes</mat-radio-button>
+                                        &nbsp;
+                                        <mat-radio-button value="2"> No</mat-radio-button>
+                                      </mat-radio-group>
+                                  </td>
+                                  <td class='col-3'>
+                                    <mat-form-field class="table-select">
+                                        <mat-select placeholder="Score">
+                                          <mat-option value="1">1</mat-option>
+                                          <mat-option value="2">2</mat-option>
+                                          <mat-option value="3">3</mat-option>
+                                          <mat-option value="4">4</mat-option>
+                                          <mat-option value="5">5</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                  </td>
+                                  <td class='col-1 text-center'>
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#DocumentModal"></span>
+                                  </td>
+                                  <td class='col-1 text-center'>
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#ObservationModal"></span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <!--end table row-->
+                          
+                      </mat-expansion-panel>
+                    </mat-expansion-panel>
+
+                    <br/>
+
+                    <!-- Expansion 2 -->
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <h6 class="font-weight-bold">2. Information Policies</h6>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <label>2.1 Assistant Director for Information</label>
+                            </mat-expansion-panel-header>
+  
+                            <!-- Inner Row 1 Starts -->
+                            <!--table row-->
+                            <div class="row">
+                              <table class="table table-striped">
+                                <thead>
+                                  <tr class='d-flex'>
+                                    <th class='col-1 text-center'>Sr #</th>
+                                    <th class='col-3'>Question</th>
+                                    <th class='col-3'>Answer</th>
+                                    <th class='col-3'>Score</th>
+                                    <th class='col-1 text-center'>Docs</th>
+                                    <th class='col-1 text-center'>Obsr</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                  <tr class='d-flex'>
+                                    <td class='col-1 text-center'>Q 1</td> 
+                                    <td class='col-3'>What is your name?</td>
+                                    <td class='col-3'>
+                                        <mat-radio-group>
+                                          <mat-radio-button value="1">Yes</mat-radio-button>
+                                          &nbsp;
+                                          <mat-radio-button value="2"> No</mat-radio-button>
+                                        </mat-radio-group>
+                                    </td>
+                                    <td class='col-3'>
+                                      <mat-form-field class="table-select">
+                                          <mat-select placeholder="Score">
+                                            <mat-option value="1">1</mat-option>
+                                            <mat-option value="2">2</mat-option>
+                                            <mat-option value="3">3</mat-option>
+                                            <mat-option value="4">4</mat-option>
+                                            <mat-option value="5">5</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                    </td>
+                                    <td class='col-1 text-center'>
+                                      <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#DocumentModal"></span>
+                                    </td>
+                                    <td class='col-1 text-center'>
+                                      <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#ObservationModal"></span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!--end table row-->
+                            
+                        </mat-expansion-panel>
+                        
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+              <!--end 1st row-->
+              <br/>
+              <!--start next step button div-->
+              <div class="text-right">
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+              <!--end next step button div-->
+          </mat-step>
+          <!--end 1st Step -->
+          <!--start 2nd Step -->
+          <mat-step optional>
+            <!--stepper 2nd label-->
+            <ng-template matStepLabel><b>Rejected</b></ng-template>
+              <!--start 1st row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <br/>
+                  <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          <h6 class="font-weight-bold">1. Security Policies</h6>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <!-- Inner Panel Starts -->
+
+                      <!-- Expansion 1 -->
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                              <label>1.1 Assistant Director for Security</label>
+                          </mat-expansion-panel-header>
+
+                          <!-- Inner Row 1 Starts -->
+                          <!--table row-->
+                          <div class="row">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr class='d-flex'>
+                                  <th class='col-1 text-center'>Sr #</th>
+                                  <th class='col-3'>Question</th>
+                                  <th class='col-3'>Answer</th>
+                                  <th class='col-3'>Score</th>
+                                  <th class='col-1 text-center'>Docs</th>
+                                  <th class='col-1 text-center'>Obsr</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                <tr class='d-flex'>
+                                  <td class='col-1 text-center'>Q 1</td> 
+                                  <td class='col-3'>What is your name?</td>
+                                  <td class='col-3'>
+                                      <mat-radio-group>
+                                        <mat-radio-button value="1">Yes</mat-radio-button>
+                                        &nbsp;
+                                        <mat-radio-button value="2"> No</mat-radio-button>
+                                      </mat-radio-group>
+                                  </td>
+                                  <td class='col-3'>
+                                    <mat-form-field class="table-select">
+                                        <mat-select placeholder="Score">
+                                          <mat-option value="1">1</mat-option>
+                                          <mat-option value="2">2</mat-option>
+                                          <mat-option value="3">3</mat-option>
+                                          <mat-option value="4">4</mat-option>
+                                          <mat-option value="5">5</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                  </td>
+                                  <td class='col-1 text-center'>
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#DocumentModal"></span>
+                                  </td>
+                                  <td class='col-1 text-center'>
+                                    <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#ObservationModal"></span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <!--end table row-->
+                          
+                      </mat-expansion-panel>
+                    </mat-expansion-panel>
+
+                    <br/>
+
+                    <!-- Expansion 2 -->
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <h6 class="font-weight-bold">2. Information Policies</h6>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <label>2.1 Assistant Director for Information</label>
+                            </mat-expansion-panel-header>
+  
+                            <!-- Inner Row 1 Starts -->
+                            <!--table row-->
+                            <div class="row">
+                              <table class="table table-striped">
+                                <thead>
+                                  <tr class='d-flex'>
+                                    <th class='col-1 text-center'>Sr #</th>
+                                    <th class='col-3'>Question</th>
+                                    <th class='col-3'>Answer</th>
+                                    <th class='col-3'>Score</th>
+                                    <th class='col-1 text-center'>Docs</th>
+                                    <th class='col-1 text-center'>Obsr</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                                  <tr class='d-flex'>
+                                    <td class='col-1 text-center'>Q 1</td> 
+                                    <td class='col-3'>What is your name?</td>
+                                    <td class='col-3'>
+                                        <mat-radio-group>
+                                          <mat-radio-button value="1">Yes</mat-radio-button>
+                                          &nbsp;
+                                          <mat-radio-button value="2"> No</mat-radio-button>
+                                        </mat-radio-group>
+                                    </td>
+                                    <td class='col-3'>
+                                      <mat-form-field class="table-select">
+                                          <mat-select placeholder="Score">
+                                            <mat-option value="1">1</mat-option>
+                                            <mat-option value="2">2</mat-option>
+                                            <mat-option value="3">3</mat-option>
+                                            <mat-option value="4">4</mat-option>
+                                            <mat-option value="5">5</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                    </td>
+                                    <td class='col-1 text-center'>
+                                      <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#DocumentModal"></span>
+                                    </td>
+                                    <td class='col-1 text-center'>
+                                      <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#ObservationModal"></span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!--end table row-->
+                            
+                        </mat-expansion-panel>
+                        
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+              <!--end 1st row-->
+              <br/>
+              <!--start next step button div-->
+              <div class="text-right">
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+              <!--end next step button div-->
+          </mat-step>
+          <!--end 2nd Step -->
+          <!--start 3rd Step -->
+          <mat-step optional>
+            <!--stepper 3rd label-->
+            <ng-template matStepLabel><b>Publish</b></ng-template>
+              <!--start 1st row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Remarks">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-select placeholder="Score Grade">
+                      <mat-option value="1">A+</mat-option>
+                      <mat-option value="2">A</mat-option>
+                      <mat-option value="3">B+</mat-option>
+                      <mat-option value="4">B</mat-option>
+                      <mat-option value="5">C</mat-option>
+                      <mat-option value="6">D</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 1st row-->
+
+              <br/>
+
+              <!--start 2nd row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Remarks">
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 2nd row-->
+
+              <!--start next step button div-->
+              <div class="text-right">
+                <button mat-raised-button color="primary">Save</button>
+              </div>
+              <!--end next step button div-->
+
+              <br/>
+
+              <!--Start Accordion row-->
+              <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <h6 class="font-weight-bold">Question No. 1</h6>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <!-- Inner Panel Starts -->
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5>1.1.1 AD Policies</h5>
+                    </div>
+
+                    <div class="col-md-3">Score</div>
+                    <div class="col-md-3">(Label)</div>
+                    <div class="col-md-3">Priority</div>
+                    <div class="col-md-3">(Label)</div>
+                    <br/>
+                    <div class="col-md-3">Feed Back</div>
+                    <div class="col-md-3">(Label)</div>
+                    <div class="col-md-3">Severity</div>
+                    <div class="col-md-3">(Label)</div>
+                  </div>
+                </mat-expansion-panel>
+
+                <br/>
+
+                <!-- Expansion 2 -->
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h6 class="font-weight-bold">Question No.2</h6>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h5>2.1.1 Info Policies</h5>
+                      </div>
+  
+                      <div class="col-md-3">Score</div>
+                      <div class="col-md-3">(Label)</div>
+                      <div class="col-md-3">Priority</div>
+                      <div class="col-md-3">(Label)</div>
+                      <br/>
+                      <div class="col-md-3">Feed Back</div>
+                      <div class="col-md-3">(Label)</div>
+                      <div class="col-md-3">Severity</div>
+                      <div class="col-md-3">(Label)</div>
+                    </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <!--end Accodion row-->
+
+          </mat-step>
+          <!--end 3rd Step --> 
+        </mat-horizontal-stepper>
+        <!--end horizontal Stepper -->
+      </div>
+      <!--end Modal body -->
+  
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+  
+    </div>
+  </div>
+  </div>
+  <!-- End Modal Window to add new job profile -->
+  
+  <!-- Start Modal Window Document -->
+  <div class="modal fade" id="DocumentModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Document</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+        <!--start Modal body -->
+        <div class="modal-body">
+            
+          <!--start row 1-->
+          <div class="row">
+            <div class="col-md-11">
+              <mat-form-field>
+                <input matInput placeholder="Document Title">
+              </mat-form-field>
+            </div>
+            <div class="col-md-1">
+              <button mat-mini-fab color="primary">
+                <span class="fa fa-paperclip"></span>
+              </button>
+            </div>
+          </div>
+          <!--end row 1-->
+
+          <!--start row 2-->
+          <div class="row">
+            <div class="col-md-3">
+              <button mat-raised-button color="primary"> Save </button>
+            </div>
+          </div>
+          <!--end row 2-->
+
+        </div>
+        <!--end Modal body -->
+    
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+    
+      </div>
+    </div>
+  </div>
+  <!-- End Modal Window -->
+  
+  <!-- Start Modal Window for Observation -->
+  <div class="modal fade" id="ObservationModal">
+    <div class="modal-dialog shadow-lg-dark modal-lg">
+      <div class="modal-content">
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Observation</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+        <!--start Modal body -->
+        <div class="modal-body">
+
+          <!--table row-->
+          <div class="row">
+              <table class="table table-striped">
+                <thead>
+                  <tr class='d-flex'>
+                    <th class='col-1 text-center'>Sr #</th>
+                    <th class='col-9'>Observation</th>
+                    <th class='col-1 text-center'>Log</th>
+                    <th class='col-1 text-center'>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                  <tr class='d-flex'>
+                    <td class='col-1 text-center'>1</td> 
+                    <td class='col-9'>Observation....</td>
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-file-text pointerCursor" data-toggle="modal" data-target="#logModal"></span>
+                    </td>
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal"></span>
+                    </td>
+                  </tr>
+                  <tr class='d-flex'>
+                    <td class='col-11'></td> 
+                    <td class='col-1 text-center'>
+                      <span class="fa fa-plus pointerCursor"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+          <!--end table row-->
+
+        </div>
+        <!--end Modal body -->
+    
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+    
+      </div>
+    </div>
+  </div>
+  <!-- End Modal Window -->
+  
+  <!-- Start Modal Window for Log -->
+  <div class="modal fade" id="logModal">
+      <div class="modal-dialog shadow-lg-dark modal-lg">
+        <div class="modal-content">
+          <!--start Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Log</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!--end Modal Header -->
+          <!--start Modal body -->
+          <div class="modal-body">
+  
+  
+          </div>
+          <!--end Modal body -->
+      
+          <!--start Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+          <!--end Modal footer -->
+      
+        </div>
+      </div>
+  </div>
+  <!-- End Modal Window -->
+
+  <!-- Start Modal Window to delete job profile -->
+  <div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <h2>Delete Job Profile</h2>
+          </div>
+        </div><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="warn" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <!--end Modal body -->
+  
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+  
+    </div>
+  </div>
+  </div>
+  <!-- End Modal Window to delete job profile -->
+  
