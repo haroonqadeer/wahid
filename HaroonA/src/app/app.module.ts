@@ -13,8 +13,11 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuestionaireComponent } from './components/questionaire/questionaire.component';
+
+import { AuditsComponent } from './components/audits/audits.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuditComponent } from './components/audit/audit.component';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +25,12 @@ import { AuditComponent } from './components/audit/audit.component';
     SearchPipe,
     ErpBottomSheetComponent,
     QuestionaireComponent,
+
+    AuditsComponent,
+
     DashboardComponent,
     AuditComponent
+
   ],
   imports: [
     BrowserModule,
