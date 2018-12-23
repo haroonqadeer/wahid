@@ -7,3 +7,102 @@
 </div>
 <!--end heading row-->
 <br/>
+
+
+<div class="row">
+  <div class="col-md-7">
+    <!-- box row -->
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="info-box bg-light-green hover-expand-effect">
+          <div class="icon">
+            <i class="fa fa-recycle"></i>
+          </div>
+          <div class="content">
+            <div class="text">Total Audits</div>
+            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">70</div>                                                                
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="info-box bg-pink hover-expand-effect">
+          <div class="icon">
+            <i class="fa fa-hourglass-start"></i>
+          </div>
+          <div class="content">
+            <div class="text">Audit Due</div>
+            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">15</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="info-box bg-cyan hover-expand-effect" data-toggle="modal" data-target="#userReqModal">
+          <div class="icon">
+            <i class="fa fa-clock-o"></i>
+          </div>
+          <div class="content">
+            <div class="text">Recent Audit</div>
+            <div class="number count-to"  data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">23</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end box row -->
+  </div>
+  <div class="col-md-5">
+    <div class="row">
+      <div class="col-md-11">
+        <!-- box row -->
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box bg-indigo hover-expand-effect">
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
+              <div class="content">
+                <div class="text">Auditors</div>
+                <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">15</div>                                                                
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box bg-orange hover-expand-effect" data-toggle="modal" data-target="#userReqModal">
+              <div class="icon">
+                <i class="fa fa-user"></i>
+              </div>
+              <div class="content">
+                <div class="text">Auditee</div>
+                <div class="number count-to"  data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">10</div>
+              </div>
+            </div>
+          </div>
+        </div><!-- end box row -->
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<!--container row-->
+<div class="container">
+<!--1st chart row-->
+  <div class="row">
+    <div class="col-md-6">
+      <div class=" shadow-md" [chart]="Status_Pie" style=" height: 100%;width:100%;"></div>
+    </div>
+    <div class="col-md-6">
+      <div class=" shadow-md" [chart]="Monthly_Column" style=" height: 100%;width:100%;"></div>
+    </div>
+  </div>
+<!--end 1st chart row-->
+  <br/>
+<!--2nd chart row-->
+  <div class="row">
+    <div class="col-md-6">
+      <div class=" shadow-md" [chart]="Department_Pie" style=" height: 100%;width:100%;"></div>
+    </div>
+    <div class="col-md-6">
+      <div class=" shadow-md" [chart]="Location_Pie" style=" height: 100%;width:100%;"></div>
+    </div>
+  </div>
+<!--end 2nd chart row-->
+</div>
+<!--end container row-->
