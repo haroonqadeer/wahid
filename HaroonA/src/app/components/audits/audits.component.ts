@@ -10,8 +10,8 @@ export class AuditsComponent implements OnInit {
   public edited = false;
   public edited1 = false;
 
-  txtPassword = '';
-  txtPin = '';
+  txtdPassword = '';
+  txtdPin = '';
 
   constructor() { }
 

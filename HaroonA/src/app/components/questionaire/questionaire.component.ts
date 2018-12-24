@@ -10,8 +10,8 @@ export class QuestionaireComponent implements OnInit {
   public edited = false;
   public edited1 = false;
 
-  txtPassword = '';
-  txtPin = '';
+  txtdPassword = '';
+  txtdPin = '';
 
   constructor() { }
 
