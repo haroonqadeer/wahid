@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionaireComponent implements OnInit {
 
+  public edited = false;
+  public edited1 = false;
+
+  txtdPassword = '';
+  txtdPin = '';
+
   constructor() { }
 
   ngOnInit() {}

@@ -76,5 +76,9 @@ export class ErpBottomSheetComponent implements OnInit {
     else if (val==8){
       window.open('http://192.168.88.16:9008/')
     }
+    //audit
+    else if (val==9){
+      window.open('http://192.168.88.16:9009/')
+    }
   }
 }
