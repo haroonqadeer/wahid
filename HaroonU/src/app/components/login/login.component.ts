@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/shared/user.service';
 import {MessageService} from 'primeng/api';
-=======
 import { FormsModule } from '@angular/forms';
-
-
->>>>>>> 72d34dd970d89f29ef8b3c61a0c74b18072407e3
 
 @Component({
   selector: 'app-login',
