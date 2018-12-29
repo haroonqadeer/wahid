@@ -14,6 +14,9 @@ import { UserrolesComponent } from './components/userroles/userroles.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,8 @@ import { PNPrimeModule } from './shared/pnprime/pnprime.module';
     ChartModule,
     BrowserAnimationsModule,
     FormsModule,
-    PNPrimeModule
+    PNPrimeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
