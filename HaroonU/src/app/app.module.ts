@@ -18,8 +18,6 @@ import { UserService } from './shared/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
-import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   declarations: [
