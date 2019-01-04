@@ -14,67 +14,87 @@ import { ReconciliationComponent } from './components/reconciliation/reconciliat
 import { TrailbalanceComponent } from './components/trailbalance/trailbalance.component';
 import { BalancesheetComponent } from './components/balancesheet/balancesheet.component';
 import { IncomestatementComponent } from './components/incomestatement/incomestatement.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: FinancedashboardComponent
+    component: LoginComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'dashboard',
-    component: FinancedashboardComponent
+    component: FinancedashboardComponent,
+    canActivate: [AuthGuard]
   },  
   {
     path:'coa',  
-    component: ChartofaccountComponent
+    component: ChartofaccountComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'budget',  
-    component: BudgetsComponent
+    component: BudgetsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'taxSection',  
-    component: TaxsectionComponent
+    component: TaxsectionComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'payment',  
-    component: PaymentvoucherComponent
+    component: PaymentvoucherComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'receipt',  
-    component: ReceiptvoucherComponent
+    component: ReceiptvoucherComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'adjustment',  
-    component: AdjustmentvoucherComponent
+    component: AdjustmentvoucherComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'ledger',  
-    component: LedgerComponent
+    component: LedgerComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'fixAsset',  
-    component: FixassetComponent
+    component: FixassetComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'bankAccount',  
-    component: BankaccountComponent
+    component: BankaccountComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'bankRecon',  
-    component: ReconciliationComponent
+    component: ReconciliationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'trailbalance',
-    component: TrailbalanceComponent
+    component: TrailbalanceComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'balanceSheet',
-    component: BalancesheetComponent
+    component: BalancesheetComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'incomeStatement',
-    component: IncomestatementComponent
+    component: IncomestatementComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/shared/user.service';
-import { ToastrManager } from 'ng6-toastr-notifications';
+import {MessageService} from 'primeng/api';
+import { FormsModule } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
 
@@ -16,18 +19,17 @@ export class LoginComponent implements OnInit {
 
   isLoginError : boolean = false;
   
-  constructor(public toastr: ToastrManager, private userService : UserService, private router : Router) { }
+  constructor(private route: ActivatedRoute, private userService : UserService, private router : Router, private messageService : MessageService) { }
 
   ngOnInit() {
-
+    this.route.queryParams.subscribe(params =>{
+      this.txtUserName = params['username'];
+    });
   }
   OnSubmit(){
     
-    this.toastr.successToastr('This is success toast.', 'Success!', {toastTimeout: (2000)});
-    this.toastr.errorToastr('This is error toast.', 'Oops!', {toastTimeout: (2500)});
-    this.toastr.warningToastr('This is warning toast.', 'Alert!', {toastTimeout: (3000)});
-    this.toastr.infoToastr('This is info toast.', 'Info', {toastTimeout: (3500)});
-    return false;
+    // this.messageService.add({severity:'error', summary: 'Error Message', detail:'Incorrect Data'});
+    // return false;
     
     if(this.txtUserName.trim().length == 0)
     {
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       },
       (err : HttpErrorResponse) =>{
+        this.messageService.add({severity:'error', summary: 'Error Message', detail:'User Name & Password is Incorrect'});
         //this.isLoginError = true;
       })
     }

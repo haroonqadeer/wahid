@@ -7,7 +7,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UserService {
 
   readonly rootUrl = 'http://localhost:53446';
-  readonly rootUrl1 = 'http://localhost:56234';
 
   constructor(private http: HttpClient) { }
   
@@ -18,15 +17,4 @@ export class UserService {
     return this.http.post(this.rootUrl + '/token', data, { headers: reqHeader });
   }
 
-  getEmployee(){
-    return this.http.get(this.rootUrl+'/api/getEmployee');
-  }
-  
-  getUser(){
-    return this.http.get(this.rootUrl1+'/api/getUser');
-  }
-  
-  getLocation(){
-    return this.http.get(this.rootUrl1+'/api/getLocation');
-  }
 }

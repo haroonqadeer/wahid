@@ -27,6 +27,11 @@ import { TrailbalanceComponent } from './components/trailbalance/trailbalance.co
 import { BalancesheetComponent } from './components/balancesheet/balancesheet.component';
 import { IncomestatementComponent } from './components/incomestatement/incomestatement.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { LoginComponent } from './components/login/login.component';
+import { UserService } from './shared/user.service';
+import { AuthGuard } from './auth/auth.guard';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,6 +53,7 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
     ReconciliationComponent,
     BalancesheetComponent,
     IncomestatementComponent,
+    LoginComponent,
     ErpBottomSheetComponent
   ],
   imports: [
@@ -61,11 +67,17 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
     PNPrimeModule,
     TreeTableModule,
     HttpModule,
+    HttpClientModule,
     NgCircleProgressModule.forRoot({
       
     })
   ],
-  providers: [],
+  providers: [UserService, AuthGuard,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    }],
   bootstrap: [AppComponent],  
   entryComponents: [ErpBottomSheetComponent],  
 })

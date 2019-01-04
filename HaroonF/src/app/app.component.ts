@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {MatBottomSheet} from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 })
 export class AppComponent {
 
-  constructor(private bottomSheet: MatBottomSheet){
+  constructor(private router : Router, private bottomSheet: MatBottomSheet){
 
   }
 
@@ -101,5 +102,11 @@ export class AppComponent {
         label: 'Quit', icon: 'pi pi-fw pi-times'
       }
     ];
+  }
+
+  Logout(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['']);
+    //this.showDiv();
   }
 }

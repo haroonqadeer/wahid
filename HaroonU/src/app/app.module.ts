@@ -17,9 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { UserService } from './shared/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
-
-import { HttpClientModule } from '@angular/common/http';
-
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 @NgModule({
   declarations: [
@@ -27,7 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
     SearchPipe,
     DashboardComponent,
     UserprofileComponent,
-    LoginComponent,
     UserrolesComponent,
     LoginComponent,
     UserrolesComponent,
@@ -42,9 +39,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     FormsModule,
     PNPrimeModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
-  providers: [UserService,AuthGuard,
+  providers: [UserService, AuthGuard,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
