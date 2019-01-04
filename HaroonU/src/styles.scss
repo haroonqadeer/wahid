@@ -42,12 +42,12 @@ h1{
     width: 100% !important;
     height: 100% !important;
     // background-color: #ebecef !important;
-    background-image: linear-gradient(to bottom right ,#e54045 55%, #d6d6d6 20%);
+    background-image: linear-gradient(to bottom right ,#eec450 50%, #fff 20%);
     overflow: hidden;    
 }
 .h1Login{
-    background-color: #e54045;
-    color:#fff;
+    background-color: #eec450;
+    color:#232438;
     height: 3em;
     padding-top: 0.7em;
     font-family: Mukta;
@@ -59,7 +59,7 @@ h1{
 
 /* login panel */
 .loginPanel{
-    height: 25em !important;
+    height: 20em !important;
     //background-image: linear-gradient(#4c4c4c, #323232);
     background-color: #fff;    
     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -70,7 +70,8 @@ h1{
     bottom: 0 !important;
     width: 100%;
     position: absolute !important;
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);    
+    color: #e54045 !important;
+    //text-shadow: 2px 4px 3px rgba(0,0,0,0.3);    
 }
 
 /////////////////////////////////////////
