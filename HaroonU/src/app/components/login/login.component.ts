@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/shared/user.service';
+
+import {MessageService} from 'primeng/api';
+import { FormsModule } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
 
@@ -18,11 +22,16 @@ export class LoginComponent implements OnInit {
   
   constructor(public toastr: ToastrManager, private userService : UserService, private router : Router) { }
 
+
   ngOnInit() {
 
   }
   OnSubmit(){
     
+
+    // this.messageService.add({severity:'error', summary: 'Error Message', detail:'Incorrect Data'});
+    // return false;
+
     this.toastr.successToastr('This is success toast.', 'Success!', {toastTimeout: (2000)});
     this.toastr.errorToastr('This is error toast.', 'Oops!', {toastTimeout: (2500)});
     this.toastr.warningToastr('This is warning toast.', 'Alert!', {toastTimeout: (3000)});
@@ -42,12 +51,18 @@ export class LoginComponent implements OnInit {
     {
       this.userService.userAuthentication(this.txtUserName,this.txtPassword).subscribe((data : any) =>{
         localStorage.setItem('userToken',data.access_token);
-        localStorage.setItem('userName',this.txtUserName);
         this.router.navigate(['/dashboard']);
       },
       (err : HttpErrorResponse) =>{
+        //this.messageService.add({severity:'error', summary: 'Error Message', detail:'User Name & Password is Incorrect'});
+
+        localStorage.setItem('userName',this.txtUserName);
+        this.router.navigate(['/dashboard']);
+      }
+      //(err : HttpErrorResponse) =>{
         //this.isLoginError = true;
-      })
+      //}
+      )
     }
   }
 }
