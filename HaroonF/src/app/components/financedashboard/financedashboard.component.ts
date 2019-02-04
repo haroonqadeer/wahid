@@ -49,7 +49,7 @@ export class FinancedashboardComponent implements OnInit {
       title: {
         text: 'Income and Expenses'
       },
-       xAxis: {
+      xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       },

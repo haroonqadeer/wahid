@@ -30,11 +30,13 @@
     "font-awesome": "^4.7.0",
     "highcharts": "^6.1.4",
     "jquery": "^3.3.1",
+    "ng6-toastr-notifications": "^1.0.4",
     "ngx-bootstrap": "^3.0.1",
     "popper.js": "^1.14.4",
     "primeicons": "^1.0.0",
     "primeng": "^6.1.6",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.3.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
