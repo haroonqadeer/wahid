@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 import {OrganizationChartModule} from 'primeng/organizationchart';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   imports: [
     CommonModule,
     OrganizationChartModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    ToastModule
   ],
   exports: [
     OrganizationChartModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    ToastModule
   ],
   declarations: []
 })

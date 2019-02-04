@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var jQuery:any;
 declare var $:any;
@@ -11,7 +12,7 @@ declare var $:any;
 
 export class ErpBottomSheetComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }
@@ -46,7 +47,11 @@ export class ErpBottomSheetComponent implements OnInit {
   openModule(val){
     //finance
     if(val==1){
-      window.open('http://192.168.88.16:9004/')
+      //this.router.navigate(['FMIS']);
+      window.alert(localStorage.getItem('userToken'));
+      if(localStorage.getItem('userToken') != null){
+        window.open('http://192.168.88.16:9004/',localStorage.getItem('userToken'))
+      }
     }
     //hr
     else if (val==2){

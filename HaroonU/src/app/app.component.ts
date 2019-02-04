@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {MatBottomSheet} from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 })
 export class AppComponent {
   
-  constructor(private bottomSheet: MatBottomSheet){
+  constructor(private router : Router ,private bottomSheet: MatBottomSheet){
 
   }
 
@@ -23,4 +24,8 @@ export class AppComponent {
     this.bottomSheet.open(ErpBottomSheetComponent);
   }
 
+  Logout(){
+    localStorage.removeItem('userToken');
+    this.router.navigate(['']);
+  }
 }

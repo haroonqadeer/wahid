@@ -13,8 +13,10 @@ import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { PNPrimeModule } from './shared/pnprime/pnprime.module';
-
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { UserService } from './shared/user.service';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 @NgModule({
@@ -40,7 +42,12 @@ import { HttpClientModule } from '@angular/common/http';
     PNPrimeModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService,AuthGuard,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    }],
   bootstrap: [AppComponent],
   entryComponents: [ErpBottomSheetComponent], 
 })
