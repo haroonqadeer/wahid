@@ -16,7 +16,6 @@ export class AppComponent {
   
   userName = '';
 
-
   hideDiv : boolean = false;
   
   constructor(private router : Router, private bottomSheet: MatBottomSheet, private userService : UserService){
@@ -47,6 +46,5 @@ export class AppComponent {
     localStorage.removeItem('userToken');
     this.router.navigate(['']);
     this.showDiv();
-
   }
 }

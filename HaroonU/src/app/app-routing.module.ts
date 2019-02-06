@@ -16,18 +16,18 @@ const routes: Routes = [
   },  
   {
     path:'dashboard',  
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
+    component: DashboardComponent
+    //canActivate: [AuthGuard]
   },
   {
     path: 'userroles',
-    component: UserrolesComponent,
-    canActivate: [AuthGuard]
+    component: UserrolesComponent
+    //canActivate: [AuthGuard]
   },
   {
     path:'userprofile',  
-    component: UserprofileComponent,
-    canActivate: [AuthGuard]
+    component: UserprofileComponent
+    //canActivate: [AuthGuard]
   }
 ];
 

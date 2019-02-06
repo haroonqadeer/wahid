@@ -20,7 +20,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { ToastrModule } from 'ng6-toastr-notifications';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +30,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     LoginComponent,
     UserrolesComponent,
     UserprofileComponent,
-    ErpBottomSheetComponent 
+    ErpBottomSheetComponent
   ],
   imports: [
     BrowserModule,
