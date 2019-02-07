@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public toastr: ToastrManager, private router : Router) { }
 
-
   ngOnInit() { }
   
   // convenience getter for easy access to form fields
