@@ -20,6 +20,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { UserformComponent } from './components/userform/userform.component';
+import { UserTreeComponent } from './components/user-tree/user-tree.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserformComponent } from './components/userform/userform.component';
     UserrolesComponent,
     UserprofileComponent,
     ErpBottomSheetComponent,
-    UserformComponent
+    UserformComponent,
+    UserTreeComponent
   ],
   imports: [
     BrowserModule,
