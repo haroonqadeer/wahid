@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { AppComponent } from '../app.component';
-import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +33,7 @@ export class DashboardComponent implements OnInit {
   public cityDetail;
   public countryDetail;
 
-  constructor(private appComponent : AppComponent, private userService: UserService) { }
+  constructor(private appComponent : AppComponent) { }
 
   ngOnInit() {
 
@@ -42,21 +41,21 @@ export class DashboardComponent implements OnInit {
     this.LineChart_init();
     this.PieChart_init();
     
-    this.userService.getEmployee().subscribe(data =>{
-      this.empDetail = data;
-    });
+    // this.userService.getEmployee().subscribe(data =>{
+    //   this.empDetail = data;
+    // });
 
-    this.userService.getUser().subscribe(data =>{
-      this.userDetail = data;
-    });
+    // this.userService.getUser().subscribe(data =>{
+    //   this.userDetail = data;
+    // });
 
-    this.userService.getLocation().subscribe(data =>{
-      this.cityDetail = data['m_Item1'];
-    });
+    // this.userService.getLocation().subscribe(data =>{
+    //   this.cityDetail = data['m_Item1'];
+    // });
 
-    this.userService.getLocation().subscribe(data =>{
-      this.countryDetail = data['m_Item2'];
-    });
+    // this.userService.getLocation().subscribe(data =>{
+    //   this.countryDetail = data['m_Item2'];
+    // });
   }
 
   finUsr(){

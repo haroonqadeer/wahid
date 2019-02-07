@@ -13,86 +13,6 @@
 
 <!-- container -->
 <div class="container">
-  <div class="row">  
-    <div class="example-container mat-elevation-z8 fullwidth">
-      <div class="example-table-container fullwidth">            
-        <table class="table table-striped fullwidth">
-          <thead>
-            <tr class='d-flex'>
-              <th class='col-6'>Login Name</th>
-              <th class='col-6'>Mobile</th>       
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of empDetail" class='d-flex'>
-              <td class="col-6">{{item.employeeName}}</td>
-              <td class="col-6">{{item.mobileNo}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <br/>
-  <div class="row">  
-    <div class="example-container mat-elevation-z8 fullwidth">
-      <div class="example-table-container fullwidth">            
-        <table class="table table-striped fullwidth">
-          <thead>
-            <tr class='d-flex'>
-              <th class='col-6'>User Name</th>
-              <th class='col-6'>Mobile</th>       
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of userDetail" class='d-flex'>
-              <td class="col-6">{{item.LoginName}}</td>
-              <td class="col-6">{{item.MobileNo}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <br/>
-  <div class="row">  
-    <div class="example-container mat-elevation-z8 fullwidth">
-      <div class="example-table-container fullwidth">            
-        <table class="table table-striped fullwidth">
-          <thead>
-            <tr class='d-flex'>
-              <th class='col-6'>City Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of cityDetail" class='d-flex'>
-              <td class="col-6">{{item.CityName}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <br/>
-  <div class="row">  
-    <div class="example-container mat-elevation-z8 fullwidth">
-      <div class="example-table-container fullwidth">            
-        <table class="table table-striped fullwidth">
-          <thead>
-            <tr class='d-flex'>
-              <th class='col-6'>Country Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of countryDetail" class='d-flex'>
-              <td class="col-6">{{item.CountryName}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <br/><br/>
   <!-- box row -->
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -387,16 +307,16 @@
                             Inventory Module
                           </div>
                           <div class="col-md-2 text-center">
-                            <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                            <mat-checkbox class="example-margin"></mat-checkbox>
                           </div>
                           <div class="col-md-2 text-center">
-                            <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                            <mat-checkbox class="example-margin"></mat-checkbox>
                           </div>
                           <div class="col-md-2 text-center">
-                              <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              <mat-checkbox class="example-margin"></mat-checkbox>
                           </div>
                           <div class="col-md-2 text-center">
-                              <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              <mat-checkbox class="example-margin"></mat-checkbox>
                           </div>
                         </div>                        
                       </section>
@@ -429,16 +349,16 @@
                             Accounts Payable Module
                           </div>
                           <div class="col-md-2 text-center">
-                            <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                            <mat-checkbox class="example-margin"  ></mat-checkbox>
                           </div>
                           <div class="col-md-2 text-center">
-                            <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                            <mat-checkbox class="example-margin" ></mat-checkbox>
                           </div>
                           <div class="col-md-2 text-center">
-                              <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                              <mat-checkbox class="example-margin"></mat-checkbox>
                           </div>
                           <div class="col-md-2 text-center">
-                              <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                              <mat-checkbox class="example-margin"></mat-checkbox>
                           </div>
                         </div>                        
                       </section>
@@ -472,16 +392,16 @@
                                 General Ledger Module
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                                <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                                <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                             </div>                        
                       </section>
@@ -516,16 +436,16 @@
                                 Financial Statement Module
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                                <mat-checkbox class="example-margin"  ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                             </div>                        
                       </section>
@@ -575,16 +495,16 @@
                                 Online Recruitment Module
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                                <mat-checkbox class="example-margin"  ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                             </div>                        
                       </section>
@@ -618,16 +538,16 @@
                                 Auto Enrollment Module
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                                <mat-checkbox class="example-margin"  ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                             </div>
                       </section>
@@ -661,16 +581,16 @@
                                 Training Module
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                                <mat-checkbox class="example-margin"  ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                             </div>
                       </section>
@@ -704,16 +624,16 @@
                                 Payroll Module
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"></mat-checkbox>
+                                <mat-checkbox class="example-margin"  ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"></mat-checkbox>
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                               <div class="col-md-2 text-center">
-                                  <mat-checkbox class="example-margin" [(ngModel)]="chkView"></mat-checkbox>
+                                  <mat-checkbox class="example-margin"></mat-checkbox>
                               </div>
                             </div>
                       </section>

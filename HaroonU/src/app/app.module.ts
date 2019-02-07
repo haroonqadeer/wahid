@@ -1,5 +1,6 @@
 import { MaterialModule } from './shared/material.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartModule } from 'angular-highcharts';
@@ -14,9 +15,6 @@ import { UserrolesComponent } from './components/userroles/userroles.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { UserService } from './shared/user.service';
-import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { UserformComponent } from './components/userform/userform.component';
@@ -38,6 +36,7 @@ import { UserTreeComponent } from './components/user-tree/user-tree.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule,
     ChartModule,
@@ -48,12 +47,7 @@ import { UserTreeComponent } from './components/user-tree/user-tree.component';
     ToastrModule.forRoot()
   ],
 
-  providers: [UserService, AuthGuard,
-    {
-      provide : HTTP_INTERCEPTORS,
-      useClass : AuthInterceptor,
-      multi : true
-    }],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [ErpBottomSheetComponent], 
 })

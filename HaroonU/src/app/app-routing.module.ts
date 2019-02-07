@@ -4,7 +4,6 @@ import { DashboardComponent } from './components/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
-import { AuthGuard } from './auth/auth.guard';
 
 import { UserformComponent } from './components/userform/userform.component';
 import { UserTreeComponent } from './components/user-tree/user-tree.component';
@@ -18,9 +17,14 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+
     path: 'dashboard',
     component: DashboardComponent
     //canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
     path: 'userroles',

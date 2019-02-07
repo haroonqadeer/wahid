@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import {MenuItem} from 'primeng/api';
-import {MatBottomSheet} from '@angular/material';
+import { MenuItem } from 'primeng/api';
+import { MatBottomSheet } from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { Router } from '@angular/router';
-
-import { UserService } from './shared/user.service';
 
 
 @Component({
@@ -13,38 +11,47 @@ import { UserService } from './shared/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
-  userName = '';
 
-  hideDiv : boolean = false;
-  
-  constructor(private router : Router, private bottomSheet: MatBottomSheet, private userService : UserService){
+  // userName = '';
+
+  hideDiv: boolean = false;
+
+  // hideDiv : boolean = false;
+
+  constructor(private router: Router, private bottomSheet: MatBottomSheet) {
 
   }
 
   showDiv() {
 
-    if(localStorage.getItem('userToken')!=null){
-      this.hideDiv = true;
-      this.userName = localStorage.getItem('userName');
-    }
-    else{
-      this.hideDiv = false;
-    }
+    // if(localStorage.getItem('userToken')!=null){
+    //   this.hideDiv = true;
+    //   this.userName = localStorage.getItem('userName');
+    // }
+    // else{
+    //   this.hideDiv = false;
+    // }
   }
 
   title = 'HaroonU';
-  
+
   items: MenuItem[];
 
   //show bottom sheet
-  showBottom(){
+  showBottom() {
     this.bottomSheet.open(ErpBottomSheetComponent);
   }
 
-  Logout(){
+  Logout() {
     localStorage.removeItem('userToken');
     this.router.navigate(['']);
     this.showDiv();
   }
+
+  // Logout(){
+  //   localStorage.removeItem('userToken');
+  //   this.router.navigate(['']);
+  //   this.showDiv();
+
+  // }
 }

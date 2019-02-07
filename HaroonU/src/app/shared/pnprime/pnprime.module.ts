@@ -4,6 +4,7 @@ import {OrganizationChartModule} from 'primeng/organizationchart';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {ToastModule} from 'primeng/toast';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
   imports: [
@@ -11,13 +12,15 @@ import {ToastModule} from 'primeng/toast';
     OrganizationChartModule,
     ButtonModule,
     DialogModule,
-    ToastModule
+    ToastModule,
+    PasswordModule
   ],
   exports: [
     OrganizationChartModule,
     ButtonModule,
     DialogModule,
-    ToastModule
+    ToastModule,
+    PasswordModule
   ],
   declarations: []
 })
