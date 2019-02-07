@@ -3,7 +3,9 @@ import {MenuItem} from 'primeng/api';
 import {MatBottomSheet} from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { Router } from '@angular/router';
+
 import { UserService } from './shared/user.service';
+
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { UserService } from './shared/user.service';
 export class AppComponent {
   
   userName = '';
+
 
   hideDiv : boolean = false;
   
@@ -44,5 +47,6 @@ export class AppComponent {
     localStorage.removeItem('userToken');
     this.router.navigate(['']);
     this.showDiv();
+
   }
 }
