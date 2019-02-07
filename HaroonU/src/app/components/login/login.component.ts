@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UserService } from 'src/app/shared/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MessageService} from 'primeng/api';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
   txtUserName = '';
   txtPassword = '';
 
-  constructor(private formBuilder: FormBuilder, public toastr: ToastrManager, private userService : UserService, private router : Router) { }
+  constructor(private formBuilder: FormBuilder, public toastr: ToastrManager, private router : Router) { }
 
 
   ngOnInit() { }
@@ -53,20 +52,20 @@ export class LoginComponent implements OnInit {
     else
     {
       return false;
-      this.userService.userAuthentication(this.txtUserName,this.txtPassword).subscribe((data : any) =>{
-        localStorage.setItem('userToken',data.access_token);
-        this.router.navigate(['/dashboard']);
-      },
-      (err : HttpErrorResponse) =>{
-        //this.messageService.add({severity:'error', summary: 'Error Message', detail:'User Name & Password is Incorrect'});
+      // this.userService.userAuthentication(this.txtUserName,this.txtPassword).subscribe((data : any) =>{
+      //   localStorage.setItem('userToken',data.access_token);
+      //   this.router.navigate(['/dashboard']);
+      // },
+      // (err : HttpErrorResponse) =>{
+      //   //this.messageService.add({severity:'error', summary: 'Error Message', detail:'User Name & Password is Incorrect'});
 
-        localStorage.setItem('userName',this.txtUserName);
-        this.router.navigate(['/dashboard']);
-      }
+      //   localStorage.setItem('userName',this.txtUserName);
+      //   this.router.navigate(['/dashboard']);
+      // }
       //(err : HttpErrorResponse) =>{
         //this.isLoginError = true;
       //}
-      )
+      // )
     }
   }
 

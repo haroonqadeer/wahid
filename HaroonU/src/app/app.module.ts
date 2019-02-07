@@ -15,9 +15,6 @@ import { UserrolesComponent } from './components/userroles/userroles.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { UserService } from './shared/user.service';
-import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { ToastrModule } from 'ng6-toastr-notifications';
 
@@ -47,12 +44,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     ToastrModule.forRoot()
   ],
 
-  providers: [UserService, AuthGuard,
-    {
-      provide : HTTP_INTERCEPTORS,
-      useClass : AuthInterceptor,
-      multi : true
-    }],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [ErpBottomSheetComponent], 
 })

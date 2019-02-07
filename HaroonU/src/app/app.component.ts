@@ -4,8 +4,6 @@ import {MatBottomSheet} from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { Router } from '@angular/router';
 
-import { UserService } from './shared/user.service';
-
 
 @Component({
   selector: 'app-root',
@@ -14,24 +12,24 @@ import { UserService } from './shared/user.service';
 })
 export class AppComponent {
   
-  userName = '';
+  // userName = '';
 
 
-  hideDiv : boolean = false;
+  // hideDiv : boolean = false;
   
-  constructor(private router : Router, private bottomSheet: MatBottomSheet, private userService : UserService){
+  constructor(private router : Router, private bottomSheet: MatBottomSheet){
 
   }
 
   showDiv() {
 
-    if(localStorage.getItem('userToken')!=null){
-      this.hideDiv = true;
-      this.userName = localStorage.getItem('userName');
-    }
-    else{
-      this.hideDiv = false;
-    }
+    // if(localStorage.getItem('userToken')!=null){
+    //   this.hideDiv = true;
+    //   this.userName = localStorage.getItem('userName');
+    // }
+    // else{
+    //   this.hideDiv = false;
+    // }
   }
 
   title = 'HaroonU';
@@ -43,10 +41,10 @@ export class AppComponent {
     this.bottomSheet.open(ErpBottomSheetComponent);
   }
 
-  Logout(){
-    localStorage.removeItem('userToken');
-    this.router.navigate(['']);
-    this.showDiv();
+  // Logout(){
+  //   localStorage.removeItem('userToken');
+  //   this.router.navigate(['']);
+  //   this.showDiv();
 
-  }
+  // }
 }

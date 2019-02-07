@@ -4,7 +4,6 @@ import { DashboardComponent } from './components/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
-import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,18 +15,15 @@ const routes: Routes = [
   },  
   {
     path:'dashboard',  
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
+    component: DashboardComponent
   },
   {
     path: 'userroles',
-    component: UserrolesComponent,
-    canActivate: [AuthGuard]
+    component: UserrolesComponent
   },
   {
     path:'userprofile',  
-    component: UserprofileComponent,
-    canActivate: [AuthGuard]
+    component: UserprofileComponent
   }
 ];
 
