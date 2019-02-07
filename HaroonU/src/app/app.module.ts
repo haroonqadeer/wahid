@@ -19,6 +19,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { UserformComponent } from './components/userform/userform.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     LoginComponent,
     UserrolesComponent,
     UserprofileComponent,
-    ErpBottomSheetComponent
+    ErpBottomSheetComponent,
+    UserformComponent
   ],
   imports: [
     BrowserModule,

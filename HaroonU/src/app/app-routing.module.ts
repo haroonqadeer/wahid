@@ -6,6 +6,8 @@ import { UserrolesComponent } from './components/userroles/userroles.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { AuthGuard } from './auth/auth.guard';
 
+import { UserformComponent } from './components/userform/userform.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -27,6 +29,11 @@ const routes: Routes = [
   {
     path:'userprofile',  
     component: UserprofileComponent
+    //canActivate: [AuthGuard]
+  },
+  {
+    path:'userform',  
+    component: UserformComponent
     //canActivate: [AuthGuard]
   }
 ];
