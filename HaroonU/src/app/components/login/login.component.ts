@@ -15,18 +15,12 @@ var $: any;
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  submitted = false;
-
   txtUserName = '';
   txtPassword = '';
 
   constructor(private formBuilder: FormBuilder, public toastr: ToastrManager, private router : Router) { }
 
   ngOnInit() { }
-  
-  // convenience getter for easy access to form fields
-  get u() { return this.loginForm.controls; }
   
   onSubmit(){
     
