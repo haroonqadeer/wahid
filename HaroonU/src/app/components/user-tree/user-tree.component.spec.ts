@@ -8,9 +8,9 @@ describe('UserTreeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserTreeComponent ]
+      declarations: [UserTreeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
