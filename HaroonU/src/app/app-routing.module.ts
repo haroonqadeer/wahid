@@ -6,29 +6,50 @@ import { UserrolesComponent } from './components/userroles/userroles.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { CreatepasswordComponent } from './createpassword/createpassword.component';
 
+import { UserformComponent } from './components/userform/userform.component';
+import { UserTreeComponent } from './components/user-tree/user-tree.component';
+
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent
-  },{
+  }, {
     path: 'login',
     component: LoginComponent
-  },  
+  },
   {
-    path:'dashboard',  
+
+    path: 'dashboard',
+    component: DashboardComponent
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard',
     component: DashboardComponent
   },
   {
     path: 'userroles',
     component: UserrolesComponent
+    //canActivate: [AuthGuard]
   },
   {
-    path:'userprofile',  
+    path: 'userprofile',
     component: UserprofileComponent
   },
   {
-    path:'createpassword',  
+    path: 'createpassword',
     component: CreatepasswordComponent
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: 'userform',
+    component: UserformComponent
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: 'usertree',
+    component: UserTreeComponent
+    //canActivate: [AuthGuard]
   }
 ];
 
