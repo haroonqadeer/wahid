@@ -1,5 +1,6 @@
 import { MaterialModule } from './shared/material.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartModule } from 'angular-highcharts';
@@ -35,6 +36,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule,
     ChartModule,
