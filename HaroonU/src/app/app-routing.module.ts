@@ -4,6 +4,7 @@ import { DashboardComponent } from './components/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserrolesComponent } from './components/userroles/userroles.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { CreatepasswordComponent } from './createpassword/createpassword.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path:'userprofile',  
     component: UserprofileComponent
+  },
+  {
+    path:'createpassword',  
+    component: CreatepasswordComponent
   }
 ];
 

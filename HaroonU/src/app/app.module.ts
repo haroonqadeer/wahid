@@ -15,9 +15,9 @@ import { UserrolesComponent } from './components/userroles/userroles.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-
 import { ToastrModule } from 'ng6-toastr-notifications';
-
+import { CreatepasswordComponent } from './createpassword/createpassword.component';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     LoginComponent,
     UserrolesComponent,
     UserprofileComponent,
-    ErpBottomSheetComponent 
+    ErpBottomSheetComponent,
+    CreatepasswordComponent 
   ],
   imports: [
     BrowserModule,
@@ -41,6 +42,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     FormsModule,
     PNPrimeModule,
     HttpClientModule,
+    MatPasswordStrengthModule,
     ToastrModule.forRoot()
   ],
 
