@@ -15,7 +15,8 @@
   
           <!-- container -->
           <div class="container">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col s12 white">        
+            <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col s12 white">         -->
+            <!-- <form class="col s12 white">         -->
             <!-- line breaks -->
             <div class="row">
               <br>
@@ -25,11 +26,8 @@
             <div class="row">
               <div class="col-md-12 form-group">
                 <mat-form-field class="fullwidth">
-                  <input matInput placeholder="User Name" #UserName [(ngModel)]="txtUserName" name="txtUserName" formControlName="UserName" class="form-control" [ngClass]="{ 'is-invalid': submitted && u.UserName.errors }" >
+                  <input matInput placeholder="User Name" [(ngModel)]="txtUserName"  name="txtUserName" required>
                 </mat-form-field>
-                <div *ngIf="submitted && u.UserName.errors">
-                  <div *ngIf="u.UserName.errors.required" style="color:red">User Name is required</div>
-                </div>
               </div>
             </div><!-- end row - user name -->
 
@@ -37,22 +35,19 @@
             <div class="row">
               <div class="col-md-12">
                 <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Password" (ngModelChange)="validatePassword($event)" type="password" #Password [(ngModel)]="txtPassword" name="txtPassword" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && u.Password.errors }" >
+                  <input matInput placeholder="Password" (ngModelChange)="validatePassword($event)" type="password" [(ngModel)]="txtPassword"  name="txtPassword" required>
                 </mat-form-field>    
                 <span id="msg"></span>
-                <div *ngIf="submitted && u.Password.errors">
-                  <div *ngIf="u.Password.errors.required" style="color:red">Password is required</div>
-                </div>
               </div>
             </div><!-- end row - password -->
             
             <!-- button - login -->
             <div class="row">
               <div class="col-md-12 text-right">
-                <button mat-raised-button color="warn">Go!</button>
+                <button mat-raised-button color="warn" (click)="onSubmit()">Go!</button>
               </div>
             </div><!-- end button - login -->
-          </form>
+          <!-- </form> -->
           </div><!-- end container -->
   
           <!-- row - note -->

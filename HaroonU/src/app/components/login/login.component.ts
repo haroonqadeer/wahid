@@ -24,26 +24,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public toastr: ToastrManager, private userService : UserService, private router : Router) { }
 
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      UserName: ['', Validators.required],
-      Password: ['', Validators.required]
-    });
-  }
+  ngOnInit() { }
   
   // convenience getter for easy access to form fields
   get u() { return this.loginForm.controls; }
   
   onSubmit(){
-   
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-        return;
-    }
-
     
     // this.messageService.add({severity:'error', summary: 'Error Message', detail:'Incorrect Data'});
     // return false;
