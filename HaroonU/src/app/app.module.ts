@@ -20,6 +20,7 @@ import { CreatepasswordComponent } from './createpassword/createpassword.compone
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { UserformComponent } from './components/userform/userform.component';
 import { UserTreeComponent } from './components/user-tree/user-tree.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { UserTreeComponent } from './components/user-tree/user-tree.component';
     PNPrimeModule,
     HttpClientModule,
     MatPasswordStrengthModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    RecaptchaModule.forRoot()
   ],
 
   providers: [],
