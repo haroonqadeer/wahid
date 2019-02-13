@@ -1,78 +1,77 @@
 import { Component } from '@angular/core';
-import {MenuItem} from 'primeng/api';
-import {MatBottomSheet} from '@angular/material';
+import { MenuItem } from 'primeng/api';
+import { MatBottomSheet } from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { Router } from '@angular/router';
 import { UserIdleService } from 'angular-user-idle';
 
 
 @Component({
-   selector: 'app-root',
-   templateUrl: './app.component.html',
-   styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-   constructor(private router : Router, private bottomSheet: MatBottomSheet, private userIdle: UserIdleService){
+    constructor(private router: Router, private bottomSheet: MatBottomSheet, private userIdle: UserIdleService) { }
 
-   }
+    hideDiv: boolean = false;
+    public userName;
 
-   public hideDiv = false;
-   public userName;
+    title = 'HaroonU';
+    items: MenuItem[];
 
-   ngOnInit() {
-      
-      // Start watching when user idle is starting.
-      this.userIdle.onTimerStart().subscribe(
-         count => this.Logout()
-      );
-         
-   }
+    ngOnInit() {
 
-   //user idle functions
-   stop() {
-      this.userIdle.stopTimer();
-   }
-   
-   stopWatching() {
-      this.userIdle.stopWatching();
-   }
+        // Start watching when user idle is starting.
+        this.userIdle.onTimerStart().subscribe(
+            count => this.Logout()
+        );
 
-   startWatching() {
-      this.userIdle.startWatching();
-   }
+        this.showDiv();
 
-   restart() {
-      this.userIdle.resetTimer();
-   }
+    }
 
-   //method for show and hide manu bar with login and logout user
-   showDiv() {
+    //user idle functions
+    stop() {
+        this.userIdle.stopTimer();
+    }
 
-      if(localStorage.getItem('token')!=null){
-         this.hideDiv = true;
-         this.userName = localStorage.getItem('userName');
-      }
-      else{
-         this.hideDiv = false;
-      }
-   }
+    stopWatching() {
+        this.userIdle.stopWatching();
+    }
 
-   title = 'HaroonU';
+    startWatching() {
+        this.userIdle.startWatching();
+    }
 
-   items: MenuItem[];
+    restart() {
+        this.userIdle.resetTimer();
+    }
 
-   //show bottom sheet
-      showBottom(){
-      this.bottomSheet.open(ErpBottomSheetComponent);
-   }
+    //method for show and hide manu bar with login and logout user
+    showDiv() {
 
-   //mehtod for logout user
-   Logout(){
-      this.stopWatching();
-      localStorage.removeItem('token');
-      localStorage.removeItem('userName');
-      this.router.navigate(['']);
-      this.showDiv();
-   }
+        if (localStorage.getItem('token') != null) {
+            this.hideDiv = true;
+            this.userName = localStorage.getItem('userName');
+        }
+        else {
+            this.hideDiv = false;
+        }
+    }
+
+    //show bottom sheet
+    showBottom() {
+        this.bottomSheet.open(ErpBottomSheetComponent);
+    }
+
+    //mehtod for logout user
+    Logout() {
+        this.stopWatching();
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        this.router.navigate(['']);
+        this.showDiv();
+    }
 }
