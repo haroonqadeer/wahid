@@ -47,10 +47,10 @@ export class UserprofileComponent implements OnInit {
   disabledPIN = '';
   txtcnfrmPin = '';
   onSearchChange = '';
+  showLink = false;
 
   //page ngModels
   UserId = 0;
-  cmbPartyType: '';
   cmbEmployee: '';
   txtUsername: '';
   txtPassword = "";
@@ -72,45 +72,91 @@ export class UserprofileComponent implements OnInit {
   txtdPin = '';
   employeeId = 0;
   userName = '';
-  public userDetail: Array<{ userId: number, UserName: string, Email: string, Role: string, udate: string, loginDate: string, FirstName: string, LastName: string, vPassword: string, Contact: string }> = [];
+  rdbType = '';
 
-  //use in combobox
+  //user table array
+  public userDetail: Array<{
+    userId: number,
+    UserName: string,
+    Email: string,
+    Role: string,
+    udate: string,
+    loginDate: string,
+    FirstName: string,
+    LastName: string,
+    vPassword: string,
+    Contact: string
+  }> = [];
+
+  //Party Combobox object
   parties: Party[] = [
-    { pValue: '1', pName: 'Employee' },
-    { pValue: '2', pName: 'Visitor' }
+    {
+      pValue: '1',
+      pName: 'Employee'
+    },
+    {
+      pValue: '2',
+      pName: 'Visitor'
+    }
   ]
-  //use in combobox
+
+  //Role Combobox object
   roles: Role[] = [
-    { rId: '1', rName: 'Super Admin' },
-    { rId: '2', rName: 'Admin' },
-    { rId: '3', rName: 'Visitor' }
+    {
+      rId: '1',
+      rName: 'Super Admin'
+    },
+    {
+      rId: '2',
+      rName: 'Admin'
+    },
+    {
+      rId: '3',
+      rName: 'Visitor'
+    }
   ]
-  //use in combobox
+
+  //Employee Combobox object
   employees: Employee[] = [
-    { eCNIC: '6110113445676', eName: 'Adnan', eDept: 'IT', eParty: 'Employee' },
-    { eCNIC: '6110112455675', eName: 'Ahmed', eDept: 'Accounts', eParty: 'Visitor' },
-    { eCNIC: '6110114356574', eName: 'Ali', eDept: 'Sales', eParty: 'Employee' },
-    { eCNIC: '6110116367563', eName: 'Amir', eDept: 'IT', eParty: 'Visitor' },
-    { eCNIC: '6110167345672', eName: 'Haroon', eDept: 'IT', eParty: 'Employee' }
+    {
+      eCNIC: '6110113445676',
+      eName: 'Adnan',
+      eDept: 'IT',
+      eParty: 'Employee'
+    },
+    {
+      eCNIC: '6110112455675',
+      eName: 'Ahmed',
+      eDept: 'Accounts',
+      eParty: 'Visitor'
+    },
+    {
+      eCNIC: '6110114356574',
+      eName: 'Ali',
+      eDept: 'Sales',
+      eParty: 'Employee'
+    },
+    {
+      eCNIC: '6110116367563',
+      eName: 'Amir',
+      eDept: 'IT',
+      eParty: 'Visitor'
+    },
+    {
+      eCNIC: '6110167345672',
+      eName: 'Haroon',
+      eDept: 'IT',
+      eParty: 'Employee'
+    }
   ];
 
   constructor() { }
 
   ngOnInit() {
     this.init();
-    //this.hidePara();
-    // $('p').click(function(){
-    //   $(this).hide();
-    //   alert("Paragraph removed.");
-    // });
-
-    // $('div').click(function () {
-    //   $(".hideDiv").hide();
-    //   //alert("Paragraph removed.");
-    // });
   }
 
-  //use this data in chart
+  //get user management chart data
   init() {
 
     let chart = new Chart({
@@ -144,9 +190,10 @@ export class UserprofileComponent implements OnInit {
 
   }
 
-  //onchange Employee
+  //on Employee change model
   onEmployeeChange(item) {
-    this.eName = this.employees.find(x => x.eCNIC == item).eName.replace(/['"]+/g, '');
+    this.eName = this.employees.find(x => x.eName == item).eName.replace(/['"]+/g, '');
+    this.showLink = true;
   }
 
   saveEmp() {
@@ -165,7 +212,18 @@ export class UserprofileComponent implements OnInit {
   saveVisitor() {
     //var date =new Date();
     if (this.UserId != 0) {
-      this.userDetail.push({ userId: this.UserId, UserName: this.txtUsername, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact });
+      this.userDetail.push({
+        userId: this.UserId,
+        UserName: this.txtUsername,
+        Email: this.txtEmail,
+        Role: this.cmbvRole,
+        udate: this.txtRemarks,
+        loginDate: this.cmbParty,
+        FirstName: this.txtfrstName,
+        LastName: this.txtlstName,
+        vPassword: this.txtvPassword,
+        Contact: this.txtContact
+      });
 
 
       this.edited = true;
@@ -178,7 +236,18 @@ export class UserprofileComponent implements OnInit {
 
     } else {
       this.UserId = 1 + this.userDetail.length;
-      this.userDetail.push({ userId: this.UserId, UserName: this.txtUsername, Email: this.txtEmail, Role: this.cmbvRole, udate: this.txtRemarks, loginDate: this.cmbParty, FirstName: this.txtfrstName, LastName: this.txtlstName, vPassword: this.txtvPassword, Contact: this.txtContact });
+      this.userDetail.push({
+        userId: this.UserId,
+        UserName: this.txtUsername,
+        Email: this.txtEmail,
+        Role: this.cmbvRole,
+        udate: this.txtRemarks,
+        loginDate: this.cmbParty,
+        FirstName: this.txtfrstName,
+        LastName: this.txtlstName,
+        vPassword: this.txtvPassword,
+        Contact: this.txtContact
+      });
 
       this.edited = true;
 
@@ -190,8 +259,10 @@ export class UserprofileComponent implements OnInit {
     }
     this.clear();
   }
+
+  //if you want to clear input
   clear() {
-    //if you want to clear input
+
     this.UserId = 0;
     this.txtUsername = '';
     this.txtEmail = '';
@@ -205,6 +276,7 @@ export class UserprofileComponent implements OnInit {
     this.txtContact = '';
 
   }
+
 
   del(item) {
 
@@ -251,11 +323,11 @@ export class UserprofileComponent implements OnInit {
     }.bind(this), 2000);
   }
 
-  animateIt(anim, obj) {
-    $(obj).removeClass(anim + ' animated').addClass(anim + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-      $(obj).removeClass(anim + ' animated');
-    });
-  }
+  // animateIt(anim, obj) {
+  //   $(obj).removeClass(anim + ' animated').addClass(anim + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+  //     $(obj).removeClass(anim + ' animated');
+  //   });
+  // }
 
   // hidePara() {
   //   $(".hideDiv").click(function () {

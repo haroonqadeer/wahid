@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import {
   MatBottomSheetModule,
   MatTabsModule,
@@ -16,6 +17,9 @@ import {
   MatExpansionModule,
   MatFormFieldModule
 } from '@angular/material';
+=======
+import { MatRadioModule, MatBottomSheetModule, MatTabsModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatCardModule, MatMenuModule, MatExpansionModule } from '@angular/material';
+>>>>>>> 2157057d7e66680daca3a64cd5fe7ea1cf97602e
 
 @NgModule({
   imports: [
@@ -33,7 +37,11 @@ import {
     MatSidenavModule,
     MatCardModule,
     MatBottomSheetModule,
+<<<<<<< HEAD
     MatFormFieldModule
+=======
+    MatRadioModule
+>>>>>>> 2157057d7e66680daca3a64cd5fe7ea1cf97602e
   ],
   exports: [
     MatInputModule,
@@ -49,7 +57,11 @@ import {
     MatSidenavModule,
     MatCardModule,
     MatBottomSheetModule,
+<<<<<<< HEAD
     MatFormFieldModule
+=======
+    MatRadioModule
+>>>>>>> 2157057d7e66680daca3a64cd5fe7ea1cf97602e
   ]
 })
 export class MaterialModule { }
