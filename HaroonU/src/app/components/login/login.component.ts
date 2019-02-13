@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
     onSubmit() {
 
         // this.toastr.successToastr('This is success toast.', 'Success!', {toastTimeout: (2000)});
-        // this.toastr.errorToastr('This is error toast.', 'Oops!', {toastTimeout: (2500)});
         // this.toastr.warningToastr('This is warning toast.', 'Alert!', {toastTimeout: (3000)});
         // this.toastr.infoToastr('This is info toast.', 'Info', {toastTimeout: (3500)});
 
