@@ -9,6 +9,8 @@ import { CreatepasswordComponent } from './createpassword/createpassword.compone
 import { UserformComponent } from './components/userform/userform.component';
 import { UserTreeComponent } from './components/user-tree/user-tree.component';
 
+import { AuthGuard } from './auth/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -18,38 +20,24 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-
     path: 'dashboard',
-    component: DashboardComponent
-    //canActivate: [AuthGuard]
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'userroles',
-    component: UserrolesComponent
-    //canActivate: [AuthGuard]
+    component: UserrolesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'userprofile',
-    component: UserprofileComponent
-  },
-  {
-    path: 'createpassword',
-    component: CreatepasswordComponent
-    //canActivate: [AuthGuard]
-  },
-  {
-    path: 'userform',
-    component: UserformComponent
-    //canActivate: [AuthGuard]
+    component: UserprofileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'usertree',
-    component: UserTreeComponent
-    //canActivate: [AuthGuard]
+    component: UserTreeComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
