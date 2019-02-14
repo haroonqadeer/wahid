@@ -1,6 +1,7 @@
 import { Component, OnInit, Directive } from '@angular/core';
 import { FormGroup, FormArray, FormControl, FormBuilder, ReactiveFormsModule, FormArrayName, FormControlName, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 declare var $: any;
 
@@ -57,7 +58,7 @@ export class UserTreeComponent implements OnInit {
   // });
   //products: FormArrayName;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, public toastr: ToastrManager) { }
 
   public menuBox = false;
   public subMenuBox = false;
@@ -129,11 +130,12 @@ export class UserTreeComponent implements OnInit {
 
   deleteProducts(i) {
     this.productsValue.removeAt(i);
-    this.edited1 = true;
-    setTimeout(function () {
-      this.edited1 = false;
-      console.log(this.edited1);
-    }.bind(this), 2000);
+    this.toastr.successToastr('Removed Successfully', 'Success', { toastTimeout: (2500) }); return false;
+    // this.edited1 = true;
+    // setTimeout(function () {
+    //   this.edited1 = false;
+    //   console.log(this.edited1);
+    // }.bind(this), 2000);
   }
   //--------------------------------------2nd Approach Ends------------------------------------//
 
@@ -183,46 +185,55 @@ export class UserTreeComponent implements OnInit {
 
   saveModuleData() {
     if (this.moduleValue != null) {
-      this.edited = true;
-      setTimeout(function () {
-        this.edited = false;
-        console.log(this.edited);
-      }.bind(this), 2000);
-      // alert("Data Inserted Successfully.")
       $('#addModule').modal('hide');
+      this.toastr.successToastr('Module Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+
+      // this.edited = true;
+      // setTimeout(function () {
+      //   this.edited = false;
+      //   console.log(this.edited);
+      // }.bind(this), 2000);
+      // // alert("Data Inserted Successfully.")
+
     }
     else {
-      alert("Insert Data...!!!")
+      this.toastr.errorToastr('Please Enter Module Name', 'Error', { toastTimeout: (2500) }); return false;
+
+      //alert("Insert Data...!!!")
     }
   }
 
   saveMenuData() {
     if (this.menuValue != null) {
-      this.edited = true;
-      setTimeout(function () {
-        this.edited = false;
-        console.log(this.edited);
-      }.bind(this), 2000);
-      // alert("Data Inserted Successfully.")
       $('#addMenu').modal('hide');
+      this.toastr.successToastr('Menu Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+      // this.edited = true;
+      // setTimeout(function () {
+      //   this.edited = false;
+      //   console.log(this.edited);
+      // }.bind(this), 2000);
+      // // alert("Data Inserted Successfully.")
     }
     else {
-      alert("Insert Data...!!!")
+      this.toastr.errorToastr('Please Enter Menu Name', 'Error', { toastTimeout: (2500) }); return false;
     }
   }
 
   saveSubMenuData() {
     if (this.subMenuValue != null) {
-      this.edited = true;
-      setTimeout(function () {
-        this.edited = false;
-        console.log(this.edited);
-      }.bind(this), 2000);
-      // alert("Data Inserted Successfully.")
       $('#addSubMenu').modal('hide');
+      this.toastr.successToastr('Sub-Menu Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+
+      // this.edited = true;
+      // setTimeout(function () {
+      //   this.edited = false;
+      //   console.log(this.edited);
+      // }.bind(this), 2000);
+      // // alert("Data Inserted Successfully.")
+
     }
     else {
-      alert("Insert Data...!!!")
+      this.toastr.errorToastr('Please Enter Sub-Menu Name', 'Error', { toastTimeout: (2500) }); return false;
     }
   }
 
