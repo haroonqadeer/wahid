@@ -3,55 +3,78 @@ import { MenuItem } from 'primeng/api';
 import { MatBottomSheet } from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { Router } from '@angular/router';
+import { UserIdleService } from 'angular-user-idle';
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-  // userName = '';
+    constructor(private router: Router, private bottomSheet: MatBottomSheet, private userIdle: UserIdleService) { }
 
-  hideDiv: boolean = false;
+    public hideDiv = false;
+    public userName;
 
-  // hideDiv : boolean = false;
+    title = 'HaroonU';
+    items: MenuItem[];
 
-  constructor(private router: Router, private bottomSheet: MatBottomSheet) {
+    ngOnInit() {
 
-  }
+        this.startWatching();
 
-  showDiv() {
 
-    // if(localStorage.getItem('userToken')!=null){
-    //   this.hideDiv = true;
-    //   this.userName = localStorage.getItem('userName');
-    // }
-    // else{
-    //   this.hideDiv = false;
-    // }
-  }
+        // Start watching when user idle is starting.
+        this.userIdle.onTimerStart().subscribe(
+            count => this.Logout()
+        );
 
-  title = 'HaroonU';
+        this.showDiv();
 
-  items: MenuItem[];
+    }
 
-  //show bottom sheet
-  showBottom() {
-    this.bottomSheet.open(ErpBottomSheetComponent);
-  }
+    //user idle functions
+    stop() {
+        this.userIdle.stopTimer();
+    }
 
-  Logout() {
-    localStorage.removeItem('userToken');
-    this.router.navigate(['']);
-    this.showDiv();
-  }
+    stopWatching() {
+        this.userIdle.stopWatching();
+    }
 
-  // Logout(){
-  //   localStorage.removeItem('userToken');
-  //   this.router.navigate(['']);
-  //   this.showDiv();
+    startWatching() {
+        this.userIdle.startWatching();
+    }
 
-  // }
+    restart() {
+        this.userIdle.resetTimer();
+    }
+
+    //method for show and hide manu bar with login and logout user
+    showDiv() {
+
+        if (localStorage.getItem('token') != null) {
+            this.hideDiv = true;
+            this.userName = localStorage.getItem('userName');
+        }
+        else {
+            this.hideDiv = false;
+        }
+    }
+
+    //show bottom sheet
+    showBottom() {
+        this.bottomSheet.open(ErpBottomSheetComponent);
+    }
+
+    //mehtod for logout user
+    Logout() {
+        this.stopWatching();
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        this.router.navigate(['']);
+        this.showDiv();
+    }
 }

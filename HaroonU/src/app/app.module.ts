@@ -1,13 +1,13 @@
 import { MaterialModule } from './shared/material.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartModule } from 'angular-highcharts';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { DashboardComponent } from './components/dashboard.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { LoginComponent } from './components/login/login.component';
@@ -16,6 +16,8 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ToastrModule } from 'ng6-toastr-notifications';
+
+import { UserIdleModule } from 'angular-user-idle';
 import { CreatepasswordComponent } from './createpassword/createpassword.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { UserformComponent } from './components/userform/userform.component';
@@ -47,9 +49,14 @@ import { RecaptchaModule } from 'ng-recaptcha';
     FormsModule,
     PNPrimeModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     MatPasswordStrengthModule,
     ToastrModule.forRoot(),
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+    // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
+    // Default values: `idle` is 60 (1 minutes), `timeout` is 30 (0.5 minutes) 
+    // and `ping` is 15 0.25 minutes).
+    UserIdleModule.forRoot({ idle: 300, timeout: 150, ping: 75 })
   ],
 
   providers: [],

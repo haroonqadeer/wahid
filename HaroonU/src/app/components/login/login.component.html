@@ -11,13 +11,12 @@
           
           <!-- heading row -->
           <h1 class="h1Login text-center">User Login...</h1>
+          <h1 *ngFor="let book of books" class="h1Login text-center">{{book.author}}</h1>
+          
           <!-- end heading row -->
   
           <!-- container -->
           <div class="container">
-            <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col s12 white">         -->
-            <!-- <form class="col s12 white">         -->
-            <!-- line breaks -->
             <div class="row">
               <br>
             </div>
@@ -35,9 +34,8 @@
             <div class="row">
               <div class="col-md-12">
                 <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Password" (ngModelChange)="validatePassword($event)" type="password" [(ngModel)]="txtPassword"  name="txtPassword" required>
-                </mat-form-field>    
-                <span id="msg"></span>
+                  <input matInput placeholder="Password" type="password" [(ngModel)]="txtPassword"  name="txtPassword" required>
+                </mat-form-field>
               </div>
             </div><!-- end row - password -->
             
@@ -63,7 +61,6 @@
       </div><!-- mid column -->
     </div><!-- end - login frame in middle -->
   </div><!-- end - container -->
-  
 </div><!-- end login boday -->
 
 
