@@ -56,7 +56,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
     // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
     // Default values: `idle` is 60 (1 minutes), `timeout` is 30 (0.5 minutes) 
     // and `ping` is 15 0.25 minutes).
-    UserIdleModule.forRoot({ idle: 60, timeout: 30, ping: 15 })
+    UserIdleModule.forRoot({ idle: 300, timeout: 150, ping: 75 })
   ],
 
   providers: [],
