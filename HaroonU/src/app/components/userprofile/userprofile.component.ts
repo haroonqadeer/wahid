@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 declare var $: any;
+
 
 //use in combobox
 export interface Employee {
@@ -20,6 +22,15 @@ export interface Role {
   rId: string;
   rName: string;
 }
+//Action Combo Box Value
+export interface Action {
+  actionId: string;
+  actionName: string;
+}
+export interface Block {
+  blockId: string;
+  blockName: string;
+}
 
 @Component({
   selector: 'app-userprofile',
@@ -28,14 +39,29 @@ export interface Role {
 })
 export class UserprofileComponent implements OnInit {
 
+  // sorting() {
+  //   $(document).read(function () {
+  //     $('#myTable').DataTable();
+  //   });
+  // }
+
+  // $(function() {
+  //   $('#example').DataTable();
+  // } );
+
   bounce: any;
   zoom: any;
 
   chart: Chart;
   eName = '';
 
-  public edited = false;
-  public edited1 = false;
+  // public edited = false;
+  // public edited1 = false;
+
+  //Action Modal Window NgIF variables
+  public actionPassRow = false;
+  public actionPINCodeRow = false;
+  public actionBlockRow = false;
 
   /// declaration
   query = '';
@@ -51,8 +77,8 @@ export class UserprofileComponent implements OnInit {
 
   //page ngModels
   UserId = 0;
-  cmbEmployee: '';
-  txtUsername: '';
+  cmbEmployee = '';
+  txtUsername = '';
   txtPassword = "";
   txtCnfrmPassword = "";
   cmbRole = "";
@@ -73,6 +99,53 @@ export class UserprofileComponent implements OnInit {
   employeeId = 0;
   userName = '';
   rdbType = '';
+
+  // Action Modal Window
+  actionCmbValue = '';
+  txtActPassword = '';
+  txtActPIN = '';
+  searchAction = '';
+  searchBlock = '';
+  blockCmbValue = '';
+
+  //Action Combobox object
+  actions: Action[] = [
+    {
+      actionId: '1',
+      actionName: 'Delete'
+    },
+    {
+      actionId: '2',
+      actionName: 'Block'
+    },
+    {
+      actionId: '3',
+      actionName: 'Generate PIN'
+    }
+  ]
+  // Block Action Combo Box
+  blocks: Block[] = [
+    {
+      blockId: '1',
+      blockName: '1 Hour'
+    },
+    {
+      blockId: '2',
+      blockName: '1 Day'
+    },
+    {
+      blockId: '3',
+      blockName: '1 Week'
+    },
+    {
+      blockId: '4',
+      blockName: '1 Month'
+    },
+    {
+      blockId: '5',
+      blockName: 'Manual'
+    }
+  ]
 
   //user table array
   public userDetail: Array<{
@@ -150,7 +223,7 @@ export class UserprofileComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(public toastr: ToastrManager) { }
 
   ngOnInit() {
     this.init();
@@ -190,74 +263,153 @@ export class UserprofileComponent implements OnInit {
 
   }
 
+  // On Action Change Modal Window Combo Box
+  onActionChange() {
+    // When user selects "Delete" in the Combo Box
+    if (this.actionCmbValue == '1') {
+      this.actionBlockRow = false;
+      this.actionPassRow = true;
+      this.actionPINCodeRow = true;
+      //Clear Text Boxes
+      this.txtActPassword = '';
+      this.txtActPIN = '';
+    }
+    // When user selects "Block" in the Combo Box
+    else if (this.actionCmbValue == '2') {
+      this.actionBlockRow = true;
+      this.actionPassRow = true;
+      this.actionPINCodeRow = true;
+      //Clear Text Boxes
+      this.blockCmbValue = '';
+      this.txtActPassword = '';
+      this.txtActPIN = '';
+    }
+    // When user selects "Generate PIN" in the Combo Box
+    else if (this.actionCmbValue == '3') {
+      this.actionBlockRow = false;
+      this.actionPassRow = true;
+      this.actionPINCodeRow = false;
+      //Clear Text Boxes
+      this.blockCmbValue = '';
+      this.txtActPassword = '';
+      this.txtActPIN = '';
+    }
+    else {
+      return false;
+    }
+  }
+
+  //On Block Change Modal Window
+  // onBlockChange(event) {
+  //   alert(event.);
+
+  // onBlockChange() {
+  //   // When user selects "1 Hour" in the Combo Box
+  //   if (this.blockCmbValue == '1') {
+  //     // this.actionBlockRow = false;
+  //     this.actionPassRow = true;
+  //     this.actionPINCodeRow = true;
+  //   }
+  //   // When user selects "1 Day" in the Combo Box
+  //   else if (this.blockCmbValue == '2') {
+  //     // this.actionBlockRow = true;
+  //     this.actionPassRow = true;
+  //     this.actionPINCodeRow = true;
+  //   }
+  //   // When user selects "1 Week" in the Combo Box
+  //   else if (this.blockCmbValue == '3') {
+  //     // this.actionBlockRow = false;
+  //     this.actionPassRow = true;
+  //     this.actionPINCodeRow = true;
+  //   }
+  //   // When user selects "1 Month" in the Combo Box
+  //   else if (this.blockCmbValue == '4') {
+  //     // this.actionBlockRow = false;
+  //     this.actionPassRow = true;
+  //     this.actionPINCodeRow = true;
+  //   }
+  //   // When user selects "Manual" in the Combo Box
+  //   else if (this.blockCmbValue == '5') {
+  //     // this.actionBlockRow = false;
+  //     this.actionPassRow = true;
+  //     this.actionPINCodeRow = true;
+  //   }
+  //   else {
+  //     return false;
+  //   }
+  // }
+
+  saveAction() {
+    if (this.actionCmbValue == '') {
+      this.toastr.errorToastr('Please Select Action Type', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.actionCmbValue != '') {
+      if (this.blockCmbValue == '' && this.actionCmbValue == 'Block') {
+        //this.isLoginError = true;
+        this.toastr.errorToastr('Please Select Block Time', 'Error', { toastTimeout: (2500) });
+        return false;
+      }
+      else if (this.txtActPassword.trim().length == 0) {
+        //this.isLoginError = true;
+        this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
+        return false;
+      }
+      else if (this.txtActPIN.trim().length == 0) {
+        this.toastr.errorToastr('Please Enter PIN Code', 'Error', { toastTimeout: (2500) });
+        return false;
+      }
+      else {
+        $('#actionModal').modal('hide');
+        this.toastr.successToastr('Record Inserted Successfully', 'Success', { toastTimeout: (2500) });
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+    // this.toastr.successToastr('Record Inserted Successfully', 'Success', { toastTimeout: (2500) });
+    // return false;
+  }
+
   //on Employee change model
   onEmployeeChange(item) {
     this.eName = this.employees.find(x => x.eName == item).eName.replace(/['"]+/g, '');
     this.showLink = true;
   }
 
-  saveEmp() {
-    this.edited = true;
-
-    //wait 3 Seconds and hide
-    setTimeout(function () {
-      this.edited = false;
-      console.log(this.edited);
-    }.bind(this), 2000);
+  saveEmployee() {
+    if (this.rdbType == '') {
+      this.toastr.errorToastr('Please Select User Type', 'Error', { toastTimeout: (2500) }); return false;
+    }
+    else if (this.rdbType == 'employee' || this.rdbType == 'visitor') {
+      if (this.cmbEmployee == '') {
+        //this.isLoginError = true;
+        this.toastr.errorToastr('Please Select User', 'Error', { toastTimeout: (2500) }); return false;
+      }
+      else if (this.txtUsername.trim().length == 0) {
+        //this.isLoginError = true;
+        this.toastr.errorToastr('Please Enter User Name', 'Error', { toastTimeout: (2500) }); return false;
+      }
+      else if (this.txtPassword.trim().length == 0) {
+        this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) }); return false;
+      }
+      else if (this.txtPassword != this.txtCnfrmPassword) {
+        this.toastr.errorToastr('Your password and confirmation password do not match.', 'Error', { toastTimeout: (2500) }); return false;
+      }
+      else {
+        $('#userModal').modal('hide');
+        this.toastr.successToastr('Record Inserted Successfully', 'Success', { toastTimeout: (2500) });
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
   }
 
   close() {
 
-  }
-  saveVisitor() {
-    //var date =new Date();
-    if (this.UserId != 0) {
-      this.userDetail.push({
-        userId: this.UserId,
-        UserName: this.txtUsername,
-        Email: this.txtEmail,
-        Role: this.cmbvRole,
-        udate: this.txtRemarks,
-        loginDate: this.cmbParty,
-        FirstName: this.txtfrstName,
-        LastName: this.txtlstName,
-        vPassword: this.txtvPassword,
-        Contact: this.txtContact
-      });
-
-
-      this.edited = true;
-
-      //wait 3 Seconds and hide
-      setTimeout(function () {
-        this.edited = false;
-        console.log(this.edited);
-      }.bind(this), 2000);
-
-    } else {
-      this.UserId = 1 + this.userDetail.length;
-      this.userDetail.push({
-        userId: this.UserId,
-        UserName: this.txtUsername,
-        Email: this.txtEmail,
-        Role: this.cmbvRole,
-        udate: this.txtRemarks,
-        loginDate: this.cmbParty,
-        FirstName: this.txtfrstName,
-        LastName: this.txtlstName,
-        vPassword: this.txtvPassword,
-        Contact: this.txtContact
-      });
-
-      this.edited = true;
-
-      //wait 3 Seconds and hide
-      setTimeout(function () {
-        this.edited = false;
-        console.log(this.edited);
-      }.bind(this), 2000);
-    }
-    this.clear();
   }
 
   //if you want to clear input
@@ -306,34 +458,22 @@ export class UserprofileComponent implements OnInit {
   }
 
   delete() {
-    for (var i = 0; i < this.userDetail.length; i++) {
-      if (this.userDetail[i]["userId"] == this.employeeId) {
-        this.userDetail.splice(i, 1);
-      }
+    if (this.txtdPassword == '') {
+      this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) }); return false;
     }
-    this.clear();
-
-
-    this.edited1 = true;
-
-    //wait 3 Seconds and hide
-    setTimeout(function () {
-      this.edited1 = false;
-      console.log(this.edited);
-    }.bind(this), 2000);
+    else if (this.txtdPassword != '') {
+      for (var i = 0; i < this.userDetail.length; i++) {
+        if (this.userDetail[i]["userId"] == this.employeeId) {
+          this.userDetail.splice(i, 1);
+        }
+      }
+      this.clear();
+      $("#dUserModal").modal('hide');
+      this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+    }
+    else {
+      return false;
+    }
   }
-
-  // animateIt(anim, obj) {
-  //   $(obj).removeClass(anim + ' animated').addClass(anim + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-  //     $(obj).removeClass(anim + ' animated');
-  //   });
-  // }
-
-  // hidePara() {
-  //   $(".hideDiv").click(function () {
-  //     $(".hideDiv").hide();
-  //     //alert("Paragraph removed.");
-  //   });
-  // }
 }
 

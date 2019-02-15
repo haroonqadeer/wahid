@@ -36,7 +36,20 @@
             <div class="modal-body">
                 <br>
                 <div class="hidden" ngDefaultControl></div>
-
+                <div class="row">
+                    <div class="col-md-8">
+                        <mat-form-field class="fullwidth">
+                            <mat-select placeholder="Select Module" [(ngModel)]="cmbModule" (ngModelChange)="onModuleChange()"
+                                required>
+                                <input type="text" class="form-control" [(ngModel)]="searchModule">
+                                <mat-option *ngFor="  let mod of modules | search:'moduleName':searchModule" [value]="mod.moduleName">{{mod.moduleName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <button mat-fab color="primary" data-toggle="modal" data-target="#addModule"><span class="fa fa-plus"></span></button>
+                    </div>
+                </div>
 
                 <!--Select module combo box and Add new moudle-->
                 <div class="row">
