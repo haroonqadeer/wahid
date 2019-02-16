@@ -8,7 +8,7 @@ declare var $: any;
 
 //For Populate Data in the Employee Table
 export interface Employee {
-  uId: string;
+  uId: number;
   uName: string;
   uEmail: string;
   uRole: string;
@@ -53,124 +53,124 @@ export class UserrolesComponent implements OnInit {
 
   employees: Employee[] = [
     {
-      uId: '1',
+      uId: 1,
       uName: 'Aamir76',
       uEmail: 'Aamir',
       uRole: 'IT',
-      uSince: 'Employee',
-      lastLogin: '11'
+      uSince: 'Friday',
+      lastLogin: 'Monday'
     },
     {
-      uId: '2',
+      uId: 2,
       uName: 'Ali456676',
       uEmail: 'Ali',
       uRole: 'Finance',
-      uSince: 'Employee',
-      lastLogin: '13'
+      uSince: 'Monday',
+      lastLogin: 'Friday'
     },
     {
-      uId: '3',
+      uId: 3,
       uName: 'Waqas445776',
       uEmail: 'Waqas',
       uRole: 'HR',
-      uSince: 'Visitor',
-      lastLogin: '12'
+      uSince: 'Tuesday',
+      lastLogin: 'Monday'
     },
     {
-      uId: '4',
+      uId: 4,
       uName: 'Umair45676',
       uEmail: 'Umair',
       uRole: 'SCM',
-      uSince: 'Employee',
-      lastLogin: '15'
+      uSince: 'Wednesday',
+      lastLogin: 'Thrusday'
     },
     {
-      uId: '5',
+      uId: 5,
       uName: 'Touseeq5676',
       uEmail: 'Touseeq',
       uRole: 'IT',
-      uSince: 'Employee',
-      lastLogin: '16'
+      uSince: 'Tuesday',
+      lastLogin: 'Thrusday'
     },
     {
-      uId: '6',
+      uId: 6,
       uName: 'Ijaz45676',
       uEmail: 'Ijaz',
       uRole: 'Admin',
-      uSince: 'Employee',
-      lastLogin: '13'
+      uSince: 'Monday',
+      lastLogin: 'Saturday'
     },
     {
-      uId: '7',
+      uId: 7,
       uName: 'Zain45676',
       uEmail: 'Zain',
       uRole: 'IT',
-      uSince: 'Employee',
-      lastLogin: '18'
+      uSince: 'Sunday',
+      lastLogin: 'Monday'
     },
     {
-      uId: '8',
+      uId: 8,
       uName: 'Shahrukh45676',
       uEmail: 'Shahrukh',
       uRole: 'Admin',
-      uSince: 'Visitor',
-      lastLogin: '12'
+      uSince: 'Saturday',
+      lastLogin: 'Monday'
     },
     {
-      uId: '9',
+      uId: 9,
       uName: 'Osama6176',
       uEmail: 'Osama',
       uRole: 'Operations',
-      uSince: 'Employee',
-      lastLogin: '3'
+      uSince: 'Friday',
+      lastLogin: 'Tuesday'
     },
     {
-      uId: '10',
+      uId: 10,
       uName: 'Bilal9445676',
       uEmail: 'Bilal',
       uRole: 'IT',
-      uSince: 'Employee',
-      lastLogin: '14'
+      uSince: 'Wednesday',
+      lastLogin: 'Monday'
     },
     {
-      uId: '11',
+      uId: 11,
       uName: 'Nabeel45676',
       uEmail: 'Nabeel',
       uRole: 'IT',
-      uSince: 'Employee',
-      lastLogin: '5'
+      uSince: 'Wednesday',
+      lastLogin: 'Wednesday'
     },
     {
-      uId: '12',
+      uId: 12,
       uName: 'Saad9676',
       uEmail: 'Saad',
       uRole: 'Procurement',
       uSince: 'Employee',
-      lastLogin: '12'
+      lastLogin: 'Wednesday'
     },
     {
-      uId: '13',
+      uId: 13,
       uName: 'Zohaib676',
       uEmail: 'Zohaib',
       uRole: 'Management',
       uSince: 'Contract',
-      lastLogin: '14'
+      lastLogin: 'Wednesday'
     },
     {
-      uId: '14',
+      uId: 14,
       uName: 'Zeeshan676',
       uEmail: 'Zeeshan',
       uRole: 'IT',
       uSince: 'Employee',
-      lastLogin: '18'
+      lastLogin: 'Wednesday'
     },
     {
-      uId: '15',
+      uId: 15,
       uName: 'Arslan676',
       uEmail: 'Arslan',
       uRole: 'IT',
       uSince: 'Permanent',
-      lastLogin: '8'
+      lastLogin: 'Wednesday'
     },
   ];
 
@@ -195,7 +195,7 @@ export class UserrolesComponent implements OnInit {
   //   this.order = value;
   // }
 
-  setOrder(value: string) {
+  setOrder(value: any) {
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
