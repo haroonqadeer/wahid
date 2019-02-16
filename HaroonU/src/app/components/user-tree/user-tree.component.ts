@@ -5,236 +5,185 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 
 declare var $: any;
 
-//var fileId = 0; // used by the addFile() function to keep track of IDs
-//var count = 0;
 //use in combobox
 export interface Modules {
-  moduleNo: string;
-  moduleName: string;
+    moduleNo: string;
+    moduleName: string;
 }
-//
+
 //use in combobox
 export interface Menu {
-  menuNo: string;
-  menuName: string;
+    menuNo: string;
+    menuName: string;
 }
-//
+
 //use in combobox
 export interface SubMenu {
-  subMenuNo: string;
-  subMenuName: string;
+    subMenuNo: string;
+    subMenuName: string;
 }
 //
 
 export interface AddRow {
-  selectValue: string;
-  rowRemove: string;
+    selectValue: string;
+    rowRemove: string;
 }
 
 @Component({
-  selector: 'app-user-tree',
-  templateUrl: './user-tree.component.html',
-  styleUrls: ['./user-tree.component.scss']
+    selector: 'app-user-tree',
+    templateUrl: './user-tree.component.html',
+    styleUrls: ['./user-tree.component.scss']
 })
 
 export class UserTreeComponent implements OnInit {
 
-  // menuCombo = new FormControl('');
-  // menuAddButton = new FormControl('');
-  // menuDeleteButton = new FormControl('');
+    public employeeForm: FormGroup;
+    //public menuCombo: FormControl;
 
-  // menuCombo: '';
-  // menuComboButton: '';
+    constructor(private fb: FormBuilder, public toastr: ToastrManager) { }
 
-  public edited = false;
-  public edited1 = false;
+    public mdouleBox = false;
+    public menuBox = false;
+    public subMenuBox = false;
+    public subMenuBoxApend = false;
+    public addSubMenuBtn = false;
 
-  employeeForm: FormGroup;
+    //public delBtn = true;
 
-  // employeeForm = new FormGroup({
-  //   menuCombo: new FormControl(''),
-  //   menuAddButton: new FormControl(''),
-  //   menuDeleteButton: new FormControl('')
-  // });
-  //products: FormArrayName;
+    userModalForm: FormGroup;
+    items: FormArray;
 
-  constructor(private fb: FormBuilder, public toastr: ToastrManager) { }
+    /// declaration
+    searchModule = '';
+    searchMenu = '';
+    searchSubMenu = '';
 
-  public menuBox = false;
-  public subMenuBox = false;
-  public subMenuBoxApend = false;
-  public addSubMenuBtn = false;
+    //page ngModels
+    cmbModule: '';
+    cmbMenu: '';
+    cmbSubMenu: '';
+    rowRemove: '';
 
-  //public delBtn = true;
+    delButton: '';
+    moduleValue: '';
+    menuValue: '';
+    subMenuValue: '';
 
-  userModalForm: FormGroup;
-  items: FormArray;
+    //use in combobox
+    modules: Modules[] = [
+        { moduleNo: '1', moduleName: 'Finance' },
+        { moduleNo: '2', moduleName: 'Human Resource' },
+        { moduleNo: '2', moduleName: 'Procurement' }
+    ]
 
-  /// declaration
-  searchModule = '';
-  searchMenu = '';
-  searchSubMenu = '';
+    //use in combobox
+    menus: Menu[] = [
+        { menuNo: '1', menuName: 'Audit' },
+        { menuNo: '2', menuName: 'Supply Chain Management' }
+    ]
 
-  //page ngModels
-  cmbModule: '';
-  cmbMenu: '';
-  cmbSubMenu: '';
-  rowRemove: '';
+    //use in combobox
+    submenus: SubMenu[] = [
+        { subMenuNo: '1', subMenuName: 'Annual' },
+        { subMenuNo: '2', subMenuName: 'Accessories' }
+    ]
 
-  delButton: '';
-  moduleValue: '';
-  menuValue: '';
-  subMenuValue: '';
+    //--------------------------------------2nd Approach Starts----------------------------------//
 
-  //use in combobox
-  modules: Modules[] = [
-    { moduleNo: '1', moduleName: 'Finance' },
-    { moduleNo: '2', moduleName: 'Human Resource' },
-    { moduleNo: '2', moduleName: 'Procurement' }
-  ]
-
-  //use in combobox
-  menus: Menu[] = [
-    { menuNo: '1', menuName: 'Audit' },
-    { menuNo: '2', menuName: 'Supply Chain Management' }
-  ]
-
-  //use in combobox
-  submenus: SubMenu[] = [
-    { subMenuNo: '1', subMenuName: 'Annual' },
-    { subMenuNo: '2', subMenuName: 'Accessories' }
-  ]
-
-  //--------------------------------------2nd Approach Starts----------------------------------//
-
-  ngOnInit() {
-    this.employeeForm = this.fb.group({
-      products: this.fb.array([this.addProductsGroup()])
-    });
-  }
-
-  addProductsGroup() {
-    return this.fb.group({
-      menuCombo: ['', Validators.required]
-    })
-    //this.productsValue.push(prod);
-  }
-
-  addProducts() {
-    this.productsValue.push(this.addProductsGroup());
-  }
-
-  get productsValue() {
-    return <FormArray>this.employeeForm.get('products');
-  }
-
-  deleteProducts(i) {
-    this.productsValue.removeAt(i);
-    this.toastr.successToastr('Removed Successfully', 'Success', { toastTimeout: (2500) }); return false;
-    // this.edited1 = true;
-    // setTimeout(function () {
-    //   this.edited1 = false;
-    //   console.log(this.edited1);
-    // }.bind(this), 2000);
-  }
-  //--------------------------------------2nd Approach Ends------------------------------------//
-
-  //---------------------------------------------//
-  // ngOnInit() {
-  //   this.employeeForm = this.fb.group({
-  //     products: this.fb.array([])
-  //   });
-  // }
-  // get productsValue() {
-  //   return this.employeeForm.get('products') as FormArray
-  // }
-
-  // addProducts() {
-  //   const prod = this.fb.group({
-  //     menuCombo: ['', Validators.required],
-  //     menuAddButton: [''],
-  //     menuDeleteButton: ['']
-  //   })
-  //   this.productsValue.push(prod);
-  //   //alert(this.delBtn);
-  //   // count++;
-  //   // alert(count);
-  // }
-
-  // deleteProducts(i) {
-  //   this.productsValue.removeAt(i);
-  //   this.edited1 = true;
-  //   setTimeout(function () {
-  //     this.edited1 = false;
-  //     console.log(this.edited1);
-  //   }.bind(this), 2000);
-  // }
-  //---------------------------------------------//
-  // onMenuChange() {
-  //   this.addSubMenuBtn = true;
-  // }
-
-  onModuleChange() {
-    if (this.cmbModule != null) {
-      this.menuBox = true;
+    ngOnInit() {
+        //Creating Array of ComboBox "products"
+        this.employeeForm = this.fb.group({
+            products: this.fb.array([])
+        });
     }
-    else {
-      this.menuBox = false;
+
+    addProductsGroup() {
+        return this.fb.group({
+            menuComboText: [''],
+            menuCombo: ['', Validators.required]
+        })
     }
-  }
 
-  saveModuleData() {
-    if (this.moduleValue != null) {
-      $('#addModule').modal('hide');
-      this.toastr.successToastr('Module Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+    // Add New ComboBox to an array()
+    addProducts() {
+        this.productsValue.push(this.addProductsGroup());
+    }
 
-      // this.edited = true;
-      // setTimeout(function () {
-      //   this.edited = false;
-      //   console.log(this.edited);
-      // }.bind(this), 2000);
-      // // alert("Data Inserted Successfully.")
+    //Getting new ComboBox from array and show in front page
+    get productsValue() {
+        return <FormArray>this.employeeForm.get('products');
+    }
+
+    //Deleting every comboBox with specific id which is ([formGroupName]="i")
+    deleteProducts(i) {
+        //this.productsValue.removeAt(i);
+        //alert(i);
+        alert(this.employeeForm.get('menuCombo'));
+        //alert(this.productsValue[i]);
+    }
+
+    onModuleChange() {
+        if (this.cmbModule != null) {
+            this.mdouleBox = true;
+        }
+        else {
+            this.mdouleBox = false;
+        }
+    }
+
+    onMenuChange() {
+        if (this.cmbMenu != null) {
+            this.menuBox = true;
+        }
+        else {
+            this.menuBox = false;
+        }
+    }
+
+    saveModuleData() {
+        if (this.moduleValue != null) {
+            $('#addModule').modal('hide');
+            this.toastr.successToastr('Module Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+        }
+        else {
+            this.toastr.errorToastr('Please Enter Module Name', 'Error', { toastTimeout: (2500) }); return false;
+
+            //alert("Insert Data...!!!")
+        }
+    }
+
+    saveMenuData() {
+        if (this.menuValue != null) {
+            $('#addMenu').modal('hide');
+            this.toastr.successToastr('Menu Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+            // this.edited = true;
+            // setTimeout(function () {
+            //   this.edited = false;
+            //   console.log(this.edited);
+            // }.bind(this), 2000);
+            // // alert("Data Inserted Successfully.")
+        }
+        else {
+            this.toastr.errorToastr('Please Enter Menu Name', 'Error', { toastTimeout: (2500) }); return false;
+        }
+    }
+
+    saveSubMenuData() {
+        if (this.subMenuValue != null) {
+            $('#addSubMenu').modal('hide');
+            this.toastr.successToastr('Sub-Menu Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
+
+            // this.edited = true;
+            // setTimeout(function () {
+            //   this.edited = false;
+            //   console.log(this.edited);
+            // }.bind(this), 2000);
+            // // alert("Data Inserted Successfully.")
+
+        }
+        else {
+            this.toastr.errorToastr('Please Enter Sub-Menu Name', 'Error', { toastTimeout: (2500) }); return false;
+        }
 
     }
-    else {
-      this.toastr.errorToastr('Please Enter Module Name', 'Error', { toastTimeout: (2500) }); return false;
-
-      //alert("Insert Data...!!!")
-    }
-  }
-
-  saveMenuData() {
-    if (this.menuValue != null) {
-      $('#addMenu').modal('hide');
-      this.toastr.successToastr('Menu Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
-      // this.edited = true;
-      // setTimeout(function () {
-      //   this.edited = false;
-      //   console.log(this.edited);
-      // }.bind(this), 2000);
-      // // alert("Data Inserted Successfully.")
-    }
-    else {
-      this.toastr.errorToastr('Please Enter Menu Name', 'Error', { toastTimeout: (2500) }); return false;
-    }
-  }
-
-  saveSubMenuData() {
-    if (this.subMenuValue != null) {
-      $('#addSubMenu').modal('hide');
-      this.toastr.successToastr('Sub-Menu Inserted Successfully', 'Success', { toastTimeout: (2500) }); return false;
-
-      // this.edited = true;
-      // setTimeout(function () {
-      //   this.edited = false;
-      //   console.log(this.edited);
-      // }.bind(this), 2000);
-      // // alert("Data Inserted Successfully.")
-
-    }
-    else {
-      this.toastr.errorToastr('Please Enter Sub-Menu Name', 'Error', { toastTimeout: (2500) }); return false;
-    }
-  }
-
 }

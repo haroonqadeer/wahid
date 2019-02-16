@@ -15,13 +15,16 @@ export class AppComponent {
 
     constructor(private router: Router, private bottomSheet: MatBottomSheet, private userIdle: UserIdleService) { }
 
-    hideDiv: boolean = false;
+    public hideDiv = false;
     public userName;
 
     title = 'HaroonU';
     items: MenuItem[];
 
     ngOnInit() {
+
+        this.startWatching();
+
 
         // Start watching when user idle is starting.
         this.userIdle.onTimerStart().subscribe(
