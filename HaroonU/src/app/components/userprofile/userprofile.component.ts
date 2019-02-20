@@ -227,6 +227,10 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit() {
     this.init();
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      //$('.dataTables_length').addClass('bs-select');
+    });
   }
 
   //get user management chart data

@@ -1,3 +1,13 @@
+<!-- <div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Saved
+</div>
+
+<div id="alert_msg_warn" *ngIf="edited1">
+  Action Successfully Deleted
+</div> -->
+
+<br />
+
 <!-- heading - row -->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -60,7 +70,7 @@
 
         <tr class="d-flex">
           <th class="col-1 text-center pointerCursor" (click)="setOrder('uId')">
-            Sr No. <span ngIf="order =='uId'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span ngIf="order =='uId'"
+            Sr No. <span *ngIf="order =='uId'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span *ngIf="order =='uId'"
               [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
           </th>
           <th class="col-3 pointerCursor active" (click)="setOrder('uName')">
@@ -76,7 +86,7 @@
               *ngIf="order =='uRole'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
           </th>
           <th class="col-1 pointerCursor text-center" (click)="setOrder('uSince')">
-            Edit <span ngIf="order =='uSince'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span ngIf="order =='uSince'"
+            Edit <span *ngIf="order =='uSince'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span *ngIf="order =='uSince'"
               [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
           </th>
           <th class="col-1 pointerCursor text-center" (click)="setOrder('lastLogin')">
@@ -87,12 +97,11 @@
       </thead>
       <tbody>
         <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-        <tr class='d-flex' *ngFor="let emp of employees | search:'uId,uName,uEmail,uRole,uSince,lastLogin':query">
+        <tr class='d-flex' *ngFor="let emp of employees | search:'uId,uName,uEmail,uRole,uSince,lastLogin':query | orderBy: order: reverse: 'case-insensitive'; let i=index">
           <td class="col-1 text-center">{{emp.uId}}</td>
-          <td class="col-3">{{emp.uName}}</td>
+          <td class="col-3">{{emp.erpobjctName}}</td>
           <td class="col-3 pointerCursor text-center"><a data-toggle="modal" href="#numOfModulesModal">{{emp.uEmail}}</a></td>
-          <td class="col-3 pointerCursor text-center"><a data-toggle="modal" href="#numOfPagesModal">{{emp.uRole}}</a>
-          </td>
+          <td class="col-3 pointerCursor text-center"><a data-toggle="modal" href="#numOfPagesModal">{{emp.uRole}}</a></td>
           <td class="col-1 text-center"><span class="fa fa-edit pointerCursor fontPrimary" data-toggle="modal"
               data-target="#userRoleModal"></span></td>
           <td class="col-1 text-center"><span class="fa fa-trash pointerCursor fontPrimary" data-toggle="modal"
@@ -104,7 +113,6 @@
   <!-- end table row -->
   <br />
 </div>
-
 <!---------- Try Template Code Ends ------------>
 <!---------------------------------------------->
 
@@ -129,6 +137,15 @@
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Role Name">
             </mat-form-field>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Multiple Selection with Checkbox</h3>
+            <p-tree [value]="filesTree4" selectionMode="checkbox" [(selection)]="selectedFiles2" [propagateSelectionUp]="false"
+              [propagateSelectionDown]="false"></p-tree>
+            <!-- <div>Selected Nodes: <span *ngFor="let file of selectedFiles2">{{file.label}} </span></div> -->
           </div>
         </div>
         <div class="row">
@@ -173,7 +190,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='d-flex' *ngFor="let emp of employees">
+              <tr ngDefaultControl class='d-flex' *ngFor="let emp of employees">
                 <td class="col-2 text-center">{{emp.uId}}</td>
                 <td class="col-10">{{emp.uName}}</td>
               </tr>
@@ -208,14 +225,7 @@
 
       <!--Start Number of Pages Modal Body -->
       <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Multiple Selection with Checkbox</h3>
-            <!-- <p-tree [value]="filesTree4" selectionMode="checkbox" [(selection)]="selectedFiles2" [propagateSelectionUp]="false"
-              [propagateSelectionDown]="false"></p-tree> -->
-            <!-- <div>Selected Nodes: <span *ngFor="let file of selectedFiles2">{{file.label}} </span></div> -->
-          </div>
-        </div>
+
         <!--End Number of Pages Modal Body -->
 
         <!--Start Number of Pages Modal Footer -->
@@ -306,12 +316,9 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>
-                    &nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong>
-                    </mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong>
-                    </mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
                     <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
                   </section>
                 </mat-expansion-panel>
@@ -322,12 +329,9 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>
-                    &nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong>
-                    </mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong>
-                    </mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
                     <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
                   </section>
                 </mat-expansion-panel>
@@ -339,12 +343,9 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <section class="example-section">
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>
-                    &nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong>
-                    </mat-checkbox>&nbsp;&nbsp;&nbsp;
-                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong>
-                    </mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkAdd"><strong>Addtion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkUpdate"><strong>Updation</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
+                    <mat-checkbox class="example-margin" [(ngModel)]="chkDelete"><strong>Deletion</strong></mat-checkbox>&nbsp;&nbsp;&nbsp;
                     <mat-checkbox class="example-margin" [(ngModel)]="chkView"><strong>View</strong></mat-checkbox>
                   </section>
                 </mat-expansion-panel>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
-// import { TreeNode } from '../../nodeTree/TreeNode';
-// import { NodeService } from '../../nodeTree/node.service';
+import { TreeNode } from '../../nodeTree/TreeNode';
+import { NodeService } from '../../nodeTree/node.service';
 
-// import { OrderPipe } from 'ngx-order-pipe';
+import { OrderPipe } from 'ngx-order-pipe';
+import { HttpClient } from '@angular/common/http';
 
 
 declare var $: any;
@@ -53,44 +54,51 @@ export class UserrolesComponent implements OnInit {
   query = '';
   pageEntryValue = '5';
 
-  // filesTree4: TreeNode[];
+  filesTree4: TreeNode[];
 
-  // selectedFiles2: TreeNode[];
+  selectedFiles2: TreeNode[];
 
-  constructor(public toastr: ToastrManager) { }
 
-  employees = [
-    {
-      uId: 1,
-      uName: 'Aamir76',
-      uEmail: 2,
-      uRole: 8
-    },
-    {
-      uId: 2,
-      uName: 'Ali456676',
-      uEmail: 4,
-      uRole: 12
-    },
-    {
-      uId: 3,
-      uName: 'Waqas445776',
-      uEmail: 3,
-      uRole: 10
-    },
-    {
-      uId: 4,
-      uName: 'Umair45676',
-      uEmail: 3,
-      uRole: 15
-    },
-    {
-      uId: 5,
-      uName: 'Touseeq5676',
-      uEmail: 6,
-      uRole: 60
-    }
-  ];
+  serverUrl = "https://localhost:5001/";
+
+  constructor(private http: HttpClient, public toastr: ToastrManager, private nodeService: NodeService) { }
+
+  public employees;
+  public varList = [];
+  public children = [];
+
+  // employees = [
+  //   {
+  //     uId: 1,
+  //     uName: 'Aamir76',
+  //     uEmail: 2,
+  //     uRole: 8
+  //   },
+  //   {
+  //     uId: 2,
+  //     uName: 'Ali456676',
+  //     uEmail: 4,
+  //     uRole: 12
+  //   },
+  //   {
+  //     uId: 3,
+  //     uName: 'Waqas445776',
+  //     uEmail: 3,
+  //     uRole: 10
+  //   },
+  //   {
+  //     uId: 4,
+  //     uName: 'Umair45676',
+  //     uEmail: 3,
+  //     uRole: 15
+  //   },
+  //   {
+  //     uId: 5,
+  //     uName: 'Touseeq5676',
+  //     uEmail: 6,
+  //     uRole: 60
+  //   }
+  // ];
 
   entries = [
     { entryNumber: '5' },
@@ -104,6 +112,10 @@ export class UserrolesComponent implements OnInit {
 
   ngOnInit() {
     //this.nodeService.getFiles().then(files => this.filesTree4 = files);
+    this.getData();
+
+    //for (var i = 0; i<this.employee.)
+
     // $(document).ready(function () {
     //   $('#example').DataTable();
     // });
@@ -136,5 +148,30 @@ export class UserrolesComponent implements OnInit {
   edit() {
     this.toastr.successToastr('Record Edited Successfully', 'Error', { toastTimeout: (2500) });
     return false;
+  }
+
+
+  getData() {
+    //var itemBackup = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + itemBackup });
+
+    this.http.get(this.serverUrl + 'api/getUserMenu').subscribe((data: any) => {
+      this.employees = data;
+
+      for (var i = 0; i < this.employees.length; i++) {
+        if (this.employees[i].erpobjctTypeCd == 1) {
+          this.varList.push({
+            label: this.employees[i].erpobjctName,
+            children: this.children
+          });
+        }
+        //alert(this.employees[i].erpobjctName);
+      }
+      alert(this.varList.length);
+      this.filesTree4 = this.varList;//varres => <TreeNode[]>res.json().varList;
+    });
+
+
   }
 }
