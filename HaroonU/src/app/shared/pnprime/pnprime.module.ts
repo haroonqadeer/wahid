@@ -8,7 +8,6 @@ import { PasswordModule } from 'primeng/password';
 import { TreeTableModule } from 'primeng/treetable';
 import { TreeModule } from 'primeng/tree';
 
-
 @NgModule({
   imports: [
     CommonModule,

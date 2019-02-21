@@ -1,11 +1,3 @@
-<!-- <div id="alert_msg_success" *ngIf="edited">
-  Action Successfully Saved
-</div>
-
-<div id="alert_msg_warn" *ngIf="edited1">
-  Action Successfully Deleted
-</div> -->
-
 <!-- heading row -->
 <div class="row">
   <div class="col-md-12 text-center">
@@ -20,17 +12,17 @@
   <div class="row">
     <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
       <br />
-      <h2>15</h2>
+      <h2>{{countAddition}}</h2>
       <h3>Additions</h3><br> for last 2 months
     </div>
     <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
       <br />
-      <h2>10</h2>
+      <h2>{{countUpdation}}</h2>
       <h3>Updations</h3><br> for last 2 months
     </div>
     <div class="col-md-2 up_headbox" style="display: block;text-align: center;">
       <br />
-      <h2>05</h2>
+      <h2>{{countBanned}}</h2>
       <h3>Banned</h3><br> for last 2 months
     </div>
     <div class="col-md-4">
@@ -60,12 +52,13 @@
   <div class="row">
     <div class="col-md-12">
       <mat-form-field>
-        <input matInput [(ngModel)]="query" placeholder="Search">
+        <input matInput [(ngModel)]="userSearch" placeholder="Search">
       </mat-form-field>
       <i class="fab fa-accessible-icon"></i>
     </div>
   </div>
   <!--end search textbox Row-->
+
   <!--Start table Row-->
   <div class="row">
     <table class="table table-striped fullwidth" id="myTable">
@@ -82,39 +75,17 @@
       </thead>
       <tbody>
         <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-        <tr class='d-flex'>
-          <!-- <td class="col-1">{{item.userId}}</td>
-          <td class="col-2">{{item.UserName}}</td>
-          <td class="col-2">{{item.Email}}</td>
-          <td class="col-1">{{item.Role}}</td>
-          <td class="col-2">{{item.udate}}</td>
-          <td class="col-2">{{item.loginDate}}</td> -->
-          <!--  -->
-          <td class="col-1 text-center">2</td>
-          <td class="col-2">qweqwe</td>
-          <td class="col-2">Emqweqweail</td>
-          <td class="col-1">Roewrwerle</td>
+        <tr *ngFor="let item of users | search:'emailAddrss':userSearch" class='d-flex'>
+          <td class="col-1 text-center">{{item.indvdlId}}</td>
+          <td class="col-2">{{item.indvdlFirstName}}</td>
+          <td class="col-2">{{item.emailAddrss}}</td>
+          <td class="col-1">{{item.type}}</td>
           <td class="col-2">udartertertte</td>
           <td class="col-2">loginDasadaste</td>
-          <td class="col-2 text-center"><span class="fa fa-exclamation-circle pointerCursor fontPrimary" (click)="edit()"
-              data-toggle="modal" data-target="#actionModal"></span></td>
-        </tr>
-        <tr class='d-flex'>
-          <!-- <td class="col-1">{{item.userId}}</td>
-                  <td class="col-2">{{item.UserName}}</td>
-                  <td class="col-2">{{item.Email}}</td>
-                  <td class="col-1">{{item.Role}}</td>
-                  <td class="col-2">{{item.udate}}</td>
-                  <td class="col-2">{{item.loginDate}}</td> -->
-          <!--  -->
-          <td class="col-1 text-center">3</td>
-          <td class="col-2">aaaaqweqwe</td>
-          <td class="col-2">ssssEmqweqweail</td>
-          <td class="col-1">fffRoewrwerle</td>
-          <td class="col-2">ggggudarter</td>
-          <td class="col-2">hhhhhloginDasadaste</td>
-          <td class="col-2 text-center"><span class="fa fa-exclamation-circle pointerCursor fontPrimary" data-toggle="modal"
-              data-target="#actionModal"></span></td>
+          <td class="col-2 text-center">
+            <span class="fa fa-exclamation-circle pointerCursor fontPrimary" data-toggle="modal" (click)="edit(item, 'block')"
+              data-target="#actionModal"></span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -129,6 +100,7 @@
 
 <!---------- Try Template Code Ends ------------>
 <!---------------------------------------------->
+
 
 
 
@@ -148,13 +120,12 @@
       <!--start user Modal body -->
       <div class="modal-body">
         <br>
-        <div class="hidden" [(ngModel)]="userId" ngDefaultControl></div>
         <div class="row">
           <div class="col-md-8">
-            <mat-radio-group [(ngModel)]="rdbType">
+            <mat-radio-group [(ngModel)]="rdbType" (click)="getFilterItem($event)">
               <div class="row">
                 <div class="col-md-6">
-                  <mat-radio-button value="employee">Employee</mat-radio-button>
+                  <mat-radio-button value="employee" >Employee</mat-radio-button>
                 </div>
                 <div class="col-md-6">
                   <mat-radio-button value="visitor">Visitor</mat-radio-button>
@@ -164,20 +135,21 @@
           </div>
 
         </div>
+
         <br>
+
         <div class="row">
           <div class="col-md-12">
             <mat-form-field class="example-full-width">
-              <mat-select placeholder="Select User" [(ngModel)]="cmbEmployee" (ngModelChange)="onEmployeeChange($event)"
+              <mat-select placeholder="Select User" [(ngModel)]="cmbEmployee" (ngModelChange)="edit($event, 'link')"
                 required>
                 <input type="text" class="form-control" [(ngModel)]="searchEmployee">
-                <mat-option *ngFor="let employee of employees | search:'eCNIC,eName,eDept,eParty':searchEmployee"
-                  [value]="employee.eName">
+                <mat-option *ngFor="let item of getFilterItem(rdbType) | search:'indvdlFirstName,emailAddrss':searchEmployee" [value]="item">
                   <table>
                     <tr class='d-flex'>
-                      <td class="col-4">{{ employee.eCNIC }}</td>
-                      <td class="col-4 border-left">{{ employee.eName }}</td>
-                      <td class="col-4 border-left">{{ employee.eDept }}</td>
+                      <td class="col-4">{{ item.indvdlId }}</td>
+                      <td class="col-4 border-left">{{ item.indvdlFirstName }}</td>
+                      <td class="col-4 border-left">{{ item.emailAddrss }}</td>
                     </tr>
                   </table>
                 </mat-option>
@@ -185,35 +157,37 @@
             </mat-form-field>
           </div>
         </div>
+
         <br>
+
         <div class="container" id='hiddenDiv'>
           <div class="row">
             <div class="col-md-2">
               <label style="color:#3f51b5">Email</label>
             </div>
-            <div class="col-md-4 text-left border-bottom border-left" type="Email">abc@gmail.com</div>
+            <div class="col-md-4 text-left border-bottom border-left" type="Email">{{partyEmail}}</div>
             <div class="col-md-3">
               <label style="color:#3f51b5">Father Name</label>
             </div>
-            <div class="col-md-3 text-left border-bottom border-left" type="text">Abdullah</div>
+            <div class="col-md-3 text-left border-bottom border-left" type="text">{{partyFatherName}}</div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-2">
               <label style="color:#3f51b5">Department</label>
             </div>
-            <div class="col-md-4 text-left border-bottom border-left" type="text">IT</div>
+            <div class="col-md-4 text-left border-bottom border-left" type="text">{{partyDepartment}}</div>
             <div class="col-md-3">
               <label style="color:#3f51b5">Branch</label>
             </div>
-            <div class="col-md-3 text-left border-bottom border-left" type="text">System Services</div>
+            <div class="col-md-3 text-left border-bottom border-left" type="text">{{partyBranch}}</div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-2">
               <label style="color:#3f51b5">Address</label>
             </div>
-            <div class="col-md-10 text-left border-bottom border-left" type="text">G-11 Markaz</div>
+            <div class="col-md-10 text-left border-bottom border-left" type="text">{{partyAddress}}</div>
           </div>
           <br />
           <div class="row" *ngIf="showLink">
@@ -221,10 +195,11 @@
               <label style="color:#3f51b5">Link</label>
             </div>
             <div class="col-md-4 text-left border-bottom border-left">
-              <mat-hint><a href="/createpassword">localhost:4200/{{cmbEmployee}}</a></mat-hint>
+              <mat-hint><a href="http://{{userLink + userLinkCode}}" target="_blank">{{userLink + userLinkCode}}</a></mat-hint>
             </div>
           </div>
         </div>
+
         <br>
 
         <div class="row">
@@ -261,15 +236,19 @@
             </section>
           </div>
         </div>
+
         <br>
+
         <div class="row">
           <div class="col-md-6">
             <button mat-raised-button color="primary" [disabled]="(disabledPassword) ? false : true" (click)="saveEmployee()">Save
               & Send</button>
           </div>
+
           <div class="col-md-6">
             <button mat-raised-button color="primary" [disabled]="(disabledPassword) ? true : false">Send</button>
           </div>
+
         </div>
         <br />
       </div>
@@ -284,56 +263,6 @@
   </div>
 </div>
 <!-- End Modal Window to add & update new user -->
-
-<!-- Start Modal Window to delete user -->
-<div class="modal fade" id="dUserModal">
-  <div class="modal-dialog shadow-lg-dark">
-    <div class="modal-content">
-      <!--start delete user Modal body -->
-      <div class="modal-body">
-        <br>
-        <div class="hidden" [(ngModel)]="employeeId" ngDefaultControl></div>
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-10">
-            <h2 [(ngModel)]="userName">{{userName}}</h2>
-          </div>
-        </div><br />
-        <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword" required>
-            </mat-form-field>
-          </div>
-        </div><br>
-        <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
-            </mat-form-field>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-md-6">
-            <button mat-raised-button color="warn" (click)="delete()">Delete</button>
-          </div>
-        </div>
-        <br />
-      </div>
-      <!--end delete user Modal body -->
-
-      <!--start delete user Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      <!--end delete user Modal footer -->
-
-    </div>
-  </div>
-</div>
-<!-- End Modal Window to delete user -->
-
 
 <!-- Start Action Modal Window -->
 <div class="modal fade" id="actionModal">
@@ -350,41 +279,43 @@
       <!--start Action Modal body -->
       <div class="modal-body">
         <br>
-        <div class="hidden" [(ngModel)]="employeeId" ngDefaultControl></div>
+        <!-- <div class="hidden" [(ngModel)]="employeeId" ngDefaultControl></div> -->
         <div class="row">
           <div class="col-md-12">
             <mat-form-field class="fullwidth">
-              <mat-select id="idActionCmbValue" placeholder="Select Action" [(ngModel)]="actionCmbValue"
-                (ngModelChange)="onActionChange()" required>
-                <input type="text" class="form-control" [(ngModel)]="searchAction">
-                <mat-option *ngFor="  let act of actions | search:'actionName':searchAction" [value]="act.actionId">{{act.actionName}}</mat-option>
+              <mat-select placeholder="Select Action" [(ngModel)]="listAction" (ngModelChange)="onActionChange()"
+                required>
+
+                <mat-option *ngFor="let item of actions" [value]=" item.actionName">
+                  {{item.actionName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
+
         <div class="row" *ngIf="actionBlockRow">
           <div class="col-md-12">
             <mat-form-field class="fullwidth">
-              <mat-select id="idActionBlockCmbValue" placeholder="Select Block Time" [(ngModel)]="blockCmbValue"
-                required>
-                <input type="text" class="form-control" [(ngModel)]="searchBlock">
-                <mat-option *ngFor="  let blk of blocks | search:'blockName':searchBlock" [value]="blk.blockId">{{blk.blockName}}</mat-option>
+              <mat-select placeholder="Select Block Time" [(ngModel)]="listBlockedAction" required>
+                <mat-option *ngFor="let blk of blocks" [value]="blk.blockId">
+                  {{blk.blockName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
+
         <div class="row" *ngIf="actionPassRow">
           <div class="col-md-12">
             <mat-form-field class="fullwidth">
-              <input id="idTxtActPassword" matInput type="password" placeholder="Enter Password" [(ngModel)]="txtActPassword"
-                required>
+              <input matInput type="password" placeholder="Enter Password" [(ngModel)]="txtActionPassword" required>
             </mat-form-field>
           </div>
         </div>
+
         <div class="row" *ngIf="actionPINCodeRow">
           <div class="col-md-12">
             <mat-form-field class="fullwidth">
-              <input id="idTxtActPIN" matInput type="password" placeholder="Enter PIN Code" [(ngModel)]="txtActPIN"
+              <input id="idTxtActPIN" matInput type="password" placeholder="Enter PIN Code" [(ngModel)]="txtActionPIN"
                 required>
             </mat-form-field>
           </div>
