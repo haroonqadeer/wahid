@@ -1,25 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { TreeNode } from '../../nodeTree/TreeNode';
+import { NodeService } from '../../nodeTree/node.service';
 
 import { OrderPipe } from 'ngx-order-pipe';
+import { HttpClient } from '@angular/common/http';
+
 
 declare var $: any;
 
 
-//For Populate Data in the Employee Table
-export interface Employee {
-  uId: number;
-  uName: string;
-  uEmail: string;
-  uRole: string;
-  uSince: string;
-  lastLogin: string;
-}
+// //For Populate Data in the Employee Table
+// export interface Employee {
+//   uId: number;
+//   uName: string;
+//   uEmail: string;
+//   uRole: string;
+//   uSince: string;
+//   lastLogin: string;
+// }
 
 //For Selecting Number of Rows Display in the Table
-export interface PageEntryValue {
-  entryNumber: string;
-}
+// export interface PageEntryValue {
+//   entryNumber: string;
+// }
 
 @Component({
   selector: 'app-userroles',
@@ -49,140 +53,69 @@ export class UserrolesComponent implements OnInit {
   //Page Models
   query = '';
   pageEntryValue = '5';
-  constructor(public toastr: ToastrManager) { }
 
-  employees: Employee[] = [
-    {
-      uId: 1,
-      uName: 'Aamir76',
-      uEmail: 'Aamir',
-      uRole: 'IT',
-      uSince: 'Friday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 2,
-      uName: 'Ali456676',
-      uEmail: 'Ali',
-      uRole: 'Finance',
-      uSince: 'Monday',
-      lastLogin: 'Friday'
-    },
-    {
-      uId: 3,
-      uName: 'Waqas445776',
-      uEmail: 'Waqas',
-      uRole: 'HR',
-      uSince: 'Tuesday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 4,
-      uName: 'Umair45676',
-      uEmail: 'Umair',
-      uRole: 'SCM',
-      uSince: 'Wednesday',
-      lastLogin: 'Thrusday'
-    },
-    {
-      uId: 5,
-      uName: 'Touseeq5676',
-      uEmail: 'Touseeq',
-      uRole: 'IT',
-      uSince: 'Tuesday',
-      lastLogin: 'Thrusday'
-    },
-    {
-      uId: 6,
-      uName: 'Ijaz45676',
-      uEmail: 'Ijaz',
-      uRole: 'Admin',
-      uSince: 'Monday',
-      lastLogin: 'Saturday'
-    },
-    {
-      uId: 7,
-      uName: 'Zain45676',
-      uEmail: 'Zain',
-      uRole: 'IT',
-      uSince: 'Sunday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 8,
-      uName: 'Shahrukh45676',
-      uEmail: 'Shahrukh',
-      uRole: 'Admin',
-      uSince: 'Saturday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 9,
-      uName: 'Osama6176',
-      uEmail: 'Osama',
-      uRole: 'Operations',
-      uSince: 'Friday',
-      lastLogin: 'Tuesday'
-    },
-    {
-      uId: 10,
-      uName: 'Bilal9445676',
-      uEmail: 'Bilal',
-      uRole: 'IT',
-      uSince: 'Wednesday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 11,
-      uName: 'Nabeel45676',
-      uEmail: 'Nabeel',
-      uRole: 'IT',
-      uSince: 'Wednesday',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 12,
-      uName: 'Saad9676',
-      uEmail: 'Saad',
-      uRole: 'Procurement',
-      uSince: 'Employee',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 13,
-      uName: 'Zohaib676',
-      uEmail: 'Zohaib',
-      uRole: 'Management',
-      uSince: 'Contract',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 14,
-      uName: 'Zeeshan676',
-      uEmail: 'Zeeshan',
-      uRole: 'IT',
-      uSince: 'Employee',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 15,
-      uName: 'Arslan676',
-      uEmail: 'Arslan',
-      uRole: 'IT',
-      uSince: 'Permanent',
-      lastLogin: 'Wednesday'
-    },
-  ];
+  filesTree4: TreeNode[];
 
-  entries: PageEntryValue[] = [
+  selectedFiles2: TreeNode[];
+
+
+  serverUrl = "https://localhost:5001/";
+
+  constructor(private http: HttpClient, public toastr: ToastrManager, private nodeService: NodeService) { }
+
+  public employees;
+  public varList = [];
+  public children = [];
+
+  // employees = [
+  //   {
+  //     uId: 1,
+  //     uName: 'Aamir76',
+  //     uEmail: 2,
+  //     uRole: 8
+  //   },
+  //   {
+  //     uId: 2,
+  //     uName: 'Ali456676',
+  //     uEmail: 4,
+  //     uRole: 12
+  //   },
+  //   {
+  //     uId: 3,
+  //     uName: 'Waqas445776',
+  //     uEmail: 3,
+  //     uRole: 10
+  //   },
+  //   {
+  //     uId: 4,
+  //     uName: 'Umair45676',
+  //     uEmail: 3,
+  //     uRole: 15
+  //   },
+  //   {
+  //     uId: 5,
+  //     uName: 'Touseeq5676',
+  //     uEmail: 6,
+  //     uRole: 60
+  //   }
+  // ];
+
+  entries = [
     { entryNumber: '5' },
+    { entryNumber: '10' },
     { entryNumber: '15' },
+    { entryNumber: '25' },
     { entryNumber: '50' },
     { entryNumber: '100' }
   ]
 
 
   ngOnInit() {
+    //this.nodeService.getFiles().then(files => this.filesTree4 = files);
+    this.getData();
+
+    //for (var i = 0; i<this.employee.)
+
     // $(document).ready(function () {
     //   $('#example').DataTable();
     // });
@@ -215,5 +148,30 @@ export class UserrolesComponent implements OnInit {
   edit() {
     this.toastr.successToastr('Record Edited Successfully', 'Error', { toastTimeout: (2500) });
     return false;
+  }
+
+
+  getData() {
+    //var itemBackup = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + itemBackup });
+
+    this.http.get(this.serverUrl + 'api/getUserMenu').subscribe((data: any) => {
+      this.employees = data;
+
+      for (var i = 0; i < this.employees.length; i++) {
+        if (this.employees[i].erpobjctTypeCd == 1) {
+          this.varList.push({
+            label: this.employees[i].erpobjctName,
+            children: this.children
+          });
+        }
+        //alert(this.employees[i].erpobjctName);
+      }
+      alert(this.varList.length);
+      this.filesTree4 = this.varList;//varres => <TreeNode[]>res.json().varList;
+    });
+
+
   }
 }
