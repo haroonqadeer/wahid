@@ -61,10 +61,10 @@
 
   <!--Start table Row-->
   <div class="row">
-    <table class="table table-striped fullwidth sortClass" id="myTable">
+    <table class="table table-striped fullwidth" id="myTable">
       <thead>
         <tr class="d-flex">
-          <th class="col-1 text-center">Sr No.</th>
+          <th class="col-1">Sr No.</th>
           <th class="col-2">User Name</th>
           <th class="col-2">Email</th>
           <th class="col-1">Role</th>
@@ -94,6 +94,15 @@
   <br />
 </div>
 <!-- End User Profile Container -->
+<br><br><br>
+<!---------------------------------------------->
+<!---------- Try Template Code Starts ---------->
+
+<!---------- Try Template Code Ends ------------>
+<!---------------------------------------------->
+
+
+
 
 
 <!-- Start Modal Window to add & update new user -->
@@ -154,36 +163,36 @@
         <div class="container" id='hiddenDiv'>
           <div class="row">
             <div class="col-md-2">
-              <b style="color:#3f51b5">Email</b>
+              <label style="color:#3f51b5">Email</label>
             </div>
             <div class="col-md-4 text-left border-bottom border-left" type="Email">{{partyEmail}}</div>
             <div class="col-md-3">
-              <b style="color:#3f51b5">Father Name</b>
+              <label style="color:#3f51b5">Father Name</label>
             </div>
             <div class="col-md-3 text-left border-bottom border-left" type="text">{{partyFatherName}}</div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-2">
-              <b style="color:#3f51b5">Department</b>
+              <label style="color:#3f51b5">Department</label>
             </div>
             <div class="col-md-4 text-left border-bottom border-left" type="text">{{partyDepartment}}</div>
             <div class="col-md-3">
-              <b style="color:#3f51b5">Branch</b>
+              <label style="color:#3f51b5">Branch</label>
             </div>
             <div class="col-md-3 text-left border-bottom border-left" type="text">{{partyBranch}}</div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-2">
-              <b style="color:#3f51b5">Address</b>
+              <label style="color:#3f51b5">Address</label>
             </div>
             <div class="col-md-10 text-left border-bottom border-left" type="text">{{partyAddress}}</div>
           </div>
           <br />
           <div class="row" *ngIf="showLink">
             <div class="col-md-2">
-              <b style="color:#3f51b5" type="Link">Link</b>
+              <label style="color:#3f51b5">Link</label>
             </div>
             <div class="col-md-4 text-left border-bottom border-left">
               <mat-hint><a href="http://{{userLink + userLinkCode}}" target="_blank">{{userLink + userLinkCode}}</a></mat-hint>

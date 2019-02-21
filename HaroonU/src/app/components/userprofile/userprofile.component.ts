@@ -80,7 +80,7 @@ export class UserprofileComponent implements OnInit {
             actionId: '3',
             actionName: 'Generate PIN'
         }
-    ]
+    ];
 
     // Block Action Combo Box
     blocks = [
