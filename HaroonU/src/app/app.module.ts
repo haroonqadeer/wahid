@@ -25,6 +25,8 @@ import { UserTreeComponent } from './components/user-tree/user-tree.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -59,9 +61,10 @@ import { OrderModule } from 'ngx-order-pipe';
     // Default values: `idle` is 60 (1 minutes), `timeout` is 30 (0.5 minutes) 
     // and `ping` is 15 0.25 minutes).
 
-    UserIdleModule.forRoot({ idle: 60, timeout: 30, ping: 15 }),
+    UserIdleModule.forRoot({ idle: 60, timeout: 60, ping: 15 }),
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    HttpModule
   ],
 
   providers: [],
