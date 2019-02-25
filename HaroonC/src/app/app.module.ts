@@ -11,13 +11,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
+import { CompanyComponent } from './components/company/company.component';
+import { HeadquarterComponent } from './components/headquarter/headquarter.component';
+import { BranchComponent } from './components/branch/branch.component';
+import { DepartmentComponent } from './components/department/department.component';
+import { SectionComponent } from './components/section/section.component';
+import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
+import { CurrencyComponent } from './components/currency/currency.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchPipe,
     CompanydashboardComponent,
-    ErpBottomSheetComponent    
+    ErpBottomSheetComponent,
+    CompanyComponent,
+    HeadquarterComponent,
+    BranchComponent,
+    DepartmentComponent,
+    SectionComponent,
+    SubsidiarieComponent,
+    CurrencyComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +45,6 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ErpBottomSheetComponent],  
+  entryComponents: [ErpBottomSheetComponent],
 })
 export class AppModule { }
