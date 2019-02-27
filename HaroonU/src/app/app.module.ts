@@ -60,7 +60,6 @@ import { HttpModule } from '@angular/http';
     // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
     // Default values: `idle` is 60 (1 minutes), `timeout` is 30 (0.5 minutes) 
     // and `ping` is 15 0.25 minutes).
-
     UserIdleModule.forRoot({ idle: 60, timeout: 60, ping: 15 }),
     NgxPaginationModule,
     OrderModule,

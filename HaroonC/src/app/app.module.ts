@@ -6,9 +6,13 @@ import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { HttpModule } from '@angular/http';
+import { AppComponent } from './app.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NgxMaskModule } from "ngx-mask";
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { CompanyComponent } from './components/company/company.component';
@@ -41,7 +45,11 @@ import { CurrencyComponent } from './components/currency/currency.component';
     FormsModule,
     ChartModule,
     ReactiveFormsModule,
-    PNPrimeModule
+    PNPrimeModule,
+    ToastrModule.forRoot(),
+    HttpModule,
+    HttpClientModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
