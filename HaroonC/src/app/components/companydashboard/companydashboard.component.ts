@@ -230,16 +230,7 @@ export class CompanydashboardComponent implements OnInit {
     }.bind(this), 2000);
   }
 
-  save() {
 
-    this.edited = true;
-
-    //wait 3 Seconds and hide
-    setTimeout(function () {
-      this.edited = false;
-      console.log(this.edited);
-    }.bind(this), 2000);
-  }
   saveCity() {
 
     this.edited = true;

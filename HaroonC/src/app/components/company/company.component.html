@@ -15,7 +15,7 @@
     <button mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
-    <button mat-raised-button color="primary" data-toggle="modal" data-target="#userModal">Add New</button>
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#companyModal">Add New</button>
   </div>
 </div>
 <!--end buttons row-->
@@ -41,28 +41,27 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1">Sr No.</th>
-          <th class="col-2">User Name</th>
-          <th class="col-2">Email</th>
-          <th class="col-1">Role</th>
-          <th class="col-2">User Since</th>
-          <th class="col-2">Last Login</th>
+          <th class="col-2">Business Type</th>
+          <th class="col-2">Title</th>
+          <th class="col-2">Nature</th>
+          <th class="col-1">NTN</th>
+          <th class="col-2">Website</th>
           <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
         <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-        <!-- <tr *ngFor="let item of users | search:'emailAddrss':userSearch" class='d-flex'>
-          <td class="col-1 text-center">{{item.indvdlId}}</td>
-          <td class="col-2">{{item.indvdlFirstName}}</td>
-          <td class="col-2">{{item.emailAddrss}}</td>
-          <td class="col-1">{{item.type}}</td>
-          <td class="col-2">udartertertte</td>
-          <td class="col-2">loginDasadaste</td>
+        <tr class='d-flex'>
+          <td class="col-1 text-center">1</td>
+          <td class="col-2">Partnership</td>
+          <td class="col-2">myTitle</td>
+          <td class="col-2">myNature</td>
+          <td class="col-1">NTN </td>
+          <td class="col-2">Website</td>
           <td class="col-2 text-center">
-            <span class="fa fa-exclamation-circle pointerCursor fontPrimary" data-toggle="modal" (click)="edit(item, 'block')"
-              data-target="#actionModal"></span>
+            <span class="fa fa-edit pointerCursor fontPrimary"></span>
           </td>
-        </tr> -->
+        </tr>
       </tbody>
     </table>
   </div>
@@ -71,3 +70,505 @@
 </div>
 <!-- End User Profile Container -->
 <br><br><br>
+
+
+<!-- Start Add Company Modal Window -->
+<div class="modal fade" id="companyModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Company</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start horizontal Stepper -->
+        <mat-horizontal-stepper linear>
+          <!--start 1st Step -->
+          <mat-step>
+            <!--stepper 1st label-->
+            <ng-template matStepLabel><b>Step-01</b></ng-template>
+            <!--start form control div-->
+
+            <!--start heading div-->
+            <div class="text-center">
+              <h4>Business type</h4>
+            </div>
+            <!--end heading div-->
+            <br />
+            <!--start company type combobox row-->
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <mat-select placeholder="Company Type" [(ngModel)]="cmbCType" (ngModelChange)="allow_div()" required>
+                    <mat-option *ngFor=" let item of types" [value]="item.TName">
+                      {{item.TName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end company type combobox row-->
+            <br>
+            <!--start next step button div-->
+            <div class="text-right">
+              <button *ngIf="!btnStpr1" mat-raised-button color="primary" (click)="allow_div()">Next</button>
+              <button *ngIf="btnStpr1" mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+            <!--end next step button div-->
+
+            <!--end form control div-->
+          </mat-step>
+          <!--end 1st Step -->
+
+
+          <!--start 2nd Step -->
+          <mat-step optional>
+            <!--stepper 2nd label-->
+            <ng-template matStepLabel><b>Step-02</b></ng-template>
+            <!--start 2nd step form control div-->
+
+            <!--start sole proprietorship div-->
+            <div *ngIf="solePro">
+              <!--sole proprietorship heading div-->
+              <div class="text-center">
+                <h4>Owner Info</h4>
+              </div>
+              <br />
+              <!--start 1st row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="CNIC" [(ngModel)]="sCnic" required mask="00000-0000000-0"
+                      [showMaskTyped]="true">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="NTN" [(ngModel)]="sNtn" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 1st row-->
+              <br />
+              <!--start 2nd row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Owner Name" [(ngModel)]="sOwnerName" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 2nd row-->
+              <br />
+              <!--start 3rd row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Telephone" [(ngModel)]="sTelephoneNo" mask="000-0000000"
+                      [showMaskTyped]="true" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Mobile" [(ngModel)]="sMobileNo" mask="0000-0000000" [showMaskTyped]="true"
+                      required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 3rd row-->
+              <br />
+              <!--start 4th row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Email" [(ngModel)]="sEmail" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 4th row-->
+              <br />
+              <!--start 5th row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Address" [(ngModel)]="sAddress" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 5th row-->
+            </div>
+            <!--end sole proprietorship div-->
+            <!--start partnership div-->
+            <div *ngIf="partner">
+              <!--Partnership heading div-->
+              <div class="text-center">
+                <h4>Partners Info</h4>
+              </div>
+              <br />
+              <!--start 1st row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="CNIC" [(ngModel)]="pCnic" mask="00000-0000000-0" [showMaskTyped]="true"
+                      required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="NTN" [(ngModel)]="pNtn" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 1st row-->
+              <br />
+              <!--start 2nd row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Partner Name" [(ngModel)]="pPartnerName" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 2nd row-->
+              <br />
+              <!--start 3rd row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <mat-select placeholder="Partner Role" [(ngModel)]="pPartnerRole" required>
+                      <mat-option value="Sleeping Partner">Sleeping Partner</mat-option>
+                      <mat-option value="Active Partner">Active Partner</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="pDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 3rd row-->
+              <br />
+              <!--start 4th row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Share" [(ngModel)]="pShare" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Telephone" [(ngModel)]="pTelephone" mask="000-0000000" [showMaskTyped]="true"
+                      required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 4th row-->
+              <br />
+              <!--start 5th row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Mobile" [(ngModel)]="pMobile" mask="0000-0000000" [showMaskTyped]="true"
+                      required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Email" [(ngModel)]="pEmail" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 5th row-->
+              <br />
+              <!--start 6th row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Address" [(ngModel)]="pAddress" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 6th row-->
+              <br />
+              <!--start 7th button row-->
+              <div class="row">
+                <button mat-raised-button color="primary" (click)="addPartner()">Add</button>
+              </div>
+              <!--end 7th button row-->
+              <br />
+              <!--start table row with container-->
+              <div class="example-container mat-elevation-z8 fullwidth">
+                <div class="example-table-container fullwidth">
+                  <table class="table table-striped fullwidth">
+                    <thead>
+                      <tr class='d-flex'>
+                        <th class='col-2'>Sr No.</th>
+                        <th class='col-4'>Partner Name</th>
+                        <th class='col-4'>Partner Role</th>
+                        <th class="col-2 text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of partners let i=index" class='d-flex'>
+                        <td class="col-2">{{i + 1}}</td>
+                        <td class="col-4">{{item.partnerName}}</td>
+                        <td class="col-lg-4">{{item.partnerRole}}</td>
+                        <td class="col-2 text-center">
+                          <!-- <span class="fa fa-edit"></span>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                          <span class="fa fa-trash" (click)="remove(item)"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--end table row with container-->
+              <br />
+            </div>
+            <!--end partnership div-->
+            <!--start Public / Private Limited Company div-->
+            <div *ngIf="ppCom">
+              <!--Public / Private Limited Company heading div -->
+              <div class="text-center">
+                <h4>Board of Director</h4>
+              </div>
+              <br />
+              <!--start 1st row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="CNIC" [(ngModel)]="ppCnic" mask="00000-0000000-0" [showMaskTyped]="true"
+                      required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="NTN" [(ngModel)]="ppNtn" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 1st row-->
+              <br />
+              <!--start 2nd row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Director Name" [(ngModel)]="ppDirectorName" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 2nd row-->
+              <br />
+              <!--start 3rd row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <mat-select placeholder="Position" [(ngModel)]="ppPosition" required>
+                      <mat-option value="CEO">Chief Executive Officer</mat-option>
+                      <mat-option value="COO">Chief Operating Officer</mat-option>
+                      <mat-option value="CFO">Chief Financial Officer</mat-option>
+                      <mat-option value="Secretary">Secretary</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 3rd row-->
+              <br />
+              <!--start 4th row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Share" [(ngModel)]="ppShare" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Telephone" [(ngModel)]="ppTelephone" mask="000-0000000"
+                      [showMaskTyped]="true" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 4th row-->
+              <br />
+              <!--start 5th row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Mobile" [(ngModel)]="ppMobile" mask="0000-0000000" [showMaskTyped]="true"
+                      required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Email" [(ngModel)]="ppEmail" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 5th row-->
+              <br />
+              <!--start 6th row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput placeholder="Address" [(ngModel)]="ppAddress" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!--end 6th row-->
+            </div>
+            <!--end Public/Private Limited Company div-->
+            <br />
+            <!--start next step button div -->
+            <div class="text-right">
+              <button mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+            <!--end next step button div -->
+
+            <!--end 2nd step form control div-->
+          </mat-step>
+          <!--end 2nd Step -->
+
+
+          <!--start 3rd Step -->
+          <mat-step optional>
+            <!--stepper 3rd label-->
+            <ng-template matStepLabel><b>Step-03</b></ng-template>
+            <!--start 3rd step form control div-->
+            <!--3rd step heading div-->
+            <div class="text-center">
+              <h4>Business Info</h4>
+            </div>
+            <br />
+            <!--start 1st row-->
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="NTN" [(ngModel)]="bNtn" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="STRN" [(ngModel)]="bStrn" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 1st row-->
+            <br />
+            <!--start 2nd row-->
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Title" [(ngModel)]="bTitle" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Nature" [(ngModel)]="bNature" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 2nd row-->
+            <br />
+            <!--start 3rd row-->
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Description" [(ngModel)]="bDescription" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 3rd row-->
+            <br />
+            <!--start 4th row-->
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Business Address" [(ngModel)]="bBusinessAddress" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 4th row-->
+            <br />
+            <!--start 5th row-->
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Mailing Address" [(ngModel)]="bMailingAddress" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 5th row-->
+            <br />
+            <!--start 6th row-->
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Telephone" [(ngModel)]="bTelephone" mask="000-0000000" [showMaskTyped]="true"
+                    required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Mobile" [(ngModel)]="bMobile" mask="0000-0000000" [showMaskTyped]="true"
+                    required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 6th row-->
+            <br />
+            <!--start 7th row-->
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Email" [(ngModel)]="bEmail" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Website" [(ngModel)]="bWebsite" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 7th row-->
+            <br />
+            <!--start 8th row-->
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="fullwidth">
+                  <input matInput placeholder="Facebook ID" [(ngModel)]="bFacebook" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <!--end 8th row-->
+            <br />
+            <!--button tag-->
+            <button mat-raised-button color="primary" (click)="save()">Save</button>
+            <!--end 3rd step form control div-->
+          </mat-step>
+          <!--end 3rd Step -->
+
+        </mat-horizontal-stepper>
+        <!--end horizontal Stepper -->
+
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Add Company Modal Window  -->
