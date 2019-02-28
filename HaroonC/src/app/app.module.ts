@@ -18,6 +18,7 @@ import { DepartmentComponent } from './components/department/department.componen
 import { SectionComponent } from './components/section/section.component';
 import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
 import { CurrencyComponent } from './components/currency/currency.component';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CurrencyComponent } from './components/currency/currency.component';
     FormsModule,
     ChartModule,
     ReactiveFormsModule,
-    PNPrimeModule
+    PNPrimeModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

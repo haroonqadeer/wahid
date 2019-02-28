@@ -171,7 +171,5 @@ export class UserrolesComponent implements OnInit {
       alert(this.varList.length);
       this.filesTree4 = this.varList;//varres => <TreeNode[]>res.json().varList;
     });
-
-
   }
 }

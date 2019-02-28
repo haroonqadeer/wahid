@@ -1,3 +1,183 @@
-<p>
-  headquarter works!
-</p>
+<br>
+<div class="row">
+
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Head Quarter</h1>
+  </div>
+</div>
+<br />
+
+<!-- button row -->
+<div class="row">
+  <div class="col-md-6">
+    <button class="noneOutline" mat-raised-button color="warn">Print</button>
+  </div>
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#HQModal">Add New</button>
+  </div>
+</div><!-- end button - row -->
+
+<!-- Table Section Starts -->
+<div class="container">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr class="d-flex">
+          <th class="col-1">Sr. #</th>
+          <th class="col-2 text-left">Office Title</th>
+          <th class="col-2 text-left">Address</th>
+          <th class="col-2 text-left">Email</th>
+          <th class="col-1 text-left">Phone</th>
+          <th class="col-1 text-left">Mobile</th>
+          <th class="col-1 text-left">Website</th>
+          <th class="col-1 text-right">Edit</th>
+          <th class="col-1 text-center">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="d-flex" *ngFor="let office of offices">
+          <td class="col-1">{{office.offcId}}</td>
+          <td class="col-2 text-left">{{office.offcTitle}}</td>
+          <td class="col-2 text-left">{{office.offcAddress}}</td>
+          <td class="col-2 text-left">{{office.offcEmail}}</td>
+          <td class="col-1 text-left">{{office.offcPhone}}</td>
+          <td class="col-1 text-left">{{office.offcMobile}}</td>
+          <td class="col-1 text-left">{{office.offcWebsite}}</td>
+          <td class="col-1 text-right"><span data-toggle="modal" data-target="#HQModal" class="pointerCursor fa fa-edit text-primary"></span></td>
+          <td class="col-1 text-center"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Table Section Ends -->
+
+<!-- Start head quarter Modal Window -->
+<div class="modal fade" id="HQModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Head Quarter</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start 1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="officeTitle" placeholder="Office Title" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br />
+        <!--start 2nd row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="officeAddress" placeholder="Address" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br />
+        <!--start 3rd row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="officeEmail" placeholder="Email" type="email" [email]="true" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="officePhone" placeholder="Phone" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 3rd row-->
+        <br />
+        <!--start 4th row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="officeMobile" placeholder="Mobile" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="officeWebsite" placeholder="Website" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 4th row-->
+        <br />
+        <!--button tag-->
+        <button mat-raised-button color="primary" (click)="saveHQ()">Save</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End head quarter Modal Window  -->
+
+<!-- Delete Head Quarter Modal Window Starts -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark modal-md">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Delete</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start 1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="userPassword" placeholder="Enter Password" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br />
+        <!--start 2nd row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="userPINCode" placeholder="Enter PIN Code" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 2nd row-->
+        <br />
+        <!--button tag-->
+        <button mat-raised-button color="warn" (click)="delete()">Delete</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- Delete Head Quarter Modal Window Ends -->
