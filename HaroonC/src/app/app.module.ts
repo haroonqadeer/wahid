@@ -22,7 +22,6 @@ import { DepartmentComponent } from './components/department/department.componen
 import { SectionComponent } from './components/section/section.component';
 import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
 import { CurrencyComponent } from './components/currency/currency.component';
-import { ToastrModule } from 'ng6-toastr-notifications';
 
 @NgModule({
   declarations: [
@@ -47,14 +46,11 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     ChartModule,
     ReactiveFormsModule,
     PNPrimeModule,
-<<<<<<< HEAD
-    ToastrModule.forRoot()
-=======
     ToastrModule.forRoot(),
     HttpModule,
     HttpClientModule,
     NgxMaskModule.forRoot()
->>>>>>> f5501c3464fedf0e84b9e0598d87ebdf0e5ec2a5
+
   ],
   providers: [],
   bootstrap: [AppComponent],
