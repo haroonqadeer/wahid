@@ -10,41 +10,15 @@
 <br>
 
 <!--start buttons row-->
-<!-- <div class="row">
+<div class="row">
   <div class="col-md-6">
     <button mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#currencyModal">Add New</button>
   </div>
-</div> -->
-<!--end buttons row-->
-<br>
-
-<!-- Start Add New Currency Container -->
-<div class="container bgWhite allBorder">
-  <br>
-  <!--Start row 1-->
-  <div class="row">
-    <div class="col-md-6">
-      <mat-form-field class="fullwidth">
-        <input matInput placeholder="Currency Name" [(ngModel)]="currencyName" required>
-      </mat-form-field>
-    </div>
-    <div class="col-md-6">
-      <mat-form-field class="fullwidth">
-        <input matInput placeholder="Country Name" [(ngModel)]="countryName" required>
-      </mat-form-field>
-    </div>
-  </div>
-  <!--end row 1-->
-
-  <button mat-raised-button color="primary" data-dismiss="modal" (click)="save()">Save</button>
-  <br /><br />
-
 </div>
-<!-- End Add New Currency Container -->
-
+<!--end buttons row-->
 
 <br />
 <!-- Start Currency Table Container -->
@@ -91,6 +65,56 @@
 </div>
 <!-- End Currency Table Container -->
 <br><br><br>
+
+
+
+<!-- Start Add Currency Modal Window -->
+<div class="modal fade" id="currencyModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Currency</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!-- start 1nd row -->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Currency Name" [(ngModel)]="currencyName" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Country Name" [(ngModel)]="countryName" required>
+            </mat-form-field>
+          </div>
+        </div><!-- end 1nd row -->
+        <br>
+
+        <!--button tag-->
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        &nbsp;
+        <button mat-raised-button (click)="clear()">Reset</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Currency Modal Window  -->
+
 
 
 <!-- Start Modal Window to delete Payemnt voucher data -->

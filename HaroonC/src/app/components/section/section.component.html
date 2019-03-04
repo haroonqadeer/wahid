@@ -10,64 +10,19 @@
 <br>
 
 <!--start buttons row-->
-<!-- <div class="row">
-<div class="col-md-6">
-<button mat-raised-button color="warn">Print</button>
+<div class="row">
+  <div class="col-md-6">
+    <button mat-raised-button color="warn">Print</button>
+  </div>
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#sectModal">Add New</button>
+  </div>
 </div>
-<div class="col-md-6 text-right">
-<button mat-raised-button color="primary" data-toggle="modal" data-target="#currencyModal">Add New</button>
-</div>
-</div> -->
 <!--end buttons row-->
 <br>
 
-<!-- Start Add New Section Container -->
-<div class="container bgWhite allBorder">
-  <br>
-  <!--Start row 1-->
-  <div class="row">
-    <div class="col-md-6">
-      <mat-form-field class="fullwidth">
-        <mat-select placeholder="Head Quarter / Office" [(ngModel)]="cmbHeadQuarter">
-          <mat-option *ngFor="let item of headquarters" [value]="item.hqId">{{item.hqName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-md-6">
-      <mat-form-field class="fullwidth">
-        <mat-select placeholder="Department" [(ngModel)]="cmbDepartment">
-          <mat-option *ngFor="let item of departments" [value]="item.departmentId">{{item.departmentName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-  <!--end row 1-->
-
-  <!-- row - 02 -->
-  <div class="row">
-    <div class="col-md-11">
-      <mat-form-field class="fullwidth">
-        <mat-select placeholder="Section Name" [(ngModel)]="cmbSection">
-          <mat-option *ngFor="let item of sections" [value]="item.sectionId">
-            {{item.sectionName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-md-1">
-      <button mat-fab class='noneOutLine' data-toggle="modal" data-target="#sectionModal"><span class="fa fa-plus"></span></button>
-    </div>
-  </div><!-- end row - 02 -->
-
-  <button mat-raised-button color="primary" data-dismiss="modal" (click)="save()">Save</button>
-  <br /><br />
-
-</div>
-<!-- End Add New Section Container -->
 
 
-
-<br />
 <!-- Start Section Table Container -->
 <div class="container mat-elevation-z8 ">
   <br>
@@ -164,6 +119,81 @@
   </div>
 </div>
 <!-- End Modal Window to delete data -->
+
+
+
+<!-- Start Add Currency Modal Window -->
+<div class="modal fade" id="sectModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Currency</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!-- start 1nd row -->
+        <div class="row">
+
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <mat-select placeholder="Head Quarter / Office" [(ngModel)]="cmbHeadQuarter">
+                <mat-option *ngFor="let item of headquarters" [value]="item.hqId">{{item.hqName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <mat-select placeholder="Department" [(ngModel)]="cmbDepartment">
+                <mat-option *ngFor="let item of departments" [value]="item.departmentId">{{item.departmentName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div><!-- end 1nd row -->
+        <br>
+
+        <!-- row - 02 -->
+        <div class="row">
+          <div class="col-md-10">
+            <mat-form-field class="fullwidth">
+              <mat-select placeholder="Section Name" [(ngModel)]="cmbSection">
+                <mat-option *ngFor="let item of sections" [value]="item.sectionId">
+                  {{item.sectionName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2">
+            <button mat-fab class='noneOutLine' data-toggle="modal" data-target="#sectionModal"><span class="fa fa-plus"></span></button>
+          </div>
+
+        </div><!-- end row - 02 -->
+
+
+        <!--button tag-->
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        &nbsp;
+        <button mat-raised-button (click)="clear()">Reset</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Currency Modal Window  -->
 
 
 
