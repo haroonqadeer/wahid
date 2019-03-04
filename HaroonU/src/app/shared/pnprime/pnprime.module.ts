@@ -5,8 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
-import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
+import { TreeModule } from 'primeng/tree';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { TreeTableModule } from 'primeng/treetable';
     ToastModule,
     PasswordModule,
     TreeModule,
-    TreeTableModule
+    TreeTableModule,
   ],
   exports: [
     OrganizationChartModule,

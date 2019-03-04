@@ -26,6 +26,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 import { HttpModule } from '@angular/http';
+import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HttpModule } from '@angular/http';
     ErpBottomSheetComponent,
     CreatepasswordComponent,
     UserformComponent,
-    UserTreeComponent
+    UserTreeComponent,
+    TryMenuPageComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,8 @@ import { HttpModule } from '@angular/http';
     // Default values: `idle` is 60 (1 minutes), `timeout` is 30 (0.5 minutes) 
     // and `ping` is 15 0.25 minutes).
 
-    UserIdleModule.forRoot({ idle: 60, timeout: 30, ping: 15 }),
+
+    UserIdleModule.forRoot({ idle: 120, timeout: 120, ping: 15 }),
     NgxPaginationModule,
     OrderModule,
     HttpModule

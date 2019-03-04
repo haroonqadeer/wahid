@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { UserServiceService } from '../../shared/user-service.service';
 import { AppComponent } from '../../app.component';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 var $: any;
 @Component({
@@ -17,10 +18,17 @@ var $: any;
 })
 export class LoginComponent implements OnInit {
 
+    serverUrl = "http://localhost:55536/";
+    tokenKey = "token";
+
+    httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    }
+
     txtUserName = '';
     txtPassword = '';
 
-    constructor(private userService: UserServiceService, private formBuilder: FormBuilder, public toastr: ToastrManager, private router: Router, private Idle: AppComponent) { }
+    constructor(private http: HttpClient, private formBuilder: FormBuilder, public toastr: ToastrManager, private router: Router, private Idle: AppComponent) { }
 
 
     ngOnInit() {
@@ -33,10 +41,6 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
 
-        // this.toastr.successToastr('This is success toast.', 'Success!', {toastTimeout: (2000)});
-        // this.toastr.warningToastr('This is warning toast.', 'Alert!', {toastTimeout: (3000)});
-        // this.toastr.infoToastr('This is info toast.', 'Info', {toastTimeout: (3500)});
-
         if (this.txtUserName.trim().length == 0) {
             this.toastr.errorToastr('Please Enter User Name', 'Oops!', { toastTimeout: (2500) });
             return false;
@@ -46,7 +50,13 @@ export class LoginComponent implements OnInit {
             return false;
         }
         else {
-            this.userService.postUser(this.txtUserName, this.txtPassword).subscribe((data: any) => {
+            
+
+            var data = { "loginname": this.txtUserName, "password": this.txtPassword };
+
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+            this.http.post(this.serverUrl + 'api/token', data, { headers: reqHeader }).subscribe((data: any) => {
 
                 if (data.msg != undefined) {
                     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
@@ -58,6 +68,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/dashboard']);
                 }
             });
+            
         }
     }
 }

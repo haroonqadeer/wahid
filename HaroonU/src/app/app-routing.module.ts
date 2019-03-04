@@ -11,6 +11,8 @@ import { UserTreeComponent } from './components/user-tree/user-tree.component';
 
 import { AuthGuard } from './auth/auth.guard';
 
+import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -27,17 +29,21 @@ const routes: Routes = [
   {
     path: 'userroles',
     component: UserrolesComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'userprofile',
     component: UserprofileComponent,
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'usertree',
     component: UserTreeComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'tryMenu',
+    component: TryMenuPageComponent
   }
 ];
 

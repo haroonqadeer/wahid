@@ -1,0 +1,25 @@
+{
+  "data": [{
+    "label": "Module 1",
+
+    "children": [{
+        "label": "Menu 1",
+
+        "children": [{
+          "label": "sub menu 1.1"
+
+        }, {
+          "label": "sub menu 1.2"
+
+        }]
+      },
+      {
+        "label": "Menu 2",
+
+        "children": [{
+          "label": "sub menu 2.1"
+        }]
+      }
+    ]
+  }]
+}

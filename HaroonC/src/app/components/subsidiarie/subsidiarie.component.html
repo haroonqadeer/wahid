@@ -1,0 +1,323 @@
+<br />
+<!-- heading row -->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Subsidiaries</h1>
+  </div>
+</div>
+<!-- end heading row -->
+
+<br>
+
+<!--start buttons row-->
+<div class="row">
+  <div class="col-md-6">
+    <button mat-raised-button color="warn">Print</button>
+  </div>
+  <div class="col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#subsidiaryModal" (click)="clear()">Add
+      New</button>
+  </div>
+</div>
+<!--end buttons row-->
+<br>
+
+
+
+<br />
+<!-- Start Section Table Container -->
+<div class="container mat-elevation-z8 ">
+  <br>
+  <!--Start search textbox Row-->
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="fullwidth">
+        <input matInput [(ngModel)]="tblSearch" placeholder=" Search">
+      </mat-form-field>
+      <i class="fab fa-accessible-icon"></i>
+    </div>
+  </div>
+  <!--end search textbox Row-->
+
+  <!--Start table Row-->
+  <div class="row">
+    <table class="table table-striped fullwidth" id="myTable">
+      <thead>
+        <tr class="d-flex">
+          <th class="col-1 text-center">Sr No.</th>
+          <th class="col-3">Subsidiary Title</th>
+          <th class="col-2">Type</th>
+          <th class="col-2">Representator</th>
+          <th class="col-2">City</th>
+          <th class="col-2 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of subsidiaryDetail | search:'Section,HeadQuarter' :tblSearch let i=index" class='d-flex'>
+          <td class="col-1 text-center">{{i + 1}}</td>
+          <td class="col-3">{{item.subsidiaryTitle}}</td>
+          <td class="col-2">{{item.subsidiaryType}}</td>
+          <td class="col-2">{{item.representator}}</td>
+          <td class="col-2">{{item.cityName}}</td>
+          <td class="col-2 text-center">
+            <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#subsidiaryModal" (click)="edit(item)"></span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- end table row -->
+  <br />
+</div>
+<!-- End Section Table Container -->
+<br><br><br>
+
+
+
+<!-- Start Modal Window to delete data -->
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog shadow-lg-dark">
+    <div class="modal-content">
+      <!--start delete user Modal body -->
+      <div class="modal-body">
+        <br>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2>Delete Currency</h2>
+            <!-- <h2 [(ngModel)]="userName">{{userName}}</h2> -->
+          </div>
+        </div><br />
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter Password" type="password" [(ngModel)]="txtdPassword">
+            </mat-form-field>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Enter PIN" type="password" [(ngModel)]="txtdPin">
+            </mat-form-field>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <button mat-raised-button color="warn" (click)="delete()">Delete</button>
+          </div>
+        </div>
+        <br />
+      </div>
+      <!--end delete user Modal body -->
+
+      <!--start delete user Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeDeleteModel">Close</button>
+      </div>
+      <!--end delete user Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Modal Window to delete data -->
+
+
+
+<!-- Start Subsidiary Modal Window -->
+<div class="modal fade" id="subsidiaryModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">New Subsidiary</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start 1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Subsidiary Title" [(ngModel)]="subsidiaryTitle" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br />
+
+        <!-- start 2nd row -->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="NTN" [(ngModel)]="ntn" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="STRN" [(ngModel)]="strn" required>
+            </mat-form-field>
+          </div>
+        </div><!-- end 2nd row -->
+        <br>
+
+        <!-- start 3rd row -->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <mat-select placeholder="Subsidiary Type" [(ngModel)]="cmbSubsidiaryType">
+                <mat-option>Sole proprietorship</mat-option>
+                <mat-option value="option1">partnership</mat-option>
+                <mat-option value="option2">Private Limited Company</mat-option>
+                <mat-option value="option3">Public Limited Company</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Representator" [(ngModel)]="representator" required>
+            </mat-form-field>
+          </div>
+        </div><!-- end 3rd row -->
+        <br>
+
+        <!--start 4th row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Address" [(ngModel)]="address" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 4th row-->
+
+        <br />
+        <!--start 5th row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <mat-select placeholder="City Name" [(ngModel)]="cmbCity" required>
+                <mat-option *ngFor="let item of cities" [value]="item.cityId">
+                  {{ item.cityName }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <button mat-fab data-toggle="modal" data-target="#cityModal"><span class="fa fa-plus"></span></button>
+          </div>
+        </div>
+        <!--end 5th row-->
+        <br />
+        <!--start 6th row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Email" [(ngModel)]="email" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="telephone" mask="000-0000000" [showMaskTyped]="true" required placeholder="Telephone">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 6th row-->
+        <br />
+        <!--start 7th row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="mobile" mask="0000-0000000" [showMaskTyped]="true" required placeholder="Mobile">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Website" [(ngModel)]="website" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 7th row-->
+        <br>
+        <!--start 7th row-->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Fax Number" [(ngModel)]="faxNumber" required mask="000-0000000"
+                [showMaskTyped]="true">
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="Upload Agreement" [(ngModel)]="agreement" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-1">
+            <button mat-raised-button class="noneOutLine">...</button>
+          </div>
+        </div>
+        <!--end 7th row-->
+        <br />
+        <!--button tag-->
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        &nbsp;&nbsp;&nbsp;
+        <button mat-raised-button (click)="clear()">Reset</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Subsidiary Modal Window  -->
+
+
+<!-- Start add Section Modal Window -->
+<div class="modal fade" id="cityModal">
+  <div class="modal-dialog shadow-lg-dark modal-md">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add City</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <!--start 1st row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <input matInput placeholder="City Name" [(ngModel)]="cityName" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--end 1st row-->
+        <br />
+        <!--button tag-->
+        <button mat-raised-button color="primary" (click)="addCity()">Save</button>
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="addCityModel">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End add Section Modal Window  -->

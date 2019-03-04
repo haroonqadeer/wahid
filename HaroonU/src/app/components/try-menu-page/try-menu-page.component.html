@@ -1,0 +1,91 @@
+<br>
+<!-- heading row -->
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="bottomBorder">Try Menu Page</h1>
+  </div>
+</div>
+<!-- end heading row -->
+<br>
+
+
+<!-- Menu Container Starts -->
+<div class="container">
+
+
+  <!-- Combo Box Row Starts-->
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="fullwidth">
+        <mat-select placeholder="Select User" [(ngModel)]="userSelected" (ngModelChange)="getUserSelect($event)">
+          <mat-option *ngFor="let user of userRolesList" [value]="user.userId">
+            <table class="table table-striped">
+              <tr class='d-flex'>
+                <td class="col-2 text-center">{{user.userId}}</td>
+                <td class="col-5">{{user.username}}</td>
+                <td class="col-5">{{user.designation}}</td>
+              </tr>
+            </table>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- Combo Box Row Ends-->
+
+
+  <!-- Ordered List Row For Roles Starts -->
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Menu</h5>
+      <ul *ngFor="let item of menus">
+        <li>{{item.menuName}}</li>
+        <!-- <li>{{item.moduleName}}</li> -->
+      </ul>
+    </div>
+  </div>
+  <!-- Ordered List Row For Roles Ends -->
+
+  <!-- Module Table Row Starts -->
+  <!-- <div class="row">
+<table class="table table-striped">
+<thead>
+<tr class="d-flex">
+<th class="col-1">#</th>
+<th class="col-4">Module Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="d-flex" *ngFor="let item of modules">
+<td class="col-1">{{item.moduleId}}</td>
+<td class="col-4">{{item.moduleName}}</td>
+</tr>
+</tbody>
+</table>
+</div> -->
+  <!-- Module Table Row Ends -->
+
+  <!-- Menu Table Row Starts -->
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr class="d-flex">
+          <th class="col-2 text-center">#</th>
+          <th class="col-4">Menu Name</th>
+          <th class="col-4">Module Name</th>
+          <th class="col-2">User Id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="d-flex" *ngFor="let item of menus">
+          <td class="col-2 text-center">{{item.menuId}}</td>
+          <td class="col-4">{{item.menuName}}</td>
+          <td class="col-4">{{item.moduleName}}</td>
+          <td class="col-2">{{item.userId}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Menu Table Row Ends -->
+</div>
+<!-- Menu Container Ends -->
