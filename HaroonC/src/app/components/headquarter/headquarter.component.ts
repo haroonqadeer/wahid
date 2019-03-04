@@ -20,6 +20,9 @@ export class HeadquarterComponent implements OnInit {
   officeMobile = "";
   officeWebsite = "";
 
+  // NgModels For Searching Textboxes
+  tblSearch = "";
+
   //Delete Modal Window Models
   userPassword = "";
   userPINCode = "";
@@ -33,6 +36,24 @@ export class HeadquarterComponent implements OnInit {
       offcPhone: "0512290450",
       offcMobile: "03331234567",
       offcWebsite: "www.google.com"
+    },
+    {
+      offcId: 2,
+      offcTitle: "Infomatrix",
+      offcAddress: "F-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 3,
+      offcTitle: "Alpha Tech.",
+      offcAddress: "E-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
     }
   ]
 
@@ -91,6 +112,21 @@ export class HeadquarterComponent implements OnInit {
       $('#deleteModal').modal('hide');
       return false;
     }
+  }
+
+  //For Clearing Form
+  clear() {
+
+    this.officeId = 0;
+    this.officeTitle = '';
+    this.officeAddress = '';
+    this.officeEmail = '';
+    this.officePhone = '';
+    this.officeMobile = '';
+    this.officeWebsite = '';
+
+    this.userPassword = '';
+    this.userPINCode = '';
   }
 
   isEmail(email) {

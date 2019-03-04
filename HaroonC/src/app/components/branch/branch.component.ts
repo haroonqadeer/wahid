@@ -21,6 +21,9 @@ export class BranchComponent implements OnInit {
   branchMobile = "";
   branchWebsite = "";
 
+  //For Searching textboxes
+  tblSearch = "";
+
   //City Modal Window Models
   cityName = "";
 
@@ -120,6 +123,22 @@ export class BranchComponent implements OnInit {
       return false;
     }
   }
+
+
+  clear() {
+    this.branchId = 0;
+    this.branchTitle = '';
+    this.branchAddress = '';
+    this.branchCity = '';
+    this.branchEmail = '';
+    this.branchPhone = '';
+    this.branchMobile = '';
+    this.branchWebsite = '';
+
+    this.userPassword = '';
+    this.userPINCode = '';
+  }
+
 
   isEmail(email) {
     return this.app.validateEmail(email);

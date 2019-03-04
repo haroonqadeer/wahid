@@ -19,7 +19,18 @@
 </div><!-- end button - row -->
 
 <!-- Table Section Starts -->
-<div class="container">
+<div class="container mat-elevation-z8">
+  <br>
+  <!--Start search textbox Row-->
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="fullwidth">
+        <input matInput [(ngModel)]="tblSearch" placeholder=" Search">
+      </mat-form-field>
+      <i class="fab fa-accessible-icon"></i>
+    </div>
+  </div>
+  <!--end search textbox Row-->
   <div class="row">
     <table class="table table-striped">
       <thead>
@@ -37,7 +48,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let branch of branches">
+        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,branCity,branPhone,branEmail,branMobile':tblSearch">
           <td class="col-1">{{branch.branId}}</td>
           <td class="col-2 text-left">{{branch.branTitle}}</td>
           <td class="col-2 text-left">{{branch.branAddress}}</td>
@@ -138,108 +149,116 @@
         </div>
         <!--end 5th row-->
         <br />
-        <!--button tag-->
-        <button mat-raised-button color="primary" (click)="saveBranch()">Save</button>
-      </div>
-      <!--end Modal body -->
-
-      <!--start Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      <!--end Modal footer -->
-
-    </div>
-  </div>
-</div>
-<!-- End branch Modal Window  -->
-
-<!-- Start AddCity Modal Window -->
-<div class="modal fade" id="cityModal">
-  <div class="modal-dialog shadow-lg-dark modal-md">
-    <div class="modal-content">
-
-      <!--start Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Add City</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <!--end Modal Header -->
-
-      <!--start Modal body -->
-      <div class="modal-body">
-        <!--start 1st row-->
+        <!--button tag Row Starts-->
         <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="cityName" placeholder="City Name" required>
-            </mat-form-field>
+          <div class="col-md-1 text-left">
+            <button mat-raised-button color="primary" (click)="saveBranch()">Save</button>
+
+          </div>
+          <div class="col-md-2 text-center">
+            <button mat-raised-button (click)="clear()">Reset</button>
           </div>
         </div>
-        <!--end 1st row-->
-        <br />
-        <!--button tag-->
-        <button mat-raised-button color="primary" (click)="saveCity()">Save</button>
-      </div>
-      <!--end Modal body -->
+        <!-- Button tag Row Ends -->
 
-      <!--start Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      <!--end Modal footer -->
 
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
     </div>
   </div>
-</div>
-<!-- End add city Modal Window  -->
+  <!-- End branch Modal Window  -->
 
-<!-- Delete Head Quarter Modal Window Starts -->
-<div class="modal fade" id="deleteModal">
-  <div class="modal-dialog shadow-lg-dark modal-md">
-    <div class="modal-content">
+  <!-- Start AddCity Modal Window -->
+  <div class="modal fade" id="cityModal">
+    <div class="modal-dialog shadow-lg-dark modal-md">
+      <div class="modal-content">
 
-      <!--start Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Delete</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <!--end Modal Header -->
-
-      <!--start Modal body -->
-      <div class="modal-body">
-        <!--start 1st row-->
-        <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="userPassword" placeholder="Enter Password" required>
-            </mat-form-field>
-          </div>
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add City</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <!--end 1st row-->
-        <br />
-        <!--start 2nd row-->
-        <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="userPINCode" placeholder="Enter PIN Code" required>
-            </mat-form-field>
+        <!--end Modal Header -->
+
+        <!--start Modal body -->
+        <div class="modal-body">
+          <!--start 1st row-->
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput [(ngModel)]="cityName" placeholder="City Name" required>
+              </mat-form-field>
+            </div>
           </div>
+          <!--end 1st row-->
+          <br />
+          <!--button tag-->
+          <button mat-raised-button color="primary" (click)="saveCity()">Save</button>
         </div>
-        <!--end 2nd row-->
-        <br />
-        <!--button tag-->
-        <button mat-raised-button color="warn" (click)="delete()">Delete</button>
-      </div>
-      <!--end Modal body -->
+        <!--end Modal body -->
 
-      <!--start Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      <!--end Modal footer -->
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
 
+      </div>
     </div>
   </div>
-</div>
-<!-- Delete Head Quarter Modal Window Ends -->
+  <!-- End add city Modal Window  -->
+
+  <!-- Delete Head Quarter Modal Window Starts -->
+  <div class="modal fade" id="deleteModal">
+    <div class="modal-dialog shadow-lg-dark modal-md">
+      <div class="modal-content">
+
+        <!--start Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Delete</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!--end Modal Header -->
+
+        <!--start Modal body -->
+        <div class="modal-body">
+          <!--start 1st row-->
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput [(ngModel)]="userPassword" placeholder="Enter Password" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <!--end 1st row-->
+          <br />
+          <!--start 2nd row-->
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="fullwidth">
+                <input matInput [(ngModel)]="userPINCode" placeholder="Enter PIN Code" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <!--end 2nd row-->
+          <br />
+          <!--button tag-->
+          <button mat-raised-button color="warn" (click)="delete()">Delete</button>
+        </div>
+        <!--end Modal body -->
+
+        <!--start Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <!--end Modal footer -->
+
+      </div>
+    </div>
+  </div>
+  <!-- Delete Head Quarter Modal Window Ends -->
