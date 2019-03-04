@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { AppComponent } from '../../app.component';
 
 declare var $: any;
 @Component({
@@ -35,33 +36,37 @@ export class HeadquarterComponent implements OnInit {
     }
   ]
 
-  constructor(public toastr: ToastrManager) { }
+  constructor(public toastr: ToastrManager, private app: AppComponent) { }
 
   ngOnInit() {
   }
 
   saveHQ() {
-    if (this.officeTitle == "") {
+    if (this.officeTitle.trim() == "") {
       this.toastr.errorToastr('Please Enter Office Title', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.officeAddress == "") {
+    else if (this.officeAddress.trim() == "") {
       this.toastr.errorToastr('Please Enter Office Address', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.officeEmail == "") {
-      this.toastr.errorToastr('Please Enter Office Email', 'Error', { toastTimeout: (2500) });
+    else if (this.officeEmail.trim() == '') {
+      this.toastr.errorToastr('Please enter email', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.officePhone == "") {
+    else if (this.isEmail(this.officeEmail.trim()) == false) {
+      this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.officePhone == "" || this.officePhone.length < 10) {
       this.toastr.errorToastr('Please Enter Office Phone', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.officeMobile == "") {
+    else if (this.officeMobile == "" || this.officeMobile.length < 11) {
       this.toastr.errorToastr('Please Enter Office Mobile', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.officeWebsite == "") {
+    else if (this.officeWebsite.trim() == "") {
       this.toastr.errorToastr('Please Enter Office Website', 'Error', { toastTimeout: (2500) });
       return false;
     }
@@ -87,4 +92,9 @@ export class HeadquarterComponent implements OnInit {
       return false;
     }
   }
+
+  isEmail(email) {
+    return this.app.validateEmail(email);
+  }
+
 }

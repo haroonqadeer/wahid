@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { AppComponent } from '../../app.component';
 
 declare var $: any;
 
@@ -48,36 +49,40 @@ export class BranchComponent implements OnInit {
     { ctyId: '4', ctyName: 'Quetta' }
   ];
 
-  constructor(public toastr: ToastrManager) { }
+  constructor(public toastr: ToastrManager, private app: AppComponent) { }
 
   ngOnInit() {
   }
   saveBranch() {
-    if (this.branchTitle == "") {
+    if (this.branchTitle.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Title', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchAddress == "") {
+    else if (this.branchAddress.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Address', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchCity == "") {
+    else if (this.branchCity.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch City', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchEmail == "") {
-      this.toastr.errorToastr('Please Enter Branch Email', 'Error', { toastTimeout: (2500) });
+    else if (this.branchEmail.trim() == '') {
+      this.toastr.errorToastr('Please enter email', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchPhone == "") {
+    else if (this.isEmail(this.branchEmail.trim()) == false) {
+      this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchPhone == "" || this.branchPhone.length < 10) {
       this.toastr.errorToastr('Please Enter Branch Phone', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchMobile == "") {
+    else if (this.branchMobile == "" || this.branchMobile.length < 11) {
       this.toastr.errorToastr('Please Enter Branch Mobile', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchWebsite == "") {
+    else if (this.branchWebsite.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Website', 'Error', { toastTimeout: (2500) });
       return false;
     }
@@ -89,7 +94,7 @@ export class BranchComponent implements OnInit {
   }
 
   saveCity() {
-    if (this.cityName == "") {
+    if (this.cityName.trim() == "") {
       this.toastr.errorToastr('Please Enter City Name', 'Error', { toastTimeout: (2500) });
       return false;
     }
@@ -101,11 +106,11 @@ export class BranchComponent implements OnInit {
   }
 
   delete() {
-    if (this.userPassword == "") {
+    if (this.userPassword.trim() == "") {
       this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.userPINCode == "") {
+    else if (this.userPINCode.trim() == "") {
       this.toastr.errorToastr('Please Enter PIN Code', 'Error', { toastTimeout: (2500) });
       return false;
     }
@@ -114,5 +119,9 @@ export class BranchComponent implements OnInit {
       $('#deleteModal').modal('hide');
       return false;
     }
+  }
+
+  isEmail(email) {
+    return this.app.validateEmail(email);
   }
 }
