@@ -25,6 +25,7 @@ import { UserTreeComponent } from './components/user-tree/user-tree.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { OrderModule } from 'ngx-order-pipe';
 
     UserIdleModule.forRoot({ idle: 60, timeout: 30, ping: 15 }),
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    HttpModule
   ],
 
   providers: [],
