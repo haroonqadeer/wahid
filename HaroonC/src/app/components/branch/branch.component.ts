@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
-var $: any;
+declare var $: any;
+
 @Component({
   selector: 'app-branch',
   templateUrl: './branch.component.html',
@@ -82,7 +83,7 @@ export class BranchComponent implements OnInit {
     }
     else {
       this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
-      $('#branchModal').Modal('hide');
+      $('#branchModal').modal('hide');
       return false;
     }
   }
@@ -94,23 +95,23 @@ export class BranchComponent implements OnInit {
     }
     else {
       this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
-      $('#cityModal').Modal('hide');
+      $('#cityModal').modal('hide');
       return false;
     }
   }
 
   delete() {
-    if (this.userPassword = "") {
+    if (this.userPassword == "") {
       this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.userPINCode = "") {
+    else if (this.userPINCode == "") {
       this.toastr.errorToastr('Please Enter PIN Code', 'Error', { toastTimeout: (2500) });
       return false;
     }
     else {
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
-      $('#deleteModal').Modal('hide');
+      $('#deleteModal').modal('hide');
       return false;
     }
   }

@@ -50,7 +50,6 @@ import { CurrencyComponent } from './components/currency/currency.component';
     HttpModule,
     HttpClientModule,
     NgxMaskModule.forRoot()
-
   ],
   providers: [],
   bootstrap: [AppComponent],

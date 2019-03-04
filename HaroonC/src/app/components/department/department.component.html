@@ -14,7 +14,7 @@
     <button class="noneOutline" mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
-    <button mat-raised-button color="primary" data-toggle="modal" data-target="#deptModal">Add New</button>
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#departmentModal">Add New</button>
   </div>
 </div><!-- end button - row -->
 
@@ -26,7 +26,8 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1">Sr. #</th>
-          <th class="col-9 text-left">Department Name</th>
+          <th class="col-5 text-left">Branch Name</th>
+          <th class="col-4 text-left">Department Name</th>
           <th class="col-1 text-right">Edit</th>
           <th class="col-1 text-center">Delete</th>
         </tr>
@@ -34,8 +35,9 @@
       <tbody>
         <tr class="d-flex" *ngFor="let dept of departments">
           <td class="col-1">{{dept.departmentId}}</td>
-          <td class="col-9 text-left">{{dept.departmentName}}</td>
-          <td class="col-1 text-right"><span data-toggle="modal" data-target="#deptModal" class="pointerCursor fa fa-edit text-primary"></span></td>
+          <td class="col-5 text-left">{{dept.branchName}}</td>
+          <td class="col-4 text-left">{{dept.departmentName}}</td>
+          <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal" class="pointerCursor fa fa-edit text-primary"></span></td>
           <td class="col-1 text-center"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
         </tr>
       </tbody>
@@ -45,7 +47,68 @@
 <!-- Table Section Ends -->
 
 
-<!-- Start AddDept Modal Window -->
+<!-- Start Department Modal Window -->
+<div class="modal fade" id="departmentModal">
+  <div class="modal-dialog shadow-lg-dark modal-lg">
+    <div class="modal-content">
+
+      <!--start Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Department</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!--end Modal Header -->
+
+      <!--start Modal body -->
+      <div class="modal-body">
+        <br>
+        <!-- row - 01 -->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="deptBranch" placeholder="Head Quarter / Branch">
+                <mat-option *ngFor="let branch of branches" [value]="branch.branchName">{{branch.branchName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div><!-- end row - 01 -->
+
+        <!-- row - 02 -->
+        <div class="row">
+          <div class="col-md-10">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="deptName" placeholder="Department Name">
+                <mat-option *ngFor="let dept of departments" [value]="dept.departmentName">{{dept.departmentName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-1">
+            <button mat-fab class='noneOutLine' data-toggle="modal" data-target="#deptModal"><span class="fa fa-plus"></span></button>
+          </div>
+        </div><!-- end row - 02 -->
+
+        <!-- row - 03 -->
+        <div class="row">
+          <div class="col-md-12">
+            <button mat-raised-button color="primary" (click)="saveDepartment()">Save</button>
+          </div>
+        </div><!-- end row - 03 -->
+      </div>
+      <!--end Modal body -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
+    </div>
+  </div>
+</div>
+<!-- End Department Modal Window  -->
+
+
+<!-- Start Add Dept Modal Window -->
 <div class="modal fade" id="deptModal">
   <div class="modal-dialog shadow-lg-dark modal-md">
     <div class="modal-content">
@@ -62,15 +125,15 @@
         <!--start 1st row-->
         <div class="row">
           <div class="col-md-12">
-            <mat-form-field>
-              <input matInput [(ngModel)]="deptName" placeholder="Department Name" required>
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="departName" placeholder="Department Name" required>
             </mat-form-field>
           </div>
         </div>
         <!--end 1st row-->
         <br />
         <!--button tag-->
-        <button mat-raised-button color="primary" data-dismiss="modal" (click)="saveDepartment()">Save</button>
+        <button mat-raised-button color="primary" (click)="saveDept()">Save</button>
       </div>
       <!--end Modal body -->
 
@@ -83,9 +146,11 @@
     </div>
   </div>
 </div>
-<!-- End Add Department Modal Window  -->
+<!-- End Add Dept Modal Window  -->
 
-<!-- Delete Head Quarter Modal Window Starts -->
+
+
+<!-- Delete Add Department Modal Window Starts -->
 <div class="modal fade" id="deleteModal">
   <div class="modal-dialog shadow-lg-dark modal-md">
     <div class="modal-content">
@@ -133,4 +198,4 @@
     </div>
   </div>
 </div>
-<!-- Delete Head Quarter Modal Window Ends -->
+<!-- Delete Add Department Modal Window Ends -->
