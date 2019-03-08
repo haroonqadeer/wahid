@@ -24,7 +24,6 @@
 
 
 
-<br />
 <!-- Start Section Table Container -->
 <div class="container mat-elevation-z8 ">
   <br>
@@ -60,9 +59,10 @@
           <td class="col-2">{{item.representator}}</td>
           <td class="col-2">{{item.cityName}}</td>
           <td class="col-2 text-center">
-            <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#subsidiaryModal" (click)="edit(item)"></span>
+            <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#subsidiaryModal"
+              (click)="edit(item)"></span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
+            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
           </td>
         </tr>
       </tbody>
@@ -171,10 +171,10 @@
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
               <mat-select placeholder="Subsidiary Type" [(ngModel)]="cmbSubsidiaryType">
-                <mat-option>Sole proprietorship</mat-option>
-                <mat-option value="option1">partnership</mat-option>
-                <mat-option value="option2">Private Limited Company</mat-option>
-                <mat-option value="option3">Public Limited Company</mat-option>
+                <mat-option value="Sole proprietorship">Sole proprietorship</mat-option>
+                <mat-option value="partnership">Partnership</mat-option>
+                <mat-option value="Private Limited Company">Private Limited Company</mat-option>
+                <mat-option value="Public Limited Company">Public Limited Company</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

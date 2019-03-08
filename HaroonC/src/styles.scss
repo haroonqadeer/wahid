@@ -1,68 +1,69 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
- @import './assets/font.scss';
+@import './assets/font.scss';
 
 
 /* Common CSS Start */
 
-html, body{
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
-h1{
-    font-family: Josefin !important;
-    letter-spacing: 0.2em !important;
+h1 {
+  font-family: Josefin !important;
+  letter-spacing: 0.2em !important;
 }
 
-.h1{
-    font-family: Mukta !important;
+.h1 {
+  font-family: Mukta !important;
 }
 
-body{
-    // background-color: #ebecef !important;
-    background-image: linear-gradient(135deg,#fff, #ccc);
-    overflow: hidden;    
+body {
+  // background-color: #ebecef !important;
+  background-image: linear-gradient(135deg, #fff, #ccc);
+  overflow: hidden;
 }
 
-.bodyWhite{
-    background-image: linear-gradient(135deg,#fff, #eeeeee);
+.bodyWhite {
+  background-image: linear-gradient(135deg, #fff, #eeeeee);
 }
 
 ///// headings
-h1{
-    border: 0px solid red;
+h1 {
+  border: 0px solid red;
 }
 
 //loginbody
-.loginbody{
-    position: absolute;
-    width: 100% !important;
-    height: 100% !important;
-    // background-color: #ebecef !important;
-    background-image: linear-gradient(45deg,#4c4c4c,#666, #7f7f7f);
-    overflow: hidden;    
+.loginbody {
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
+  // background-color: #ebecef !important;
+  background-image: linear-gradient(45deg, #4c4c4c, #666, #7f7f7f);
+  overflow: hidden;
 }
 
 
-.h1Login{
-    background-color: #f44336;
-    color:#fff;
-    height: 3em;
-    padding-top: 0.7em;
-    font-family: Oswald;
-    letter-spacing: 5px;
-    //text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
-    font-weight: bold;
+.h1Login {
+  background-color: #f44336;
+  color: #fff;
+  height: 3em;
+  padding-top: 0.7em;
+  font-family: Oswald;
+  letter-spacing: 5px;
+  //text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+  font-weight: bold;
 }
 
 /////////////////////////////////////////
 //////////// Back Groudn ////////////////
 /////////////////////////////////////////
-.bgWhite{
-    background-color: #fff !important;
+.bgWhite {
+  background-color: #fff !important;
 }
 
-.bgblack{
-    background-color: #f44336 !important;    
+.bgblack {
+  background-color: #f44336 !important;
 }
 
 
@@ -70,14 +71,16 @@ h1{
 //////////// Font Colors ////////////////
 /////////////////////////////////////////
 
-.fontWhite{
-    color: #e5e5e5 !important;
+.fontWhite {
+  color: #e5e5e5 !important;
 }
-.fontRed{
-    color: #f44336 !important;
+
+.fontRed {
+  color: #f44336 !important;
 }
-.fontPrimary{
-    color: #3f51b5 !important;
+
+.fontPrimary {
+  color: #3f51b5 !important;
 }
 
 
@@ -90,377 +93,407 @@ h1{
 //     box-shadow: 0 2px 2px 2px black;
 //     transition: all 0.3s linear;
 //   }
-.nav{
-    list-style-type:none;
-    margin:0;
-    padding:0;
-}  
-.nav li{
-    height:2em;
-    width:100%;     
-    position:relative;
-    text-decoration: none !important;
-    background: linear-gradient(#0C121D, #090e17);    
+.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
+
+.nav li {
+  height: 2em;
+  width: 100%;
+  position: relative;
+  text-decoration: none !important;
+  background: linear-gradient(#0C121D, #090e17);
+}
+
 .nav a {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    border-bottom: 1px solid black;
-    text-decoration:none !important;
-    display:block;
-    height:100%;
-    width:100%;
-    line-height:2em;
-    color:#bbb;
-    // text-transform: uppercase;
-    font-family: Dosis;
-    font-size: 0.8em;    
-    padding-left:20%;
-    border-left:5px solid transparent;
-    letter-spacing:1px;
-    transition: all 0.3s linear;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+  text-decoration: none !important;
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 2em;
+  color: #bbb;
+  // text-transform: uppercase;
+  font-family: Dosis;
+  font-size: 0.8em;
+  padding-left: 20%;
+  border-left: 5px solid transparent;
+  letter-spacing: 1px;
+  transition: all 0.3s linear;
 }
-.active a{
-    //color: #B93632;
-    color:#FF6347;
-    //border-left:5px solid #B93632;
-    border-left: 5px solid #FF6347;
-    background-color: #1B1B1B;
-    outline:0;
+
+.active a {
+  //color: #B93632;
+  color: #FF6347;
+  //border-left:5px solid #B93632;
+  border-left: 5px solid #FF6347;
+  background-color: #1B1B1B;
+  outline: 0;
 }
-.nav li:not(.active):hover a{
-    color: #eee;
-    border-left: 5px solid #FCFCFC;
-    background-color: #1B1B1B;
-    text-decoration: none;
-}  
-.nav span[class ^= "fa"]{
-    position:absolute;
-    top:0.2em; 
-    left:20px;
-    font-size: 1.5em;
-    transition: all 0.3s linear;
+
+.nav li:not(.active):hover a {
+  color: #eee;
+  border-left: 5px solid #FCFCFC;
+  background-color: #1B1B1B;
+  text-decoration: none;
 }
-  
-  
+
+.nav span[class ^="fa"] {
+  position: absolute;
+  top: 0.2em;
+  left: 20px;
+  font-size: 1.5em;
+  transition: all 0.3s linear;
+}
+
+
 /////////////////////////////////////////
 //////////// Borders Styles /////////////
 /////////////////////////////////////////
 
-.bottomBorder{
-    border-bottom: 1px solid #ccc !important;
+.bottomBorder {
+  border-bottom: 1px solid #ccc !important;
 }
-.allBorder{
-    border:1px solid #ccc !important;
+
+.allBorder {
+  border: 1px solid #ccc !important;
 }
-.bottomBorderOnBlackBg{
-    border-bottom: 1px solid #666 !important;
+
+.bottomBorderOnBlackBg {
+  border-bottom: 1px solid #666 !important;
 }
-.topBorderOnBlackBg{
-    border-top:  1px solid #666 !important;
+
+.topBorderOnBlackBg {
+  border-top: 1px solid #666 !important;
 }
-.rightBorderWhite{
-    border-right: 1px solid #e5e5e5 !important;
+
+.rightBorderWhite {
+  border-right: 1px solid #e5e5e5 !important;
 }
 
 ///////////////////////////////////////////
 /////////////// BOxes ///////////////////// 
 ///////////////////////////////////////////
 .bg-pink {
-    background-color: #E91E63 !important;
-    color: #fff; 
-  
-  }
-  .bg-pink .content .text,
-  .bg-pink .content .number {
-      color: #fff !important;
-  }
-  
-  .bg-cyan {
-      background-color: #00BCD4 !important;
-      color: #fff; 
-  }
-  .bg-cyan .content .text,
-  .bg-cyan .content .number {
-      color: #fff !important; 
-  }
-  .bg-light-green {
-      background-color: #8BC34A !important;
-      color: #fff; 
-  }
-  .bg-light-green .content .text,
-  .bg-light-green .content .number {
-      color: #fff !important; 
-  }
-  
-  .bg-orange {
-      background-color: #FF9800 !important;
-      color: #fff; 
-  
-  }
-  .bg-orange .content .text,
-  .bg-orange .content .number {
-      color: #fff !important; 
-  
-  }
-  
-  .bg-pink {
-      background-color: #E91E63 !important;
-      color: #fff; 
-  
-  }
-  .bg-pink .content .text,
-  .bg-pink .content .number {
-      color: #fff !important; 
-  
-  }
-  .bg-indigo {
-      background-color: #3F51B5 !important;
-      color: #fff; 
-  }
-  .bg-indigo .content .text,
-  .bg-indigo .content .number {
-      color: #fff !important; 
-  }
-  .bg-orchid {
-    background-color: #BA55D3 !important;
-    color: #fff; 
-  }
-  .bg-orchid .content .text,
-  .bg-orchid .content .number {
-    color: #fff !important; 
-  }
+  background-color: #E91E63 !important;
+  color: #fff;
+
+}
+
+.bg-pink .content .text,
+.bg-pink .content .number {
+  color: #fff !important;
+}
+
+.bg-cyan {
+  background-color: #00BCD4 !important;
+  color: #fff;
+}
+
+.bg-cyan .content .text,
+.bg-cyan .content .number {
+  color: #fff !important;
+}
+
+.bg-light-green {
+  background-color: #8BC34A !important;
+  color: #fff;
+}
+
+.bg-light-green .content .text,
+.bg-light-green .content .number {
+  color: #fff !important;
+}
+
+.bg-orange {
+  background-color: #FF9800 !important;
+  color: #fff;
+
+}
+
+.bg-orange .content .text,
+.bg-orange .content .number {
+  color: #fff !important;
+
+}
+
+.bg-pink {
+  background-color: #E91E63 !important;
+  color: #fff;
+
+}
+
+.bg-pink .content .text,
+.bg-pink .content .number {
+  color: #fff !important;
+
+}
+
+.bg-indigo {
+  background-color: #3F51B5 !important;
+  color: #fff;
+}
+
+.bg-indigo .content .text,
+.bg-indigo .content .number {
+  color: #fff !important;
+}
+
+.bg-orchid {
+  background-color: #BA55D3 !important;
+  color: #fff;
+}
+
+.bg-orchid .content .text,
+.bg-orchid .content .number {
+  color: #fff !important;
+}
 
 ///////////////////////////////////////////
 //////////// Shadows //////////////////////
 ///////////////////////////////////////////
-boxShadow{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+boxShadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
-.shadow{
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10) !important;
+
+.shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10) !important;
 }
-.shadow-md{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12),
-            0 2px 4px 0 rgba(0,0,0,0.08) !important;
+
+.shadow-md {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px 0 rgba(0, 0, 0, 0.08) !important;
 }
-.shadow-lg{
-    box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11),
-            0 5px 15px 0 rgba(0,0,0,0.08) !important;
+
+.shadow-lg {
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
+    0 5px 15px 0 rgba(0, 0, 0, 0.08) !important;
 }
-.shadow-lg-dark{
-    box-shadow: 0 15px 30px 0 rgba(0,0,0,0.40),
-            0 5px 15px 0 rgba(0,0,0,0.08) !important;
+
+.shadow-lg-dark {
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.40),
+    0 5px 15px 0 rgba(0, 0, 0, 0.08) !important;
 }
+
 /* Common CSS End   */
 
 
-.modal{
-    z-index: 999999 !important;
+.modal {
+  z-index: 999999 !important;
 }
 
 /* login panel */
-.loginPanel{
-    height: 35em !important;
-    //background-image: linear-gradient(#4c4c4c, #323232);
-    background-color: #fff;    
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.loginPanel {
+  height: 35em !important;
+  //background-image: linear-gradient(#4c4c4c, #323232);
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* login div footer */
-.loginFooter{
-    bottom: 0 !important;
-    width: 100%;
-    position: absolute !important;
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);    
+.loginFooter {
+  bottom: 0 !important;
+  width: 100%;
+  position: absolute !important;
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* 100% width*/
-.fullwidth{
-    width: 100% !important;
+.fullwidth {
+  width: 100% !important;
 }
 
 // button's outline set to zero
-.noneOutLine{
-    outline: 0 !important;
+.noneOutLine {
+  outline: 0 !important;
 }
 
 // side nav angular material
-.example-container{
-    height: 100% !important;    
-}
-.example-sidenav{    
-    width: 15em !important;
-    background-image: linear-gradient(135deg,#222,#333, #4c4c4c) !important;
-}
-.sideMenubar{
-    font-size: 1.5em !important;
-}
-.sideMenuHome{
-    font-size: 1.5em !important;
-    padding-top: 0.4em !important;
-    padding-bottom: 0.4em !important;
-}
-.sideMenuTitle{
-    color: #e5e5e5 !important;
-    font-family: Mukta;
-    //background-color: #4c4c4c !important;
-    border-bottom: 1px solid #666;
-    padding-top: 0.8em !important;
-    padding-bottom: 0.7em !important;    
+.example-container {
+  height: 100% !important;
 }
 
-/* Dashboard CSS Start (Adnan) */
+.example-sidenav {
+  width: 15em !important;
+  background-image: linear-gradient(135deg, #222, #333, #4c4c4c) !important;
+}
 
-.container_boxes{
-    border: 0px solid red;
-    width: 100%;
-    height: 100px;
-    overflow: hidden;
+.sideMenubar {
+  font-size: 1.5em !important;
+}
+
+.sideMenuHome {
+  font-size: 1.5em !important;
+  padding-top: 0.4em !important;
+  padding-bottom: 0.4em !important;
+}
+
+.sideMenuTitle {
+  color: #e5e5e5 !important;
+  font-family: Mukta;
+  //background-color: #4c4c4c !important;
+  border-bottom: 1px solid #666;
+  padding-top: 0.8em !important;
+  padding-bottom: 0.7em !important;
 }
 
 /* Dashboard CSS Start (Adnan) */
 
-.container_boxes .box_users{
-    border: 1px solid #ddd;
-    width: 222px;
-    height: 75px;
-    margin: 20px;
-    position: relative;
-    float: left;
+.container_boxes {
+  border: 0px solid red;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
 }
 
-.container_boxes .box_users:hover{
-    cursor: pointer;
+/* Dashboard CSS Start (Adnan) */
+
+.container_boxes .box_users {
+  border: 1px solid #ddd;
+  width: 222px;
+  height: 75px;
+  margin: 20px;
+  position: relative;
+  float: left;
 }
 
-.container_boxes .box_users .uper_div{
-    border: 0px solid red;
-    width: 15%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    background: #000;
-    -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
-    transition: width 2s;
+.container_boxes .box_users:hover {
+  cursor: pointer;
 }
 
-.container_boxes .box_users .caption{
-    border: 1px solid #000;
-    position: absolute;
-    right: 0;
-    height: 100%;
-    text-align: center;
-    padding: 0px 10px;
+.container_boxes .box_users .uper_div {
+  border: 0px solid red;
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background: #000;
+  -webkit-transition: width 2s;
+  /* For Safari 3.1 to 6.0 */
+  transition: width 2s;
 }
 
-.container_boxes .box_users .icon{
-    border: 1px solid #000;    
-    position: absolute;
-    left: 0;
-    height: 100%;
-    width: 35%;
-    text-align: center;
+.container_boxes .box_users .caption {
+  border: 1px solid #000;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  text-align: center;
+  padding: 0px 10px;
 }
 
-.container_charts{
-    border: 0px solid blueviolet;
-    width: 100%;
-    height: 520px;
-    margin-top: 15px;
-    overflow: hidden;
+.container_boxes .box_users .icon {
+  border: 1px solid #000;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 35%;
+  text-align: center;
 }
 
-.container_charts .pie_chart{
-    border: 1px solid #ddd;
-    width: 40%;
-    height: 70%;
-    margin: 40px; 
-    position: absolute;
-    left: 0;
+.container_charts {
+  border: 0px solid blueviolet;
+  width: 100%;
+  height: 520px;
+  margin-top: 15px;
+  overflow: hidden;
 }
 
-.container_charts .line_chart{
-    border: 1px solid #ddd;
-    width: 40%;
-    height: 70%;
-    margin: 40px; 
-    position: absolute;
-    right: 0;
+.container_charts .pie_chart {
+  border: 1px solid #ddd;
+  width: 40%;
+  height: 70%;
+  margin: 40px;
+  position: absolute;
+  left: 0;
 }
 
-
-
-
-.container_galary{
-    border: 0px solid red;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
+.container_charts .line_chart {
+  border: 1px solid #ddd;
+  width: 40%;
+  height: 70%;
+  margin: 40px;
+  position: absolute;
+  right: 0;
 }
 
 
-.container_galary .galary_left{
-    border: 1px solid #ddd;
-    width: 40%;
-    height: 150px;
-    margin: 10px 40px; 
-    position: absolute;
-    left: 0;
+
+
+.container_galary {
+  border: 0px solid red;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-.container_galary .galary_right{
-    border: 1px solid #ddd;
-    width: 40%;
-    height: 150px;
-    margin: 10px 40px; 
-    position: absolute;
-    right: 0;
+
+.container_galary .galary_left {
+  border: 1px solid #ddd;
+  width: 40%;
+  height: 150px;
+  margin: 10px 40px;
+  position: absolute;
+  left: 0;
 }
 
-.container_galary .caption{
-    border: 0px solid #ddd;
-    width: 100%;
-    height: 30px;
-    position: absolute;
-    bottom: -30px;
-    background: #ddd;
-    text-align: center;
+.container_galary .galary_right {
+  border: 1px solid #ddd;
+  width: 40%;
+  height: 150px;
+  margin: 10px 40px;
+  position: absolute;
+  right: 0;
 }
+
+.container_galary .caption {
+  border: 0px solid #ddd;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: -30px;
+  background: #ddd;
+  text-align: center;
+}
+
 /* Dashboard CSS End */
 
 /*User profile page CSS start*/
-.up_headbox{
-    border: 1px solid #ccc;
-    background-color: #fff !important;
-    height: 200px;
-    width: 200px;
-    position: relative;
-    float: left;
-    margin-left: -1px;
+.up_headbox {
+  border: 1px solid #ccc;
+  background-color: #fff !important;
+  height: 200px;
+  width: 200px;
+  position: relative;
+  float: left;
+  margin-left: -1px;
 }
 
 
 
-.pointerCursor{
-    cursor: pointer;
+.pointerCursor {
+  cursor: pointer;
 }
 
 /*alert messages save & update*/
 
 #alert_msg_success {
-    position: absolute;
-    z-index: 101;
-    top: 10;
-    left: 70em;
-    right: 2em;
-    background: #32CD32;
-    color:white;
-    text-align: center;
-    line-height: 5.5;
-    overflow: hidden; 
-    -webkit-box-shadow: 0 0 5px black;
-    -moz-box-shadow:    0 0 5px black;
-    box-shadow:         0 0 5px black;
+  position: absolute;
+  z-index: 101;
+  top: 10;
+  left: 70em;
+  right: 2em;
+  background: #32CD32;
+  color: white;
+  text-align: center;
+  line-height: 5.5;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 5px black;
+  -moz-box-shadow: 0 0 5px black;
+  box-shadow: 0 0 5px black;
 }
 
 /*alert messages delete*/
@@ -471,21 +504,21 @@ boxShadow{
   left: 70em;
   right: 2em;
   background: #FF6347;
-  color:white;
+  color: white;
   text-align: center;
   line-height: 5.5;
-  overflow: hidden; 
+  overflow: hidden;
   -webkit-box-shadow: 0 0 5px black;
-  -moz-box-shadow:    0 0 5px black;
-  box-shadow:         0 0 5px black;
+  -moz-box-shadow: 0 0 5px black;
+  box-shadow: 0 0 5px black;
 }
 
 ///////////////////////////////////////////
 //////////// Modal Window Setting /////////
 ///////////////////////////////////////////
-.modal-backdrop{
-    background-color: #32CD32 !important;
-    display: none;
+.modal-backdrop {
+  background-color: #32CD32 !important;
+  display: none;
 }
 
 
@@ -496,21 +529,61 @@ boxShadow{
 ////////////////////////////////////////
 
 .oc-border {
-	border: 1px solid dodgerblue;
+  border: 1px solid dodgerblue;
 }
 
 .oc-background {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .oc-name {
-	font-family: serif;
-    white-space: nowrap;
+  font-family: serif;
+  white-space: nowrap;
 }
 
 .oc-designation {
-	font-family: sans-serif;
-	font-style: italic;
-	white-space: nowrap;
+  font-family: sans-serif;
+  font-style: italic;
+  white-space: nowrap;
 }
 
+
+
+/*-----------css for sort table row and pagenation -----------*/
+thead th {
+  cursor: pointer;
+
+  span {
+    visibility: hidden;
+  }
+
+  &.active {
+    color: #000;
+
+    span {
+      visibility: visible;
+    }
+  }
+
+}
+
+.pagenateList {
+  border: 0px solid red;
+  margin-top: -18px;
+}
+
+
+
+
+/**************Print Area CSS *****************/
+// .printArea {
+//   // display: none;
+// }
+
+// .printArea table {
+//   width: 100%;
+// }
+
+// .printArea table thead tr td {
+//   text-align: right;
+// }

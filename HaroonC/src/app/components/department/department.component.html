@@ -1,7 +1,6 @@
 <!-- Page Title Row Start-->
 <br>
 <div class="row">
-
   <div class="col-md-12 text-center">
     <h1 class="bottomBorder">Department</h1>
   </div>
@@ -17,10 +16,24 @@
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#departmentModal">Add New</button>
   </div>
 </div><!-- end button - row -->
+<br />
 
 
 <!-- Table Section Starts -->
-<div class="container">
+<div class="container mat-elevation-z8">
+
+  <br />
+  <!--Start search textbox Row-->
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="fullwidth">
+        <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+      </mat-form-field>
+      <i class="fab fa-accessible-icon"></i>
+    </div>
+  </div>
+  <!--end search textbox Row-->
+
   <div class="row">
     <table class="table table-striped">
       <thead>
@@ -33,8 +46,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let dept of departments">
-          <td class="col-1">{{dept.departmentId}}</td>
+        <tr class="d-flex" *ngFor="let dept of departments | search:'branchName,departmentName' :tblSearch let i=index">
+          <td class="col-1">{{i + 1}}</td>
           <td class="col-5 text-left">{{dept.branchName}}</td>
           <td class="col-4 text-left">{{dept.departmentName}}</td>
           <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal" class="pointerCursor fa fa-edit text-primary"></span></td>
@@ -45,6 +58,7 @@
   </div>
 </div>
 <!-- Table Section Ends -->
+
 
 
 <!-- Start Department Modal Window -->
@@ -106,6 +120,7 @@
   </div>
 </div>
 <!-- End Department Modal Window  -->
+
 
 
 <!-- Start Add Dept Modal Window -->

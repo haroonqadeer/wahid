@@ -62,12 +62,7 @@ import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.c
     // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
     // Default values: `idle` is 60 (1 minutes), `timeout` is 30 (0.5 minutes) 
     // and `ping` is 15 0.25 minutes).
-<<<<<<< HEAD
-
-    UserIdleModule.forRoot({ idle: 120, timeout: 120, ping: 15 }),
-=======
     UserIdleModule.forRoot({ idle: 60, timeout: 60, ping: 15 }),
->>>>>>> f5501c3464fedf0e84b9e0598d87ebdf0e5ec2a5
     NgxPaginationModule,
     OrderModule,
     HttpModule

@@ -12,6 +12,7 @@ export class DepartmentComponent implements OnInit {
   // Add Department NgModels
   deptName = "";
   deptBranch = "";
+  tblSearch = "";
 
   //Add department modal window
   departName = "";
