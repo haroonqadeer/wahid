@@ -16,8 +16,8 @@ import { TreeModule } from 'primeng/tree';
     DialogModule,
     ToastModule,
     PasswordModule,
+    TreeModule,
     TreeTableModule,
-    TreeModule
   ],
   exports: [
     OrganizationChartModule,
@@ -25,8 +25,8 @@ import { TreeModule } from 'primeng/tree';
     DialogModule,
     ToastModule,
     PasswordModule,
-    TreeTableModule,
-    TreeModule
+    TreeModule,
+    TreeTableModule
   ],
   declarations: []
 })
