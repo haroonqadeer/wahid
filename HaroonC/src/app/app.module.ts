@@ -11,6 +11,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgxMaskModule } from "ngx-mask";
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
@@ -52,7 +54,9 @@ import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "i
     HttpModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
-    IgxGridModule
+    IgxGridModule,
+    NgxPaginationModule,
+    OrderModule
   ],
   providers: [IgxExcelExporterService, IgxCsvExporterService],
   bootstrap: [AppComponent],
