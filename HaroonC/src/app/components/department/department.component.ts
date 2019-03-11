@@ -1,5 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
+
+import {
+  IgxExcelExporterOptions,
+  IgxExcelExporterService,
+  IgxGridComponent,
+  IgxCsvExporterService,
+  IgxCsvExporterOptions,
+  CsvFileTypes
+} from "igniteui-angular";
+
+import * as jsPDF from 'jspdf';
+
 
 declare var $: any;
 @Component({
@@ -69,7 +81,13 @@ export class DepartmentComponent implements OnInit {
     }
   ]
 
-  constructor(public toastr: ToastrManager) { }
+  @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
+  @ViewChild("exportPDF") public exportPDF: ElementRef;
+
+
+  constructor(public toastr: ToastrManager,
+    private excelExportService: IgxExcelExporterService,
+    private csvExportService: IgxCsvExporterService) { }
 
   ngOnInit() {
   }
@@ -116,6 +134,59 @@ export class DepartmentComponent implements OnInit {
       $('#deleteModal').modal('hide');
       return false;
     }
+  }
+
+  clear() {
+    this.deptName = "";
+    this.deptBranch = "";
+  }
+
+  printContent(el) {
+
+    var printCon = document.getElementById(el).innerHTML;
+    var WinPrint = window.open("");
+    WinPrint.document.write(printCon);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+  }
+
+  //-------------------------------// Downloading PDF File //-------------------------------//
+
+  downloadPDF() {
+
+    let doc = new jsPDF();
+
+    let specialElementHandlers = {
+      '#editor': function () {
+        return true;
+      }
+    };
+
+    let contentpdf = this.exportPDF.nativeElement;
+
+    doc.text(16, 16, contentpdf);
+
+    doc.fromHTML(contentpdf.innerHTML, 50, 0, {
+      'margin': 8,
+      'text': 16,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('exportTest.pdf');
+  }
+
+  //-------------------------------// Downloading Excel File //-------------------------------//
+
+  public exportExcel() {
+    this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+  }
+
+  //-------------------------------// Downloading CSV File //-------------------------------//
+
+  public exportCSV() {
+    this.csvExportService.exportData(this.departments, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
   }
 
 }

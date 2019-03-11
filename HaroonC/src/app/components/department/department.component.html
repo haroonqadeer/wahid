@@ -11,16 +11,16 @@
 <!-- button row -->
 <div class="row">
   <div class="col-md-6">
-    <button class="noneOutline" mat-raised-button color="warn">Print</button>
+    <button mat-raised-button color="warn" data-toggle="modal" data-target="#optionModal">Options</button>
   </div>
   <div class="col-md-6 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#departmentModal">Add New</button>
   </div>
 </div><!-- end button - row -->
 
-
+<br><br><br>
 <!-- Table Section Starts -->
-<div class="container">
+<div class="container mat-elevation-z8" id="divPrint" #exportPDF>
   <div class="row">
     <table class="table table-striped">
       <thead>
@@ -46,6 +46,9 @@
 </div>
 <!-- Table Section Ends -->
 
+<!-- Hidden Table Start -->
+<igx-grid #exportDataContent [data]="departments" [autoGenerate]="false" height="null" width="null"></igx-grid>
+<!-- Hidden Table End -->
 
 <!-- Start Department Modal Window -->
 <div class="modal fade" id="departmentModal">
@@ -83,16 +86,22 @@
             </mat-form-field>
           </div>
           <div class="col-md-1">
-            <button mat-fab class='noneOutLine' data-toggle="modal" data-target="#deptModal"><span class="fa fa-plus"></span></button>
+            <button mat-fab color="primary" class='noneOutLine' data-toggle="modal" data-target="#deptModal"><span
+                class="fa fa-plus"></span></button>
           </div>
         </div><!-- end row - 02 -->
 
-        <!-- row - 03 -->
+        <!--button tag Row Starts-->
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-1 text-left">
             <button mat-raised-button color="primary" (click)="saveDepartment()">Save</button>
+
           </div>
-        </div><!-- end row - 03 -->
+          <div class="col-md-2 text-center">
+            <button mat-raised-button (click)="clear()">Reset</button>
+          </div>
+        </div>
+        <!-- Button tag Row Ends -->
       </div>
       <!--end Modal body -->
 
@@ -199,3 +208,42 @@
   </div>
 </div>
 <!-- Delete Add Department Modal Window Ends -->
+
+<!-- Option Modal Starts -->
+<div class="modal fade" id="optionModal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Options</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Row 1 -->
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <button mat-raised-button class="fullwidth" color="warn" (click)="printContent('divPrint')">Print</button>
+          </div>
+          <div class="col-md-6 text-center">
+            <button mat-raised-button class="fullwidth" color="primary" (click)="downloadPDF()">PDF</button>
+          </div>
+        </div>
+        <br>
+        <!-- Row 2 -->
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <button mat-raised-button class="fullwidth" color="primary" (click)="exportExcel()">Excel</button>
+          </div>
+          <div class="col-md-6 text-center">
+            <button mat-raised-button class="fullwidth" color="warn" (click)="exportCSV()">CSV</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button class="btn btn-success" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Option Modal Ends -->

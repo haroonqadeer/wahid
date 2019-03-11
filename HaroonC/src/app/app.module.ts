@@ -23,6 +23,8 @@ import { SectionComponent } from './components/section/section.component';
 import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
 import { CurrencyComponent } from './components/currency/currency.component';
 
+import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,9 +51,10 @@ import { CurrencyComponent } from './components/currency/currency.component';
     ToastrModule.forRoot(),
     HttpModule,
     HttpClientModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    IgxGridModule
   ],
-  providers: [],
+  providers: [IgxExcelExporterService, IgxCsvExporterService],
   bootstrap: [AppComponent],
   entryComponents: [ErpBottomSheetComponent],
 })
