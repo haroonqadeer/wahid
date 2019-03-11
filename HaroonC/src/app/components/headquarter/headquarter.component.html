@@ -31,34 +31,77 @@
   </div>
   <!--end search textbox Row-->
   <div class="row">
-    <table class="table table-striped">
+    <table class="table table-striped fullwidth">
       <thead>
         <tr class="d-flex">
-          <th class="col-1">Sr. #</th>
-          <th class="col-2 text-left">Office Title</th>
-          <th class="col-2 text-left">Address</th>
-          <th class="col-2 text-left">Email</th>
-          <th class="col-1 text-left">Phone</th>
-          <th class="col-1 text-left">Mobile</th>
-          <th class="col-1 text-left">Website</th>
-          <th class="col-1 text-right">Edit</th>
-          <th class="col-1 text-center">Delete</th>
+          <th class="col-1 text-center">Sr. #</th>
+          <th [class.active]="order === 'offcTitle'" (click)="setOrder('offcTitle')" class="col-2 text-left">
+            Office Title
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'offcAddress'" (click)="setOrder('offcAddress')" class="col-2 text-left">
+            Address
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'offcEmail'" (click)="setOrder('offcEmail')" class="col-2 text-left">
+            Email
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'offcPhone'" (click)="setOrder('offcPhone')" class="col-1 text-left">
+            Phone
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <!-- <th [class.active]="order === 'offcMobile'" (click)="setOrder('offcMobile')" class="col-1 text-left">
+            Mobile
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th> -->
+          <th [class.active]="order === 'offcWebsite'" (click)="setOrder('offcWebsite')" class="col-2 text-left">
+            Website
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let office of offices | search:'offcId,offcTitle,offcAddress,offcEmail,offcPhone,offcMobile,offcWebsite':tblSearch">
-          <td class="col-1">{{office.offcId}}</td>
+        <tr class="d-flex" *ngFor="let office of offices | search:'offcId,offcTitle,offcAddress,offcEmail,offcPhone,offcMobile,offcWebsite':tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+          <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{office.offcTitle}}</td>
           <td class="col-2 text-left">{{office.offcAddress}}</td>
           <td class="col-2 text-left">{{office.offcEmail}}</td>
           <td class="col-1 text-left">{{office.offcPhone}}</td>
-          <td class="col-1 text-left">{{office.offcMobile}}</td>
-          <td class="col-1 text-left">{{office.offcWebsite}}</td>
+          <!-- <td class="col-1 text-left">{{office.offcMobile}}</td> -->
+          <td class="col-2 text-left">{{office.offcWebsite}}</td>
           <td class="col-1 text-right"><span data-toggle="modal" data-target="#HQModal" class="pointerCursor fa fa-edit text-primary"></span></td>
-          <td class="col-1 text-center"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
+          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
         </tr>
       </tbody>
     </table>
+    <!-- Pagination Starts -->
+    <div class="col-md-10">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col-md-2 text-right">
+      <mat-form-field class="fullwidth pagenateList">
+        <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+          <mat-option value="25">25</mat-option>
+          <mat-option value="30">30</mat-option>
+          <mat-option value="35">35</mat-option>
+          <mat-option value="40">40</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="50">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Pagination Ends -->
   </div>
 </div>
 <!-- Table Section Ends -->

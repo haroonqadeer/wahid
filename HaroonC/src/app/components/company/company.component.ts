@@ -86,7 +86,12 @@ export class CompanyComponent implements OnInit {
     ppCom = false;
     btnStpr1 = false;
 
-
+    //* variables for pagination and orderby pipe
+    p = 1;
+    order = 'info.name';
+    reverse = false;
+    sortedCollection: any[];
+    itemPerPage = '10';
 
     //Type combo box  (Business types)
     types = [
@@ -96,8 +101,132 @@ export class CompanyComponent implements OnInit {
         { TId: '4', TName: 'Private Limited Company' }
     ];
 
+    userDetail = [
+        {
+            id: 1,
+            businessType: "Sole Proprietorship",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 2,
+            businessType: "Partnership",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 3,
+            businessType: "Public Limited Company",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 4,
+            businessType: "Private Limited Company",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 5,
+            businessType: "Partnership",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 6,
+            businessType: "Sole Proprietorship",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 7,
+            businessType: "Partnership",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 8,
+            businessType: "Public Limited Company",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 9,
+            businessType: "Private Limited Company",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 10,
+            businessType: "Partnership",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 11,
+            businessType: "Sole Proprietorship",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 12,
+            businessType: "Partnership",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 13,
+            businessType: "Public Limited Company",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 14,
+            businessType: "Private Limited Company",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        },
+        {
+            id: 15,
+            businessType: "Partnership",
+            title: "TitleA",
+            nature: "Public Sector",
+            ntn: 123,
+            website: "www.google.com"
+        }
+    ];
+
     //array for partners detail 
     partners: Partner[] = [];
+
 
 
     constructor(private toastr: ToastrManager, private app: AppComponent) { }
@@ -333,4 +462,15 @@ export class CompanyComponent implements OnInit {
     isEmail(email) {
         return this.app.validateEmail(email);
     }
+
+    //function for sort table data 
+    setOrder(value: string) {
+
+        if (this.order === value) {
+            this.reverse = !this.reverse;
+        }
+
+        this.order = value;
+    }
+
 }

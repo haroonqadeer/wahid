@@ -27,6 +27,13 @@ export class HeadquarterComponent implements OnInit {
   userPassword = "";
   userPINCode = "";
 
+  //* variables for pagination and orderby pipe
+  p = 1;
+  order = 'info.name';
+  reverse = false;
+  sortedCollection: any[];
+  itemPerPage = '10';
+
   offices = [
     {
       offcId: 1,
@@ -54,8 +61,116 @@ export class HeadquarterComponent implements OnInit {
       offcPhone: "0513434450",
       offcMobile: "03334434567",
       offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 4,
+      offcTitle: "Infomatrix",
+      offcAddress: "F-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 5,
+      offcTitle: "Alpha Tech.",
+      offcAddress: "E-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 6,
+      offcTitle: "Infovative Solution",
+      offcAddress: "G-11 Markaz",
+      offcEmail: "abc@gmail.com",
+      offcPhone: "0512290450",
+      offcMobile: "03331234567",
+      offcWebsite: "www.google.com"
+    },
+    {
+      offcId: 7,
+      offcTitle: "Infomatrix",
+      offcAddress: "F-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 8,
+      offcTitle: "Alpha Tech.",
+      offcAddress: "E-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 9,
+      offcTitle: "Infomatrix",
+      offcAddress: "F-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 10,
+      offcTitle: "Alpha Tech.",
+      offcAddress: "E-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 11,
+      offcTitle: "Infovative Solution",
+      offcAddress: "G-11 Markaz",
+      offcEmail: "abc@gmail.com",
+      offcPhone: "0512290450",
+      offcMobile: "03331234567",
+      offcWebsite: "www.google.com"
+    },
+    {
+      offcId: 12,
+      offcTitle: "Infomatrix",
+      offcAddress: "F-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 13,
+      offcTitle: "Alpha Tech.",
+      offcAddress: "E-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 14,
+      offcTitle: "Infomatrix",
+      offcAddress: "F-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
+    },
+    {
+      offcId: 15,
+      offcTitle: "Alpha Tech.",
+      offcAddress: "E-11 Markaz",
+      offcEmail: "def@gmail.com",
+      offcPhone: "0513434450",
+      offcMobile: "03334434567",
+      offcWebsite: "www.youtube.com"
     }
-  ]
+  ];
 
   constructor(public toastr: ToastrManager, private app: AppComponent) { }
 
@@ -132,5 +247,13 @@ export class HeadquarterComponent implements OnInit {
   isEmail(email) {
     return this.app.validateEmail(email);
   }
+  //function for sort table data 
+  setOrder(value: string) {
 
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
+  }
 }

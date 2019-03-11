@@ -514,3 +514,19 @@ boxShadow{
 	white-space: nowrap;
 }
 
+//********************** Css for order by pipe ***********
+thead th {
+  cursor: pointer;
+
+  span {
+    visibility: hidden;
+  }
+
+  &.active {
+    color: #000;
+
+    span {
+      visibility: visible;
+    }
+  }
+}
