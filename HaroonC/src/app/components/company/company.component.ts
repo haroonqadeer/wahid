@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 declare var $: any;
 
 //Partners array
@@ -229,7 +231,7 @@ export class CompanyComponent implements OnInit {
 
 
 
-    constructor(private toastr: ToastrManager, private app: AppComponent) { }
+    constructor(private toastr: ToastrManager, private app: AppComponent, private spinner: NgxSpinnerService) { }
 
     ngOnInit() {
     }
@@ -421,6 +423,9 @@ export class CompanyComponent implements OnInit {
 
             } else {
 
+                this.showSpinner();
+                this.hideSpinner();
+
                 this.partners.push({
                     cnic: this.pCnic,
                     ntn: this.pNtn,
@@ -473,4 +478,14 @@ export class CompanyComponent implements OnInit {
         this.order = value;
     }
 
+    // Functions for Show & Hide Spinner
+    showSpinner() {
+        this.spinner.show();
+    }
+    hideSpinner() {
+        setTimeout(() => {
+            /** spinner ends after process done*/
+            this.spinner.hide();
+        });
+    }
 }

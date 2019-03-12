@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 declare var $: any;
 @Component({
   selector: 'app-headquarter',
@@ -19,6 +21,8 @@ export class HeadquarterComponent implements OnInit {
   officePhone = "";
   officeMobile = "";
   officeWebsite = "";
+
+  dofficeId = 0;
 
   // NgModels For Searching Textboxes
   tblSearch = "";
@@ -172,7 +176,7 @@ export class HeadquarterComponent implements OnInit {
     }
   ];
 
-  constructor(public toastr: ToastrManager, private app: AppComponent) { }
+  constructor(public toastr: ToastrManager, private app: AppComponent, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
@@ -207,6 +211,8 @@ export class HeadquarterComponent implements OnInit {
       return false;
     }
     else {
+      this.showSpinner();
+      this.hideSpinner();
       this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
       $('#HQModal').modal('hide');
       return false;
@@ -223,10 +229,32 @@ export class HeadquarterComponent implements OnInit {
       return false;
     }
     else {
+      this.showSpinner();
+      this.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       $('#deleteModal').modal('hide');
       return false;
     }
+  }
+
+  //function for edit existing currency 
+  edit(item) {
+
+    this.officeId = item.offcId;
+    this.officeTitle = item.offcTitle;
+    this.officeAddress = item.offcAddress;
+    this.officeEmail = item.offcEmail;
+    this.officePhone = item.offcPhone;
+    this.officeMobile = item.offcMobile;
+    this.officeWebsite = item.offcWebsite;
+
+  }
+
+  //functions for delete currency
+  deleteTemp(item) {
+
+    this.dofficeId = item.offcId;
+
   }
 
   //For Clearing Form
@@ -255,5 +283,16 @@ export class HeadquarterComponent implements OnInit {
     }
 
     this.order = value;
+  }
+
+  // Functions for Show & Hide Spinner
+  showSpinner() {
+    this.spinner.show();
+  }
+  hideSpinner() {
+    setTimeout(() => {
+      /** spinner ends after process done*/
+      this.spinner.hide();
+    });
   }
 }

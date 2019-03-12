@@ -5,6 +5,8 @@ import { throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { allSettled } from 'q';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 declare var $: any;
 
 @Component({
@@ -204,7 +206,7 @@ export class SectionComponent implements OnInit {
 	];
 
 
-	constructor(private toastr: ToastrManager, private http: HttpClient) { }
+	constructor(private toastr: ToastrManager, private http: HttpClient, private spinner: NgxSpinnerService) { }
 
 	ngOnInit() {
 	}
@@ -224,6 +226,8 @@ export class SectionComponent implements OnInit {
 		} else {
 
 			if (this.sectionId != '') {
+				this.showSpinner();
+				this.hideSpinner();
 				this.toastr.successToastr('updated successfully', 'Error', { toastTimeout: (2500) });
 				this.clear();
 				return false;
@@ -249,6 +253,8 @@ export class SectionComponent implements OnInit {
 
 
 			} else {
+				this.showSpinner();
+				this.hideSpinner();
 				this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
 				this.clear();
 				return false;
@@ -321,7 +327,8 @@ export class SectionComponent implements OnInit {
 			return false
 		} else {
 
-
+			this.showSpinner();
+			this.hideSpinner();
 			this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
 			this.clear();
 
@@ -385,6 +392,8 @@ export class SectionComponent implements OnInit {
 			} else {
 
 
+				this.showSpinner();
+				this.hideSpinner();
 				this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
 				this.sections.push({ sectionId: this.sections.length + "", sectionName: this.sectionName });
@@ -425,5 +434,14 @@ export class SectionComponent implements OnInit {
 
 		this.order = value;
 	}
-
+	// Functions for Show & Hide Spinner
+	showSpinner() {
+		this.spinner.show();
+	}
+	hideSpinner() {
+		setTimeout(() => {
+			/** spinner ends after process done*/
+			this.spinner.hide();
+		});
+	}
 }

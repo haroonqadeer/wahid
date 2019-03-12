@@ -6,6 +6,7 @@ import { catchError, filter } from 'rxjs/operators';
 import { AppComponent } from '../../app.component';
 import { OrderPipe } from 'ngx-order-pipe';
 
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var $: any;
 //declare// function showLoader(): any;
@@ -354,7 +355,7 @@ export class SubsidiarieComponent implements OnInit {
     ];
 
 
-    constructor(private toastr: ToastrManager, private http: HttpClient, private app: AppComponent) { }
+    constructor(private toastr: ToastrManager, private http: HttpClient, private app: AppComponent, private spinner: NgxSpinnerService) { }
 
     ngOnInit() {
     }
@@ -410,6 +411,8 @@ export class SubsidiarieComponent implements OnInit {
         else {
 
             if (this.subsidiaryId != '') {
+                this.showSpinner();
+                this.hideSpinner();
                 this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -435,6 +438,8 @@ export class SubsidiarieComponent implements OnInit {
 
 
             } else {
+                this.showSpinner();
+                this.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -527,7 +532,8 @@ export class SubsidiarieComponent implements OnInit {
             return false
         } else {
 
-
+            this.showSpinner();
+            this.hideSpinner();
             this.toastr.successToastr('Deleted successfully', 'Success', { toastTimeout: (2500) });
             this.clear();
 
@@ -580,7 +586,8 @@ export class SubsidiarieComponent implements OnInit {
         if (this.cityName.trim() == '') {
             this.toastr.errorToastr('Please enter city name', 'Error', { toastTimeout: (2500) });
             return false;
-        } else {
+        }
+        else {
 
             let data = this.cities.find(x => x.cityName == this.cityName);
 
@@ -589,8 +596,10 @@ export class SubsidiarieComponent implements OnInit {
                 this.toastr.errorToastr('City name already exist', 'Error', { toastTimeout: (2500) });
                 return false;
 
-            } else {
-
+            }
+            else {
+                this.showSpinner();
+                this.hideSpinner();
 
                 this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
@@ -636,6 +645,17 @@ export class SubsidiarieComponent implements OnInit {
         }
 
         this.order = value;
+    }
+
+    // Functions for Show & Hide Spinner
+    showSpinner() {
+        this.spinner.show();
+    }
+    hideSpinner() {
+        setTimeout(() => {
+            /** spinner ends after process done*/
+            this.spinner.hide();
+        });
     }
 
 }

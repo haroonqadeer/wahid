@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MatBottomSheet } from '@angular/material';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { UserIdleService } from 'angular-user-idle';
 
+import { Event, Router, NavigationStart, NavigationEnd } from "@angular/router";
+
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +16,23 @@ import { UserIdleService } from 'angular-user-idle';
 })
 export class AppComponent {
 
-    constructor(private router: Router, private bottomSheet: MatBottomSheet, private userIdle: UserIdleService) { }
+    constructor(private router: Router, private bottomSheet: MatBottomSheet, private userIdle: UserIdleService, private spinner: NgxSpinnerService) {
+
+        // For Spinner Show and Hide 
+        this.router.events.subscribe((routerEvent: Event) => {
+            if (routerEvent instanceof NavigationStart) {
+                this.spinner.show();
+                //this.showLoadingSpinner = true;
+            }
+            if (routerEvent instanceof NavigationEnd) {
+                //this.showLoadingSpinner = false;
+                setTimeout(() => {
+                    /** spinner ends after 5 seconds */
+                    this.spinner.hide();
+                }, 3000);
+            }
+        });
+    }
 
     public hideDiv = false;
     public userName;
