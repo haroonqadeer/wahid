@@ -40,30 +40,70 @@
     <table class="table table-striped fullwidth" id="myTable">
       <thead>
         <tr class="d-flex">
-          <th class="col-1">Sr No.</th>
-          <th class="col-2">Business Type</th>
-          <th class="col-2">Title</th>
-          <th class="col-2">Nature</th>
-          <th class="col-1">NTN</th>
-          <th class="col-2">Website</th>
+          <th class="col-1 text-center">Sr No.</th>
+          <th [class.active]="order === 'businessType'" (click)="setOrder('businessType')" class="col-2">
+            Business Type
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'title'" (click)="setOrder('title')" class="col-2">
+            Title
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'nature'" (click)="setOrder('nature')" class="col-2">
+            Nature
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'ntn'" (click)="setOrder('ntn')" class="col-1 text-left">
+            NTN
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'website'" (click)="setOrder('website')" class="col-2">
+            Website
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
           <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-        <tr class='d-flex'>
-          <td class="col-1 text-center">1</td>
-          <td class="col-2">Partnership</td>
-          <td class="col-2">myTitle</td>
-          <td class="col-2">myNature</td>
-          <td class="col-1">NTN </td>
-          <td class="col-2">Website</td>
-          <td class="col-2 text-center">
-            <span class="fa fa-edit pointerCursor fontPrimary"></span>
-          </td>
+        <tr *ngFor="let item of userDetail | search:'UserName,Email': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+          class='d-flex'>
+          <td class="col-1 text-center">{{i+1}}</td>
+          <td class="col-2">{{item.businessType}}</td>
+          <td class="col-2">{{item.title}}</td>
+          <td class="col-2">{{item.nature}}</td>
+          <td class="col-1 text-left">{{item.ntn}}</td>
+          <td class="col-2">{{item.website}}</td>
+          <td class="col-1 text-right"><span class="pointerCursor fa fa-edit text-primary"></span></td>
+          <td class="col-1 text-left"><span class="pointerCursor fa fa-trash text-danger"></span></td>
+
         </tr>
       </tbody>
     </table>
+    <!-- Pagination Starts -->
+    <div class="col-md-10">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col-md-2 text-right">
+      <mat-form-field class="fullwidth pagenateList">
+        <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+          <mat-option value="25">25</mat-option>
+          <mat-option value="30">30</mat-option>
+          <mat-option value="35">35</mat-option>
+          <mat-option value="40">40</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="50">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Pagination Ends -->
   </div>
   <!-- end table row -->
   <br />

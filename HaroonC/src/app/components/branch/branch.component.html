@@ -35,21 +35,46 @@
     <table class="table table-striped">
       <thead>
         <tr class="d-flex">
-          <th class="col-1">Sr. #</th>
-          <th class="col-2 text-left">Branch Title</th>
-          <th class="col-2 text-left">Address</th>
-          <th class="col-1 text-left">City</th>
-          <th class="col-1 text-left">Phone</th>
-          <th class="col-2 text-center">Email</th>
-          <th class="col-1 text-left">Mobile</th>
+          <th class="col-1 text-center">Sr. #</th>
+          <th [class.active]="order === 'branTitle'" (click)="setOrder('branTitle')" class="col-2 text-left">
+            Branch Title
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'branAddress'" (click)="setOrder('branAddress')" class="col-2 text-left">
+            Address
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'branCity'" (click)="setOrder('branCity')" class="col-1 text-left">
+            City
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'branPhone'" (click)="setOrder('branPhone')" class="col-1 text-left">
+            Phone
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'branEmail'" (click)="setOrder('branEmail')" class="col-2 text-center">
+            Email
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'branMobile'" (click)="setOrder('branMobile')" class="col-1 text-left">
+            Mobile
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
           <!-- <th class="col-1 text-left">Website</th> -->
-          <th class="col-1 text-right">Edit</th>
-          <th class="col-1 text-center">Delete</th>
+          <!-- <th class="col-1 text-right">Edit</th>
+          <th class="col-1 text-center">Delete</th> -->
+          <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,branCity,branPhone,branEmail,branMobile':tblSearch">
-          <td class="col-1">{{branch.branId}}</td>
+        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,branCity,branPhone,branEmail,branMobile':tblSearch |paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+          <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{branch.branTitle}}</td>
           <td class="col-2 text-left">{{branch.branAddress}}</td>
           <td class="col-1 text-left">{{branch.branCity}}</td>
@@ -58,10 +83,30 @@
           <td class="col-1 text-left">{{branch.branMobile}}</td>
           <!-- <td class="col-1 text-left">{{branch.branWebsite}}</td> -->
           <td class="col-1 text-right"><span data-toggle="modal" data-target="#branchModal" class="pointerCursor fa fa-edit text-primary"></span></td>
-          <td class="col-1 text-center"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
+          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
         </tr>
       </tbody>
     </table>
+    <!-- Pagination Starts -->
+    <div class="col-md-10">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col-md-2 text-right">
+      <mat-form-field class="fullwidth pagenateList">
+        <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+          <mat-option value="25">25</mat-option>
+          <mat-option value="30">30</mat-option>
+          <mat-option value="35">35</mat-option>
+          <mat-option value="40">40</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="50">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Pagination Ends -->
   </div>
 </div>
 <!-- Table Section Ends -->

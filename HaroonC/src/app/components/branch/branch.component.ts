@@ -31,9 +31,156 @@ export class BranchComponent implements OnInit {
   userPassword = "";
   userPINCode = "";
 
+  //* variables for pagination and orderby pipe
+  p = 1;
+  order = 'info.name';
+  reverse = false;
+  sortedCollection: any[];
+  itemPerPage = '10';
+
   branches = [
     {
       branId: 1,
+      branTitle: "Infovative Solution",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 2,
+      branTitle: "Infovative Solution",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 3,
+      branTitle: "Infovative Solution",
+      branAddress: "G-8 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 4,
+      branTitle: "Alpha Solution",
+      branAddress: "G-10 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 5,
+      branTitle: "Infovative Solution",
+      branAddress: "G-12 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 6,
+      branTitle: "Infovative Solution",
+      branAddress: "G-13 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 7,
+      branTitle: "Infovative Solution",
+      branAddress: "G-15 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 8,
+      branTitle: "Infovative Tech",
+      branAddress: "G-15 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 9,
+      branTitle: "Infovative Hub",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 10,
+      branTitle: "Infovative Solution",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 11,
+      branTitle: "Infovative Solution",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 12,
+      branTitle: "Infovative Solution",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 13,
+      branTitle: "Infovative Solution",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 14,
+      branTitle: "Infovative Solution",
+      branAddress: "G-11 Markaz",
+      branCity: "Islamabad",
+      branEmail: "abc@gmail.com",
+      branPhone: "0512290450",
+      branMobile: "03331234567",
+      branWebsite: "www.google.com"
+    },
+    {
+      branId: 15,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
       branCity: "Islamabad",
@@ -142,5 +289,15 @@ export class BranchComponent implements OnInit {
 
   isEmail(email) {
     return this.app.validateEmail(email);
+  }
+
+  //function for sort table data 
+  setOrder(value: string) {
+
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
   }
 }

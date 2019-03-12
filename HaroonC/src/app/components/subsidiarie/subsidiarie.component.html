@@ -45,28 +45,66 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1 text-center">Sr No.</th>
-          <th class="col-3">Subsidiary Title</th>
-          <th class="col-2">Type</th>
-          <th class="col-2">Representator</th>
-          <th class="col-2">City</th>
+          <th [class.active]="order === 'subsidiaryTitle'" (click)="setOrder('subsidiaryTitle')" class="col-3 pointerCursor">Subsidiary
+            Title
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'subsidiaryType'" (click)="setOrder('subsidiaryType')" class="col-2 pointerCursor">
+            Type
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'representator'" (click)="setOrder('representator')" class="col-2 pointerCursor">
+            Representator
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'cityName'" (click)="setOrder('cityName')" class="col-2 pointerCursor">
+            City
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
           <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of subsidiaryDetail | search:'Section,HeadQuarter' :tblSearch let i=index" class='d-flex'>
+        <tr *ngFor="let item of subsidiaryDetail | search:'Section,HeadQuarter' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"  class='d-flex'>
           <td class="col-1 text-center">{{i + 1}}</td>
           <td class="col-3">{{item.subsidiaryTitle}}</td>
           <td class="col-2">{{item.subsidiaryType}}</td>
           <td class="col-2">{{item.representator}}</td>
           <td class="col-2">{{item.cityName}}</td>
           <td class="col-2 text-center">
-            <span class="fa fa-edit pointerCursor" data-toggle="modal" data-target="#subsidiaryModal" (click)="edit(item)"></span>
+            <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#subsidiaryModal"
+              (click)="edit(item)"></span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
+            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <!-- Pagination Starts -->
+    <div class="col-md-10">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col-md-2 text-right">
+      <mat-form-field class="fullwidth pagenateList">
+        <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+          <mat-option value="25">25</mat-option>
+          <mat-option value="30">30</mat-option>
+          <mat-option value="35">35</mat-option>
+          <mat-option value="40">40</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="50">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Pagination Ends -->
   </div>
   <!-- end table row -->
   <br />

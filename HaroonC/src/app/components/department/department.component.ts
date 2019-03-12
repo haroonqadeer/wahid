@@ -21,6 +21,9 @@ declare var $: any;
 })
 export class DepartmentComponent implements OnInit {
 
+  //Page NgModels
+  tblSearch = "";
+
   // Add Department NgModels
   deptName = "";
   deptBranch = "";
@@ -31,6 +34,13 @@ export class DepartmentComponent implements OnInit {
   //Delete NgModels
   userPassword = "";
   userPINCode = "";
+
+  //* variables for pagination and orderby pipe
+  p = 1;
+  order = 'info.name';
+  reverse = false;
+  sortedCollection: any[];
+  itemPerPage = '10';
 
   //For Branch dropdown
   branches = [
@@ -76,6 +86,56 @@ export class DepartmentComponent implements OnInit {
     },
     {
       departmentId: 5,
+      departmentName: "Medical",
+      branchName: "Peshawar"
+    },
+    {
+      departmentId: 6,
+      departmentName: "Finance",
+      branchName: "Islamabad(HQ)"
+    },
+    {
+      departmentId: 7,
+      departmentName: "Human Resource",
+      branchName: "Islamabad(HQ)",
+    },
+    {
+      departmentId: 8,
+      departmentName: "Admin",
+      branchName: "Lahore"
+    },
+    {
+      departmentId: 9,
+      departmentName: "Procurement",
+      branchName: "Karachi"
+    },
+    {
+      departmentId: 10,
+      departmentName: "Medical",
+      branchName: "Peshawar"
+    },
+    {
+      departmentId: 11,
+      departmentName: "Finance",
+      branchName: "Islamabad(HQ)"
+    },
+    {
+      departmentId: 12,
+      departmentName: "Human Resource",
+      branchName: "Islamabad(HQ)",
+    },
+    {
+      departmentId: 13,
+      departmentName: "Admin",
+      branchName: "Lahore"
+    },
+    {
+      departmentId: 14,
+      departmentName: "Procurement",
+      branchName: "Karachi"
+    },
+    {
+      departmentId: 15,
       departmentName: "Medical",
       branchName: "Peshawar"
     }
@@ -188,5 +248,13 @@ export class DepartmentComponent implements OnInit {
   public exportCSV() {
     this.csvExportService.exportData(this.departments, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
   }
+  //function for sort table data 
+  setOrder(value: string) {
 
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
+  }
 }
