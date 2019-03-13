@@ -3,6 +3,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 declare var $: any;
 @Component({
@@ -12,6 +13,13 @@ declare var $: any;
 })
 
 export class HeadquarterComponent implements OnInit {
+
+  serverUrl = "http://localhost:55536/";
+  tokenKey = "token";
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
   //Page Models
   officeId = 0;
@@ -176,9 +184,25 @@ export class HeadquarterComponent implements OnInit {
     }
   ];
 
-  constructor(public toastr: ToastrManager, private app: AppComponent, private spinner: NgxSpinnerService) { }
+  constructor(public toastr: ToastrManager,
+    private app: AppComponent,
+    private spinner: NgxSpinnerService,
+    private http: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  //To get departments Data for display in main table
+  getOffices() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.offices = data
+    });
   }
 
   saveHQ() {
@@ -211,11 +235,63 @@ export class HeadquarterComponent implements OnInit {
       return false;
     }
     else {
-      this.showSpinner();
-      this.hideSpinner();
-      this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
-      $('#HQModal').modal('hide');
-      return false;
+
+      if (this.officeId != null) {
+        this.showSpinner();
+        this.hideSpinner();
+        this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
+        $('#HQModal').modal('hide');
+        return false;
+        var updateData = { "ID": this.officeId, Password: this.userPassword, PIN: this.userPINCode };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          }
+          else {
+            this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#HQModal').modal('hide');
+            return false;
+          }
+
+        });
+      }
+      else {
+        this.showSpinner();
+        this.hideSpinner();
+        this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
+        $('#HQModal').modal('hide');
+        return false;
+        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          }
+          else {
+            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#HQModal').modal('hide');
+            return false;
+          }
+        });
+      }
+      // this.showSpinner();
+      // this.hideSpinner();
+      // this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
+      // $('#HQModal').modal('hide');
+      // return false;
     }
   }
 
@@ -234,6 +310,27 @@ export class HeadquarterComponent implements OnInit {
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       $('#deleteModal').modal('hide');
       return false;
+      return false;
+
+      var data = { "ID": this.dofficeId, Password: this.userPassword, PIN: this.userPINCode };
+
+      var token = localStorage.getItem(this.tokenKey);
+
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+      this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+
+        if (data.msg != undefined) {
+          this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+          return false;
+        }
+        else {
+          this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+          $('#deleteModal').modal('hide');
+          return false;
+        }
+
+      });
     }
   }
 
