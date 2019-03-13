@@ -6,6 +6,7 @@ import { catchError, filter } from 'rxjs/operators';
 import { OrderPipe } from 'ngx-order-pipe';
 import { strictEqual } from 'assert';
 
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var $: any;
 @Component({
@@ -74,7 +75,7 @@ export class CurrencyComponent implements OnInit {
         { currencyId: '25', currencyName: 'Kip', countryName: 'Laos' }
     ];
 
-    constructor(private toastr: ToastrManager, private http: HttpClient) { }
+    constructor(private toastr: ToastrManager, private http: HttpClient, private orderPipe: OrderPipe, private spinner: NgxSpinnerService) { }
 
     ngOnInit() {
 
@@ -95,6 +96,8 @@ export class CurrencyComponent implements OnInit {
         } else {
 
             if (this.currencyId != '') {
+                this.showSpinner();
+                this.hideSpinner();
                 this.toastr.successToastr('updated successfully', 'Error', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -120,6 +123,8 @@ export class CurrencyComponent implements OnInit {
 
 
             } else {
+                this.showSpinner();
+                this.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -187,6 +192,8 @@ export class CurrencyComponent implements OnInit {
             this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
             return false
         } else {
+            this.showSpinner();
+            this.hideSpinner();
 
 
             this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
@@ -294,6 +301,17 @@ export class CurrencyComponent implements OnInit {
             window.frames["frame1"].print();
             frame1.remove();
         }, 500);
+    }
+
+    // Functions for Show & Hide Spinner
+    showSpinner() {
+        this.spinner.show();
+    }
+    hideSpinner() {
+        setTimeout(() => {
+            /** spinner ends after process done*/
+            this.spinner.hide();
+        });
     }
 
 }

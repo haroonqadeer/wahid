@@ -28,6 +28,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { HttpModule } from '@angular/http';
 import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.component';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,8 @@ import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.c
     UserIdleModule.forRoot({ idle: 120, timeout: 120, ping: 15 }),
     NgxPaginationModule,
     OrderModule,
-    HttpModule
+    HttpModule,
+    NgxSpinnerModule
   ],
 
   providers: [],

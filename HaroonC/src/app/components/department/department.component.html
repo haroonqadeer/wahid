@@ -14,7 +14,8 @@
     <button mat-raised-button color="warn" data-toggle="modal" data-target="#optionModal">Options</button>
   </div>
   <div class="col-md-6 text-right">
-    <button mat-raised-button color="primary" data-toggle="modal" data-target="#departmentModal">Add New</button>
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#departmentModal" (click)="clear()">Add
+      New</button>
   </div>
 </div><!-- end button - row -->
 
@@ -37,28 +38,30 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1 text-center">Sr. #</th>
-          <th [class.active]="order === 'branchName'" (click)="setOrder('branchName')" class="col-5 text-left">Branch
+          <th [class.active]="order === 'departmentName'" (click)="setOrder('departmentName')" class="col-4 text-left">Department
             Name
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th [class.active]="order === 'departmentName'" (click)="setOrder('departmentName')" class="col-4 text-left">Department
+          <th [class.active]="order === 'branchName'" (click)="setOrder('branchName')" class="col-5 text-left">Branch
             Name
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
           <!-- <th class="col-1 text-right">Edit</th>
           <th class="col-1 text-center">Delete</th> -->
-<th class="col-2 text-center">Action</th>
+          <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let dept of departments | search:'branchName, departmentName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class="d-flex" *ngFor="let dept of departmentsData | search:'branchName, departmentName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
-          <td class="col-5 text-left">{{dept.branchName}}</td>
           <td class="col-4 text-left">{{dept.departmentName}}</td>
-          <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal" class="pointerCursor fa fa-edit text-primary"></span></td>
-          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
+          <td class="col-5 text-left">{{dept.branchName}}</td>
+          <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal" class="pointerCursor fa fa-edit text-primary"
+              (click)="edit(dept)"></span></td>
+          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"
+              (click)="deleteTemp(dept)"></span></td>
         </tr>
       </tbody>
     </table>
@@ -87,7 +90,7 @@
 <!-- Table Section Ends -->
 
 <!-- Hidden Table Start -->
-<igx-grid #exportDataContent [data]="departments" [autoGenerate]="false" height="null" width="null"></igx-grid>
+<igx-grid #exportDataContent [data]="departmentsData" [autoGenerate]="false" height="null" width="null"></igx-grid>
 <!-- Hidden Table End -->
 
 <!-- Start Department Modal Window -->
@@ -107,27 +110,27 @@
         <br>
         <!-- row - 01 -->
         <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="fullwidth">
-              <mat-select [(ngModel)]="deptBranch" placeholder="Head Quarter / Branch">
-                <mat-option *ngFor="let branch of branches" [value]="branch.branchName">{{branch.branchName}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div><!-- end row - 01 -->
-
-        <!-- row - 02 -->
-        <div class="row">
           <div class="col-md-10">
             <mat-form-field class="fullwidth">
               <mat-select [(ngModel)]="deptName" placeholder="Department Name">
-                <mat-option *ngFor="let dept of departments" [value]="dept.departmentName">{{dept.departmentName}}</mat-option>
+                <mat-option *ngFor="let dept of departments" [value]="dept.departmentId">{{dept.departmentName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
           <div class="col-md-1">
             <button mat-fab color="primary" class='noneOutLine' data-toggle="modal" data-target="#deptModal"><span
                 class="fa fa-plus"></span></button>
+          </div>
+        </div><!-- end row - 01 -->
+
+        <!-- row - 02 -->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="deptBranch" placeholder="Head Quarter / Branch">
+                <mat-option *ngFor="let branch of branches" [value]="branch.branchId">{{branch.branchName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div><!-- end row - 02 -->
 
@@ -155,7 +158,6 @@
   </div>
 </div>
 <!-- End Department Modal Window  -->
-
 
 <!-- Start Add Dept Modal Window -->
 <div class="modal fade" id="deptModal">
@@ -215,7 +217,7 @@
         <div class="row">
           <div class="col-md-12">
             <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="userPassword" placeholder="Enter Password" required>
+              <input matInput [(ngModel)]="userPassword" type="password" placeholder="Enter Password" required>
             </mat-form-field>
           </div>
         </div>
@@ -225,7 +227,7 @@
         <div class="row">
           <div class="col-md-12">
             <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="userPINCode" placeholder="Enter PIN Code" required>
+              <input matInput [(ngModel)]="userPINCode" type="password" placeholder="Enter PIN Code" required>
             </mat-form-field>
           </div>
         </div>

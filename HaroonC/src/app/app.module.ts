@@ -27,6 +27,9 @@ import { CurrencyComponent } from './components/currency/currency.component';
 
 import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +59,8 @@ import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "i
     NgxMaskModule.forRoot(),
     IgxGridModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    NgxSpinnerModule
   ],
   providers: [IgxExcelExporterService, IgxCsvExporterService],
   bootstrap: [AppComponent],

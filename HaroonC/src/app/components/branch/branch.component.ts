@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 declare var $: any;
 
 @Component({
@@ -20,6 +22,8 @@ export class BranchComponent implements OnInit {
   branchPhone = "";
   branchMobile = "";
   branchWebsite = "";
+
+  dbranchId = 0;
 
   //For Searching textboxes
   tblSearch = "";
@@ -43,7 +47,8 @@ export class BranchComponent implements OnInit {
       branId: 1,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -53,7 +58,8 @@ export class BranchComponent implements OnInit {
       branId: 2,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -63,7 +69,8 @@ export class BranchComponent implements OnInit {
       branId: 3,
       branTitle: "Infovative Solution",
       branAddress: "G-8 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -73,7 +80,8 @@ export class BranchComponent implements OnInit {
       branId: 4,
       branTitle: "Alpha Solution",
       branAddress: "G-10 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -83,7 +91,8 @@ export class BranchComponent implements OnInit {
       branId: 5,
       branTitle: "Infovative Solution",
       branAddress: "G-12 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -93,7 +102,8 @@ export class BranchComponent implements OnInit {
       branId: 6,
       branTitle: "Infovative Solution",
       branAddress: "G-13 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -103,7 +113,8 @@ export class BranchComponent implements OnInit {
       branId: 7,
       branTitle: "Infovative Solution",
       branAddress: "G-15 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -113,7 +124,8 @@ export class BranchComponent implements OnInit {
       branId: 8,
       branTitle: "Infovative Tech",
       branAddress: "G-15 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -123,7 +135,8 @@ export class BranchComponent implements OnInit {
       branId: 9,
       branTitle: "Infovative Hub",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -133,7 +146,8 @@ export class BranchComponent implements OnInit {
       branId: 10,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -143,7 +157,8 @@ export class BranchComponent implements OnInit {
       branId: 11,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -153,7 +168,8 @@ export class BranchComponent implements OnInit {
       branId: 12,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -163,7 +179,8 @@ export class BranchComponent implements OnInit {
       branId: 13,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -173,7 +190,8 @@ export class BranchComponent implements OnInit {
       branId: 14,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -183,7 +201,8 @@ export class BranchComponent implements OnInit {
       branId: 15,
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
-      branCity: "Islamabad",
+      ctyId: 1,
+      ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
@@ -199,10 +218,11 @@ export class BranchComponent implements OnInit {
     { ctyId: '4', ctyName: 'Quetta' }
   ];
 
-  constructor(public toastr: ToastrManager, private app: AppComponent) { }
+  constructor(public toastr: ToastrManager, private app: AppComponent, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
+
   saveBranch() {
     if (this.branchTitle.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Title', 'Error', { toastTimeout: (2500) });
@@ -237,20 +257,10 @@ export class BranchComponent implements OnInit {
       return false;
     }
     else {
+      this.showSpinner();
+      this.hideSpinner();
       this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
       $('#branchModal').modal('hide');
-      return false;
-    }
-  }
-
-  saveCity() {
-    if (this.cityName.trim() == "") {
-      this.toastr.errorToastr('Please Enter City Name', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else {
-      this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
-      $('#cityModal').modal('hide');
       return false;
     }
   }
@@ -265,12 +275,80 @@ export class BranchComponent implements OnInit {
       return false;
     }
     else {
+      this.showSpinner();
+      this.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       $('#deleteModal').modal('hide');
       return false;
     }
   }
 
+  edit(item) {
+    this.branchId = item.branId;
+    this.branchTitle = item.branTitle;
+    this.branchAddress = item.branAddress;
+    this.branchCity = item.ctyId.toString();
+    this.branchEmail = item.branEmail;
+    this.branchPhone = item.branPhone;
+    this.branchMobile = item.branMobile;
+    this.branchWebsite = item.branWebsite;
+  }
+
+  saveCity() {
+
+    ///////
+    if (this.cityName.trim() == '') {
+      this.toastr.errorToastr('Please enter city name', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else {
+
+      let data = this.cities.find(x => x.ctyName == this.cityName);
+
+      if (data != undefined) {
+
+        this.toastr.errorToastr('City name already exist', 'Error', { toastTimeout: (2500) });
+        return false;
+      }
+
+      else {
+
+        this.showSpinner();
+        this.hideSpinner();
+
+        this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+
+        this.cities.push({ ctyId: this.cities.length + "", ctyName: this.cityName });
+
+        this.cityName = '';
+        // $('#addCityModal').click();
+        $('#cityModal').modal('hide');
+
+        return false;
+      }
+    }
+    ///////
+
+    // if (this.cityName.trim() == "") {
+    //   this.toastr.errorToastr('Please Enter City Name', 'Error', { toastTimeout: (2500) });
+    //   return false;
+    // }
+    // else {
+    //   this.showSpinner();
+    //   this.hideSpinner();
+    //   this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
+    //   $('#cityModal').modal('hide');
+    //   return false;
+    // }
+  }
+
+
+  //functions for delete currency
+  deleteTemp(item) {
+
+    this.dbranchId = item.branId;
+
+  }
 
   clear() {
     this.branchId = 0;
@@ -297,7 +375,17 @@ export class BranchComponent implements OnInit {
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
-
     this.order = value;
+  }
+
+  // Functions for Show & Hide Spinner
+  showSpinner() {
+    this.spinner.show();
+  }
+  hideSpinner() {
+    setTimeout(() => {
+      /** spinner ends after process done*/
+      this.spinner.hide();
+    });
   }
 }

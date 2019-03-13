@@ -73,17 +73,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,branCity,branPhone,branEmail,branMobile':tblSearch |paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch |paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{branch.branTitle}}</td>
           <td class="col-2 text-left">{{branch.branAddress}}</td>
-          <td class="col-1 text-left">{{branch.branCity}}</td>
+          <td class="col-1 text-left">{{branch.ctyName}}</td>
           <td class="col-1 text-left">{{branch.branPhone}}</td>
           <td class="col-2 text-center">{{branch.branEmail}}</td>
           <td class="col-1 text-left">{{branch.branMobile}}</td>
           <!-- <td class="col-1 text-left">{{branch.branWebsite}}</td> -->
-          <td class="col-1 text-right"><span data-toggle="modal" data-target="#branchModal" class="pointerCursor fa fa-edit text-primary"></span></td>
-          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"></span></td>
+          <td class="col-1 text-right"><span data-toggle="modal" data-target="#branchModal" class="pointerCursor fa fa-edit text-primary"
+              (click)="edit(branch)"></span></td>
+          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"
+              (click)="deleteTemp(branch)"></span></td>
         </tr>
       </tbody>
     </table>
@@ -199,14 +201,12 @@
         <div class="row">
           <div class="col-md-1 text-left">
             <button mat-raised-button color="primary" (click)="saveBranch()">Save</button>
-
           </div>
           <div class="col-md-2 text-center">
             <button mat-raised-button (click)="clear()">Reset</button>
           </div>
         </div>
         <!-- Button tag Row Ends -->
-
 
         <!--start Modal footer -->
         <div class="modal-footer">
