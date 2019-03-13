@@ -74,7 +74,7 @@ export class CurrencyComponent implements OnInit {
         { currencyId: '25', currencyName: 'Kip', countryName: 'Laos' }
     ];
 
-    constructor(private toastr: ToastrManager, private http: HttpClient, private orderPipe: OrderPipe) { }
+    constructor(private toastr: ToastrManager, private http: HttpClient) { }
 
     ngOnInit() {
 

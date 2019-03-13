@@ -24,8 +24,7 @@
 
 
 
-<br />
-<!-- Start Section Table Container -->
+<!-- Start Subsidary Table Container -->
 <div class="container mat-elevation-z8 ">
   <br>
   <!--Start search textbox Row-->
@@ -69,7 +68,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of subsidiaryDetail | search:'Section,HeadQuarter' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"  class='d-flex'>
+        <tr *ngFor="let item of subsidiaryDetail | search:'subsidiaryTitle,subsidiaryType,representator,cityName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+          class='d-flex'>
           <td class="col-1 text-center">{{i + 1}}</td>
           <td class="col-3">{{item.subsidiaryTitle}}</td>
           <td class="col-2">{{item.subsidiaryType}}</td>
@@ -109,7 +109,7 @@
   <!-- end table row -->
   <br />
 </div>
-<!-- End Section Table Container -->
+<!-- End Subsidary Table Container -->
 <br><br><br>
 
 
@@ -193,12 +193,13 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
-              <input matInput placeholder="NTN" [(ngModel)]="ntn" required>
+              <input matInput placeholder="NTN" [(ngModel)]="ntn" mask="0000000-0" [showMaskTyped]="true" required>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
-              <input matInput placeholder="STRN" [(ngModel)]="strn" required>
+              <input matInput placeholder="STRN" [(ngModel)]="strn" mask="000-000-000-0" [showMaskTyped]="true"
+                required>
             </mat-form-field>
           </div>
         </div><!-- end 2nd row -->
@@ -209,10 +210,10 @@
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
               <mat-select placeholder="Subsidiary Type" [(ngModel)]="cmbSubsidiaryType">
-                <mat-option>Sole proprietorship</mat-option>
-                <mat-option value="option1">partnership</mat-option>
-                <mat-option value="option2">Private Limited Company</mat-option>
-                <mat-option value="option3">Public Limited Company</mat-option>
+                <mat-option value="Sole Proprietorship">Sole Proprietorship</mat-option>
+                <mat-option value="Partnership">Partnership</mat-option>
+                <mat-option value="Private Limited Company">Private Limited Company</mat-option>
+                <mat-option value="Public Limited Company">Public Limited Company</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError, filter } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
@@ -26,12 +29,20 @@ export interface Partner {
 })
 export class CompanyComponent implements OnInit {
 
+    serverUrl = "http://localhost:55536/";
+    tokenKey = "token";
+
+    httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    }
+
     //* variables for display values on page
 
 
 
 
     //*Variables for NgModels
+    companyId = '';
     tblSearch;
     cmbCType = '';
 
@@ -77,7 +88,9 @@ export class CompanyComponent implements OnInit {
     bWebsite = '';
     bFacebook = '';
 
-
+    txtdPassword = '';
+    txtdPin = '';
+    dCompanyId = '';
 
 
     //*Boolean ng models and variables
@@ -103,7 +116,7 @@ export class CompanyComponent implements OnInit {
 
     userDetail = [
         {
-            id: 1,
+            companyId: 1,
             businessType: "Sole Proprietorship",
             title: "TitleA",
             nature: "Public Sector",
@@ -111,7 +124,7 @@ export class CompanyComponent implements OnInit {
             website: "www.google.com"
         },
         {
-            id: 2,
+            companyId: 2,
             businessType: "Partnership",
             title: "TitleA",
             nature: "Public Sector",
@@ -119,7 +132,7 @@ export class CompanyComponent implements OnInit {
             website: "www.google.com"
         },
         {
-            id: 3,
+            companyId: 3,
             businessType: "Public Limited Company",
             title: "TitleA",
             nature: "Public Sector",
@@ -127,101 +140,14 @@ export class CompanyComponent implements OnInit {
             website: "www.google.com"
         },
         {
-            id: 4,
+            companyId: 4,
             businessType: "Private Limited Company",
             title: "TitleA",
             nature: "Public Sector",
             ntn: 123,
             website: "www.google.com"
         },
-        {
-            id: 5,
-            businessType: "Partnership",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 6,
-            businessType: "Sole Proprietorship",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 7,
-            businessType: "Partnership",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 8,
-            businessType: "Public Limited Company",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 9,
-            businessType: "Private Limited Company",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 10,
-            businessType: "Partnership",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 11,
-            businessType: "Sole Proprietorship",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 12,
-            businessType: "Partnership",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 13,
-            businessType: "Public Limited Company",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 14,
-            businessType: "Private Limited Company",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        },
-        {
-            id: 15,
-            businessType: "Partnership",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
-        }
+
     ];
 
     //array for partners detail 
@@ -229,13 +155,13 @@ export class CompanyComponent implements OnInit {
 
 
 
-    constructor(private toastr: ToastrManager, private app: AppComponent) { }
+    constructor(private toastr: ToastrManager, private app: AppComponent, private http: HttpClient) { }
 
     ngOnInit() {
     }
 
     //function to hide or unhide div
-    allow_div() {
+    allowDiv() {
 
         if (this.cmbCType == '') {
             this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
@@ -250,12 +176,7 @@ export class CompanyComponent implements OnInit {
             this.solePro = false;
             this.ppCom = false;
         }
-        else if (this.cmbCType == 'Public Limited Company') {
-            this.ppCom = true;
-            this.partner = false;
-            this.solePro = false;
-        }
-        else if (this.cmbCType == 'Private Limited Company') {
+        else if (this.cmbCType == 'Public Limited Company' || this.cmbCType == 'Private Limited Company') {
             this.ppCom = true;
             this.partner = false;
             this.solePro = false;
@@ -266,6 +187,7 @@ export class CompanyComponent implements OnInit {
         }
     }
 
+    //Function for save and update company 
     save() {
 
         if (this.cmbCType == '') {
@@ -274,7 +196,7 @@ export class CompanyComponent implements OnInit {
         } else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
             this.toastr.errorToastr('Please enter owner CNIC', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && this.sNtn == '') {
+        } else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
             this.toastr.errorToastr('Please enter owner NTN', 'Error', { toastTimeout: (2500) });
             return false;
         } else if (this.solePro == true && this.sOwnerName == '') {
@@ -301,7 +223,7 @@ export class CompanyComponent implements OnInit {
         } else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
             this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && this.ppNtn == '') {
+        } else if (this.ppCom == true && (this.ppNtn == '' || this.ppNtn.length < 8)) {
             this.toastr.errorToastr('Please enter director ntn', 'Error', { toastTimeout: (2500) });
             return false;
         } else if (this.ppCom == true && this.ppDirectorName == '') {
@@ -328,10 +250,10 @@ export class CompanyComponent implements OnInit {
         } else if (this.ppCom == true && this.ppAddress == '') {
             this.toastr.errorToastr('Please enter director address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bNtn == '') {
+        } else if (this.bNtn == '' || this.bNtn.length < 8) {
             this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bStrn == '') {
+        } else if (this.bStrn == '' || this.bStrn.length < 10) {
             this.toastr.errorToastr('Please enter business strn', 'Error', { toastTimeout: (2500) });
             return false;
         } else if (this.bTitle == '') {
@@ -375,12 +297,13 @@ export class CompanyComponent implements OnInit {
 
     }
 
+    //Function for add new partner for company 
     addPartner() {
 
         if (this.pCnic == '' || this.pCnic.length < 13) {
             this.toastr.errorToastr('Please enter CNIC', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pNtn == '') {
+        } else if (this.pNtn == '' || this.pNtn.length < 8) {
             this.toastr.errorToastr('Please enter NTN', 'Error', { toastTimeout: (2500) });
             return false;
         } else if (this.pPartnerName == '') {
@@ -441,6 +364,7 @@ export class CompanyComponent implements OnInit {
         }
     }
 
+    //Function for empty all fields of partner information 
     clearPartner() {
         this.pCnic = '';
         this.pNtn = '';
@@ -454,11 +378,13 @@ export class CompanyComponent implements OnInit {
         this.pAddress = '';
     }
 
+    //Function for remote partner from list
     remove(item) {
         var index = this.partners.indexOf(item);
         this.partners.splice(index, 1);
     }
 
+    //Function for validate email address
     isEmail(email) {
         return this.app.validateEmail(email);
     }
@@ -471,6 +397,121 @@ export class CompanyComponent implements OnInit {
         }
 
         this.order = value;
+    }
+
+    //function for empty all fields
+    clear(cId) {
+
+        if (cId > 0) {
+
+            this.ppCom = false;
+            this.partner = false;
+            this.solePro = false;
+
+            this.btnStpr1 = false;
+            this.cmbCType = '';
+
+            this.sCnic = '';
+            this.sNtn = '';
+            this.sOwnerName = '';
+            this.sTelephoneNo = '';
+            this.sMobileNo = '';
+            this.sEmail = '';
+            this.sAddress = '';
+
+            this.clearPartner();
+
+            this.ppCnic = '';
+            this.ppNtn = '';
+            this.ppDirectorName = '';
+            this.ppPosition = '';
+            this.ppShare = '';
+            this.ppTelephone = '';
+            this.ppMobile = '';
+            this.ppEmail = '';
+            this.ppAddress = '';
+
+            this.bNtn = '';
+            this.bStrn = '';
+            this.bTitle = '';
+            this.bNature = '';
+            this.bDescription = '';
+            this.bBusinessAddress = '';
+            this.bMailingAddress = '';
+            this.bTelephone = '';
+            this.bMobile = '';
+            this.bEmail = '';
+            this.bWebsite = '';
+            this.bFacebook = '';
+
+            this.txtdPassword = '';
+            this.txtdPin = '';
+            this.dCompanyId = '';
+
+        }
+
+    }
+
+    //function for edit existing currency 
+    edit(item) {
+
+        this.companyId = item.companyId;
+        this.cmbCType = item.businessType;
+
+        this.allowDiv();
+
+    }
+
+    //functions for delete company
+    deleteTemp(item) {
+
+        this.dCompanyId = item.companyId;
+
+    }
+
+    delete() {
+
+        if (this.txtdPassword == '') {
+            this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
+            return false
+        } else if (this.txtdPin == '') {
+            this.toastr.errorToastr('Please enter PIN', 'Error', { toastTimeout: (2500) });
+            return false
+        } else if (this.dCompanyId == '') {
+            this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
+            return false
+        } else {
+
+
+            this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
+            this.clear(1);
+
+            $('#closeDeleteModel').click();
+
+            return false;
+
+            var data = { "ID": this.dCompanyId, "Password": this.txtdPassword, "PIN": this.txtdPin };
+
+            var token = localStorage.getItem(this.tokenKey);
+
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+            this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+
+                if (data.msg != undefined) {
+                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                    return false;
+                } else {
+                    this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+                    $('#actionModal').modal('hide');
+                    return false;
+                }
+
+            });
+
+        }
+
+
     }
 
 }

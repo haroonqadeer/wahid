@@ -47,11 +47,7 @@ export class SectionComponent implements OnInit {
 
 
 	//*List Variables
-	sections = [
-		{ sectionId: '1', sectionName: 'Security' },
-		{ sectionId: '2', sectionName: 'Audit' },
-		{ sectionId: '3', sectionName: 'Tax' }
-	];
+	sections = [];
 
 	headquarters = [
 		{ hqId: '1', hqName: 'Lahore Branch' },
@@ -207,6 +203,7 @@ export class SectionComponent implements OnInit {
 	constructor(private toastr: ToastrManager, private http: HttpClient) { }
 
 	ngOnInit() {
+		this.getSectionDetail();
 	}
 
 	//Function for save and update currency 
@@ -226,9 +223,10 @@ export class SectionComponent implements OnInit {
 			if (this.sectionId != '') {
 				this.toastr.successToastr('updated successfully', 'Error', { toastTimeout: (2500) });
 				this.clear();
+
 				return false;
 
-				var updateData = { "ID": this.sectionId, Password: this.txtdPassword, PIN: this.txtdPin };
+				var updateData = { "ID": this.sectionId, "Password": this.txtdPassword, "PIN": this.txtdPin };
 
 				var token = localStorage.getItem(this.tokenKey);
 

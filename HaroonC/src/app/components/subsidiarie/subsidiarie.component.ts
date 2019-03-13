@@ -61,7 +61,7 @@ export class SubsidiarieComponent implements OnInit {
     //*List Variables
     cities = [
         { cityId: '1', cityName: 'Islamabad' },
-        { cityId: '2', cityName: 'Attock' },
+        { cityId: '2', cityName: 'Rawalpindi' },
         { cityId: '3', cityName: 'Lahore' }
     ];
 
@@ -70,8 +70,8 @@ export class SubsidiarieComponent implements OnInit {
             subsidiaryDetailId: 1,
             subsidiaryId: 1,
             subsidiaryTitle: 'WORKGAPS LIMITED',
-            ntn: '1',
-            strn: '1',
+            ntn: '12345678',
+            strn: '1234567890',
             subsidiaryTypeId: '2',
             subsidiaryType: "Partnership",
             representator: "Zuhaib Mughal",
@@ -95,8 +95,8 @@ export class SubsidiarieComponent implements OnInit {
             subsidiaryType: "Partnership",
             representator: "M. Osama",
             address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
+            cityId: 2,
+            cityName: 'Rawalpindi',
             email: '@gmail.com',
             telephone: '0572212704',
             mobile: '0313-5300471',
@@ -365,10 +365,10 @@ export class SubsidiarieComponent implements OnInit {
         if (this.subsidiaryTitle.trim() == '') {
             this.toastr.errorToastr('Please enter subsidiary title', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ntn.trim() == '') {
+        } else if (this.ntn.trim() == '' || this.ntn.length < 8) {
             this.toastr.errorToastr('Please enter NTN', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.strn.trim() == '') {
+        } else if (this.strn.trim() == '' || this.strn.length < 10) {
             this.toastr.errorToastr('Please enter STRM', 'Error', { toastTimeout: (2500) });
             return false;
         } else if (this.cmbSubsidiaryType == '') {
@@ -494,7 +494,7 @@ export class SubsidiarieComponent implements OnInit {
         this.subsidiaryTitle = item.subsidiaryTitle;
         this.ntn = item.ntn;
         this.strn = item.strn;
-        this.cmbSubsidiaryType = item.subsidiaryTypeId;
+        this.cmbSubsidiaryType = item.subsidiaryType;
         this.representator = item.representator;
         this.address = item.address;
         this.cmbCity = item.cityId.toString();

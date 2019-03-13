@@ -15,7 +15,7 @@
     <button mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
-    <button mat-raised-button color="primary" data-toggle="modal" data-target="#sectModal">Add New</button>
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#sectModal" (click)="clear()">Add New</button>
   </div>
 </div>
 <!--end buttons row-->
@@ -62,14 +62,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of sectionDetail | search:'Section, HeadQuarter, Department' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+        <tr *ngFor="let item of sectionDetail | search:'HeadQuarter,Department,Section' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
           class='d-flex'>
           <td class="col-1 text-center">{{i + 1}}</td>
           <td class="col-3">{{item.HeadQuarter}}</td>
           <td class="col-3">{{item.Department}}</td>
           <td class="col-3">{{item.Section}}</td>
           <td class="col-2 text-center">
-            <span class="fa fa-edit pointerCursor text-primary" (click)="edit(item)"></span>
+            <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#sectModal" (click)="edit(item)"></span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
           </td>
