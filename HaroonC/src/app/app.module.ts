@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgxMaskModule } from "ngx-mask";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 import { AppRoutingModule } from './app-routing.module';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
@@ -26,8 +27,6 @@ import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.compo
 import { CurrencyComponent } from './components/currency/currency.component';
 
 import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
-
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
