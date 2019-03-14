@@ -358,6 +358,7 @@ export class UserrolesComponent implements OnInit {
 
   //Assign id and name to hidden labels
   delete(item) {
+    this.clear();
 
     this.erpRoleName = item.erpRoleName;
     this.erpRoleCd = item.erpRoleCd;
