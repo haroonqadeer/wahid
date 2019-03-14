@@ -70,23 +70,23 @@ export class DepartmentComponent implements OnInit {
   //For Branch dropdown
   departments = [
     {
-      departmentId: '1',
+      departmentId: 1,
       departmentName: "Finance"
     },
     {
-      departmentId: '2',
+      departmentId: 2,
       departmentName: "Human Resource"
     },
     {
-      departmentId: '3',
+      departmentId: 3,
       departmentName: "Admin"
     },
     {
-      departmentId: '4',
+      departmentId: 4,
       departmentName: "Procurement"
     },
     {
-      departmentId: '5',
+      departmentId: 5,
       departmentName: "Medical"
     }
   ]
@@ -253,7 +253,7 @@ export class DepartmentComponent implements OnInit {
 
         this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
-        this.departments.push({ departmentId: this.departments.length + "", departmentName: this.departName });
+        this.departments.push({ departmentId: this.departments.length, departmentName: this.departName });
 
         this.departName = "";
         // $('#addCityModal').click();
@@ -275,8 +275,6 @@ export class DepartmentComponent implements OnInit {
     // }
   }
 
-
-
   delete() {
     if (this.userPassword == "") {
       this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
@@ -296,10 +294,9 @@ export class DepartmentComponent implements OnInit {
   }
 
   edit(item) {
-    this.deptName = item.departmentId.toString();
-    this.deptBranch = item.branchId.toString();
+    this.deptName = item.departmentId;
+    this.deptBranch = String(item.branchId);
   }
-
 
   clear() {
     this.deptName = "";
@@ -317,8 +314,7 @@ export class DepartmentComponent implements OnInit {
     WinPrint.close();
   }
 
-  //-------------------------------// Downloading PDF File //-------------------------------//
-
+  // Downloading PDF File 
   downloadPDF() {
 
     let doc = new jsPDF();
@@ -342,14 +338,12 @@ export class DepartmentComponent implements OnInit {
     doc.save('exportTest.pdf');
   }
 
-  //-------------------------------// Downloading Excel File //-------------------------------//
-
+  // Downloading Excel File
   public exportExcel() {
     this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
-  //-------------------------------// Downloading CSV File //-------------------------------//
-
+  // Downloading CSV File
   public exportCSV() {
     this.csvExportService.exportData(this.departments, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
   }
@@ -373,6 +367,7 @@ export class DepartmentComponent implements OnInit {
   showSpinner() {
     this.spinner.show();
   }
+
   hideSpinner() {
     setTimeout(() => {
       /** spinner ends after process done*/
