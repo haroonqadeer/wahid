@@ -12,15 +12,18 @@
 <!--start buttons row-->
 <div class="row">
   <div class="col-md-6">
-    <button mat-raised-button color="warn">Print</button>
+    <button mat-raised-button color="warn" (click)="printDiv()">Print</button>
   </div>
-  <div class="col-md-6 text-right">
-    <button mat-raised-button color="primary" data-toggle="modal" data-target="#currencyModal">Add New</button>
+  <div class=" col-md-6 text-right">
+    <button mat-raised-button color="primary" data-toggle="modal" data-target="#currencyModal" (click)="clear()">Add
+      New</button>
   </div>
 </div>
 <!--end buttons row-->
-
 <br />
+
+
+
 <!-- Start Currency Table Container -->
 <div class="container mat-elevation-z8 ">
   <br>
@@ -40,31 +43,115 @@
     <table class="table table-striped fullwidth" id="myTable">
       <thead>
         <tr class="d-flex">
-          <th class="col-2 text-center">Sr No.</th>
-          <th class="col-4">Currency Name</th>
-          <th class="col-4">Country Name</th>
+
+          <th class="col-2 text-center">
+            Sr No.
+          </th>
+          <th [class.active]="order === 'currencyName'" (click)="setOrder('currencyName')" class="col-4">
+            Currency Name
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'countryName'" (click)="setOrder('countryName')" class="col-4">
+            Country Name
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
           <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of currencies | search:'currencyName,countryName' :tblSearch let i=index" class='d-flex'>
+        <tr *ngFor="let item of currencies | search:'currencyName,countryName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+          class='d-flex'>
+
           <td class="col-2 text-center">{{i + 1}}</td>
           <td class="col-4">{{item.currencyName}}</td>
           <td class="col-4">{{item.countryName}}</td>
           <td class="col-2 text-center">
-            <span class="fa fa-edit pointerCursor" (click)="edit(item)"></span>
+            <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#currencyModal"
+              (click)="edit(item)"></span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="fa fa-trash pointerCursor" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
+            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <div class="col-md-10">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col-md-2 text-right">
+      <mat-form-field class="fullwidth pagenateList">
+        <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+          <mat-option value="25">25</mat-option>
+          <mat-option value="30">30</mat-option>
+          <mat-option value="35">35</mat-option>
+          <mat-option value="40">40</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="50">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
   </div>
   <!-- end table row -->
   <br />
 </div>
 <!-- End Currency Table Container -->
 <br><br><br>
+
+
+<!-- Start Table Container for print -->
+<div class="container mat-elevation-z8 printArea" id="printArea">
+  <div class="printDiv">
+
+    <!--Start heading table -->
+    <table>
+      <tr>
+        <td width="15%" style="border:none;">
+          <img src="../../../assets/images/logo.png" width="135px">
+        </td>
+
+        <td style="border:none;">
+          <div class="commonCss cssHeading">Logix Solutions</div>
+          <div class="commonCss cssAddress">Office #209, 2nd Floor Ahmed Plaza, Rawalpindi Road Fateh Jang.</div>
+          <div class="commonCss cssContact">Mobile: 0313-5300471, Ph. 057-2212704</div>
+        </td>
+      </tr>
+    </table>
+    <!--End heading table -->
+
+
+    <br /><br />
+
+
+    <!--Start table Row-->
+    <div class="row">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Currency Name</th>
+            <th>Country Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of currencies | orderBy: order:reverse:'case-insensitive' let i=index">
+            <td>{{i + 1}}</td>
+            <td>{{item.currencyName}}</td>
+            <td>{{item.countryName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- end table row -->
+  </div>
+</div>
+<!-- End Table Container for print -->
+
 
 
 

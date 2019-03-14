@@ -1,5 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
+
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import {
+  IgxExcelExporterOptions,
+  IgxExcelExporterService,
+  IgxGridComponent,
+  IgxCsvExporterService,
+  IgxCsvExporterOptions,
+  CsvFileTypes
+} from "igniteui-angular";
+
+import * as jsPDF from 'jspdf';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+
 
 declare var $: any;
 @Component({
@@ -9,7 +24,18 @@ declare var $: any;
 })
 export class DepartmentComponent implements OnInit {
 
+  serverUrl = "http://localhost:55536/";
+  tokenKey = "token";
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
+
+  //Page NgModels
+  tblSearch = "";
+
   // Add Department NgModels
+  deptId = "";
   deptName = "";
   deptBranch = "";
 
@@ -20,58 +46,206 @@ export class DepartmentComponent implements OnInit {
   userPassword = "";
   userPINCode = "";
 
+  // To Access id of Delete Entry
+  dDepartmentId = "";
+
+  //* variables for pagination and orderby pipe
+  p = 1;
+  order = 'info.name';
+  reverse = false;
+  sortedCollection: any[];
+  itemPerPage = '10';
+
   //For Branch dropdown
   branches = [
     {
+      branchId: '1',
+      branchName: "Islamabad(HQ)"
+    },
+    {
+      branchId: '2',
+      branchName: "Lahore"
+    },
+    {
+      branchId: '3',
+      branchName: "Karachi"
+    },
+    {
+      branchId: '4',
+      branchName: "Peshawar"
+    }
+  ]
+
+  //For Branch dropdown
+  departments = [
+    {
+      departmentId: '1',
+      departmentName: "Finance"
+    },
+    {
+      departmentId: '2',
+      departmentName: "Human Resource"
+    },
+    {
+      departmentId: '3',
+      departmentName: "Admin"
+    },
+    {
+      departmentId: '4',
+      departmentName: "Procurement"
+    },
+    {
+      departmentId: '5',
+      departmentName: "Medical"
+    }
+  ]
+
+  // For Department Dropdown
+  departmentsData = [
+    {
+      departmentsDataId: 1,
+      departmentId: 1,
+      departmentName: "Finance",
       branchId: 1,
       branchName: "Islamabad(HQ)"
     },
     {
+      departmentsDataId: 2,
+      departmentId: 2,
+      departmentName: "Human Resource",
+      branchId: 1,
+      branchName: "Islamabad(HQ)",
+    },
+    {
+      departmentsDataId: 3,
+      departmentId: 3,
+      departmentName: "Admin",
       branchId: 2,
       branchName: "Lahore"
     },
     {
+      departmentsDataId: 4,
+      departmentId: 4,
+      departmentName: "Procurement",
       branchId: 3,
       branchName: "Karachi"
     },
     {
+      departmentsDataId: 5,
+      departmentId: 5,
+      departmentName: "Medical",
+      branchId: 4,
+      branchName: "Peshawar"
+    },
+    {
+      departmentsDataId: 6,
+      departmentId: 1,
+      departmentName: "Finance",
+      branchId: 1,
+      branchName: "Islamabad(HQ)"
+    },
+    {
+      departmentsDataId: 7,
+      departmentId: 2,
+      departmentName: "Human Resource",
+      branchId: 1,
+      branchName: "Islamabad(HQ)",
+    },
+    {
+      departmentsDataId: 8,
+      departmentId: 3,
+      departmentName: "Admin",
+      branchId: 2,
+      branchName: "Lahore"
+    },
+    {
+      departmentsDataId: 9,
+      departmentId: 4,
+      departmentName: "Procurement",
+      branchId: 3,
+      branchName: "Karachi"
+    },
+    {
+      departmentsDataId: 10,
+      departmentId: 5,
+      departmentName: "Medical",
+      branchId: 4,
+      branchName: "Peshawar"
+    },
+    {
+      departmentsDataId: 11,
+      departmentId: 1,
+      departmentName: "Finance",
+      branchId: 1,
+      branchName: "Islamabad(HQ)"
+    },
+    {
+      departmentsDataId: 12,
+      departmentId: 2,
+      departmentName: "Human Resource",
+      branchId: 1,
+      branchName: "Islamabad(HQ)",
+    },
+    {
+      departmentsDataId: 13,
+      departmentId: 3,
+      departmentName: "Admin",
+      branchId: 2,
+      branchName: "Lahore"
+    },
+    {
+      departmentsDataId: 14,
+      departmentId: 4,
+      departmentName: "Procurement",
+      branchId: 3,
+      branchName: "Karachi"
+    },
+    {
+      departmentsDataId: 15,
+      departmentId: 5,
+      departmentName: "Medical",
       branchId: 4,
       branchName: "Peshawar"
     }
   ]
 
-  // For Department Dropdown
-  departments = [
-    {
-      departmentId: 1,
-      departmentName: "Finance",
-      branchName: "Islamabad(HQ)"
-    },
-    {
-      departmentId: 2,
-      departmentName: "Human Resource",
-      branchName: "Islamabad(HQ)",
-    },
-    {
-      departmentId: 3,
-      departmentName: "Admin",
-      branchName: "Lahore"
-    },
-    {
-      departmentId: 4,
-      departmentName: "Procurement",
-      branchName: "Karachi"
-    },
-    {
-      departmentId: 5,
-      departmentName: "Medical",
-      branchName: "Peshawar"
-    }
-  ]
+  @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
+  @ViewChild("exportPDF") public exportPDF: ElementRef;
 
-  constructor(public toastr: ToastrManager) { }
+
+  constructor(public toastr: ToastrManager,
+    private excelExportService: IgxExcelExporterService,
+    private csvExportService: IgxCsvExporterService,
+    private spinner: NgxSpinnerService,
+    private http: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  //To get departments
+  getDepartment() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.departments = data
+    });
+  }
+
+  //To get departments Data for display in main table
+  getDepartmentData() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.departmentsData = data
+    });
   }
 
   saveDepartment() {
@@ -84,22 +258,114 @@ export class DepartmentComponent implements OnInit {
       return false;
     }
     else {
-      this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
-      $('#departmentModal').modal('hide');
-      return false;
+
+      if (this.deptId != null) {
+        this.showSpinner();
+        this.hideSpinner();
+        this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
+        $('#departmentModal').modal('hide');
+        return false;
+        var updateData = { "ID": this.deptId, Password: this.userPassword, PIN: this.userPINCode };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          }
+          else {
+            this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#departmentModal').modal('hide');
+            return false;
+          }
+
+        });
+      }
+      else {
+        this.showSpinner();
+        this.hideSpinner();
+        this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
+        $('#departmentModal').modal('hide');
+        return false;
+        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          }
+          else {
+            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#departmentModal').modal('hide');
+            return false;
+          }
+        });
+      }
     }
   }
 
+
   saveDept() {
+    ///////
     if (this.departName == "") {
       this.toastr.errorToastr('Please Enter Department', 'Error', { toastTimeout: (2500) });
       return false;
     }
     else {
-      this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
-      $('#deptModal').modal('hide');
-      return false;
+
+      let data = this.departments.find(x => x.departmentName == this.departName);
+
+      if (data != undefined) {
+
+        this.toastr.errorToastr('Department name is already exists', 'Error', { toastTimeout: (2500) });
+        return false;
+      }
+
+      else {
+
+        this.showSpinner();
+        this.hideSpinner();
+
+        this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+
+        this.departments.push({ departmentId: this.departments.length + "", departmentName: this.departName });
+
+        this.departName = "";
+        // $('#addCityModal').click();
+        $('#deptModal').modal('hide');
+
+        return false;
+
+        var updateData = { "sectionname": this.departName };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          }
+          else {
+            this.toastr.successToastr('Saved Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#deptModal').modal('hide');
+            return false;
+          }
+        });
+      }
     }
+    ///////
   }
 
   delete() {
@@ -112,10 +378,118 @@ export class DepartmentComponent implements OnInit {
       return false;
     }
     else {
+      this.showSpinner();
+      this.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       $('#deleteModal').modal('hide');
+
       return false;
+
+      var data = { "ID": this.dDepartmentId, Password: this.userPassword, PIN: this.userPINCode };
+
+      var token = localStorage.getItem(this.tokenKey);
+
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+      this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+
+        if (data.msg != undefined) {
+          this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+          return false;
+        }
+        else {
+          this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+          $('#deleteModal').modal('hide');
+          return false;
+        }
+
+      });
     }
+  }
+
+  edit(item) {
+    this.deptName = item.departmentId.toString();
+    this.deptBranch = item.branchId.toString();
+  }
+
+  clear() {
+    this.deptName = "";
+    this.deptBranch = "";
+  }
+
+  printContent(el) {
+
+    var printCon = document.getElementById(el).innerHTML;
+    var WinPrint = window.open("");
+    WinPrint.document.write(printCon);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+  }
+
+  //-------------------------------// Downloading PDF File //-------------------------------//
+
+  downloadPDF() {
+
+    let doc = new jsPDF();
+
+    let specialElementHandlers = {
+      '#editor': function () {
+        return true;
+      }
+    };
+
+    let contentpdf = this.exportPDF.nativeElement;
+
+    doc.text(16, 16, contentpdf);
+
+    doc.fromHTML(contentpdf.innerHTML, 50, 0, {
+      'margin': 8,
+      'text': 16,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('exportTest.pdf');
+  }
+
+  //-------------------------------// Downloading Excel File //-------------------------------//
+
+  public exportExcel() {
+    this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+  }
+
+  //-------------------------------// Downloading CSV File //-------------------------------//
+
+  public exportCSV() {
+    this.csvExportService.exportData(this.departments, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+  }
+
+  //function for sorting table data 
+  setOrder(value: string) {
+
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
+  }
+
+  //functions for delete department
+  deleteTemp(item) {
+
+    this.dDepartmentId = item.departmentsDataId;
+
+  }
+
+  // Functions for Show & Hide Spinner
+  showSpinner() {
+    this.spinner.show();
+  }
+  hideSpinner() {
+    setTimeout(() => {
+      /** spinner ends after process done*/
+      this.spinner.hide();
+    });
   }
 
 }

@@ -11,6 +11,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgxMaskModule } from "ngx-mask";
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderModule } from 'ngx-order-pipe';
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 import { AppRoutingModule } from './app-routing.module';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
@@ -22,6 +25,9 @@ import { DepartmentComponent } from './components/department/department.componen
 import { SectionComponent } from './components/section/section.component';
 import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
 import { CurrencyComponent } from './components/currency/currency.component';
+
+import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
+
 
 @NgModule({
   declarations: [
@@ -49,9 +55,13 @@ import { CurrencyComponent } from './components/currency/currency.component';
     ToastrModule.forRoot(),
     HttpModule,
     HttpClientModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    IgxGridModule,
+    NgxPaginationModule,
+    OrderModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [IgxExcelExporterService, IgxCsvExporterService],
   bootstrap: [AppComponent],
   entryComponents: [ErpBottomSheetComponent],
 })
