@@ -7,7 +7,19 @@ import { OrderPipe } from 'ngx-order-pipe';
 import { HttpClient } from '@angular/common/http';
 
 
-declare var $: any;
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting role data into main table------------------------// 
+//-------------------Getting modules and menu data in menuTree----------------//
+//-------------------Getting specific role data in drop down box--------------//
+//-------------------Getting specific module data in table--------------------//
+//-------------------Add menuTree data into roleTree--------------------------// 
+//-------------------Remove roleTree data-------------------------------------// 
+//-------------------Creation of roles, modules and menu in database----------//
+//-------------------Update roles, modules and menu into database-------------//
+//-------------------Delete roles, modules and menu into database-------------//
+//-------------------Add permissions of roles---------------------------------//
+//-------------------Save permissions into database---------------------------//
 
 
 //For Push Data in the Object array
@@ -28,23 +40,17 @@ export class UserrolesComponent implements OnInit {
   //selectedEntry = "5";
 
   /// declaration
-  employeeId = '';
   erpRoleCd = '';
-  userName = '';
   txtdPassword = '';
   txtdPin = '';
-  chkAdd = '';
-  chkUpdate = '';
-  chkDelete = '';
-  chkView = '';
-  panelOpenState = true;
   erpRoleName = '';
   cmbModule = '';
 
   //Page Models
-  query = '';
+  roleSearch = '';
   pageEntryValue = '5';
 
+  //list for tree
   menuTree: TreeNode[];
 
   selectedMenu: TreeNode[];
@@ -60,7 +66,8 @@ export class UserrolesComponent implements OnInit {
   constructor(private http: HttpClient, public toastr: ToastrManager, private nodeService: NodeService) { }
 
   //list variables
-  public employees;
+  public employees = [];
+  public tempRoleList = [];
   public modules;
   public menus;
   public roles;
@@ -69,28 +76,14 @@ export class UserrolesComponent implements OnInit {
   public roleList = [];
   public roleChildren = [];
   public erpObjct: Array<erpObject> = [];
-  dataArray: string[] = [];
-
-  entries = [
-    { entryNumber: '5' },
-    { entryNumber: '10' },
-    { entryNumber: '15' },
-    { entryNumber: '25' },
-    { entryNumber: '50' },
-    { entryNumber: '100' }
-  ]
 
   ngOnInit() {
 
     this.getMenu();
     this.getRole();
-    //for (var i = 0; i<this.employee.)
-
-    // $(document).ready(function () {
-    //   $('#example').DataTable();
-    // });
   }
 
+  //setting ascending or descending order of table
   setOrder(value: any) {
     if (this.order === value) {
       this.reverse = !this.reverse;
@@ -98,16 +91,17 @@ export class UserrolesComponent implements OnInit {
     this.order = value;
   }
 
+  //Adding modules and menu in role tree 
   addRoles() {
 
     var itemFound = false;
     var itemIndex = 0;
     this.roleChildren = [];
 
+    //checking if menuTree data not selected
     if (this.selectedMenu == undefined) {
       this.toastr.errorToastr('Please Select Nodes!', 'Error', { toastTimeout: (2500) }); return;
     }
-    //alert(this.selectedMenu[0].children.length);
 
     //if module is selected
     if (this.selectedMenu[0].data[0].typeCode == 1) {
@@ -115,6 +109,8 @@ export class UserrolesComponent implements OnInit {
       if (this.roleTree == undefined) {
 
         for (var i = 0; i < this.selectedMenu[0].children.length; i++) {
+          //checking if children (menu) exists and children (menu) parent id and object parent id are same 
+          //then push children (menu) in role tree children 
           if (this.selectedMenu[0].children[i].data[0].typeCode == 2
             && this.selectedMenu[0].children[i].data[0].parentErpObjCd == this.selectedMenu[0].data[0].objCode) {
 
@@ -168,7 +164,6 @@ export class UserrolesComponent implements OnInit {
             for (var i = 0; i < this.selectedMenu[0].children.length; i++) {
               itemFound = false;
               for (var j = 0; j < this.roleTree[itemIndex].children.length; j++) {
-                //alert(this.selectedMenu[0].children[i].data[0].objCode + ' - ' + this.roleTree[itemIndex].children[j].data[0].objCode)
                 //checking if selected menu children id and role tree children id are same
                 if (this.selectedMenu[0].children[i].data[0].objCode == this.roleTree[itemIndex].children[j].data[0].objCode) {
                   itemFound = true;
@@ -198,6 +193,8 @@ export class UserrolesComponent implements OnInit {
           this.roleChildren = [];
 
           for (var i = 0; i < this.selectedMenu[0].children.length; i++) {
+            //checking if selectedMenu type is menu and 
+            //selectedMenu children parent id and selectedMenu id are same then push data in role tree children
             if (this.selectedMenu[0].children[i].data[0].typeCode == 2
               && this.selectedMenu[0].children[i].data[0].parentErpObjCd == this.selectedMenu[0].data[0].objCode) {
 
@@ -253,6 +250,7 @@ export class UserrolesComponent implements OnInit {
         itemIndex = 0;
 
         for (var i = 0; i < this.roleTree.length; i++) {
+          //checking if selectedMenu parent id and roletree id are same
           if (this.selectedMenu[0].data[0].parentErpObjCd == this.roleTree[i].data[0].objCode) {
             itemFound = true;
             itemIndex = i;
@@ -260,16 +258,16 @@ export class UserrolesComponent implements OnInit {
           }
         }
         if (itemFound == true) {
-          //alert(this.roleTree[itemIndex].data[0].objNmae);
+
           itemFound = false;
           for (var i = 0; i < this.roleTree[itemIndex].children.length; i++) {
+            //checking if selectedMenu id and roletree children id are same
             if (this.selectedMenu[0].data[0].objCode == this.roleTree[itemIndex].children[i].data[0].objCode) {
               itemFound = true;
               i = this.roleTree[itemIndex].children.length + 1;
             } else {
               itemFound = false;
             }
-            //alert(this.roleTree[itemIndex].children[i].data[0].objName)
           }
 
           if (itemFound == true) {
@@ -315,26 +313,82 @@ export class UserrolesComponent implements OnInit {
     this.roleTree = this.roleList;
   }
 
+  //removing selected menu or module from role tree
   removeRoles() {
 
+    //checking if roleTree data not selected
     if (this.selectedRole == undefined) {
       this.toastr.errorToastr('Please Select Nodes to Remove!', 'Error', { toastTimeout: (2500) }); return;
     }
 
-    //alert(this.selectedRole[0].data);
-    //alert(this.selectedRole[0].data); return
-    if (this.selectedRole && this.selectedRole[0].data) {
-      let index = this.selectedRole[0].data[0].children.indexOf(this.selectedRole[0]);
-      this.selectedRole[0].data[0].children.splice(index, 1);
+    //checking if selectedRole type is Module then apply follow condition
+    if (this.selectedRole[0].data[0].typeCode == 1) {
+      //getting index of selectedRole in roleTree
+      var index = this.roleTree.indexOf(this.selectedRole[0]);
+
+      //removing entire row including with children from roleTree
+      this.roleTree.splice(index, 1);
+    } else if (this.selectedRole[0].data[0].typeCode == 2) {
+
+      for (var i = 0; i < this.roleTree.length; i++) {
+
+        for (var j = 0; j < this.roleTree[i].children.length; j++) {
+          //checking if roleTree children id and selectedRole id are same 
+          if (this.roleTree[i].children[j].data[0].objCode == this.selectedRole[0].data[0].objCode) {
+            //checking if roleTree children length is 1 
+            if (this.roleTree[i].children.length == 1) {
+              //getting index of selectedRole and remove parent and children of selectedRole
+              var index = this.roleTree.indexOf(this.selectedRole[0]);
+              this.roleTree.splice(index, 1); return
+            } else {
+              //getting index of  selected children and remove the current index 
+              var index = this.roleTree[i].children.indexOf(this.selectedRole[0]);
+              this.roleTree[i].children.splice(index, 1);
+            }
+
+          }
+
+        }
+
+      }
+
     }
-  }
-  delete() {
-    this.toastr.successToastr('Record Deleted Successfully', 'Error', { toastTimeout: (2500) });
-    return false;
+
   }
 
+  //Assign id and name to hidden labels
+  delete(item) {
+    this.clear();
+
+    this.erpRoleName = item.erpRoleName;
+    this.erpRoleCd = item.erpRoleCd;
+  }
+
+  //delete user role data from database
+  deleteRole() {
+
+    //checking if password is empty
+    if (this.txtdPassword.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtdPin.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
+      return;
+    }
+
+    //deleting roles from database 
+    this.http.delete(this.serverUrl + 'api/deleteUserRole' + this.erpRoleCd).subscribe((data: any) => {
+
+      this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
+    });
+  }
+
+  //save role data in database
   save() {
 
+    //checking if role name is empty
     if (this.erpRoleName.trim().length == 0) {
 
       this.toastr.errorToastr('Please Enter Role Name', 'Oops!', { toastTimeout: (2500) });
@@ -343,6 +397,7 @@ export class UserrolesComponent implements OnInit {
       this.toastr.errorToastr('Please Push Data in Role Tree', 'Error', { toastTimeout: (2500) }); return
     }
 
+    //Adding role tree data to another list
     for (var i = 0; i < this.roleTree.length; i++) {
 
       this.erpObjct.push({
@@ -358,50 +413,66 @@ export class UserrolesComponent implements OnInit {
     }
 
     if (this.erpRoleCd == "") {
+      //Save roles in database
 
       var roleData = { erpObjct: JSON.stringify(this.erpObjct), erpRoleName: this.erpRoleName };
       this.http.post(this.serverUrl + 'api/saveUserRole', roleData).subscribe((data: any) => {
-        alert(data);
-        alert(data.response); return
-        this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) });
+
+        this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
       });
     } else {
+      //Update roles in database
 
       var rolesData = { erpObjct: JSON.stringify(this.erpObjct), erpRoleCd: this.erpRoleCd, erpRoleName: this.erpRoleName };
       this.http.put(this.serverUrl + 'api/updateUserRole', rolesData).subscribe((data: any) => {
-        alert(data);
-        alert(data.response); return
-        this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) });
+
+        this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
       });
     }
 
   }
 
+  //save each role permissions in database
   savePermission() {
 
+    for (var i = 0; i < this.tempRoleList.length; i++) {
+      if (this.tempRoleList[i].Addition == undefined)
+        this.tempRoleList[i].Addition = false;
+    }
+
+    var rolesData = { tempRoleList: JSON.stringify(this.tempRoleList), erpRoleCd: this.erpRoleCd };
+    this.http.put(this.serverUrl + 'api/savePermission', rolesData).subscribe((data: any) => {
+
+      this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
+    });
   }
 
+  //edit role data
   edit(item) {
 
     this.erpRoleName = item.erpRoleName;
     this.erpRoleCd = item.erpRoleCd;
-    //alert(this.roleTree);
+    //getting specific role data and assign it to role tree
     this.getRoleTree(this.erpRoleCd);
-    //.toastr.successToastr('Record Edited Successfully', 'Error', { toastTimeout: (2500) });
     return false;
   }
 
-  editPermission(item) {
+  //add permissions of each menu
+  addPermission(item) {
     this.erpRoleName = item.erpRoleName;
     this.erpRoleCd = item.erpRoleCd;
+    //getting specific role data and assign it to role tree
+    this.getRoleTree(this.erpRoleCd);
   }
 
+  //getting roles data from database and show in role table 
   getRole() {
     this.http.get(this.serverUrl + 'api/getUserRoles').subscribe((data: any) => {
       this.roles = data;
     });
   }
 
+  //getting specific role data and assign it to role tree
   getRoleTree(item) {
 
     this.roleTree = [];
@@ -409,10 +480,12 @@ export class UserrolesComponent implements OnInit {
 
     this.http.get(this.serverUrl + 'api/getRoleTree/' + item).subscribe((data: any) => {
 
+      this.tempRoleList = data;
       this.employees = data;
 
       for (var i = 0; i < this.employees.length; i++) {
 
+        //checking if type is module
         if (this.employees[i].erpObjctTypeCd == 1) {
 
           this.roleChildren = [];
@@ -453,25 +526,36 @@ export class UserrolesComponent implements OnInit {
       }
 
       this.roleTree = this.roleList;
+
     });
   }
 
-  getMenu() {
-    //var itemBackup = localStorage.getItem(this.tokenKey);
+  //Menu list filter method 
+  getFilterMenu(item) {
 
-    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + itemBackup });
+    return this.tempRoleList.filter(x => x.parentErpObjctCd == item && x.erpObjctTypeCd == 2);
+  }
+
+  //Module list filter method 
+  getFilterModule() {
+    //alert(roleId);
+    return this.tempRoleList.filter(x => x.erpObjctTypeCd == 1);
+  }
+
+  //getting all modules including with menu and assign all data to menu tree 
+  getMenu() {
 
     this.http.get(this.serverUrl + 'api/getUserMenu').subscribe((data: any) => {
       this.employees = data;
 
       for (var i = 0; i < this.employees.length; i++) {
-
+        //checking if type is module
         if (this.employees[i].erpobjctTypeCd == 1) {
 
           this.children = [];
 
           for (var j = 0; j < this.employees.length; j++) {
-
+            //checking if type is menu and current menu parent id and module id are same 
             if (this.employees[j].erpobjctTypeCd == 2
               && this.employees[j].parentErpobjctCd == this.employees[i].erpobjctCd) {
 
@@ -509,11 +593,14 @@ export class UserrolesComponent implements OnInit {
     });
   }
 
+  //clear all data
   clear() {
 
     this.roleTree = [];
     this.roleList = [];
     this.erpRoleName = "";
     this.erpRoleCd = "";
+    this.txtdPassword = "";
+    this.txtdPin = "";
   }
 }
