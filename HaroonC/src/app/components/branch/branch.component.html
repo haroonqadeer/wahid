@@ -75,7 +75,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch |paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{branch.branTitle}}</td>
           <td class="col-2 text-left">{{branch.branAddress}}</td>

@@ -40,44 +40,35 @@
     <table class="table table-striped fullwidth">
       <thead>
         <tr class="d-flex">
-          <th class="col-1 text-center pointerCursor" (click)="setOrder('uId')">
-            Sr No. <span *ngIf="order =='uId'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span *ngIf="order =='uId'"
-              [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+          <th class="col-1 text-center ">Sr No.</th>
+          <th [class.active]="order === 'uRoleName'" (click)="setOrder('uRoleName')" class="col-3 pointerCursor text-left ">
+            Role Name
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th class="col-3 pointerCursor active" (click)="setOrder('uName')">
-            Role Name <span *ngIf="order =='uName'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span
-              *ngIf="order =='uName'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+          <th [class.active]="order === 'uNoModule'" (click)="setOrder('uNoModule')" class="col-2 pointerCursor text-center">
+            No. of Modules
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th class="col-2 pointerCursor text-center" (click)="setOrder('uEmail')">
-            No. of Modules <span *ngIf="order =='uEmail'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
-            <span *ngIf="order =='uEmail'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+          <th [class.active]="order === 'uNoPage'" (click)="setOrder('uNoPage')" class="col-2 pointerCursor text-center">
+            No. of Pages
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th class="col-2 pointerCursor text-center" (click)="setOrder('uRole')">
-            No. of Pages <span *ngIf="order =='uRole'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span
-              *ngIf="order =='uRole'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-          </th>
-          <th class="col-1 pointerCursor text-center" (click)="setOrder('uSince')">
-            Edit <span *ngIf="order =='uSince'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span *ngIf="order =='uSince'"
-              [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-          </th>
-          <th class="col-1 pointerCursor text-center" (click)="setOrder('lastLogin')">
-            Delete <span *ngIf="order =='lastLogin'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span
-              *ngIf="order =='lastLogin'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-          </th>
-          <th class="col-2 pointerCursor text-center" (click)="setOrder('lastLogin')">
-            Permissions <span *ngIf="order =='lastLogin'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
-            <span *ngIf="order =='lastLogin'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-          </th>
+          <th class="col-1 text-center">Edit</th>
+          <th class="col-1 text-center">Delete</th>
+          <th class="col-2  text-center">Permissions</th>
         </tr>
       </thead>
       <tbody>
         <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-        <tr class='d-flex' *ngFor="let item of roles | search:'erpRoleName,noOfModules,noOfPages':roleSearch | orderBy: order: reverse: 'case-insensitive'; let i=index">
+        <tr class='d-flex' *ngFor="let item of rolesData | search:'uRoleName,uNoModule,uNoPage':roleSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <!-- <td class="col-1 text-center" hidden>{{item.erpRoleCd}}</td> -->
           <td class="col-1 text-center">{{i+1}}</td>
-          <td class="col-3">{{item.erpRoleName}}</td>
-          <td class="col-2 pointerCursor text-center">{{item.noOfModules}}</td>
-          <td class="col-2 pointerCursor text-center">{{item.noOfPages}}</td>
+          <td class="col-3 pointerCursor text-left">{{item.uRoleName}}</td>
+          <td class="col-2 pointerCursor text-center">{{item.uNoModule}}</td>
+          <td class="col-2 pointerCursor text-center">{{item.uNoPage}}</td>
           <td class="col-1 text-center">
             <span class="fa fa-edit pointerCursor fontPrimary" data-toggle="modal" data-target="#userRoleModal" (click)="edit(item)"></span>
           </td>
@@ -92,6 +83,26 @@
         </tr>
       </tbody>
     </table>
+    <!-- Pagination Starts -->
+    <div class="col-md-10">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col-md-2 text-right">
+      <mat-form-field class="fullwidth pagenateList">
+        <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+          <mat-option value="25">25</mat-option>
+          <mat-option value="30">30</mat-option>
+          <mat-option value="35">35</mat-option>
+          <mat-option value="40">40</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="50">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Pagination Ends -->
   </div>
   <!-- end table row -->
   <br />

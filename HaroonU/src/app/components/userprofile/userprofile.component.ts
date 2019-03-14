@@ -59,12 +59,142 @@ export class UserprofileComponent implements OnInit {
     actionPINCodeRow = false;
     actionBlockRow = false;
 
+    //* variables for pagination and orderby pipe
+    p = 1;
+    order = 'info.name';
+    reverse = false;
+    sortedCollection: any[];
+    itemPerPage = '10';
+
 
     //List variables
     public users = [];
     listAction = '';
     listBlockedAction = '';
     cmbEmployee = '';
+
+    userData = [
+    {
+      uId: 1,
+      uName: 'Aamir76',
+      uEmail: 'Aamir@gmail.com',
+      uRole: 'IT',
+      uSince: 'Friday',
+      lastLogin: 'Monday'
+    },
+    {
+      uId: 2,
+      uName: 'Ali456676',
+      uEmail: 'Ali@gmail.com',
+      uRole: 'Finance',
+      uSince: 'Monday',
+      lastLogin: 'Friday'
+    },
+    {
+      uId: 3,
+      uName: 'Waqas445776',
+      uEmail: 'Waqas@gmail.com',
+      uRole: 'HR',
+      uSince: 'Tuesday',
+      lastLogin: 'Monday'
+    },
+    {
+      uId: 4,
+      uName: 'Umair45676',
+      uEmail: 'Umair@gmail.com',
+      uRole: 'SCM',
+      uSince: 'Wednesday',
+      lastLogin: 'Thrusday'
+    },
+    {
+      uId: 5,
+      uName: 'Touseeq5676',
+      uEmail: 'Touseeq@gmail.com',
+      uRole: 'IT',
+      uSince: 'Tuesday',
+      lastLogin: 'Thrusday'
+    },
+    {
+      uId: 6,
+      uName: 'Ijaz45676',
+      uEmail: 'Ijaz@gmail.com',
+      uRole: 'Admin',
+      uSince: 'Monday',
+      lastLogin: 'Saturday'
+    },
+    {
+      uId: 7,
+      uName: 'Zain45676',
+      uEmail: 'Zain@gmail.com',
+      uRole: 'IT',
+      uSince: 'Sunday',
+      lastLogin: 'Monday'
+    },
+    {
+      uId: 8,
+      uName: 'Shahrukh45676',
+      uEmail: 'Shahrukh@gmail.com',
+      uRole: 'Admin',
+      uSince: 'Saturday',
+      lastLogin: 'Monday'
+    },
+    {
+      uId: 9,
+      uName: 'Osama6176',
+      uEmail: 'Osama@gmail.com',
+      uRole: 'Operations',
+      uSince: 'Friday',
+      lastLogin: 'Tuesday'
+    },
+    {
+      uId: 10,
+      uName: 'Bilal9445676',
+      uEmail: 'Bilal@gmail.com',
+      uRole: 'IT',
+      uSince: 'Wednesday',
+      lastLogin: 'Monday'
+    },
+    {
+      uId: 11,
+      uName: 'Nabeel45676',
+      uEmail: 'Nabeel@gmail.com',
+      uRole: 'IT',
+      uSince: 'Wednesday',
+      lastLogin: 'Wednesday'
+    },
+    {
+      uId: 12,
+      uName: 'Saad9676',
+      uEmail: 'Saad@gmail.com',
+      uRole: 'Procurement',
+      uSince: 'Employee',
+      lastLogin: 'Wednesday'
+    },
+    {
+      uId: 13,
+      uName: 'Zohaib676',
+      uEmail: 'Zohaib@gmail.com',
+      uRole: 'Management',
+      uSince: 'Contract',
+      lastLogin: 'Wednesday'
+    },
+    {
+      uId: 14,
+      uName: 'Zeeshan676',
+      uEmail: 'Zeeshan@gmail.com',
+      uRole: 'IT',
+      uSince: 'Employee',
+      lastLogin: 'Wednesday'
+    },
+    {
+      uId: 15,
+      uName: 'Arslan676',
+      uEmail: 'Arslan@gmail.com',
+      uRole: 'IT',
+      uSince: 'Permanent',
+      lastLogin: 'Wednesday'
+    },
+  ];
 
     //Action Combobox object
     actions = [
@@ -407,5 +537,15 @@ export class UserprofileComponent implements OnInit {
         });
 
     }
+
+    //*function for sort table data 
+    setOrder(value: string) {
+
+        if (this.order === value) {
+            this.reverse = !this.reverse;
+        }
+        this.order = value;
+    }
+
 }
 
