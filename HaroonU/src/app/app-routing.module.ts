@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: 'userroles',
     component: UserrolesComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'userprofile',
