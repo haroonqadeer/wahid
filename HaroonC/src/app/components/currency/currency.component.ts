@@ -224,7 +224,6 @@ export class CurrencyComponent implements OnInit {
 
         }
 
-
     }
 
     //function for get all saved currencies from db

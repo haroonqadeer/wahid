@@ -312,6 +312,7 @@ export class SectionComponent implements OnInit {
 
 	}
 
+	//delete function 
 	delete() {
 
 		if (this.txtdPassword == '') {
@@ -432,9 +433,6 @@ export class SectionComponent implements OnInit {
 
 		this.order = value;
 	}
-
-
-
 
 	// Functions for Show & Hide Spinner
 	showSpinner() {
