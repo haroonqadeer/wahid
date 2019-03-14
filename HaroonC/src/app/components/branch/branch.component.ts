@@ -3,6 +3,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 declare var $: any;
 
@@ -12,6 +13,13 @@ declare var $: any;
   styleUrls: ['./branch.component.scss']
 })
 export class BranchComponent implements OnInit {
+
+  serverUrl = "http://localhost:55536/";
+  tokenKey = "token";
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
   //Page Models
   branchId = 0;
@@ -218,9 +226,22 @@ export class BranchComponent implements OnInit {
     { ctyId: '4', ctyName: 'Quetta' }
   ];
 
-  constructor(public toastr: ToastrManager, private app: AppComponent, private spinner: NgxSpinnerService) { }
+  constructor(public toastr: ToastrManager, private app: AppComponent, private spinner: NgxSpinnerService, private http: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  //To get all branch data
+  getBranches() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.branches = data
+    });
   }
 
   saveBranch() {
@@ -257,11 +278,62 @@ export class BranchComponent implements OnInit {
       return false;
     }
     else {
-      this.showSpinner();
-      this.hideSpinner();
-      this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
-      $('#branchModal').modal('hide');
-      return false;
+
+      if (this.branchId != null) {
+        this.showSpinner();
+        this.hideSpinner();
+        this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
+        this.clear();
+        $('#branchModal').modal('hide');
+        return false;
+
+        var updateData = { "ID": this.branchAddress, Password: this.userPassword, PIN: this.userPINCode };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          } else {
+            this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#actionModal').modal('hide');
+            return false;
+          }
+
+        });
+      }
+
+      else {
+        this.showSpinner();
+        this.hideSpinner();
+        this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
+        this.clear();
+        $('#branchModal').modal('hide');
+        return false;
+
+        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          } else {
+            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#actionModal').modal('hide');
+            return false;
+          }
+
+        });
+      }
     }
   }
 
@@ -279,7 +351,27 @@ export class BranchComponent implements OnInit {
       this.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       $('#deleteModal').modal('hide');
+
       return false;
+
+      var data = { "ID": this.dbranchId, Password: this.userPassword, PIN: this.userPINCode };
+
+      var token = localStorage.getItem(this.tokenKey);
+
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+      this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+
+        if (data.msg != undefined) {
+          this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+          return false;
+        } else {
+          this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+          $('#actionModal').modal('hide');
+          return false;
+        }
+
+      });
     }
   }
 
@@ -325,21 +417,29 @@ export class BranchComponent implements OnInit {
         $('#cityModal').modal('hide');
 
         return false;
+
+        var updateData = { "sectionname": this.cityName };
+
+        var token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          } else {
+            this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#cityModal').modal('hide');
+            return false;
+          }
+
+        });
+
       }
     }
     ///////
-
-    // if (this.cityName.trim() == "") {
-    //   this.toastr.errorToastr('Please Enter City Name', 'Error', { toastTimeout: (2500) });
-    //   return false;
-    // }
-    // else {
-    //   this.showSpinner();
-    //   this.hideSpinner();
-    //   this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
-    //   $('#cityModal').modal('hide');
-    //   return false;
-    // }
   }
 
 
