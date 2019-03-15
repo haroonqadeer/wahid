@@ -79,6 +79,16 @@
 
       <!--start Modal body -->
       <div class="modal-body">
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
 
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
@@ -111,7 +121,7 @@
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex' *ngFor="let item of userModal | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                <tr class='d-flex' *ngFor="let item of userList | search: 'userName,userFullName,userEmail,userRole': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
                   <td class="col-1 text-center">{{i+1}}</td>
                   <td class="col-2">{{item.userName}}</td>
                   <td class="col-3">{{item.userFullName}}</td>
@@ -123,23 +133,25 @@
               </tbody>
             </table>
             <!-- Pagination Starts -->
-            <div class="col-md-10">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-            <div class="col-md-2 text-right">
-              <mat-form-field class="fullwidth pagenateList">
-                <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
-                  <mat-option value="10">10</mat-option>
-                  <mat-option value="15">15</mat-option>
-                  <mat-option value="20">20</mat-option>
-                  <mat-option value="25">25</mat-option>
-                  <mat-option value="30">30</mat-option>
-                  <mat-option value="35">35</mat-option>
-                  <mat-option value="40">40</mat-option>
-                  <mat-option value="45">45</mat-option>
-                  <mat-option value="50">50</mat-option>
-                </mat-select>
-              </mat-form-field>
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
             <!-- Pagination Ends -->
           </div>
@@ -173,6 +185,17 @@
       <!--start Modal body -->
       <div class="modal-body">
 
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
 
@@ -197,7 +220,7 @@
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex' *ngFor="let item of eventLog | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                <tr class='d-flex' *ngFor="let item of eventLog | search: 'eAction,eActionDateTime': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
                   <td class="col-2 text-center">{{i+1}}</td>
                   <td class="col-3">{{item.eAction}}</td>
                   <td class="col-5">{{item.eActionDateTime}}</td>
@@ -207,23 +230,25 @@
               </tbody>
             </table>
             <!-- Pagination Starts -->
-            <div class="col-md-10">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-            <div class="col-md-2 text-right">
-              <mat-form-field class="fullwidth pagenateList">
-                <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
-                  <mat-option value="10">10</mat-option>
-                  <mat-option value="15">15</mat-option>
-                  <mat-option value="20">20</mat-option>
-                  <mat-option value="25">25</mat-option>
-                  <mat-option value="30">30</mat-option>
-                  <mat-option value="35">35</mat-option>
-                  <mat-option value="40">40</mat-option>
-                  <mat-option value="45">45</mat-option>
-                  <mat-option value="50">50</mat-option>
-                </mat-select>
-              </mat-form-field>
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
             <!-- Pagination Ends -->
           </div>
@@ -258,6 +283,17 @@
       <!--start Modal body -->
       <div class="modal-body">
 
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
 
@@ -280,7 +316,7 @@
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex' *ngFor="let item of userRoles | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                <tr class='d-flex' *ngFor="let item of userRoles | search: 'roleTitle,rolePermission': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
                   <td class="col-2 text-center">{{i+1}}</td>
                   <td class="col-3">{{item.roleTitle}}</td>
                   <td class="col-5">{{item.rolePermission}}</td>
@@ -290,23 +326,25 @@
               </tbody>
             </table>
             <!-- Pagination Starts -->
-            <div class="col-md-10">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-            <div class="col-md-2 text-right">
-              <mat-form-field class="fullwidth pagenateList">
-                <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
-                  <mat-option value="10">10</mat-option>
-                  <mat-option value="15">15</mat-option>
-                  <mat-option value="20">20</mat-option>
-                  <mat-option value="25">25</mat-option>
-                  <mat-option value="30">30</mat-option>
-                  <mat-option value="35">35</mat-option>
-                  <mat-option value="40">40</mat-option>
-                  <mat-option value="45">45</mat-option>
-                  <mat-option value="50">50</mat-option>
-                </mat-select>
-              </mat-form-field>
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
             <!-- Pagination Ends -->
           </div>
@@ -734,6 +772,17 @@
       <!--start Modal body -->
       <div class="modal-body">
 
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
 
@@ -757,7 +806,7 @@
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex' *ngFor="let item of userRequest | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                <tr class='d-flex' *ngFor="let item of userRequest| search: 'rSender,rUserName': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
                   <td class="col-1 text-center">{{i+1}}</td>
                   <td class="col-4">{{item.rSender}}</td>
                   <td class="col-5">{{item.rUserName}}</td>
@@ -769,23 +818,25 @@
               </tbody>
             </table>
             <!-- Pagination Starts -->
-            <div class="col-md-10">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-            <div class="col-md-2 text-right">
-              <mat-form-field class="fullwidth pagenateList">
-                <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
-                  <mat-option value="10">10</mat-option>
-                  <mat-option value="15">15</mat-option>
-                  <mat-option value="20">20</mat-option>
-                  <mat-option value="25">25</mat-option>
-                  <mat-option value="30">30</mat-option>
-                  <mat-option value="35">35</mat-option>
-                  <mat-option value="40">40</mat-option>
-                  <mat-option value="45">45</mat-option>
-                  <mat-option value="50">50</mat-option>
-                </mat-select>
-              </mat-form-field>
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
             <!-- Pagination Ends -->
           </div>
@@ -819,6 +870,18 @@
 
       <!--start Modal body -->
       <div class="modal-body">
+
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
             <table class="table table-striped">
@@ -841,7 +904,7 @@
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex' *ngFor="let item of roleRequest | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                <tr class='d-flex' *ngFor="let item of roleRequest | search: 'rSender,rRoleName': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
                   <td class="col-1 text-center">{{i+1}}</td>
                   <td class="col-5">{{item.rSender}}</td>
                   <td class="col-4">{{item.rRoleName}}</td>
@@ -853,23 +916,25 @@
               </tbody>
             </table>
             <!-- Pagination Starts -->
-            <div class="col-md-10">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-            <div class="col-md-2 text-right">
-              <mat-form-field class="fullwidth pagenateList">
-                <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
-                  <mat-option value="10">10</mat-option>
-                  <mat-option value="15">15</mat-option>
-                  <mat-option value="20">20</mat-option>
-                  <mat-option value="25">25</mat-option>
-                  <mat-option value="30">30</mat-option>
-                  <mat-option value="35">35</mat-option>
-                  <mat-option value="40">40</mat-option>
-                  <mat-option value="45">45</mat-option>
-                  <mat-option value="50">50</mat-option>
-                </mat-select>
-              </mat-form-field>
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
             <!-- Pagination Ends -->
           </div>

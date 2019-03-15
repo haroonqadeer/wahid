@@ -29,7 +29,7 @@ export class AppComponent {
                 setTimeout(() => {
                     /** spinner ends after 5 seconds */
                     this.spinner.hide();
-                }, 3000);
+                }, 1000);
             }
         });
     }
@@ -95,5 +95,10 @@ export class AppComponent {
         localStorage.removeItem('userName');
         this.router.navigate(['']);
         this.showDiv();
+    }
+
+    getRandomColor() {
+        var color = Math.floor(0x1000000 * Math.random()).toString(16);
+        return '#' + ('000000' + color).slice(-6);
     }
 }

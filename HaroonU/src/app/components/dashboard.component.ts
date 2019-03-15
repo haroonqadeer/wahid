@@ -2,12 +2,23 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { AppComponent } from '../app.component';
 
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  serverUrl = "http://localhost:55536/";
+  tokenKey = "token";
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
+
   Line_chart: Chart;
   Pie_Chart: Chart;
 
@@ -17,6 +28,8 @@ export class DashboardComponent implements OnInit {
   txtMessage = '';
   txtdPin = '';
   txtSubject = '';
+
+  tblSearch = '';
 
   public edited = false;
 
@@ -42,7 +55,7 @@ export class DashboardComponent implements OnInit {
   itemPerPage = '10';
 
   // Data for users modal window table
-  userModal = [
+  userList = [
     {
       userId: 1,
       userName: "Arham",
@@ -141,7 +154,7 @@ export class DashboardComponent implements OnInit {
     }
   ]
 
-  constructor(private appComponent: AppComponent) { }
+  constructor(private appComponent: AppComponent, private http: HttpClient) { }
 
   ngOnInit() {
 
@@ -165,6 +178,72 @@ export class DashboardComponent implements OnInit {
     //   this.countryDetail = data['m_Item2'];
     // });
   }
+
+  //Get the list of all users.
+  getUserList() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.userList = data
+    });
+  }
+
+  //Get the data of all event logs.
+  getEventLog() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.eventLog = data
+    });
+  }
+
+  //Get the List of user roles.
+  getUserRoles() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.userRoles = data
+    });
+  }
+
+  //Get the List of all user's request.
+  getUserRequest() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.userRequest = data
+    });
+  }
+
+  //Get the List of all role's request.
+  getRoleRequest() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.roleRequest = data
+    });
+  }
+
 
   finUsr() {
     this.finUser = true;
