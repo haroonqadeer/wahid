@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { AppComponent } from '../app.component';
+import { ToastrManager } from 'ng6-toastr-notifications';
+
+declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
@@ -12,35 +15,31 @@ export class DashboardComponent implements OnInit {
   Pie_Chart: Chart;
 
   // page ngModel
-  txtPassword='';
-  txtPin='';
-  txtMessage='';
-  txtdPin='';
-  txtSubject='';
-  
-  public edited = false;
-  
-  public acceptReq = false;
+  txtPassword = '';
+  txtPin = '';
+  txtMessage = '';
+  txtdPin = '';
+  txtSubject = '';
 
   public finUser = false;
 
   public hrUser = false;
 
   panelOpenState = false;
-  
+
   public userDetail;
   public empDetail;
   public cityDetail;
   public countryDetail;
 
-  constructor(private appComponent : AppComponent) { }
+  constructor(public toastr: ToastrManager, private appComponent: AppComponent) { }
 
   ngOnInit() {
 
     this.appComponent.showDiv();
     this.LineChart_init();
     this.PieChart_init();
-    
+
     // this.userService.getEmployee().subscribe(data =>{
     //   this.empDetail = data;
     // });
@@ -58,60 +57,65 @@ export class DashboardComponent implements OnInit {
     // });
   }
 
-  finUsr(){
+  finUsr() {
     this.finUser = true;
     this.hrUser = false;
   }
 
-  hrUsr(){
+  hrUsr() {
     this.finUser = false;
     this.hrUser = true;
   }
 
-  acceptData(){
+  acceptData() {
 
-    this.edited = true;
-      
-    //wait 3 Seconds and hide
-    setTimeout(function() {
-        this.edited = false;
-        console.log(this.edited);
-    }.bind(this), 2000);
+    //checking if password is empty
+    if (this.txtPassword.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtPin.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
+      return;
+    }
+
+    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
+
+    $('#reqAcceptModal').modal('hide');
+
+    this.clear();
+
   }
 
-  send(){
+  send() {
 
-    this.edited = true;
-      
-    //wait 3 Seconds and hide
-    setTimeout(function() {
-        this.edited = false;
-        console.log(this.edited);
-    }.bind(this), 2000);
+    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
+
+    this.clear();
+
   }
 
-  editFin(){
+  editFin() {
     this.finUser = true;
     this.hrUser = false;
   }
 
-  editHr(){
+  editHr() {
     this.finUser = false;
     this.hrUser = true;
   }
 
-  pie_data(){
+  pie_data() {
 
-    this.edited = true;
-      
     //wait 3 Seconds and hide
-    setTimeout(function() {
-        this.edited = false;
-        console.log(this.edited);
+    setTimeout(function () {
+      this.edited = false;
+      console.log(this.edited);
     }.bind(this), 2000);
   }
 
-  PieChart_init(){
+  PieChart_init() {
 
     let chart = new Chart({
       chart: {
@@ -131,17 +135,17 @@ export class DashboardComponent implements OnInit {
       series: [{
         name: 'Users',
         data: [{
-            name: 'Banned Users (8)',
-            y: 8
+          name: 'Banned Users (8)',
+          y: 8
         }, {
-            name: 'Inactive Users (13)',
-            y: 13
+          name: 'Inactive Users (13)',
+          y: 13
         }, {
-            name: 'Web Users (15)',
-            y: 15
+          name: 'Web Users (15)',
+          y: 15
         }, {
-            name: 'Mobile Users (6)',
-            y: 6
+          name: 'Mobile Users (6)',
+          y: 6
         }]
       }]
     });
@@ -149,7 +153,7 @@ export class DashboardComponent implements OnInit {
   }
 
   LineChart_init() {
-    
+
     let chart = new Chart({
       chart: {
         type: 'line'
@@ -175,6 +179,15 @@ export class DashboardComponent implements OnInit {
     });
     chart.addPoint(4);
     this.Line_chart = chart;
+  }
+
+  clear() {
+
+    this.txtPassword = "";
+    this.txtPin = "";
+    this.txtMessage = "";
+    this.txtdPin = "";
+    this.txtSubject = "";
   }
 }
 

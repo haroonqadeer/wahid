@@ -39,16 +39,13 @@ export class UserrolesComponent implements OnInit {
   reverse: boolean = false;
   //selectedEntry = "5";
 
-  /// declaration
+  //Page Models
   erpRoleCd = '';
   txtdPassword = '';
   txtdPin = '';
   erpRoleName = '';
   cmbModule = '';
-
-  //Page Models
   roleSearch = '';
-  pageEntryValue = '5';
 
   //list for tree
   menuTree: TreeNode[];
