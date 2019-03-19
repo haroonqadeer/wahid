@@ -10,7 +10,7 @@
 <!-- start menubar buttons -->
 <div class="topnav boxShadow">
   <div class="container">
-    <a class="pointerCursor" data-toggle="modal" data-target="#currencyModal">
+    <a class="pointerCursor" data-toggle="modal" data-target="#currencyModal"(click)="clear()">
       <i class="fa fa-plus-square"></i>
       Add New
     </a>
@@ -37,7 +37,7 @@
 <br>
 
 <!--start buttons row-->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <button mat-raised-button color="warn" (click)="printDiv()">Print</button>
   </div>
@@ -45,7 +45,7 @@
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#currencyModal" (click)="clear()">Add
       New</button>
   </div>
-</div>
+</div> -->
 <!--end buttons row-->
 <br />
 
@@ -166,7 +166,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of currencies | orderBy: order:reverse:'case-insensitive' let i=index">
+          <tr *ngFor="let item of currencies | search:'currencyName,countryName' :tblSearch let i=index">
             <td>{{i + 1}}</td>
             <td>{{item.currencyName}}</td>
             <td>{{item.countryName}}</td>

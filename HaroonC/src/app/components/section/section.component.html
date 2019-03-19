@@ -10,7 +10,7 @@
 <!-- start menubar buttons -->
 <div class="topnav boxShadow">
   <div class="container">
-    <a class="pointerCursor" data-toggle="modal" data-target="#sectModal">
+    <a class="pointerCursor" data-toggle="modal" data-target="#sectModal" (click)="clear()">
       <i class="fa fa-plus-square"></i>
       Add New
     </a>
@@ -37,14 +37,14 @@
 <br>
 
 <!--start buttons row-->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <button mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#sectModal" (click)="clear()">Add New</button>
   </div>
-</div>
+</div> -->
 <!--end buttons row-->
 <br>
 
@@ -167,7 +167,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of sectionDetail let i=index" class='d-flex'>
+          <tr *ngFor="let item of sectionDetail | search:'HeadQuarter,Department,Section' :tblSearch let i=index" class='d-flex'>
             <td class="col-1 text-center">{{i + 1}}</td>
             <td class="col-3">{{item.HeadQuarter}}</td>
             <td class="col-3">{{item.Department}}</td>

@@ -547,6 +547,7 @@ export class CompanyComponent implements OnInit {
     //functions for delete company
     deleteTemp(item) {
 
+        this.clear(item.companyId);
         this.dCompanyId = item.companyId;
 
     }

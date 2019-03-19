@@ -62,7 +62,9 @@ export class SectionComponent implements OnInit {
 
 	//*List Variables
 	sections = [
-		{ sectionId: '1', sectionName: 'ABC' }
+		{ sectionId: '1', sectionName: 'Internal Audit' },
+		{ sectionId: '2', sectionName: 'SCM' },
+		{ sectionId: '3', sectionName: 'System Services' }
 	];
 
 	headquarters = [
@@ -328,9 +330,8 @@ export class SectionComponent implements OnInit {
 
 	//functions for delete currency
 	deleteTemp(item) {
-
+		this.clear();
 		this.dSectionId = item.sectionDetailId;
-
 	}
 
 	//delete function 

@@ -533,9 +533,8 @@ export class SubsidiarieComponent implements OnInit {
 
     //functions for delete currency
     deleteTemp(item) {
-
+        this.clear();
         this.dSubsidiaryId = item.subsidiaryDetailId;
-
     }
 
     delete() {

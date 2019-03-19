@@ -194,7 +194,7 @@ export class CurrencyComponent implements OnInit {
 
     //functions for delete currency
     deleteTemp(item) {
-
+        this.clear();
         this.dCurrencyId = item.currencyId;
 
     }

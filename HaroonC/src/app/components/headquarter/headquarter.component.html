@@ -10,7 +10,7 @@
 <!-- start menubar buttons -->
 <div class="topnav boxShadow">
   <div class="container">
-    <a class="pointerCursor" data-toggle="modal" data-target="#HQModal">
+    <a class="pointerCursor" data-toggle="modal" data-target="#HQModal" (click)="clear()">
       <i class="fa fa-plus-square"></i>
       Add New
     </a>
@@ -37,14 +37,15 @@
 <br>
 
 <!-- button row -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <button class="noneOutline" mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#HQModal" (click)="clear()">Add New</button>
   </div>
-</div><!-- end button - row -->
+</div> -->
+<!-- end button - row -->
 
 <br>
 
@@ -179,7 +180,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="d-flex" *ngFor="let office of offices let i=index">
+          <tr class="d-flex" *ngFor="let office of offices | search:'offcId,offcTitle,offcAddress,offcEmail,offcPhone,offcMobile,offcWebsite':tblSearch let i=index">
             <td class="col-1 text-center">{{i+1}}</td>
             <td class="col-2 text-left">{{office.offcTitle}}</td>
             <td class="col-3 text-left">{{office.offcAddress}}</td>

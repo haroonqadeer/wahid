@@ -461,6 +461,7 @@ export class DepartmentComponent implements OnInit {
 
   // get the "id" of the delete entry 
   deleteTemp(item) {
+            this.clear();
     this.dDepartmentId = item.departmentsDataId;
   }
 

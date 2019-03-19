@@ -374,6 +374,7 @@ export class HeadquarterComponent implements OnInit {
 
   //get the "id" of the delete entry 
   deleteTemp(item) {
+    this.clear();
     this.dofficeId = item.offcId;
   }
 
