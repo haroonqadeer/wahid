@@ -38,16 +38,13 @@ export class UserrolesComponent implements OnInit {
   // reverse: boolean = false;
   //selectedEntry = "5";
 
-  /// declaration
+  //Page Models
   erpRoleCd = '';
   txtdPassword = '';
   txtdPin = '';
   erpRoleName = '';
   cmbModule = '';
-
-  //Page Models
   roleSearch = '';
-  pageEntryValue = '5';
 
     //* variables for pagination and orderby pipe
   p = 1;
