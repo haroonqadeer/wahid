@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
@@ -7,6 +7,17 @@ import { OrderPipe } from 'ngx-order-pipe';
 import { strictEqual } from 'assert';
 
 import { NgxSpinnerService } from 'ngx-spinner';
+
+import * as jsPDF from 'jspdf';
+
+import {
+    IgxExcelExporterOptions,
+    IgxExcelExporterService,
+    IgxGridComponent,
+    IgxCsvExporterService,
+    IgxCsvExporterOptions,
+    CsvFileTypes
+} from "igniteui-angular";
 
 declare var $: any;
 @Component({
@@ -75,7 +86,12 @@ export class CurrencyComponent implements OnInit {
         { currencyId: '25', currencyName: 'Kip', countryName: 'Laos' }
     ];
 
-    constructor(private toastr: ToastrManager, private http: HttpClient, private orderPipe: OrderPipe, private spinner: NgxSpinnerService) { }
+    constructor(private toastr: ToastrManager,
+        private http: HttpClient,
+        private orderPipe: OrderPipe,
+        private spinner: NgxSpinnerService,
+        private excelExportService: IgxExcelExporterService,
+        private csvExportService: IgxCsvExporterService) { }
 
     ngOnInit() {
 
@@ -83,6 +99,9 @@ export class CurrencyComponent implements OnInit {
         //alert(this.printCss);
 
     }
+
+    @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
+    @ViewChild("exportPDF") public exportPDF: ElementRef;
 
     //Function for save and update currency 
     save() {
@@ -252,6 +271,7 @@ export class CurrencyComponent implements OnInit {
     }
 
 
+
     // Function for Print Dive *******************/
     printDiv() {
 
@@ -301,6 +321,47 @@ export class CurrencyComponent implements OnInit {
             frame1.remove();
         }, 500);
     }
+
+
+    // For PDF Download
+    downloadPDF() {
+
+        var doc = new jsPDF("p", "pt", "A4"),
+            source = $("#printArea")[0],
+            margins = {
+                top: 75,
+                right: 30,
+                bottom: 50,
+                left: 30,
+                width: 50
+            };
+        doc.fromHTML(
+            source, // HTML string or DOM elem ref.
+            margins.left, // x coord
+            margins.top,
+            {
+                // y coord
+                width: margins.width // max width of content on PDF
+            },
+            function (dispose) {
+                // dispose: object with X, Y of the last line add to the PDF
+                //          this allow the insertion of new lines after html
+                doc.save("Test.pdf");
+            },
+            margins
+        );
+    }
+
+    //For CSV File 
+    public downloadCSV() {
+        this.csvExportService.exportData(this.currencies, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+    }
+
+    //For Exce File
+    public downloadExcel() {
+        this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+    }
+
 
     // Functions for Show & Hide Spinner
     showSpinner() {

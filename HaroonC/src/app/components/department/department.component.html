@@ -3,10 +3,39 @@
 <div class="row">
 
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Department</h1>
+    <h1>Department</h1>
   </div>
 </div>
-<br /><!-- Page Title Row End-->
+<!-- Page Title Row End-->
+
+<!-- start menubar buttons -->
+<div class="topnav boxShadow">
+  <div class="container">
+    <a class="pointerCursor" data-toggle="modal" data-target="#departmentModal">
+      <i class="fa fa-plus-square"></i>
+      Add New
+    </a>
+    <a class="pointerCursor" (click)="printDiv()">
+      <i class="fa fa-print"></i>
+      Print
+    </a>
+    <a class="pointerCursor" (click)="downloadPDF()">
+      <i class="fa fa-file-pdf-o"></i>
+      PDF
+    </a>
+    <a class="pointerCursor" (click)="downloadCSV()">
+      <i class="fa fa-file-text-o"></i>
+      CSV
+    </a>
+    <a class="pointerCursor" (click)="downloadExcel()">
+      <i class="fa fa-file-excel-o"></i>
+      Excel
+    </a>
+  </div>
+</div>
+<!-- end menubar buttons -->
+
+<br>
 
 <!-- button row -->
 <div class="row">
@@ -22,7 +51,7 @@
 <br>
 
 <!-- Table Section Starts -->
-<div class="container mat-elevation-z8" id="divPrint" #exportPDF>
+<div class="container mat-elevation-z8" id="divPrint">
   <br>
   <!--Start search textbox Row-->
   <div class="row">
@@ -90,9 +119,54 @@
 </div>
 <!-- Table Section Ends -->
 
-<!-- Hidden Table Start -->
-<igx-grid #exportDataContent [data]="departmentsData" [autoGenerate]="false" height="null" width="null"></igx-grid>
-<!-- Hidden Table End -->
+<!-- Hidden Table Starts for Excel and CSV files -->
+<igx-grid #exportDataContent [data]="departmentsData" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<!-- Hidden Table Ends  for Excel and CSV files -->
+
+<!-- Hidden Table for Print and PDF files starts-->
+<div class="container mat-elevation-z8 printArea" id="printArea" #exportPDF>
+  <div class="printDiv">
+
+    <!--Start heading table -->
+    <table>
+      <tr>
+        <td width="15%" style="border:none;">
+          <img src="../../../assets/images/logo.png" width="135px">
+        </td>
+
+        <td style="border:none;">
+          <div class="commonCss cssHeading">Logix Solutions</div>
+          <div class="commonCss cssAddress">Office #209, 2nd Floor Ahmed Plaza, Rawalpindi Road Fateh Jang.</div>
+          <div class="commonCss cssContact">Mobile: 0313-5300471, Ph. 057-2212704</div>
+        </td>
+      </tr>
+    </table>
+    <!--End heading table -->
+
+    <br /><br />
+
+    <!--Start table Row-->
+    <div class="row">
+      <table>
+        <thead>
+          <tr class="d-flex">
+            <th class="col-1 text-center">Sr. #</th>
+            <th>Department Name </th>
+            <th>Branch Name </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="d-flex" *ngFor="let dept of departmentsData let i=index">
+            <td class="col-1 text-center">{{i+1}}</td>
+            <td class="col-4 text-left">{{dept.departmentName}}</td>
+            <td class="col-5 text-left">{{dept.branchName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- end table row -->
+  </div>
+</div>
+<!-- Hidden Table for Print and PDF files ends-->
 
 <!-- Start Department Modal Window -->
 <div class="modal fade" id="departmentModal">

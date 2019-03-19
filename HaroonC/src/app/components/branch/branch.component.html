@@ -1,12 +1,40 @@
 <!-- Page Title Row Start-->
 <br>
 <div class="row">
-
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Branch</h1>
+    <h1>Branch</h1>
   </div>
 </div>
-<br /><!-- Page Title Row End-->
+<!-- Page Title Row End-->
+
+<!-- start menubar buttons -->
+<div class="topnav boxShadow">
+  <div class="container">
+    <a class="pointerCursor" data-toggle="modal" data-target="#branchModal">
+      <i class="fa fa-plus-square"></i>
+      Add New
+    </a>
+    <a class="pointerCursor" (click)="printDiv()">
+      <i class="fa fa-print"></i>
+      Print
+    </a>
+    <a class="pointerCursor" (click)="downloadPDF()">
+      <i class="fa fa-file-pdf-o"></i>
+      PDF
+    </a>
+    <a class="pointerCursor" (click)="downloadCSV()">
+      <i class="fa fa-file-text-o"></i>
+      CSV
+    </a>
+    <a class="pointerCursor" (click)="downloadExcel()">
+      <i class="fa fa-file-excel-o"></i>
+      Excel
+    </a>
+  </div>
+</div>
+<!-- end menubar buttons -->
+
+<br>
 
 <!-- button row -->
 <div class="row">
@@ -33,6 +61,7 @@
     </div>
   </div>
   <!--end search textbox Row-->
+
   <div class="row">
     <table class="table table-striped">
       <thead>
@@ -114,6 +143,64 @@
   </div>
 </div>
 <!-- Table Section Ends -->
+
+<!-- Hidden Table Starts for Excel and CSV files -->
+<igx-grid #exportDataContent [data]="branches" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<!-- Hidden Table Ends  for Excel and CSV files -->
+
+<!-- Hidden Table for Print and PDF files starts-->
+<div class="container mat-elevation-z8 printArea" id="printArea" #exportPDF>
+  <div class="printDiv">
+
+    <!--Start heading table -->
+    <table>
+      <tr>
+        <td width="15%" style="border:none;">
+          <img src="../../../assets/images/logo.png" width="135px">
+        </td>
+
+        <td style="border:none;">
+          <div class="commonCss cssHeading">Logix Solutions</div>
+          <div class="commonCss cssAddress">Office #209, 2nd Floor Ahmed Plaza, Rawalpindi Road Fateh Jang.</div>
+          <div class="commonCss cssContact">Mobile: 0313-5300471, Ph. 057-2212704</div>
+        </td>
+      </tr>
+    </table>
+    <!--End heading table -->
+
+    <br /><br />
+
+    <!--Start table Row-->
+    <div class="row">
+      <table>
+        <thead>
+          <tr class="d-flex">
+            <th class="col-1 text-center">Sr. #</th>
+            <th> Branch Title </th>
+            <th> Address </th>
+            <th> City </th>
+            <th> Phone </th>
+            <th> Email </th>
+            <th> Mobile </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="d-flex" *ngFor="let branch of branches | search:'branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch  let i=index">
+            <td class="col-1 text-center">{{i+1}}</td>
+            <td class="col-2 text-left">{{branch.branTitle}}</td>
+            <td class="col-2 text-left">{{branch.branAddress}}</td>
+            <td class="col-1 text-left">{{branch.ctyName}}</td>
+            <td class="col-2 text-left">{{branch.branPhone}}</td>
+            <td class="col-2 text-center">{{branch.branEmail}}</td>
+            <td class="col-2 text-left">{{branch.branMobile}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- end table row -->
+  </div>
+</div>
+<!-- Hidden Table for Print and PDF files ends-->
+
 
 <!-- Start branch Modal Window -->
 <div class="modal fade" id="branchModal">

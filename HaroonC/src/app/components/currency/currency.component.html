@@ -2,10 +2,37 @@
 <!-- heading row -->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Currency</h1>
+    <h1>Currency</h1>
   </div>
 </div>
 <!-- end heading row -->
+
+<!-- start menubar buttons -->
+<div class="topnav boxShadow">
+  <div class="container">
+    <a class="pointerCursor" data-toggle="modal" data-target="#currencyModal">
+      <i class="fa fa-plus-square"></i>
+      Add New
+    </a>
+    <a class="pointerCursor" (click)="printDiv()">
+      <i class="fa fa-print"></i>
+      Print
+    </a>
+    <a class="pointerCursor" (click)="downloadPDF()">
+      <i class="fa fa-file-pdf-o"></i>
+      PDF
+    </a>
+    <a class="pointerCursor" (click)="downloadCSV()">
+      <i class="fa fa-file-text-o"></i>
+      CSV
+    </a>
+    <a class="pointerCursor" (click)="downloadExcel()">
+      <i class="fa fa-file-excel-o"></i>
+      Excel
+    </a>
+  </div>
+</div>
+<!-- end menubar buttons -->
 
 <br>
 
@@ -101,11 +128,13 @@
   <br />
 </div>
 <!-- End Currency Table Container -->
-<br><br><br>
 
+<!-- Hidden Table Starts for Excel and CSV files -->
+<igx-grid #exportDataContent [data]="currencies" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<!-- Hidden Table Ends  for Excel and CSV files -->
 
-<!-- Start Table Container for print -->
-<div class="container mat-elevation-z8 printArea" id="printArea">
+<!-- Hidden Table for Print and PDF files starts-->
+<div class="container mat-elevation-z8 printArea" id="printArea" #exportPDF>
   <div class="printDiv">
 
     <!--Start heading table -->
@@ -124,13 +153,10 @@
     </table>
     <!--End heading table -->
 
-
     <br /><br />
-
 
     <!--Start table Row-->
     <div class="row">
-
       <table>
         <thead>
           <tr>
@@ -150,9 +176,9 @@
     </div><!-- end table row -->
   </div>
 </div>
-<!-- End Table Container for print -->
+<!-- Hidden Table for Print and PDF files ends-->
 
-
+<br><br><br>
 
 
 <!-- Start Add Currency Modal Window -->

@@ -3,6 +3,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
+import * as jsPDF from 'jspdf';
+
 import {
   IgxExcelExporterOptions,
   IgxExcelExporterService,
@@ -12,7 +14,6 @@ import {
   CsvFileTypes
 } from "igniteui-angular";
 
-import * as jsPDF from 'jspdf';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 
@@ -209,11 +210,6 @@ export class DepartmentComponent implements OnInit {
     }
   ]
 
-
-  @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
-  @ViewChild("exportPDF") public exportPDF: ElementRef;
-
-
   constructor(public toastr: ToastrManager,
     private excelExportService: IgxExcelExporterService,
     private csvExportService: IgxCsvExporterService,
@@ -222,6 +218,10 @@ export class DepartmentComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
+  @ViewChild("exportPDF") public exportPDF: ElementRef;
+
 
   //To get departments
   getDepartment() {
@@ -450,40 +450,6 @@ export class DepartmentComponent implements OnInit {
     WinPrint.close();
   }
 
-  // Downloading PDF File 
-  downloadPDF() {
-
-    let doc = new jsPDF();
-
-    let specialElementHandlers = {
-      '#editor': function () {
-        return true;
-      }
-    };
-
-    let contentpdf = this.exportPDF.nativeElement;
-
-    doc.text(16, 16, contentpdf);
-
-    doc.fromHTML(contentpdf.innerHTML, 50, 0, {
-      'margin': 8,
-      'text': 16,
-      'elementHandlers': specialElementHandlers
-    });
-
-    doc.save('exportTest.pdf');
-  }
-
-  // Downloading Excel File
-  public exportExcel() {
-    this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
-  }
-
-  // Downloading CSV File
-  public exportCSV() {
-    this.csvExportService.exportData(this.departments, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
-  }
-
   //function for sorting table data 
   setOrder(value: string) {
 
@@ -497,6 +463,99 @@ export class DepartmentComponent implements OnInit {
   deleteTemp(item) {
     this.dDepartmentId = item.departmentsDataId;
   }
+
+
+  // For Print Purpose 
+  printDiv() {
+
+    var commonCss = ".commonCss{font-family: Arial, Helvetica, sans-serif; text-align: center; }";
+
+    var cssHeading = ".cssHeading {font-size: 25px; font-weight: bold;}";
+    var cssAddress = ".cssAddress {font-size: 16px; }";
+    var cssContact = ".cssContact {font-size: 16px; }";
+
+    var tableCss = "table {width: 100%; border-collapse: collapse;}    table thead tr th {text-align: left; font-family: Arial, Helvetica, sans-serif; font-weight: bole; border-bottom: 1px solid black; margin-left: -3px;}     table tbody tr td {font-family: Arial, Helvetica, sans-serif; border-bottom: 1px solid #ccc; margin-left: -3px; height: 33px;}";
+
+    var printCss = commonCss + cssHeading + cssAddress + cssContact + tableCss;
+
+
+    //printCss = printCss + "";
+
+    var contents = $("#printArea").html();
+
+    var frame1 = $('<iframe />');
+    frame1[0].name = "frame1";
+    frame1.css({ "position": "absolute", "top": "-1000000px" });
+    $("body").append(frame1);
+    var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+    frameDoc.document.open();
+
+    //Create a new HTML document.
+    frameDoc.document.write('<html><head><title>DIV Contents</title>' + "<style>" + printCss + "</style>");
+
+
+    //Append the external CSS file.  <link rel="stylesheet" href="../../../styles.scss" />  <link rel="stylesheet" href="../../../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    frameDoc.document.write('<style type="text/css" media="print">/*@page { size: landscape; }*/</style>');
+
+    frameDoc.document.write('</head><body>');
+
+    //Append the DIV contents.
+    frameDoc.document.write(contents);
+    frameDoc.document.write('</body></html>');
+
+    frameDoc.document.close();
+
+
+    //alert(frameDoc.document.head.innerHTML);
+    // alert(frameDoc.document.body.innerHTML);
+
+    setTimeout(function () {
+      window.frames["frame1"].focus();
+      window.frames["frame1"].print();
+      frame1.remove();
+    }, 500);
+  }
+
+  // For PDF Download
+  downloadPDF() {
+
+    var doc = new jsPDF("p", "pt", "A4"),
+      source = $("#printArea")[0],
+      margins = {
+        top: 75,
+        right: 30,
+        bottom: 50,
+        left: 30,
+        width: 50
+      };
+    doc.fromHTML(
+      source, // HTML string or DOM elem ref.
+      margins.left, // x coord
+      margins.top,
+      {
+        // y coord
+        width: margins.width // max width of content on PDF
+      },
+      function (dispose) {
+        // dispose: object with X, Y of the last line add to the PDF
+        //          this allow the insertion of new lines after html
+        doc.save("Test.pdf");
+      },
+      margins
+    );
+  }
+
+  //For CSV File 
+  public downloadCSV() {
+    this.csvExportService.exportData(this.departmentsData, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+  }
+
+  //For Exce File
+  public downloadExcel() {
+    this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+  }
+
+
 
   // Functions for Show & Hide Spinner
   showSpinner() {
