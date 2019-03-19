@@ -75,7 +75,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch |paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{branch.branTitle}}</td>
           <td class="col-2 text-left">{{branch.branAddress}}</td>
@@ -140,7 +140,7 @@
         <!--end 1st row-->
 
         <br />
-        
+
         <!--start 2nd row-->
         <div class="row">
           <div class="col-md-12">
@@ -152,7 +152,7 @@
         <!--end 2nd row-->
 
         <br />
-        
+
         <!--start 3rd row-->
         <div class="row">
           <div class="col-md-6">
@@ -171,7 +171,7 @@
         <!--end 3rd row-->
 
         <br />
-        
+
         <!--start 4th row-->
         <div class="row">
           <div class="col-md-6">
@@ -189,7 +189,7 @@
         <!--end 4th row-->
 
         <br />
-        
+
         <!--start 5th row-->
         <div class="row">
           <div class="col-md-6">
@@ -205,7 +205,7 @@
           </div>
         </div>
         <!--end 5th row-->
-        
+
         <br />
 
         <!--button tag Row Starts-->

@@ -35,7 +35,7 @@ export class DepartmentComponent implements OnInit {
   tblSearch = "";
 
   // Add Department NgModels
-  deptId = "";
+  deptId = null;
   deptName = "";
   deptBranch = "";
 
@@ -47,7 +47,7 @@ export class DepartmentComponent implements OnInit {
   userPINCode = "";
 
   // To Access id of Delete Entry
-  dDepartmentId = "";
+  dDepartmentId = null;
 
   //* variables for pagination and orderby pipe
   p = 1;
@@ -79,23 +79,23 @@ export class DepartmentComponent implements OnInit {
   //For Branch dropdown
   departments = [
     {
-      departmentId: '1',
+      departmentId: 1,
       departmentName: "Finance"
     },
     {
-      departmentId: '2',
+      departmentId: 2,
       departmentName: "Human Resource"
     },
     {
-      departmentId: '3',
+      departmentId: 3,
       departmentName: "Admin"
     },
     {
-      departmentId: '4',
+      departmentId: 4,
       departmentName: "Procurement"
     },
     {
-      departmentId: '5',
+      departmentId: 5,
       departmentName: "Medical"
     }
   ]
@@ -209,6 +209,7 @@ export class DepartmentComponent implements OnInit {
     }
   ]
 
+
   @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
   @ViewChild("exportPDF") public exportPDF: ElementRef;
 
@@ -248,6 +249,7 @@ export class DepartmentComponent implements OnInit {
     });
   }
 
+  // function for saving and updating the data 
   saveDepartment() {
     if (this.deptBranch == "") {
       this.toastr.errorToastr('Please Select Branch', 'Error', { toastTimeout: (2500) });
@@ -259,31 +261,36 @@ export class DepartmentComponent implements OnInit {
     }
     else {
 
-      if (this.deptId != null) {
+      // alert(this.deptId);
+
+      if (this.deptId != "") {
         this.showSpinner();
         this.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
+        this.clear();
         $('#departmentModal').modal('hide');
         return false;
-        var updateData = { "ID": this.deptId, Password: this.userPassword, PIN: this.userPINCode };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var updateData = { "ID": this.deptId, Password: this.userPassword, PIN: this.userPINCode };
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var token = localStorage.getItem(this.tokenKey);
 
-        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          }
-          else {
-            this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#departmentModal').modal('hide');
-            return false;
-          }
+        // this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
-        });
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   }
+        //   else {
+        //     this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#departmentModal').modal('hide');
+        //     return false;
+        //   }
+
+        // });
+
       }
       else {
         this.showSpinner();
@@ -291,29 +298,32 @@ export class DepartmentComponent implements OnInit {
         this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
         $('#departmentModal').modal('hide');
         return false;
-        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var token = localStorage.getItem(this.tokenKey);
 
-        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          }
-          else {
-            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#departmentModal').modal('hide');
-            return false;
-          }
-        });
+        // this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   }
+        //   else {
+        //     this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#departmentModal').modal('hide');
+        //     return false;
+        //   }
+        // });
       }
     }
   }
 
 
+
+  // save department function
   saveDept() {
     ///////
     if (this.departName == "") {
@@ -337,37 +347,38 @@ export class DepartmentComponent implements OnInit {
 
         this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
-        this.departments.push({ departmentId: this.departments.length + "", departmentName: this.departName });
+        this.departments.push({ departmentId: this.departments.length, departmentName: this.departName });
 
-        this.departName = "";
+        this.clear();
         // $('#addCityModal').click();
         $('#deptModal').modal('hide');
 
         return false;
 
-        var updateData = { "sectionname": this.departName };
+        // var updateData = { "sectionname": this.departName };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var token = localStorage.getItem(this.tokenKey);
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          }
-          else {
-            this.toastr.successToastr('Saved Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#deptModal').modal('hide');
-            return false;
-          }
-        });
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   }
+        //   else {
+        //     this.toastr.successToastr('Saved Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#deptModal').modal('hide');
+        //     return false;
+        //   }
+        // });
       }
     }
     ///////
   }
 
+  // delete function
   delete() {
     if (this.userPassword == "") {
       this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
@@ -381,42 +392,53 @@ export class DepartmentComponent implements OnInit {
       this.showSpinner();
       this.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
+      this.clear();
       $('#deleteModal').modal('hide');
 
       return false;
 
-      var data = { "ID": this.dDepartmentId, Password: this.userPassword, PIN: this.userPINCode };
+      // var data = { "ID": this.dDepartmentId, Password: this.userPassword, PIN: this.userPINCode };
 
-      var token = localStorage.getItem(this.tokenKey);
+      // var token = localStorage.getItem(this.tokenKey);
 
-      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+      // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-      this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+      // this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
 
-        if (data.msg != undefined) {
-          this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-          return false;
-        }
-        else {
-          this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-          $('#deleteModal').modal('hide');
-          return false;
-        }
+      //   if (data.msg != undefined) {
+      //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+      //     return false;
+      //   }
+      //   else {
+      //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+      //     $('#deleteModal').modal('hide');
+      //     return false;
+      //   }
 
-      });
+      // });
     }
   }
 
+  // edit function
   edit(item) {
-    this.deptName = item.departmentId.toString();
-    this.deptBranch = item.branchId.toString();
+    this.deptName = item.departmentId;
+    this.deptBranch = String(item.branchId);
   }
 
+  // clear the input fields
   clear() {
     this.deptName = "";
     this.deptBranch = "";
+
+    this.departName = "";
+
+    this.userPassword = "";
+    this.userPINCode = "";
+
+    this.dDepartmentId = "";
   }
 
+  // print function
   printContent(el) {
 
     var printCon = document.getElementById(el).innerHTML;
@@ -428,8 +450,7 @@ export class DepartmentComponent implements OnInit {
     WinPrint.close();
   }
 
-  //-------------------------------// Downloading PDF File //-------------------------------//
-
+  // Downloading PDF File 
   downloadPDF() {
 
     let doc = new jsPDF();
@@ -453,14 +474,12 @@ export class DepartmentComponent implements OnInit {
     doc.save('exportTest.pdf');
   }
 
-  //-------------------------------// Downloading Excel File //-------------------------------//
-
+  // Downloading Excel File
   public exportExcel() {
     this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
-  //-------------------------------// Downloading CSV File //-------------------------------//
-
+  // Downloading CSV File
   public exportCSV() {
     this.csvExportService.exportData(this.departments, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
   }
@@ -474,17 +493,16 @@ export class DepartmentComponent implements OnInit {
     this.order = value;
   }
 
-  //functions for delete department
+  // get the "id" of the delete entry 
   deleteTemp(item) {
-
     this.dDepartmentId = item.departmentsDataId;
-
   }
 
   // Functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }
+
   hideSpinner() {
     setTimeout(() => {
       /** spinner ends after process done*/

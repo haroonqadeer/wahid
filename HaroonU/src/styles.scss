@@ -1087,3 +1087,21 @@ left: auto;
   }
   /*************** end info-box ******************/
   
+  
+//********************** Css for order by pipe ***********
+thead th {
+  cursor: pointer;
+
+  span {
+    visibility: hidden;
+  }
+
+  &.active {
+    color: #000;
+
+    span {
+      visibility: visible;
+    }
+  }
+
+}

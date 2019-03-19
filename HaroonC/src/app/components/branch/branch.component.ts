@@ -21,8 +21,8 @@ export class BranchComponent implements OnInit {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  //Page Models
-  branchId = 0;
+  //*Page Models
+  branchId = null;
   branchTitle = "";
   branchAddress = "";
   branchCity = "";
@@ -31,15 +31,15 @@ export class BranchComponent implements OnInit {
   branchMobile = "";
   branchWebsite = "";
 
-  dbranchId = 0;
+  dbranchId = null;
 
-  //For Searching textboxes
+  //*NgModel For Searching textboxes
   tblSearch = "";
 
-  //City Modal Window Models
+  //*City Modal Window Models
   cityName = "";
 
-  //Delete Modal Window Models
+  //*Delete Modal Window Models
   userPassword = "";
   userPINCode = "";
 
@@ -218,7 +218,7 @@ export class BranchComponent implements OnInit {
     }
   ]
 
-  //use in city combobox
+  //*use in city combobox
   cities = [
     { ctyId: '1', ctyName: 'Islamabad' },
     { ctyId: '2', ctyName: 'Karachi' },
@@ -231,7 +231,7 @@ export class BranchComponent implements OnInit {
   ngOnInit() {
   }
 
-  //To get all branch data
+  //*To get all branch data
   getBranches() {
     return false;
 
@@ -244,6 +244,7 @@ export class BranchComponent implements OnInit {
     });
   }
 
+  //* Function for saving and updating the data 
   saveBranch() {
     if (this.branchTitle.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Title', 'Error', { toastTimeout: (2500) });
@@ -279,32 +280,36 @@ export class BranchComponent implements OnInit {
     }
     else {
 
-      if (this.branchId != null) {
+      // alert(this.branchId);
+
+      if (this.branchId != "") {
         this.showSpinner();
         this.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
         this.clear();
         $('#branchModal').modal('hide');
+
         return false;
 
-        var updateData = { "ID": this.branchAddress, Password: this.userPassword, PIN: this.userPINCode };
+        // var updateData = { "ID": this.branchAddress, Password: this.userPassword, PIN: this.userPINCode };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var token = localStorage.getItem(this.tokenKey);
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        // this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          } else {
-            this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#actionModal').modal('hide');
-            return false;
-          }
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   } else {
+        //     this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#actionModal').modal('hide');
+        //     return false;
+        //   }
 
-        });
+        // });
+
       }
 
       else {
@@ -315,28 +320,29 @@ export class BranchComponent implements OnInit {
         $('#branchModal').modal('hide');
         return false;
 
-        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
+        // var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var token = localStorage.getItem(this.tokenKey);
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+        // this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          } else {
-            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#actionModal').modal('hide');
-            return false;
-          }
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   } else {
+        //     this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#actionModal').modal('hide');
+        //     return false;
+        //   }
 
-        });
+        // });
       }
     }
   }
 
+  //* Delete Function 
   delete() {
     if (this.userPassword.trim() == "") {
       this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
@@ -350,31 +356,33 @@ export class BranchComponent implements OnInit {
       this.showSpinner();
       this.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
+      this.clear();
       $('#deleteModal').modal('hide');
 
       return false;
 
-      var data = { "ID": this.dbranchId, Password: this.userPassword, PIN: this.userPINCode };
+      // var data = { "ID": this.dbranchId, Password: this.userPassword, PIN: this.userPINCode };
 
-      var token = localStorage.getItem(this.tokenKey);
+      // var token = localStorage.getItem(this.tokenKey);
 
-      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+      // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-      this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+      // this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
 
-        if (data.msg != undefined) {
-          this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-          return false;
-        } else {
-          this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-          $('#actionModal').modal('hide');
-          return false;
-        }
+      //   if (data.msg != undefined) {
+      //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+      //     return false;
+      //   } else {
+      //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+      //     $('#actionModal').modal('hide');
+      //     return false;
+      //   }
 
-      });
+      // });
     }
   }
 
+  //*Edit Function
   edit(item) {
     this.branchId = item.branId;
     this.branchTitle = item.branTitle;
@@ -386,9 +394,9 @@ export class BranchComponent implements OnInit {
     this.branchWebsite = item.branWebsite;
   }
 
+  //*Function for Saving city data
   saveCity() {
 
-    ///////
     if (this.cityName.trim() == '') {
       this.toastr.errorToastr('Please enter city name', 'Error', { toastTimeout: (2500) });
       return false;
@@ -412,30 +420,30 @@ export class BranchComponent implements OnInit {
 
         this.cities.push({ ctyId: this.cities.length + "", ctyName: this.cityName });
 
-        this.cityName = '';
+        this.clear();
         // $('#addCityModal').click();
         $('#cityModal').modal('hide');
 
         return false;
 
-        var updateData = { "sectionname": this.cityName };
+        // var updateData = { "sectionname": this.cityName };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var token = localStorage.getItem(this.tokenKey);
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          } else {
-            this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#cityModal').modal('hide');
-            return false;
-          }
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   } else {
+        //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#cityModal').modal('hide');
+        //     return false;
+        //   }
 
-        });
+        // });
 
       }
     }
@@ -443,13 +451,14 @@ export class BranchComponent implements OnInit {
   }
 
 
-  //functions for delete currency
+  //*get the "id" of the delete entry 
   deleteTemp(item) {
 
     this.dbranchId = item.branId;
 
   }
 
+  //*Clear the input fields
   clear() {
     this.branchId = 0;
     this.branchTitle = '';
@@ -460,16 +469,21 @@ export class BranchComponent implements OnInit {
     this.branchMobile = '';
     this.branchWebsite = '';
 
+
+    this.cityName = "";
+
     this.userPassword = '';
     this.userPINCode = '';
+
+    this.dbranchId = "";
   }
 
-
+  //* function for email validation
   isEmail(email) {
     return this.app.validateEmail(email);
   }
 
-  //function for sort table data 
+  //*function for sort table data 
   setOrder(value: string) {
 
     if (this.order === value) {
@@ -478,7 +492,7 @@ export class BranchComponent implements OnInit {
     this.order = value;
   }
 
-  // Functions for Show & Hide Spinner
+  //*Functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }

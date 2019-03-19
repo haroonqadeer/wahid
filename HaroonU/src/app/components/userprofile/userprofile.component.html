@@ -64,18 +64,49 @@
     <table class="table table-striped fullwidth" id="myTable">
       <thead>
         <tr class="d-flex">
-          <th class="col-1">Sr No.</th>
-          <th class="col-2">User Name</th>
-          <th class="col-2">Email</th>
-          <th class="col-1">Role</th>
-          <th class="col-2">User Since</th>
-          <th class="col-2">Last Login</th>
+          <th class="col-1 text-center">Sr No.</th>
+          <th [class.active]="order === 'uName'" (click)="setOrder('uName')" class="col-2 text-left pointerCursor">
+            User Name
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'uEmail'" (click)="setOrder('uEmail')" class="col-2 text-left pointerCursor">
+            Email
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'uRole'" (click)="setOrder('uRole')" class="col-1 text-left pointerCursor">
+            Role
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'uSince'" (click)="setOrder('uSince')" class="col-2 text-left pointerCursor">
+            User Since
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
+          <th [class.active]="order === 'lastLogin'" (click)="setOrder('lastLogin')" class="col-2 text-left pointerCursor">
+            Last Login
+            <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+            <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+          </th>
           <th class="col-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of users | search:'emailAddrss':userSearch" class='d-flex'>
-          <td class="col-1 text-center">{{item.indvdlId}}</td>
+        <tr class='d-flex' *ngFor="let emp of userData | search:'uId,uName,uEmail,uRole,uSince,lastLogin':userSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+          <td class="col-1 text-center">{{i+1}}</td>
+          <td class="col-2 text-left">{{emp.uName}}</td>
+          <td class="col-2 text-left">{{emp.uEmail}}</td>
+          <td class="col-1 text-left">{{emp.uRole}}</td>
+          <td class="col-2 text-left">{{emp.uSince}}</td>
+          <td class="col-2 text-left">{{emp.lastLogin}}</td>
+          <td class="col-2 text-center"><span class="fa fa-exclamation-circle pointerCursor fontPrimary" data-toggle="modal"
+              data-target="#actionModal"></span></td>
+        </tr>
+<!-- <tr *ngFor="let item of userData | search:'indvdlFirstName,emailAddrss,type,':userSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'"
+  class='d-flex'>
+          <td class="col-1 text-center">{{item.uid}}</td>
           <td class="col-2">{{item.indvdlFirstName}}</td>
           <td class="col-2">{{item.emailAddrss}}</td>
           <td class="col-1">{{item.type}}</td>
@@ -85,21 +116,35 @@
             <span class="fa fa-exclamation-circle pointerCursor fontPrimary" data-toggle="modal" (click)="edit(item, 'block')"
               data-target="#actionModal"></span>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
+     <!-- Pagination Starts -->
+    <div class="col-md-10">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div class="col-md-2 text-right">
+      <mat-form-field class="fullwidth pagenateList">
+        <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+          <mat-option value="25">25</mat-option>
+          <mat-option value="30">30</mat-option>
+          <mat-option value="35">35</mat-option>
+          <mat-option value="40">40</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="50">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Pagination Ends -->
   </div>
   <!-- end table row -->
   <br />
 </div>
 <!-- End User Profile Container -->
 <br><br><br>
-<!---------------------------------------------->
-<!---------- Try Template Code Starts ---------->
-
-<!---------- Try Template Code Ends ------------>
-<!---------------------------------------------->
-
 
 <!-- Start Modal Window to add & update new user -->
 <div class="modal fade" id="userModal">

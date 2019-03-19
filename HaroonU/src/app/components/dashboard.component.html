@@ -1,4 +1,7 @@
 <br />
+<div id="alert_msg_success" *ngIf="edited">
+  Action Successfully Saved
+</div>
 
 <div class="row">
   <div class="col-md-12 text-center">
@@ -76,6 +79,16 @@
 
       <!--start Modal body -->
       <div class="modal-body">
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
 
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
@@ -83,44 +96,64 @@
               <thead>
                 <tr class='d-flex'>
                   <th class='col-1 text-center'>Sr#</th>
-                  <th class='col-2'>User Name</th>
-                  <th class='col-3'>Full Name</th>
-                  <th class='col-3'>Email</th>
-                  <th class='col-2'>Role</th>
+                  <th [class.active]="order === 'userName'" (click)="setOrder('userName')" class='col-2'>
+                    User Name
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
+                  <th [class.active]="order === 'userFullName'" (click)="setOrder('userFullName')" class='col-3'>Full
+                    Name
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
+                  <th [class.active]="order === 'userEmail'" (click)="setOrder('userEmail')" class='col-3'>
+                    Email
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
+                  <th [class.active]="order === 'userRole'" (click)="setOrder('userRole')" class='col-2'>
+                    Role
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
                   <th class="col-1">Log</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-1 text-center">1</td>
-                  <td class="col-2">Nabeel</td>
-                  <td class="col-3">Nabeel Ahmed</td>
-                  <td class="col-3">nabeel@gmail.com</td>
-                  <td class="col-2">Admin</td>
-                  <td class="col-1 text-center"><span class="fa fa-file fontPrimary pointerCursor" data-toggle="modal"
-                      data-target="#userLogModal"></span></td>
-                </tr>
-                <tr class='d-flex' style="color:red !important">
-                  <td class="col-1 text-center">2</td>
-                  <td class="col-2">Adnan</td>
-                  <td class="col-3">Adnan Ali</td>
-                  <td class="col-3">adnan@yahoo.com</td>
-                  <td class="col-2">Visitor</td>
-                  <td class="col-1 text-center"><span class="fa fa-file fontPrimary pointerCursor" data-toggle="modal"
-                      data-target="#userLogModal"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-1 text-center">3</td>
-                  <td class="col-2">Amir</td>
-                  <td class="col-3">Amir Qureshi</td>
-                  <td class="col-3">amir@hotmail.com</td>
-                  <td class="col-2">Visitor</td>
+                <tr class='d-flex' *ngFor="let item of userList | search: 'userName,userFullName,userEmail,userRole': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                  <td class="col-1 text-center">{{i+1}}</td>
+                  <td class="col-2">{{item.userName}}</td>
+                  <td class="col-3">{{item.userFullName}}</td>
+                  <td class="col-3">{{item.userEmail}}</td>
+                  <td class="col-2">{{item.userRole}}</td>
                   <td class="col-1 text-center"><span class="fa fa-file fontPrimary pointerCursor" data-toggle="modal"
                       data-target="#userLogModal"></span></td>
                 </tr>
               </tbody>
             </table>
+            <!-- Pagination Starts -->
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Pagination Ends -->
           </div>
         </div>
       </div>
@@ -152,6 +185,17 @@
       <!--start Modal body -->
       <div class="modal-body">
 
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
 
@@ -159,36 +203,54 @@
               <thead>
                 <tr class='d-flex'>
                   <th class='col-2 text-center'>Sr#</th>
-                  <th class='col-3'>Action</th>
-                  <th class='col-5'>Action Date Time</th>
+                  <th [class.active]="order === 'eAction'" (click)="setOrder('eAction')" class='col-3'>
+                    Action
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
+                  <th [class.active]="order === 'eActionDateTime'" (click)="setOrder('eActionDateTime')" class='col-5'>
+                    Action
+                    Date
+                    Time
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
                   <th class='col-2 text-center'>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-2 text-center">1</td>
-                  <td class="col-3">Addition</td>
-                  <td class="col-5">15-Oct-2018 15:34</td>
-                  <td class="col-2 text-center"><span class="fa fa-envelope pointerCursor fontRed" data-toggle="modal"
-                      data-target="#msgModal"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-2 text-center">2</td>
-                  <td class="col-3">Deletion</td>
-                  <td class="col-5">15-Oct-2018 15:35</td>
-                  <td class="col-2 text-center"><span class="fa fa-envelope pointerCursor fontRed" data-toggle="modal"
-                      data-target="#msgModal"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-2 text-center">3</td>
-                  <td class="col-3">Deletion</td>
-                  <td class="col-5">15-Oct-2018 15:36</td>
+                <tr class='d-flex' *ngFor="let item of eventLog | search: 'eAction,eActionDateTime': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                  <td class="col-2 text-center">{{i+1}}</td>
+                  <td class="col-3">{{item.eAction}}</td>
+                  <td class="col-5">{{item.eActionDateTime}}</td>
                   <td class="col-2 text-center"><span class="fa fa-envelope pointerCursor fontRed" data-toggle="modal"
                       data-target="#msgModal"></span></td>
                 </tr>
               </tbody>
             </table>
+            <!-- Pagination Starts -->
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Pagination Ends -->
           </div>
         </div>
       </div>
@@ -221,6 +283,17 @@
       <!--start Modal body -->
       <div class="modal-body">
 
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
 
@@ -228,29 +301,52 @@
               <thead>
                 <tr class='d-flex'>
                   <th class='col-2 text-center'>Sr#</th>
-                  <th class='col-3'>Role Title</th>
-                  <th class='col-5'>Permissions</th>
+                  <th [class.active]="order === 'roleTitle'" (click)="setOrder('roleTitle')" class='col-3'>
+                    Role Title
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
+                  <th [class.active]="order === 'rolePermission'" (click)="setOrder('rolePermission')" class='col-5'>
+                    Permissions
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
                   <th class='col-2 text-center'>Details</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-2 text-center">1</td>
-                  <td class="col-3">Financial User</td>
-                  <td class="col-5">Financial (10), HR (2)</td>
+                <tr class='d-flex' *ngFor="let item of userRoles | search: 'roleTitle,rolePermission': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                  <td class="col-2 text-center">{{i+1}}</td>
+                  <td class="col-3">{{item.roleTitle}}</td>
+                  <td class="col-5">{{item.rolePermission}}</td>
                   <td class="col-2 text-center"><span class="fa fa-info-circle fontPrimary pointerCursor" data-toggle="modal"
                       data-target="#roleMenuModal" (click)="finUsr()"></span></td>
                 </tr>
-                <tr class='d-flex'>
-                  <td class="col-2 text-center">2</td>
-                  <td class="col-3">Admin & HR User</td>
-                  <td class="col-5">HR & Admin (15)</td>
-                  <td class="col-2 text-center"><span class="fa fa-info-circle fontPrimary pointerCursor" data-toggle="modal"
-                      data-target="#roleMenuModal" (click)="hrUsr()"></span></td>
-                </tr>
               </tbody>
             </table>
+            <!-- Pagination Starts -->
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Pagination Ends -->
           </div>
         </div>
       </div>
@@ -676,6 +772,17 @@
       <!--start Modal body -->
       <div class="modal-body">
 
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
 
@@ -683,27 +790,26 @@
               <thead>
                 <tr class='d-flex'>
                   <th class='col-1 text-center'>Sr#</th>
-                  <th class='col-4'>Sender</th>
-                  <th class='col-5'>User Name</th>
+                  <th [class.active]="order === 'rSender'" (click)="setOrder('rSender')" class='col-4'>
+                    Sender
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
+                  <th [class.active]="order === 'rUserName'" (click)="setOrder('rUserName')" class='col-5'>
+                    User Name
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
                   <th class='col-1 text-center'>Accept</th>
                   <th class='col-1 text-center'>Query</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-1 text-center">1</td>
-                  <td class="col-4">Iqbal Shami - DD(Accounts) - Finance</td>
-                  <td class="col-5">Ali Akbar - Supdt(Accounts) - Financial Simple Role</td>
-                  <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal"
-                      data-target="#reqAcceptModal"></span></td>
-                  <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal"
-                      data-target="#msgModal"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-1 text-center">2</td>
-                  <td class="col-4">Shahid Ahmed - Dir(Admin) - Administration</td>
-                  <td class="col-5">Masood Ahmed - Chartered Accountant - Auditor Visitor Role</td>
+                <tr class='d-flex' *ngFor="let item of userRequest| search: 'rSender,rUserName': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                  <td class="col-1 text-center">{{i+1}}</td>
+                  <td class="col-4">{{item.rSender}}</td>
+                  <td class="col-5">{{item.rUserName}}</td>
                   <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal"
                       data-target="#reqAcceptModal"></span></td>
                   <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal"
@@ -711,6 +817,28 @@
                 </tr>
               </tbody>
             </table>
+            <!-- Pagination Starts -->
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Pagination Ends -->
           </div>
         </div>
       </div>
@@ -742,33 +870,44 @@
 
       <!--start Modal body -->
       <div class="modal-body">
+
+        <!--Start search textbox Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input matInput [(ngModel)]="tblSearch" placeholder="Search">
+            </mat-form-field>
+            <i class="fab fa-accessible-icon"></i>
+          </div>
+        </div>
+        <!--end search textbox Row-->
+
         <div class="example-container mat-elevation-z8">
           <div class="example-table-container">
             <table class="table table-striped">
               <thead>
                 <tr class='d-flex'>
                   <th class='col-1 text-center'>Sr#</th>
-                  <th class='col-5'>Sender</th>
-                  <th class='col-4'>Role Name</th>
+                  <th [class.active]="order === 'rSender'" (click)="setOrder('rSender')" class='col-5'>
+                    Sender
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
+                  <th [class.active]="order === 'rRoleName'" (click)="setOrder('rRoleName')" class='col-4'>
+                    Role Name
+                    <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                    <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                  </th>
                   <th class='col-1 text-center'>Accept</th>
                   <th class='col-1 text-center'>Query</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class="col-1 text-center">1</td>
-                  <td class="col-5">Muhammad Abdullah - Director(Accounts) - Finance</td>
-                  <td class="col-4">Financial Simple Role</td>
-                  <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal"
-                      data-target="#reqAcceptModal"></span></td>
-                  <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal"
-                      data-target="#msgModal"></span></td>
-                </tr>
-                <tr class='d-flex'>
-                  <td class="col-1 text-center">2</td>
-                  <td class="col-5">Nazim Ali - DD(Admin) - Administration</td>
-                  <td class="col-4">Medical Sanctions Role</td>
+                <tr class='d-flex' *ngFor="let item of roleRequest | search: 'rSender,rRoleName': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+                  <td class="col-1 text-center">{{i+1}}</td>
+                  <td class="col-5">{{item.rSender}}</td>
+                  <td class="col-4">{{item.rRoleName}}</td>
                   <td class="col-1 text-center"><span class="fa fa-check-circle fontPrimary pointerCursor" data-toggle="modal"
                       data-target="#reqAcceptModal"></span></td>
                   <td class="col-1 text-center"><span class="fa fa-envelope fontRed pointerCursor" data-toggle="modal"
@@ -776,6 +915,28 @@
                 </tr>
               </tbody>
             </table>
+            <!-- Pagination Starts -->
+            <div class="row">
+              <div class="col-md-8">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+              <div class="col-md-3 text-right">
+                <mat-form-field class="fullwidth pagenateList">
+                  <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="15">15</mat-option>
+                    <mat-option value="20">20</mat-option>
+                    <mat-option value="25">25</mat-option>
+                    <mat-option value="30">30</mat-option>
+                    <mat-option value="35">35</mat-option>
+                    <mat-option value="40">40</mat-option>
+                    <mat-option value="45">45</mat-option>
+                    <mat-option value="50">50</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Pagination Ends -->
           </div>
         </div>
       </div>
@@ -821,7 +982,7 @@
         </div><br>
         <div class="row">
           <div class="col-md-6">
-            <button mat-raised-button color="primary" (click)="acceptData()">Accept</button>
+            <button mat-raised-button color="primary" (click)="acceptData()" data-dismiss="modal">Accept</button>
           </div>
         </div>
         <br />
@@ -880,7 +1041,7 @@
         <br>
         <div class="row">
           <div class="col-md-6">
-            <button mat-raised-button color="primary" (click)="send()"><span class="fa fa-paper-plane"></span></button>
+            <button mat-raised-button color="primary" (click)="send()" data-dismiss="modal"><span class="fa fa-paper-plane"></span></button>
           </div>
         </div>
         <br />

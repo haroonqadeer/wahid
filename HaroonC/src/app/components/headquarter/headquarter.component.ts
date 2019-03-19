@@ -22,7 +22,7 @@ export class HeadquarterComponent implements OnInit {
   }
 
   //Page Models
-  officeId = 0;
+  officeId = null;
   officeTitle = "";
   officeAddress = "";
   officeEmail = "";
@@ -30,7 +30,7 @@ export class HeadquarterComponent implements OnInit {
   officeMobile = "";
   officeWebsite = "";
 
-  dofficeId = 0;
+  dofficeId = null;
 
   // NgModels For Searching Textboxes
   tblSearch = "";
@@ -205,6 +205,7 @@ export class HeadquarterComponent implements OnInit {
     });
   }
 
+  // function for saving and updating the data 
   saveHQ() {
     if (this.officeTitle.trim() == "") {
       this.toastr.errorToastr('Please Enter Office Title', 'Error', { toastTimeout: (2500) });
@@ -236,31 +237,34 @@ export class HeadquarterComponent implements OnInit {
     }
     else {
 
-      if (this.officeId != null) {
+      // alert(this.officeId);
+
+      if (this.officeId != "") {
         this.showSpinner();
         this.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
         $('#HQModal').modal('hide');
         return false;
-        var updateData = { "ID": this.officeId, Password: this.userPassword, PIN: this.userPINCode };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var updateData = { "ID": this.officeId, Password: this.userPassword, PIN: this.userPINCode };
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var token = localStorage.getItem(this.tokenKey);
 
-        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          }
-          else {
-            this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#HQModal').modal('hide');
-            return false;
-          }
+        // this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
-        });
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   }
+        //   else {
+        //     this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#HQModal').modal('hide');
+        //     return false;
+        //   }
+
+        // });
       }
       else {
         this.showSpinner();
@@ -268,25 +272,28 @@ export class HeadquarterComponent implements OnInit {
         this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
         $('#HQModal').modal('hide');
         return false;
-        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
 
-        var token = localStorage.getItem(this.tokenKey);
+        // var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var token = localStorage.getItem(this.tokenKey);
 
-        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-          if (data.msg != undefined) {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            return false;
-          }
-          else {
-            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
-            $('#HQModal').modal('hide');
-            return false;
-          }
-        });
+        // this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   }
+        //   else {
+        //     this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#HQModal').modal('hide');
+        //     return false;
+        //   }
+        // });
+
       }
+
       // this.showSpinner();
       // this.hideSpinner();
       // this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
@@ -295,6 +302,7 @@ export class HeadquarterComponent implements OnInit {
     }
   }
 
+  // delete function
   delete() {
     if (this.userPassword == "") {
       this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
@@ -308,29 +316,30 @@ export class HeadquarterComponent implements OnInit {
       this.showSpinner();
       this.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
+      this.clear();
       $('#deleteModal').modal('hide');
       return false;
-      return false;
 
-      var data = { "ID": this.dofficeId, Password: this.userPassword, PIN: this.userPINCode };
+      // var data = { "ID": this.dofficeId, Password: this.userPassword, PIN: this.userPINCode };
 
-      var token = localStorage.getItem(this.tokenKey);
+      // var token = localStorage.getItem(this.tokenKey);
 
-      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+      // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-      this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+      // this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
 
-        if (data.msg != undefined) {
-          this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-          return false;
-        }
-        else {
-          this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-          $('#deleteModal').modal('hide');
-          return false;
-        }
+      //   if (data.msg != undefined) {
+      //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+      //     return false;
+      //   }
+      //   else {
+      //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+      //     $('#deleteModal').modal('hide');
+      //     return false;
+      //   }
 
-      });
+      // });
+
     }
   }
 
@@ -347,14 +356,12 @@ export class HeadquarterComponent implements OnInit {
 
   }
 
-  //functions for delete currency
+  //get the "id" of the delete entry 
   deleteTemp(item) {
-
     this.dofficeId = item.offcId;
-
   }
 
-  //For Clearing Form
+  //clear the input fields
   clear() {
 
     this.officeId = 0;
@@ -367,11 +374,15 @@ export class HeadquarterComponent implements OnInit {
 
     this.userPassword = '';
     this.userPINCode = '';
+
+    this.dofficeId = "";
   }
 
+  //function for email validation
   isEmail(email) {
     return this.app.validateEmail(email);
   }
+
   //function for sort table data 
   setOrder(value: string) {
 
@@ -382,7 +393,7 @@ export class HeadquarterComponent implements OnInit {
     this.order = value;
   }
 
-  // Functions for Show & Hide Spinner
+  // functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }

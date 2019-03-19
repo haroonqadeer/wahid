@@ -3,7 +3,6 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { TreeNode } from '../../nodeTree/TreeNode';
 import { NodeService } from '../../nodeTree/node.service';
 
-import { OrderPipe } from 'ngx-order-pipe';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -35,8 +34,8 @@ export interface erpObject {
 })
 export class UserrolesComponent implements OnInit {
 
-  order: string = "uId";
-  reverse: boolean = false;
+  // order: string = "uId";
+  // reverse: boolean = false;
   //selectedEntry = "5";
 
   //Page Models
@@ -46,6 +45,108 @@ export class UserrolesComponent implements OnInit {
   erpRoleName = '';
   cmbModule = '';
   roleSearch = '';
+
+    //* variables for pagination and orderby pipe
+  p = 1;
+  order = 'info.name';
+  reverse = false;
+  sortedCollection: any[];
+  itemPerPage = '10';
+
+
+  rolesData=[
+    {
+      uId:1,
+      uRoleName:"Admin",
+      uNoModule:3,
+      uNoPage:4
+    },
+    {
+      uId:2,
+      uRoleName:"Super Admin",
+      uNoModule:5,
+      uNoPage:5
+    },
+    {
+      uId:3,
+      uRoleName:"Admin SCM",
+      uNoModule:3,
+      uNoPage:4
+    },
+    {
+      uId:4,
+      uRoleName:"Admin Health",
+      uNoModule:3,
+      uNoPage:4
+    },
+    {
+      uId:5,
+      uRoleName:"Auditor",
+      uNoModule:9,
+      uNoPage:15
+    },
+    {
+      uId:6,
+      uRoleName:"Admin Housing",
+      uNoModule:3,
+      uNoPage:4
+    },
+    {
+      uId:7,
+      uRoleName:"Procurement Manager",
+      uNoModule:4,
+      uNoPage:3
+    },
+    {
+      uId:8,
+      uRoleName:"Accountant",
+      uNoModule:3,
+      uNoPage:12
+    },
+    {
+      uId:9,
+      uRoleName:"Finance Admin",
+      uNoModule:3,
+      uNoPage:4
+    },
+    {
+      uId:10,
+      uRoleName:"Admin",
+      uNoModule:3,
+      uNoPage:4
+    },
+    {
+      uId:12,
+      uRoleName:"Admin",
+      uNoModule:3,
+      uNoPage:6
+    },
+    {
+      uId:13,
+      uRoleName:"Finance Manager",
+      uNoModule:7,
+      uNoPage:7
+    },
+    {
+      uId:14,
+      uRoleName:"HR Admin",
+      uNoModule:6,
+      uNoPage:4
+    },
+    {
+      uId:15,
+      uRoleName:"SCM",
+      uNoModule:3,
+      uNoPage:4
+    },
+    {
+      uId:16,
+      uRoleName:"HR",
+      uNoModule:3,
+      uNoPage:4
+    }
+  ]
+
 
   //list for tree
   menuTree: TreeNode[];
@@ -81,12 +182,12 @@ export class UserrolesComponent implements OnInit {
   }
 
   //setting ascending or descending order of table
-  setOrder(value: any) {
-    if (this.order === value) {
-      this.reverse = !this.reverse;
-    }
-    this.order = value;
-  }
+  // setOrder(value: any) {
+  //   if (this.order === value) {
+  //     this.reverse = !this.reverse;
+  //   }
+  //   this.order = value;
+  // }
 
   //Adding modules and menu in role tree 
   addRoles() {
@@ -600,4 +701,15 @@ export class UserrolesComponent implements OnInit {
     this.txtdPassword = "";
     this.txtdPin = "";
   }
+
+
+   //*function for sort table data 
+  setOrder(value: string) {
+
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
+  }
+
 }

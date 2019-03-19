@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { AppComponent } from '../app.component';
-import { ToastrManager } from 'ng6-toastr-notifications';
 
-declare var $: any;
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +11,14 @@ declare var $: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  serverUrl = "http://localhost:55536/";
+  tokenKey = "token";
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
+
   Line_chart: Chart;
   Pie_Chart: Chart;
 
@@ -20,6 +28,12 @@ export class DashboardComponent implements OnInit {
   txtMessage = '';
   txtdPin = '';
   txtSubject = '';
+
+  tblSearch = '';
+
+  public edited = false;
+
+  public acceptReq = false;
 
   public finUser = false;
 
@@ -32,7 +46,115 @@ export class DashboardComponent implements OnInit {
   public cityDetail;
   public countryDetail;
 
-  constructor(public toastr: ToastrManager, private appComponent: AppComponent) { }
+
+  //* variables for pagination and orderby pipe
+  p = 1;
+  order = 'info.name';
+  reverse = false;
+  sortedCollection: any[];
+  itemPerPage = '10';
+
+  // Data for users modal window table
+  userList = [
+    {
+      userId: 1,
+      userName: "Arham",
+      userFullName: "Arham Khan",
+      userEmail: "arham@gmail.com",
+      userRole: "Admin"
+    },
+    {
+      userId: 2,
+      userName: "Behram",
+      userFullName: "Behram Khan",
+      userEmail: "behram@gmail.com",
+      userRole: "Visitor"
+    },
+    {
+      userId: 3,
+      userName: "Arsal",
+      userFullName: "Arsal Khan",
+      userEmail: "arsal@gmail.com",
+      userRole: "Admin"
+    }
+  ]
+  // Data for event log modal window table
+  eventLog = [
+    {
+      eId: 1,
+      eAction: "Addition",
+      eActionDateTime: "15-Jan-2019 2:15pm"
+    },
+    {
+      eId: 2,
+      eAction: "Edition",
+      eActionDateTime: "25-Jan-2019 3:15pm"
+    },
+    {
+      eId: 3,
+      eAction: "Deletion",
+      eActionDateTime: "15-Feb-2019 4:15pm"
+    }
+  ]
+
+  // Data for user roles modal window table
+  userRoles = [
+    {
+      roleId: 1,
+      roleTitle: "Financial User",
+      rolePermission: "Financial (10), HR (2)"
+    },
+    {
+      roleId: 2,
+      roleTitle: "Admin HR",
+      rolePermission: "User (10), HR (2)"
+    },
+    {
+      roleId: 3,
+      roleTitle: "Manager Procurement",
+      rolePermission: "Procurement (10), HR (2)"
+    }
+  ]
+
+  // Data for user request modal window table
+  userRequest = [
+    {
+      rId: 1,
+      rSender: "Arham",
+      rUserName: "Behram"
+    },
+    {
+      rId: 2,
+      rSender: "Behram",
+      rUserName: "Arham"
+    },
+    {
+      rId: 3,
+      rSender: "Arsal",
+      rUserName: "Sarang"
+    }
+  ]
+
+  // Data for role request modal window table
+  roleRequest = [
+    {
+      rId: 1,
+      rSender: "Behram",
+      rRoleName: "Financial Role"
+    },
+    {
+      rId: 2,
+      rSender: "Arsal",
+      rRoleName: "HR Role"
+    },
+    {
+      rId: 3,
+      rSender: "Sarang",
+      rRoleName: "Payroll"
+    }
+  ]
+
+  constructor(private appComponent: AppComponent, private http: HttpClient) { }
 
   ngOnInit() {
 
@@ -57,6 +179,72 @@ export class DashboardComponent implements OnInit {
     // });
   }
 
+  //Get the list of all users.
+  getUserList() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.userList = data
+    });
+  }
+
+  //Get the data of all event logs.
+  getEventLog() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.eventLog = data
+    });
+  }
+
+  //Get the List of user roles.
+  getUserRoles() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.userRoles = data
+    });
+  }
+
+  //Get the List of all user's request.
+  getUserRequest() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.userRequest = data
+    });
+  }
+
+  //Get the List of all role's request.
+  getRoleRequest() {
+    return false;
+
+    var Token = localStorage.getItem(this.tokenKey);
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+      this.roleRequest = data
+    });
+  }
+
+
   finUsr() {
     this.finUser = true;
     this.hrUser = false;
@@ -69,31 +257,24 @@ export class DashboardComponent implements OnInit {
 
   acceptData() {
 
-    //checking if password is empty
-    if (this.txtPassword.trim().length == 0) {
+    this.edited = true;
 
-      this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
-      return;
-    } else if (this.txtPin.trim().length == 0) {
-
-      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
-      return;
-    }
-
-    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
-
-    $('#reqAcceptModal').modal('hide');
-
-    this.clear();
-
+    //wait 3 Seconds and hide
+    setTimeout(function () {
+      this.edited = false;
+      console.log(this.edited);
+    }.bind(this), 2000);
   }
 
   send() {
 
-    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
+    this.edited = true;
 
-    this.clear();
-
+    //wait 3 Seconds and hide
+    setTimeout(function () {
+      this.edited = false;
+      console.log(this.edited);
+    }.bind(this), 2000);
   }
 
   editFin() {
@@ -107,6 +288,8 @@ export class DashboardComponent implements OnInit {
   }
 
   pie_data() {
+
+    this.edited = true;
 
     //wait 3 Seconds and hide
     setTimeout(function () {
@@ -181,13 +364,14 @@ export class DashboardComponent implements OnInit {
     this.Line_chart = chart;
   }
 
-  clear() {
 
-    this.txtPassword = "";
-    this.txtPin = "";
-    this.txtMessage = "";
-    this.txtdPin = "";
-    this.txtSubject = "";
+  //*function for sort table data 
+  setOrder(value: string) {
+
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
   }
 }
 

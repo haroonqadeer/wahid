@@ -38,11 +38,6 @@ export class CompanyComponent implements OnInit {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
 
-    //* variables for display values on page
-
-
-
-
     //*Variables for NgModels
     companyId = '';
     tblSearch;
@@ -108,7 +103,7 @@ export class CompanyComponent implements OnInit {
     sortedCollection: any[];
     itemPerPage = '10';
 
-    //Type combo box  (Business types)
+    //* Type combo box  (Business types)
     types = [
         { TId: '1', TName: 'Sole Proprietorship' },
         { TId: '2', TName: 'Partnership' },
@@ -120,39 +115,103 @@ export class CompanyComponent implements OnInit {
         {
             companyId: 1,
             businessType: "Sole Proprietorship",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
+            title: "Title A",
+            nature: "Private Sector",
+            ntn: 345454,
+            website: "www.Youtube.com"
         },
         {
             companyId: 2,
             businessType: "Partnership",
-            title: "TitleA",
+            title: "Title B",
             nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
+            ntn: 1545453,
+            website: "www.edx.com"
         },
         {
             companyId: 3,
             businessType: "Public Limited Company",
-            title: "TitleA",
-            nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
+            title: "Title C",
+            nature: "Private Sector",
+            ntn: 67534653,
+            website: "www.facebook.com"
         },
         {
             companyId: 4,
             businessType: "Private Limited Company",
-            title: "TitleA",
+            title: "Title D",
+            nature: "Private Sector",
+            ntn: 3535663,
+            website: "www.udemy.com"
+        },
+        {
+            companyId: 5,
+            businessType: "Sole Proprietorship",
+            title: "Title A",
+            nature: "Private Sector",
+            ntn: 34224,
+            website: "www.Youtube.com"
+        },
+        {
+            companyId: 6,
+            businessType: "Partnership",
+            title: "Title B",
             nature: "Public Sector",
-            ntn: 123,
-            website: "www.google.com"
+            ntn: 155233,
+            website: "www.edx.com"
+        },
+        {
+            companyId: 7,
+            businessType: "Public Limited Company",
+            title: "Title C",
+            nature: "Public Sector",
+            ntn: 63543,
+            website: "www.facebook.com"
+        },
+        {
+            companyId: 8,
+            businessType: "Private Limited Company",
+            title: "Title D",
+            nature: "Private Sector",
+            ntn: 5654,
+            website: "www.udemy.com"
+        },
+        {
+            companyId: 9,
+            businessType: "Sole Proprietorship",
+            title: "Title A",
+            nature: "Semi-Private Sector",
+            ntn: 34444,
+            website: "www.Youtube.com"
+        },
+        {
+            companyId: 10,
+            businessType: "Partnership",
+            title: "Title B",
+            nature: "Semi-Private Sector",
+            ntn: 155334,
+            website: "www.edx.com"
+        },
+        {
+            companyId: 11,
+            businessType: "Public Limited Company",
+            title: "Title C",
+            nature: "Public Sector",
+            ntn: 677853,
+            website: "www.facebook.com"
+        },
+        {
+            companyId: 12,
+            businessType: "Private Limited Company",
+            title: "Title D",
+            nature: "Semi-Private Sector",
+            ntn: 36753,
+            website: "www.udemy.com"
         },
 
     ];
 
-    //array for partners detail 
+    //* initializing array for partners detail 
     partners: Partner[] = [];
 
     constructor(private toastr: ToastrManager, private app: AppComponent, private http: HttpClient, private spinner: NgxSpinnerService) { }
@@ -160,7 +219,7 @@ export class CompanyComponent implements OnInit {
     ngOnInit() {
     }
 
-    //function to hide or unhide div
+    //* function for hide or unhide div
     allowDiv() {
 
         if (this.cmbCType == '') {
@@ -187,7 +246,7 @@ export class CompanyComponent implements OnInit {
         }
     }
 
-    //Function for save and update company 
+    //* Function for save and update company 
     save() {
 
         if (this.cmbCType == '') {
@@ -297,7 +356,7 @@ export class CompanyComponent implements OnInit {
 
     }
 
-    //Function for add new partner for company 
+    //* Function for add new partner for company 
     addPartner() {
 
         if (this.pCnic == '' || this.pCnic.length < 13) {
@@ -367,7 +426,7 @@ export class CompanyComponent implements OnInit {
         }
     }
 
-    //Function for empty all fields of partner information 
+    //* Function for empty all fields of partner information 
     clearPartner() {
         this.pCnic = '';
         this.pNtn = '';
@@ -513,7 +572,6 @@ export class CompanyComponent implements OnInit {
             });
 
         }
-
 
     }
 

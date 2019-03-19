@@ -49,7 +49,9 @@ export class SectionComponent implements OnInit {
 
 
 	//*List Variables
-	sections = [];
+	sections = [
+		{ sectionId: '1', sectionName: 'ABC' }
+	];
 
 	headquarters = [
 		{ hqId: '1', hqName: 'Lahore Branch' },
@@ -312,6 +314,7 @@ export class SectionComponent implements OnInit {
 
 	}
 
+	//delete function 
 	delete() {
 
 		if (this.txtdPassword == '') {
@@ -432,9 +435,6 @@ export class SectionComponent implements OnInit {
 
 		this.order = value;
 	}
-
-
-
 
 	// Functions for Show & Hide Spinner
 	showSpinner() {
