@@ -601,28 +601,29 @@ export class SubsidiarieComponent implements OnInit {
                 this.showSpinner();
                 this.hideSpinner();
 
-                this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+                //this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
-                this.cities.push({ cityId: this.cities.length + "", cityName: this.cityName });
+                //this.cities.push({ cityId: this.cities.length + "", cityName: this.cityName });
 
-                this.cityName = '';
-                $('#addCityModel').click();
+                // this.cityName = '';
+                // $('#addCityModel').click();
 
                 return false;
 
-                var updateData = { "sectionname": this.cityName };
+                var updateData = "cityName=" + this.cityName;
+                alert(updateData);
+                //var token = localStorage.getItem(this.tokenKey);
 
-                var token = localStorage.getItem(this.tokenKey);
+                //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-                this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.post(this.serverUrl + 'api/citys?' + updateData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
                         return false;
                     } else {
-                        this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+                        this.toastr.successToastr('Record Inserted Successfully', 'Success!', { toastTimeout: (2500) });
                         $('#actionModal').modal('hide');
                         return false;
                     }
@@ -651,6 +652,7 @@ export class SubsidiarieComponent implements OnInit {
     showSpinner() {
         this.spinner.show();
     }
+
     hideSpinner() {
         setTimeout(() => {
             /** spinner ends after process done*/
