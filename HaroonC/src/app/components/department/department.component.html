@@ -38,7 +38,7 @@
 <br>
 
 <!-- button row -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <button mat-raised-button color="warn" data-toggle="modal" data-target="#optionModal">Options</button>
   </div>
@@ -46,7 +46,8 @@
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#departmentModal" (click)="clear()">Add
       New</button>
   </div>
-</div><!-- end button - row -->
+</div> -->
+<!-- end button - row -->
 
 <br>
 
@@ -323,42 +324,3 @@
   </div>
 </div>
 <!-- Delete Add Department Modal Window Ends -->
-
-<!-- Option Modal Starts -->
-<div class="modal fade" id="optionModal">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Options</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Row 1 -->
-        <div class="row">
-          <div class="col-md-6 text-center">
-            <button mat-raised-button class="fullwidth" color="warn" (click)="printContent('divPrint')">Print</button>
-          </div>
-          <div class="col-md-6 text-center">
-            <button mat-raised-button class="fullwidth" color="primary" (click)="downloadPDF()">PDF</button>
-          </div>
-        </div>
-        <br>
-        <!-- Row 2 -->
-        <div class="row">
-          <div class="col-md-6 text-center">
-            <button mat-raised-button class="fullwidth" color="primary" (click)="exportExcel()">Excel</button>
-          </div>
-          <div class="col-md-6 text-center">
-            <button mat-raised-button class="fullwidth" color="warn" (click)="exportCSV()">CSV</button>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button mat-raised-button class="btn btn-success" data-dismiss="modal">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Option Modal Ends -->

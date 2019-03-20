@@ -461,7 +461,7 @@ export class DepartmentComponent implements OnInit {
 
   // get the "id" of the delete entry 
   deleteTemp(item) {
-            this.clear();
+    this.clear();
     this.dDepartmentId = item.departmentsDataId;
   }
 
@@ -520,6 +520,8 @@ export class DepartmentComponent implements OnInit {
   // For PDF Download
   downloadPDF() {
 
+    alert("Pakistan");
+
     var doc = new jsPDF("p", "pt", "A4"),
       source = $("#printArea")[0],
       margins = {
@@ -527,7 +529,7 @@ export class DepartmentComponent implements OnInit {
         right: 30,
         bottom: 50,
         left: 30,
-        width: 50
+        width: 150
       };
     doc.fromHTML(
       source, // HTML string or DOM elem ref.
