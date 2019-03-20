@@ -2,22 +2,49 @@
 <!-- heading row -->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Sections</h1>
+    <h1>Sections</h1>
   </div>
 </div>
 <!-- end heading row -->
 
+<!-- start menubar buttons -->
+<div class="topnav boxShadow">
+  <div class="container">
+    <a class="pointerCursor" data-toggle="modal" data-target="#sectModal" (click)="clear()">
+      <i class="fa fa-plus-square"></i>
+      Add New
+    </a>
+    <a class="pointerCursor" (click)="printDiv()">
+      <i class="fa fa-print"></i>
+      Print
+    </a>
+    <a class="pointerCursor" (click)="downloadPDF()">
+      <i class="fa fa-file-pdf-o"></i>
+      PDF
+    </a>
+    <a class="pointerCursor"  (click)="downloadCSV()">
+      <i class="fa fa-file-text-o"></i>
+      CSV
+    </a>
+    <a class="pointerCursor" (click)="downloadExcel()">
+      <i class="fa fa-file-excel-o"></i>
+      Excel
+    </a>
+  </div>
+</div>
+<!-- end menubar buttons -->
+
 <br>
 
 <!--start buttons row-->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <button mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#sectModal" (click)="clear()">Add New</button>
   </div>
-</div>
+</div> -->
 <!--end buttons row-->
 <br>
 
@@ -101,8 +128,59 @@
   <br />
 </div>
 <!-- End Section Table Container -->
-<br><br><br>
 
+<!-- Hidden Table Starts for Excel and CSV files -->
+<igx-grid #exportDataContent [data]="sectionDetail" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<!-- Hidden Table Ends  for Excel and CSV files -->
+
+<!-- Hidden Table for Print and PDF files starts-->
+<div class="container mat-elevation-z8 printArea" id="printArea" #exportPDF>
+  <div class="printDiv">
+
+    <!--Start heading table -->
+    <table>
+      <tr>
+        <td width="15%" style="border:none;">
+          <img src="../../../assets/images/logo.png" width="135px">
+        </td>
+
+        <td style="border:none;">
+          <div class="commonCss cssHeading">Logix Solutions</div>
+          <div class="commonCss cssAddress">Office #209, 2nd Floor Ahmed Plaza, Rawalpindi Road Fateh Jang.</div>
+          <div class="commonCss cssContact">Mobile: 0313-5300471, Ph. 057-2212704</div>
+        </td>
+      </tr>
+    </table>
+    <!--End heading table -->
+
+    <br /><br />
+
+    <!--Start table Row-->
+    <div class="row">
+      <table>
+        <thead>
+          <tr class="d-flex">
+            <th class="col-1 text-center">Sr No.</th>
+            <th>Head Quarter/Office</th>
+            <th>Department</th>
+            <th>Section</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sectionDetail | search:'HeadQuarter,Department,Section' :tblSearch let i=index" class='d-flex'>
+            <td class="col-1 text-center">{{i + 1}}</td>
+            <td class="col-3">{{item.HeadQuarter}}</td>
+            <td class="col-3">{{item.Department}}</td>
+            <td class="col-3">{{item.Section}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- end table row -->
+  </div>
+</div>
+<!-- Hidden Table for Print and PDF files ends-->
+
+<br><br><br>
 
 
 <!-- Start Modal Window to delete data -->
