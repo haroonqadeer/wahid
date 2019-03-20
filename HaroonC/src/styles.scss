@@ -9,9 +9,17 @@ body {
   height: 100%;
 }
 
+//////////////////////////////////////////
+///////////// Headings ///////////////////
+//////////////////////////////////////////
+
 h1 {
   font-family: Josefin !important;
   letter-spacing: 0.2em !important;
+}
+
+h5 {
+  font-family: Mukta !important;
 }
 
 .h1 {
@@ -22,10 +30,6 @@ body {
   // background-color: #ebecef !important;
   background-image: linear-gradient(135deg, #fff, #ccc);
   overflow: hidden;
-}
-
-.bodyWhite {
-  background-image: linear-gradient(135deg, #fff, #eeeeee);
 }
 
 ///// headings
@@ -39,20 +43,37 @@ h1 {
   width: 100% !important;
   height: 100% !important;
   // background-color: #ebecef !important;
-  background-image: linear-gradient(45deg, #4c4c4c, #666, #7f7f7f);
+  background-image: linear-gradient(to bottom right, #eec450 50%, #fff 20%);
   overflow: hidden;
 }
 
-
 .h1Login {
-  background-color: #f44336;
-  color: #fff;
+  background-color: #eec450;
+  color: #232438;
   height: 3em;
   padding-top: 0.7em;
-  font-family: Oswald;
+  font-family: Mukta;
+  font-size: 1.5em !important;
   letter-spacing: 5px;
   //text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
   font-weight: bold;
+}
+
+/* login panel */
+.loginPanel {
+  height: 20em !important;
+  //background-image: linear-gradient(#4c4c4c, #323232);
+  background-color: #fff;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* login div footer */
+.loginFooter {
+  bottom: 0 !important;
+  width: 100%;
+  position: absolute !important;
+  color: #e54045 !important;
+  //text-shadow: 2px 4px 3px rgba(0,0,0,0.3);    
 }
 
 /////////////////////////////////////////
@@ -62,8 +83,16 @@ h1 {
   background-color: #fff !important;
 }
 
-.bgblack {
+.bgred {
   background-color: #f44336 !important;
+}
+
+.bgblack {
+  background-image: linear-gradient(45deg, #4c4c4c, #666, #7f7f7f);
+}
+
+.bgPrimary {
+  background-color: #3f51b5 !important;
 }
 
 
@@ -82,7 +111,6 @@ h1 {
 .fontPrimary {
   color: #3f51b5 !important;
 }
-
 
 ///////////////////////////////////////////
 //////////// Menu CSS //////////////////////
@@ -127,7 +155,7 @@ h1 {
 
 .active a {
   //color: #B93632;
-  color: #FF6347;
+  color: #e54045;
   //border-left:5px solid #B93632;
   border-left: 5px solid #FF6347;
   background-color: #1B1B1B;
@@ -148,7 +176,6 @@ h1 {
   font-size: 1.5em;
   transition: all 0.3s linear;
 }
-
 
 /////////////////////////////////////////
 //////////// Borders Styles /////////////
@@ -174,88 +201,11 @@ h1 {
   border-right: 1px solid #e5e5e5 !important;
 }
 
-///////////////////////////////////////////
-/////////////// BOxes ///////////////////// 
-///////////////////////////////////////////
-.bg-pink {
-  background-color: #E91E63 !important;
-  color: #fff;
-
-}
-
-.bg-pink .content .text,
-.bg-pink .content .number {
-  color: #fff !important;
-}
-
-.bg-cyan {
-  background-color: #00BCD4 !important;
-  color: #fff;
-}
-
-.bg-cyan .content .text,
-.bg-cyan .content .number {
-  color: #fff !important;
-}
-
-.bg-light-green {
-  background-color: #8BC34A !important;
-  color: #fff;
-}
-
-.bg-light-green .content .text,
-.bg-light-green .content .number {
-  color: #fff !important;
-}
-
-.bg-orange {
-  background-color: #FF9800 !important;
-  color: #fff;
-
-}
-
-.bg-orange .content .text,
-.bg-orange .content .number {
-  color: #fff !important;
-
-}
-
-.bg-pink {
-  background-color: #E91E63 !important;
-  color: #fff;
-
-}
-
-.bg-pink .content .text,
-.bg-pink .content .number {
-  color: #fff !important;
-
-}
-
-.bg-indigo {
-  background-color: #3F51B5 !important;
-  color: #fff;
-}
-
-.bg-indigo .content .text,
-.bg-indigo .content .number {
-  color: #fff !important;
-}
-
-.bg-orchid {
-  background-color: #BA55D3 !important;
-  color: #fff;
-}
-
-.bg-orchid .content .text,
-.bg-orchid .content .number {
-  color: #fff !important;
-}
 
 ///////////////////////////////////////////
 //////////// Shadows //////////////////////
 ///////////////////////////////////////////
-boxShadow {
+.boxShadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
@@ -278,27 +228,280 @@ boxShadow {
     0 5px 15px 0 rgba(0, 0, 0, 0.08) !important;
 }
 
+.box h3 {
+  text-align: center;
+  position: relative;
+  top: 80px;
+}
+
+.box {
+  width: 80%;
+  //height:200px;
+  background: #fff;
+  margin: 40px auto;
+}
+
+/*==================================================
+* Effect 1
+* ===============================================*/
+.effect1 {
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+}
+
+/*==================================================
+* Effect 2
+* ===============================================*/
+.effect2 {
+  position: relative;
+}
+
+.effect2:before,
+.effect2:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width: 300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.effect2:after {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+/*==================================================
+* Effect 3
+* ===============================================*/
+.effect3 {
+  position: relative;
+}
+
+.effect3:before {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width: 300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+/*==================================================
+* Effect 4
+* ===============================================*/
+.effect4 {
+  position: relative;
+}
+
+.effect4:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  right: 10px;
+  left: auto;
+  width: 50%;
+  top: 80%;
+  max-width: 300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+/*==================================================
+* Effect 5
+* ===============================================*/
+.effect5 {
+  position: relative;
+}
+
+.effect5:before,
+.effect5:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 25px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width: 300px;
+  background: #777;
+  -webkit-box-shadow: 0 35px 20px #777;
+  -moz-box-shadow: 0 35px 20px #777;
+  box-shadow: 0 35px 20px #777;
+  -webkit-transform: rotate(-8deg);
+  -moz-transform: rotate(-8deg);
+  -o-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+}
+
+.effect5:after {
+  -webkit-transform: rotate(8deg);
+  -moz-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  right: 10px;
+  left: auto;
+}
+
+/*==================================================
+* Effect 6
+* ===============================================*/
+.effect6 {
+  position: relative;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.effect6:before,
+.effect6:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  top: 50%;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  -moz-border-radius: 100px / 10px;
+  border-radius: 100px / 10px;
+}
+
+.effect6:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: skew(8deg) rotate(3deg);
+  -moz-transform: skew(8deg) rotate(3deg);
+  -ms-transform: skew(8deg) rotate(3deg);
+  -o-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
+}
+
+/*==================================================
+   * Effect 7
+   * ===============================================*/
+.effect7 {
+  position: relative;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.effect7:before,
+.effect7:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  -moz-border-radius: 100px / 10px;
+  border-radius: 100px / 10px;
+}
+
+.effect7:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: skew(8deg) rotate(3deg);
+  -moz-transform: skew(8deg) rotate(3deg);
+  -ms-transform: skew(8deg) rotate(3deg);
+  -o-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
+}
+
+/*==================================================
+* Effect 8
+* ===============================================*/
+.effect8 {
+  position: relative;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.effect8:before,
+.effect8:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  -moz-border-radius: 100px / 10px;
+  border-radius: 100px / 10px;
+}
+
+.effect8:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: skew(8deg) rotate(3deg);
+  -moz-transform: skew(8deg) rotate(3deg);
+  -ms-transform: skew(8deg) rotate(3deg);
+  -o-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
+}
+
+///////////////////////////////////////////
+//////////// Cursor Pointer //////////////////////
+///////////////////////////////////////////
+.cursorPointer {
+  cursor: pointer;
+}
+
+
 /* Common CSS End   */
 
 
 .modal {
   z-index: 999999 !important;
-}
-
-/* login panel */
-.loginPanel {
-  height: 35em !important;
-  //background-image: linear-gradient(#4c4c4c, #323232);
-  background-color: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-/* login div footer */
-.loginFooter {
-  bottom: 0 !important;
-  width: 100%;
-  position: absolute !important;
-  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* 100% width*/
@@ -336,8 +539,8 @@ boxShadow {
   font-family: Mukta;
   //background-color: #4c4c4c !important;
   border-bottom: 1px solid #666;
-  padding-top: 0.8em !important;
-  padding-bottom: 0.7em !important;
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important;
 }
 
 /* Dashboard CSS Start (Adnan) */
@@ -521,31 +724,523 @@ boxShadow {
   display: none;
 }
 
+////////////////////////////////////////////
+////////////// Dashboard Boxes /////////////
+////////////////////////////////////////////
+/**************** Info Box ******************/
+.bg-pink {
+  background-color: #E91E63 !important;
+  color: #fff;
 
-
-
-//////////////////////////////////////////
-////// organization chart style css /////
-////////////////////////////////////////
-
-.oc-border {
-  border: 1px solid dodgerblue;
 }
 
-.oc-background {
-  background-color: transparent;
+.bg-pink .content .text,
+.bg-pink .content .number {
+  color: #fff !important;
 }
 
-.oc-name {
-  font-family: serif;
-  white-space: nowrap;
+.bg-cyan {
+  background-color: #00BCD4 !important;
+  color: #fff;
 }
 
-.oc-designation {
-  font-family: sans-serif;
-  font-style: italic;
-  white-space: nowrap;
+.bg-cyan .content .text,
+.bg-cyan .content .number {
+  color: #fff !important;
 }
+
+.bg-light-green {
+  background-color: #8BC34A !important;
+  color: #fff;
+}
+
+.bg-light-green .content .text,
+.bg-light-green .content .number {
+  color: #fff !important;
+}
+
+.bg-orange {
+  background-color: #FF9800 !important;
+  color: #fff;
+
+}
+
+.bg-orange .content .text,
+.bg-orange .content .number {
+  color: #fff !important;
+
+}
+
+.bg-pink {
+  background-color: #E91E63 !important;
+  color: #fff;
+
+}
+
+.bg-pink .content .text,
+.bg-pink .content .number {
+  color: #fff !important;
+
+}
+
+.bg-indigo {
+  background-color: #3F51B5 !important;
+  color: #fff;
+}
+
+.bg-indigo .content .text,
+.bg-indigo .content .number {
+  color: #fff !important;
+}
+
+.bg-orchid {
+  background-color: #BA55D3 !important;
+  color: #fff;
+}
+
+.bg-orchid .content .text,
+.bg-orchid .content .number {
+  color: #fff !important;
+}
+
+/* Infobox ===================================== */
+.info-box {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  display: flex;
+  cursor: default;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.info-box .icon {
+  display: inline-block;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.12);
+  width: 80px;
+}
+
+.info-box .icon i {
+  color: #fff;
+  font-size: 50px;
+  line-height: 80px;
+}
+
+.info-box .icon .chart.chart-bar {
+  height: 100%;
+  line-height: 100px;
+}
+
+.info-box .icon .chart.chart-bar canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box .icon .chart.chart-pie {
+  height: 100%;
+  line-height: 123px;
+}
+
+.info-box .icon .chart.chart-pie canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box .icon .chart.chart-line {
+  height: 100%;
+  line-height: 115px;
+}
+
+.info-box .icon .chart.chart-line canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box .content {
+  display: inline-block;
+  padding: 7px 10px;
+}
+
+.info-box .content .text {
+  font-size: 13px;
+  margin-top: 11px;
+  color: #555;
+}
+
+.info-box .content .number {
+  font-weight: normal;
+  font-size: 26px;
+  margin-top: -4px;
+  color: #555;
+}
+
+.info-box.hover-zoom-effect .icon {
+  overflow: hidden;
+}
+
+.info-box.hover-zoom-effect .icon i {
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.info-box.hover-zoom-effect:hover .icon i {
+  opacity: 0.4;
+  -moz-transform: rotate(-32deg) scale(1.4);
+  -ms-transform: rotate(-32deg) scale(1.4);
+  -o-transform: rotate(-32deg) scale(1.4);
+  -webkit-transform: rotate(-32deg) scale(1.4);
+  transform: rotate(-32deg) scale(1.4);
+}
+
+.info-box.hover-expand-effect:after {
+  background-color: rgba(0, 0, 0, 0.05);
+  content: ".";
+  position: absolute;
+  left: 80px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  color: transparent;
+  -moz-transition: all 0.95s;
+  -o-transition: all 0.95s;
+  -webkit-transition: all 0.95s;
+  transition: all 0.95s;
+}
+
+.info-box.hover-expand-effect:hover:after {
+  width: 100%;
+}
+
+.info-box-2 {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  display: flex;
+  cursor: default;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.info-box-2 .icon {
+  display: inline-block;
+  text-align: center;
+  width: 80px;
+}
+
+.info-box-2 .icon i {
+  color: #fff;
+  font-size: 50px;
+  line-height: 80px;
+}
+
+.info-box-2 .chart.chart-bar {
+  height: 100%;
+  line-height: 105px;
+}
+
+.info-box-2 .chart.chart-bar canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-2 .chart.chart-pie {
+  height: 100%;
+  line-height: 123px;
+}
+
+.info-box-2 .chart.chart-pie canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-2 .chart.chart-line {
+  height: 100%;
+  line-height: 115px;
+}
+
+.info-box-2 .chart.chart-line canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-2 .content {
+  display: inline-block;
+  padding: 7px 10px;
+}
+
+.info-box-2 .content .text {
+  font-size: 13px;
+  margin-top: 11px;
+  color: #555;
+}
+
+.info-box-2 .content .number {
+  font-weight: normal;
+  font-size: 26px;
+  margin-top: -4px;
+  color: #555;
+}
+
+.info-box-2.hover-zoom-effect .icon {
+  overflow: hidden;
+}
+
+.info-box-2.hover-zoom-effect .icon i {
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.info-box-2.hover-zoom-effect:hover .icon i {
+  opacity: 0.4;
+  -moz-transform: rotate(-32deg) scale(1.4);
+  -ms-transform: rotate(-32deg) scale(1.4);
+  -o-transform: rotate(-32deg) scale(1.4);
+  -webkit-transform: rotate(-32deg) scale(1.4);
+  transform: rotate(-32deg) scale(1.4);
+}
+
+.info-box-2.hover-expand-effect:after {
+  background-color: rgba(0, 0, 0, 0.05);
+  content: ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  color: transparent;
+  -moz-transition: all 0.95s;
+  -o-transition: all 0.95s;
+  -webkit-transition: all 0.95s;
+  transition: all 0.95s;
+}
+
+.info-box-2.hover-expand-effect:hover:after {
+  width: 100%;
+}
+
+.info-box-3 {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  display: flex;
+  cursor: default;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.info-box-3 .icon {
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  text-align: center;
+}
+
+.info-box-3 .icon i {
+  color: rgba(0, 0, 0, 0.15);
+  font-size: 60px;
+}
+
+.info-box-3 .chart {
+  margin-right: 5px;
+}
+
+.info-box-3 .chart.chart-bar {
+  height: 100%;
+  line-height: 50px;
+}
+
+.info-box-3 .chart.chart-bar canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-3 .chart.chart-pie {
+  height: 100%;
+  line-height: 34px;
+}
+
+.info-box-3 .chart.chart-pie canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-3 .chart.chart-line {
+  height: 100%;
+  line-height: 40px;
+}
+
+.info-box-3 .chart.chart-line canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-3 .content {
+  display: inline-block;
+  padding: 7px 16px;
+}
+
+.info-box-3 .content .text {
+  font-size: 13px;
+  margin-top: 11px;
+  color: #555;
+}
+
+.info-box-3 .content .number {
+  font-weight: normal;
+  font-size: 26px;
+  margin-top: -4px;
+  color: #555;
+}
+
+.info-box-3.hover-zoom-effect .icon i {
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.info-box-3.hover-zoom-effect:hover .icon i {
+  opacity: 0.4;
+  -moz-transform: rotate(-32deg) scale(1.4);
+  -ms-transform: rotate(-32deg) scale(1.4);
+  -o-transform: rotate(-32deg) scale(1.4);
+  -webkit-transform: rotate(-32deg) scale(1.4);
+  transform: rotate(-32deg) scale(1.4);
+}
+
+.info-box-3.hover-expand-effect:after {
+  background-color: rgba(0, 0, 0, 0.05);
+  content: ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  color: transparent;
+  -moz-transition: all 0.95s;
+  -o-transition: all 0.95s;
+  -webkit-transition: all 0.95s;
+  transition: all 0.95s;
+}
+
+.info-box-3.hover-expand-effect:hover:after {
+  width: 100%;
+}
+
+.info-box-4 {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  display: flex;
+  cursor: default;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.info-box-4 .icon {
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  text-align: center;
+}
+
+.info-box-4 .icon i {
+  color: rgba(0, 0, 0, 0.15);
+  font-size: 60px;
+}
+
+.info-box-4 .chart {
+  margin-right: 5px;
+}
+
+.info-box-4 .chart.chart-bar {
+  height: 100%;
+  line-height: 50px;
+}
+
+.info-box-4 .chart.chart-bar canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-4 .chart.chart-pie {
+  height: 100%;
+  line-height: 34px;
+}
+
+.info-box-4 .chart.chart-pie canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-4 .chart.chart-line {
+  height: 100%;
+  line-height: 40px;
+}
+
+.info-box-4 .chart.chart-line canvas {
+  vertical-align: baseline !important;
+}
+
+.info-box-4 .content {
+  display: inline-block;
+  padding: 7px 16px;
+}
+
+.info-box-4 .content .text {
+  font-size: 13px;
+  margin-top: 11px;
+  color: #555;
+}
+
+.info-box-4 .content .number {
+  font-weight: normal;
+  font-size: 26px;
+  margin-top: -4px;
+  color: #555;
+}
+
+.info-box-4.hover-zoom-effect .icon i {
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.info-box-4.hover-zoom-effect:hover .icon i {
+  opacity: 0.4;
+  -moz-transform: rotate(-32deg) scale(1.4);
+  -ms-transform: rotate(-32deg) scale(1.4);
+  -o-transform: rotate(-32deg) scale(1.4);
+  -webkit-transform: rotate(-32deg) scale(1.4);
+  transform: rotate(-32deg) scale(1.4);
+}
+
+.info-box-4.hover-expand-effect:after {
+  background-color: rgba(0, 0, 0, 0.05);
+  content: ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  color: transparent;
+  -moz-transition: all 0.95s;
+  -o-transition: all 0.95s;
+  -webkit-transition: all 0.95s;
+  transition: all 0.95s;
+}
+
+.info-box-4.hover-expand-effect:hover:after {
+  width: 100%;
+}
+
+.mainContent {
+  padding-left: 2.0em;
+  padding-right: 2.0em;
+
+}
+
+/*************** end info-box ******************/
+
 
 //********************** Css for order by pipe ***********
 thead th {
