@@ -105,7 +105,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let branch of branches | search:'branId,branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class="d-flex"
+          *ngFor="let branch of branches | search:'branId,branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{branch.branTitle}}</td>
           <td class="col-2 text-left">{{branch.branAddress}}</td>
@@ -114,10 +115,10 @@
           <td class="col-2 text-center">{{branch.branEmail}}</td>
           <td class="col-1 text-left">{{branch.branMobile}}</td>
           <!-- <td class="col-1 text-left">{{branch.branWebsite}}</td> -->
-          <td class="col-1 text-right"><span data-toggle="modal" data-target="#branchModal" class="pointerCursor fa fa-edit text-primary"
-              (click)="edit(branch)"></span></td>
-          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"
-              (click)="deleteTemp(branch)"></span></td>
+          <td class="col-1 text-right"><span data-toggle="modal" data-target="#branchModal"
+              class="pointerCursor fa fa-edit text-primary" (click)="edit(branch)"></span></td>
+          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal"
+              class="pointerCursor fa fa-trash text-danger" (click)="deleteTemp(branch)"></span></td>
         </tr>
       </tbody>
     </table>
@@ -146,7 +147,8 @@
 <!-- Table Section Ends -->
 
 <!-- Hidden Table Starts for Excel and CSV files -->
-<igx-grid #exportDataContent [data]="branches" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<igx-grid #exportDataContent [data]="branches" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
 <!-- Hidden Table Ends  for Excel and CSV files -->
 
 <!-- Hidden Table for Print and PDF files starts-->
@@ -186,7 +188,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="d-flex" *ngFor="let branch of branches | search:'branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch  let i=index">
+          <tr class="d-flex"
+            *ngFor="let branch of branches | search:'branTitle,branAddress,ctyName,branPhone,branEmail,branMobile':tblSearch  let i=index">
             <td class="col-1 text-center">{{i+1}}</td>
             <td class="col-2 text-left">{{branch.branTitle}}</td>
             <td class="col-2 text-left">{{branch.branAddress}}</td>
@@ -253,7 +256,8 @@
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <button mat-fab color="primary" data-toggle="modal" data-target="#cityModal"><span class="fa fa-plus"></span></button>
+            <button mat-fab color="primary" data-toggle="modal" data-target="#cityModal"><span
+                class="fa fa-plus"></span></button>
           </div>
         </div>
         <!--end 3rd row-->
