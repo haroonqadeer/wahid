@@ -11,61 +11,56 @@
 </div>
 <br />
 <!--start company dashboard container without white background and borders-->
-<!-- containter -->
+<!-- container -->
 <div class="container">
-  <!-- mat-card -->
-  <mat-card>
-    <div class="row">
-      <!--start company select box column-->
-      <div class="col-md-4">
-        <mat-form-field>
-          <mat-select placeholder="Company Name" [(ngModel)]="cmbCompany" required>
-            <mat-option *ngFor="  let company of companies" [value]="company.cId">
-              {{ company.cName }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <!--end company select box column-->
-
-      <!-- Menu bar -->
-      <div class="col-md-1">
-        <button mat-raised-button color="warn" [matMenuTriggerFor]="menu" class="noneOutLine">
-          Options
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item data-toggle="modal" data-target="#companyModal" class="noneOutLine">
-            <span class="fa fa-window-restore"></span>&nbsp;&nbsp;
-            <span>New Company</span>
-          </button>
-          <button mat-menu-item data-toggle="modal" data-target="#HQModal" class='noneOutLine'>
-            <span class="fa fa-building"></span>&nbsp;&nbsp;
-            <span>Head Quarter</span>
-          </button>
-          <button mat-menu-item data-toggle="modal" data-target="#branchModal" class='noneOutLine'>
-            <span class="fa fa-server"></span>&nbsp;&nbsp;
-            <span>New Branch</span>
-          </button>
-          <button mat-menu-item data-toggle="modal" data-target="#departmentModal" class='noneOutLine'>
-            <span class="fa fa-link"></span>&nbsp;&nbsp;
-            <span>Add Department</span>
-          </button>
-          <button mat-menu-item data-toggle="modal" data-target="#sectionModal" class='noneOutLine'>
-            <span class="fa fa-puzzle-piece"></span>&nbsp;&nbsp;
-            <span>Add Section</span>
-          </button>
-          <button mat-menu-item data-toggle="modal" data-target="#subsidiaryModal" class='noneOutLine'>
-            <span class="fa fa-stack-overflow"></span>&nbsp;&nbsp;
-            <span>New Subsidiaries</span>
-          </button>
-          <button mat-menu-item data-toggle="modal" data-target="#currencyModal" class='noneOutLine'>
-            <span class="fa fa-money"></span>&nbsp;&nbsp;
-            <span>New Currency</span>
-          </button>
-        </mat-menu>
+  <!-- box row -->
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-pink hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-window-restore"></i>
+        </div>
+        <div class="content">
+          <div class="text">Companies</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">12</div>
+        </div>
       </div>
     </div>
-  </mat-card><!-- end mat-card -->
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-cyan hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-link"></i>
+        </div>
+        <div class="content">
+          <div class="text">Department</div>
+          <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">5</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-light-green hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-server"></i>
+        </div>
+        <div class="content">
+          <div class="text">Branch</div>
+          <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">1</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-indigo hover-expand-effect">
+        <div class="icon">
+          <i class="fa fa-stack-overflow"></i>
+        </div>
+        <div class="content">
+          <div class="text">Subsidiaries</div>
+          <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">1</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end box row -->
+
 </div><!-- end container -->
 
 <br>
