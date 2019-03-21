@@ -25,14 +25,16 @@ declare var $: any;
 export interface Partner {
     cnic: string;
     ntn: string;
-    partnerName: string;
-    partnerRole: string;
-    date: Date;
-    share: string;
+    name: string;
     telephone: string;
     mobile: string;
     email: string;
     address: string;
+    role: string;
+    date: Date;
+    share: string;
+    position: string;
+
 }
 
 @Component({
@@ -369,8 +371,15 @@ export class CompanyComponent implements OnInit {
             this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
             return false;
         } else {
+
+
+
+
             this.toastr.successToastr('validation complete information', 'Error', { toastTimeout: (2500) });
             return false;
+
+
+
         }
 
 
@@ -429,14 +438,15 @@ export class CompanyComponent implements OnInit {
                 this.partners.push({
                     cnic: this.pCnic,
                     ntn: this.pNtn,
-                    partnerName: this.pPartnerName,
-                    partnerRole: this.pPartnerRole,
-                    date: new Date(this.pDate),
-                    share: this.pShare,
+                    name: this.pPartnerName,
                     telephone: this.pTelephone,
                     mobile: this.pMobile,
                     email: this.pEmail,
-                    address: this.pAddress
+                    address: this.pAddress,
+                    role: this.pPartnerRole,
+                    date: new Date(this.pDate),
+                    share: this.pShare,
+                    position: null
                 });
 
                 this.clearPartner();
