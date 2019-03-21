@@ -25,14 +25,14 @@ declare var $: any;
 export interface Partner {
     cnic: string;
     ntn: string;
-    partnerName: string;
-    partnerRole: string;
-    date: Date;
-    share: string;
+    name: string;
     telephone: string;
     mobile: string;
     email: string;
     address: string;
+    role: string;
+    date: Date;
+    share: string;
     position: string;
 }
 
@@ -379,8 +379,8 @@ export class CompanyComponent implements OnInit {
                     this.partners.push({
                         cnic: this.sCnic,
                         ntn: this.sNtn,
-                        partnerName: this.sOwnerName,
-                        partnerRole: null,
+                        name: this.sOwnerName,
+                        role: null,
                         date: null,
                         share: null,
                         telephone: this.sTelephoneNo,
@@ -395,8 +395,8 @@ export class CompanyComponent implements OnInit {
                     this.partners.push({
                         cnic: this.ppCnic,
                         ntn: this.ppNtn,
-                        partnerName: this.ppDirectorName,
-                        partnerRole: null,
+                        name: this.ppDirectorName,
+                        role: null,
                         date: null,
                         share: this.ppShare,
                         telephone: this.ppTelephone,
@@ -441,8 +441,8 @@ export class CompanyComponent implements OnInit {
                     this.partners.push({
                         cnic: this.sCnic,
                         ntn: this.sNtn,
-                        partnerName: this.sOwnerName,
-                        partnerRole: null,
+                        name: this.sOwnerName,
+                        role: null,
                         date: null,
                         share: null,
                         telephone: this.sTelephoneNo,
@@ -457,8 +457,8 @@ export class CompanyComponent implements OnInit {
                     this.partners.push({
                         cnic: this.ppCnic,
                         ntn: this.ppNtn,
-                        partnerName: this.ppDirectorName,
-                        partnerRole: null,
+                        name: this.ppDirectorName,
+                        role: null,
                         date: null,
                         share: this.ppShare,
                         telephone: this.ppTelephone,
@@ -553,14 +553,14 @@ export class CompanyComponent implements OnInit {
                 this.partners.push({
                     cnic: this.pCnic,
                     ntn: this.pNtn,
-                    partnerName: this.pPartnerName,
-                    partnerRole: this.pPartnerRole,
-                    date: new Date(this.pDate),
-                    share: this.pShare,
+                    name: this.pPartnerName,
                     telephone: this.pTelephone,
                     mobile: this.pMobile,
                     email: this.pEmail,
                     address: this.pAddress,
+                    role: this.pPartnerRole,
+                    date: new Date(this.pDate),
+                    share: this.pShare,
                     position: null
                 });
 
