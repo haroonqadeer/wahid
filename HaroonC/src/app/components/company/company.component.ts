@@ -33,6 +33,7 @@ export interface Partner {
     mobile: string;
     email: string;
     address: string;
+    position: string;
 }
 
 @Component({
@@ -272,10 +273,12 @@ export class CompanyComponent implements OnInit {
         if (this.cmbCType == '') {
             this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
+        }
+        else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
             this.toastr.errorToastr('Please enter owner CNIC', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
+        }
+        else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
             this.toastr.errorToastr('Please enter owner NTN', 'Error', { toastTimeout: (2500) });
             return false;
         } else if (this.solePro == true && this.sOwnerName == '') {
@@ -368,12 +371,133 @@ export class CompanyComponent implements OnInit {
         } else if (this.bFacebook == '') {
             this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
             return false;
-        } else {
-            this.toastr.successToastr('validation complete information', 'Error', { toastTimeout: (2500) });
-            return false;
         }
+        else {
+            if (this.companyId != '') {
+                if (this.cmbCType == "Sole Proprietorship") {
 
+                    this.partners.push({
+                        cnic: this.sCnic,
+                        ntn: this.sNtn,
+                        partnerName: this.sOwnerName,
+                        partnerRole: null,
+                        date: null,
+                        share: null,
+                        telephone: this.sTelephoneNo,
+                        mobile: this.sMobileNo,
+                        email: this.sEmail,
+                        address: this.sAddress,
+                        position: null
+                    });
+                }
+                else if (this.cmbCType == "Public Limited Company" || this.cmbCType == "Private Limited Company") {
 
+                    this.partners.push({
+                        cnic: this.ppCnic,
+                        ntn: this.ppNtn,
+                        partnerName: this.ppDirectorName,
+                        partnerRole: null,
+                        date: null,
+                        share: this.ppShare,
+                        telephone: this.ppTelephone,
+                        mobile: this.ppMobile,
+                        email: this.ppEmail,
+                        address: this.ppAddress,
+                        position: this.ppPosition
+                    });
+                }
+
+                this.showSpinner();
+                this.hideSpinner();
+                this.toastr.successToastr('update successfully', 'Success', { toastTimeout: (2500) });
+                this.clear(this.companyId);
+                return false;
+
+                var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
+
+                var token = localStorage.getItem(this.tokenKey);
+
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+                this.http.put(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+                    if (data.msg != undefined) {
+                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        return false;
+                    } else {
+                        this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+                        $('#actionModal').modal('hide');
+                        return false;
+                    }
+
+                });
+
+                // this.toastr.successToastr('validation complete information', 'Success!', { toastTimeout: (2500) });
+                // return false;
+            }
+            else {
+                if (this.cmbCType == "Sole Proprietorship") {
+
+                    this.partners.push({
+                        cnic: this.sCnic,
+                        ntn: this.sNtn,
+                        partnerName: this.sOwnerName,
+                        partnerRole: null,
+                        date: null,
+                        share: null,
+                        telephone: this.sTelephoneNo,
+                        mobile: this.sMobileNo,
+                        email: this.sEmail,
+                        address: this.sAddress,
+                        position: null
+                    });
+                }
+                else if (this.cmbCType == "Public Limited Company" || this.cmbCType == "Private Limited Company") {
+
+                    this.partners.push({
+                        cnic: this.ppCnic,
+                        ntn: this.ppNtn,
+                        partnerName: this.ppDirectorName,
+                        partnerRole: null,
+                        date: null,
+                        share: this.ppShare,
+                        telephone: this.ppTelephone,
+                        mobile: this.ppMobile,
+                        email: this.ppEmail,
+                        address: this.ppAddress,
+                        position: this.ppPosition
+                    });
+                }
+
+                this.showSpinner();
+                this.hideSpinner();
+                this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
+                this.clear(this.companyId);
+                return false;
+
+                var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
+
+                var token = localStorage.getItem(this.tokenKey);
+
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+                this.http.put(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+                    if (data.msg != undefined) {
+                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        return false;
+                    } else {
+                        this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+                        $('#actionModal').modal('hide');
+                        return false;
+                    }
+
+                });
+
+                // this.toastr.successToastr('validation complete information', 'Success!', { toastTimeout: (2500) });
+                // return false;
+            }
+        }
     }
 
     //* Function for add new partner for company 
@@ -436,13 +560,13 @@ export class CompanyComponent implements OnInit {
                     telephone: this.pTelephone,
                     mobile: this.pMobile,
                     email: this.pEmail,
-                    address: this.pAddress
+                    address: this.pAddress,
+                    position: null
                 });
 
                 this.clearPartner();
 
             }
-
         }
     }
 

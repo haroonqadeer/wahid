@@ -117,7 +117,7 @@ export class CurrencyComponent implements OnInit {
             if (this.currencyId != '') {
                 this.showSpinner();
                 this.hideSpinner();
-                this.toastr.successToastr('updated successfully', 'Error', { toastTimeout: (2500) });
+                this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
 
