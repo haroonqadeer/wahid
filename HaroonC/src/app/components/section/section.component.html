@@ -22,7 +22,7 @@
       <i class="fa fa-file-pdf-o"></i>
       PDF
     </a>
-    <a class="pointerCursor"  (click)="downloadCSV()">
+    <a class="pointerCursor" (click)="downloadCSV()">
       <i class="fa fa-file-text-o"></i>
       CSV
     </a>
@@ -89,16 +89,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of sectionDetail | search:'HeadQuarter,Department,Section' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+        <tr
+          *ngFor="let item of sectionDetail | search:'HeadQuarter,Department,Section' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
           class='d-flex'>
           <td class="col-1 text-center">{{i + 1}}</td>
           <td class="col-3">{{item.HeadQuarter}}</td>
           <td class="col-3">{{item.Department}}</td>
           <td class="col-3">{{item.Section}}</td>
           <td class="col-2 text-center">
-            <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#sectModal" (click)="edit(item)"></span>
+            <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#sectModal"
+              (click)="edit(item)"></span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
+            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal"
+              (click)="deleteTemp(item)"></span>
           </td>
         </tr>
       </tbody>
@@ -130,7 +133,8 @@
 <!-- End Section Table Container -->
 
 <!-- Hidden Table Starts for Excel and CSV files -->
-<igx-grid #exportDataContent [data]="sectionDetail" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
 <!-- Hidden Table Ends  for Excel and CSV files -->
 
 <!-- Hidden Table for Print and PDF files starts-->
@@ -167,7 +171,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of sectionDetail | search:'HeadQuarter,Department,Section' :tblSearch let i=index" class='d-flex'>
+          <tr *ngFor="let item of sectionDetail | search:'HeadQuarter,Department,Section' :tblSearch let i=index"
+            class='d-flex'>
             <td class="col-1 text-center">{{i + 1}}</td>
             <td class="col-3">{{item.HeadQuarter}}</td>
             <td class="col-3">{{item.Department}}</td>
@@ -261,7 +266,8 @@
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
               <mat-select placeholder="Department" [(ngModel)]="cmbDepartment">
-                <mat-option *ngFor="let item of departments" [value]="item.departmentId">{{item.departmentName}}</mat-option>
+                <mat-option *ngFor="let item of departments" [value]="item.departmentId">{{item.departmentName}}
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -282,7 +288,8 @@
           </div>
 
           <div class="col-md-2">
-            <button mat-fab class='noneOutLine' data-toggle="modal" data-target="#sectionModal"><span class="fa fa-plus"></span></button>
+            <button mat-fab class='noneOutLine' data-toggle="modal" data-target="#sectionModal"><span
+                class="fa fa-plus"></span></button>
           </div>
 
         </div><!-- end row - 02 -->

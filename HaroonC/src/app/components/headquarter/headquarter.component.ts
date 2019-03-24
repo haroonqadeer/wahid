@@ -32,6 +32,9 @@ export class HeadquarterComponent implements OnInit {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
+  // list for excel data
+  excelDataList = [];
+
   //Page Models
   officeId = null;
   officeTitle = "";
@@ -205,7 +208,7 @@ export class HeadquarterComponent implements OnInit {
   ngOnInit() {
   }
 
-  @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
+  @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
   @ViewChild("exportPDF") public exportPDF: ElementRef;
 
   //To get departments Data for display in main table
@@ -492,13 +495,116 @@ export class HeadquarterComponent implements OnInit {
 
   //For CSV File 
   public downloadCSV() {
-    this.csvExportService.exportData(this.offices, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+
+    // case 1: When tblSearch is empty then assign full data list
+    if (this.tblSearch == "") {
+      var completeDataList = [];
+      for (var i = 0; i < this.offices.length; i++) {
+        //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
+        completeDataList.push({
+          officeTitle: this.offices[i].offcTitle,
+          officeAddress: this.offices[i].offcAddress,
+          officeEmail: this.offices[i].offcEmail,
+          officePhone: this.offices[i].offcPhone,
+          officeMobile: this.offices[i].offcMobile,
+          officeWebsite: this.offices[i].offcWebsite
+        });
+      }
+      this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("HeadQuarterCompleteCSV", CsvFileTypes.CSV));
+    }
+
+    // case 2: When tblSearch is not empty then assign new data list
+    else if (this.tblSearch != "") {
+      var filteredDataList = [];
+      for (var i = 0; i < this.offices.length; i++) {
+
+        if (this.offices[i].offcTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.offices[i].offcAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.offices[i].offcEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.offices[i].offcPhone.toString().includes(this.tblSearch.toString()) ||
+          this.offices[i].offcWebsite.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          filteredDataList.push({
+            officeTitle: this.offices[i].offcTitle,
+            officeAddress: this.offices[i].offcAddress,
+            officeEmail: this.offices[i].offcEmail,
+            officePhone: this.offices[i].offcPhone,
+            officeMobile: this.offices[i].offcMobile,
+            officeWebsite: this.offices[i].offcWebsite
+          });
+        }
+      }
+
+      if (filteredDataList.length > 0) {
+        this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("HeadQuarterFilterCSV", CsvFileTypes.CSV));
+      } else {
+        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+      }
+    }
   }
 
   //For Exce File
   public downloadExcel() {
-    this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+    //this.excelDataList = [];
+
+    // case 1: When tblSearch is empty then assign full data list
+    if (this.tblSearch == "") {
+      //var completeDataList = [];
+      for (var i = 0; i < this.offices.length; i++) {
+        this.excelDataList.push({
+          officeTitle: this.offices[i].offcTitle,
+          officeAddress: this.offices[i].offcAddress,
+          officeEmail: this.offices[i].offcEmail,
+          officePhone: this.offices[i].offcPhone,
+          officeMobile: this.offices[i].offcMobile,
+          officeWebsite: this.offices[i].offcWebsite
+        });
+      }
+
+      //alert("Excel length " + this.excelDataList.length);
+
+      this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("HeadQuarterCompleteExcel"));
+      this.excelDataList = [];
+
+      //alert("Excel length " + this.excelDataList.length);
+    }
+
+    // case 2: When tblSearch is not empty then assign new data list
+    else if (this.tblSearch != "") {
+
+      for (var i = 0; i < this.offices.length; i++) {
+        if (this.offices[i].offcTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.offices[i].offcAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.offices[i].offcEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.offices[i].offcPhone.toString().includes(this.tblSearch.toString()) ||
+          this.offices[i].offcWebsite.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          this.excelDataList.push({
+            officeTitle: this.offices[i].offcTitle,
+            officeAddress: this.offices[i].offcAddress,
+            officeEmail: this.offices[i].offcEmail,
+            officePhone: this.offices[i].offcPhone,
+            officeMobile: this.offices[i].offcMobile,
+            officeWebsite: this.offices[i].offcWebsite
+          });
+        }
+      }
+
+      if (this.excelDataList.length > 0) {
+
+        //alert("Filter List " + this.excelDataList.length);
+
+        this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("HeadQuarterFilterExcel"));
+        this.excelDataList = [];
+
+        //alert(" Filter List " + this.excelDataList.length);
+
+      }
+      else {
+        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+      }
+    }
+    //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
+
 
 
   // functions for Show & Hide Spinner

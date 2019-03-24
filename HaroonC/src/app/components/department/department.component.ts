@@ -16,7 +16,6 @@ import {
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-
 declare var $: any;
 @Component({
   selector: 'app-department',
@@ -31,6 +30,10 @@ export class DepartmentComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
+
+  // list for excel data
+  excelDataList = [];
+  //excelDataListFilter = [];
 
   //Page NgModels
   tblSearch = "";
@@ -219,8 +222,8 @@ export class DepartmentComponent implements OnInit {
   ngOnInit() {
   }
 
-  @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
-  @ViewChild("exportPDF") public exportPDF: ElementRef;
+  @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
+  @ViewChild("exportPDF") public exportPDF: ElementRef;//For PDF
 
 
   //To get departments
@@ -550,12 +553,92 @@ export class DepartmentComponent implements OnInit {
 
   //For CSV File 
   public downloadCSV() {
-    this.csvExportService.exportData(this.departmentsData, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+
+    // case 1: When tblSearch is empty then assign full data list
+    if (this.tblSearch == "") {
+      var completeDataList = [];
+      for (var i = 0; i < this.departmentsData.length; i++) {
+        //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
+        completeDataList.push({
+          departmentName: this.departmentsData[i].departmentName,
+          branchName: this.departmentsData[i].branchName
+        });
+      }
+      this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("DepartmentCompleteCSV", CsvFileTypes.CSV));
+    }
+
+    // case 2: When tblSearch is not empty then assign new data list
+    else if (this.tblSearch != "") {
+      var filteredDataList = [];
+      for (var i = 0; i < this.departmentsData.length; i++) {
+
+        if (this.departmentsData[i].departmentName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.departmentsData[i].branchName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          filteredDataList.push({
+            departmentName: this.departmentsData[i].departmentName,
+            branchName: this.departmentsData[i].branchName
+          });
+        }
+      }
+
+      if (filteredDataList.length > 0) {
+        this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("DepartmentFilterCSV", CsvFileTypes.CSV));
+      } else {
+        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+      }
+    }
   }
 
   //For Exce File
   public downloadExcel() {
-    this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+    //this.excelDataList = [];
+
+    // case 1: When tblSearch is empty then assign full data list
+    if (this.tblSearch == "") {
+      //var completeDataList = [];
+      for (var i = 0; i < this.departmentsData.length; i++) {
+        this.excelDataList.push({
+          departmentName: this.departmentsData[i].departmentName,
+          branchName: this.departmentsData[i].branchName
+        });
+      }
+
+      //alert("Excel length " + this.excelDataList.length);
+
+      this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("DepartmentCompleteExcel"));
+      this.excelDataList = [];
+
+      // alert("Excel length " + this.excelDataList.length);
+    }
+
+    // case 2: When tblSearch is not empty then assign new data list
+    else if (this.tblSearch != "") {
+
+      for (var i = 0; i < this.departmentsData.length; i++) {
+        if (this.departmentsData[i].departmentName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.departmentsData[i].branchName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          this.excelDataList.push({
+            departmentName: this.departmentsData[i].departmentName,
+            branchName: this.departmentsData[i].branchName
+          });
+        }
+      }
+
+      if (this.excelDataList.length > 0) {
+
+        //alert("Filter List " + this.excelDataList.length);
+
+        this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("DepartmentFilterExcel"));
+        this.excelDataList = [];
+
+        //alert(" Filter List " + this.excelDataList.length);
+
+      }
+      else {
+        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+      }
+    }
+    //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
 

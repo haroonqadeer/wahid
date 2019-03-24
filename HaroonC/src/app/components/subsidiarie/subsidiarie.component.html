@@ -14,7 +14,7 @@
       <i class="fa fa-plus-square"></i>
       Add New
     </a>
-        <a class="pointerCursor" (click)="printDiv()">
+    <a class="pointerCursor" (click)="printDiv()">
       <i class="fa fa-print"></i>
       Print
     </a>
@@ -71,17 +71,20 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1 text-center">Sr No.</th>
-          <th [class.active]="order === 'subsidiaryTitle'" (click)="setOrder('subsidiaryTitle')" class="col-3 pointerCursor">Subsidiary
+          <th [class.active]="order === 'subsidiaryTitle'" (click)="setOrder('subsidiaryTitle')"
+            class="col-3 pointerCursor">Subsidiary
             Title
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th [class.active]="order === 'subsidiaryType'" (click)="setOrder('subsidiaryType')" class="col-2 pointerCursor">
+          <th [class.active]="order === 'subsidiaryType'" (click)="setOrder('subsidiaryType')"
+            class="col-2 pointerCursor">
             Type
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th [class.active]="order === 'representator'" (click)="setOrder('representator')" class="col-2 pointerCursor">
+          <th [class.active]="order === 'representator'" (click)="setOrder('representator')"
+            class="col-2 pointerCursor">
             Representator
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
@@ -95,7 +98,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of subsidiaryDetail | search:'subsidiaryTitle,subsidiaryType,representator,cityName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+        <tr
+          *ngFor="let item of subsidiaryDetail | search:'subsidiaryTitle,subsidiaryType,representator,cityName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
           class='d-flex'>
           <td class="col-1 text-center">{{i + 1}}</td>
           <td class="col-3">{{item.subsidiaryTitle}}</td>
@@ -106,7 +110,8 @@
             <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#subsidiaryModal"
               (click)="edit(item)"></span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
+            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal"
+              (click)="deleteTemp(item)"></span>
           </td>
         </tr>
       </tbody>
@@ -139,7 +144,8 @@
 <!-- End Subsidary Table Container -->
 
 <!-- Hidden Table Starts for Excel and CSV files -->
-<igx-grid #exportDataContent [data]="subsidiaryDetail" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
 <!-- Hidden Table Ends  for Excel and CSV files -->
 
 <!-- Hidden Table for Print and PDF files starts-->
@@ -167,24 +173,30 @@
     <!--Start table Row-->
     <div class="row">
       <table>
-       <thead>
-        <tr class="d-flex">
-          <th class="col-1 text-center">Sr No.</th>
-          <th>Subsidiary Title</th>
-          <th>Type</th>
-          <th>Representator</th>
-          <th>City</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of subsidiaryDetail | search:'subsidiaryTitle,subsidiaryType,representator,cityName' :tblSearch let i=index" class='d-flex'>
-          <td class="col-1 text-center">{{i + 1}}</td>
-          <td class="col-3">{{item.subsidiaryTitle}}</td>
-          <td class="col-2">{{item.subsidiaryType}}</td>
-          <td class="col-2">{{item.representator}}</td>
-          <td class="col-2">{{item.cityName}}</td>
-        </tr>
-      </tbody>
+        <thead>
+          <tr class="d-flex">
+            <th class="col-1 text-center">Sr No.</th>
+            <th>Subsidiary Title</th>
+            <th>Type</th>
+            <th>Representator</th>
+            <th>City</th>
+            <th>Mobile</th>
+            <th>Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of subsidiaryDetail | search:'subsidiaryTitle,subsidiaryType,representator,cityName' :tblSearch let i=index"
+            class='d-flex'>
+            <td class="col-1 text-center">{{i + 1}}</td>
+            <td class="col-3">{{item.subsidiaryTitle}}</td>
+            <td class="col-2">{{item.subsidiaryType}}</td>
+            <td class="col-2">{{item.representator}}</td>
+            <td class="col-2">{{item.cityName}}</td>
+            <td class="col-2">{{item.mobile}}</td>
+            <td class="col-2">{{item.website}}</td>
+          </tr>
+        </tbody>
       </table>
     </div><!-- end table row -->
   </div>
@@ -343,7 +355,8 @@
           </div>
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="telephone" mask="000-0000000" [showMaskTyped]="true" required placeholder="Telephone">
+              <input matInput [(ngModel)]="telephone" mask="000-0000000" [showMaskTyped]="true" required
+                placeholder="Telephone">
             </mat-form-field>
           </div>
         </div>
@@ -353,7 +366,8 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="mobile" mask="0000-0000000" [showMaskTyped]="true" required placeholder="Mobile">
+              <input matInput [(ngModel)]="mobile" mask="0000-0000000" [showMaskTyped]="true" required
+                placeholder="Mobile">
             </mat-form-field>
           </div>
           <div class="col-md-6">
