@@ -1,9 +1,34 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
+import { AppComponent } from '../../app.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import {
+    IgxExcelExporterOptions,
+    IgxExcelExporterService,
+    IgxGridComponent,
+    IgxCsvExporterService,
+    IgxCsvExporterOptions,
+    CsvFileTypes
+} from "igniteui-angular";
+import * as jsPDF from 'jspdf';
+
+
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting filter Item data -------------------//
+//-------------------Getting party data -------------------//
+//-------------------Add action into database --------------------------//
+//-------------------Add new employee into database --------------------------//
+//-------------------Update employee into database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------Function for action change -----------------------------//
+//-------------------Function for send link -----------------------------//
+//-------------------For sorting the record-----------------------------//
+//----------------------------------------------------------------------------//
 
 
 declare var $: any;
@@ -22,6 +47,8 @@ export class UserprofileComponent implements OnInit {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
 
+    // list for excel data
+    excelDataList = [];
 
     chart: Chart;
     eName = '';
@@ -74,127 +101,127 @@ export class UserprofileComponent implements OnInit {
     cmbEmployee = '';
 
     userData = [
-    {
-      uId: 1,
-      uName: 'Aamir76',
-      uEmail: 'Aamir@gmail.com',
-      uRole: 'IT',
-      uSince: 'Friday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 2,
-      uName: 'Ali456676',
-      uEmail: 'Ali@gmail.com',
-      uRole: 'Finance',
-      uSince: 'Monday',
-      lastLogin: 'Friday'
-    },
-    {
-      uId: 3,
-      uName: 'Waqas445776',
-      uEmail: 'Waqas@gmail.com',
-      uRole: 'HR',
-      uSince: 'Tuesday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 4,
-      uName: 'Umair45676',
-      uEmail: 'Umair@gmail.com',
-      uRole: 'SCM',
-      uSince: 'Wednesday',
-      lastLogin: 'Thrusday'
-    },
-    {
-      uId: 5,
-      uName: 'Touseeq5676',
-      uEmail: 'Touseeq@gmail.com',
-      uRole: 'IT',
-      uSince: 'Tuesday',
-      lastLogin: 'Thrusday'
-    },
-    {
-      uId: 6,
-      uName: 'Ijaz45676',
-      uEmail: 'Ijaz@gmail.com',
-      uRole: 'Admin',
-      uSince: 'Monday',
-      lastLogin: 'Saturday'
-    },
-    {
-      uId: 7,
-      uName: 'Zain45676',
-      uEmail: 'Zain@gmail.com',
-      uRole: 'IT',
-      uSince: 'Sunday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 8,
-      uName: 'Shahrukh45676',
-      uEmail: 'Shahrukh@gmail.com',
-      uRole: 'Admin',
-      uSince: 'Saturday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 9,
-      uName: 'Osama6176',
-      uEmail: 'Osama@gmail.com',
-      uRole: 'Operations',
-      uSince: 'Friday',
-      lastLogin: 'Tuesday'
-    },
-    {
-      uId: 10,
-      uName: 'Bilal9445676',
-      uEmail: 'Bilal@gmail.com',
-      uRole: 'IT',
-      uSince: 'Wednesday',
-      lastLogin: 'Monday'
-    },
-    {
-      uId: 11,
-      uName: 'Nabeel45676',
-      uEmail: 'Nabeel@gmail.com',
-      uRole: 'IT',
-      uSince: 'Wednesday',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 12,
-      uName: 'Saad9676',
-      uEmail: 'Saad@gmail.com',
-      uRole: 'Procurement',
-      uSince: 'Employee',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 13,
-      uName: 'Zohaib676',
-      uEmail: 'Zohaib@gmail.com',
-      uRole: 'Management',
-      uSince: 'Contract',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 14,
-      uName: 'Zeeshan676',
-      uEmail: 'Zeeshan@gmail.com',
-      uRole: 'IT',
-      uSince: 'Employee',
-      lastLogin: 'Wednesday'
-    },
-    {
-      uId: 15,
-      uName: 'Arslan676',
-      uEmail: 'Arslan@gmail.com',
-      uRole: 'IT',
-      uSince: 'Permanent',
-      lastLogin: 'Wednesday'
-    },
-  ];
+        {
+            uId: 1,
+            uName: 'Aamir76',
+            uEmail: 'Aamir@gmail.com',
+            uRole: 'IT',
+            uSince: 'Friday',
+            lastLogin: 'Monday'
+        },
+        {
+            uId: 2,
+            uName: 'Ali456676',
+            uEmail: 'Ali@gmail.com',
+            uRole: 'Finance',
+            uSince: 'Monday',
+            lastLogin: 'Friday'
+        },
+        {
+            uId: 3,
+            uName: 'Waqas445776',
+            uEmail: 'Waqas@gmail.com',
+            uRole: 'HR',
+            uSince: 'Tuesday',
+            lastLogin: 'Monday'
+        },
+        {
+            uId: 4,
+            uName: 'Umair45676',
+            uEmail: 'Umair@gmail.com',
+            uRole: 'SCM',
+            uSince: 'Wednesday',
+            lastLogin: 'Thrusday'
+        },
+        {
+            uId: 5,
+            uName: 'Touseeq5676',
+            uEmail: 'Touseeq@gmail.com',
+            uRole: 'IT',
+            uSince: 'Tuesday',
+            lastLogin: 'Thrusday'
+        },
+        {
+            uId: 6,
+            uName: 'Ijaz45676',
+            uEmail: 'Ijaz@gmail.com',
+            uRole: 'Admin',
+            uSince: 'Monday',
+            lastLogin: 'Saturday'
+        },
+        {
+            uId: 7,
+            uName: 'Zain45676',
+            uEmail: 'Zain@gmail.com',
+            uRole: 'IT',
+            uSince: 'Sunday',
+            lastLogin: 'Monday'
+        },
+        {
+            uId: 8,
+            uName: 'Shahrukh45676',
+            uEmail: 'Shahrukh@gmail.com',
+            uRole: 'Admin',
+            uSince: 'Saturday',
+            lastLogin: 'Monday'
+        },
+        {
+            uId: 9,
+            uName: 'Osama6176',
+            uEmail: 'Osama@gmail.com',
+            uRole: 'Operations',
+            uSince: 'Friday',
+            lastLogin: 'Tuesday'
+        },
+        {
+            uId: 10,
+            uName: 'Bilal9445676',
+            uEmail: 'Bilal@gmail.com',
+            uRole: 'IT',
+            uSince: 'Wednesday',
+            lastLogin: 'Monday'
+        },
+        {
+            uId: 11,
+            uName: 'Nabeel45676',
+            uEmail: 'Nabeel@gmail.com',
+            uRole: 'IT',
+            uSince: 'Wednesday',
+            lastLogin: 'Wednesday'
+        },
+        {
+            uId: 12,
+            uName: 'Saad9676',
+            uEmail: 'Saad@gmail.com',
+            uRole: 'Procurement',
+            uSince: 'Employee',
+            lastLogin: 'Wednesday'
+        },
+        {
+            uId: 13,
+            uName: 'Zohaib676',
+            uEmail: 'Zohaib@gmail.com',
+            uRole: 'Management',
+            uSince: 'Contract',
+            lastLogin: 'Wednesday'
+        },
+        {
+            uId: 14,
+            uName: 'Zeeshan676',
+            uEmail: 'Zeeshan@gmail.com',
+            uRole: 'IT',
+            uSince: 'Employee',
+            lastLogin: 'Wednesday'
+        },
+        {
+            uId: 15,
+            uName: 'Arslan676',
+            uEmail: 'Arslan@gmail.com',
+            uRole: 'IT',
+            uSince: 'Permanent',
+            lastLogin: 'Wednesday'
+        },
+    ];
 
     //Action Combobox object
     actions = [
@@ -275,7 +302,12 @@ export class UserprofileComponent implements OnInit {
         }
     ];
 
-    constructor(private http: HttpClient, public toastr: ToastrManager) { }
+    constructor(private http: HttpClient,
+        private spinner: NgxSpinnerService,
+        private excelExportService: IgxExcelExporterService,
+        private csvExportService: IgxCsvExporterService,
+        private app: AppComponent,
+        public toastr: ToastrManager) { }
 
     ngOnInit() {
         this.init();
@@ -285,6 +317,9 @@ export class UserprofileComponent implements OnInit {
         // this.rdbType = 'employee';
         // this.getFilterItem(this.rdbType);
     }
+
+    @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
+    @ViewChild("exportPDF") public exportPDF: ElementRef;// for pdf
 
     //get user management chart data
     init() {
@@ -317,13 +352,355 @@ export class UserprofileComponent implements OnInit {
         });
 
         this.chart = chart;
-
     }
 
     //party list filter method 
     getFilterItem(type) {
         return this.users.filter(x => x.type == type);
     }
+
+
+    //get partys function 
+    getParty() {
+
+        var itemBackup = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + itemBackup });
+
+        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+            this.users = data
+        });
+    }
+
+
+    //bloock, delete and generate pin for user
+    saveAction() {
+        if (this.listAction == '') {
+            this.toastr.errorToastr('Please Select Action Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        } else {
+            if (this.listAction == 'Block' && this.listBlockedAction == '') {
+                //this.isLoginError = true;
+                this.toastr.errorToastr('Please Select Block Time', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else if (this.txtActionPassword == '') {
+                //this.isLoginError = true;
+                this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else if (this.txtActionPIN == '') {
+                this.toastr.errorToastr('Please Enter PIN Code', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else {
+
+                this.showSpinner();
+                this.hideSpinner();
+
+                var data = { "empId": this.userId, "action": this.listAction, "duration": this.listBlockedAction, "password": this.txtActionPassword, "pin": this.txtActionPIN };
+
+                var token = localStorage.getItem(this.tokenKey);
+
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+                return this.http.post(this.serverUrl + 'api/action', data, { headers: reqHeader }).subscribe((data: any) => {
+
+                    if (data.msg != undefined) {
+                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        return false;
+                    } else {
+                        this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                        $('#actionModal').modal('hide');
+                        return false;
+                    }
+                });
+            }
+
+        }
+    }
+
+
+    //create user name and password for party and send user name password
+    saveEmployee() {
+        if (this.rdbType == '') {
+            this.toastr.errorToastr('Please select user type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.rdbType == 'employee' || this.rdbType == 'visitor') {
+            if (this.cmbEmployee == '') {
+                this.toastr.errorToastr('Please select user', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else if (this.txtUsername.trim().length == 0) {
+                this.toastr.errorToastr('Please enter user name', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else if (this.txtPassword.trim().length == 0) {
+                this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else if (this.txtPassword != this.txtCnfrmPassword) {
+                this.toastr.errorToastr('Your password and confirmation password do not match.', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else {
+                this.showSpinner();
+                this.hideSpinner();
+
+                var data = { "partyId": this.userId };
+
+                var token = localStorage.getItem(this.tokenKey);
+
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+                this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+
+                    if (data.msg != undefined) {
+                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        return false;
+                    } else {
+                        this.toastr.successToastr('Record Inserted Successfully', 'Success!', { toastTimeout: (2500) });
+                        $('#actionModal').modal('hide');
+                        return false;
+                    }
+
+                });
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    //if you want to clear input
+    clear() {
+
+        this.userId = 0;
+        this.txtUsername = '';
+
+    }
+
+
+    //on Employee change model and action btn click 
+    edit(item, actionType) {
+
+        if (actionType == 'block') {
+
+            this.userId = item.indvdlId;
+
+        } else if (actionType == 'link') {
+
+            this.userId = item.indvdlId;
+            this.userLink = "localhost:4200?code=";
+            this.userLinkCode = btoa(this.userId + "");
+
+            this.partyEmail = item.emailAddrss;
+            this.partyFatherName = '';
+            this.partyDepartment = '';
+            this.partyBranch = '';
+            this.partyAddress = item.indvdlFirstName;
+
+            this.showLink = true;
+        }
+
+    }
+
+
+    // For Print Purpose 
+    printDiv() {
+
+        // var commonCss = ".commonCss{font-family: Arial, Helvetica, sans-serif; text-align: center; }";
+
+        // var cssHeading = ".cssHeading {font-size: 25px; font-weight: bold;}";
+        // var cssAddress = ".cssAddress {font-size: 16px; }";
+        // var cssContact = ".cssContact {font-size: 16px; }";
+
+        // var tableCss = "table {width: 100%; border-collapse: collapse;}    table thead tr th {text-align: left; font-family: Arial, Helvetica, sans-serif; font-weight: bole; border-bottom: 1px solid black; margin-left: -3px;}     table tbody tr td {font-family: Arial, Helvetica, sans-serif; border-bottom: 1px solid #ccc; margin-left: -3px; height: 33px;}";
+
+        // var printCss = commonCss + cssHeading + cssAddress + cssContact + tableCss;
+
+        var printCss = this.app.printCSS();
+
+
+        //printCss = printCss + "";
+
+        var contents = $("#printArea").html();
+
+        var frame1 = $('<iframe />');
+        frame1[0].name = "frame1";
+        frame1.css({ "position": "absolute", "top": "-1000000px" });
+        $("body").append(frame1);
+        var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+        frameDoc.document.open();
+
+        //Create a new HTML document.
+        frameDoc.document.write('<html><head><title>DIV Contents</title>' + "<style>" + printCss + "</style>");
+
+
+        //Append the external CSS file.  <link rel="stylesheet" href="../../../styles.scss" />  <link rel="stylesheet" href="../../../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        frameDoc.document.write('<style type="text/css" media="print">/*@page { size: landscape; }*/</style>');
+
+        frameDoc.document.write('</head><body>');
+
+        //Append the DIV contents.
+        frameDoc.document.write(contents);
+        frameDoc.document.write('</body></html>');
+
+        frameDoc.document.close();
+
+
+        //alert(frameDoc.document.head.innerHTML);
+        // alert(frameDoc.document.body.innerHTML);
+
+        setTimeout(function () {
+            window.frames["frame1"].focus();
+            window.frames["frame1"].print();
+            frame1.remove();
+        }, 500);
+    }
+
+
+    // For PDF Download
+    downloadPDF() {
+
+        var doc = new jsPDF("p", "pt", "A4"),
+            source = $("#printArea")[0],
+            margins = {
+                top: 75,
+                right: 30,
+                bottom: 50,
+                left: 30,
+                width: 50
+            };
+        doc.fromHTML(
+            source, // HTML string or DOM elem ref.
+            margins.left, // x coord
+            margins.top,
+            {
+                // y coord
+                width: margins.width // max width of content on PDF
+            },
+            function (dispose) {
+                // dispose: object with X, Y of the last line add to the PDF
+                //          this allow the insertion of new lines after html
+                doc.save("Test.pdf");
+            },
+            margins
+        );
+    }
+
+
+    //For CSV File 
+    public downloadCSV() {
+
+        // case 1: When tblSearch is empty then assign full data list
+        if (this.userSearch == "") {
+            var completeDataList = [];
+            for (var i = 0; i < this.userData.length; i++) {
+                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
+                completeDataList.push({
+                    userName: this.userData[i].uName,
+                    email: this.userData[i].uEmail,
+                    role: this.userData[i].uRole,
+                    userSince: this.userData[i].uSince,
+                    lastLogin: this.userData[i].lastLogin
+                });
+            }
+            this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("UserProfileCompleteCSV", CsvFileTypes.CSV));
+        }
+
+        // case 2: When tblSearch is not empty then assign new data list
+        else if (this.userSearch != "") {
+            var filteredDataList = [];
+            for (var i = 0; i < this.userData.length; i++) {
+
+                if (this.userData[i].uName.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].uEmail.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].uRole.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].uSince.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].lastLogin.toUpperCase().includes(this.userSearch.toUpperCase())) {
+                    filteredDataList.push({
+                        userName: this.userData[i].uName,
+                        email: this.userData[i].uEmail,
+                        role: this.userData[i].uRole,
+                        userSince: this.userData[i].uSince,
+                        lastLogin: this.userData[i].lastLogin
+                    });
+                }
+            }
+
+            if (filteredDataList.length > 0) {
+                this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("UserProfileFilterCSV", CsvFileTypes.CSV));
+            } else {
+                this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+            }
+        }
+    }
+
+
+    //For Exce File
+    public downloadExcel() {
+        //this.excelDataList = [];
+
+        // case 1: When tblSearch is empty then assign full data list
+        if (this.userSearch == "") {
+            //var completeDataList = [];
+            for (var i = 0; i < this.userData.length; i++) {
+                this.excelDataList.push({
+                    userName: this.userData[i].uName,
+                    email: this.userData[i].uEmail,
+                    role: this.userData[i].uRole,
+                    userSince: this.userData[i].uSince,
+                    lastLogin: this.userData[i].lastLogin
+                });
+            }
+
+            //alert("Excel length " + this.excelDataList.length);
+
+            this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserProfileCompleteExcel"));
+            this.excelDataList = [];
+
+            //alert("Excel length " + this.excelDataList.length);
+        }
+
+        // case 2: When tblSearch is not empty then assign new data list
+        else if (this.userSearch != "") {
+
+            for (var i = 0; i < this.userData.length; i++) {
+                if (this.userData[i].uName.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].uEmail.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].uRole.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].uSince.toUpperCase().includes(this.userSearch.toUpperCase()) ||
+                    this.userData[i].lastLogin.toUpperCase().includes(this.userSearch.toUpperCase())) {
+                    this.excelDataList.push({
+                        userName: this.userData[i].uName,
+                        email: this.userData[i].uEmail,
+                        role: this.userData[i].uRole,
+                        userSince: this.userData[i].uSince,
+                        lastLogin: this.userData[i].lastLogin
+                    });
+                }
+            }
+
+            if (this.excelDataList.length > 0) {
+
+                //alert("Filter List " + this.excelDataList.length);
+
+                this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserProfileFilterExcel"));
+                this.excelDataList = [];
+
+                //alert(" Filter List " + this.excelDataList.length);
+
+            }
+            else {
+                this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+            }
+        }
+        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+    }
+
 
     // On Action Change Modal Window Combo Box
     onActionChange() {
@@ -361,100 +738,6 @@ export class UserprofileComponent implements OnInit {
         }
     }
 
-    //bloock, delete and generate pin for user
-    saveAction() {
-        if (this.listAction == '') {
-            this.toastr.errorToastr('Please Select Action Type', 'Error', { toastTimeout: (2500) });
-            return false;
-        } else {
-            if (this.listAction == 'Block' && this.listBlockedAction == '') {
-                //this.isLoginError = true;
-                this.toastr.errorToastr('Please Select Block Time', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else if (this.txtActionPassword == '') {
-                //this.isLoginError = true;
-                this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else if (this.txtActionPIN == '') {
-                this.toastr.errorToastr('Please Enter PIN Code', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else {
-
-
-                var data = { "empId": this.userId, "action": this.listAction, "duration": this.listBlockedAction, "password": this.txtActionPassword, "pin": this.txtActionPIN };
-
-                var token = localStorage.getItem(this.tokenKey);
-
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-                return this.http.post(this.serverUrl + 'api/action', data, { headers: reqHeader }).subscribe((data: any) => {
-
-                    if (data.msg != undefined) {
-                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-                        return false;
-                    } else {
-                        this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
-                        $('#actionModal').modal('hide');
-                        return false;
-                    }
-                });
-            }
-
-        }
-    }
-
-    //create user name and password for party and send user name password
-    saveEmployee() {
-        if (this.rdbType == '') {
-            this.toastr.errorToastr('Please select user type', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.rdbType == 'employee' || this.rdbType == 'visitor') {
-            if (this.cmbEmployee == '') {
-                this.toastr.errorToastr('Please select user', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else if (this.txtUsername.trim().length == 0) {
-                this.toastr.errorToastr('Please enter user name', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else if (this.txtPassword.trim().length == 0) {
-                this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else if (this.txtPassword != this.txtCnfrmPassword) {
-                this.toastr.errorToastr('Your password and confirmation password do not match.', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else {
-
-                var data = { "partyId": this.userId };
-
-                var token = localStorage.getItem(this.tokenKey);
-
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-                this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
-
-                    if (data.msg != undefined) {
-                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-                        return false;
-                    } else {
-                        this.toastr.successToastr('Record Inserted Successfully', 'Success!', { toastTimeout: (2500) });
-                        $('#actionModal').modal('hide');
-                        return false;
-                    }
-
-                });
-            }
-        }
-        else {
-            return false;
-        }
-    }
 
     //create user name and password for party and send user name password
     sendLink() {
@@ -467,6 +750,8 @@ export class UserprofileComponent implements OnInit {
                 this.toastr.errorToastr('Please select user', 'Error', { toastTimeout: (2500) });
                 return false;
             } else {
+                this.showSpinner();
+                this.hideSpinner();
 
                 var data = { "partyId": this.userId };
 
@@ -493,50 +778,6 @@ export class UserprofileComponent implements OnInit {
         }
     }
 
-    //if you want to clear input
-    clear() {
-
-        this.userId = 0;
-        this.txtUsername = '';
-
-    }
-
-    //on Employee change model and action btn click 
-    edit(item, actionType) {
-
-        if (actionType == 'block') {
-
-            this.userId = item.indvdlId;
-
-        } else if (actionType == 'link') {
-
-            this.userId = item.indvdlId;
-            this.userLink = "localhost:4200?code=";
-            this.userLinkCode = btoa(this.userId + "");
-
-            this.partyEmail = item.emailAddrss;
-            this.partyFatherName = '';
-            this.partyDepartment = '';
-            this.partyBranch = '';
-            this.partyAddress = item.indvdlFirstName;
-
-            this.showLink = true;
-        }
-
-    }
-
-    //get partys function 
-    getParty() {
-
-        var itemBackup = localStorage.getItem(this.tokenKey);
-
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + itemBackup });
-
-        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
-            this.users = data
-        });
-
-    }
 
     //*function for sort table data 
     setOrder(value: string) {
@@ -547,5 +788,18 @@ export class UserprofileComponent implements OnInit {
         this.order = value;
     }
 
+
+    //*Functions for Show & Hide Spinner
+    showSpinner() {
+        this.spinner.show();
+    }
+
+
+    hideSpinner() {
+        setTimeout(() => {
+            /** spinner ends after process done*/
+            this.spinner.hide();
+        });
+    }
 }
 

@@ -29,6 +29,7 @@ import { HttpModule } from '@angular/http';
 import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.component';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatPasswordStrengthModule,
     ToastrModule.forRoot(),
     RecaptchaModule.forRoot(),
+    IgxGridModule,
+
     // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
     // Default values: `idle` is 60 (1 minutes), `timeout` is 30 (0.5 minutes) 
     // and `ping` is 15 0.25 minutes).
@@ -72,7 +75,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxSpinnerModule
   ],
 
-  providers: [],
+  providers: [IgxExcelExporterService, IgxCsvExporterService],
   bootstrap: [AppComponent],
   entryComponents: [ErpBottomSheetComponent],
 })

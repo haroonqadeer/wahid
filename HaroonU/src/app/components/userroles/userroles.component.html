@@ -3,13 +3,41 @@
 <!-- heading - row -->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">User Role</h1>
+    <h1>User Role</h1>
   </div>
 </div><!-- end - heading - row -->
 
+<!-- start menubar buttons -->
+<div class="topnav boxShadow">
+  <div class="container">
+    <a class="pointerCursor" data-toggle="modal" data-target="#userModal" (click)="clear()">
+      <i class="fa fa-plus-square"></i>
+      Add New
+    </a>
+    <a class="pointerCursor" (click)="printDiv()">
+      <i class="fa fa-print"></i>
+      Print
+    </a>
+    <a class="pointerCursor" (click)="downloadPDF()">
+      <i class="fa fa-file-pdf-o"></i>
+      PDF
+    </a>
+    <a class="pointerCursor" (click)="downloadCSV()">
+      <i class="fa fa-file-text-o"></i>
+      CSV
+    </a>
+    <a class="pointerCursor" (click)="downloadExcel()">
+      <i class="fa fa-file-excel-o"></i>
+      Excel
+    </a>
+  </div>
+</div>
+<!-- end menubar buttons -->
+
 <br>
+
 <!-- button row -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <button class="noneOutline" mat-raised-button color="warn">Print</button>
   </div>
@@ -17,7 +45,8 @@
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#userRoleModal" (click)="clear()">New
       Role</button>
   </div>
-</div><!-- end button - row -->
+</div> -->
+<!-- end button - row -->
 
 <!---------------------------------------------->
 <!---------- Try Template Code Starts ---------->
@@ -41,17 +70,20 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1 text-center ">Sr No.</th>
-          <th [class.active]="order === 'uRoleName'" (click)="setOrder('uRoleName')" class="col-3 pointerCursor text-left ">
+          <th [class.active]="order === 'uRoleName'" (click)="setOrder('uRoleName')"
+            class="col-3 pointerCursor text-left ">
             Role Name
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th [class.active]="order === 'uNoModule'" (click)="setOrder('uNoModule')" class="col-2 pointerCursor text-center">
+          <th [class.active]="order === 'uNoModule'" (click)="setOrder('uNoModule')"
+            class="col-2 pointerCursor text-center">
             No. of Modules
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th [class.active]="order === 'uNoPage'" (click)="setOrder('uNoPage')" class="col-2 pointerCursor text-center">
+          <th [class.active]="order === 'uNoPage'" (click)="setOrder('uNoPage')"
+            class="col-2 pointerCursor text-center">
             No. of Pages
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
@@ -63,14 +95,16 @@
       </thead>
       <tbody>
         <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-        <tr class='d-flex' *ngFor="let item of rolesData | search:'uRoleName,uNoModule,uNoPage':roleSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class='d-flex'
+          *ngFor="let item of rolesData | search:'uRoleName,uNoModule,uNoPage':roleSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <!-- <td class="col-1 text-center" hidden>{{item.erpRoleCd}}</td> -->
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-3 pointerCursor text-left">{{item.uRoleName}}</td>
           <td class="col-2 pointerCursor text-center">{{item.uNoModule}}</td>
           <td class="col-2 pointerCursor text-center">{{item.uNoPage}}</td>
           <td class="col-1 text-center">
-            <span class="fa fa-edit pointerCursor fontPrimary" data-toggle="modal" data-target="#userRoleModal" (click)="edit(item)"></span>
+            <span class="fa fa-edit pointerCursor fontPrimary" data-toggle="modal" data-target="#userRoleModal"
+              (click)="edit(item)"></span>
           </td>
           <td class="col-1 text-center">
             <span class="fa fa-trash pointerCursor fontPrimary" data-toggle="modal" data-target="#dUserRoleModal"
@@ -109,6 +143,62 @@
 </div>
 <!---------- Try Template Code Ends ------------>
 <!---------------------------------------------->
+
+
+<!-- Hidden Table Starts for Excel and CSV files -->
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
+<!-- Hidden Table Ends  for Excel and CSV files -->
+
+<!-- Hidden Table for Print and PDF files starts-->
+<div class="container mat-elevation-z8 printArea" id="printArea" #exportPDF [hidden]="true">
+  <div class="printDiv">
+
+    <!--Start heading table -->
+    <table>
+      <tr>
+        <td width="15%" style="border:none;">
+          <img src="../../../assets/images/logo.png" width="135px">
+        </td>
+
+        <td style="border:none;">
+          <div class="commonCss cssHeading">Logix Solutions</div>
+          <div class="commonCss cssAddress">Office #209, 2nd Floor Ahmed Plaza, Rawalpindi Road Fateh Jang.</div>
+          <div class="commonCss cssContact">Mobile: 0313-5300471, Ph. 057-2212704</div>
+        </td>
+      </tr>
+    </table>
+    <!--End heading table -->
+
+    <br /><br />
+
+    <!--Start table Row-->
+    <div class="row">
+      <table>
+        <thead>
+          <tr class="d-flex">
+            <th class="col-1 text-center">Sr. #</th>
+            <th class="col-4 text-left"> Role Name </th>
+            <th class="col-4 text-left"> No. of Modules </th>
+            <th class="col-3 text-left"> No. of Pages </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="d-flex" *ngFor="let user of rolesData | search:'uRoleName,uNoModule,uNoPage':roleSearch let
+            i=index">
+            <td class="col-1 text-center">{{i+1}}</td>
+            <td class="col-4 text-left">{{user.uRoleName}}</td>
+            <td class="col-4 text-left">{{user.uNoModule}}</td>
+            <td class="col-3 text-left">{{user.uNoPage}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- end table row -->
+  </div>
+</div>
+<!-- Hidden Table for Print and PDF files ends-->
+
+
 
 <!-- Bootstrap Modal Windows -->
 
@@ -246,7 +336,8 @@
             </thead>
             <tbody>
               <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-              <tr class='d-flex' *ngFor="let item of getFilterMenu(cmbModule) | orderBy: order: reverse: 'case-insensitive'; let i=index">
+              <tr class='d-flex'
+                *ngFor="let item of getFilterMenu(cmbModule) | orderBy: order: reverse: 'case-insensitive'; let i=index">
                 <!-- <tr class='d-flex' *ngFor="let item of employees | orderBy: order: reverse: 'case-insensitive'; let i=index"> -->
                 <!-- <td class="col-1 text-center" hidden>{{item.erpRoleCd}}</td> -->
                 <td class="col-1 text-center">{{i+1}}</td>

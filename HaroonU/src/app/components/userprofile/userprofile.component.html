@@ -1,12 +1,41 @@
+<br>
 <!-- heading row -->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">User Profiles</h1>
+    <h1>User Profiles</h1>
   </div>
 </div>
 <!-- end heading row -->
 
-<br>
+<!-- start menubar buttons -->
+<div class="topnav boxShadow">
+  <div class="container">
+    <a class="pointerCursor" data-toggle="modal" data-target="#userModal" (click)="clear()">
+      <i class="fa fa-plus-square"></i>
+      Add New
+    </a>
+    <a class="pointerCursor" (click)="printDiv()">
+      <i class="fa fa-print"></i>
+      Print
+    </a>
+    <a class="pointerCursor" (click)="downloadPDF()">
+      <i class="fa fa-file-pdf-o"></i>
+      PDF
+    </a>
+    <a class="pointerCursor" (click)="downloadCSV()">
+      <i class="fa fa-file-text-o"></i>
+      CSV
+    </a>
+    <a class="pointerCursor" (click)="downloadExcel()">
+      <i class="fa fa-file-excel-o"></i>
+      Excel
+    </a>
+  </div>
+</div>
+<!-- end menubar buttons -->
+
+<br><br>
+
 <!-- box container -->
 <div class="container">
   <div class="row">
@@ -34,15 +63,16 @@
 <br>
 
 <!--start buttons row-->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6">
     <button mat-raised-button color="warn">Print</button>
   </div>
   <div class="col-md-6 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#userModal">Add New</button>
   </div>
-</div>
+</div> -->
 <!--end buttons row-->
+
 <br>
 
 <!-- Start User Profile Container -->
@@ -85,7 +115,8 @@
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th [class.active]="order === 'lastLogin'" (click)="setOrder('lastLogin')" class="col-2 text-left pointerCursor">
+          <th [class.active]="order === 'lastLogin'" (click)="setOrder('lastLogin')"
+            class="col-2 text-left pointerCursor">
             Last Login
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
@@ -94,29 +125,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr class='d-flex' *ngFor="let emp of userData | search:'uId,uName,uEmail,uRole,uSince,lastLogin':userSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
+        <tr class='d-flex'
+          *ngFor="let emp of userData | search:'uId,uName,uEmail,uRole,uSince,lastLogin':userSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'; let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{emp.uName}}</td>
           <td class="col-2 text-left">{{emp.uEmail}}</td>
           <td class="col-1 text-left">{{emp.uRole}}</td>
           <td class="col-2 text-left">{{emp.uSince}}</td>
           <td class="col-2 text-left">{{emp.lastLogin}}</td>
-          <td class="col-2 text-center"><span class="fa fa-exclamation-circle pointerCursor fontPrimary" data-toggle="modal"
-              data-target="#actionModal"></span></td>
+          <td class="col-2 text-center"><span class="fa fa-exclamation-circle pointerCursor fontPrimary"
+              data-toggle="modal" data-target="#actionModal"></span></td>
         </tr>
-        <!-- <tr *ngFor="let item of userData | search:'indvdlFirstName,emailAddrss,type,':userSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive'"
-  class='d-flex'>
-          <td class="col-1 text-center">{{item.uid}}</td>
-          <td class="col-2">{{item.indvdlFirstName}}</td>
-          <td class="col-2">{{item.emailAddrss}}</td>
-          <td class="col-1">{{item.type}}</td>
-          <td class="col-2">udartertertte</td>
-          <td class="col-2">loginDasadaste</td>
-          <td class="col-2 text-center">
-            <span class="fa fa-exclamation-circle pointerCursor fontPrimary" data-toggle="modal" (click)="edit(item, 'block')"
-              data-target="#actionModal"></span>
-          </td>
-        </tr> -->
       </tbody>
     </table>
     <!-- Pagination Starts -->
@@ -145,6 +164,64 @@
 </div>
 <!-- End User Profile Container -->
 <br><br><br>
+
+<!-- Hidden Table Starts for Excel and CSV files -->
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
+<!-- Hidden Table Ends  for Excel and CSV files -->
+
+<!-- Hidden Table for Print and PDF files starts-->
+<div class="container mat-elevation-z8 printArea" id="printArea" #exportPDF [hidden]="true">
+  <div class="printDiv">
+
+    <!--Start heading table -->
+    <table>
+      <tr>
+        <td width="15%" style="border:none;">
+          <img src="../../../assets/images/logo.png" width="135px">
+        </td>
+
+        <td style="border:none;">
+          <div class="commonCss cssHeading">Logix Solutions</div>
+          <div class="commonCss cssAddress">Office #209, 2nd Floor Ahmed Plaza, Rawalpindi Road Fateh Jang.</div>
+          <div class="commonCss cssContact">Mobile: 0313-5300471, Ph. 057-2212704</div>
+        </td>
+      </tr>
+    </table>
+    <!--End heading table -->
+
+    <br /><br />
+
+    <!--Start table Row-->
+    <div class="row">
+      <table>
+        <thead>
+          <tr class="d-flex">
+            <th class="col-1 text-center">Sr. #</th>
+            <th class="col-2 text-left"> User Name </th>
+            <th class="col-3 text-left"> Email </th>
+            <th class="col-2 text-left"> Role </th>
+            <th class="col-2 text-left"> User Since </th>
+            <th class="col-2 text-center"> Last Login </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="d-flex"
+            *ngFor="let user of userData | search:'uName,uEmail,uRole,uSince,lastLogin':userSearch let i=index">
+            <td class="col-1 text-center">{{i+1}}</td>
+            <td class="col-2 text-left">{{user.uName}}</td>
+            <td class="col-3 text-left">{{user.uEmail}}</td>
+            <td class="col-2 text-left">{{user.uRole}}</td>
+            <td class="col-2 text-left">{{user.uSince}}</td>
+            <td class="col-2 text-center">{{user.lastLogin}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- end table row -->
+  </div>
+</div>
+<!-- Hidden Table for Print and PDF files ends-->
+
 
 <!-- Start Modal Window to add & update new user -->
 <div class="modal fade" id="userModal">
@@ -185,7 +262,8 @@
               <mat-select placeholder="Select User" [(ngModel)]="cmbEmployee" (ngModelChange)="edit($event, 'link')"
                 required>
                 <input type="text" class="form-control" [(ngModel)]="searchEmployee">
-                <mat-option *ngFor="let item of getFilterItem(rdbType) | search:'indvdlFirstName,emailAddrss':searchEmployee"
+                <mat-option
+                  *ngFor="let item of getFilterItem(rdbType) | search:'indvdlFirstName,emailAddrss':searchEmployee"
                   [value]="item">
                   <table>
                     <tr class='d-flex'>
@@ -237,7 +315,8 @@
               <label style="color:#3f51b5">Link</label>
             </div>
             <div class="col-md-4 text-left border-bottom border-left">
-              <mat-hint><a href="http://{{userLink + userLinkCode}}" target="_blank">{{userLink + userLinkCode}}</a></mat-hint>
+              <mat-hint><a href="http://{{userLink + userLinkCode}}" target="_blank">{{userLink + userLinkCode}}</a>
+              </mat-hint>
             </div>
           </div>
         </div>
@@ -247,8 +326,8 @@
         <div class="row">
           <div class="col-md-12" id="userNameEnable">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Username" type="text" [(ngModel)]="txtUsername" [disabled]="!disabledPassword"
-                required>
+              <input matInput placeholder="Username" type="text" [(ngModel)]="txtUsername"
+                [disabled]="!disabledPassword" required>
             </mat-form-field>
           </div>
         </div>
@@ -256,16 +335,16 @@
         <div class="row">
           <div class="col-md-6" id="userPassEnable">
             <mat-form-field class="example-full-width">
-              <input matInput #password placeholder="Password" type="password" [(ngModel)]="txtPassword" [disabled]="!disabledPassword"
-                required>
+              <input matInput #password placeholder="Password" type="password" [(ngModel)]="txtPassword"
+                [disabled]="!disabledPassword" required>
             </mat-form-field>
             <mat-password-strength [password]="password.value">
             </mat-password-strength>
           </div>
           <div class="col-md-6" id="userCnfrmPassEnable">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Confirm Password" type="password" [(ngModel)]="txtCnfrmPassword" [disabled]="!disabledPassword"
-                required>
+              <input matInput placeholder="Confirm Password" type="password" [(ngModel)]="txtCnfrmPassword"
+                [disabled]="!disabledPassword" required>
             </mat-form-field>
           </div>
         </div>
@@ -283,7 +362,8 @@
 
         <div class="row">
           <div class="col-md-6">
-            <button mat-raised-button color="primary" [disabled]="(disabledPassword) ? false : true" (click)="saveEmployee()">Save
+            <button mat-raised-button color="primary" [disabled]="(disabledPassword) ? false : true"
+              (click)="saveEmployee()">Save
               & Send</button>
           </div>
 
