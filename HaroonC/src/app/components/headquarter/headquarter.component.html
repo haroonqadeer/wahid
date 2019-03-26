@@ -101,7 +101,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let office of offices | search:'offcId,offcTitle,offcAddress,offcEmail,offcPhone,offcMobile,offcWebsite':tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class="d-flex"
+          *ngFor="let office of offices | search:'offcId,offcTitle,offcAddress,offcEmail,offcPhone,offcMobile,offcWebsite':tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2 text-left">{{office.offcTitle}}</td>
           <td class="col-2 text-left">{{office.offcAddress}}</td>
@@ -109,10 +110,10 @@
           <td class="col-1 text-left">{{office.offcPhone}}</td>
           <!-- <td class="col-1 text-left">{{office.offcMobile}}</td> -->
           <td class="col-2 text-left">{{office.offcWebsite}}</td>
-          <td class="col-1 text-right"><span data-toggle="modal" data-target="#HQModal" class="pointerCursor fa fa-edit text-primary"
-              (click)="edit(office)"></span></td>
-          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"
-              (click)="deleteTemp(office)"></span></td>
+          <td class="col-1 text-right"><span data-toggle="modal" data-target="#HQModal"
+              class="pointerCursor fa fa-edit text-primary" (click)="edit(office)"></span></td>
+          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal"
+              class="pointerCursor fa fa-trash text-danger" (click)="deleteTemp(office)"></span></td>
         </tr>
       </tbody>
     </table>
@@ -141,7 +142,8 @@
 <!-- Table Section Ends -->
 
 <!-- Hidden Table Starts for Excel and CSV files -->
-<igx-grid #exportDataContent [data]="offices" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
 <!-- Hidden Table Ends  for Excel and CSV files -->
 
 <!-- Hidden Table for Print and PDF files starts-->
@@ -176,16 +178,19 @@
             <th> Address </th>
             <th> Email </th>
             <th> Phone </th>
+            <th> Mobile </th>
             <th> Website </th>
           </tr>
         </thead>
         <tbody>
-          <tr class="d-flex" *ngFor="let office of offices | search:'offcId,offcTitle,offcAddress,offcEmail,offcPhone,offcMobile,offcWebsite':tblSearch let i=index">
+          <tr class="d-flex"
+            *ngFor="let office of offices | search:'offcId,offcTitle,offcAddress,offcEmail,offcPhone,offcMobile,offcWebsite':tblSearch let i=index">
             <td class="col-1 text-center">{{i+1}}</td>
             <td class="col-2 text-left">{{office.offcTitle}}</td>
-            <td class="col-3 text-left">{{office.offcAddress}}</td>
+            <td class="col-2 text-left">{{office.offcAddress}}</td>
             <td class="col-2 text-left">{{office.offcEmail}}</td>
             <td class="col-2 text-left">{{office.offcPhone}}</td>
+            <td class="col-1 text-left">{{office.offcMobile}}</td>
             <td class="col-2 text-left">{{office.offcWebsite}}</td>
           </tr>
         </tbody>

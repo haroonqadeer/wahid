@@ -52,7 +52,7 @@
 <br>
 
 <!-- Table Section Starts -->
-<div class="container mat-elevation-z8" id="divPrint">
+<div class="container mat-elevation-z8">
   <br>
   <!--Start search textbox Row-->
   <div class="row">
@@ -69,7 +69,8 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1 text-center">Sr. #</th>
-          <th [class.active]="order === 'departmentName'" (click)="setOrder('departmentName')" class="col-4 text-left">Department
+          <th [class.active]="order === 'departmentName'" (click)="setOrder('departmentName')" class="col-4 text-left">
+            Department
             Name
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
@@ -85,14 +86,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="d-flex" *ngFor="let dept of departmentsData | search:'departmentName,branchName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+        <tr class="d-flex"
+          *ngFor="let dept of departmentsData | search:'departmentName,branchName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-4 text-left">{{dept.departmentName}}</td>
           <td class="col-5 text-left">{{dept.branchName}}</td>
-          <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal" class="pointerCursor fa fa-edit text-primary"
-              (click)="edit(dept)"></span></td>
-          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal" class="pointerCursor fa fa-trash text-danger"
-              (click)="deleteTemp(dept)"></span></td>
+          <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal"
+              class="pointerCursor fa fa-edit text-primary" (click)="edit(dept)"></span></td>
+          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal"
+              class="pointerCursor fa fa-trash text-danger" (click)="deleteTemp(dept)"></span></td>
         </tr>
       </tbody>
     </table>
@@ -121,7 +123,8 @@
 <!-- Table Section Ends -->
 
 <!-- Hidden Table Starts for Excel and CSV files -->
-<igx-grid #exportDataContent [data]="departmentsData" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
 <!-- Hidden Table Ends  for Excel and CSV files -->
 
 <!-- Hidden Table for Print and PDF files starts-->
@@ -157,7 +160,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="d-flex" *ngFor="let dept of departmentsData let i=index">
+          <tr class="d-flex"
+            *ngFor="let dept of departmentsData | search:'departmentName,branchName' :tblSearch  let i=index">
             <td class="col-1 text-center">{{i+1}}</td>
             <td class="col-4 text-left">{{dept.departmentName}}</td>
             <td class="col-5 text-left">{{dept.branchName}}</td>
@@ -189,7 +193,8 @@
           <div class="col-md-10">
             <mat-form-field class="fullwidth">
               <mat-select [(ngModel)]="deptName" placeholder="Department Name">
-                <mat-option *ngFor="let dept of departments" [value]="dept.departmentId">{{dept.departmentName}}</mat-option>
+                <mat-option *ngFor="let dept of departments" [value]="dept.departmentId">{{dept.departmentName}}
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>

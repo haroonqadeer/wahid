@@ -36,6 +36,10 @@ export class SubsidiarieComponent implements OnInit {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
 
+
+    // list for excel data
+    excelDataList = [];
+
     //* variables for display values on page
 
 
@@ -376,7 +380,7 @@ export class SubsidiarieComponent implements OnInit {
     ngOnInit() {
     }
 
-    @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
+    @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
     @ViewChild("exportPDF") public exportPDF: ElementRef;
 
     //Function for save and update currency 
@@ -748,13 +752,112 @@ export class SubsidiarieComponent implements OnInit {
 
     //For CSV File 
     public downloadCSV() {
-        this.csvExportService.exportData(this.subsidiaryDetail, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+
+        // case 1: When tblSearch is empty then assign full data list
+        if (this.tblSearch == "") {
+            var completeDataList = [];
+            for (var i = 0; i < this.subsidiaryDetail.length; i++) {
+                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
+                completeDataList.push({
+                    subsidiaryTitle: this.subsidiaryDetail[i].subsidiaryTitle,
+                    subsidiaryType: this.subsidiaryDetail[i].subsidiaryType,
+                    representator: this.subsidiaryDetail[i].representator,
+                    mobile: this.subsidiaryDetail[i].mobile,
+                    website: this.subsidiaryDetail[i].website
+                });
+            }
+            this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("SubsidiaryCompleteCSV", CsvFileTypes.CSV));
+        }
+
+        // case 2: When tblSearch is not empty then assign new data list
+        else if (this.tblSearch != "") {
+            var filteredDataList = [];
+            for (var i = 0; i < this.subsidiaryDetail.length; i++) {
+
+                if (this.subsidiaryDetail[i].subsidiaryTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].subsidiaryType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].representator.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].mobile.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].website.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+                    filteredDataList.push({
+                        subsidiaryTitle: this.subsidiaryDetail[i].subsidiaryTitle,
+                        subsidiaryType: this.subsidiaryDetail[i].subsidiaryType,
+                        representator: this.subsidiaryDetail[i].representator,
+                        mobile: this.subsidiaryDetail[i].mobile,
+                        website: this.subsidiaryDetail[i].website
+                    });
+                }
+            }
+
+            if (filteredDataList.length > 0) {
+                this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("SubsidiaryFilterCSV", CsvFileTypes.CSV));
+            } else {
+                this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+            }
+        }
     }
 
     //For Exce File
     public downloadExcel() {
-        this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+        //this.excelDataList = [];
+
+        // case 1: When tblSearch is empty then assign full data list
+        if (this.tblSearch == "") {
+            //var completeDataList = [];
+            for (var i = 0; i < this.subsidiaryDetail.length; i++) {
+                this.excelDataList.push({
+                    subsidiaryTitle: this.subsidiaryDetail[i].subsidiaryTitle,
+                    subsidiaryType: this.subsidiaryDetail[i].subsidiaryType,
+                    representator: this.subsidiaryDetail[i].representator,
+                    mobile: this.subsidiaryDetail[i].mobile,
+                    website: this.subsidiaryDetail[i].website
+                });
+            }
+
+            //alert("Excel length " + this.excelDataList.length);
+
+            this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("SubsidiaryCompleteExcel"));
+            this.excelDataList = [];
+
+            //alert("Excel length " + this.excelDataList.length);
+        }
+
+        // case 2: When tblSearch is not empty then assign new data list
+        else if (this.tblSearch != "") {
+
+            for (var i = 0; i < this.subsidiaryDetail.length; i++) {
+                if (this.subsidiaryDetail[i].subsidiaryTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].subsidiaryType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].representator.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].mobile.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.subsidiaryDetail[i].website.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+                    this.excelDataList.push({
+                        subsidiaryTitle: this.subsidiaryDetail[i].subsidiaryTitle,
+                        subsidiaryType: this.subsidiaryDetail[i].subsidiaryType,
+                        representator: this.subsidiaryDetail[i].representator,
+                        mobile: this.subsidiaryDetail[i].mobile,
+                        website: this.subsidiaryDetail[i].website
+                    });
+                }
+            }
+
+            if (this.excelDataList.length > 0) {
+
+                //alert("Filter List " + this.excelDataList.length);
+
+                this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("SubsidiaryFilterExcel"));
+                this.excelDataList = [];
+
+                //alert(" Filter List " + this.excelDataList.length);
+
+            }
+            else {
+                this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+            }
+        }
+        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
+
 
 
 

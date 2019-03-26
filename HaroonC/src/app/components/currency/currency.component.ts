@@ -34,6 +34,9 @@ export class CurrencyComponent implements OnInit {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
 
+    // list for excel data
+    excelDataList = [];
+
     //* variables for pagination and orderby pipe
     p = 1;
     order = 'info.name';
@@ -54,8 +57,6 @@ export class CurrencyComponent implements OnInit {
     countryName = '';
     txtdPassword = '';
     txtdPin = '';
-
-
 
     //*List Variables
     currencies = [
@@ -100,7 +101,7 @@ export class CurrencyComponent implements OnInit {
 
     }
 
-    @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
+    @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
     @ViewChild("exportPDF") public exportPDF: ElementRef;
 
     //Function for save and update currency 
@@ -117,7 +118,7 @@ export class CurrencyComponent implements OnInit {
             if (this.currencyId != '') {
                 this.showSpinner();
                 this.hideSpinner();
-                this.toastr.successToastr('updated successfully', 'Error', { toastTimeout: (2500) });
+                this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
 
@@ -354,12 +355,92 @@ export class CurrencyComponent implements OnInit {
 
     //For CSV File 
     public downloadCSV() {
-        this.csvExportService.exportData(this.currencies, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+
+        // case 1: When tblSearch is empty then assign full data list
+        if (this.tblSearch == "") {
+            var completeDataList = [];
+            for (var i = 0; i < this.currencies.length; i++) {
+                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
+                completeDataList.push({
+                    currencyName: this.currencies[i].currencyName,
+                    countryName: this.currencies[i].countryName
+                });
+            }
+            this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("CurrencyCompleteCSV", CsvFileTypes.CSV));
+        }
+
+        // case 2: When tblSearch is not empty then assign new data list
+        else if (this.tblSearch != "") {
+            var filteredDataList = [];
+            for (var i = 0; i < this.currencies.length; i++) {
+
+                if (this.currencies[i].currencyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.currencies[i].countryName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+                    filteredDataList.push({
+                        currencyName: this.currencies[i].currencyName,
+                        countryName: this.currencies[i].countryName
+                    });
+                }
+            }
+
+            if (filteredDataList.length > 0) {
+                this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("CurrencyFilterCSV", CsvFileTypes.CSV));
+            } else {
+                this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+            }
+        }
     }
 
     //For Exce File
     public downloadExcel() {
-        this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+        //this.excelDataList = [];
+
+        // case 1: When tblSearch is empty then assign full data list
+        if (this.tblSearch == "") {
+            //var completeDataList = [];
+            for (var i = 0; i < this.currencies.length; i++) {
+                this.excelDataList.push({
+                    currencyName: this.currencies[i].currencyName,
+                    countryName: this.currencies[i].countryName
+                });
+            }
+
+            //alert("Excel length " + this.excelDataList.length);
+
+            this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("CurrencyCompleteExcel"));
+            this.excelDataList = [];
+
+            //alert("Excel length " + this.excelDataList.length);
+        }
+
+        // case 2: When tblSearch is not empty then assign new data list
+        else if (this.tblSearch != "") {
+
+            for (var i = 0; i < this.currencies.length; i++) {
+                if (this.currencies[i].currencyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+                    this.currencies[i].countryName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+                    this.excelDataList.push({
+                        currencyName: this.currencies[i].currencyName,
+                        countryName: this.currencies[i].countryName
+                    });
+                }
+            }
+
+            if (this.excelDataList.length > 0) {
+
+                //alert("Filter List " + this.excelDataList.length);
+
+                this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("CurrencyFilterExcel"));
+                this.excelDataList = [];
+
+                //alert(" Filter List " + this.excelDataList.length);
+
+            }
+            else {
+                this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+            }
+        }
+        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
 
 
@@ -367,6 +448,7 @@ export class CurrencyComponent implements OnInit {
     showSpinner() {
         this.spinner.show();
     }
+
     hideSpinner() {
         setTimeout(() => {
             /** spinner ends after process done*/

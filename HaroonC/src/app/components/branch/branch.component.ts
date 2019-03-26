@@ -32,6 +32,9 @@ export class BranchComponent implements OnInit {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
+  // list for excel data
+  excelDataList = [];
+
   //*Page Models
   branchId = null;
   branchTitle = "";
@@ -124,7 +127,7 @@ export class BranchComponent implements OnInit {
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
-      branPhone: "0512290450",
+      branPhone: "0512290560",
       branMobile: "03331234567",
       branWebsite: "www.google.com"
     },
@@ -135,7 +138,7 @@ export class BranchComponent implements OnInit {
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
-      branPhone: "0512290450",
+      branPhone: "0512290670",
       branMobile: "03331234567",
       branWebsite: "www.google.com"
     },
@@ -146,7 +149,7 @@ export class BranchComponent implements OnInit {
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
-      branPhone: "0512290450",
+      branPhone: "0512290560",
       branMobile: "03331234567",
       branWebsite: "www.google.com"
     },
@@ -157,7 +160,7 @@ export class BranchComponent implements OnInit {
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
-      branPhone: "0512290450",
+      branPhone: "0512245450",
       branMobile: "03331234567",
       branWebsite: "www.google.com"
     },
@@ -168,7 +171,7 @@ export class BranchComponent implements OnInit {
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
-      branPhone: "0512290450",
+      branPhone: "0512295350",
       branMobile: "03331234567",
       branWebsite: "www.google.com"
     },
@@ -179,7 +182,7 @@ export class BranchComponent implements OnInit {
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
-      branPhone: "0512290450",
+      branPhone: "0512290550",
       branMobile: "03331234567",
       branWebsite: "www.google.com"
     },
@@ -190,7 +193,7 @@ export class BranchComponent implements OnInit {
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
-      branPhone: "0512290450",
+      branPhone: "0512220450",
       branMobile: "03331234567",
       branWebsite: "www.google.com"
     },
@@ -248,11 +251,11 @@ export class BranchComponent implements OnInit {
   }
 
 
-  @ViewChild("exportDataContent") public exportDataContent: IgxGridComponent;
-  @ViewChild("exportPDF") public exportPDF: ElementRef;
+  @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
+  @ViewChild("exportPDF") public exportPDF: ElementRef;// for pdf
 
 
-  //*To get all branch data
+  //* get all branch data
   getBranches() {
     return false;
 
@@ -597,22 +600,123 @@ export class BranchComponent implements OnInit {
 
   //For CSV File 
   public downloadCSV() {
-    this.csvExportService.exportData(this.branches, new IgxCsvExporterOptions("ExportedCSVFile", CsvFileTypes.CSV));
+
+    // case 1: When tblSearch is empty then assign full data list
+    if (this.tblSearch == "") {
+      var completeDataList = [];
+      for (var i = 0; i < this.branches.length; i++) {
+        //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
+        completeDataList.push({
+          branchTitle: this.branches[i].branTitle,
+          branchAddress: this.branches[i].branAddress,
+          cityName: this.branches[i].ctyName,
+          branchPhone: this.branches[i].branPhone,
+          branchEmail: this.branches[i].branEmail,
+          brancMobile: this.branches[i].branMobile
+        });
+      }
+      this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
+    }
+
+    // case 2: When tblSearch is not empty then assign new data list
+    else if (this.tblSearch != "") {
+      var filteredDataList = [];
+      for (var i = 0; i < this.branches.length; i++) {
+
+        if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].ctyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branPhone.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branMobile.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          filteredDataList.push({
+            branchTitle: this.branches[i].branTitle,
+            branchAddress: this.branches[i].branAddress,
+            cityName: this.branches[i].ctyName,
+            branchPhone: this.branches[i].branPhone,
+            branchEmail: this.branches[i].branEmail,
+            brancMobile: this.branches[i].branMobile,
+          });
+        }
+      }
+
+      if (filteredDataList.length > 0) {
+        this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("BranchFilterCSV", CsvFileTypes.CSV));
+      } else {
+        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+      }
+    }
   }
 
   //For Exce File
   public downloadExcel() {
-    this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
+    //this.excelDataList = [];
+
+    // case 1: When tblSearch is empty then assign full data list
+    if (this.tblSearch == "") {
+      //var completeDataList = [];
+      for (var i = 0; i < this.branches.length; i++) {
+        this.excelDataList.push({
+          branchTitle: this.branches[i].branTitle,
+          branchAddress: this.branches[i].branAddress,
+          cityName: this.branches[i].ctyName,
+          branchPhone: this.branches[i].branPhone,
+          branchEmail: this.branches[i].branEmail,
+          brancMobile: this.branches[i].branMobile,
+        });
+      }
+
+      //alert("Excel length " + this.excelDataList.length);
+
+      this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("BranchCompleteExcel"));
+      this.excelDataList = [];
+
+      //alert("Excel length " + this.excelDataList.length);
+    }
+
+    // case 2: When tblSearch is not empty then assign new data list
+    else if (this.tblSearch != "") {
+
+      for (var i = 0; i < this.branches.length; i++) {
+        if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].ctyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branPhone.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+          this.branches[i].branMobile.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          this.excelDataList.push({
+            branchTitle: this.branches[i].branTitle,
+            branchAddress: this.branches[i].branAddress,
+            cityName: this.branches[i].ctyName,
+            branchPhone: this.branches[i].branPhone,
+            branchEmail: this.branches[i].branEmail,
+            brancMobile: this.branches[i].branMobile,
+          });
+        }
+      }
+
+      if (this.excelDataList.length > 0) {
+
+        //alert("Filter List " + this.excelDataList.length);
+
+        this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("BranchFilterExcel"));
+        this.excelDataList = [];
+
+        //alert(" Filter List " + this.excelDataList.length);
+
+      }
+      else {
+        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
+      }
+    }
+    //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
-
-
-
-
 
   //*Functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }
+
   hideSpinner() {
     setTimeout(() => {
       /** spinner ends after process done*/

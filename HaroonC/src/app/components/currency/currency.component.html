@@ -10,7 +10,7 @@
 <!-- start menubar buttons -->
 <div class="topnav boxShadow">
   <div class="container">
-    <a class="pointerCursor" data-toggle="modal" data-target="#currencyModal"(click)="clear()">
+    <a class="pointerCursor" data-toggle="modal" data-target="#currencyModal" (click)="clear()">
       <i class="fa fa-plus-square"></i>
       Add New
     </a>
@@ -88,7 +88,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of currencies | search:'currencyName,countryName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+        <tr
+          *ngFor="let item of currencies | search:'currencyName,countryName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
           class='d-flex'>
 
           <td class="col-2 text-center">{{i + 1}}</td>
@@ -98,7 +99,8 @@
             <span class="fa fa-edit pointerCursor text-primary" data-toggle="modal" data-target="#currencyModal"
               (click)="edit(item)"></span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteTemp(item)"></span>
+            <span class="fa fa-trash pointerCursor text-danger" data-toggle="modal" data-target="#deleteModal"
+              (click)="deleteTemp(item)"></span>
           </td>
         </tr>
       </tbody>
@@ -130,7 +132,8 @@
 <!-- End Currency Table Container -->
 
 <!-- Hidden Table Starts for Excel and CSV files -->
-<igx-grid #exportDataContent [data]="currencies" [autoGenerate]="false" height="null" width="null" [hidden]="true"></igx-grid>
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
 <!-- Hidden Table Ends  for Excel and CSV files -->
 
 <!-- Hidden Table for Print and PDF files starts-->
