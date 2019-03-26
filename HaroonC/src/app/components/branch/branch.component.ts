@@ -255,7 +255,7 @@ export class BranchComponent implements OnInit {
   @ViewChild("exportPDF") public exportPDF: ElementRef;// for pdf
 
 
-  //*To get all branch data
+  //* get all branch data
   getBranches() {
     return false;
 
@@ -712,14 +712,11 @@ export class BranchComponent implements OnInit {
     //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
-
-
-
-
   //*Functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }
+
   hideSpinner() {
     setTimeout(() => {
       /** spinner ends after process done*/

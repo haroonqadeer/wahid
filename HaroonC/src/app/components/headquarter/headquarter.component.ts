@@ -611,6 +611,7 @@ export class HeadquarterComponent implements OnInit {
   showSpinner() {
     this.spinner.show();
   }
+
   hideSpinner() {
     setTimeout(() => {
       /** spinner ends after process done*/

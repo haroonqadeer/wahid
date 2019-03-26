@@ -448,6 +448,7 @@ export class CurrencyComponent implements OnInit {
     showSpinner() {
         this.spinner.show();
     }
+
     hideSpinner() {
         setTimeout(() => {
             /** spinner ends after process done*/

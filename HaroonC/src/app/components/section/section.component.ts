@@ -6,7 +6,6 @@ import { catchError, filter } from 'rxjs/operators';
 import { allSettled } from 'q';
 
 import { NgxSpinnerService } from 'ngx-spinner';
-
 import * as jsPDF from 'jspdf';
 
 import {
@@ -18,6 +17,14 @@ import {
 	CsvFileTypes
 } from "igniteui-angular";
 
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting Currency data into main table -------------------//
+//-------------------Add new currency into database --------------------------//
+//-------------------Update currency into database ---------------------------//
+//-------------------Delete currency from database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//----------------------------------------------------------------------------//
 
 declare var $: any;
 
@@ -234,8 +241,76 @@ export class SectionComponent implements OnInit {
 	@ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
 	@ViewChild("exportPDF") public exportPDF: ElementRef;
 
+
+	//function for get all saved currencies from db
+	getSectionDetail() {
+
+		return false;
+
+		var Token = localStorage.getItem(this.tokenKey);
+
+		var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+		this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+			this.sections = data
+		});
+
+	}
+
+
+	//functin for save new section 
+	saveSection() {
+
+		if (this.sectionName.trim() == '') {
+			this.toastr.errorToastr('Please enter section name', 'Error', { toastTimeout: (2500) });
+			return false;
+		} else {
+
+			let data = this.sections.find(x => x.sectionName == this.sectionName);
+
+			if (data != undefined) {
+
+				this.toastr.errorToastr('Section name already exist', 'Error', { toastTimeout: (2500) });
+				return false;
+			} else {
+
+
+				this.showSpinner();
+				this.hideSpinner();
+				this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+
+				this.sections.push({ sectionId: this.sections.length + "", sectionName: this.sectionName });
+
+				this.clear();
+
+				$('#addSectionModel').click();
+				return false;
+
+				var updateData = { "sectionname": this.sectionName };
+
+				var token = localStorage.getItem(this.tokenKey);
+
+				var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+				this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+					if (data.msg != undefined) {
+						this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+						return false;
+					} else {
+						this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+						$('#actionModal').modal('hide');
+						return false;
+					}
+
+				});
+			}
+		}
+	}
+
+
 	//Function for save and update currency 
-	save() {
+	saveSectionDetail() {
 
 		if (this.cmbHeadQuarter == '') {
 			this.toastr.errorToastr('Please select head quarter/office', 'Error', { toastTimeout: (2500) });
@@ -306,6 +381,7 @@ export class SectionComponent implements OnInit {
 		}
 	}
 
+
 	//function for empty all fields
 	clear() {
 
@@ -321,6 +397,7 @@ export class SectionComponent implements OnInit {
 
 	}
 
+
 	//function for edit existing currency 
 	edit(item) {
 
@@ -331,11 +408,13 @@ export class SectionComponent implements OnInit {
 
 	}
 
+
 	//functions for delete currency
 	deleteTemp(item) {
 		this.clear();
 		this.dSectionId = item.sectionDetailId;
 	}
+
 
 	//delete function 
 	delete() {
@@ -384,70 +463,6 @@ export class SectionComponent implements OnInit {
 
 	}
 
-	//function for get all saved currencies from db
-	getSectionDetail() {
-
-		return false;
-
-		var Token = localStorage.getItem(this.tokenKey);
-
-		var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
-
-		this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
-			this.sections = data
-		});
-
-	}
-
-	//functin for save new section 
-	addSection() {
-
-		if (this.sectionName.trim() == '') {
-			this.toastr.errorToastr('Please enter section name', 'Error', { toastTimeout: (2500) });
-			return false;
-		} else {
-
-			let data = this.sections.find(x => x.sectionName == this.sectionName);
-
-			if (data != undefined) {
-
-				this.toastr.errorToastr('Section name already exist', 'Error', { toastTimeout: (2500) });
-				return false;
-			} else {
-
-
-				this.showSpinner();
-				this.hideSpinner();
-				this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
-
-				this.sections.push({ sectionId: this.sections.length + "", sectionName: this.sectionName });
-
-				this.clear();
-
-				$('#addSectionModel').click();
-				return false;
-
-				var updateData = { "sectionname": this.sectionName };
-
-				var token = localStorage.getItem(this.tokenKey);
-
-				var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-				this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
-
-					if (data.msg != undefined) {
-						this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-						return false;
-					} else {
-						this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-						$('#actionModal').modal('hide');
-						return false;
-					}
-
-				});
-			}
-		}
-	}
 
 	//function for sort table data 
 	setOrder(value: string) {
@@ -458,6 +473,7 @@ export class SectionComponent implements OnInit {
 
 		this.order = value;
 	}
+
 
 	// For Print Purpose 
 	printDiv() {
@@ -510,6 +526,7 @@ export class SectionComponent implements OnInit {
 		}, 500);
 	}
 
+
 	// For PDF Download
 	downloadPDF() {
 
@@ -538,6 +555,7 @@ export class SectionComponent implements OnInit {
 			margins
 		);
 	}
+
 
 	//For CSV File 
 	public downloadCSV() {
@@ -579,6 +597,7 @@ export class SectionComponent implements OnInit {
 			}
 		}
 	}
+
 
 	//For Exce File
 	public downloadExcel() {
@@ -640,6 +659,7 @@ export class SectionComponent implements OnInit {
 	showSpinner() {
 		this.spinner.show();
 	}
+
 
 	hideSpinner() {
 		setTimeout(() => {
