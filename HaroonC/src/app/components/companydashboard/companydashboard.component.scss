@@ -66,7 +66,7 @@
  .company.ui-organizationchart .ui-organizationchart-node-content.ui-person {
    padding: 0;
    border: 0 none;
-   overflow-y: hidden !important;
+   overflow: visible !important;
  }
 
  .node-header,
@@ -105,8 +105,10 @@
 
  .ui-person .ui-node-toggler {
    color: #495ebb !important;
+   outline: 0 !important;
  }
 
  .department-cto .ui-node-toggler {
    color: #8a0a39 !important;
+   outline: 0 !important;
  }

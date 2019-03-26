@@ -14,6 +14,9 @@ const routes: Routes = [
   {
     path: '',
     component: CompanydashboardComponent
+  }, {
+    path: 'dashboard',
+    component: CompanydashboardComponent
   },
   {
     path: 'companydashboard',

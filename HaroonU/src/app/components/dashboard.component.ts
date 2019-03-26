@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { AppComponent } from '../app.component';
-
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
+declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
@@ -28,24 +29,7 @@ export class DashboardComponent implements OnInit {
   txtMessage = '';
   txtdPin = '';
   txtSubject = '';
-
   tblSearch = '';
-
-  public edited = false;
-
-  public acceptReq = false;
-
-  public finUser = false;
-
-  public hrUser = false;
-
-  panelOpenState = false;
-
-  public userDetail;
-  public empDetail;
-  public cityDetail;
-  public countryDetail;
-
 
   //* variables for pagination and orderby pipe
   p = 1;
@@ -154,21 +138,57 @@ export class DashboardComponent implements OnInit {
     }
   ]
 
-  constructor(private appComponent: AppComponent, private http: HttpClient) { }
+  pieData = [
+    {
+      chartName: "Banned User",
+      Qty: 10
+    },
+    {
+      chartName: "Active User",
+      Qty: 20
+    },
+    {
+      chartName: "InActive User",
+      Qty: 6
+    },
+    {
+      chartName: "Web User",
+      Qty: 5
+    },
+    {
+      chartName: "Mobile User",
+      Qty: 9
+    }];
+
+  lineData = [
+    {
+      chartName: "Banned User",
+      Qty: [10, 12, 23]
+    },
+    {
+      chartName: "Active User",
+      Qty: [8, 15, 10]
+    },
+    {
+      chartName: "InActive User",
+      Qty: [2, 8, 6]
+    },
+    {
+      chartName: "Web User",
+      Qty: [20, 16, 25]
+    },
+    {
+      chartName: "Mobile User",
+      Qty: [4, 17, 20]
+    }];
+
+  constructor(public toastr: ToastrManager, private appComponent: AppComponent, private http: HttpClient) { }
 
   ngOnInit() {
 
     this.appComponent.showDiv();
     this.LineChart_init();
     this.PieChart_init();
-
-    // this.userService.getEmployee().subscribe(data =>{
-    //   this.empDetail = data;
-    // });
-
-    // this.userService.getUser().subscribe(data =>{
-    //   this.userDetail = data;
-    // });
 
     // this.userService.getLocation().subscribe(data =>{
     //   this.cityDetail = data['m_Item1'];
@@ -244,61 +264,107 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
-  finUsr() {
-    this.finUser = true;
-    this.hrUser = false;
-  }
-
-  hrUsr() {
-    this.finUser = false;
-    this.hrUser = true;
-  }
-
   acceptData() {
 
-    this.edited = true;
+    //checking if password is empty
+    if (this.txtPassword.trim().length == 0) {
 
-    //wait 3 Seconds and hide
-    setTimeout(function () {
-      this.edited = false;
-      console.log(this.edited);
-    }.bind(this), 2000);
+      this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtPin.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
+      return;
+    }
+
+    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
+
+    $('#reqAcceptModal').modal('hide');
+
+    this.clear();
+    return;
+
+    // var Token = localStorage.getItem(this.tokenKey);
+
+    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    // var reqData = { pasword: this.txtPassword, pin: this.txtPin };
+
+    // this.http.get(this.serverUrl + 'api/acceptReq', reqData, { headers: reqHeader }).subscribe((data: any) => {
+    //   this.roleRequest = data
+    // });
+
   }
 
   send() {
 
-    this.edited = true;
+    //checking if password is empty
+    if (this.txtSubject.trim().length == 0) {
 
-    //wait 3 Seconds and hide
-    setTimeout(function () {
-      this.edited = false;
-      console.log(this.edited);
-    }.bind(this), 2000);
-  }
+      this.toastr.errorToastr('Please Enter Subject', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtMessage.trim().length == 0) {
 
-  editFin() {
-    this.finUser = true;
-    this.hrUser = false;
-  }
+      this.toastr.errorToastr('Please Enter Message', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtdPin.trim().length == 0) {
 
-  editHr() {
-    this.finUser = false;
-    this.hrUser = true;
+      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
+      return;
+    }
+
+    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
+
+    $('#msgModal').modal('hide');
+
+    this.clear();
+
   }
 
   pie_data() {
 
-    this.edited = true;
-
-    //wait 3 Seconds and hide
-    setTimeout(function () {
-      this.edited = false;
-      console.log(this.edited);
-    }.bind(this), 2000);
   }
 
   PieChart_init() {
+
+    var mySeries = [];
+    for (var i = 0; i < this.pieData.length; i++) {
+      mySeries.push([this.pieData[i].chartName, this.pieData[i].Qty]);
+    }
+
+    // var Token = localStorage.getItem(this.tokenKey);
+
+    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    // this.http.get(this.serverUrl + 'api/usersPieChart', { headers: reqHeader }).subscribe((data: any) => {
+
+    //   var mySeries = [];
+    //   for (var i = 0; i < this.data.length; i++) {
+    //     mySeries.push([this.data[i].chartName, this.data[i].Qty]);
+    //   }
+
+    //   let chart = new Chart({
+    //     chart: {
+    //       type: 'pie'
+    //     },
+    //     title: {
+    //       text: 'Users pie chart'
+    //     },
+    //     credits: {
+    //       enabled: false
+    //     },
+    //     plotOptions: {
+    //       pie: {
+    //         showInLegend: true
+    //       }
+    //     },
+    //     series: [{
+    //       name: 'Users',
+    //       data: mySeries
+    //     }]
+    //   });
+    //   this.Pie_Chart = chart;
+    // });
 
     let chart = new Chart({
       chart: {
@@ -317,19 +383,7 @@ export class DashboardComponent implements OnInit {
       },
       series: [{
         name: 'Users',
-        data: [{
-          name: 'Banned Users (8)',
-          y: 8
-        }, {
-          name: 'Inactive Users (13)',
-          y: 13
-        }, {
-          name: 'Web Users (15)',
-          y: 15
-        }, {
-          name: 'Mobile Users (6)',
-          y: 6
-        }]
+        data: mySeries
       }]
     });
     this.Pie_Chart = chart;
@@ -337,33 +391,49 @@ export class DashboardComponent implements OnInit {
 
   LineChart_init() {
 
-    let chart = new Chart({
-      chart: {
-        type: 'line'
-      },
-      title: {
-        text: 'User trend for last week'
-      },
-      credits: {
-        enabled: false
-      },
-      series: [{
-        name: 'Line 1',
-        data: [1, 2, 3]
-      },
-      {
-        name: 'Line 2',
-        data: [2, 4, 8, 6]
-      },
-      {
-        name: 'Line 3',
-        data: [3, 5, 7, 2]
-      }]
-    });
-    chart.addPoint(4);
-    this.Line_chart = chart;
+    // var mySeries = [];
+
+    // for (var i = 0; i < this.lineData.length; i++) {
+
+    //   mySeries.push([this.lineData[i].chartName, [this.lineData[i].Qty]]);
+
+    // }
+    // alert(mySeries)
+    //let chart;
+
+    for (var i = 0; i < this.lineData.length; i++) {
+      alert(this.lineData[i].chartName)
+      let chart = new Chart({
+        chart: {
+          type: 'line'
+        },
+        title: {
+          text: 'User trend for last week'
+        },
+        credits: {
+          enabled: false
+        },
+        series:
+          [{
+            name: this.lineData[i].chartName,
+            data: this.lineData[i].Qty
+          }]
+      });
+
+      this.Line_chart = chart;
+    }
+
+    //this.Line_chart = chart;
   }
 
+  clear() {
+
+    this.txtPassword = "";
+    this.txtPin = "";
+    this.txtMessage = "";
+    this.txtdPin = "";
+    this.txtSubject = "";
+  }
 
   //*function for sort table data 
   setOrder(value: string) {
