@@ -19,11 +19,12 @@ import {
 
 //----------------------------------------------------------------------------//
 //-------------------Working of this typescript file are as follows-----------//
-//-------------------Getting Currency data into main table -------------------//
-//-------------------Add new currency into database --------------------------//
-//-------------------Update currency into database ---------------------------//
-//-------------------Delete currency from database ---------------------------//
+//-------------------Getting section data into main table -------------------//
+//-------------------Add new section into database --------------------------//
+//-------------------Update section into database ---------------------------//
+//-------------------Delete section from database ---------------------------//
 //-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------For sorting the record-----------------------------//
 //----------------------------------------------------------------------------//
 
 declare var $: any;

@@ -16,6 +16,20 @@ import {
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
+
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting department into main table -------------------//
+//-------------------Getting departmentdata into main table -------------------//
+//-------------------Add new departmentdata into database --------------------------//
+//-------------------Add new department into database --------------------------//
+//-------------------Update department into database ---------------------------//
+//-------------------Delete department from database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------For sorting the record-----------------------------//
+//----------------------------------------------------------------------------//
+
+
 declare var $: any;
 @Component({
   selector: 'app-department',
@@ -239,6 +253,7 @@ export class DepartmentComponent implements OnInit {
     });
   }
 
+
   //To get departments Data for display in main table
   getDepartmentData() {
     return false;
@@ -251,6 +266,7 @@ export class DepartmentComponent implements OnInit {
       this.departmentsData = data
     });
   }
+
 
   // function for saving and updating the data 
   saveDepartment() {
@@ -325,7 +341,6 @@ export class DepartmentComponent implements OnInit {
   }
 
 
-
   // save department function
   saveDept() {
     ///////
@@ -381,6 +396,35 @@ export class DepartmentComponent implements OnInit {
     ///////
   }
 
+
+  // clear the input fields
+  clear() {
+    this.deptName = "";
+    this.deptBranch = "";
+
+    this.departName = "";
+
+    this.userPassword = "";
+    this.userPINCode = "";
+
+    this.dDepartmentId = "";
+  }
+
+
+  // edit function
+  edit(item) {
+    this.deptName = item.departmentId;
+    this.deptBranch = String(item.branchId);
+  }
+
+
+  // get the "id" of the delete entry 
+  deleteTemp(item) {
+    this.clear();
+    this.dDepartmentId = item.departmentsDataId;
+  }
+
+
   // delete function
   delete() {
     if (this.userPassword == "") {
@@ -422,36 +466,6 @@ export class DepartmentComponent implements OnInit {
     }
   }
 
-  // edit function
-  edit(item) {
-    this.deptName = item.departmentId;
-    this.deptBranch = String(item.branchId);
-  }
-
-  // clear the input fields
-  clear() {
-    this.deptName = "";
-    this.deptBranch = "";
-
-    this.departName = "";
-
-    this.userPassword = "";
-    this.userPINCode = "";
-
-    this.dDepartmentId = "";
-  }
-
-  // print function
-  printContent(el) {
-
-    var printCon = document.getElementById(el).innerHTML;
-    var WinPrint = window.open("");
-    WinPrint.document.write(printCon);
-    WinPrint.document.close();
-    WinPrint.focus();
-    WinPrint.print();
-    WinPrint.close();
-  }
 
   //function for sorting table data 
   setOrder(value: string) {
@@ -460,12 +474,6 @@ export class DepartmentComponent implements OnInit {
       this.reverse = !this.reverse;
     }
     this.order = value;
-  }
-
-  // get the "id" of the delete entry 
-  deleteTemp(item) {
-    this.clear();
-    this.dDepartmentId = item.departmentsDataId;
   }
 
 
@@ -520,6 +528,7 @@ export class DepartmentComponent implements OnInit {
     }, 500);
   }
 
+
   // For PDF Download
   downloadPDF() {
 
@@ -550,6 +559,7 @@ export class DepartmentComponent implements OnInit {
       margins
     );
   }
+
 
   //For CSV File 
   public downloadCSV() {
@@ -588,6 +598,7 @@ export class DepartmentComponent implements OnInit {
       }
     }
   }
+
 
   //For Exce File
   public downloadExcel() {
@@ -642,11 +653,11 @@ export class DepartmentComponent implements OnInit {
   }
 
 
-
   // Functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }
+
 
   hideSpinner() {
     setTimeout(() => {

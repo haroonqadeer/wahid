@@ -19,6 +19,22 @@ import {
     CsvFileTypes
 } from "igniteui-angular";
 
+
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting company data into main table -------------------//
+//-------------------Add new company into database --------------------------//
+//-------------------Add new partner into database --------------------------//
+//-------------------Update company into database ---------------------------//
+//-------------------Delete company from database ---------------------------//
+//-------------------Remove partner from database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------Function for email validation -----------------------------//
+//-------------------For sorting the record-----------------------------//
+//-------------------function for hide or unhide div-----------------------------//
+//----------------------------------------------------------------------------//
+
+
 declare var $: any;
 
 //Partners array
@@ -243,32 +259,6 @@ export class CompanyComponent implements OnInit {
     @ViewChild("exportPDF") public exportPDF: ElementRef;//for pdf
 
 
-    //* function for hide or unhide div
-    allowDiv() {
-
-        if (this.cmbCType == '') {
-            this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
-            return false;
-        } else if (this.cmbCType == 'Sole Proprietorship') {
-            this.solePro = true;
-            this.partner = false;
-            this.ppCom = false;
-        }
-        else if (this.cmbCType == 'Partnership') {
-            this.partner = true;
-            this.solePro = false;
-            this.ppCom = false;
-        }
-        else if (this.cmbCType == 'Public Limited Company' || this.cmbCType == 'Private Limited Company') {
-            this.ppCom = true;
-            this.partner = false;
-            this.solePro = false;
-        }
-
-        if (this.cmbCType != '') {
-            this.btnStpr1 = true;
-        }
-    }
 
     //* Function for save and update company 
     save() {
@@ -481,6 +471,7 @@ export class CompanyComponent implements OnInit {
         }
     }
 
+
     //* Function for add new partner for company 
     addPartner() {
 
@@ -551,6 +542,7 @@ export class CompanyComponent implements OnInit {
         }
     }
 
+
     //* Function for empty all fields of partner information 
     clearPartner() {
         this.pCnic = '';
@@ -565,26 +557,6 @@ export class CompanyComponent implements OnInit {
         this.pAddress = '';
     }
 
-    //Function for remote partner from list
-    remove(item) {
-        var index = this.partners.indexOf(item);
-        this.partners.splice(index, 1);
-    }
-
-    //Function for validate email address
-    isEmail(email) {
-        return this.app.validateEmail(email);
-    }
-
-    //function for sort table data 
-    setOrder(value: string) {
-
-        if (this.order === value) {
-            this.reverse = !this.reverse;
-        }
-
-        this.order = value;
-    }
 
     //function for empty all fields
     clear(cId) {
@@ -639,6 +611,7 @@ export class CompanyComponent implements OnInit {
 
     }
 
+
     //function for edit existing currency 
     edit(item) {
 
@@ -649,6 +622,7 @@ export class CompanyComponent implements OnInit {
 
     }
 
+
     //functions for delete company
     deleteTemp(item) {
 
@@ -656,6 +630,7 @@ export class CompanyComponent implements OnInit {
         this.dCompanyId = item.companyId;
 
     }
+
 
     delete() {
 
@@ -700,6 +675,31 @@ export class CompanyComponent implements OnInit {
         }
 
     }
+
+
+    //Function for remote partner from list
+    remove(item) {
+        var index = this.partners.indexOf(item);
+        this.partners.splice(index, 1);
+    }
+
+
+    //Function for validate email address
+    isEmail(email) {
+        return this.app.validateEmail(email);
+    }
+
+
+    //function for sort table data 
+    setOrder(value: string) {
+
+        if (this.order === value) {
+            this.reverse = !this.reverse;
+        }
+
+        this.order = value;
+    }
+
 
     // For Print Purpose 
     printDiv() {
@@ -900,4 +900,32 @@ export class CompanyComponent implements OnInit {
             this.spinner.hide();
         });
     }
+
+    //* function for hide or unhide div
+    allowDiv() {
+
+        if (this.cmbCType == '') {
+            this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
+            return false;
+        } else if (this.cmbCType == 'Sole Proprietorship') {
+            this.solePro = true;
+            this.partner = false;
+            this.ppCom = false;
+        }
+        else if (this.cmbCType == 'Partnership') {
+            this.partner = true;
+            this.solePro = false;
+            this.ppCom = false;
+        }
+        else if (this.cmbCType == 'Public Limited Company' || this.cmbCType == 'Private Limited Company') {
+            this.ppCom = true;
+            this.partner = false;
+            this.solePro = false;
+        }
+
+        if (this.cmbCType != '') {
+            this.btnStpr1 = true;
+        }
+    }
+
 }

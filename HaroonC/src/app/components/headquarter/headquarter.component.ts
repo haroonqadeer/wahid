@@ -16,6 +16,20 @@ import {
   CsvFileTypes
 } from "igniteui-angular";
 
+
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting headquarter data into main table -------------------//
+//-------------------Add new headquarter into database --------------------------//
+//-------------------Update headquarter into database ---------------------------//
+//-------------------Delete headquarter from database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------Function for email validation -----------------------------//
+//-------------------For sorting the record-----------------------------//
+//----------------------------------------------------------------------------//
+
+
+
 declare var $: any;
 @Component({
   selector: 'app-headquarter',
@@ -224,6 +238,7 @@ export class HeadquarterComponent implements OnInit {
     });
   }
 
+
   // function for saving and updating the data 
   saveHQ() {
     if (this.officeTitle.trim() == "") {
@@ -321,6 +336,46 @@ export class HeadquarterComponent implements OnInit {
     }
   }
 
+
+  //clear the input fields
+  clear() {
+
+    this.officeId = 0;
+    this.officeTitle = '';
+    this.officeAddress = '';
+    this.officeEmail = '';
+    this.officePhone = '';
+    this.officeMobile = '';
+    this.officeWebsite = '';
+
+    this.userPassword = '';
+    this.userPINCode = '';
+
+    this.dofficeId = "";
+  }
+
+
+  //function for edit existing currency 
+  edit(item) {
+
+    this.officeId = item.offcId;
+    this.officeTitle = item.offcTitle;
+    this.officeAddress = item.offcAddress;
+    this.officeEmail = item.offcEmail;
+    this.officePhone = item.offcPhone;
+    this.officeMobile = item.offcMobile;
+    this.officeWebsite = item.offcWebsite;
+
+  }
+
+
+  //get the "id" of the delete entry 
+  deleteTemp(item) {
+    this.clear();
+    this.dofficeId = item.offcId;
+  }
+
+
   // delete function
   delete() {
     if (this.userPassword == "") {
@@ -362,46 +417,12 @@ export class HeadquarterComponent implements OnInit {
     }
   }
 
-  //function for edit existing currency 
-  edit(item) {
-
-    this.officeId = item.offcId;
-    this.officeTitle = item.offcTitle;
-    this.officeAddress = item.offcAddress;
-    this.officeEmail = item.offcEmail;
-    this.officePhone = item.offcPhone;
-    this.officeMobile = item.offcMobile;
-    this.officeWebsite = item.offcWebsite;
-
-  }
-
-  //get the "id" of the delete entry 
-  deleteTemp(item) {
-    this.clear();
-    this.dofficeId = item.offcId;
-  }
-
-  //clear the input fields
-  clear() {
-
-    this.officeId = 0;
-    this.officeTitle = '';
-    this.officeAddress = '';
-    this.officeEmail = '';
-    this.officePhone = '';
-    this.officeMobile = '';
-    this.officeWebsite = '';
-
-    this.userPassword = '';
-    this.userPINCode = '';
-
-    this.dofficeId = "";
-  }
 
   //function for email validation
   isEmail(email) {
     return this.app.validateEmail(email);
   }
+
 
   //function for sort table data 
   setOrder(value: string) {
@@ -412,6 +433,7 @@ export class HeadquarterComponent implements OnInit {
 
     this.order = value;
   }
+
 
   // For Print Purpose 
   printDiv() {
@@ -464,6 +486,7 @@ export class HeadquarterComponent implements OnInit {
     }, 500);
   }
 
+
   // For PDF Download
   downloadPDF() {
 
@@ -492,6 +515,7 @@ export class HeadquarterComponent implements OnInit {
       margins
     );
   }
+
 
   //For CSV File 
   public downloadCSV() {
@@ -541,6 +565,7 @@ export class HeadquarterComponent implements OnInit {
       }
     }
   }
+
 
   //For Exce File
   public downloadExcel() {
@@ -606,11 +631,11 @@ export class HeadquarterComponent implements OnInit {
   }
 
 
-
   // functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }
+
 
   hideSpinner() {
     setTimeout(() => {

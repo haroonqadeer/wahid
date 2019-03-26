@@ -19,6 +19,20 @@ import {
     CsvFileTypes
 } from "igniteui-angular";
 
+
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting Subsidiary data into main table -------------------//
+//-------------------Add new Subsidiary into database --------------------------//
+//-------------------Add new city into database --------------------------//
+//-------------------Update Subsidiary into database ---------------------------//
+//-------------------Delete Subsidiary from database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------Function for email validation -----------------------------//
+//-------------------For sorting the record-----------------------------//
+//----------------------------------------------------------------------------//
+
+
 declare var $: any;
 //declare// function showLoader(): any;
 
@@ -383,6 +397,23 @@ export class SubsidiarieComponent implements OnInit {
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
     @ViewChild("exportPDF") public exportPDF: ElementRef;
 
+
+    //function for get all saved currencies from db
+    getSubsidiaryDetail() {
+
+        return false;
+
+        var Token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+            this.cities = data
+        });
+
+    }
+
+
     //Function for save and update currency 
     save() {
 
@@ -490,117 +521,6 @@ export class SubsidiarieComponent implements OnInit {
         }
     }
 
-    //function for empty all fields
-    clear() {
-
-        this.dSubsidiaryId = '';
-        this.subsidiaryId = '';
-        this.cityName = '';
-        this.subsidiaryTitle = '';
-        this.ntn = '';
-        this.strn = '';
-        this.cmbSubsidiaryType = '';
-        this.representator = '';
-        this.address = '';
-        this.cmbCity = '';
-        this.email = '';
-        this.telephone = '';
-        this.mobile = '';
-        this.website = '';
-        this.faxNumber = '';
-        this.agreement = '';
-
-        this.txtdPassword = '';
-        this.txtdPin = '';
-
-    }
-
-    //function for edit existing currency 
-    edit(item) {
-
-        this.subsidiaryId = item.subsidiaryId;
-        this.subsidiaryTitle = item.subsidiaryTitle;
-        this.ntn = item.ntn;
-        this.strn = item.strn;
-        this.cmbSubsidiaryType = item.subsidiaryType;
-        this.representator = item.representator;
-        this.address = item.address;
-        this.cmbCity = item.cityId.toString();
-        this.email = item.email;
-        this.telephone = item.telephone;
-        this.mobile = item.mobile;
-        this.website = item.website;
-        this.faxNumber = item.faxNumber;
-        this.agreement = item.agreement;
-
-    }
-
-    //functions for delete currency
-    deleteTemp(item) {
-        this.clear();
-        this.dSubsidiaryId = item.subsidiaryDetailId;
-    }
-
-    delete() {
-
-        if (this.txtdPassword == '') {
-            this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
-            return false
-        } else if (this.txtdPin == '') {
-            this.toastr.errorToastr('Please enter PIN', 'Error', { toastTimeout: (2500) });
-            return false
-        } else if (this.dSubsidiaryId == '') {
-            this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
-            return false
-        } else {
-
-            this.showSpinner();
-            this.hideSpinner();
-            this.toastr.successToastr('Deleted successfully', 'Success', { toastTimeout: (2500) });
-            this.clear();
-
-            $('#closeDeleteModel').click();
-
-            return false;
-
-            var data = { "ID": this.dSubsidiaryId, Password: this.txtdPassword, PIN: this.txtdPin };
-
-            var token = localStorage.getItem(this.tokenKey);
-
-            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-            this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
-
-                if (data.msg != undefined) {
-                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-                    return false;
-                } else {
-                    this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-                    $('#actionModal').modal('hide');
-                    return false;
-                }
-
-            });
-
-        }
-
-
-    }
-
-    //function for get all saved currencies from db
-    getSubsidiaryDetail() {
-
-        return false;
-
-        var Token = localStorage.getItem(this.tokenKey);
-
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
-
-        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
-            this.cities = data
-        });
-
-    }
 
     //functin for save new section 
     addCity() {
@@ -655,10 +575,113 @@ export class SubsidiarieComponent implements OnInit {
         }
     }
 
+
+    //function for empty all fields
+    clear() {
+
+        this.dSubsidiaryId = '';
+        this.subsidiaryId = '';
+        this.cityName = '';
+        this.subsidiaryTitle = '';
+        this.ntn = '';
+        this.strn = '';
+        this.cmbSubsidiaryType = '';
+        this.representator = '';
+        this.address = '';
+        this.cmbCity = '';
+        this.email = '';
+        this.telephone = '';
+        this.mobile = '';
+        this.website = '';
+        this.faxNumber = '';
+        this.agreement = '';
+
+        this.txtdPassword = '';
+        this.txtdPin = '';
+
+    }
+
+
+    //function for edit existing currency 
+    edit(item) {
+
+        this.subsidiaryId = item.subsidiaryId;
+        this.subsidiaryTitle = item.subsidiaryTitle;
+        this.ntn = item.ntn;
+        this.strn = item.strn;
+        this.cmbSubsidiaryType = item.subsidiaryType;
+        this.representator = item.representator;
+        this.address = item.address;
+        this.cmbCity = item.cityId.toString();
+        this.email = item.email;
+        this.telephone = item.telephone;
+        this.mobile = item.mobile;
+        this.website = item.website;
+        this.faxNumber = item.faxNumber;
+        this.agreement = item.agreement;
+
+    }
+
+
+    //functions for delete currency
+    deleteTemp(item) {
+        this.clear();
+        this.dSubsidiaryId = item.subsidiaryDetailId;
+    }
+
+
+    delete() {
+
+        if (this.txtdPassword == '') {
+            this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
+            return false
+        } else if (this.txtdPin == '') {
+            this.toastr.errorToastr('Please enter PIN', 'Error', { toastTimeout: (2500) });
+            return false
+        } else if (this.dSubsidiaryId == '') {
+            this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
+            return false
+        } else {
+
+            this.showSpinner();
+            this.hideSpinner();
+            this.toastr.successToastr('Deleted successfully', 'Success', { toastTimeout: (2500) });
+            this.clear();
+
+            $('#closeDeleteModel').click();
+
+            return false;
+
+            var data = { "ID": this.dSubsidiaryId, Password: this.txtdPassword, PIN: this.txtdPin };
+
+            var token = localStorage.getItem(this.tokenKey);
+
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+            this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+
+                if (data.msg != undefined) {
+                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                    return false;
+                } else {
+                    this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+                    $('#actionModal').modal('hide');
+                    return false;
+                }
+
+            });
+
+        }
+
+
+    }
+
+
     //function for email validation 
     isEmail(email) {
         return this.app.validateEmail(email);
     }
+
 
     //function for sort table data 
     setOrder(value: string) {
@@ -669,6 +692,7 @@ export class SubsidiarieComponent implements OnInit {
 
         this.order = value;
     }
+
 
     // For Print Purpose 
     printDiv() {
@@ -721,6 +745,7 @@ export class SubsidiarieComponent implements OnInit {
         }, 500);
     }
 
+
     // For PDF Download
     downloadPDF() {
 
@@ -749,6 +774,7 @@ export class SubsidiarieComponent implements OnInit {
             margins
         );
     }
+
 
     //For CSV File 
     public downloadCSV() {
@@ -796,6 +822,7 @@ export class SubsidiarieComponent implements OnInit {
             }
         }
     }
+
 
     //For Exce File
     public downloadExcel() {
@@ -859,12 +886,11 @@ export class SubsidiarieComponent implements OnInit {
     }
 
 
-
-
     // Functions for Show & Hide Spinner
     showSpinner() {
         this.spinner.show();
     }
+
 
     hideSpinner() {
         setTimeout(() => {

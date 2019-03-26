@@ -19,6 +19,18 @@ import {
     CsvFileTypes
 } from "igniteui-angular";
 
+
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting currency data into main table -------------------//
+//-------------------Add new currency into database --------------------------//
+//-------------------Update currency into database ---------------------------//
+//-------------------Delete currency from database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------For sorting the record-----------------------------//
+//----------------------------------------------------------------------------//
+
+
 declare var $: any;
 @Component({
     selector: 'app-currency',
@@ -101,8 +113,25 @@ export class CurrencyComponent implements OnInit {
 
     }
 
+
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
     @ViewChild("exportPDF") public exportPDF: ElementRef;
+
+    //function for get all saved currencies from db
+    getCurrency() {
+
+        return false;
+
+        var Token = localStorage.getItem(this.tokenKey);
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+            this.currencies = data
+        });
+
+    }
+
 
     //Function for save and update currency 
     save() {
@@ -172,6 +201,7 @@ export class CurrencyComponent implements OnInit {
         }
     }
 
+
     //function for empty all fields
     clear() {
 
@@ -184,6 +214,7 @@ export class CurrencyComponent implements OnInit {
 
     }
 
+
     //function for edit existing currency 
     edit(item) {
 
@@ -193,12 +224,14 @@ export class CurrencyComponent implements OnInit {
 
     }
 
+
     //functions for delete currency
     deleteTemp(item) {
         this.clear();
         this.dCurrencyId = item.currencyId;
 
     }
+
 
     delete() {
 
@@ -246,20 +279,6 @@ export class CurrencyComponent implements OnInit {
 
     }
 
-    //function for get all saved currencies from db
-    getCurrency() {
-
-        return false;
-
-        var Token = localStorage.getItem(this.tokenKey);
-
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
-
-        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
-            this.currencies = data
-        });
-
-    }
 
     //function for sort table data 
     setOrder(value: string) {
@@ -270,7 +289,6 @@ export class CurrencyComponent implements OnInit {
 
         this.order = value;
     }
-
 
 
     // Function for Print Dive *******************/
@@ -353,6 +371,7 @@ export class CurrencyComponent implements OnInit {
         );
     }
 
+
     //For CSV File 
     public downloadCSV() {
 
@@ -390,6 +409,7 @@ export class CurrencyComponent implements OnInit {
             }
         }
     }
+
 
     //For Exce File
     public downloadExcel() {
@@ -448,6 +468,7 @@ export class CurrencyComponent implements OnInit {
     showSpinner() {
         this.spinner.show();
     }
+
 
     hideSpinner() {
         setTimeout(() => {

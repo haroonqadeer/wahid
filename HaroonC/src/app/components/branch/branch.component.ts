@@ -16,13 +16,29 @@ import {
   CsvFileTypes
 } from "igniteui-angular";
 
+
+//----------------------------------------------------------------------------//
+//-------------------Working of this typescript file are as follows-----------//
+//-------------------Getting branch data into main table -------------------//
+//-------------------Add new branch into database --------------------------//
+//-------------------Add new city into database --------------------------//
+//-------------------Update branch into database ---------------------------//
+//-------------------Delete branch from database ---------------------------//
+//-------------------Export into PDF, CSV, Excel -----------------------------//
+//-------------------Function for email validation -----------------------------//
+//-------------------For sorting the record-----------------------------//
+//----------------------------------------------------------------------------//
+
+
 declare var $: any;
+
 
 @Component({
   selector: 'app-branch',
   templateUrl: './branch.component.html',
   styleUrls: ['./branch.component.scss']
 })
+
 export class BranchComponent implements OnInit {
 
   serverUrl = "http://localhost:55536/";
@@ -268,6 +284,7 @@ export class BranchComponent implements OnInit {
     });
   }
 
+
   //* Function for saving and updating the data 
   saveBranch() {
     if (this.branchTitle.trim() == "") {
@@ -366,57 +383,6 @@ export class BranchComponent implements OnInit {
     }
   }
 
-  //* Delete Function 
-  delete() {
-    if (this.userPassword.trim() == "") {
-      this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.userPINCode.trim() == "") {
-      this.toastr.errorToastr('Please Enter PIN Code', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else {
-      this.showSpinner();
-      this.hideSpinner();
-      this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
-      this.clear();
-      $('#deleteModal').modal('hide');
-
-      return false;
-
-      // var data = { "ID": this.dbranchId, Password: this.userPassword, PIN: this.userPINCode };
-
-      // var token = localStorage.getItem(this.tokenKey);
-
-      // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-      // this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
-
-      //   if (data.msg != undefined) {
-      //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-      //     return false;
-      //   } else {
-      //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-      //     $('#actionModal').modal('hide');
-      //     return false;
-      //   }
-
-      // });
-    }
-  }
-
-  //*Edit Function
-  edit(item) {
-    this.branchId = item.branId;
-    this.branchTitle = item.branTitle;
-    this.branchAddress = item.branAddress;
-    this.branchCity = item.ctyId.toString();
-    this.branchEmail = item.branEmail;
-    this.branchPhone = item.branPhone;
-    this.branchMobile = item.branMobile;
-    this.branchWebsite = item.branWebsite;
-  }
 
   //*Function for Saving city data
   saveCity() {
@@ -475,14 +441,6 @@ export class BranchComponent implements OnInit {
   }
 
 
-  //*get the "id" of the delete entry 
-  deleteTemp(item) {
-
-    this.clear();
-    this.dbranchId = item.branId;
-
-  }
-
   //*Clear the input fields
   clear() {
     this.branchId = 0;
@@ -503,10 +461,75 @@ export class BranchComponent implements OnInit {
     this.dbranchId = "";
   }
 
+
+  //*Edit Function
+  edit(item) {
+    this.branchId = item.branId;
+    this.branchTitle = item.branTitle;
+    this.branchAddress = item.branAddress;
+    this.branchCity = item.ctyId.toString();
+    this.branchEmail = item.branEmail;
+    this.branchPhone = item.branPhone;
+    this.branchMobile = item.branMobile;
+    this.branchWebsite = item.branWebsite;
+  }
+
+
+  //*get the "id" of the delete entry 
+  deleteTemp(item) {
+
+    this.clear();
+    this.dbranchId = item.branId;
+
+  }
+
+
+  //* Delete Function 
+  delete() {
+    if (this.userPassword.trim() == "") {
+      this.toastr.errorToastr('Please Enter Password', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.userPINCode.trim() == "") {
+      this.toastr.errorToastr('Please Enter PIN Code', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else {
+      this.showSpinner();
+      this.hideSpinner();
+      this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
+      this.clear();
+      $('#deleteModal').modal('hide');
+
+      return false;
+
+      // var data = { "ID": this.dbranchId, Password: this.userPassword, PIN: this.userPINCode };
+
+      // var token = localStorage.getItem(this.tokenKey);
+
+      // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+      // this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+
+      //   if (data.msg != undefined) {
+      //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+      //     return false;
+      //   } else {
+      //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+      //     $('#actionModal').modal('hide');
+      //     return false;
+      //   }
+
+      // });
+    }
+  }
+
+
   //* function for email validation
   isEmail(email) {
     return this.app.validateEmail(email);
   }
+
 
   //*function for sort table data 
   setOrder(value: string) {
@@ -569,6 +592,7 @@ export class BranchComponent implements OnInit {
     }, 500);
   }
 
+
   // For PDF Download
   downloadPDF() {
 
@@ -597,6 +621,7 @@ export class BranchComponent implements OnInit {
       margins
     );
   }
+
 
   //For CSV File 
   public downloadCSV() {
@@ -647,6 +672,7 @@ export class BranchComponent implements OnInit {
       }
     }
   }
+
 
   //For Exce File
   public downloadExcel() {
@@ -712,10 +738,12 @@ export class BranchComponent implements OnInit {
     //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
+
   //*Functions for Show & Hide Spinner
   showSpinner() {
     this.spinner.show();
   }
+
 
   hideSpinner() {
     setTimeout(() => {
