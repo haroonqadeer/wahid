@@ -28,7 +28,6 @@ import { CurrencyComponent } from './components/currency/currency.component';
 
 import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
 
-
 @NgModule({
   declarations: [
     AppComponent,

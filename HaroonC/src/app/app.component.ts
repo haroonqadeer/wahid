@@ -48,6 +48,18 @@ export class AppComponent {
     }
   }
 
+  public printCSS() {
+
+    var commonCss = ".commonCss{font-family: Arial, Helvetica, sans-serif; text-align: center; }";
+
+    var cssHeading = ".cssHeading {font-size: 25px; font-weight: bold;}";
+    var cssAddress = ".cssAddress {font-size: 16px; }";
+    var cssContact = ".cssContact {font-size: 16px; }";
+
+    var tableCss = "table {width: 100%; border-collapse: collapse;}    table thead tr th {text-align: left; font-family: Arial, Helvetica, sans-serif; font-weight: bole; border-bottom: 1px solid black; margin-left: -3px;}     table tbody tr td {font-family: Arial, Helvetica, sans-serif; border-bottom: 1px solid #ccc; margin-left: -3px; height: 33px;}";
+
+    return [commonCss, cssHeading, cssAddress, cssContact, tableCss];
+  }
 
 
   title = 'HaroonC';
