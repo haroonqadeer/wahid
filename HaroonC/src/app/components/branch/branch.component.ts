@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
-import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import * as jsPDF from 'jspdf';
@@ -258,7 +257,6 @@ export class BranchComponent implements OnInit {
 
   constructor(public toastr: ToastrManager,
     private app: AppComponent,
-    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private excelExportService: IgxExcelExporterService,
     private csvExportService: IgxCsvExporterService) { }
@@ -324,8 +322,8 @@ export class BranchComponent implements OnInit {
       // alert(this.branchId);
 
       if (this.branchId != "") {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
         this.clear();
         $('#branchModal').modal('hide');
@@ -354,8 +352,8 @@ export class BranchComponent implements OnInit {
       }
 
       else {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
         this.clear();
         $('#branchModal').modal('hide');
@@ -403,8 +401,8 @@ export class BranchComponent implements OnInit {
 
       else {
 
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
 
         this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
@@ -495,8 +493,8 @@ export class BranchComponent implements OnInit {
       return false;
     }
     else {
-      this.showSpinner();
-      this.hideSpinner();
+      this.app.showSpinner();
+      this.app.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       this.clear();
       $('#deleteModal').modal('hide');
@@ -739,17 +737,4 @@ export class BranchComponent implements OnInit {
     //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
-
-  //*Functions for Show & Hide Spinner
-  showSpinner() {
-    this.spinner.show();
-  }
-
-
-  hideSpinner() {
-    setTimeout(() => {
-      /** spinner ends after process done*/
-      this.spinner.hide();
-    });
-  }
 }

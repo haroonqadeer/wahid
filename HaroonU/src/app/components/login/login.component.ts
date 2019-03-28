@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
             return false;
         }
         else {
-            
 
             var data = { "loginname": this.txtUserName, "password": this.txtPassword };
 
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/dashboard']);
                 }
             });
-            
+
         }
     }
 }

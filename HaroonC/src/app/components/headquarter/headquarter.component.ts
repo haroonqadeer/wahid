@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
-import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import * as jsPDF from 'jspdf';
@@ -214,7 +213,6 @@ export class HeadquarterComponent implements OnInit {
 
   constructor(public toastr: ToastrManager,
     private app: AppComponent,
-    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private excelExportService: IgxExcelExporterService,
     private csvExportService: IgxCsvExporterService) { }
@@ -274,8 +272,8 @@ export class HeadquarterComponent implements OnInit {
       // alert(this.officeId);
 
       if (this.officeId != "") {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
         $('#HQModal').modal('hide');
         return false;
@@ -301,8 +299,8 @@ export class HeadquarterComponent implements OnInit {
         // });
       }
       else {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
         $('#HQModal').modal('hide');
         return false;
@@ -328,8 +326,8 @@ export class HeadquarterComponent implements OnInit {
 
       }
 
-      // this.showSpinner();
-      // this.hideSpinner();
+      //this.app.showSpinner();
+      //this.app.hideSpinner();
       // this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
       // $('#HQModal').modal('hide');
       // return false;
@@ -387,8 +385,8 @@ export class HeadquarterComponent implements OnInit {
       return false;
     }
     else {
-      this.showSpinner();
-      this.hideSpinner();
+      this.app.showSpinner();
+      this.app.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       this.clear();
       $('#deleteModal').modal('hide');
@@ -630,17 +628,4 @@ export class HeadquarterComponent implements OnInit {
     //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
-
-  // functions for Show & Hide Spinner
-  showSpinner() {
-    this.spinner.show();
-  }
-
-
-  hideSpinner() {
-    setTimeout(() => {
-      /** spinner ends after process done*/
-      this.spinner.hide();
-    });
-  }
 }

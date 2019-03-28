@@ -6,7 +6,6 @@ import { catchError, filter } from 'rxjs/operators';
 import { AppComponent } from '../../app.component';
 import { OrderPipe } from 'ngx-order-pipe';
 
-import { NgxSpinnerService } from 'ngx-spinner';
 
 import * as jsPDF from 'jspdf';
 
@@ -387,7 +386,6 @@ export class SubsidiarieComponent implements OnInit {
     constructor(private toastr: ToastrManager,
         private http: HttpClient,
         private app: AppComponent,
-        private spinner: NgxSpinnerService,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService) { }
 
@@ -465,8 +463,8 @@ export class SubsidiarieComponent implements OnInit {
         else {
 
             if (this.subsidiaryId != '') {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -491,9 +489,10 @@ export class SubsidiarieComponent implements OnInit {
                 });
 
 
-            } else {
-                this.showSpinner();
-                this.hideSpinner();
+            }
+            else {
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -540,8 +539,8 @@ export class SubsidiarieComponent implements OnInit {
 
             }
             else {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 //this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
@@ -643,8 +642,8 @@ export class SubsidiarieComponent implements OnInit {
             return false
         } else {
 
-            this.showSpinner();
-            this.hideSpinner();
+            this.app.showSpinner();
+            this.app.hideSpinner();
             this.toastr.successToastr('Deleted successfully', 'Success', { toastTimeout: (2500) });
             this.clear();
 
@@ -885,18 +884,5 @@ export class SubsidiarieComponent implements OnInit {
         //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
 
-
-    // Functions for Show & Hide Spinner
-    showSpinner() {
-        this.spinner.show();
-    }
-
-
-    hideSpinner() {
-        setTimeout(() => {
-            /** spinner ends after process done*/
-            this.spinner.hide();
-        });
-    }
 
 }

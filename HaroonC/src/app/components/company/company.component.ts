@@ -6,8 +6,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
-import { NgxSpinnerService } from 'ngx-spinner';
-
 import * as jsPDF from 'jspdf';
 
 import {
@@ -248,7 +246,6 @@ export class CompanyComponent implements OnInit {
     constructor(private toastr: ToastrManager,
         private app: AppComponent,
         private http: HttpClient,
-        private spinner: NgxSpinnerService,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService) { }
 
@@ -410,8 +407,8 @@ export class CompanyComponent implements OnInit {
             if (this.companyId != '') {
 
 
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('update successfully', 'Success', { toastTimeout: (2500) });
                 this.clear(this.companyId);
                 return false;
@@ -440,8 +437,8 @@ export class CompanyComponent implements OnInit {
             }
             else {
 
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
                 this.clear(this.companyId);
                 return false;
@@ -519,8 +516,8 @@ export class CompanyComponent implements OnInit {
 
             } else {
 
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 this.partners.push({
                     cnic: this.pCnic,
@@ -888,17 +885,6 @@ export class CompanyComponent implements OnInit {
         //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
 
-    // Functions for Show & Hide Spinner
-    showSpinner() {
-        this.spinner.show();
-    }
-
-    hideSpinner() {
-        setTimeout(() => {
-            /** spinner ends after process done*/
-            this.spinner.hide();
-        });
-    }
 
     //* function for hide or unhide div
     allowDiv() {

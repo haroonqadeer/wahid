@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 
-import { NgxSpinnerService } from 'ngx-spinner';
-
 import * as jsPDF from 'jspdf';
 
 import {
@@ -232,7 +230,6 @@ export class DepartmentComponent implements OnInit {
     private app: AppComponent,
     private excelExportService: IgxExcelExporterService,
     private csvExportService: IgxCsvExporterService,
-    private spinner: NgxSpinnerService,
     private http: HttpClient) { }
 
   ngOnInit() {
@@ -285,8 +282,8 @@ export class DepartmentComponent implements OnInit {
       // alert(this.deptId);
 
       if (this.deptId != "") {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
         this.clear();
         $('#departmentModal').modal('hide');
@@ -314,8 +311,8 @@ export class DepartmentComponent implements OnInit {
 
       }
       else {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
         $('#departmentModal').modal('hide');
         return false;
@@ -362,8 +359,8 @@ export class DepartmentComponent implements OnInit {
 
       else {
 
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
 
         this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
@@ -438,8 +435,8 @@ export class DepartmentComponent implements OnInit {
       return false;
     }
     else {
-      this.showSpinner();
-      this.hideSpinner();
+      this.app.showSpinner();
+      this.app.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       this.clear();
       $('#deleteModal').modal('hide');
@@ -654,18 +651,5 @@ export class DepartmentComponent implements OnInit {
     //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
-
-  // Functions for Show & Hide Spinner
-  showSpinner() {
-    this.spinner.show();
-  }
-
-
-  hideSpinner() {
-    setTimeout(() => {
-      /** spinner ends after process done*/
-      this.spinner.hide();
-    });
-  }
 
 }

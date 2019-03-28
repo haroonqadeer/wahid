@@ -6,7 +6,6 @@ import { NodeService } from '../../nodeTree/node.service';
 import { HttpClient } from '@angular/common/http';
 
 import { AppComponent } from '../../app.component';
-import { NgxSpinnerService } from 'ngx-spinner';
 import {
   IgxExcelExporterOptions,
   IgxExcelExporterService,
@@ -186,7 +185,6 @@ export class UserrolesComponent implements OnInit {
   //constructor(private http: HttpClient, public toastr: ToastrManager, private nodeService: NodeService) { }
 
   constructor(private http: HttpClient,
-    private spinner: NgxSpinnerService,
     private excelExportService: IgxExcelExporterService,
     private csvExportService: IgxCsvExporterService,
     private app: AppComponent,
@@ -386,8 +384,8 @@ export class UserrolesComponent implements OnInit {
     if (this.erpRoleCd == "") {
       //Save roles in database
 
-      this.showSpinner();
-      this.hideSpinner();
+      this.app.showSpinner();
+      this.app.hideSpinner();
 
       var roleData = { erpObjct: JSON.stringify(this.erpObjct), erpRoleName: this.erpRoleName };
       this.http.post(this.serverUrl + 'api/saveUserRole', roleData).subscribe((data: any) => {
@@ -396,8 +394,8 @@ export class UserrolesComponent implements OnInit {
       });
     } else {
       //Update roles in database
-      this.showSpinner();
-      this.hideSpinner();
+      this.app.showSpinner();
+      this.app.hideSpinner();
       var rolesData = { erpObjct: JSON.stringify(this.erpObjct), erpRoleCd: this.erpRoleCd, erpRoleName: this.erpRoleName };
       this.http.put(this.serverUrl + 'api/updateUserRole', rolesData).subscribe((data: any) => {
 
@@ -410,8 +408,8 @@ export class UserrolesComponent implements OnInit {
 
   //save each role permissions in database
   savePermission() {
-    this.showSpinner();
-    this.hideSpinner();
+    this.app.showSpinner();
+    this.app.hideSpinner();
     for (var i = 0; i < this.tempRoleList.length; i++) {
       if (this.tempRoleList[i].Addition == undefined)
         this.tempRoleList[i].Addition = false;
@@ -427,8 +425,8 @@ export class UserrolesComponent implements OnInit {
 
   //add permissions of each menu
   addPermission(item) {
-    this.showSpinner();
-    this.hideSpinner();
+    this.app.showSpinner();
+    this.app.hideSpinner();
     this.erpRoleName = item.erpRoleName;
     this.erpRoleCd = item.erpRoleCd;
     //getting specific role data and assign it to role tree
@@ -438,8 +436,8 @@ export class UserrolesComponent implements OnInit {
 
   //Adding modules and menu in role tree 
   addRoles() {
-    this.showSpinner();
-    this.hideSpinner();
+    this.app.showSpinner();
+    this.app.hideSpinner();
 
     var itemFound = false;
     var itemIndex = 0;
@@ -696,8 +694,8 @@ export class UserrolesComponent implements OnInit {
   //delete user role data from database
   deleteRole() {
 
-    this.showSpinner();
-    this.hideSpinner();
+    this.app.showSpinner();
+    this.app.hideSpinner();
     //checking if password is empty
     if (this.txtdPassword.trim().length == 0) {
 
@@ -719,8 +717,8 @@ export class UserrolesComponent implements OnInit {
 
   //removing selected menu or module from role tree
   removeRoles() {
-    this.showSpinner();
-    this.hideSpinner();
+    this.app.showSpinner();
+    this.app.hideSpinner();
 
     //checking if roleTree data not selected
     if (this.selectedRole == undefined) {
@@ -952,20 +950,6 @@ export class UserrolesComponent implements OnInit {
       this.reverse = !this.reverse;
     }
     this.order = value;
-  }
-
-
-  //*Functions for Show & Hide Spinner
-  showSpinner() {
-    this.spinner.show();
-  }
-
-
-  hideSpinner() {
-    setTimeout(() => {
-      /** spinner ends after process done*/
-      this.spinner.hide();
-    });
   }
 
 }

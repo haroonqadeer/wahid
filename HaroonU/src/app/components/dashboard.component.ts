@@ -4,6 +4,21 @@ import { AppComponent } from '../app.component';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
+
+//*----------------------------------------------------------------------------//
+//*-------------------Working of this typescript file are as follows-----------//
+//*-------------------Get the list of all users -------------------//
+//*-------------------Get the data of all event logs -------------------//
+//*-------------------Get the List of user roles --------------------------//
+//*-------------------Get the List of all user's request --------------------------//
+//*-------------------Accepting the role request  ---------------------------//
+//*-------------------Query send by user to the administrator -----------------------------//
+//*-------------------Get the daily user trend  -----------------------------//
+//*-------------------Get the weekly user trend -----------------------------//
+//*-------------------For sorting the record-----------------------------//
+//*----------------------------------------------------------------------------//
+
+
 declare var $: any;
 
 @Component({
@@ -182,7 +197,9 @@ export class DashboardComponent implements OnInit {
       Qty: [4, 17, 20]
     }];
 
-  constructor(public toastr: ToastrManager, private appComponent: AppComponent, private http: HttpClient) { }
+  constructor(public toastr: ToastrManager,
+    private appComponent: AppComponent,
+    private http: HttpClient) { }
 
   ngOnInit() {
 
@@ -264,6 +281,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // accepting the role request 
   acceptData() {
 
     //checking if password is empty
@@ -276,6 +294,9 @@ export class DashboardComponent implements OnInit {
       this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
       return;
     }
+
+    this.appComponent.showSpinner();
+    this.appComponent.hideSpinner();
 
     this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
 
@@ -296,6 +317,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  // query send by user to the administrator
   send() {
 
     //checking if password is empty
@@ -313,6 +335,9 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
+    this.appComponent.showSpinner();
+    this.appComponent.hideSpinner();
+
     this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
 
     $('#msgModal').modal('hide');
@@ -321,10 +346,12 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  //
   pie_data() {
 
   }
 
+  //Get the daily user trend 
   PieChart_init() {
 
     var mySeries = [];
@@ -389,6 +416,7 @@ export class DashboardComponent implements OnInit {
     this.Pie_Chart = chart;
   }
 
+  //Get the weekly user trend
   LineChart_init() {
 
     // var mySeries = [];
@@ -402,7 +430,7 @@ export class DashboardComponent implements OnInit {
     //let chart;
 
     for (var i = 0; i < this.lineData.length; i++) {
-      alert(this.lineData[i].chartName)
+      //alert(this.lineData[i].chartName)
       let chart = new Chart({
         chart: {
           type: 'line'
@@ -426,6 +454,7 @@ export class DashboardComponent implements OnInit {
     //this.Line_chart = chart;
   }
 
+  // clear the fields
   clear() {
 
     this.txtPassword = "";
@@ -443,6 +472,7 @@ export class DashboardComponent implements OnInit {
     }
     this.order = value;
   }
+
 }
 
 

@@ -25,15 +25,17 @@ export class AppComponent {
     // For Spinner Show and Hide 
     this.router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
-        this.spinner.show();
+        //this.spinner.show();
+        this.showSpinner();
         //this.showLoadingSpinner = true;
       }
       if (routerEvent instanceof NavigationEnd) {
         //this.showLoadingSpinner = false;
-        setTimeout(() => {
-          /** spinner ends after 5 seconds */
-          this.spinner.hide();
-        }, 500);
+        // setTimeout(() => {
+        //   /** spinner ends after 5 seconds */
+        //   this.spinner.hide();
+        // }, 500);
+        this.hideSpinner();
       }
     });
   }
@@ -58,7 +60,9 @@ export class AppComponent {
 
     var tableCss = "table {width: 100%; border-collapse: collapse;}    table thead tr th {text-align: left; font-family: Arial, Helvetica, sans-serif; font-weight: bole; border-bottom: 1px solid black; margin-left: -3px;}     table tbody tr td {font-family: Arial, Helvetica, sans-serif; border-bottom: 1px solid #ccc; margin-left: -3px; height: 33px;}";
 
-    return [commonCss, cssHeading, cssAddress, cssContact, tableCss];
+    var printCss = commonCss + cssHeading + cssAddress + cssContact + tableCss;
+
+    return printCss;
   }
 
 
@@ -69,6 +73,19 @@ export class AppComponent {
   //show bottom sheet
   showBottom() {
     this.bottomSheet.open(ErpBottomSheetComponent);
+  }
+
+  //*Functions for Show & Hide Spinner
+  showSpinner() {
+    this.spinner.show();
+  }
+
+
+  hideSpinner() {
+    setTimeout(() => {
+      /** spinner ends after process done*/
+      this.spinner.hide();
+    }, 1000);
   }
 
 }

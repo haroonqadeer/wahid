@@ -7,8 +7,6 @@ import { OrderPipe } from 'ngx-order-pipe';
 import { strictEqual } from 'assert';
 import { AppComponent } from '../../app.component';
 
-import { NgxSpinnerService } from 'ngx-spinner';
-
 import * as jsPDF from 'jspdf';
 
 import {
@@ -104,7 +102,6 @@ export class CurrencyComponent implements OnInit {
         private app: AppComponent,
         private http: HttpClient,
         private orderPipe: OrderPipe,
-        private spinner: NgxSpinnerService,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService) { }
 
@@ -147,8 +144,8 @@ export class CurrencyComponent implements OnInit {
         } else {
 
             if (this.currencyId != '') {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -174,8 +171,8 @@ export class CurrencyComponent implements OnInit {
 
 
             } else {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -247,8 +244,8 @@ export class CurrencyComponent implements OnInit {
             this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
             return false
         } else {
-            this.showSpinner();
-            this.hideSpinner();
+            this.app.showSpinner();
+            this.app.hideSpinner();
 
 
             this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
@@ -462,20 +459,6 @@ export class CurrencyComponent implements OnInit {
             }
         }
         //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
-    }
-
-
-    // Functions for Show & Hide Spinner
-    showSpinner() {
-        this.spinner.show();
-    }
-
-
-    hideSpinner() {
-        setTimeout(() => {
-            /** spinner ends after process done*/
-            this.spinner.hide();
-        });
     }
 
 }

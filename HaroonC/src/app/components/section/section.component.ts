@@ -6,7 +6,6 @@ import { catchError, filter } from 'rxjs/operators';
 import { allSettled } from 'q';
 import { AppComponent } from '../../app.component';
 
-import { NgxSpinnerService } from 'ngx-spinner';
 import * as jsPDF from 'jspdf';
 
 import {
@@ -233,7 +232,6 @@ export class SectionComponent implements OnInit {
 	constructor(private toastr: ToastrManager,
 		private app: AppComponent,
 		private http: HttpClient,
-		private spinner: NgxSpinnerService,
 		private excelExportService: IgxExcelExporterService,
 		private csvExportService: IgxCsvExporterService) { }
 
@@ -278,8 +276,8 @@ export class SectionComponent implements OnInit {
 			} else {
 
 
-				this.showSpinner();
-				this.hideSpinner();
+				this.app.showSpinner();
+				this.app.hideSpinner();
 				this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
 				this.sections.push({ sectionId: this.sections.length + "", sectionName: this.sectionName });
@@ -327,8 +325,8 @@ export class SectionComponent implements OnInit {
 		} else {
 
 			if (this.sectionId != '') {
-				this.showSpinner();
-				this.hideSpinner();
+				this.app.showSpinner();
+				this.app.hideSpinner();
 				this.toastr.successToastr('updated successfully', 'Error', { toastTimeout: (2500) });
 				this.clear();
 
@@ -355,8 +353,8 @@ export class SectionComponent implements OnInit {
 
 
 			} else {
-				this.showSpinner();
-				this.hideSpinner();
+				this.app.showSpinner();
+				this.app.hideSpinner();
 				this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
 				this.clear();
 				return false;
@@ -433,8 +431,8 @@ export class SectionComponent implements OnInit {
 			return false
 		} else {
 
-			this.showSpinner();
-			this.hideSpinner();
+			this.app.showSpinner();
+			this.app.hideSpinner();
 			this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
 			this.clear();
 
@@ -540,7 +538,7 @@ export class SectionComponent implements OnInit {
 				right: 30,
 				bottom: 50,
 				left: 30,
-				width: 50
+				width: 100
 			};
 		doc.fromHTML(
 			source, // HTML string or DOM elem ref.
@@ -550,10 +548,10 @@ export class SectionComponent implements OnInit {
 				// y coord
 				width: margins.width // max width of content on PDF
 			},
-			function (dispose) {
+			function () {
 				// dispose: object with X, Y of the last line add to the PDF
 				//          this allow the insertion of new lines after html
-				doc.save("Test.pdf");
+				doc.save("TestSection.pdf");
 			},
 			margins
 		);
@@ -657,18 +655,5 @@ export class SectionComponent implements OnInit {
 		//this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
 	}
 
-
-	// Functions for Show & Hide Spinner
-	showSpinner() {
-		this.spinner.show();
-	}
-
-
-	hideSpinner() {
-		setTimeout(() => {
-			/** spinner ends after process done*/
-			this.spinner.hide();
-		});
-	}
 }
 

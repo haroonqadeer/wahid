@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { AppComponent } from '../../app.component';
-import { NgxSpinnerService } from 'ngx-spinner';
 import {
     IgxExcelExporterOptions,
     IgxExcelExporterService,
@@ -14,8 +13,10 @@ import {
     IgxCsvExporterOptions,
     CsvFileTypes
 } from "igniteui-angular";
+
 import * as jsPDF from 'jspdf';
 
+//import jsPDF from 'jspdf';
 
 //----------------------------------------------------------------------------//
 //-------------------Working of this typescript file are as follows-----------//
@@ -303,7 +304,6 @@ export class UserprofileComponent implements OnInit {
     ];
 
     constructor(private http: HttpClient,
-        private spinner: NgxSpinnerService,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService,
         private app: AppComponent,
@@ -311,7 +311,6 @@ export class UserprofileComponent implements OnInit {
 
     ngOnInit() {
         this.init();
-
 
         this.getParty();
         // this.rdbType = 'employee';
@@ -395,8 +394,8 @@ export class UserprofileComponent implements OnInit {
             }
             else {
 
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 var data = { "empId": this.userId, "action": this.listAction, "duration": this.listBlockedAction, "password": this.txtActionPassword, "pin": this.txtActionPIN };
 
@@ -445,8 +444,8 @@ export class UserprofileComponent implements OnInit {
                 return false;
             }
             else {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 var data = { "partyId": this.userId };
 
@@ -563,33 +562,162 @@ export class UserprofileComponent implements OnInit {
 
 
     // For PDF Download
-    downloadPDF() {
+    // downloadPDF() {
 
-        var doc = new jsPDF("p", "pt", "A4"),
-            source = $("#printArea")[0],
-            margins = {
-                top: 75,
-                right: 30,
-                bottom: 50,
-                left: 30,
-                width: 50
-            };
-        doc.fromHTML(
-            source, // HTML string or DOM elem ref.
-            margins.left, // x coord
-            margins.top,
-            {
-                // y coord
-                width: margins.width // max width of content on PDF
-            },
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF
-                //          this allow the insertion of new lines after html
-                doc.save("Test.pdf");
-            },
-            margins
-        );
+    //     var doc = new jsPDF("p", "pt", "A4"),
+    //         source = $("#printArea")[0],
+    //         margins = {
+    //             top: 75,
+    //             right: 30,
+    //             bottom: 50,
+    //             left: 30,
+    //             width: 50
+    //         };
+    //     alert($("#printArea")[0]);
+    //     doc.fromHTML(
+    //         source, // HTML string or DOM elem ref.
+    //         margins.left, // x coord
+    //         margins.top,
+    //         {
+    //             // y coord
+    //             width: margins.width // max width of content on PDF
+    //         },
+    //         function (dispose) {
+    //             // dispose: object with X, Y of the last line add to the PDF
+    //             //          this allow the insertion of new lines after html
+    //             doc.save("Test.pdf");
+    //         },
+    //         margins
+    //     );
+    // }
+
+    downPDF() {
+
+        let doc = new jsPDF();
+        let specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        }
+
+        let content = this.exportPDF.nativeElement;
+
+        doc.fromHTML(content.innerHTML, 15, 15, {
+            'width': 190,
+            'elementHandlers ': specialElementHandlers
+        });
+
+        doc.save('testabc.pdf');
+
+        //*---------------------------1--------------------------//
+        // var pdf = new jsPDF('p', 'pt', 'letter');
+        // pdf.fromHTML($('#printArea')[0], 10, 10, { 'width': 180 });
+        // pdf.save('TestABC.pdf');
+        // source can be HTML-formatted string, or a reference
+        // to an actual DOM element from which the text will be scraped.
+        // var source = $('#printArea')[0];
+
+        // we support special element handlers. Register them with jQuery-style 
+        // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+        // There is no support for any other type of selectors 
+        // (class, of compound) at this time.
+        // var specialElementHandlers = {
+        //     // element with id of "bypass" - jQuery style selector
+        //     '#editor': function (element, renderer) {
+        //         // true = "handled elsewhere, bypass text extraction"
+        //         return true
+        //     }
+        // };
+        // var margins = {
+        //     top: 80,
+        //     bottom: 60,
+        //     left: 40,
+        //     width: 222
+        // };
+        // // all coords and widths are in jsPDF instance's declared units
+        // // 'inches' in this case
+        // pdf.fromHTML(
+        //     source, // HTML string or DOM elem ref.
+        //     margins.left, // x coord
+        //     margins.top, { // y coord
+        //         'width': margins.width // max width of content on PDF
+        //         // 'elementHandlers': specialElementHandlers
+        //     },
+
+        //     function (dispose) {
+        //         // dispose: object with X, Y of the last line add to the PDF 
+        //         //          this allow the insertion of new lines after html
+        //         pdf.save('TestABC.pdf');
+        //     }, margins);
+
+        //*---------------------------2--------------------------//
+
+        // function PDF1() {
+        //     var doc = new jsPDF();
+        //     var elementHandler = {
+        //         '#printArea': function (element, renderer) {
+        //             return true;
+        //         }
+        //     };
+        //     var source = $("#printArea")[0];
+        //     doc.fromHTML(
+        //         source,
+        //         15,
+        //         15,
+        //         {
+        //             'width': 180, 'elementHandlers': elementHandler
+        //         });
+
+        //     // doc.output("datauri");
+        //     doc.save('abc.pdf');
+        // }
+
+        // $(document).ready(function () {
+        //     //console.log( "ready!" );
+        //     PDF1();
+        // });
+
+        //*--------------------------3---------------------------//
+
+        // var doc = new jsPDF();
+
+        // // We'll make our own renderer to skip this editor
+        // var specialElementHandlers = {
+        //     '#editor': function (element, renderer) {
+        //         return true;
+        //     }
+        // };
+
+        // doc.fromHTML($('#printArea').get(0), 15, 15, {
+        //     'width': 170,
+        //     'elementHandlers': specialElementHandlers
+        // });
+        // doc.save('sample-filePDF.pdf');
     }
+
+    //*-----------------------------------------------------//
+
+    // downloadPDF() {
+    //     let doc = new jsPDF();
+
+    //     let specialElementHandlers = {
+    //         '#editor': function () {
+    //             return true;
+    //         }
+    //     };
+
+    //     let contentpdf = this.exportPDF.nativeElement;
+
+    //     doc.text(16, 16, contentpdf);
+
+    //     doc.fromHTML(contentpdf.innerHTML, 50, 0, {
+    //         'margin': 8,
+    //         'text': 16,
+    //         'elementHandlers': specialElementHandlers
+    //     });
+
+    //     doc.save('exportTest.pdf');
+    // }
 
 
     //For CSV File 
@@ -750,8 +878,8 @@ export class UserprofileComponent implements OnInit {
                 this.toastr.errorToastr('Please select user', 'Error', { toastTimeout: (2500) });
                 return false;
             } else {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 var data = { "partyId": this.userId };
 
@@ -788,18 +916,5 @@ export class UserprofileComponent implements OnInit {
         this.order = value;
     }
 
-
-    //*Functions for Show & Hide Spinner
-    showSpinner() {
-        this.spinner.show();
-    }
-
-
-    hideSpinner() {
-        setTimeout(() => {
-            /** spinner ends after process done*/
-            this.spinner.hide();
-        });
-    }
 }
 

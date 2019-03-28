@@ -16,20 +16,25 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AppComponent {
 
-    constructor(private router: Router, private bottomSheet: MatBottomSheet, private userIdle: UserIdleService, private spinner: NgxSpinnerService) {
+    constructor(private router: Router,
+        private bottomSheet: MatBottomSheet,
+        private userIdle: UserIdleService,
+        private spinner: NgxSpinnerService) {
 
         // For Spinner Show and Hide 
         this.router.events.subscribe((routerEvent: Event) => {
             if (routerEvent instanceof NavigationStart) {
-                this.spinner.show();
+                //this.spinner.show();
+                this.showSpinner();
                 //this.showLoadingSpinner = true;
             }
             if (routerEvent instanceof NavigationEnd) {
                 //this.showLoadingSpinner = false;
-                setTimeout(() => {
-                    /** spinner ends after 5 seconds */
-                    this.spinner.hide();
-                }, 1000);
+                // setTimeout(() => {
+                //     /** spinner ends after 5 seconds */
+                //     this.spinner.hide();
+                // }, 1000);
+                this.hideSpinner();
             }
         });
     }
@@ -112,6 +117,22 @@ export class AppComponent {
 
         var tableCss = "table {width: 100%; border-collapse: collapse;}    table thead tr th {text-align: left; font-family: Arial, Helvetica, sans-serif; font-weight: bole; border-bottom: 1px solid black; margin-left: -3px;}     table tbody tr td {font-family: Arial, Helvetica, sans-serif; border-bottom: 1px solid #ccc; margin-left: -3px; height: 33px;}";
 
-        return [commonCss, cssHeading, cssAddress, cssContact, tableCss];
+        var printCss = commonCss + cssHeading + cssAddress + cssContact + tableCss;
+
+        return printCss;
+    }
+
+
+    //*Functions for Show & Hide Spinner
+    showSpinner() {
+        this.spinner.show();
+    }
+
+
+    hideSpinner() {
+        setTimeout(() => {
+            /** spinner ends after process done*/
+            this.spinner.hide();
+        }, 1000);
     }
 }
