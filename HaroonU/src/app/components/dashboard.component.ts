@@ -7,15 +7,15 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 //*----------------------------------------------------------------------------//
 //*-------------------Working of this typescript file are as follows-----------//
-//*-------------------Get the list of all users -------------------//
-//*-------------------Get the data of all event logs -------------------//
-//*-------------------Get the List of user roles --------------------------//
-//*-------------------Get the List of all user's request --------------------------//
-//*-------------------Accepting the role request  ---------------------------//
-//*-------------------Query send by user to the administrator -----------------------------//
-//*-------------------Get the daily user trend  -----------------------------//
-//*-------------------Get the weekly user trend -----------------------------//
-//*-------------------For sorting the record-----------------------------//
+//*-------------------Get the list of all users -------------------------------//
+//*-------------------Get the data of all event logs --------------------------//
+//*-------------------Get the List of user roles ------------------------------//
+//*-------------------Get the List of all user's request ----------------------//
+//*-------------------Get the daily user trend  -------------------------------//
+//*-------------------Get the weekly user trend -------------------------------//
+//*-------------------Accepting the role request  -----------------------------//
+//*-------------------Query send by user to the administrator -----------------//
+//*-------------------For sorting the record-----------------------------------//
 //*----------------------------------------------------------------------------//
 
 
@@ -216,6 +216,7 @@ export class DashboardComponent implements OnInit {
     // });
   }
 
+
   //Get the list of all users.
   getUserList() {
     return false;
@@ -228,6 +229,7 @@ export class DashboardComponent implements OnInit {
       this.userList = data
     });
   }
+
 
   //Get the data of all event logs.
   getEventLog() {
@@ -242,6 +244,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+
   //Get the List of user roles.
   getUserRoles() {
     return false;
@@ -254,6 +257,7 @@ export class DashboardComponent implements OnInit {
       this.userRoles = data
     });
   }
+
 
   //Get the List of all user's request.
   getUserRequest() {
@@ -268,6 +272,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+
   //Get the List of all role's request.
   getRoleRequest() {
     return false;
@@ -281,75 +286,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // accepting the role request 
-  acceptData() {
-
-    //checking if password is empty
-    if (this.txtPassword.trim().length == 0) {
-
-      this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
-      return;
-    } else if (this.txtPin.trim().length == 0) {
-
-      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
-      return;
-    }
-
-    this.appComponent.showSpinner();
-    this.appComponent.hideSpinner();
-
-    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
-
-    $('#reqAcceptModal').modal('hide');
-
-    this.clear();
-    return;
-
-    // var Token = localStorage.getItem(this.tokenKey);
-
-    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
-
-    // var reqData = { pasword: this.txtPassword, pin: this.txtPin };
-
-    // this.http.get(this.serverUrl + 'api/acceptReq', reqData, { headers: reqHeader }).subscribe((data: any) => {
-    //   this.roleRequest = data
-    // });
-
-  }
-
-  // query send by user to the administrator
-  send() {
-
-    //checking if password is empty
-    if (this.txtSubject.trim().length == 0) {
-
-      this.toastr.errorToastr('Please Enter Subject', 'Oops!', { toastTimeout: (2500) });
-      return;
-    } else if (this.txtMessage.trim().length == 0) {
-
-      this.toastr.errorToastr('Please Enter Message', 'Oops!', { toastTimeout: (2500) });
-      return;
-    } else if (this.txtdPin.trim().length == 0) {
-
-      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
-      return;
-    }
-
-    this.appComponent.showSpinner();
-    this.appComponent.hideSpinner();
-
-    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
-
-    $('#msgModal').modal('hide');
-
-    this.clear();
-
-  }
-
-  //
-  pie_data() {
-
-  }
 
   //Get the daily user trend 
   PieChart_init() {
@@ -416,6 +352,7 @@ export class DashboardComponent implements OnInit {
     this.Pie_Chart = chart;
   }
 
+
   //Get the weekly user trend
   LineChart_init() {
 
@@ -454,6 +391,80 @@ export class DashboardComponent implements OnInit {
     //this.Line_chart = chart;
   }
 
+
+  // accepting the role request 
+  acceptData() {
+
+    //checking if password is empty
+    if (this.txtPassword.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtPin.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
+      return;
+    }
+
+    this.appComponent.showSpinner();
+    this.appComponent.hideSpinner();
+
+    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
+
+    $('#reqAcceptModal').modal('hide');
+
+    this.clear();
+    return;
+
+    // var Token = localStorage.getItem(this.tokenKey);
+
+    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+
+    // var reqData = { pasword: this.txtPassword, pin: this.txtPin };
+
+    // this.http.get(this.serverUrl + 'api/acceptReq', reqData, { headers: reqHeader }).subscribe((data: any) => {
+    //   this.roleRequest = data
+    // });
+
+  }
+
+
+  // query send by user to the administrator
+  send() {
+
+    //checking if password is empty
+    if (this.txtSubject.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Subject', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtMessage.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Message', 'Oops!', { toastTimeout: (2500) });
+      return;
+    } else if (this.txtdPin.trim().length == 0) {
+
+      this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
+      return;
+    }
+
+    this.appComponent.showSpinner();
+    this.appComponent.hideSpinner();
+
+    this.toastr.successToastr('Message Send Successfully!', 'Success', { toastTimeout: (2500) });
+
+    $('#msgModal').modal('hide');
+
+    this.clear();
+
+  }
+
+
+  //
+  pie_data() {
+
+  }
+
+
   // clear the fields
   clear() {
 
@@ -463,6 +474,7 @@ export class DashboardComponent implements OnInit {
     this.txtdPin = "";
     this.txtSubject = "";
   }
+
 
   //*function for sort table data 
   setOrder(value: string) {
