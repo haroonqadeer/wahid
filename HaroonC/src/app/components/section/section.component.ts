@@ -5,9 +5,7 @@ import { throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { allSettled } from 'q';
 import { AppComponent } from '../../app.component';
-
 import * as jsPDF from 'jspdf';
-
 import {
 	IgxExcelExporterOptions,
 	IgxExcelExporterService,
@@ -16,6 +14,7 @@ import {
 	IgxCsvExporterOptions,
 	CsvFileTypes
 } from "igniteui-angular";
+
 
 //----------------------------------------------------------------------------//
 //-------------------Working of this typescript file are as follows-----------//
@@ -27,6 +26,7 @@ import {
 //-------------------For sorting the record-----------------------------//
 //----------------------------------------------------------------------------//
 
+
 declare var $: any;
 
 @Component({
@@ -34,6 +34,7 @@ declare var $: any;
 	templateUrl: './section.component.html',
 	styleUrls: ['./section.component.scss']
 })
+
 export class SectionComponent implements OnInit {
 
 	serverUrl = "http://localhost:55536/";
@@ -47,8 +48,6 @@ export class SectionComponent implements OnInit {
 	excelDataList = [];
 
 	//* variables for display values on page
-
-
 
 	//*Variables for NgModels
 	tblSearch;
@@ -68,8 +67,6 @@ export class SectionComponent implements OnInit {
 	reverse = false;
 	sortedCollection: any[];
 	itemPerPage = '10';
-
-
 
 	//*List Variables
 	sections = [
@@ -228,7 +225,6 @@ export class SectionComponent implements OnInit {
 		}
 	];
 
-
 	constructor(private toastr: ToastrManager,
 		private app: AppComponent,
 		private http: HttpClient,
@@ -265,17 +261,16 @@ export class SectionComponent implements OnInit {
 		if (this.sectionName.trim() == '') {
 			this.toastr.errorToastr('Please enter section name', 'Error', { toastTimeout: (2500) });
 			return false;
-		} else {
-
+		}
+		else {
 			let data = this.sections.find(x => x.sectionName == this.sectionName);
 
 			if (data != undefined) {
 
 				this.toastr.errorToastr('Section name already exist', 'Error', { toastTimeout: (2500) });
 				return false;
-			} else {
-
-
+			}
+			else {
 				this.app.showSpinner();
 				this.app.hideSpinner();
 				this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
@@ -303,7 +298,6 @@ export class SectionComponent implements OnInit {
 						$('#actionModal').modal('hide');
 						return false;
 					}
-
 				});
 			}
 		}
@@ -312,17 +306,19 @@ export class SectionComponent implements OnInit {
 
 	//Function for save and update currency 
 	saveSectionDetail() {
-
 		if (this.cmbHeadQuarter == '') {
 			this.toastr.errorToastr('Please select head quarter/office', 'Error', { toastTimeout: (2500) });
 			return false;
-		} else if (this.cmbDepartment == '') {
+		}
+		else if (this.cmbDepartment == '') {
 			this.toastr.errorToastr('Please select department', 'Error', { toastTimeout: (2500) });
 			return false;
-		} else if (this.cmbSection == '') {
+		}
+		else if (this.cmbSection == '') {
 			this.toastr.errorToastr('Please select enter section name', 'Error', { toastTimeout: (2500) });
 			return false;
-		} else {
+		}
+		else {
 
 			if (this.sectionId != '') {
 				this.app.showSpinner();
@@ -348,17 +344,14 @@ export class SectionComponent implements OnInit {
 						$('#actionModal').modal('hide');
 						return false;
 					}
-
 				});
-
-
-			} else {
+			}
+			else {
 				this.app.showSpinner();
 				this.app.hideSpinner();
 				this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
 				this.clear();
 				return false;
-
 
 				var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
 
@@ -376,7 +369,6 @@ export class SectionComponent implements OnInit {
 						$('#actionModal').modal('hide');
 						return false;
 					}
-
 				});
 			}
 		}
@@ -385,7 +377,6 @@ export class SectionComponent implements OnInit {
 
 	//function for empty all fields
 	clear() {
-
 		this.dSectionId = '';
 		this.sectionId = ''
 		this.sectionName = '';
@@ -395,18 +386,15 @@ export class SectionComponent implements OnInit {
 
 		this.txtdPassword = '';
 		this.txtdPin = '';
-
 	}
 
 
 	//function for edit existing currency 
 	edit(item) {
-
 		this.sectionId = item.sectionDetailId;
 		this.cmbHeadQuarter = item.hqId;
 		this.cmbDepartment = item.departmentId;
 		this.cmbSection = item.sectionId;
-
 	}
 
 
@@ -419,18 +407,19 @@ export class SectionComponent implements OnInit {
 
 	//delete function 
 	delete() {
-
 		if (this.txtdPassword == '') {
 			this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
 			return false
-		} else if (this.txtdPin == '') {
+		}
+		else if (this.txtdPin == '') {
 			this.toastr.errorToastr('Please enter PIN', 'Error', { toastTimeout: (2500) });
 			return false
-		} else if (this.dSectionId == '') {
+		}
+		else if (this.dSectionId == '') {
 			this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
 			return false
-		} else {
-
+		}
+		else {
 			this.app.showSpinner();
 			this.app.hideSpinner();
 			this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
@@ -456,22 +445,16 @@ export class SectionComponent implements OnInit {
 					$('#actionModal').modal('hide');
 					return false;
 				}
-
 			});
-
 		}
-
-
 	}
 
 
 	//function for sort table data 
 	setOrder(value: string) {
-
 		if (this.order === value) {
 			this.reverse = !this.reverse;
 		}
-
 		this.order = value;
 	}
 
@@ -530,7 +513,6 @@ export class SectionComponent implements OnInit {
 
 	// For PDF Download
 	downloadPDF() {
-
 		var doc = new jsPDF("p", "pt", "A4"),
 			source = $("#printArea")[0],
 			margins = {
@@ -560,12 +542,10 @@ export class SectionComponent implements OnInit {
 
 	//For CSV File 
 	public downloadCSV() {
-
 		// case 1: When tblSearch is empty then assign full data list
 		if (this.tblSearch == "") {
 			var completeDataList = [];
 			for (var i = 0; i < this.sectionDetail.length; i++) {
-				//alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
 				completeDataList.push({
 					headQuarter: this.sectionDetail[i].HeadQuarter,
 					department: this.sectionDetail[i].Department,
@@ -574,7 +554,6 @@ export class SectionComponent implements OnInit {
 			}
 			this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("SectionCompleteCSV", CsvFileTypes.CSV));
 		}
-
 		// case 2: When tblSearch is not empty then assign new data list
 		else if (this.tblSearch != "") {
 			var filteredDataList = [];
@@ -593,7 +572,8 @@ export class SectionComponent implements OnInit {
 
 			if (filteredDataList.length > 0) {
 				this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("SectionFilterCSV", CsvFileTypes.CSV));
-			} else {
+			}
+			else {
 				this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
 			}
 		}
@@ -602,11 +582,8 @@ export class SectionComponent implements OnInit {
 
 	//For Exce File
 	public downloadExcel() {
-		//this.excelDataList = [];
-
 		// case 1: When tblSearch is empty then assign full data list
 		if (this.tblSearch == "") {
-			//var completeDataList = [];
 			for (var i = 0; i < this.sectionDetail.length; i++) {
 				this.excelDataList.push({
 					headQuarter: this.sectionDetail[i].HeadQuarter,
@@ -614,18 +591,11 @@ export class SectionComponent implements OnInit {
 					section: this.sectionDetail[i].Section
 				});
 			}
-
-			//alert("Excel length " + this.excelDataList.length);
-
 			this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("SectionCompleteExcel"));
 			this.excelDataList = [];
-
-			//alert("Excel length " + this.excelDataList.length);
 		}
-
 		// case 2: When tblSearch is not empty then assign new data list
 		else if (this.tblSearch != "") {
-
 			for (var i = 0; i < this.sectionDetail.length; i++) {
 				if (this.sectionDetail[i].HeadQuarter.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
 					this.sectionDetail[i].Department.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -639,21 +609,13 @@ export class SectionComponent implements OnInit {
 			}
 
 			if (this.excelDataList.length > 0) {
-
-				//alert("Filter List " + this.excelDataList.length);
-
 				this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("SectionFilterExcel"));
 				this.excelDataList = [];
-
-				//alert(" Filter List " + this.excelDataList.length);
-
 			}
 			else {
 				this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
 			}
 		}
-		//this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
 	}
-
 }
 

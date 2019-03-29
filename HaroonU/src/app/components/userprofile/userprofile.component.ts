@@ -39,6 +39,7 @@ declare var $: any;
     templateUrl: './userprofile.component.html',
     styleUrls: ['./userprofile.component.scss']
 })
+
 export class UserprofileComponent implements OnInit {
 
     serverUrl = "http://localhost:55536/";
@@ -66,7 +67,6 @@ export class UserprofileComponent implements OnInit {
     userLink = '';
     userLinkCode = '';
 
-
     //*Variables for NgModels 
     searchAction = '';
     txtActionPassword = '';
@@ -78,7 +78,6 @@ export class UserprofileComponent implements OnInit {
     txtUsername = '';
     txtPassword = "";
     txtCnfrmPassword = "";
-
 
     //*Boolean ng models and variables
     disabledPassword = false;
@@ -93,7 +92,6 @@ export class UserprofileComponent implements OnInit {
     reverse = false;
     sortedCollection: any[];
     itemPerPage = '10';
-
 
     //List variables
     public users = [];
@@ -377,7 +375,8 @@ export class UserprofileComponent implements OnInit {
         if (this.listAction == '') {
             this.toastr.errorToastr('Please Select Action Type', 'Error', { toastTimeout: (2500) });
             return false;
-        } else {
+        }
+        else {
             if (this.listAction == 'Block' && this.listBlockedAction == '') {
                 //this.isLoginError = true;
                 this.toastr.errorToastr('Please Select Block Time', 'Error', { toastTimeout: (2500) });
@@ -393,7 +392,6 @@ export class UserprofileComponent implements OnInit {
                 return false;
             }
             else {
-
                 this.app.showSpinner();
                 this.app.hideSpinner();
 
@@ -415,7 +413,6 @@ export class UserprofileComponent implements OnInit {
                     }
                 });
             }
-
         }
     }
 
@@ -489,7 +486,8 @@ export class UserprofileComponent implements OnInit {
 
             this.userId = item.indvdlId;
 
-        } else if (actionType == 'link') {
+        }
+        else if (actionType == 'link') {
 
             this.userId = item.indvdlId;
             this.userLink = "localhost:4200?code=";
@@ -503,7 +501,6 @@ export class UserprofileComponent implements OnInit {
 
             this.showLink = true;
         }
-
     }
 
 
@@ -561,173 +558,28 @@ export class UserprofileComponent implements OnInit {
     }
 
 
-    // For PDF Download
-    // downloadPDF() {
-
-    //     var doc = new jsPDF("p", "pt", "A4"),
-    //         source = $("#printArea")[0],
-    //         margins = {
-    //             top: 75,
-    //             right: 30,
-    //             bottom: 50,
-    //             left: 30,
-    //             width: 50
-    //         };
-    //     alert($("#printArea")[0]);
-    //     doc.fromHTML(
-    //         source, // HTML string or DOM elem ref.
-    //         margins.left, // x coord
-    //         margins.top,
-    //         {
-    //             // y coord
-    //             width: margins.width // max width of content on PDF
-    //         },
-    //         function (dispose) {
-    //             // dispose: object with X, Y of the last line add to the PDF
-    //             //          this allow the insertion of new lines after html
-    //             doc.save("Test.pdf");
-    //         },
-    //         margins
-    //     );
-    // }
-
     downPDF() {
-
         let doc = new jsPDF();
         let specialElementHandlers = {
             '#editor': function (element, renderer) {
                 return true;
             }
         }
-
         let content = this.exportPDF.nativeElement;
-
         doc.fromHTML(content.innerHTML, 15, 15, {
             'width': 190,
             'elementHandlers ': specialElementHandlers
         });
-
         doc.save('testabc.pdf');
-
-        //*---------------------------1--------------------------//
-        // var pdf = new jsPDF('p', 'pt', 'letter');
-        // pdf.fromHTML($('#printArea')[0], 10, 10, { 'width': 180 });
-        // pdf.save('TestABC.pdf');
-        // source can be HTML-formatted string, or a reference
-        // to an actual DOM element from which the text will be scraped.
-        // var source = $('#printArea')[0];
-
-        // we support special element handlers. Register them with jQuery-style 
-        // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-        // There is no support for any other type of selectors 
-        // (class, of compound) at this time.
-        // var specialElementHandlers = {
-        //     // element with id of "bypass" - jQuery style selector
-        //     '#editor': function (element, renderer) {
-        //         // true = "handled elsewhere, bypass text extraction"
-        //         return true
-        //     }
-        // };
-        // var margins = {
-        //     top: 80,
-        //     bottom: 60,
-        //     left: 40,
-        //     width: 222
-        // };
-        // // all coords and widths are in jsPDF instance's declared units
-        // // 'inches' in this case
-        // pdf.fromHTML(
-        //     source, // HTML string or DOM elem ref.
-        //     margins.left, // x coord
-        //     margins.top, { // y coord
-        //         'width': margins.width // max width of content on PDF
-        //         // 'elementHandlers': specialElementHandlers
-        //     },
-
-        //     function (dispose) {
-        //         // dispose: object with X, Y of the last line add to the PDF 
-        //         //          this allow the insertion of new lines after html
-        //         pdf.save('TestABC.pdf');
-        //     }, margins);
-
-        //*---------------------------2--------------------------//
-
-        // function PDF1() {
-        //     var doc = new jsPDF();
-        //     var elementHandler = {
-        //         '#printArea': function (element, renderer) {
-        //             return true;
-        //         }
-        //     };
-        //     var source = $("#printArea")[0];
-        //     doc.fromHTML(
-        //         source,
-        //         15,
-        //         15,
-        //         {
-        //             'width': 180, 'elementHandlers': elementHandler
-        //         });
-
-        //     // doc.output("datauri");
-        //     doc.save('abc.pdf');
-        // }
-
-        // $(document).ready(function () {
-        //     //console.log( "ready!" );
-        //     PDF1();
-        // });
-
-        //*--------------------------3---------------------------//
-
-        // var doc = new jsPDF();
-
-        // // We'll make our own renderer to skip this editor
-        // var specialElementHandlers = {
-        //     '#editor': function (element, renderer) {
-        //         return true;
-        //     }
-        // };
-
-        // doc.fromHTML($('#printArea').get(0), 15, 15, {
-        //     'width': 170,
-        //     'elementHandlers': specialElementHandlers
-        // });
-        // doc.save('sample-filePDF.pdf');
     }
-
-    //*-----------------------------------------------------//
-
-    // downloadPDF() {
-    //     let doc = new jsPDF();
-
-    //     let specialElementHandlers = {
-    //         '#editor': function () {
-    //             return true;
-    //         }
-    //     };
-
-    //     let contentpdf = this.exportPDF.nativeElement;
-
-    //     doc.text(16, 16, contentpdf);
-
-    //     doc.fromHTML(contentpdf.innerHTML, 50, 0, {
-    //         'margin': 8,
-    //         'text': 16,
-    //         'elementHandlers': specialElementHandlers
-    //     });
-
-    //     doc.save('exportTest.pdf');
-    // }
 
 
     //For CSV File 
     public downloadCSV() {
-
-        // case 1: When tblSearch is empty then assign full data list
+        // case 1: When userSearch is empty then assign full data list
         if (this.userSearch == "") {
             var completeDataList = [];
             for (var i = 0; i < this.userData.length; i++) {
-                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
                 completeDataList.push({
                     userName: this.userData[i].uName,
                     email: this.userData[i].uEmail,
@@ -738,8 +590,7 @@ export class UserprofileComponent implements OnInit {
             }
             this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("UserProfileCompleteCSV", CsvFileTypes.CSV));
         }
-
-        // case 2: When tblSearch is not empty then assign new data list
+        // case 2: When userSearch is not empty then assign new data list
         else if (this.userSearch != "") {
             var filteredDataList = [];
             for (var i = 0; i < this.userData.length; i++) {
@@ -761,7 +612,8 @@ export class UserprofileComponent implements OnInit {
 
             if (filteredDataList.length > 0) {
                 this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("UserProfileFilterCSV", CsvFileTypes.CSV));
-            } else {
+            }
+            else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
@@ -770,11 +622,8 @@ export class UserprofileComponent implements OnInit {
 
     //For Exce File
     public downloadExcel() {
-        //this.excelDataList = [];
-
-        // case 1: When tblSearch is empty then assign full data list
+        // case 1: When userSearch is empty then assign full data list
         if (this.userSearch == "") {
-            //var completeDataList = [];
             for (var i = 0; i < this.userData.length; i++) {
                 this.excelDataList.push({
                     userName: this.userData[i].uName,
@@ -785,15 +634,10 @@ export class UserprofileComponent implements OnInit {
                 });
             }
 
-            //alert("Excel length " + this.excelDataList.length);
-
             this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserProfileCompleteExcel"));
             this.excelDataList = [];
-
-            //alert("Excel length " + this.excelDataList.length);
         }
-
-        // case 2: When tblSearch is not empty then assign new data list
+        // case 2: When userSearch is not empty then assign new data list
         else if (this.userSearch != "") {
 
             for (var i = 0; i < this.userData.length; i++) {
@@ -814,19 +658,14 @@ export class UserprofileComponent implements OnInit {
 
             if (this.excelDataList.length > 0) {
 
-                //alert("Filter List " + this.excelDataList.length);
-
                 this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserProfileFilterExcel"));
                 this.excelDataList = [];
-
-                //alert(" Filter List " + this.excelDataList.length);
 
             }
             else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
-        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
 
 
@@ -872,12 +711,14 @@ export class UserprofileComponent implements OnInit {
         if (this.rdbType == '') {
             this.toastr.errorToastr('Please select user type', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.rdbType == 'employee' || this.rdbType == 'visitor') {
+        }
+        else if (this.rdbType == 'employee' || this.rdbType == 'visitor') {
 
             if (this.cmbEmployee == '') {
                 this.toastr.errorToastr('Please select user', 'Error', { toastTimeout: (2500) });
                 return false;
-            } else {
+            }
+            else {
                 this.app.showSpinner();
                 this.app.hideSpinner();
 
@@ -915,6 +756,5 @@ export class UserprofileComponent implements OnInit {
         }
         this.order = value;
     }
-
 }
 

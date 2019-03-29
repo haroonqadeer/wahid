@@ -77,6 +77,7 @@ export class DashboardComponent implements OnInit {
       userRole: "Admin"
     }
   ]
+
   // Data for event log modal window table
   eventLog = [
     {
@@ -400,7 +401,8 @@ export class DashboardComponent implements OnInit {
 
       this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
       return;
-    } else if (this.txtPin.trim().length == 0) {
+    }
+    else if (this.txtPin.trim().length == 0) {
 
       this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
       return;
@@ -437,11 +439,13 @@ export class DashboardComponent implements OnInit {
 
       this.toastr.errorToastr('Please Enter Subject', 'Oops!', { toastTimeout: (2500) });
       return;
-    } else if (this.txtMessage.trim().length == 0) {
+    }
+    else if (this.txtMessage.trim().length == 0) {
 
       this.toastr.errorToastr('Please Enter Message', 'Oops!', { toastTimeout: (2500) });
       return;
-    } else if (this.txtdPin.trim().length == 0) {
+    }
+    else if (this.txtdPin.trim().length == 0) {
 
       this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
       return;
@@ -478,13 +482,11 @@ export class DashboardComponent implements OnInit {
 
   //*function for sort table data 
   setOrder(value: string) {
-
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
     this.order = value;
   }
-
 }
 
 

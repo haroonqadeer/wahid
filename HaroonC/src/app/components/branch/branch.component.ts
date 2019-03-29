@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
-
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-
 import * as jsPDF from 'jspdf';
-
 import {
   IgxExcelExporterOptions,
   IgxExcelExporterService,
@@ -30,7 +27,6 @@ import {
 
 
 declare var $: any;
-
 
 @Component({
   selector: 'app-branch',
@@ -390,17 +386,13 @@ export class BranchComponent implements OnInit {
       return false;
     }
     else {
-
       let data = this.cities.find(x => x.ctyName == this.cityName);
 
       if (data != undefined) {
-
         this.toastr.errorToastr('City name already exist', 'Error', { toastTimeout: (2500) });
         return false;
       }
-
       else {
-
         this.app.showSpinner();
         this.app.hideSpinner();
 
@@ -435,7 +427,6 @@ export class BranchComponent implements OnInit {
 
       }
     }
-    ///////
   }
 
 
@@ -475,10 +466,8 @@ export class BranchComponent implements OnInit {
 
   //*get the "id" of the delete entry 
   deleteTemp(item) {
-
     this.clear();
     this.dbranchId = item.branId;
-
   }
 
 
@@ -531,7 +520,6 @@ export class BranchComponent implements OnInit {
 
   //*function for sort table data 
   setOrder(value: string) {
-
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
@@ -629,7 +617,6 @@ export class BranchComponent implements OnInit {
     if (this.tblSearch == "") {
       var completeDataList = [];
       for (var i = 0; i < this.branches.length; i++) {
-        //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
         completeDataList.push({
           branchTitle: this.branches[i].branTitle,
           branchAddress: this.branches[i].branAddress,
@@ -641,12 +628,10 @@ export class BranchComponent implements OnInit {
       }
       this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
     }
-
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.tblSearch != "") {
       var filteredDataList = [];
       for (var i = 0; i < this.branches.length; i++) {
-
         if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].ctyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -690,18 +675,11 @@ export class BranchComponent implements OnInit {
           brancMobile: this.branches[i].branMobile,
         });
       }
-
-      //alert("Excel length " + this.excelDataList.length);
-
       this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("BranchCompleteExcel"));
       this.excelDataList = [];
-
-      //alert("Excel length " + this.excelDataList.length);
     }
-
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.tblSearch != "") {
-
       for (var i = 0; i < this.branches.length; i++) {
         if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -719,22 +697,13 @@ export class BranchComponent implements OnInit {
           });
         }
       }
-
       if (this.excelDataList.length > 0) {
-
-        //alert("Filter List " + this.excelDataList.length);
-
         this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("BranchFilterExcel"));
         this.excelDataList = [];
-
-        //alert(" Filter List " + this.excelDataList.length);
-
       }
       else {
         this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
       }
     }
-    //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
-
 }

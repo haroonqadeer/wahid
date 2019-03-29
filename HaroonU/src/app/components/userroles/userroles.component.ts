@@ -35,7 +35,6 @@ import * as jsPDF from 'jspdf';
 //----------------------------------------------------------------------------//
 
 
-
 declare var $: any;
 
 //For Push Data in the Object array
@@ -49,6 +48,7 @@ export interface erpObject {
   templateUrl: './userroles.component.html',
   styleUrls: ['./userroles.component.scss']
 })
+
 export class UserrolesComponent implements OnInit {
 
 
@@ -263,9 +263,7 @@ export class UserrolesComponent implements OnInit {
                   parentErpObjName: this.employees[i].erpObjctName
                 }]
               });
-
             }
-
           }
 
           this.roleList.push({
@@ -277,9 +275,7 @@ export class UserrolesComponent implements OnInit {
             }],
             children: this.roleChildren
           });
-
         }
-
       }
 
       this.roleTree = this.roleList;
@@ -290,7 +286,6 @@ export class UserrolesComponent implements OnInit {
 
   //Menu list filter method 
   getFilterMenu(item) {
-
     return this.tempRoleList.filter(x => x.parentErpObjctCd == item && x.erpObjctTypeCd == 2);
   }
 
@@ -330,9 +325,7 @@ export class UserrolesComponent implements OnInit {
                   parentErpObjName: this.employees[i].erpobjctName
                 }]
               });
-
             }
-
           }
 
           this.menuList.push({
@@ -344,9 +337,7 @@ export class UserrolesComponent implements OnInit {
             }],
             children: this.children
           });
-
         }
-
       }
 
       this.menuTree = this.menuList;
@@ -359,10 +350,10 @@ export class UserrolesComponent implements OnInit {
 
     //checking if role name is empty
     if (this.erpRoleName.trim().length == 0) {
-
       this.toastr.errorToastr('Please Enter Role Name', 'Oops!', { toastTimeout: (2500) });
       return;
-    } else if (this.roleTree == undefined) {
+    }
+    else if (this.roleTree == undefined) {
       this.toastr.errorToastr('Please Push Data in Role Tree', 'Error', { toastTimeout: (2500) }); return
     }
 
@@ -374,7 +365,6 @@ export class UserrolesComponent implements OnInit {
         erpObjctTypeCd: this.roleTree[i].data[0].typeCode
       });
       for (var j = 0; j < this.roleTree[i].children.length; j++)
-
         this.erpObjct.push({
           erpObjctCd: this.roleTree[i].children[j].data[0].objCode,
           erpObjctTypeCd: this.roleTree[i].children[j].data[0].typeCode
@@ -389,7 +379,6 @@ export class UserrolesComponent implements OnInit {
 
       var roleData = { erpObjct: JSON.stringify(this.erpObjct), erpRoleName: this.erpRoleName };
       this.http.post(this.serverUrl + 'api/saveUserRole', roleData).subscribe((data: any) => {
-
         this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
       });
     } else {
@@ -398,7 +387,6 @@ export class UserrolesComponent implements OnInit {
       this.app.hideSpinner();
       var rolesData = { erpObjct: JSON.stringify(this.erpObjct), erpRoleCd: this.erpRoleCd, erpRoleName: this.erpRoleName };
       this.http.put(this.serverUrl + 'api/updateUserRole', rolesData).subscribe((data: any) => {
-
         this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
       });
     }
@@ -417,7 +405,6 @@ export class UserrolesComponent implements OnInit {
 
     var rolesData = { tempRoleList: JSON.stringify(this.tempRoleList), erpRoleCd: this.erpRoleCd };
     this.http.put(this.serverUrl + 'api/savePermission', rolesData).subscribe((data: any) => {
-
       this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
     });
   }
@@ -480,32 +467,29 @@ export class UserrolesComponent implements OnInit {
           }],
           children: this.roleChildren
         });
-
-      } else {
-
+      }
+      else {
         for (var i = 0; i < this.roleTree.length; i++) {
           //checking if role tree object code is equal to selected menu object code
           if (this.roleTree[i].data[0].objCode == this.selectedMenu[0].data[0].objCode) {
-
             itemFound = true;
             itemIndex = i;
             i = this.roleTree.length + 1;
-
-          } else {
+          }
+          else {
             itemFound = false;
             itemIndex = 0;
           }
         }
 
         if (itemFound == true) {
-
           //checking if selected menu children length is equal to role tree children length  
           if (this.selectedMenu[0].children.length == this.roleTree[itemIndex].children.length) {
             this.toastr.errorToastr('Already Add ' + this.selectedMenu[0].data[0].objName + ' Menu!', 'Error', { toastTimeout: (2500) });
             itemFound = false;
             itemIndex = 0; return
-          } else {
-
+          }
+          else {
             for (var i = 0; i < this.selectedMenu[0].children.length; i++) {
               itemFound = false;
               for (var j = 0; j < this.roleTree[itemIndex].children.length; j++) {
@@ -530,11 +514,10 @@ export class UserrolesComponent implements OnInit {
                 this.roleList[itemIndex].children.push(this.roleChildren[0]);
                 this.roleChildren = [];
               }
-
             }
-
           }
-        } else {
+        }
+        else {
           this.roleChildren = [];
 
           for (var i = 0; i < this.selectedMenu[0].children.length; i++) {
@@ -567,8 +550,8 @@ export class UserrolesComponent implements OnInit {
 
         }
       }
-    } else if (this.selectedMenu[0].data[0].typeCode == 2) {
-
+    }
+    else if (this.selectedMenu[0].data[0].typeCode == 2) {
       //checking if role tree doesnot have any value
       if (this.roleTree == undefined) {
         this.roleChildren.push({
@@ -589,11 +572,10 @@ export class UserrolesComponent implements OnInit {
           }],
           children: this.roleChildren
         });
-      } else {
-
+      }
+      else {
         itemFound = false;
         itemIndex = 0;
-
         for (var i = 0; i < this.roleTree.length; i++) {
           //checking if selectedMenu parent id and roletree id are same
           if (this.selectedMenu[0].data[0].parentErpObjCd == this.roleTree[i].data[0].objCode) {
@@ -602,22 +584,24 @@ export class UserrolesComponent implements OnInit {
             i = this.roleTree.length + 1;
           }
         }
-        if (itemFound == true) {
 
+        if (itemFound == true) {
           itemFound = false;
           for (var i = 0; i < this.roleTree[itemIndex].children.length; i++) {
             //checking if selectedMenu id and roletree children id are same
             if (this.selectedMenu[0].data[0].objCode == this.roleTree[itemIndex].children[i].data[0].objCode) {
               itemFound = true;
               i = this.roleTree[itemIndex].children.length + 1;
-            } else {
+            }
+            else {
               itemFound = false;
             }
           }
 
           if (itemFound == true) {
             this.toastr.errorToastr('Already Add ' + this.selectedMenu[0].data[0].objName + 'Menu!', 'Error', { toastTimeout: (2500) });
-          } else {
+          }
+          else {
             this.roleChildren.push({
               label: this.selectedMenu[0].data[0].objName,
               data: [{
@@ -630,7 +614,8 @@ export class UserrolesComponent implements OnInit {
             this.roleList[itemIndex].children.push(this.roleChildren[0]);
           }
 
-        } else {
+        }
+        else {
           this.roleChildren = [];
           this.roleChildren.push({
             label: this.selectedMenu[0].data[0].objName,
@@ -651,10 +636,8 @@ export class UserrolesComponent implements OnInit {
             children: this.roleChildren
           });
         }
-
       }
     }
-
     this.roleTree = this.roleList;
   }
 
@@ -698,18 +681,15 @@ export class UserrolesComponent implements OnInit {
     this.app.hideSpinner();
     //checking if password is empty
     if (this.txtdPassword.trim().length == 0) {
-
       this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
       return;
-    } else if (this.txtdPin.trim().length == 0) {
-
+    }
+    else if (this.txtdPin.trim().length == 0) {
       this.toastr.errorToastr('Please Enter Pin', 'Oops!', { toastTimeout: (2500) });
       return;
     }
-
     //deleting roles from database 
     this.http.delete(this.serverUrl + 'api/deleteUserRole' + this.erpRoleCd).subscribe((data: any) => {
-
       this.toastr.successToastr(data, 'Success', { toastTimeout: (2500) }); return;
     });
   }
@@ -724,15 +704,14 @@ export class UserrolesComponent implements OnInit {
     if (this.selectedRole == undefined) {
       this.toastr.errorToastr('Please Select Nodes to Remove!', 'Error', { toastTimeout: (2500) }); return;
     }
-
     //checking if selectedRole type is Module then apply follow condition
     if (this.selectedRole[0].data[0].typeCode == 1) {
       //getting index of selectedRole in roleTree
       var index = this.roleTree.indexOf(this.selectedRole[0]);
-
       //removing entire row including with children from roleTree
       this.roleTree.splice(index, 1);
-    } else if (this.selectedRole[0].data[0].typeCode == 2) {
+    }
+    else if (this.selectedRole[0].data[0].typeCode == 2) {
 
       for (var i = 0; i < this.roleTree.length; i++) {
 
@@ -744,20 +723,16 @@ export class UserrolesComponent implements OnInit {
               //getting index of selectedRole and remove parent and children of selectedRole
               var index = this.roleTree.indexOf(this.selectedRole[0]);
               this.roleTree.splice(index, 1); return
-            } else {
+            }
+            else {
               //getting index of  selected children and remove the current index 
               var index = this.roleTree[i].children.indexOf(this.selectedRole[0]);
               this.roleTree[i].children.splice(index, 1);
             }
-
           }
-
         }
-
       }
-
     }
-
   }
 
 
@@ -861,12 +836,10 @@ export class UserrolesComponent implements OnInit {
       }
       this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("UserRoleCompleteCSV", CsvFileTypes.CSV));
     }
-
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.roleSearch != "") {
       var filteredDataList = [];
       for (var i = 0; i < this.rolesData.length; i++) {
-
         if (this.rolesData[i].uRoleName.toUpperCase().includes(this.roleSearch.toUpperCase()) ||
           this.rolesData[i].uNoModule.toString().toUpperCase().includes(this.roleSearch.toUpperCase()) ||
           this.rolesData[i].uNoPage.toString().toUpperCase().includes(this.roleSearch.toUpperCase())) {
@@ -889,11 +862,9 @@ export class UserrolesComponent implements OnInit {
 
   //For Exce File
   public downloadExcel() {
-    //this.excelDataList = [];
 
-    // case 1: When tblSearch is empty then assign full data list
+    // case 1: When roleSearch is empty then assign full data list
     if (this.roleSearch == "") {
-      //var completeDataList = [];
       for (var i = 0; i < this.rolesData.length; i++) {
         this.excelDataList.push({
           roleName: this.rolesData[i].uRoleName,
@@ -901,18 +872,11 @@ export class UserrolesComponent implements OnInit {
           noOfPages: this.rolesData[i].uNoPage
         });
       }
-
-      //alert("Excel length " + this.excelDataList.length);
-
       this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserRoleCompleteExcel"));
       this.excelDataList = [];
-
-      //alert("Excel length " + this.excelDataList.length);
     }
-
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.roleSearch != "") {
-
       for (var i = 0; i < this.rolesData.length; i++) {
         if (this.rolesData[i].uRoleName.toUpperCase().includes(this.roleSearch.toUpperCase()) ||
           this.rolesData[i].uNoModule.toString().toUpperCase().includes(this.roleSearch.toUpperCase()) ||
@@ -926,30 +890,21 @@ export class UserrolesComponent implements OnInit {
       }
 
       if (this.excelDataList.length > 0) {
-
-        //alert("Filter List " + this.excelDataList.length);
-
         this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserRoleFilterExcel"));
         this.excelDataList = [];
-
-        //alert(" Filter List " + this.excelDataList.length);
-
       }
       else {
         this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
       }
     }
-    //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
   }
 
 
   //*function for sort table data 
   setOrder(value: string) {
-
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
     this.order = value;
   }
-
 }

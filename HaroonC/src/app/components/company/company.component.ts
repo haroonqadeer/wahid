@@ -5,9 +5,7 @@ import { catchError, filter } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
-
 import * as jsPDF from 'jspdf';
-
 import {
     IgxExcelExporterOptions,
     IgxExcelExporterService,
@@ -256,7 +254,6 @@ export class CompanyComponent implements OnInit {
     @ViewChild("exportPDF") public exportPDF: ElementRef;//for pdf
 
 
-
     //* Function for save and update company 
     save() {
 
@@ -271,101 +268,130 @@ export class CompanyComponent implements OnInit {
         else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
             this.toastr.errorToastr('Please enter owner NTN', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && this.sOwnerName == '') {
+        }
+        else if (this.solePro == true && this.sOwnerName == '') {
             this.toastr.errorToastr('Please enter owner name', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && (this.sTelephoneNo == '' || this.sTelephoneNo.length < 10)) {
+        }
+        else if (this.solePro == true && (this.sTelephoneNo == '' || this.sTelephoneNo.length < 10)) {
             this.toastr.errorToastr('Please enter owner telephone number', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && (this.sMobileNo == '' || this.sMobileNo.length < 11)) {
+        }
+        else if (this.solePro == true && (this.sMobileNo == '' || this.sMobileNo.length < 11)) {
             this.toastr.errorToastr('Please enter owner mobile number', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && this.sEmail.trim() == '') {
+        }
+        else if (this.solePro == true && this.sEmail.trim() == '') {
             this.toastr.errorToastr('Please enter owner emial', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && this.isEmail(this.sEmail) == false) {
+        }
+        else if (this.solePro == true && this.isEmail(this.sEmail) == false) {
             this.toastr.errorToastr('Invalid owner emial', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.solePro == true && this.sAddress == '') {
+        }
+        else if (this.solePro == true && this.sAddress == '') {
             this.toastr.errorToastr('Please enter owner address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
+        }
+        else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
             this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
+        }
+        else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
             this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && (this.ppNtn == '' || this.ppNtn.length < 8)) {
+        }
+        else if (this.ppCom == true && (this.ppNtn == '' || this.ppNtn.length < 8)) {
             this.toastr.errorToastr('Please enter director ntn', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && this.ppDirectorName == '') {
+        }
+        else if (this.ppCom == true && this.ppDirectorName == '') {
             this.toastr.errorToastr('Please enter director name', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && this.ppPosition == '') {
+        }
+        else if (this.ppCom == true && this.ppPosition == '') {
             this.toastr.errorToastr('Please enter director position', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && this.ppShare == '') {
+        }
+        else if (this.ppCom == true && this.ppShare == '') {
             this.toastr.errorToastr('Please enter director share', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && (this.ppTelephone == '' || this.ppTelephone.length < 10)) {
+        }
+        else if (this.ppCom == true && (this.ppTelephone == '' || this.ppTelephone.length < 10)) {
             this.toastr.errorToastr('Please enter director telephone', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && (this.ppMobile == '' || this.ppMobile.length < 11)) {
+        }
+        else if (this.ppCom == true && (this.ppMobile == '' || this.ppMobile.length < 11)) {
             this.toastr.errorToastr('Please enter director mobile', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && this.ppEmail.trim() == '') {
+        }
+        else if (this.ppCom == true && this.ppEmail.trim() == '') {
             this.toastr.errorToastr('Please enter director email', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && this.isEmail(this.ppEmail) == false) {
+        }
+        else if (this.ppCom == true && this.isEmail(this.ppEmail) == false) {
             this.toastr.errorToastr('Invalid director email', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ppCom == true && this.ppAddress == '') {
+        }
+        else if (this.ppCom == true && this.ppAddress == '') {
             this.toastr.errorToastr('Please enter director address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bNtn == '' || this.bNtn.length < 8) {
+        }
+        else if (this.bNtn == '' || this.bNtn.length < 8) {
             this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bStrn == '' || this.bStrn.length < 10) {
+        }
+        else if (this.bStrn == '' || this.bStrn.length < 10) {
             this.toastr.errorToastr('Please enter business strn', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bTitle == '') {
+        }
+        else if (this.bTitle == '') {
             this.toastr.errorToastr('Please enter business title', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bNature == '') {
+        }
+        else if (this.bNature == '') {
             this.toastr.errorToastr('Please enter business nature', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bDescription == '') {
+        }
+        else if (this.bDescription == '') {
             this.toastr.errorToastr('Please enter description', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bBusinessAddress == '') {
+        }
+        else if (this.bBusinessAddress == '') {
             this.toastr.errorToastr('Please enter business address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bMailingAddress == '') {
+        }
+        else if (this.bMailingAddress == '') {
             this.toastr.errorToastr('Please enter business mailing address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bTelephone == '' || this.bTelephone.length < 10) {
+        }
+        else if (this.bTelephone == '' || this.bTelephone.length < 10) {
             this.toastr.errorToastr('Please enter business telephone', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bMobile == '' || this.bMobile.length < 11) {
+        }
+        else if (this.bMobile == '' || this.bMobile.length < 11) {
             this.toastr.errorToastr('Please enter business mobile', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bEmail == '') {
+        }
+        else if (this.bEmail == '') {
             this.toastr.errorToastr('Please enter business email', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.isEmail(this.bEmail) == false) {
+        }
+        else if (this.isEmail(this.bEmail) == false) {
             this.toastr.errorToastr('Invalid business email', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bWebsite == '') {
+        }
+        else if (this.bWebsite == '') {
             this.toastr.errorToastr('Please enter website', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.bFacebook == '') {
+        }
+        else if (this.bFacebook == '') {
             this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else {
 
             if (this.cmbCType == "Sole Proprietorship") {
-
                 this.partners = [];
                 this.clearPartner();
 
@@ -384,7 +410,6 @@ export class CompanyComponent implements OnInit {
                 });
             }
             else if (this.cmbCType == "Public Limited Company" || this.cmbCType == "Private Limited Company") {
-
                 this.partners = [];
                 this.clearPartner();
 
@@ -402,11 +427,7 @@ export class CompanyComponent implements OnInit {
                     position: this.ppPosition
                 });
             }
-
-
             if (this.companyId != '') {
-
-
                 this.app.showSpinner();
                 this.app.hideSpinner();
                 this.toastr.successToastr('update successfully', 'Success', { toastTimeout: (2500) });
@@ -436,7 +457,6 @@ export class CompanyComponent implements OnInit {
                 // return false;
             }
             else {
-
                 this.app.showSpinner();
                 this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
@@ -471,41 +491,51 @@ export class CompanyComponent implements OnInit {
 
     //* Function for add new partner for company 
     addPartner() {
-
         if (this.pCnic == '' || this.pCnic.length < 13) {
             this.toastr.errorToastr('Please enter CNIC', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pNtn == '' || this.pNtn.length < 8) {
+        }
+        else if (this.pNtn == '' || this.pNtn.length < 8) {
             this.toastr.errorToastr('Please enter NTN', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pPartnerName == '') {
+        }
+        else if (this.pPartnerName == '') {
             this.toastr.errorToastr('Please enter partner name', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pPartnerRole == '') {
+        }
+        else if (this.pPartnerRole == '') {
             this.toastr.errorToastr('Please enter partner role', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pDate == '') {
+        }
+        else if (this.pDate == '') {
             this.toastr.errorToastr('Please enter date', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pShare == '') {
+        }
+        else if (this.pShare == '') {
             this.toastr.errorToastr('Please enter share', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pTelephone == '' || this.pTelephone.length < 10) {
+        }
+        else if (this.pTelephone == '' || this.pTelephone.length < 10) {
             this.toastr.errorToastr('Please enter telephone number', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pMobile == '' || this.pMobile.length < 11) {
+        }
+        else if (this.pMobile == '' || this.pMobile.length < 11) {
             this.toastr.errorToastr('Please enter mobile number', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pEmail == '') {
+        }
+        else if (this.pEmail == '') {
             this.toastr.errorToastr('Please enter email address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.isEmail(this.pEmail) == false) {
+        }
+        else if (this.isEmail(this.pEmail) == false) {
             this.toastr.errorToastr('Invalid email address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.pAddress == '') {
+        }
+        else if (this.pAddress == '') {
             this.toastr.errorToastr('Please enter address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else {
+        }
+        else {
 
             let data = this.partners.find(x => x.cnic == this.pCnic);
 
@@ -514,7 +544,8 @@ export class CompanyComponent implements OnInit {
                 this.toastr.errorToastr('Partner already exist', 'Error', { toastTimeout: (2500) });
                 return false;
 
-            } else {
+            }
+            else {
 
                 this.app.showSpinner();
                 this.app.hideSpinner();
@@ -605,7 +636,6 @@ export class CompanyComponent implements OnInit {
             this.dCompanyId = '';
 
         }
-
     }
 
 
@@ -616,31 +646,30 @@ export class CompanyComponent implements OnInit {
         this.cmbCType = item.businessType;
 
         this.allowDiv();
-
     }
 
 
     //functions for delete company
     deleteTemp(item) {
-
         this.clear(item.companyId);
         this.dCompanyId = item.companyId;
-
     }
 
 
     delete() {
-
         if (this.txtdPassword == '') {
             this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
             return false
-        } else if (this.txtdPin == '') {
+        }
+        else if (this.txtdPin == '') {
             this.toastr.errorToastr('Please enter PIN', 'Error', { toastTimeout: (2500) });
             return false
-        } else if (this.dCompanyId == '') {
+        }
+        else if (this.dCompanyId == '') {
             this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
             return false
-        } else {
+        }
+        else {
 
 
             this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
@@ -666,11 +695,8 @@ export class CompanyComponent implements OnInit {
                     $('#actionModal').modal('hide');
                     return false;
                 }
-
             });
-
         }
-
     }
 
 
@@ -689,11 +715,9 @@ export class CompanyComponent implements OnInit {
 
     //function for sort table data 
     setOrder(value: string) {
-
         if (this.order === value) {
             this.reverse = !this.reverse;
         }
-
         this.order = value;
     }
 
@@ -750,7 +774,6 @@ export class CompanyComponent implements OnInit {
 
     // For PDF Download
     downloadPDF() {
-
         var doc = new jsPDF("p", "pt", "A4"),
             source = $("#printArea")[0],
             margins = {
@@ -779,12 +802,10 @@ export class CompanyComponent implements OnInit {
 
     //For CSV File 
     public downloadCSV() {
-
         // case 1: When tblSearch is empty then assign full data list
         if (this.tblSearch == "") {
             var completeDataList = [];
             for (var i = 0; i < this.userDetail.length; i++) {
-                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
                 completeDataList.push({
                     businessType: this.userDetail[i].businessType,
                     title: this.userDetail[i].title,
@@ -795,7 +816,6 @@ export class CompanyComponent implements OnInit {
             }
             this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("CompanyCompleteCSV", CsvFileTypes.CSV));
         }
-
         // case 2: When tblSearch is not empty then assign new data list
         else if (this.tblSearch != "") {
             var filteredDataList = [];
@@ -815,7 +835,6 @@ export class CompanyComponent implements OnInit {
                     });
                 }
             }
-
             if (filteredDataList.length > 0) {
                 this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("CompanyFilterCSV", CsvFileTypes.CSV));
             } else {
@@ -826,8 +845,6 @@ export class CompanyComponent implements OnInit {
 
     //For Exce File
     public downloadExcel() {
-        //this.excelDataList = [];
-
         // case 1: When tblSearch is empty then assign full data list
         if (this.tblSearch == "") {
             //var completeDataList = [];
@@ -840,18 +857,11 @@ export class CompanyComponent implements OnInit {
                     website: this.userDetail[i].website
                 });
             }
-
-            //alert("Excel length " + this.excelDataList.length);
-
             this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("CompanyCompleteExcel"));
             this.excelDataList = [];
-
-            //alert("Excel length " + this.excelDataList.length);
         }
-
         // case 2: When tblSearch is not empty then assign new data list
         else if (this.tblSearch != "") {
-
             for (var i = 0; i < this.userDetail.length; i++) {
                 if (this.userDetail[i].businessType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.userDetail[i].title.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -867,32 +877,24 @@ export class CompanyComponent implements OnInit {
                     });
                 }
             }
-
             if (this.excelDataList.length > 0) {
-
-                //alert("Filter List " + this.excelDataList.length);
-
                 this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("CompanyFilterExcel"));
                 this.excelDataList = [];
-
-                //alert(" Filter List " + this.excelDataList.length);
-
             }
             else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
-        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
 
 
     //* function for hide or unhide div
     allowDiv() {
-
         if (this.cmbCType == '') {
             this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.cmbCType == 'Sole Proprietorship') {
+        }
+        else if (this.cmbCType == 'Sole Proprietorship') {
             this.solePro = true;
             this.partner = false;
             this.ppCom = false;
@@ -912,5 +914,4 @@ export class CompanyComponent implements OnInit {
             this.btnStpr1 = true;
         }
     }
-
 }
