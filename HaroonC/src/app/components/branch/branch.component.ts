@@ -659,8 +659,7 @@ export class BranchComponent implements OnInit {
     else if (this.tblSearch != "") {
       //var filteredDataList = [];
       for (var i = 0; i < this.branches.length; i++) {
-        if (this.branches[i].branType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+        if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].ctyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branPhone.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -714,8 +713,7 @@ export class BranchComponent implements OnInit {
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.tblSearch != "") {
       for (var i = 0; i < this.branches.length; i++) {
-        if (this.branches[i].branType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
+        if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].ctyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branPhone.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
