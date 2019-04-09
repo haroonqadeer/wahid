@@ -144,7 +144,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Sole Proprietorship",
             title: "Title A",
             nature: "Private Sector",
-            ntn: 345454,
+            ntn: "345454",
             website: "www.Youtube.com"
         },
         {
@@ -152,7 +152,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Partnership",
             title: "Title B",
             nature: "Public Sector",
-            ntn: 1545453,
+            ntn: "1545453",
             website: "www.edx.com"
         },
         {
@@ -160,7 +160,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Public Limited Company",
             title: "Title C",
             nature: "Private Sector",
-            ntn: 67534653,
+            ntn: "67534653",
             website: "www.facebook.com"
         },
         {
@@ -168,7 +168,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Private Limited Company",
             title: "Title D",
             nature: "Private Sector",
-            ntn: 3535663,
+            ntn: "3535663",
             website: "www.udemy.com"
         },
         {
@@ -176,7 +176,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Sole Proprietorship",
             title: "Title A",
             nature: "Private Sector",
-            ntn: 34224,
+            ntn: "34224",
             website: "www.Youtube.com"
         },
         {
@@ -184,7 +184,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Partnership",
             title: "Title B",
             nature: "Public Sector",
-            ntn: 155233,
+            ntn: "155233",
             website: "www.edx.com"
         },
         {
@@ -192,7 +192,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Public Limited Company",
             title: "Title C",
             nature: "Public Sector",
-            ntn: 63543,
+            ntn: "63543",
             website: "www.facebook.com"
         },
         {
@@ -200,7 +200,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Private Limited Company",
             title: "Title D",
             nature: "Private Sector",
-            ntn: 5654,
+            ntn: "5654",
             website: "www.udemy.com"
         },
         {
@@ -208,7 +208,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Sole Proprietorship",
             title: "Title A",
             nature: "Semi-Private Sector",
-            ntn: 34444,
+            ntn: "34444",
             website: "www.Youtube.com"
         },
         {
@@ -216,7 +216,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Partnership",
             title: "Title B",
             nature: "Semi-Private Sector",
-            ntn: 155334,
+            ntn: "155334",
             website: "www.edx.com"
         },
         {
@@ -224,7 +224,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Public Limited Company",
             title: "Title C",
             nature: "Public Sector",
-            ntn: 677853,
+            ntn: "677853",
             website: "www.facebook.com"
         },
         {
@@ -232,7 +232,7 @@ export class CompanyComponent implements OnInit {
             businessType: "Private Limited Company",
             title: "Title D",
             nature: "Semi-Private Sector",
-            ntn: 36753,
+            ntn: "36753",
             website: "www.udemy.com"
         },
 
@@ -469,7 +469,7 @@ export class CompanyComponent implements OnInit {
 
                 var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-                this.http.put(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
@@ -824,7 +824,7 @@ export class CompanyComponent implements OnInit {
                 if (this.userDetail[i].businessType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.userDetail[i].title.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.userDetail[i].nature.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-                    this.userDetail[i].ntn.toString().includes(this.tblSearch.toString()) ||
+                    this.userDetail[i].ntn.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.userDetail[i].website.toUpperCase().includes(this.tblSearch.toUpperCase())) {
                     filteredDataList.push({
                         businessType: this.userDetail[i].businessType,
@@ -866,7 +866,7 @@ export class CompanyComponent implements OnInit {
                 if (this.userDetail[i].businessType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.userDetail[i].title.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.userDetail[i].nature.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-                    this.userDetail[i].ntn.toString().includes(this.tblSearch.toString()) ||
+                    this.userDetail[i].ntn.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.userDetail[i].website.toUpperCase().includes(this.tblSearch.toUpperCase())) {
                     this.excelDataList.push({
                         businessType: this.userDetail[i].businessType,

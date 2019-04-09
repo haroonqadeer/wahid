@@ -48,6 +48,7 @@ export class BranchComponent implements OnInit {
 
   //*Page Models
   branchId = null;
+  branchType = "";
   branchTitle = "";
   branchAddress = "";
   branchCity = "";
@@ -78,6 +79,7 @@ export class BranchComponent implements OnInit {
   branches = [
     {
       branId: 1,
+      branType: "Head Quarter",
       branTitle: "Infovative Solution",
       branAddress: "G-11 Markaz",
       ctyId: 1,
@@ -89,8 +91,9 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 2,
+      branType: "Branch",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+      branAddress: "G-14 Markaz",
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
@@ -100,6 +103,7 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 3,
+      branType: "Branch",
       branTitle: "Infovative Solution",
       branAddress: "G-8 Markaz",
       ctyId: 1,
@@ -111,6 +115,7 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 4,
+      branType: "Head Quarter",
       branTitle: "Alpha Solution",
       branAddress: "G-10 Markaz",
       ctyId: 1,
@@ -122,6 +127,7 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 5,
+      branType: "Branch",
       branTitle: "Infovative Solution",
       branAddress: "G-12 Markaz",
       ctyId: 1,
@@ -133,6 +139,7 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 6,
+      branType: "Branch",
       branTitle: "Infovative Solution",
       branAddress: "G-13 Markaz",
       ctyId: 1,
@@ -144,6 +151,7 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 7,
+      branType: "Branch",
       branTitle: "Infovative Solution",
       branAddress: "G-15 Markaz",
       ctyId: 1,
@@ -155,6 +163,7 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 8,
+      branType: "Head Quarter",
       branTitle: "Infovative Tech",
       branAddress: "G-15 Markaz",
       ctyId: 1,
@@ -166,6 +175,7 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 9,
+      branType: "Head Quarter",
       branTitle: "Infovative Hub",
       branAddress: "G-11 Markaz",
       ctyId: 1,
@@ -177,8 +187,9 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 10,
+      branType: "Branch",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+      branAddress: "G-6 Markaz",
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
@@ -188,8 +199,9 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 11,
+      branType: "Branch",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+      branAddress: "G-7 Markaz",
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
@@ -199,8 +211,9 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 12,
+      branType: "Branch",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+      branAddress: "I-9 Markaz",
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
@@ -210,8 +223,9 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 13,
+      branType: "Branch",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+      branAddress: "I-8 Markaz",
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
@@ -221,8 +235,9 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 14,
+      branType: "Branch",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+      branAddress: "E-11 Markaz",
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
@@ -232,8 +247,9 @@ export class BranchComponent implements OnInit {
     },
     {
       branId: 15,
+      branType: "Branch",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+      branAddress: "D-17 Markaz",
       ctyId: 1,
       ctyName: "Islamabad",
       branEmail: "abc@gmail.com",
@@ -281,7 +297,11 @@ export class BranchComponent implements OnInit {
 
   //* Function for saving and updating the data 
   saveBranch() {
-    if (this.branchTitle.trim() == "") {
+    if (this.branchType.trim() == "") {
+      this.toastr.errorToastr('Please Enter Branch Type', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchTitle.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Title', 'Error', { toastTimeout: (2500) });
       return false;
     }
@@ -433,6 +453,7 @@ export class BranchComponent implements OnInit {
   //*Clear the input fields
   clear() {
     this.branchId = 0;
+    this.branchType = '';
     this.branchTitle = '';
     this.branchAddress = '';
     this.branchCity = '';
@@ -454,6 +475,7 @@ export class BranchComponent implements OnInit {
   //*Edit Function
   edit(item) {
     this.branchId = item.branId;
+    this.branchType = item.branType;
     this.branchTitle = item.branTitle;
     this.branchAddress = item.branAddress;
     this.branchCity = item.ctyId.toString();
@@ -615,9 +637,9 @@ export class BranchComponent implements OnInit {
 
     // case 1: When tblSearch is empty then assign full data list
     if (this.tblSearch == "") {
-      var completeDataList = [];
+      //var completeDataList = [];
       for (var i = 0; i < this.branches.length; i++) {
-        completeDataList.push({
+        this.excelDataList.push({
           branchTitle: this.branches[i].branTitle,
           branchAddress: this.branches[i].branAddress,
           cityName: this.branches[i].ctyName,
@@ -626,11 +648,15 @@ export class BranchComponent implements OnInit {
           brancMobile: this.branches[i].branMobile
         });
       }
-      this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
+
+      this.csvExportService.export(this.excelDataContent, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
+      this.excelDataList = [];
+
+      //this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
     }
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.tblSearch != "") {
-      var filteredDataList = [];
+      //var filteredDataList = [];
       for (var i = 0; i < this.branches.length; i++) {
         if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -638,7 +664,7 @@ export class BranchComponent implements OnInit {
           this.branches[i].branPhone.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.branches[i].branMobile.toUpperCase().includes(this.tblSearch.toUpperCase())) {
-          filteredDataList.push({
+          this.excelDataList.push({
             branchTitle: this.branches[i].branTitle,
             branchAddress: this.branches[i].branAddress,
             cityName: this.branches[i].ctyName,
@@ -649,8 +675,11 @@ export class BranchComponent implements OnInit {
         }
       }
 
-      if (filteredDataList.length > 0) {
-        this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("BranchFilterCSV", CsvFileTypes.CSV));
+      if (this.excelDataList.length > 0) {
+        this.csvExportService.export(this.excelDataContent, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
+        this.excelDataList = [];
+
+        //this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("BranchFilterCSV", CsvFileTypes.CSV));
       } else {
         this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
       }
