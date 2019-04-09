@@ -1,12 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
-
-import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-
 import * as jsPDF from 'jspdf';
-
 import {
   IgxExcelExporterOptions,
   IgxExcelExporterService,
@@ -27,7 +23,6 @@ import {
 //-------------------Function for email validation -----------------------------//
 //-------------------For sorting the record-----------------------------//
 //----------------------------------------------------------------------------//
-
 
 
 declare var $: any;
@@ -214,7 +209,6 @@ export class HeadquarterComponent implements OnInit {
 
   constructor(public toastr: ToastrManager,
     private app: AppComponent,
-    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private excelExportService: IgxExcelExporterService,
     private csvExportService: IgxCsvExporterService) { }
@@ -270,76 +264,65 @@ export class HeadquarterComponent implements OnInit {
       return false;
     }
     else {
-
-      // alert(this.officeId);
-
       if (this.officeId != "") {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
         $('#HQModal').modal('hide');
         return false;
 
-        // var updateData = { "ID": this.officeId, Password: this.userPassword, PIN: this.userPINCode };
+        var updateData = { "ID": this.officeId, Password: this.userPassword, PIN: this.userPINCode };
 
-        // var token = localStorage.getItem(this.tokenKey);
+        var token = localStorage.getItem(this.tokenKey);
 
-        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        // this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
-        //   if (data.msg != undefined) {
-        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-        //     return false;
-        //   }
-        //   else {
-        //     this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
-        //     $('#HQModal').modal('hide');
-        //     return false;
-        //   }
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          }
+          else {
+            this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#HQModal').modal('hide');
+            return false;
+          }
 
-        // });
+        });
       }
       else {
-        this.showSpinner();
-        this.hideSpinner();
+        this.app.showSpinner();
+        this.app.hideSpinner();
         this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
         $('#HQModal').modal('hide');
         return false;
 
-        // var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
+        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
 
-        // var token = localStorage.getItem(this.tokenKey);
+        var token = localStorage.getItem(this.tokenKey);
 
-        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        // this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
-        //   if (data.msg != undefined) {
-        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-        //     return false;
-        //   }
-        //   else {
-        //     this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
-        //     $('#HQModal').modal('hide');
-        //     return false;
-        //   }
-        // });
-
+          if (data.msg != undefined) {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            return false;
+          }
+          else {
+            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+            $('#HQModal').modal('hide');
+            return false;
+          }
+        });
       }
-
-      // this.showSpinner();
-      // this.hideSpinner();
-      // this.toastr.successToastr('Record Saved Successfully', 'Success', { toastTimeout: (2500) });
-      // $('#HQModal').modal('hide');
-      // return false;
     }
   }
 
 
   //clear the input fields
   clear() {
-
     this.officeId = 0;
     this.officeTitle = '';
     this.officeAddress = '';
@@ -357,7 +340,6 @@ export class HeadquarterComponent implements OnInit {
 
   //function for edit existing currency 
   edit(item) {
-
     this.officeId = item.offcId;
     this.officeTitle = item.offcTitle;
     this.officeAddress = item.offcAddress;
@@ -365,7 +347,6 @@ export class HeadquarterComponent implements OnInit {
     this.officePhone = item.offcPhone;
     this.officeMobile = item.offcMobile;
     this.officeWebsite = item.offcWebsite;
-
   }
 
 
@@ -387,33 +368,31 @@ export class HeadquarterComponent implements OnInit {
       return false;
     }
     else {
-      this.showSpinner();
-      this.hideSpinner();
+      this.app.showSpinner();
+      this.app.hideSpinner();
       this.toastr.successToastr('Record Deleted Successfully', 'Success', { toastTimeout: (2500) });
       this.clear();
       $('#deleteModal').modal('hide');
       return false;
 
-      // var data = { "ID": this.dofficeId, Password: this.userPassword, PIN: this.userPINCode };
+      var data = { "ID": this.dofficeId, Password: this.userPassword, PIN: this.userPINCode };
 
-      // var token = localStorage.getItem(this.tokenKey);
+      var token = localStorage.getItem(this.tokenKey);
 
-      // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-      // this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+      this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
 
-      //   if (data.msg != undefined) {
-      //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-      //     return false;
-      //   }
-      //   else {
-      //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-      //     $('#deleteModal').modal('hide');
-      //     return false;
-      //   }
-
-      // });
-
+        if (data.msg != undefined) {
+          this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+          return false;
+        }
+        else {
+          this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+          $('#deleteModal').modal('hide');
+          return false;
+        }
+      });
     }
   }
 
@@ -426,11 +405,9 @@ export class HeadquarterComponent implements OnInit {
 
   //function for sort table data 
   setOrder(value: string) {
-
     if (this.order === value) {
       this.reverse = !this.reverse;
     }
-
     this.order = value;
   }
 
@@ -489,7 +466,6 @@ export class HeadquarterComponent implements OnInit {
 
   // For PDF Download
   downloadPDF() {
-
     var doc = new jsPDF("p", "pt", "A4"),
       source = $("#printArea")[0],
       margins = {
@@ -519,12 +495,10 @@ export class HeadquarterComponent implements OnInit {
 
   //For CSV File 
   public downloadCSV() {
-
     // case 1: When tblSearch is empty then assign full data list
     if (this.tblSearch == "") {
       var completeDataList = [];
       for (var i = 0; i < this.offices.length; i++) {
-        //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
         completeDataList.push({
           officeTitle: this.offices[i].offcTitle,
           officeAddress: this.offices[i].offcAddress,
@@ -536,12 +510,10 @@ export class HeadquarterComponent implements OnInit {
       }
       this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("HeadQuarterCompleteCSV", CsvFileTypes.CSV));
     }
-
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.tblSearch != "") {
       var filteredDataList = [];
       for (var i = 0; i < this.offices.length; i++) {
-
         if (this.offices[i].offcTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.offices[i].offcAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.offices[i].offcEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -560,7 +532,8 @@ export class HeadquarterComponent implements OnInit {
 
       if (filteredDataList.length > 0) {
         this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("HeadQuarterFilterCSV", CsvFileTypes.CSV));
-      } else {
+      }
+      else {
         this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
       }
     }
@@ -569,11 +542,8 @@ export class HeadquarterComponent implements OnInit {
 
   //For Exce File
   public downloadExcel() {
-    //this.excelDataList = [];
-
     // case 1: When tblSearch is empty then assign full data list
     if (this.tblSearch == "") {
-      //var completeDataList = [];
       for (var i = 0; i < this.offices.length; i++) {
         this.excelDataList.push({
           officeTitle: this.offices[i].offcTitle,
@@ -584,18 +554,11 @@ export class HeadquarterComponent implements OnInit {
           officeWebsite: this.offices[i].offcWebsite
         });
       }
-
-      //alert("Excel length " + this.excelDataList.length);
-
       this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("HeadQuarterCompleteExcel"));
       this.excelDataList = [];
-
-      //alert("Excel length " + this.excelDataList.length);
     }
-
     // case 2: When tblSearch is not empty then assign new data list
     else if (this.tblSearch != "") {
-
       for (var i = 0; i < this.offices.length; i++) {
         if (this.offices[i].offcTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
           this.offices[i].offcAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -614,33 +577,12 @@ export class HeadquarterComponent implements OnInit {
       }
 
       if (this.excelDataList.length > 0) {
-
-        //alert("Filter List " + this.excelDataList.length);
-
         this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("HeadQuarterFilterExcel"));
         this.excelDataList = [];
-
-        //alert(" Filter List " + this.excelDataList.length);
-
       }
       else {
         this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
       }
     }
-    //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
-  }
-
-
-  // functions for Show & Hide Spinner
-  showSpinner() {
-    this.spinner.show();
-  }
-
-
-  hideSpinner() {
-    setTimeout(() => {
-      /** spinner ends after process done*/
-      this.spinner.hide();
-    });
   }
 }

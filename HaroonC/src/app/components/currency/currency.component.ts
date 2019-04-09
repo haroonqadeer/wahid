@@ -6,11 +6,7 @@ import { catchError, filter } from 'rxjs/operators';
 import { OrderPipe } from 'ngx-order-pipe';
 import { strictEqual } from 'assert';
 import { AppComponent } from '../../app.component';
-
-import { NgxSpinnerService } from 'ngx-spinner';
-
 import * as jsPDF from 'jspdf';
-
 import {
     IgxExcelExporterOptions,
     IgxExcelExporterService,
@@ -38,6 +34,7 @@ declare var $: any;
     templateUrl: './currency.component.html',
     styleUrls: ['./currency.component.scss']
 })
+
 export class CurrencyComponent implements OnInit {
 
     serverUrl = "http://localhost:55536/";
@@ -56,7 +53,6 @@ export class CurrencyComponent implements OnInit {
     reverse = false;
     sortedCollection: any[];
     itemPerPage = '10';
-
 
 
     //*variable for print css
@@ -104,7 +100,6 @@ export class CurrencyComponent implements OnInit {
         private app: AppComponent,
         private http: HttpClient,
         private orderPipe: OrderPipe,
-        private spinner: NgxSpinnerService,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService) { }
 
@@ -121,7 +116,6 @@ export class CurrencyComponent implements OnInit {
 
     //function for get all saved currencies from db
     getCurrency() {
-
         return false;
 
         var Token = localStorage.getItem(this.tokenKey);
@@ -131,24 +125,23 @@ export class CurrencyComponent implements OnInit {
         this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
             this.currencies = data
         });
-
     }
 
 
     //Function for save and update currency 
     save() {
-
         if (this.currencyName.trim() == '') {
             this.toastr.errorToastr('Please enter currency name', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.countryName.trim() == '') {
+        }
+        else if (this.countryName.trim() == '') {
             this.toastr.errorToastr('Please enter country name', 'Error', { toastTimeout: (2500) });
             return false;
-        } else {
-
+        }
+        else {
             if (this.currencyId != '') {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -169,17 +162,14 @@ export class CurrencyComponent implements OnInit {
                         $('#actionModal').modal('hide');
                         return false;
                     }
-
                 });
-
-
-            } else {
-                this.showSpinner();
-                this.hideSpinner();
+            }
+            else {
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
                 this.clear();
                 return false;
-
 
                 var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
 
@@ -197,7 +187,6 @@ export class CurrencyComponent implements OnInit {
                         $('#actionModal').modal('hide');
                         return false;
                     }
-
                 });
             }
         }
@@ -206,24 +195,20 @@ export class CurrencyComponent implements OnInit {
 
     //function for empty all fields
     clear() {
-
         this.currencyId = '';
         this.dCurrencyId = ''
         this.currencyName = '';
         this.countryName = '';
         this.txtdPassword = '';
         this.txtdPin = '';
-
     }
 
 
     //function for edit existing currency 
     edit(item) {
-
         this.currencyId = item.currencyId;
         this.currencyName = item.currencyName;
         this.countryName = item.countryName;
-
     }
 
 
@@ -231,25 +216,25 @@ export class CurrencyComponent implements OnInit {
     deleteTemp(item) {
         this.clear();
         this.dCurrencyId = item.currencyId;
-
     }
 
 
     delete() {
-
         if (this.txtdPassword == '') {
             this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
             return false
-        } else if (this.txtdPin == '') {
+        }
+        else if (this.txtdPin == '') {
             this.toastr.errorToastr('Please enter PIN', 'Error', { toastTimeout: (2500) });
             return false
-        } else if (this.dCurrencyId == '') {
+        }
+        else if (this.dCurrencyId == '') {
             this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
             return false
-        } else {
-            this.showSpinner();
-            this.hideSpinner();
-
+        }
+        else {
+            this.app.showSpinner();
+            this.app.hideSpinner();
 
             this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
             this.clear();
@@ -274,21 +259,16 @@ export class CurrencyComponent implements OnInit {
                     $('#actionModal').modal('hide');
                     return false;
                 }
-
             });
-
         }
-
     }
 
 
     //function for sort table data 
     setOrder(value: string) {
-
         if (this.order === value) {
             this.reverse = !this.reverse;
         }
-
         this.order = value;
     }
 
@@ -345,7 +325,6 @@ export class CurrencyComponent implements OnInit {
 
     // For PDF Download
     downloadPDF() {
-
         var doc = new jsPDF("p", "pt", "A4"),
             source = $("#printArea")[0],
             margins = {
@@ -375,12 +354,10 @@ export class CurrencyComponent implements OnInit {
 
     //For CSV File 
     public downloadCSV() {
-
         // case 1: When tblSearch is empty then assign full data list
         if (this.tblSearch == "") {
             var completeDataList = [];
             for (var i = 0; i < this.currencies.length; i++) {
-                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
                 completeDataList.push({
                     currencyName: this.currencies[i].currencyName,
                     countryName: this.currencies[i].countryName
@@ -388,12 +365,10 @@ export class CurrencyComponent implements OnInit {
             }
             this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("CurrencyCompleteCSV", CsvFileTypes.CSV));
         }
-
         // case 2: When tblSearch is not empty then assign new data list
         else if (this.tblSearch != "") {
             var filteredDataList = [];
             for (var i = 0; i < this.currencies.length; i++) {
-
                 if (this.currencies[i].currencyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.currencies[i].countryName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
                     filteredDataList.push({
@@ -402,7 +377,6 @@ export class CurrencyComponent implements OnInit {
                     });
                 }
             }
-
             if (filteredDataList.length > 0) {
                 this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("CurrencyFilterCSV", CsvFileTypes.CSV));
             } else {
@@ -414,8 +388,6 @@ export class CurrencyComponent implements OnInit {
 
     //For Exce File
     public downloadExcel() {
-        //this.excelDataList = [];
-
         // case 1: When tblSearch is empty then assign full data list
         if (this.tblSearch == "") {
             //var completeDataList = [];
@@ -425,18 +397,11 @@ export class CurrencyComponent implements OnInit {
                     countryName: this.currencies[i].countryName
                 });
             }
-
-            //alert("Excel length " + this.excelDataList.length);
-
             this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("CurrencyCompleteExcel"));
             this.excelDataList = [];
-
-            //alert("Excel length " + this.excelDataList.length);
         }
-
         // case 2: When tblSearch is not empty then assign new data list
         else if (this.tblSearch != "") {
-
             for (var i = 0; i < this.currencies.length; i++) {
                 if (this.currencies[i].currencyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.currencies[i].countryName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
@@ -448,34 +413,12 @@ export class CurrencyComponent implements OnInit {
             }
 
             if (this.excelDataList.length > 0) {
-
-                //alert("Filter List " + this.excelDataList.length);
-
                 this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("CurrencyFilterExcel"));
                 this.excelDataList = [];
-
-                //alert(" Filter List " + this.excelDataList.length);
-
             }
             else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
-        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
-
-
-    // Functions for Show & Hide Spinner
-    showSpinner() {
-        this.spinner.show();
-    }
-
-
-    hideSpinner() {
-        setTimeout(() => {
-            /** spinner ends after process done*/
-            this.spinner.hide();
-        });
-    }
-
 }

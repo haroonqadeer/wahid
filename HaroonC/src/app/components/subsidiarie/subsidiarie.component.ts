@@ -5,11 +5,7 @@ import { throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { AppComponent } from '../../app.component';
 import { OrderPipe } from 'ngx-order-pipe';
-
-import { NgxSpinnerService } from 'ngx-spinner';
-
 import * as jsPDF from 'jspdf';
-
 import {
     IgxExcelExporterOptions,
     IgxExcelExporterService,
@@ -41,6 +37,7 @@ declare var $: any;
     templateUrl: './subsidiarie.component.html',
     styleUrls: ['./subsidiarie.component.scss']
 })
+
 export class SubsidiarieComponent implements OnInit {
 
     serverUrl = "http://localhost:55536/";
@@ -55,8 +52,6 @@ export class SubsidiarieComponent implements OnInit {
     excelDataList = [];
 
     //* variables for display values on page
-
-
 
     //*Variables for NgModels
     tblSearch;
@@ -86,7 +81,6 @@ export class SubsidiarieComponent implements OnInit {
     reverse = false;
     sortedCollection: any[];
     itemPerPage = '10';
-
 
     //*List Variables
     cities = [
@@ -383,11 +377,9 @@ export class SubsidiarieComponent implements OnInit {
         }
     ];
 
-
     constructor(private toastr: ToastrManager,
         private http: HttpClient,
         private app: AppComponent,
-        private spinner: NgxSpinnerService,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService) { }
 
@@ -400,7 +392,6 @@ export class SubsidiarieComponent implements OnInit {
 
     //function for get all saved currencies from db
     getSubsidiaryDetail() {
-
         return false;
 
         var Token = localStorage.getItem(this.tokenKey);
@@ -410,63 +401,71 @@ export class SubsidiarieComponent implements OnInit {
         this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
             this.cities = data
         });
-
     }
 
 
     //Function for save and update currency 
     save() {
-
         if (this.subsidiaryTitle.trim() == '') {
             this.toastr.errorToastr('Please enter subsidiary title', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.ntn.trim() == '' || this.ntn.length < 8) {
+        }
+        else if (this.ntn.trim() == '' || this.ntn.length < 8) {
             this.toastr.errorToastr('Please enter NTN', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.strn.trim() == '' || this.strn.length < 10) {
+        }
+        else if (this.strn.trim() == '' || this.strn.length < 10) {
             this.toastr.errorToastr('Please enter STRM', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.cmbSubsidiaryType == '') {
+        }
+        else if (this.cmbSubsidiaryType == '') {
             this.toastr.errorToastr('Please subsidiary type', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.representator.trim() == '') {
+        }
+        else if (this.representator.trim() == '') {
             this.toastr.errorToastr('Please enter representator', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.address.trim() == '') {
+        }
+        else if (this.address.trim() == '') {
             this.toastr.errorToastr('Please enter address', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.cmbCity == '') {
+        }
+        else if (this.cmbCity == '') {
             this.toastr.errorToastr('Please select city', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.email.trim() == '') {
+        }
+        else if (this.email.trim() == '') {
             this.toastr.errorToastr('Please enter email', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.isEmail(this.email.trim()) == false) {
+        }
+        else if (this.isEmail(this.email.trim()) == false) {
             this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.telephone == '' || this.telephone.length < 10) {
+        }
+        else if (this.telephone == '' || this.telephone.length < 10) {
             this.toastr.errorToastr('Please enter telephone', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.mobile == '' || this.mobile.length < 11) {
+        }
+        else if (this.mobile == '' || this.mobile.length < 11) {
             this.toastr.errorToastr('Please enter mobile', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.website.trim() == '') {
+        }
+        else if (this.website.trim() == '') {
             this.toastr.errorToastr('Please enter website', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.faxNumber == '' || this.faxNumber.length < 10) {
+        }
+        else if (this.faxNumber == '' || this.faxNumber.length < 10) {
             this.toastr.errorToastr('Please enter fax number', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.agreement == '') {
+        }
+        else if (this.agreement == '') {
             this.toastr.errorToastr('Please attach agreement copy', 'Error', { toastTimeout: (2500) });
             return false;
         }
-
-
         else {
-
             if (this.subsidiaryId != '') {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
@@ -487,17 +486,14 @@ export class SubsidiarieComponent implements OnInit {
                         $('#actionModal').modal('hide');
                         return false;
                     }
-
                 });
-
-
-            } else {
-                this.showSpinner();
-                this.hideSpinner();
+            }
+            else {
+                this.app.showSpinner();
+                this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
                 return false;
-
 
                 var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
 
@@ -515,7 +511,6 @@ export class SubsidiarieComponent implements OnInit {
                         $('#actionModal').modal('hide');
                         return false;
                     }
-
                 });
             }
         }
@@ -530,18 +525,15 @@ export class SubsidiarieComponent implements OnInit {
             return false;
         }
         else {
-
             let data = this.cities.find(x => x.cityName == this.cityName);
 
             if (data != undefined) {
-
                 this.toastr.errorToastr('City name already exist', 'Error', { toastTimeout: (2500) });
                 return false;
-
             }
             else {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 //this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
@@ -569,7 +561,6 @@ export class SubsidiarieComponent implements OnInit {
                         $('#actionModal').modal('hide');
                         return false;
                     }
-
                 });
             }
         }
@@ -578,7 +569,6 @@ export class SubsidiarieComponent implements OnInit {
 
     //function for empty all fields
     clear() {
-
         this.dSubsidiaryId = '';
         this.subsidiaryId = '';
         this.cityName = '';
@@ -598,13 +588,11 @@ export class SubsidiarieComponent implements OnInit {
 
         this.txtdPassword = '';
         this.txtdPin = '';
-
     }
 
 
     //function for edit existing currency 
     edit(item) {
-
         this.subsidiaryId = item.subsidiaryId;
         this.subsidiaryTitle = item.subsidiaryTitle;
         this.ntn = item.ntn;
@@ -619,7 +607,6 @@ export class SubsidiarieComponent implements OnInit {
         this.website = item.website;
         this.faxNumber = item.faxNumber;
         this.agreement = item.agreement;
-
     }
 
 
@@ -631,20 +618,21 @@ export class SubsidiarieComponent implements OnInit {
 
 
     delete() {
-
         if (this.txtdPassword == '') {
             this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
             return false
-        } else if (this.txtdPin == '') {
+        }
+        else if (this.txtdPin == '') {
             this.toastr.errorToastr('Please enter PIN', 'Error', { toastTimeout: (2500) });
             return false
-        } else if (this.dSubsidiaryId == '') {
+        }
+        else if (this.dSubsidiaryId == '') {
             this.toastr.errorToastr('Invalid delete request', 'Error', { toastTimeout: (2500) });
             return false
-        } else {
-
-            this.showSpinner();
-            this.hideSpinner();
+        }
+        else {
+            this.app.showSpinner();
+            this.app.hideSpinner();
             this.toastr.successToastr('Deleted successfully', 'Success', { toastTimeout: (2500) });
             this.clear();
 
@@ -668,12 +656,8 @@ export class SubsidiarieComponent implements OnInit {
                     $('#actionModal').modal('hide');
                     return false;
                 }
-
             });
-
         }
-
-
     }
 
 
@@ -685,11 +669,9 @@ export class SubsidiarieComponent implements OnInit {
 
     //function for sort table data 
     setOrder(value: string) {
-
         if (this.order === value) {
             this.reverse = !this.reverse;
         }
-
         this.order = value;
     }
 
@@ -748,7 +730,6 @@ export class SubsidiarieComponent implements OnInit {
 
     // For PDF Download
     downloadPDF() {
-
         var doc = new jsPDF("p", "pt", "A4"),
             source = $("#printArea")[0],
             margins = {
@@ -778,12 +759,10 @@ export class SubsidiarieComponent implements OnInit {
 
     //For CSV File 
     public downloadCSV() {
-
         // case 1: When tblSearch is empty then assign full data list
         if (this.tblSearch == "") {
             var completeDataList = [];
             for (var i = 0; i < this.subsidiaryDetail.length; i++) {
-                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
                 completeDataList.push({
                     subsidiaryTitle: this.subsidiaryDetail[i].subsidiaryTitle,
                     subsidiaryType: this.subsidiaryDetail[i].subsidiaryType,
@@ -794,12 +773,10 @@ export class SubsidiarieComponent implements OnInit {
             }
             this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("SubsidiaryCompleteCSV", CsvFileTypes.CSV));
         }
-
         // case 2: When tblSearch is not empty then assign new data list
         else if (this.tblSearch != "") {
             var filteredDataList = [];
             for (var i = 0; i < this.subsidiaryDetail.length; i++) {
-
                 if (this.subsidiaryDetail[i].subsidiaryTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.subsidiaryDetail[i].subsidiaryType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.subsidiaryDetail[i].representator.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -817,7 +794,8 @@ export class SubsidiarieComponent implements OnInit {
 
             if (filteredDataList.length > 0) {
                 this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("SubsidiaryFilterCSV", CsvFileTypes.CSV));
-            } else {
+            }
+            else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
@@ -826,11 +804,8 @@ export class SubsidiarieComponent implements OnInit {
 
     //For Exce File
     public downloadExcel() {
-        //this.excelDataList = [];
-
         // case 1: When tblSearch is empty then assign full data list
         if (this.tblSearch == "") {
-            //var completeDataList = [];
             for (var i = 0; i < this.subsidiaryDetail.length; i++) {
                 this.excelDataList.push({
                     subsidiaryTitle: this.subsidiaryDetail[i].subsidiaryTitle,
@@ -840,18 +815,11 @@ export class SubsidiarieComponent implements OnInit {
                     website: this.subsidiaryDetail[i].website
                 });
             }
-
-            //alert("Excel length " + this.excelDataList.length);
-
             this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("SubsidiaryCompleteExcel"));
             this.excelDataList = [];
-
-            //alert("Excel length " + this.excelDataList.length);
         }
-
         // case 2: When tblSearch is not empty then assign new data list
         else if (this.tblSearch != "") {
-
             for (var i = 0; i < this.subsidiaryDetail.length; i++) {
                 if (this.subsidiaryDetail[i].subsidiaryTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
                     this.subsidiaryDetail[i].subsidiaryType.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
@@ -869,34 +837,12 @@ export class SubsidiarieComponent implements OnInit {
             }
 
             if (this.excelDataList.length > 0) {
-
-                //alert("Filter List " + this.excelDataList.length);
-
                 this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("SubsidiaryFilterExcel"));
                 this.excelDataList = [];
-
-                //alert(" Filter List " + this.excelDataList.length);
-
             }
             else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
-        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
-
-
-    // Functions for Show & Hide Spinner
-    showSpinner() {
-        this.spinner.show();
-    }
-
-
-    hideSpinner() {
-        setTimeout(() => {
-            /** spinner ends after process done*/
-            this.spinner.hide();
-        });
-    }
-
 }

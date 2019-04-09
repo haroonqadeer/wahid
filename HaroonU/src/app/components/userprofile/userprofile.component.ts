@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { AppComponent } from '../../app.component';
-import { NgxSpinnerService } from 'ngx-spinner';
 import {
     IgxExcelExporterOptions,
     IgxExcelExporterService,
@@ -14,8 +13,10 @@ import {
     IgxCsvExporterOptions,
     CsvFileTypes
 } from "igniteui-angular";
+
 import * as jsPDF from 'jspdf';
 
+//import jsPDF from 'jspdf';
 
 //----------------------------------------------------------------------------//
 //-------------------Working of this typescript file are as follows-----------//
@@ -38,6 +39,7 @@ declare var $: any;
     templateUrl: './userprofile.component.html',
     styleUrls: ['./userprofile.component.scss']
 })
+
 export class UserprofileComponent implements OnInit {
 
     serverUrl = "http://localhost:55536/";
@@ -65,7 +67,6 @@ export class UserprofileComponent implements OnInit {
     userLink = '';
     userLinkCode = '';
 
-
     //*Variables for NgModels 
     searchAction = '';
     txtActionPassword = '';
@@ -77,7 +78,6 @@ export class UserprofileComponent implements OnInit {
     txtUsername = '';
     txtPassword = "";
     txtCnfrmPassword = "";
-
 
     //*Boolean ng models and variables
     disabledPassword = false;
@@ -92,7 +92,6 @@ export class UserprofileComponent implements OnInit {
     reverse = false;
     sortedCollection: any[];
     itemPerPage = '10';
-
 
     //List variables
     public users = [];
@@ -303,7 +302,6 @@ export class UserprofileComponent implements OnInit {
     ];
 
     constructor(private http: HttpClient,
-        private spinner: NgxSpinnerService,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService,
         private app: AppComponent,
@@ -311,7 +309,6 @@ export class UserprofileComponent implements OnInit {
 
     ngOnInit() {
         this.init();
-
 
         this.getParty();
         // this.rdbType = 'employee';
@@ -378,7 +375,8 @@ export class UserprofileComponent implements OnInit {
         if (this.listAction == '') {
             this.toastr.errorToastr('Please Select Action Type', 'Error', { toastTimeout: (2500) });
             return false;
-        } else {
+        }
+        else {
             if (this.listAction == 'Block' && this.listBlockedAction == '') {
                 //this.isLoginError = true;
                 this.toastr.errorToastr('Please Select Block Time', 'Error', { toastTimeout: (2500) });
@@ -394,9 +392,8 @@ export class UserprofileComponent implements OnInit {
                 return false;
             }
             else {
-
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 var data = { "empId": this.userId, "action": this.listAction, "duration": this.listBlockedAction, "password": this.txtActionPassword, "pin": this.txtActionPIN };
 
@@ -416,7 +413,6 @@ export class UserprofileComponent implements OnInit {
                     }
                 });
             }
-
         }
     }
 
@@ -445,8 +441,8 @@ export class UserprofileComponent implements OnInit {
                 return false;
             }
             else {
-                this.showSpinner();
-                this.hideSpinner();
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 var data = { "partyId": this.userId };
 
@@ -490,7 +486,8 @@ export class UserprofileComponent implements OnInit {
 
             this.userId = item.indvdlId;
 
-        } else if (actionType == 'link') {
+        }
+        else if (actionType == 'link') {
 
             this.userId = item.indvdlId;
             this.userLink = "localhost:4200?code=";
@@ -504,7 +501,6 @@ export class UserprofileComponent implements OnInit {
 
             this.showLink = true;
         }
-
     }
 
 
@@ -562,44 +558,28 @@ export class UserprofileComponent implements OnInit {
     }
 
 
-    // For PDF Download
-    downloadPDF() {
-
-        var doc = new jsPDF("p", "pt", "A4"),
-            source = $("#printArea")[0],
-            margins = {
-                top: 75,
-                right: 30,
-                bottom: 50,
-                left: 30,
-                width: 50
-            };
-        doc.fromHTML(
-            source, // HTML string or DOM elem ref.
-            margins.left, // x coord
-            margins.top,
-            {
-                // y coord
-                width: margins.width // max width of content on PDF
-            },
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF
-                //          this allow the insertion of new lines after html
-                doc.save("Test.pdf");
-            },
-            margins
-        );
+    downPDF() {
+        let doc = new jsPDF();
+        let specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        }
+        let content = this.exportPDF.nativeElement;
+        doc.fromHTML(content.innerHTML, 15, 15, {
+            'width': 190,
+            'elementHandlers ': specialElementHandlers
+        });
+        doc.save('testabc.pdf');
     }
 
 
     //For CSV File 
     public downloadCSV() {
-
-        // case 1: When tblSearch is empty then assign full data list
+        // case 1: When userSearch is empty then assign full data list
         if (this.userSearch == "") {
             var completeDataList = [];
             for (var i = 0; i < this.userData.length; i++) {
-                //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
                 completeDataList.push({
                     userName: this.userData[i].uName,
                     email: this.userData[i].uEmail,
@@ -610,8 +590,7 @@ export class UserprofileComponent implements OnInit {
             }
             this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("UserProfileCompleteCSV", CsvFileTypes.CSV));
         }
-
-        // case 2: When tblSearch is not empty then assign new data list
+        // case 2: When userSearch is not empty then assign new data list
         else if (this.userSearch != "") {
             var filteredDataList = [];
             for (var i = 0; i < this.userData.length; i++) {
@@ -633,7 +612,8 @@ export class UserprofileComponent implements OnInit {
 
             if (filteredDataList.length > 0) {
                 this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("UserProfileFilterCSV", CsvFileTypes.CSV));
-            } else {
+            }
+            else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
@@ -642,11 +622,8 @@ export class UserprofileComponent implements OnInit {
 
     //For Exce File
     public downloadExcel() {
-        //this.excelDataList = [];
-
-        // case 1: When tblSearch is empty then assign full data list
+        // case 1: When userSearch is empty then assign full data list
         if (this.userSearch == "") {
-            //var completeDataList = [];
             for (var i = 0; i < this.userData.length; i++) {
                 this.excelDataList.push({
                     userName: this.userData[i].uName,
@@ -657,15 +634,10 @@ export class UserprofileComponent implements OnInit {
                 });
             }
 
-            //alert("Excel length " + this.excelDataList.length);
-
             this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserProfileCompleteExcel"));
             this.excelDataList = [];
-
-            //alert("Excel length " + this.excelDataList.length);
         }
-
-        // case 2: When tblSearch is not empty then assign new data list
+        // case 2: When userSearch is not empty then assign new data list
         else if (this.userSearch != "") {
 
             for (var i = 0; i < this.userData.length; i++) {
@@ -686,19 +658,14 @@ export class UserprofileComponent implements OnInit {
 
             if (this.excelDataList.length > 0) {
 
-                //alert("Filter List " + this.excelDataList.length);
-
                 this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("UserProfileFilterExcel"));
                 this.excelDataList = [];
-
-                //alert(" Filter List " + this.excelDataList.length);
 
             }
             else {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
-        //this.excelExportService.export(this.exportDataContent, new IgxExcelExporterOptions("ExportedExcelFileNew"));
     }
 
 
@@ -744,14 +711,16 @@ export class UserprofileComponent implements OnInit {
         if (this.rdbType == '') {
             this.toastr.errorToastr('Please select user type', 'Error', { toastTimeout: (2500) });
             return false;
-        } else if (this.rdbType == 'employee' || this.rdbType == 'visitor') {
+        }
+        else if (this.rdbType == 'employee' || this.rdbType == 'visitor') {
 
             if (this.cmbEmployee == '') {
                 this.toastr.errorToastr('Please select user', 'Error', { toastTimeout: (2500) });
                 return false;
-            } else {
-                this.showSpinner();
-                this.hideSpinner();
+            }
+            else {
+                this.app.showSpinner();
+                this.app.hideSpinner();
 
                 var data = { "partyId": this.userId };
 
@@ -786,20 +755,6 @@ export class UserprofileComponent implements OnInit {
             this.reverse = !this.reverse;
         }
         this.order = value;
-    }
-
-
-    //*Functions for Show & Hide Spinner
-    showSpinner() {
-        this.spinner.show();
-    }
-
-
-    hideSpinner() {
-        setTimeout(() => {
-            /** spinner ends after process done*/
-            this.spinner.hide();
-        });
     }
 }
 

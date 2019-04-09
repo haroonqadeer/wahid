@@ -7,10 +7,9 @@ import { NullAstVisitor } from '@angular/compiler';
   selector: 'app-companydashboard',
   templateUrl: './companydashboard.component.html',
   styleUrls: ['./companydashboard.component.scss'],
-
   encapsulation: ViewEncapsulation.None
-
 })
+
 export class CompanydashboardComponent implements OnInit {
 
   //ngprime organization chart 
@@ -175,15 +174,17 @@ export class CompanydashboardComponent implements OnInit {
 
     for (var i = 0; i < this.orgData.length; i++) {
       if (this.orgData[i].companyName != null) {
-        for (var j = 0; j < this.orgData.length; j++) {
 
+        for (var j = 0; j < this.orgData.length; j++) {
           if (this.orgData[j].branchName != null &&
             this.orgData[j].deptName == null) {
             this.branchChild = [];
+
             for (var k = 0; k < this.orgData.length; k++) {
               if (this.orgData[k].deptLevelNo == 1 &&
                 this.orgData[j].branchId == this.orgData[k].branchId) {
                 this.deptChild = [];
+
                 for (var l = 0; l < this.orgData.length; l++) {
                   if (this.orgData[l].deptLevelNo == 2 &&
                     this.orgData[l].parentDeptId == this.orgData[k].deptId) {
@@ -222,7 +223,6 @@ export class CompanydashboardComponent implements OnInit {
       });
       i = this.orgData.length + 1;
     }
-
     this.data1 = this.orgList;
   }
 }
