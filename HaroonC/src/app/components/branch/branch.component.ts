@@ -678,7 +678,7 @@ export class BranchComponent implements OnInit {
       }
 
       if (this.excelDataList.length > 0) {
-        this.csvExportService.export(this.excelDataContent, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
+        this.csvExportService.export(this.excelDataContent, new IgxCsvExporterOptions("BranchFilterCSV", CsvFileTypes.CSV));
         this.excelDataList = [];
 
         //this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("BranchFilterCSV", CsvFileTypes.CSV));
