@@ -299,13 +299,19 @@
 
         <!--start 6th row-->
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <mat-form-field class="fullwidth">
               <input matInput [(ngModel)]="branchMobile" placeholder="Mobile" mask="0000-0000000" [showMaskTyped]="true"
                 required>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="branchFax" placeholder="Fax" mask="000-0000000" [showMaskTyped]="true"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
             <mat-form-field class="fullwidth">
               <input matInput [(ngModel)]="branchWebsite" placeholder="Website" required>
             </mat-form-field>

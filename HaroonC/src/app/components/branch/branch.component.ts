@@ -55,6 +55,7 @@ export class BranchComponent implements OnInit {
   branchEmail = "";
   branchPhone = "";
   branchMobile = "";
+  branchFax = "";
   branchWebsite = "";
 
   dbranchId = null;
@@ -87,6 +88,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -99,6 +101,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -111,6 +114,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -123,6 +127,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -135,6 +140,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -147,6 +153,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290560",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -159,6 +166,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290670",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -171,6 +179,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290560",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -183,6 +192,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512245450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -195,6 +205,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512295350",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -207,6 +218,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290550",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -219,6 +231,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512220450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -231,6 +244,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -243,6 +257,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     },
     {
@@ -255,6 +270,7 @@ export class BranchComponent implements OnInit {
       branEmail: "abc@gmail.com",
       branPhone: "0512290450",
       branMobile: "03331234567",
+      branFax: "0512234567",
       branWebsite: "www.google.com"
     }
   ]
@@ -327,6 +343,10 @@ export class BranchComponent implements OnInit {
     }
     else if (this.branchMobile == "" || this.branchMobile.length < 11) {
       this.toastr.errorToastr('Please Enter Branch Mobile', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchFax == "" || this.branchFax.length < 10) {
+      this.toastr.errorToastr('Please Enter Branch Fax', 'Error', { toastTimeout: (2500) });
       return false;
     }
     else if (this.branchWebsite.trim() == "") {
@@ -460,6 +480,7 @@ export class BranchComponent implements OnInit {
     this.branchEmail = '';
     this.branchPhone = '';
     this.branchMobile = '';
+    this.branchFax = '';
     this.branchWebsite = '';
 
 
@@ -482,6 +503,7 @@ export class BranchComponent implements OnInit {
     this.branchEmail = item.branEmail;
     this.branchPhone = item.branPhone;
     this.branchMobile = item.branMobile;
+    this.branchFax = item.branFax;
     this.branchWebsite = item.branWebsite;
   }
 
@@ -646,7 +668,8 @@ export class BranchComponent implements OnInit {
           cityName: this.branches[i].ctyName,
           branchPhone: this.branches[i].branPhone,
           branchEmail: this.branches[i].branEmail,
-          brancMobile: this.branches[i].branMobile
+          brancMobile: this.branches[i].branMobile,
+          branchFax: this.branches[i].branFax
         });
       }
 
@@ -673,6 +696,7 @@ export class BranchComponent implements OnInit {
             branchPhone: this.branches[i].branPhone,
             branchEmail: this.branches[i].branEmail,
             brancMobile: this.branches[i].branMobile,
+            branchFax: this.branches[i].branFax
           });
         }
       }
@@ -705,6 +729,7 @@ export class BranchComponent implements OnInit {
           branchPhone: this.branches[i].branPhone,
           branchEmail: this.branches[i].branEmail,
           brancMobile: this.branches[i].branMobile,
+          branchFax: this.branches[i].branFax
         });
       }
       this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("BranchCompleteExcel"));
@@ -727,6 +752,7 @@ export class BranchComponent implements OnInit {
             branchPhone: this.branches[i].branPhone,
             branchEmail: this.branches[i].branEmail,
             brancMobile: this.branches[i].branMobile,
+            branchFax: this.branches[i].branFax
           });
         }
       }
