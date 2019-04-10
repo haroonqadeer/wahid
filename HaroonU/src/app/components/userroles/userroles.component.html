@@ -305,58 +305,60 @@
         <br />
         <!--Start table Row-->
         <div class="row">
-          <table class="table table-striped fullwidth">
-            <thead>
-              <tr class="d-flex">
-                <th class="col-1 text-center pointerCursor" (click)="setOrder('uId')">
-                  Sr No. <span *ngIf="order =='uId'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span
-                    *ngIf="order =='uId'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-                </th>
-                <th class="col-3 pointerCursor active" (click)="setOrder('uName')">
-                  Menu Name <span *ngIf="order =='uName'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
-                  <span *ngIf="order =='uName'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-                </th>
-                <th class="col-2 pointerCursor text-center" (click)="setOrder('uEmail')">
-                  Addition <span *ngIf="order =='uEmail'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
-                  <span *ngIf="order =='uEmail'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-                </th>
-                <th class="col-2 pointerCursor text-center" (click)="setOrder('uRole')">
-                  Updation <span *ngIf="order =='uRole'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
-                  <span *ngIf="order =='uRole'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-                </th>
-                <th class="col-2 pointerCursor text-center" (click)="setOrder('uSince')">
-                  Deletion <span *ngIf="order =='uSince'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
-                  <span *ngIf="order =='uSince'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-                </th>
-                <th class="col-2 pointerCursor text-center" (click)="setOrder('uSince')">
-                  Pin <span *ngIf="order =='uSince'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
-                  <span *ngIf="order =='uSince'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-              <tr class='d-flex'
-                *ngFor="let item of getFilterMenu(cmbModule) | orderBy: order: reverse: 'case-insensitive'; let i=index">
-                <!-- <tr class='d-flex' *ngFor="let item of employees | orderBy: order: reverse: 'case-insensitive'; let i=index"> -->
-                <!-- <td class="col-1 text-center" hidden>{{item.erpRoleCd}}</td> -->
-                <td class="col-1 text-center">{{i+1}}</td>
-                <td class="col-3">{{item.erpObjctName}}</td>
-                <td class="col-2 pointerCursor text-center">
-                  <mat-checkbox [(ngModel)]="item.Addition" class="example-margin"></mat-checkbox>
-                </td>
-                <td class="col-2 pointerCursor text-center">
-                  <mat-checkbox [(ngModel)]="item.Updation" class="example-margin"></mat-checkbox>
-                </td>
-                <td class="col-2 text-center">
-                  <mat-checkbox [(ngModel)]="item.Deletion" class="example-margin"></mat-checkbox>
-                </td>
-                <td class="col-2 text-center">
-                  <mat-checkbox [(ngModel)]="item.Pin" class="example-margin"></mat-checkbox>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="col-md-12">
+            <table class="table table-striped fullwidth allBorder">
+              <thead>
+                <tr class="d-flex">
+                  <th class="col-1 text-center pointerCursor" (click)="setOrder('uId')">
+                    Sr No. <span *ngIf="order =='uId'" [hidden]="reverse" class="fa fa-long-arrow-down"></span> <span
+                      *ngIf="order =='uId'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+                  </th>
+                  <th class="col-3 pointerCursor active" (click)="setOrder('uName')">
+                    Menu Name <span *ngIf="order =='uName'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
+                    <span *ngIf="order =='uName'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+                  </th>
+                  <th class="col-2 pointerCursor text-center" (click)="setOrder('uEmail')">
+                    Addition <span *ngIf="order =='uEmail'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
+                    <span *ngIf="order =='uEmail'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+                  </th>
+                  <th class="col-2 pointerCursor text-center" (click)="setOrder('uRole')">
+                    Updation <span *ngIf="order =='uRole'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
+                    <span *ngIf="order =='uRole'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+                  </th>
+                  <th class="col-2 pointerCursor text-center" (click)="setOrder('uSince')">
+                    Deletion <span *ngIf="order =='uSince'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
+                    <span *ngIf="order =='uSince'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+                  </th>
+                  <th class="col-2 pointerCursor text-center" (click)="setOrder('uSince')">
+                    Pin <span *ngIf="order =='uSince'" [hidden]="reverse" class="fa fa-long-arrow-down"></span>
+                    <span *ngIf="order =='uSince'" [hidden]="!reverse" class="fa fa-long-arrow-up"></span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <tr class='d-flex'
+                  *ngFor="let item of getFilterMenu(cmbModule) | orderBy: order: reverse: 'case-insensitive'; let i=index">
+                  <!-- <tr class='d-flex' *ngFor="let item of employees | orderBy: order: reverse: 'case-insensitive'; let i=index"> -->
+                  <!-- <td class="col-1 text-center" hidden>{{item.erpRoleCd}}</td> -->
+                  <td class="col-1 text-center">{{i+1}}</td>
+                  <td class="col-3">{{item.erpObjctName}}</td>
+                  <td class="col-2 pointerCursor text-center">
+                    <mat-checkbox [(ngModel)]="item.Addition" class="example-margin"></mat-checkbox>
+                  </td>
+                  <td class="col-2 pointerCursor text-center">
+                    <mat-checkbox [(ngModel)]="item.Updation" class="example-margin"></mat-checkbox>
+                  </td>
+                  <td class="col-2 text-center">
+                    <mat-checkbox [(ngModel)]="item.Deletion" class="example-margin"></mat-checkbox>
+                  </td>
+                  <td class="col-2 text-center">
+                    <mat-checkbox [(ngModel)]="item.Pin" class="example-margin"></mat-checkbox>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <!-- end table row -->
         <br />

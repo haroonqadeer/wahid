@@ -14,6 +14,7 @@ import { NgxMaskModule } from "ngx-mask";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 import { NgxSpinnerModule } from 'ngx-spinner'
+import { ExportAsModule } from 'ngx-export-as';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
@@ -58,7 +59,8 @@ import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "i
     IgxGridModule,
     NgxPaginationModule,
     OrderModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ExportAsModule
   ],
   providers: [IgxExcelExporterService, IgxCsvExporterService],
   bootstrap: [AppComponent],

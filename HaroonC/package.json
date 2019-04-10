@@ -34,6 +34,7 @@
     "jspdf": "^1.5.3",
     "ng6-toastr-notifications": "^1.0.4",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-export-as": "^1.2.2",
     "ngx-mask": "^7.3.6",
     "ngx-order-pipe": "^2.0.2",
     "ngx-pagination": "^3.2.1",
