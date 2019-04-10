@@ -15,7 +15,7 @@ import {
     IgxCsvExporterOptions,
     CsvFileTypes
 } from "igniteui-angular";
-
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
 //----------------------------------------------------------------------------//
 //-------------------Working of this typescript file are as follows-----------//
@@ -36,6 +36,13 @@ declare var $: any;
 })
 
 export class CurrencyComponent implements OnInit {
+
+    //export file as pdf
+    exportAsConfig: ExportAsConfig = {
+        type: 'pdf',
+        elementId: 'mytable',
+    };
+
 
     serverUrl = "http://localhost:55536/";
     tokenKey = "token";
@@ -96,7 +103,9 @@ export class CurrencyComponent implements OnInit {
         { currencyId: '25', currencyName: 'Kip', countryName: 'Laos' }
     ];
 
-    constructor(private toastr: ToastrManager,
+    constructor(
+        private exportAsService: ExportAsService,
+        private toastr: ToastrManager,
         private app: AppComponent,
         private http: HttpClient,
         private orderPipe: OrderPipe,
@@ -325,30 +334,9 @@ export class CurrencyComponent implements OnInit {
 
     // For PDF Download
     downloadPDF() {
-        var doc = new jsPDF("p", "pt", "A4"),
-            source = $("#printArea")[0],
-            margins = {
-                top: 75,
-                right: 30,
-                bottom: 50,
-                left: 30,
-                width: 50
-            };
-        doc.fromHTML(
-            source, // HTML string or DOM elem ref.
-            margins.left, // x coord
-            margins.top,
-            {
-                // y coord
-                width: margins.width // max width of content on PDF
-            },
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF
-                //          this allow the insertion of new lines after html
-                doc.save("Test.pdf");
-            },
-            margins
-        );
+        alert('ok');
+        this.exportAsService.save(this.exportAsConfig, 'myFile');
+
     }
 
 
