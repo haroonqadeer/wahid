@@ -14,6 +14,7 @@ import {
     IgxCsvExporterOptions,
     CsvFileTypes
 } from "igniteui-angular";
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 
 //----------------------------------------------------------------------------//
@@ -39,6 +40,12 @@ declare var $: any;
 })
 
 export class SubsidiarieComponent implements OnInit {
+
+    public contactForm: FormGroup;
+
+    areaCode = false;
+    mobileNetworkCode = false;
+    subsidiaryBox = true;
 
     serverUrl = "http://localhost:55536/";
     tokenKey = "token";
@@ -72,6 +79,12 @@ export class SubsidiarieComponent implements OnInit {
     faxNumber = '';
     agreement = '';
 
+    subsidiaryContactType = "";
+    subsidiaryCountryCode = "";
+    subsidiaryAreaCode = "";
+    subsidiaryMobileNetworkCode = "";
+    subsidiaryContactNumber = "";
+
     txtdPassword = '';
     txtdPin = '';
 
@@ -83,6 +96,69 @@ export class SubsidiarieComponent implements OnInit {
     itemPerPage = '10';
 
     //*List Variables
+
+    //Country Code
+    country = [
+        {
+            countryId: 1,
+            countryName: "Pakistan",
+            countryCode: "+92"
+        },
+        {
+            countryId: 2,
+            countryName: "Turkey",
+            countryCode: "+90"
+        },
+        {
+            countryId: 3,
+            countryName: "US",
+            countryCode: "+1"
+        }
+    ];
+
+    //Area Code
+    area = [
+        {
+            areaId: 1,
+            areaName: "Islamabad",
+            areaCode: "51"
+        },
+        {
+            areaId: 2,
+            areaName: "Karachi",
+            areaCode: "21"
+        },
+        {
+            areaId: 3,
+            areaName: "Lahore",
+            areaCode: "42"
+        }
+    ];
+
+    //Mobile Code
+    network = [
+        {
+            networkId: 1,
+            networkName: "Jazz",
+            networkCode: "300"
+        },
+        {
+            networkId: 2,
+            networkName: "Zong",
+            networkCode: "313"
+        },
+        {
+            networkId: 3,
+            networkName: "Telenor",
+            networkCode: "345"
+        },
+        {
+            networkId: 4,
+            networkName: "Ufone",
+            networkCode: "333"
+        }
+    ];
+
     cities = [
         { cityId: '1', cityName: 'Islamabad' },
         { cityId: '2', cityName: 'Rawalpindi' },
@@ -381,9 +457,14 @@ export class SubsidiarieComponent implements OnInit {
         private http: HttpClient,
         private app: AppComponent,
         private excelExportService: IgxExcelExporterService,
-        private csvExportService: IgxCsvExporterService) { }
+        private csvExportService: IgxCsvExporterService,
+        private fb: FormBuilder) { }
 
     ngOnInit() {
+        //Creating Array of ComboBox "subsidiaryes"
+        this.contactForm = this.fb.group({
+            subsidiary: this.fb.array([])
+        });
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
@@ -460,6 +541,27 @@ export class SubsidiarieComponent implements OnInit {
         }
         else if (this.agreement == '') {
             this.toastr.errorToastr('Please attach agreement copy', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        // contact type conditions
+        else if (this.subsidiaryContactType.trim() == "") {
+            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryCountryCode.trim() == "") {
+            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryAreaCode.trim() == "" && (this.subsidiaryContactType == "Fax" || this.subsidiaryContactType == "Telephone")) {
+            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryMobileNetworkCode.trim() == "" && this.subsidiaryContactType == "Mobile") {
+            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryContactNumber.trim() == "" || this.subsidiaryContactNumber.length < 7) {
+            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else {
@@ -585,6 +687,14 @@ export class SubsidiarieComponent implements OnInit {
         this.website = '';
         this.faxNumber = '';
         this.agreement = '';
+
+        this.contactForm.reset();
+
+        // this.subsidiaryContactType = '';
+        // this.subsidiaryCountryCode = '';
+        // this.subsidiaryAreaCode = '';
+        // this.subsidiaryMobileNetworkCode = '';
+        // this.subsidiaryContactNumber = '';
 
         this.txtdPassword = '';
         this.txtdPin = '';
@@ -844,5 +954,54 @@ export class SubsidiarieComponent implements OnInit {
                 this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
             }
         }
+    }
+
+    onChange(contactType) {
+
+        if (contactType == "Fax") {
+            this.areaCode = true;
+            this.mobileNetworkCode = false;
+        }
+        else if (contactType == "Telephone") {
+            this.areaCode = true;
+            this.mobileNetworkCode = false;
+        }
+        else if (contactType == "Mobile") {
+            this.areaCode = false;
+            this.mobileNetworkCode = true;
+        }
+        else {
+            return;
+        }
+    }
+
+    addSubsidiaryGroup() {
+        return this.fb.group({
+            //menuComboText: [''],
+            subsidiaryContactType: ['', Validators.required],
+            subsidiaryCountryCode: ['', Validators.required],
+            subsidiaryAreaCode: [''],
+            subsidiaryMobileNetworkCode: [''],
+            subsidiaryContactNumber: ['', Validators.required]
+            //menuCombo: ['', Validators.required]
+        })
+    }
+
+    // Add New ComboBox to an array()
+    addSubsidiaryContact() {
+        this.subsidiaryValue.push(this.addSubsidiaryGroup());
+    }
+
+    //Getting new ComboBox from array and show in front page
+    get subsidiaryValue() {
+        return <FormArray>this.contactForm.get('subsidiary');
+    }
+
+    //Deleting every comboBox with specific id which is ([formGroupName]="i")
+    deleteSubsidiary(i) {
+        this.subsidiaryValue.removeAt(i);
+        //alert(i);
+        //alert(this.contactForm.get('menuCombo.areaName'));
+        //alert(this.subsidiaryesValue[i]);
     }
 }

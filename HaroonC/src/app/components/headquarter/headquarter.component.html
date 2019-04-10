@@ -266,6 +266,80 @@
         </div>
         <!--end 4th row-->
         <br />
+
+        <!-- Let's Starts -->
+        <div [formGroup]="contactForm">
+          <div formArrayName="headquarters">
+            <div *ngFor="let headquarter of headquarterValue.controls; let i=index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-3">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="headquarterContactType" placeholder="Contact Type"
+                      [(ngModel)]="headquarterContactType" (ngModelChange)="onChange($event)" required>
+                      <mat-option value="Fax">Fax</mat-option>
+                      <mat-option value="Telephone">Telephone</mat-option>
+                      <mat-option value="Mobile">Mobile</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="headquarterCountryCode" placeholder="Country Code"
+                      [(ngModel)]="headquarterCountryCode" required>
+                      <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                        {{ code.countryCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2" *ngIf="areaCode">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="headquarterAreaCode" placeholder="Area Code"
+                      [(ngModel)]="headquarterAreaCode" required>
+                      <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                        {{ code.areaCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2" *ngIf="mobileNetworkCode">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="headquarterMobileNetworkCode" placeholder="Network Code"
+                      [(ngModel)]="headquarterMobileNetworkCode" required>
+                      <mat-option *ngFor="let code of network" [value]="code.networkCode">
+                        {{ code.networkCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="fullwidth">
+                    <input matInput formControlName="headquarterContactNumber" [(ngModel)]="headquarterContactNumber"
+                      placeholder="Number" mask="0000000" [showMaskTyped]="true" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button mat-fab color="warn" (click)="deleteHeadquarters(i)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-3">
+              <button mat-fab *ngIf="headquarterBox" color="primary" (click)="addHeadquarterContact()">
+                <span class="fa fa-plus"></span>
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+        <!-- Let's Ends -->
+
+        <br />
+
         <!--button tag Row Starts-->
         <div class="row">
           <div class="col-md-1 text-left">

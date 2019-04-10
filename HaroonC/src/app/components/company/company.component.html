@@ -333,6 +333,79 @@
                 </div>
               </div>
               <!--end 5th row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Contact Info</h6>
+                </div>
+              </div>
+              <!-- Let's Starts -->
+              <div [formGroup]="contactForm">
+                <div formArrayName="sole">
+                  <div *ngFor="let sole of soleValue.controls; let i=index" [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="soleContactType" placeholder="Contact Type"
+                            (ngModelChange)="onChange($event)" required>
+                            <mat-option value="Fax">Fax</mat-option>
+                            <mat-option value="Telephone">Telephone</mat-option>
+                            <mat-option value="Mobile">Mobile</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="soleCountryCode" placeholder="Country Code" required>
+                            <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                              {{ code.countryCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2" *ngIf="areaCode">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="soleAreaCode" placeholder="Area Code" required>
+                            <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                              {{ code.areaCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2" *ngIf="mobileNetworkCode">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="soleMobileNetworkCode" placeholder="Network Code" required>
+                            <mat-option *ngFor="  let code of network" [value]="code.networkCode">
+                              {{ code.networkCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2">
+                        <mat-form-field class="fullwidth">
+                          <input matInput formControlName="soleContactNumber" placeholder="Number" mask="0000000"
+                            [showMaskTyped]="true" required>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2">
+                        <button mat-fab color="warn" (click)="deleteSole(i)">
+                          <span class="fa fa-minus"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-3">
+                    <button mat-fab *ngIf="soleBox" color="primary" (click)="addSoleContact()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <!-- Let's Ends -->
+              <br />
             </div>
             <!--end sole proprietorship div-->
             <!--start partnership div-->
@@ -466,6 +539,79 @@
               </div>
               <!--end table row with container-->
               <br />
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Contact Info</h6>
+                </div>
+              </div>
+              <!-- Let's Starts -->
+              <div [formGroup]="contactForm">
+                <div formArrayName="partnerCon">
+                  <div *ngFor="let partner of partnerValue.controls; let i=index" [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="partnerContactType" placeholder="Contact Type"
+                            (ngModelChange)="onChange($event)" required>
+                            <mat-option value="Fax">Fax</mat-option>
+                            <mat-option value="Telephone">Telephone</mat-option>
+                            <mat-option value="Mobile">Mobile</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="partnerCountryCode" placeholder="Country Code" required>
+                            <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                              {{ code.countryCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2" *ngIf="areaCode">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="partnerAreaCode" placeholder="Area Code" required>
+                            <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                              {{ code.areaCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2" *ngIf="mobileNetworkCode">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="partnerMobileNetworkCode" placeholder="Network Code" required>
+                            <mat-option *ngFor="  let code of network" [value]="code.networkCode">
+                              {{ code.networkCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2">
+                        <mat-form-field class="fullwidth">
+                          <input matInput formControlName="partnerContactNumber" placeholder="Number" mask="0000000"
+                            [showMaskTyped]="true" required>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2">
+                        <button mat-fab color="warn" (click)="deletePartner(i)">
+                          <span class="fa fa-minus"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-3">
+                    <button mat-fab *ngIf="partnerBox" color="primary" (click)="addPartnerContact()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <!-- Let's Ends -->
+              <br />
             </div>
             <!--end partnership div-->
             <!--start Public / Private Limited Company div-->
@@ -558,6 +704,79 @@
                 </div>
               </div>
               <!--end 6th row-->
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Contact Info</h6>
+                </div>
+              </div>
+              <!-- Let's Starts -->
+              <div [formGroup]="contactForm">
+                <div formArrayName="ppCom">
+                  <div *ngFor="let ppCom of ppComValue.controls; let i=index" [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="ppComContactType" placeholder="Contact Type"
+                            (ngModelChange)="onChange($event)" required>
+                            <mat-option value="Fax">Fax</mat-option>
+                            <mat-option value="Telephone">Telephone</mat-option>
+                            <mat-option value="Mobile">Mobile</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="ppComCountryCode" placeholder="Country Code" required>
+                            <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                              {{ code.countryCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2" *ngIf="areaCode">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="ppComAreaCode" placeholder="Area Code" required>
+                            <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                              {{ code.areaCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2" *ngIf="mobileNetworkCode">
+                        <mat-form-field class="fullwidth">
+                          <mat-select formControlName="ppComMobileNetworkCode" placeholder="Network Code" required>
+                            <mat-option *ngFor="  let code of network" [value]="code.networkCode">
+                              {{ code.networkCode }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2">
+                        <mat-form-field class="fullwidth">
+                          <input matInput formControlName="ppComContactNumber" placeholder="Number" mask="0000000"
+                            [showMaskTyped]="true" required>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-2">
+                        <button mat-fab color="warn" (click)="deletePPCom(i)">
+                          <span class="fa fa-minus"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-3">
+                    <button mat-fab *ngIf="ppComBox" color="primary" (click)="addPPComContact()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <!-- Let's Ends -->
+              <br />
             </div>
             <!--end Public/Private Limited Company div-->
             <br />
@@ -684,6 +903,79 @@
               </div>
             </div>
             <!--end 8th row-->
+            <br />
+            <div class="row">
+              <div class="col-md-12">
+                <h6>Contact Info</h6>
+              </div>
+            </div>
+            <!-- Let's Starts -->
+            <div [formGroup]="contactForm">
+              <div formArrayName="company">
+                <div *ngFor="let company of companyValue.controls; let i=index" [formGroupName]="i">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <mat-form-field class="fullwidth">
+                        <mat-select formControlName="companyContactType" placeholder="Contact Type"
+                          (ngModelChange)="onChange($event)" required>
+                          <mat-option value="Fax">Fax</mat-option>
+                          <mat-option value="Telephone">Telephone</mat-option>
+                          <mat-option value="Mobile">Mobile</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                      <mat-form-field class="fullwidth">
+                        <mat-select formControlName="companyCountryCode" placeholder="Country Code" required>
+                          <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                            {{ code.countryCode }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2" *ngIf="areaCode">
+                      <mat-form-field class="fullwidth">
+                        <mat-select formControlName="companyAreaCode" placeholder="Area Code" required>
+                          <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                            {{ code.areaCode }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2" *ngIf="mobileNetworkCode">
+                      <mat-form-field class="fullwidth">
+                        <mat-select formControlName="companyMobileNetworkCode" placeholder="Network Code" required>
+                          <mat-option *ngFor="  let code of network" [value]="code.networkCode">
+                            {{ code.networkCode }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                      <mat-form-field class="fullwidth">
+                        <input matInput formControlName="companyContactNumber" placeholder="Number" mask="0000000"
+                          [showMaskTyped]="true" required>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                      <button mat-fab color="warn" (click)="deleteCompany(i)">
+                        <span class="fa fa-minus"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-3">
+                  <button mat-fab *ngIf="companyBox" color="primary" (click)="addCompanyContact()">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <br />
+            </div>
+            <!-- Let's Ends -->
             <br />
             <!--button tag-->
             <button mat-raised-button color="primary" (click)="save()">Save</button>

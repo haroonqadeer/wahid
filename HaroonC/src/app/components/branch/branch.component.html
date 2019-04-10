@@ -321,6 +321,145 @@
 
         <br />
 
+        <!-- Contact Number Section Starts -->
+        <!--start 7th row-->
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <tbody>
+                <tr class="d-flex">
+                  <td class="col-2">
+                    <mat-form-field class="fullwidth">
+                      <mat-select placeholder="Contact Type" [(ngModel)]="branchContactType"
+                        (ngModelChange)="onChange($event)" required>
+                        <mat-option value="Fax">Fax</mat-option>
+                        <mat-option value="Telephone">Telephone</mat-option>
+                        <mat-option value="Mobile">Mobile</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td class="col-2">
+                    <mat-form-field class="fullwidth">
+                      <mat-select placeholder="Country Code" [(ngModel)]="branchCountryCode" required>
+                        <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                          {{ code.countryCode }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td class="col-2" *ngIf="areaCode">
+                    <mat-form-field class="fullwidth">
+                      <mat-select placeholder="Area Code" [(ngModel)]="branchAreaCode" required>
+                        <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                          {{ code.areaCode }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td class="col-2" *ngIf="mobileNetworkCode">
+                    <mat-form-field class="fullwidth">
+                      <mat-select placeholder="Network Code" [(ngModel)]="branchMobileNetworkCode" required>
+                        <mat-option *ngFor="  let code of network" [value]="code.networkCode">
+                          {{ code.networkCode }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td class="col-3">
+                    <mat-form-field class="fullwidth">
+                      <input matInput [(ngModel)]="branchContactNumber" placeholder="Number" mask="0000000"
+                        [showMaskTyped]="true" required>
+                    </mat-form-field>
+                  </td>
+                  <td class="col-1">
+                    <button mat-fab color="primary" *ngIf="menuBox" (click)="addProducts()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> -->
+        <!--end 7th row-->
+        <!-- Contact Number Section Ends -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <h6>Contact Info</h6>
+          </div>
+        </div>
+        <!-- Let's Starts -->
+        <div [formGroup]="contactForm">
+          <div formArrayName="branches">
+            <div *ngFor="let branch of branchesValue.controls; let i=index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-3">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="branchContactType" placeholder="Contact Type"
+                      (ngModelChange)="onChange($event)" required>
+                      <mat-option value="Fax">Fax</mat-option>
+                      <mat-option value="Telephone">Telephone</mat-option>
+                      <mat-option value="Mobile">Mobile</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="branchCountryCode" placeholder="Country Code" required>
+                      <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                        {{ code.countryCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2" *ngIf="areaCode">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="branchAreaCode" placeholder="Area Code" required>
+                      <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                        {{ code.areaCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2" *ngIf="mobileNetworkCode">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="branchMobileNetworkCode" placeholder="Network Code" required>
+                      <mat-option *ngFor="  let code of network" [value]="code.networkCode">
+                        {{ code.networkCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="fullwidth">
+                    <input matInput formControlName="branchContactNumber" placeholder="Number" mask="0000000"
+                      [showMaskTyped]="true" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button mat-fab color="warn" (click)="deleteBranches(i)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-3">
+              <button mat-fab *ngIf="branchBox" color="primary" (click)="addBranchContact()">
+                <span class="fa fa-plus"></span>
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+        <!-- Let's Ends -->
+
+
+        <br />
+
         <!--button tag Row Starts-->
         <div class="row">
           <div class="col-md-1 text-left">

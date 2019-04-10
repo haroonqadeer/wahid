@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@an
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 import * as jsPDF from 'jspdf';
@@ -55,6 +55,16 @@ export interface Partner {
 })
 export class CompanyComponent implements OnInit {
 
+    public contactForm: FormGroup;
+
+    areaCode = false;
+    mobileNetworkCode = false;
+    soleBox = true;
+    partnerBox = true;
+    ppComBox = true;
+    companyBox = true;
+
+
     serverUrl = "http://localhost:55536/";
     tokenKey = "token";
 
@@ -77,6 +87,11 @@ export class CompanyComponent implements OnInit {
     sMobileNo = '';
     sEmail = '';
     sAddress = '';
+    soleContactType = "";
+    soleCountryCode = "";
+    soleAreaCode = "";
+    soleMobileNetworkCode = "";
+    soleContactNumber = "";
 
     pCnic = '';
     pNtn = '';
@@ -88,6 +103,11 @@ export class CompanyComponent implements OnInit {
     pMobile = '';
     pEmail = '';
     pAddress = '';
+    partnerContactType = "";
+    partnerCountryCode = "";
+    partnerAreaCode = "";
+    partnerMobileNetworkCode = "";
+    partnerContactNumber = "";
 
     ppCnic = '';
     ppNtn = '';
@@ -98,6 +118,11 @@ export class CompanyComponent implements OnInit {
     ppMobile = '';
     ppEmail = '';
     ppAddress = '';
+    ppComContactType = "";
+    ppComCountryCode = "";
+    ppComAreaCode = "";
+    ppComMobileNetworkCode = "";
+    ppComContactNumber = "";
 
     bNtn = '';
     bStrn = '';
@@ -111,6 +136,11 @@ export class CompanyComponent implements OnInit {
     bEmail = '';
     bWebsite = '';
     bFacebook = '';
+    companyContactType = "";
+    companyCountryCode = "";
+    companyAreaCode = "";
+    companyMobileNetworkCode = "";
+    companyContactNumber = "";
 
     txtdPassword = '';
     txtdPin = '';
@@ -137,6 +167,69 @@ export class CompanyComponent implements OnInit {
         { TId: '3', TName: 'Public Limited Company' },
         { TId: '4', TName: 'Private Limited Company' }
     ];
+
+    //Country Code
+    country = [
+        {
+            countryId: 1,
+            countryName: "Pakistan",
+            countryCode: "+92"
+        },
+        {
+            countryId: 2,
+            countryName: "Turkey",
+            countryCode: "+90"
+        },
+        {
+            countryId: 3,
+            countryName: "US",
+            countryCode: "+1"
+        }
+    ];
+
+    //Area Code
+    area = [
+        {
+            areaId: 1,
+            areaName: "Islamabad",
+            areaCode: "51"
+        },
+        {
+            areaId: 2,
+            areaName: "Karachi",
+            areaCode: "21"
+        },
+        {
+            areaId: 3,
+            areaName: "Lahore",
+            areaCode: "42"
+        }
+    ];
+
+    //Mobile Code
+    network = [
+        {
+            networkId: 1,
+            networkName: "Jazz",
+            networkCode: "300"
+        },
+        {
+            networkId: 2,
+            networkName: "Zong",
+            networkCode: "313"
+        },
+        {
+            networkId: 3,
+            networkName: "Telenor",
+            networkCode: "345"
+        },
+        {
+            networkId: 4,
+            networkName: "Ufone",
+            networkCode: "333"
+        }
+    ];
+
 
     userDetail = [
         {
@@ -245,9 +338,26 @@ export class CompanyComponent implements OnInit {
         private app: AppComponent,
         private http: HttpClient,
         private excelExportService: IgxExcelExporterService,
-        private csvExportService: IgxCsvExporterService) { }
+        private csvExportService: IgxCsvExporterService,
+        private fb: FormBuilder) { }
 
     ngOnInit() {
+        //Creating Array of ComboBox "sole"
+        this.contactForm = this.fb.group({
+            sole: this.fb.array([])
+        });
+        //Creating Array of ComboBox "partner"
+        this.contactForm = this.fb.group({
+            partnerCon: this.fb.array([])
+        });
+        //Creating Array of ComboBox "ppCom"
+        this.contactForm = this.fb.group({
+            ppCom: this.fb.array([])
+        });
+        //Creating Array of ComboBox "company"
+        this.contactForm = this.fb.group({
+            company: this.fb.array([])
+        });
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
@@ -293,10 +403,52 @@ export class CompanyComponent implements OnInit {
             this.toastr.errorToastr('Please enter owner address', 'Error', { toastTimeout: (2500) });
             return false;
         }
+        // contact type conditions
+        else if (this.solePro == true && this.soleContactType.trim() == "") {
+            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.soleCountryCode.trim() == "") {
+            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.soleAreaCode.trim() == "" && (this.soleContactType == "Fax" || this.soleContactType == "Telephone")) {
+            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.soleMobileNetworkCode.trim() == "" && this.soleContactType == "Mobile") {
+            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.soleContactNumber.trim() == "" || this.soleContactNumber.length < 7) {
+            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
         else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
             this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
             return false;
         }
+        // // contact type conditions
+        // else if (this.partner == true && this.partnerContactType.trim() == "") {
+        //     this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.partner == true && this.partnerCountryCode.trim() == "") {
+        //     this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.partner == true && this.partnerAreaCode.trim() == "" && (this.partnerContactType == "Fax" || this.partnerContactType == "Telephone")) {
+        //     this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.partner == true && this.partnerMobileNetworkCode.trim() == "" && this.partnerContactType == "Mobile") {
+        //     this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.partner == true && this.partnerContactNumber.trim() == "" || this.partnerContactNumber.length < 7) {
+        //     this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
         else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
             this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
             return false;
@@ -335,6 +487,27 @@ export class CompanyComponent implements OnInit {
         }
         else if (this.ppCom == true && this.ppAddress == '') {
             this.toastr.errorToastr('Please enter director address', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        // contact type conditions
+        else if (this.ppCom == true && this.ppComContactType.trim() == "") {
+            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.ppComCountryCode.trim() == "") {
+            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.ppComAreaCode.trim() == "" && (this.ppComContactType == "Fax" || this.ppComContactType == "Telephone")) {
+            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.ppComMobileNetworkCode.trim() == "" && this.ppComContactType == "Mobile") {
+            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.ppComContactNumber.trim() == "" || this.ppComContactNumber.length < 7) {
+            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.bNtn == '' || this.bNtn.length < 8) {
@@ -387,6 +560,27 @@ export class CompanyComponent implements OnInit {
         }
         else if (this.bFacebook == '') {
             this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        // contact type conditions
+        else if (this.companyContactType.trim() == "") {
+            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.companyCountryCode.trim() == "") {
+            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.companyAreaCode.trim() == "" && (this.companyContactType == "Fax" || this.companyContactType == "Telephone")) {
+            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.companyMobileNetworkCode.trim() == "" && this.companyContactType == "Mobile") {
+            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.companyContactNumber.trim() == "" || this.companyContactNumber.length < 7) {
+            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else {
@@ -535,6 +729,27 @@ export class CompanyComponent implements OnInit {
             this.toastr.errorToastr('Please enter address', 'Error', { toastTimeout: (2500) });
             return false;
         }
+        // contact type conditions
+        else if (this.partnerContactType.trim() == "") {
+            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.partnerCountryCode.trim() == "") {
+            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.partnerAreaCode.trim() == "" && (this.partnerContactType == "Fax" || this.partnerContactType == "Telephone")) {
+            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.partnerMobileNetworkCode.trim() == "" && this.partnerContactType == "Mobile") {
+            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.partnerContactNumber.trim() == "" || this.partnerContactNumber.length < 7) {
+            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
         else {
 
             let data = this.partners.find(x => x.cnic == this.pCnic);
@@ -583,6 +798,8 @@ export class CompanyComponent implements OnInit {
         this.pMobile = '';
         this.pEmail = '';
         this.pAddress = '';
+
+        this.contactForm.reset();
     }
 
 
@@ -630,6 +847,8 @@ export class CompanyComponent implements OnInit {
             this.bEmail = '';
             this.bWebsite = '';
             this.bFacebook = '';
+
+            this.contactForm.reset();
 
             this.txtdPassword = '';
             this.txtdPin = '';
@@ -914,4 +1133,154 @@ export class CompanyComponent implements OnInit {
             this.btnStpr1 = true;
         }
     }
+
+
+
+    onChange(contactType) {
+
+        if (contactType == "Fax") {
+            this.areaCode = true;
+            this.mobileNetworkCode = false;
+        }
+        else if (contactType == "Telephone") {
+            this.areaCode = true;
+            this.mobileNetworkCode = false;
+        }
+        else if (contactType == "Mobile") {
+            this.areaCode = false;
+            this.mobileNetworkCode = true;
+        }
+        else {
+            return;
+        }
+    }
+
+
+    //sole
+    addSoleGroup() {
+        return this.fb.group({
+            //menuComboText: [''],
+            soleContactType: ['', Validators.required],
+            soleCountryCode: ['', Validators.required],
+            soleAreaCode: [''],
+            soleMobileNetworkCode: [''],
+            soleContactNumber: ['', Validators.required]
+            //menuCombo: ['', Validators.required]
+        })
+    }
+
+    // Add New ComboBox to an array()
+    addSoleContact() {
+        this.soleValue.push(this.addSoleGroup());
+    }
+
+    //Getting new ComboBox from array and show in front page
+    get soleValue() {
+        return <FormArray>this.contactForm.get('sole');
+    }
+
+    //Deleting every comboBox with specific id which is ([formGroupName]="i")
+    deleteSole(i) {
+        this.soleValue.removeAt(i);
+        //alert(i);
+        //alert(this.contactForm.get('menuCombo.areaName'));
+        //alert(this.soleValue[i]);
+    }
+
+
+    // partner
+    addPartnerGroup() {
+        return this.fb.group({
+            //menuComboText: [''],
+            partnerContactType: ['', Validators.required],
+            partnerCountryCode: ['', Validators.required],
+            partnerAreaCode: [''],
+            partnerMobileNetworkCode: [''],
+            partnerContactNumber: ['', Validators.required]
+            //menuCombo: ['', Validators.required]
+        })
+    }
+
+    // Add New ComboBox to an array()
+    addPartnerContact() {
+        this.partnerValue.push(this.addPartnerGroup());
+    }
+
+    //Getting new ComboBox from array and show in front page
+    get partnerValue() {
+        return <FormArray>this.contactForm.get('partnerCon');
+    }
+
+    //Deleting every comboBox with specific id which is ([formGroupName]="i")
+    deletePartner(i) {
+        this.partnerValue.removeAt(i);
+        //alert(i);
+        //alert(this.contactForm.get('menuCombo.areaName'));
+        //alert(this.PartnerValue[i]);
+    }
+
+
+    // ppCom
+    addPPComGroup() {
+        return this.fb.group({
+            //menuComboText: [''],
+            ppComContactType: ['', Validators.required],
+            ppComCountryCode: ['', Validators.required],
+            ppComAreaCode: [''],
+            ppComMobileNetworkCode: [''],
+            ppComContactNumber: ['', Validators.required]
+            //menuCombo: ['', Validators.required]
+        })
+    }
+
+    // Add New ComboBox to an array()
+    addPPComContact() {
+        this.ppComValue.push(this.addPPComGroup());
+    }
+
+    //Getting new ComboBox from array and show in front page
+    get ppComValue() {
+        return <FormArray>this.contactForm.get('ppCom');
+    }
+
+    //Deleting every comboBox with specific id which is ([formGroupName]="i")
+    deletePPCom(i) {
+        this.ppComValue.removeAt(i);
+        //alert(i);
+        //alert(this.contactForm.get('menuCombo.areaName'));
+        //alert(this.ppComValue[i]);
+    }
+
+
+    // company
+    addCompanyGroup() {
+        return this.fb.group({
+            //menuComboText: [''],
+            companyContactType: ['', Validators.required],
+            companyCountryCode: ['', Validators.required],
+            companyAreaCode: [''],
+            companyMobileNetworkCode: [''],
+            companyContactNumber: ['', Validators.required]
+            //menuCombo: ['', Validators.required]
+        })
+    }
+
+    // Add New ComboBox to an array()
+    addCompanyContact() {
+        this.companyValue.push(this.addCompanyGroup());
+    }
+
+    //Getting new ComboBox from array and show in front page
+    get companyValue() {
+        return <FormArray>this.contactForm.get('company');
+    }
+
+    //Deleting every comboBox with specific id which is ([formGroupName]="i")
+    deleteCompany(i) {
+        this.companyValue.removeAt(i);
+        //alert(i);
+        //alert(this.contactForm.get('menuCombo.areaName'));
+        // //alert(this.companyesValue[i]);
+    }
+
 }

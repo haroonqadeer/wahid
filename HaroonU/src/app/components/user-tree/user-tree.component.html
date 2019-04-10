@@ -39,15 +39,17 @@
                 <div class="row">
                     <div class="col-md-8">
                         <mat-form-field class="fullwidth">
-                            <mat-select placeholder="Select Module" [(ngModel)]="cmbModule" (ngModelChange)="onModuleChange()"
-                                required>
+                            <mat-select placeholder="Select Module" [(ngModel)]="cmbModule"
+                                (ngModelChange)="onModuleChange()" required>
                                 <input type="text" class="form-control" [(ngModel)]="searchModule">
-                                <mat-option *ngFor="  let mod of modules | search:'moduleName':searchModule" [value]="mod.moduleName">{{mod.moduleName}}</mat-option>
+                                <mat-option *ngFor="  let mod of modules | search:'moduleName':searchModule"
+                                    [value]="mod.moduleName">{{mod.moduleName}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
-                        <button mat-fab color="primary" data-toggle="modal" data-target="#addModule"><span class="fa fa-plus"></span></button>
+                        <button mat-fab color="primary" data-toggle="modal" data-target="#addModule"><span
+                                class="fa fa-plus"></span></button>
                     </div>
                 </div>
 
@@ -55,10 +57,11 @@
                 <div class="row">
                     <div class="col-md-8">
                         <mat-form-field class="fullwidth">
-                            <mat-select placeholder="Select Module" [(ngModel)]="cmbModule" (ngModelChange)="onModuleChange()"
-                                required>
+                            <mat-select placeholder="Select Module" [(ngModel)]="cmbModule"
+                                (ngModelChange)="onModuleChange()" required>
                                 <input type="text" class="form-control" [(ngModel)]="searchModule">
-                                <mat-option *ngFor="  let mod of modules | search:'moduleName':searchModule" [value]="mod.moduleName">{{mod.moduleName}}</mat-option>
+                                <mat-option *ngFor="  let mod of modules | search:'moduleName':searchModule"
+                                    [value]="mod.moduleName">{{mod.moduleName}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -74,9 +77,11 @@
                 <div class="row" *ngIf="mdouleBox">
                     <div class="col-md-8">
                         <mat-form-field class="fullwidth">
-                            <mat-select placeholder="Select Menu" [(ngModel)]="cmbMenu" required (ngModelChange)="onMenuChange()">
+                            <mat-select placeholder="Select Menu" [(ngModel)]="cmbMenu" required
+                                (ngModelChange)="onMenuChange()">
                                 <input type="text" class="form-control" [(ngModel)]="searchMenu">
-                                <mat-option *ngFor="  let menu of menus | search:'menuName':searchMenu" [value]="menu.menuName">{{menu.menuName}}</mat-option>
+                                <mat-option *ngFor="  let menu of menus | search:'menuName':searchMenu"
+                                    [value]="menu.menuName">{{menu.menuName}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -95,7 +100,8 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <mat-form-field class="fullwidth">
-                                        <input matInput placeholder="Search" type="text" formControlName="menuComboText">
+                                        <input matInput placeholder="Search" type="text"
+                                            formControlName="menuComboText">
                                         <mat-select formControlName="menuCombo" placeholder="Select Sub Menu">
                                             <input type="text" class="form-control">
                                             <mat-option *ngFor="  let menu of menus | search:'menuName':menuComboText"

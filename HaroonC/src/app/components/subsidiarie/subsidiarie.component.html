@@ -378,7 +378,7 @@
         </div>
         <!--end 7th row-->
         <br>
-        <!--start 7th row-->
+        <!--start 8th row-->
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
@@ -395,8 +395,84 @@
             <button mat-raised-button class="noneOutLine">...</button>
           </div>
         </div>
-        <!--end 7th row-->
+        <!--end 8th row-->
         <br />
+
+        <div class="row">
+          <div class="col-md-12">
+            <h6>Contact Info</h6>
+          </div>
+        </div>
+        <!-- Let's Starts -->
+        <div [formGroup]="contactForm">
+          <div formArrayName="subsidiary">
+            <div *ngFor="let subsidiary of subsidiaryValue.controls; let i=index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-3">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="subsidiaryContactType" placeholder="Contact Type"
+                      (ngModelChange)="onChange($event)" required>
+                      <mat-option value="Fax">Fax</mat-option>
+                      <mat-option value="Telephone">Telephone</mat-option>
+                      <mat-option value="Mobile">Mobile</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="subsidiaryCountryCode" placeholder="Country Code" required>
+                      <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                        {{ code.countryCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2" *ngIf="areaCode">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="subsidiaryAreaCode" placeholder="Area Code" required>
+                      <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                        {{ code.areaCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2" *ngIf="mobileNetworkCode">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="subsidiaryMobileNetworkCode" placeholder="Network Code" required>
+                      <mat-option *ngFor="let code of network" [value]="code.networkCode">
+                        {{ code.networkCode }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="fullwidth">
+                    <input matInput formControlName="subsidiaryContactNumber" placeholder="Number" mask="0000000"
+                      [showMaskTyped]="true" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button mat-fab color="warn" (click)="deleteSubsidiary(i)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-3">
+              <button mat-fab *ngIf="subsidiaryBox" color="primary" (click)="addSubsidiaryContact()">
+                <span class="fa fa-plus"></span>
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+        <!-- Let's Ends -->
+
+        <br />
+
         <!--button tag-->
         <button mat-raised-button color="primary" (click)="save()">Save</button>
         &nbsp;&nbsp;&nbsp;

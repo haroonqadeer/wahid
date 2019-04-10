@@ -11,6 +11,7 @@ import {
   IgxCsvExporterOptions,
   CsvFileTypes
 } from "igniteui-angular";
+import { FormArray, Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 
 //----------------------------------------------------------------------------//
@@ -36,6 +37,12 @@ declare var $: any;
 
 export class BranchComponent implements OnInit {
 
+  public contactForm: FormGroup;
+
+  areaCode = false;
+  mobileNetworkCode = false;
+  branchBox = true;
+
   serverUrl = "http://localhost:55536/";
   tokenKey = "token";
 
@@ -58,10 +65,18 @@ export class BranchComponent implements OnInit {
   branchFax = "";
   branchWebsite = "";
 
+  branchContactType = "";
+  branchCountryCode = "";
+  branchAreaCode = "";
+  branchMobileNetworkCode = "";
+  branchContactNumber = "";
+
   dbranchId = null;
 
   //*NgModel For Searching textboxes
   tblSearch = "";
+
+  menuComboText = "";
 
   //*City Modal Window Models
   cityName = "";
@@ -77,6 +92,69 @@ export class BranchComponent implements OnInit {
   sortedCollection: any[];
   itemPerPage = '10';
 
+  //Country Code
+  country = [
+    {
+      countryId: 1,
+      countryName: "Pakistan",
+      countryCode: "+92"
+    },
+    {
+      countryId: 2,
+      countryName: "Turkey",
+      countryCode: "+90"
+    },
+    {
+      countryId: 3,
+      countryName: "US",
+      countryCode: "+1"
+    }
+  ];
+
+  //Area Code
+  area = [
+    {
+      areaId: 1,
+      areaName: "Islamabad",
+      areaCode: "51"
+    },
+    {
+      areaId: 2,
+      areaName: "Karachi",
+      areaCode: "21"
+    },
+    {
+      areaId: 3,
+      areaName: "Lahore",
+      areaCode: "42"
+    }
+  ];
+
+  //Mobile Code
+  network = [
+    {
+      networkId: 1,
+      networkName: "Jazz",
+      networkCode: "300"
+    },
+    {
+      networkId: 2,
+      networkName: "Zong",
+      networkCode: "313"
+    },
+    {
+      networkId: 3,
+      networkName: "Telenor",
+      networkCode: "345"
+    },
+    {
+      networkId: 4,
+      networkName: "Ufone",
+      networkCode: "333"
+    }
+  ];
+
+
   branches = [
     {
       branId: 1,
@@ -89,7 +167,12 @@ export class BranchComponent implements OnInit {
       branPhone: "0512290450",
       branMobile: "03331234567",
       branFax: "0512234567",
-      branWebsite: "www.google.com"
+      branWebsite: "www.google.com",
+      // branContactType: '',
+      // branCountryCode: '',
+      // branAreaCode: '',
+      // branMobileNetworkCode: '',
+      // branContactNumber: ''
     },
     {
       branId: 2,
@@ -287,9 +370,14 @@ export class BranchComponent implements OnInit {
     private app: AppComponent,
     private http: HttpClient,
     private excelExportService: IgxExcelExporterService,
-    private csvExportService: IgxCsvExporterService) { }
+    private csvExportService: IgxCsvExporterService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    //Creating Array of ComboBox "branches"
+    this.contactForm = this.fb.group({
+      branches: this.fb.array([])
+    });
   }
 
 
@@ -351,6 +439,27 @@ export class BranchComponent implements OnInit {
     }
     else if (this.branchWebsite.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Website', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    // contact type conditions
+    else if (this.branchContactType.trim() == "") {
+      this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchCountryCode.trim() == "") {
+      this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchAreaCode.trim() == "" && (this.branchContactType == "Fax" || this.branchContactType == "Telephone")) {
+      this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchMobileNetworkCode.trim() == "" && this.branchContactType == "Mobile") {
+      this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchContactNumber.trim() == "" || this.branchContactNumber.length < 7) {
+      this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
       return false;
     }
     else {
@@ -483,6 +592,13 @@ export class BranchComponent implements OnInit {
     this.branchFax = '';
     this.branchWebsite = '';
 
+    this.contactForm.reset();
+
+    // this.branchContactType = '';
+    // this.branchCountryCode = '';
+    // this.branchAreaCode = '';
+    // this.branchMobileNetworkCode = '';
+    // this.branchContactNumber = '';
 
     this.cityName = "";
 
@@ -765,4 +881,55 @@ export class BranchComponent implements OnInit {
       }
     }
   }
+
+
+  onChange(contactType) {
+
+    if (contactType == "Fax") {
+      this.areaCode = true;
+      this.mobileNetworkCode = false;
+    }
+    else if (contactType == "Telephone") {
+      this.areaCode = true;
+      this.mobileNetworkCode = false;
+    }
+    else if (contactType == "Mobile") {
+      this.areaCode = false;
+      this.mobileNetworkCode = true;
+    }
+    else {
+      return;
+    }
+  }
+
+  addBranchesGroup() {
+    return this.fb.group({
+      //menuComboText: [''],
+      branchContactType: ['', Validators.required],
+      branchCountryCode: ['', Validators.required],
+      branchAreaCode: [''],
+      branchMobileNetworkCode: [''],
+      branchContactNumber: ['', Validators.required]
+      //menuCombo: ['', Validators.required]
+    })
+  }
+
+  // Add New ComboBox to an array()
+  addBranchContact() {
+    this.branchesValue.push(this.addBranchesGroup());
+  }
+
+  //Getting new ComboBox from array and show in front page
+  get branchesValue() {
+    return <FormArray>this.contactForm.get('branches');
+  }
+
+  //Deleting every comboBox with specific id which is ([formGroupName]="i")
+  deleteBranches(i) {
+    this.branchesValue.removeAt(i);
+    //alert(i);
+    //alert(this.contactForm.get('menuCombo.areaName'));
+    //alert(this.branchesValue[i]);
+  }
+
 }
