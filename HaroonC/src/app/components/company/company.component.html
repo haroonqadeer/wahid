@@ -339,7 +339,7 @@
                 </div>
               </div>
               <!-- Let's Starts -->
-              <div [formGroup]="contactForm">
+              <div [formGroup]="contactFormSole">
                 <div formArrayName="sole">
                   <div *ngFor="let sole of soleValue.controls; let i=index" [formGroupName]="i">
                     <div class="row">
@@ -545,7 +545,7 @@
                 </div>
               </div>
               <!-- Let's Starts -->
-              <div [formGroup]="contactForm">
+              <div [formGroup]="contactFormPartner">
                 <div formArrayName="partnerCon">
                   <div *ngFor="let partner of partnerValue.controls; let i=index" [formGroupName]="i">
                     <div class="row">
@@ -710,7 +710,7 @@
                 </div>
               </div>
               <!-- Let's Starts -->
-              <div [formGroup]="contactForm">
+              <div [formGroup]="contactFormPPCom">
                 <div formArrayName="ppCom">
                   <div *ngFor="let ppCom of ppComValue.controls; let i=index" [formGroupName]="i">
                     <div class="row">
@@ -910,7 +910,7 @@
               </div>
             </div>
             <!-- Let's Starts -->
-            <div [formGroup]="contactForm">
+            <div [formGroup]="contactFormCompany">
               <div formArrayName="company">
                 <div *ngFor="let company of companyValue.controls; let i=index" [formGroupName]="i">
                   <div class="row">

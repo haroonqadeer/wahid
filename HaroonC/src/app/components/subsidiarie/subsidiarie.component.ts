@@ -57,6 +57,7 @@ export class SubsidiarieComponent implements OnInit {
 
     // list for excel data
     excelDataList = [];
+  contactDetail = [];
 
     //* variables for display values on page
 
@@ -462,9 +463,9 @@ export class SubsidiarieComponent implements OnInit {
 
     ngOnInit() {
         //Creating Array of ComboBox "subsidiaryes"
-        this.contactForm = this.fb.group({
-            subsidiary: this.fb.array([])
-        });
+        // this.contactForm = this.fb.group({
+        //     subsidiary: this.fb.array([])
+        // });
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
@@ -975,33 +976,96 @@ export class SubsidiarieComponent implements OnInit {
         }
     }
 
-    addSubsidiaryGroup() {
-        return this.fb.group({
-            //menuComboText: [''],
-            subsidiaryContactType: ['', Validators.required],
-            subsidiaryCountryCode: ['', Validators.required],
-            subsidiaryAreaCode: [''],
-            subsidiaryMobileNetworkCode: [''],
-            subsidiaryContactNumber: ['', Validators.required]
-            //menuCombo: ['', Validators.required]
-        })
+    addContact() {
+
+        if (this.subsidiaryContactType.trim() == '') {
+            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryCountryCode.trim() == "") {
+            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryAreaCode.trim() == "" && (this.subsidiaryContactType == "Fax" || this.subsidiaryContactType == "Telephone")) {
+            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryMobileNetworkCode.trim() == "" && this.subsidiaryContactType == "Mobile") {
+            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.subsidiaryContactNumber.trim() == "" || this.subsidiaryContactNumber.length < 7) {
+            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else {
+            let data = this.contactDetail.find(x => (
+                x.conContactType == this.subsidiaryContactType,
+                x.conCountryCode == this.subsidiaryCountryCode,
+                x.conAreaCode == this.subsidiaryAreaCode,
+                x.conMobileNetworkCode == this.subsidiaryMobileNetworkCode,
+                x.conContactNumber == this.subsidiaryContactNumber));
+
+            if (data != undefined) {
+                this.toastr.errorToastr('Contact number is already exist', 'Error', { toastTimeout: (2500) });
+                return false;
+            }
+            else {
+
+                this.app.showSpinner();
+                this.app.hideSpinner();
+
+                // this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+
+                this.contactDetail.push({
+                    conId: this.contactDetail.length + "",
+                    conContactType: this.subsidiaryContactType,
+                    conCountryCode: this.subsidiaryCountryCode,
+                    conAreaCode: this.subsidiaryAreaCode,
+                    conMobileNetworkCode: this.subsidiaryMobileNetworkCode,
+                    conContactNumber: this.subsidiaryContactNumber
+                });
+
+                this.clearContact();
+                return false;
+
+                // var updateData = { "sectionname": this.cityName };
+
+                // var token = localStorage.getItem(this.tokenKey);
+
+                // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+                // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+                //   if (data.msg != undefined) {
+                //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                //     return false;
+                //   } else {
+                //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+                //     $('#cityModal').modal('hide');
+                //     return false;
+                //   }
+
+                // });
+            }
+        }
     }
 
-    // Add New ComboBox to an array()
-    addSubsidiaryContact() {
-        this.subsidiaryValue.push(this.addSubsidiaryGroup());
+    clearContact() {
+
+        this.subsidiaryContactType = '';
+        this.subsidiaryCountryCode = '';
+        this.subsidiaryAreaCode = '';
+        this.subsidiaryMobileNetworkCode = '';
+        this.subsidiaryContactNumber = '';
     }
 
-    //Getting new ComboBox from array and show in front page
-    get subsidiaryValue() {
-        return <FormArray>this.contactForm.get('subsidiary');
+    editContact(item) {
+        this.subsidiaryContactType = item.subsidiaryContactType;
+        this.subsidiaryCountryCode = item.subsidiaryCountryCode;
+        this.subsidiaryAreaCode = item.subsidiaryAreaCode;
+        this.subsidiaryMobileNetworkCode = item.subsidiaryMobileNetworkCode;
+        this.subsidiaryContactNumber = item.subsidiaryContactNumber;
     }
 
-    //Deleting every comboBox with specific id which is ([formGroupName]="i")
-    deleteSubsidiary(i) {
-        this.subsidiaryValue.removeAt(i);
-        //alert(i);
-        //alert(this.contactForm.get('menuCombo.areaName'));
-        //alert(this.subsidiaryesValue[i]);
-    }
 }

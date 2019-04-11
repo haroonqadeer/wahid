@@ -389,15 +389,100 @@
             <h6>Contact Info</h6>
           </div>
         </div>
+
+        <!-- Contact Number Section Starts -->
+        <!--start 7th row-->
+        <!-- <div class="row">
+          <div class="col-md-3">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="branchContactType" placeholder="Contact Type" (ngModelChange)="onChange($event)"
+                required>
+                <mat-option value="Fax">Fax</mat-option>
+                <mat-option value="Telephone">Telephone</mat-option>
+                <mat-option value="Mobile">Mobile</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="branchCountryCode" placeholder="Country Code" required>
+                <mat-option *ngFor="  let code of country" [value]="code.countryCode">
+                  {{ code.countryCode }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2" *ngIf="areaCode">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="branchAreaCode" placeholder="Area Code" required>
+                <mat-option *ngFor="  let code of area" [value]="code.areaCode">
+                  {{ code.areaCode }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2" *ngIf="mobileNetworkCode">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="branchMobileNetworkCode" placeholder="Network Code" required>
+                <mat-option *ngFor="  let code of network" [value]="code.networkCode">
+                  {{ code.networkCode }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="branchContactNumber" placeholder="Number" mask="0000000"
+                [showMaskTyped]="true" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <button mat-fab color="primary" (click)="addContact()"> <span class="fa fa-plus"></span> </button>
+          </div>
+        </div>
+        <!--end 7th row-->
+
+        <!-- Contact Table Starts -->
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead class="d-flex">
+                <th class="col-2">Sr.#</th>
+                <th class="col-5">Contact Type</th>
+                <th class="col-5">Contact Number</th>
+                <!-- <th class="col-1">Edit</th> -->
+        <!-- </thead>
+              <tbody>
+                <tr class="d-flex" *ngFor="let contact of contactDetail; let i=index">
+                  <td class="col-2">{{i+1}}</td>
+                  <td class="col-5">{{contact.conContactType}}</td>
+                  <td class="col-5">
+                    {{contact.conCountryCode}}{{contact.conAreaCode}}{{contact.conMobileNetworkCode}}{{contact.conContactNumber}}
+                  </td> -->
+        <!-- <td class="col-5" *ngIf="mobileNetworkCode">
+                    {{contact.conCountryCode}}{{contact.conMobileNetworkCode}}{{contact.conContactNumber}}
+                  </td> -->
+        <!-- <td class="col-1 text-right"><span class="pointerCursor fa fa-edit text-primary"
+                      (click)="editContact(contact)"></span></td> -->
+        <!-- </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>  -->
+        <!-- Contact Table Ends -->
+
+        <!-- Contact Number Section Ends -->
+
+        <!-- *________________Form Group Approach Starts_____________________ -->
         <!-- Let's Starts -->
         <div [formGroup]="contactForm">
           <div formArrayName="branches">
-            <div *ngFor="let branch of branchesValue.controls; let i=index" [formGroupName]="i">
+            <div *ngFor="let branch of branchValue.controls; let i=index" [formGroupName]="i">
               <div class="row">
                 <div class="col-md-3">
                   <mat-form-field class="fullwidth">
                     <mat-select formControlName="branchContactType" placeholder="Contact Type"
-                      (ngModelChange)="onChange($event)" required>
+                      (ngModelChange)="onChange($event,i)" required>
                       <mat-option value="Fax">Fax</mat-option>
                       <mat-option value="Telephone">Telephone</mat-option>
                       <mat-option value="Mobile">Mobile</mat-option>
@@ -438,7 +523,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
-                  <button mat-fab color="warn" (click)="deleteBranches(i)">
+                  <button mat-fab color="warn" (click)="deleteBranch(i)">
                     <span class="fa fa-minus"></span>
                   </button>
                 </div>
@@ -456,7 +541,7 @@
           <br />
         </div>
         <!-- Let's Ends -->
-
+        <!-- *________________Form Group Approach Ends_____________________ -->
 
         <br />
 

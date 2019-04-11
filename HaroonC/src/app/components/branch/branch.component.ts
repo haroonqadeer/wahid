@@ -52,6 +52,8 @@ export class BranchComponent implements OnInit {
 
   // list for excel data
   excelDataList = [];
+  contactDetail = [];
+
 
   //*Page Models
   branchId = null;
@@ -378,6 +380,8 @@ export class BranchComponent implements OnInit {
     this.contactForm = this.fb.group({
       branches: this.fb.array([])
     });
+
+    // this.addBranchContact();
   }
 
 
@@ -464,6 +468,8 @@ export class BranchComponent implements OnInit {
     }
     else {
 
+      //this.addContact();
+
       // alert(this.branchId);
 
       if (this.branchId != "") {
@@ -471,6 +477,7 @@ export class BranchComponent implements OnInit {
         this.app.hideSpinner();
         this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
         this.clear();
+        //this.contactDetail=[];
         $('#branchModal').modal('hide');
 
         return false;
@@ -501,6 +508,7 @@ export class BranchComponent implements OnInit {
         this.app.hideSpinner();
         this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
         this.clear();
+        //this.contactDetail=[];
         $('#branchModal').modal('hide');
         return false;
 
@@ -592,8 +600,7 @@ export class BranchComponent implements OnInit {
     this.branchFax = '';
     this.branchWebsite = '';
 
-    this.contactForm.reset();
-
+    this.clearContact();
     // this.branchContactType = '';
     // this.branchCountryCode = '';
     // this.branchAreaCode = '';
@@ -885,6 +892,8 @@ export class BranchComponent implements OnInit {
 
   onChange(contactType) {
 
+    //alert(contactType + " " + index);
+
     if (contactType == "Fax") {
       this.areaCode = true;
       this.mobileNetworkCode = false;
@@ -902,7 +911,100 @@ export class BranchComponent implements OnInit {
     }
   }
 
-  addBranchesGroup() {
+
+  addContact() {
+
+    if (this.branchContactType.trim() == '') {
+      this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchCountryCode.trim() == "") {
+      this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchAreaCode.trim() == "" && (this.branchContactType == "Fax" || this.branchContactType == "Telephone")) {
+      this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchMobileNetworkCode.trim() == "" && this.branchContactType == "Mobile") {
+      this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else if (this.branchContactNumber.trim() == "" || this.branchContactNumber.length < 7) {
+      this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
+    else {
+      let data = this.contactDetail.find(x => (
+        x.conContactType == this.branchContactType,
+        x.conCountryCode == this.branchCountryCode,
+        x.conAreaCode == this.branchAreaCode,
+        x.conMobileNetworkCode == this.branchMobileNetworkCode,
+        x.conContactNumber == this.branchContactNumber));
+
+      if (data != undefined) {
+        this.toastr.errorToastr('Contact number is already exist', 'Error', { toastTimeout: (2500) });
+        return false;
+      }
+      else {
+
+        this.app.showSpinner();
+        this.app.hideSpinner();
+
+        // this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+
+        this.contactDetail.push({
+          conId: this.contactDetail.length + "",
+          conContactType: this.branchContactType,
+          conCountryCode: this.branchCountryCode,
+          conAreaCode: this.branchAreaCode,
+          conMobileNetworkCode: this.branchMobileNetworkCode,
+          conContactNumber: this.branchContactNumber
+        });
+
+        this.clearContact();
+        return false;
+
+        // var updateData = { "sectionname": this.cityName };
+
+        // var token = localStorage.getItem(this.tokenKey);
+
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+        // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+
+        //   if (data.msg != undefined) {
+        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //     return false;
+        //   } else {
+        //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+        //     $('#cityModal').modal('hide');
+        //     return false;
+        //   }
+
+        // });
+      }
+    }
+  }
+
+  clearContact() {
+
+    this.branchContactType = '';
+    this.branchCountryCode = '';
+    this.branchAreaCode = '';
+    this.branchMobileNetworkCode = '';
+    this.branchContactNumber = '';
+  }
+
+  editContact(item) {
+    this.branchContactType = item.branchContactType;
+    this.branchCountryCode = item.branchCountryCode;
+    this.branchAreaCode = item.branchAreaCode;
+    this.branchMobileNetworkCode = item.branchMobileNetworkCode;
+    this.branchContactNumber = item.branchContactNumber;
+  }
+
+  addBranchGroup() {
     return this.fb.group({
       //menuComboText: [''],
       branchContactType: ['', Validators.required],
@@ -916,20 +1018,20 @@ export class BranchComponent implements OnInit {
 
   // Add New ComboBox to an array()
   addBranchContact() {
-    this.branchesValue.push(this.addBranchesGroup());
+    this.branchValue.push(this.addBranchGroup());
   }
 
   //Getting new ComboBox from array and show in front page
-  get branchesValue() {
+  get branchValue() {
     return <FormArray>this.contactForm.get('branches');
   }
 
   //Deleting every comboBox with specific id which is ([formGroupName]="i")
-  deleteBranches(i) {
-    this.branchesValue.removeAt(i);
+  deleteBranch(i) {
+    this.branchValue.removeAt(i);
     //alert(i);
-    //alert(this.contactForm.get('menuCombo.areaName'));
-    //alert(this.branchesValue[i]);
+    //alert(this.contactFormBranch.get('menuCombo.areaName'));
+    //alert(this.branchValue[i]);
   }
 
 }

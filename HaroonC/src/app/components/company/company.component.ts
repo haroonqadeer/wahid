@@ -55,7 +55,10 @@ export interface Partner {
 })
 export class CompanyComponent implements OnInit {
 
-    public contactForm: FormGroup;
+    public contactFormSole: FormGroup;
+    public contactFormPartner: FormGroup;
+    public contactFormPPCom: FormGroup;
+    public contactFormCompany: FormGroup;
 
     areaCode = false;
     mobileNetworkCode = false;
@@ -343,19 +346,19 @@ export class CompanyComponent implements OnInit {
 
     ngOnInit() {
         //Creating Array of ComboBox "sole"
-        this.contactForm = this.fb.group({
+        this.contactFormSole = this.fb.group({
             sole: this.fb.array([])
         });
         //Creating Array of ComboBox "partner"
-        this.contactForm = this.fb.group({
+        this.contactFormPartner = this.fb.group({
             partnerCon: this.fb.array([])
         });
         //Creating Array of ComboBox "ppCom"
-        this.contactForm = this.fb.group({
+        this.contactFormPPCom = this.fb.group({
             ppCom: this.fb.array([])
         });
         //Creating Array of ComboBox "company"
-        this.contactForm = this.fb.group({
+        this.contactFormCompany = this.fb.group({
             company: this.fb.array([])
         });
     }
@@ -799,7 +802,8 @@ export class CompanyComponent implements OnInit {
         this.pEmail = '';
         this.pAddress = '';
 
-        this.contactForm.reset();
+        this.contactFormPartner.reset();
+
     }
 
 
@@ -848,7 +852,9 @@ export class CompanyComponent implements OnInit {
             this.bWebsite = '';
             this.bFacebook = '';
 
-            this.contactForm.reset();
+            this.contactFormSole.reset();
+            this.contactFormPPCom.reset();
+            this.contactFormCompany.reset();
 
             this.txtdPassword = '';
             this.txtdPin = '';
@@ -1176,14 +1182,14 @@ export class CompanyComponent implements OnInit {
 
     //Getting new ComboBox from array and show in front page
     get soleValue() {
-        return <FormArray>this.contactForm.get('sole');
+        return <FormArray>this.contactFormSole.get('sole');
     }
 
     //Deleting every comboBox with specific id which is ([formGroupName]="i")
     deleteSole(i) {
         this.soleValue.removeAt(i);
         //alert(i);
-        //alert(this.contactForm.get('menuCombo.areaName'));
+        //alert(this.contactFormSole.get('menuCombo.areaName'));
         //alert(this.soleValue[i]);
     }
 
@@ -1208,14 +1214,14 @@ export class CompanyComponent implements OnInit {
 
     //Getting new ComboBox from array and show in front page
     get partnerValue() {
-        return <FormArray>this.contactForm.get('partnerCon');
+        return <FormArray>this.contactFormPartner.get('partnerCon');
     }
 
     //Deleting every comboBox with specific id which is ([formGroupName]="i")
     deletePartner(i) {
         this.partnerValue.removeAt(i);
         //alert(i);
-        //alert(this.contactForm.get('menuCombo.areaName'));
+        //alert(this.contactFormPartner.get('menuCombo.areaName'));
         //alert(this.PartnerValue[i]);
     }
 
@@ -1240,14 +1246,14 @@ export class CompanyComponent implements OnInit {
 
     //Getting new ComboBox from array and show in front page
     get ppComValue() {
-        return <FormArray>this.contactForm.get('ppCom');
+        return <FormArray>this.contactFormPPCom.get('ppCom');
     }
 
     //Deleting every comboBox with specific id which is ([formGroupName]="i")
     deletePPCom(i) {
         this.ppComValue.removeAt(i);
         //alert(i);
-        //alert(this.contactForm.get('menuCombo.areaName'));
+        //alert(this.contactFormPPCom.get('menuCombo.areaName'));
         //alert(this.ppComValue[i]);
     }
 
@@ -1272,15 +1278,15 @@ export class CompanyComponent implements OnInit {
 
     //Getting new ComboBox from array and show in front page
     get companyValue() {
-        return <FormArray>this.contactForm.get('company');
+        return <FormArray>this.contactFormCompany.get('company');
     }
 
     //Deleting every comboBox with specific id which is ([formGroupName]="i")
     deleteCompany(i) {
         this.companyValue.removeAt(i);
         //alert(i);
-        //alert(this.contactForm.get('menuCombo.areaName'));
-        // //alert(this.companyesValue[i]);
+        //alert(this.contactFormCompany.get('menuCombo.areaName'));
+        //alert(this.companyValue[i]);
     }
 
 }
