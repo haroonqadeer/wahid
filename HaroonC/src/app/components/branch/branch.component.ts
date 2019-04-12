@@ -38,10 +38,16 @@ declare var $: any;
 export class BranchComponent implements OnInit {
 
   public contactForm: FormGroup;
+  public addressForm: FormGroup;
 
   areaCode = false;
   mobileNetworkCode = false;
   branchBox = true;
+
+  work = false;
+  shipping = false;
+  postal = false;
+
 
   serverUrl = "http://localhost:55536/";
   tokenKey = "token";
@@ -72,6 +78,11 @@ export class BranchComponent implements OnInit {
   branchAreaCode = "";
   branchMobileNetworkCode = "";
   branchContactNumber = "";
+
+  branchAddressType = "";
+  branchWork = "";
+  branchShipping = "";
+  branchPostal = "";
 
   dbranchId = null;
 
@@ -381,7 +392,13 @@ export class BranchComponent implements OnInit {
       branches: this.fb.array([])
     });
 
-    // this.addBranchContact();
+    //Creating Array of ComboBox "branchAddresses"
+    this.addressForm = this.fb.group({
+      branchAddresses: this.fb.array([])
+    });
+
+    this.addBranchContact();
+    this.addBranchAddress();
   }
 
 
@@ -600,7 +617,10 @@ export class BranchComponent implements OnInit {
     this.branchFax = '';
     this.branchWebsite = '';
 
-    this.clearContact();
+    this.contactForm.reset();
+
+    //this.clearContact();
+
     // this.branchContactType = '';
     // this.branchCountryCode = '';
     // this.branchAreaCode = '';
@@ -890,11 +910,11 @@ export class BranchComponent implements OnInit {
   }
 
 
-  onChange(contactType) {
+  onChange(contactType, index) {
 
-    //alert(contactType + " " + index);
+    alert(contactType.value(index.toString()));
 
-    if (contactType == "Fax") {
+    if (contactType.value(index.toString()) == "Fax") {
       this.areaCode = true;
       this.mobileNetworkCode = false;
     }
@@ -912,97 +932,97 @@ export class BranchComponent implements OnInit {
   }
 
 
-  addContact() {
+  // addContact() {
 
-    if (this.branchContactType.trim() == '') {
-      this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchCountryCode.trim() == "") {
-      this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchAreaCode.trim() == "" && (this.branchContactType == "Fax" || this.branchContactType == "Telephone")) {
-      this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchMobileNetworkCode.trim() == "" && this.branchContactType == "Mobile") {
-      this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchContactNumber.trim() == "" || this.branchContactNumber.length < 7) {
-      this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else {
-      let data = this.contactDetail.find(x => (
-        x.conContactType == this.branchContactType,
-        x.conCountryCode == this.branchCountryCode,
-        x.conAreaCode == this.branchAreaCode,
-        x.conMobileNetworkCode == this.branchMobileNetworkCode,
-        x.conContactNumber == this.branchContactNumber));
+  //   if (this.branchContactType.trim() == '') {
+  //     this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+  //     return false;
+  //   }
+  //   else if (this.branchCountryCode.trim() == "") {
+  //     this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+  //     return false;
+  //   }
+  //   else if (this.branchAreaCode.trim() == "" && (this.branchContactType == "Fax" || this.branchContactType == "Telephone")) {
+  //     this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
+  //     return false;
+  //   }
+  //   else if (this.branchMobileNetworkCode.trim() == "" && this.branchContactType == "Mobile") {
+  //     this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
+  //     return false;
+  //   }
+  //   else if (this.branchContactNumber.trim() == "" || this.branchContactNumber.length < 7) {
+  //     this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
+  //     return false;
+  //   }
+  //   else {
+  //     let data = this.contactDetail.find(x => (
+  //       x.conContactType == this.branchContactType,
+  //       x.conCountryCode == this.branchCountryCode,
+  //       x.conAreaCode == this.branchAreaCode,
+  //       x.conMobileNetworkCode == this.branchMobileNetworkCode,
+  //       x.conContactNumber == this.branchContactNumber));
 
-      if (data != undefined) {
-        this.toastr.errorToastr('Contact number is already exist', 'Error', { toastTimeout: (2500) });
-        return false;
-      }
-      else {
+  //     if (data != undefined) {
+  //       this.toastr.errorToastr('Contact number is already exist', 'Error', { toastTimeout: (2500) });
+  //       return false;
+  //     }
+  //     else {
 
-        this.app.showSpinner();
-        this.app.hideSpinner();
+  //       this.app.showSpinner();
+  //       this.app.hideSpinner();
 
-        // this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+  //       // this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
 
-        this.contactDetail.push({
-          conId: this.contactDetail.length + "",
-          conContactType: this.branchContactType,
-          conCountryCode: this.branchCountryCode,
-          conAreaCode: this.branchAreaCode,
-          conMobileNetworkCode: this.branchMobileNetworkCode,
-          conContactNumber: this.branchContactNumber
-        });
+  //       this.contactDetail.push({
+  //         conId: this.contactDetail.length + "",
+  //         conContactType: this.branchContactType,
+  //         conCountryCode: this.branchCountryCode,
+  //         conAreaCode: this.branchAreaCode,
+  //         conMobileNetworkCode: this.branchMobileNetworkCode,
+  //         conContactNumber: this.branchContactNumber
+  //       });
 
-        this.clearContact();
-        return false;
+  //       this.clearContact();
+  //       return false;
 
-        // var updateData = { "sectionname": this.cityName };
+  //       // var updateData = { "sectionname": this.cityName };
 
-        // var token = localStorage.getItem(this.tokenKey);
+  //       // var token = localStorage.getItem(this.tokenKey);
 
-        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+  //       // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+  //       // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
-        //   if (data.msg != undefined) {
-        //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-        //     return false;
-        //   } else {
-        //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-        //     $('#cityModal').modal('hide');
-        //     return false;
-        //   }
+  //       //   if (data.msg != undefined) {
+  //       //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+  //       //     return false;
+  //       //   } else {
+  //       //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+  //       //     $('#cityModal').modal('hide');
+  //       //     return false;
+  //       //   }
 
-        // });
-      }
-    }
-  }
+  //       // });
+  //     }
+  //   }
+  // }
 
-  clearContact() {
+  // clearContact() {
 
-    this.branchContactType = '';
-    this.branchCountryCode = '';
-    this.branchAreaCode = '';
-    this.branchMobileNetworkCode = '';
-    this.branchContactNumber = '';
-  }
+  //   this.branchContactType = '';
+  //   this.branchCountryCode = '';
+  //   this.branchAreaCode = '';
+  //   this.branchMobileNetworkCode = '';
+  //   this.branchContactNumber = '';
+  // }
 
-  editContact(item) {
-    this.branchContactType = item.branchContactType;
-    this.branchCountryCode = item.branchCountryCode;
-    this.branchAreaCode = item.branchAreaCode;
-    this.branchMobileNetworkCode = item.branchMobileNetworkCode;
-    this.branchContactNumber = item.branchContactNumber;
-  }
+  // editContact(item) {
+  //   this.branchContactType = item.branchContactType;
+  //   this.branchCountryCode = item.branchCountryCode;
+  //   this.branchAreaCode = item.branchAreaCode;
+  //   this.branchMobileNetworkCode = item.branchMobileNetworkCode;
+  //   this.branchContactNumber = item.branchContactNumber;
+  // }
 
   addBranchGroup() {
     return this.fb.group({
@@ -1029,6 +1049,61 @@ export class BranchComponent implements OnInit {
   //Deleting every comboBox with specific id which is ([formGroupName]="i")
   deleteBranch(i) {
     this.branchValue.removeAt(i);
+    //alert(i);
+    //alert(this.contactFormBranch.get('menuCombo.areaName'));
+    //alert(this.branchValue[i]);
+  }
+
+
+  //*--------------------------------Address-------------------------------//
+
+  onChangeAddress(addressType) {
+
+    //alert(contactType.value(index.toString()));
+
+    if (addressType == "Work") {
+      this.work = true;
+      this.shipping = false;
+      this.postal = false;
+    }
+    else if (addressType == "Shipping") {
+      this.work = false;
+      this.shipping = true;
+      this.postal = false;
+    }
+    else if (addressType == "Postal") {
+      this.work = false;
+      this.shipping = false;
+      this.postal = true;
+    }
+    else {
+      return;
+    }
+  }
+
+  addBranchGroupAddress() {
+    return this.fb.group({
+      //menuComboText: [''],
+      branchWork: ['', Validators.required],
+      branchShipping: ['', Validators.required],
+      branchPostal: ['', Validators.required]
+      //menuCombo: ['', Validators.required]
+    })
+  }
+
+  // Add New ComboBox to an array()
+  addBranchAddress() {
+    this.branchAddressValue.push(this.addBranchGroupAddress());
+  }
+
+  //Getting new ComboBox from array and show in front page
+  get branchAddressValue() {
+    return <FormArray>this.addressForm.get('branchAddresses');
+  }
+
+  //Deleting every comboBox with specific id which is ([formGroupName]="i")
+  deleteBranchAddress(i) {
+    this.branchAddressValue.removeAt(i);
     //alert(i);
     //alert(this.contactFormBranch.get('menuCombo.areaName'));
     //alert(this.branchValue[i]);
