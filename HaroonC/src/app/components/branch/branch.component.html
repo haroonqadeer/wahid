@@ -321,227 +321,224 @@
 
         <br />
 
-        <!-- Contact Number Section Starts -->
-        <!--start 7th row-->
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <table class="table">
-              <tbody>
-                <tr class="d-flex">
-                  <td class="col-2">
-                    <mat-form-field class="fullwidth">
-                      <mat-select placeholder="Contact Type" [(ngModel)]="branchContactType"
-                        (ngModelChange)="onChange($event)" required>
-                        <mat-option value="Fax">Fax</mat-option>
-                        <mat-option value="Telephone">Telephone</mat-option>
-                        <mat-option value="Mobile">Mobile</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </td>
-                  <td class="col-2">
-                    <mat-form-field class="fullwidth">
-                      <mat-select placeholder="Country Code" [(ngModel)]="branchCountryCode" required>
-                        <mat-option *ngFor="  let code of country" [value]="code.countryCode">
-                          {{ code.countryCode }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </td>
-                  <td class="col-2" *ngIf="areaCode">
-                    <mat-form-field class="fullwidth">
-                      <mat-select placeholder="Area Code" [(ngModel)]="branchAreaCode" required>
-                        <mat-option *ngFor="  let code of area" [value]="code.areaCode">
-                          {{ code.areaCode }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </td>
-                  <td class="col-2" *ngIf="mobileNetworkCode">
-                    <mat-form-field class="fullwidth">
-                      <mat-select placeholder="Network Code" [(ngModel)]="branchMobileNetworkCode" required>
-                        <mat-option *ngFor="  let code of network" [value]="code.networkCode">
-                          {{ code.networkCode }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </td>
-                  <td class="col-3">
-                    <mat-form-field class="fullwidth">
-                      <input matInput [(ngModel)]="branchContactNumber" placeholder="Number" mask="0000000"
-                        [showMaskTyped]="true" required>
-                    </mat-form-field>
-                  </td>
-                  <td class="col-1">
-                    <button mat-fab color="primary" *ngIf="menuBox" (click)="addProducts()">
-                      <span class="fa fa-plus"></span>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div> -->
-        <!--end 7th row-->
-        <!-- Contact Number Section Ends -->
+        <!-- *________________Start Add Address Detail_____________________ -->
+        <div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <h6>Contact Info</h6>
-          </div>
-        </div>
-
-        <!-- Contact Number Section Starts -->
-        <!--start 7th row-->
-        <!-- <div class="row">
-          <div class="col-md-3">
-            <mat-form-field class="fullwidth">
-              <mat-select [(ngModel)]="branchContactType" placeholder="Contact Type" (ngModelChange)="onChange($event)"
-                required>
-                <mat-option value="Fax">Fax</mat-option>
-                <mat-option value="Telephone">Telephone</mat-option>
-                <mat-option value="Mobile">Mobile</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-form-field class="fullwidth">
-              <mat-select [(ngModel)]="branchCountryCode" placeholder="Country Code" required>
-                <mat-option *ngFor="  let code of country" [value]="code.countryCode">
-                  {{ code.countryCode }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-md-2" *ngIf="areaCode">
-            <mat-form-field class="fullwidth">
-              <mat-select [(ngModel)]="branchAreaCode" placeholder="Area Code" required>
-                <mat-option *ngFor="  let code of area" [value]="code.areaCode">
-                  {{ code.areaCode }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-md-2" *ngIf="mobileNetworkCode">
-            <mat-form-field class="fullwidth">
-              <mat-select [(ngModel)]="branchMobileNetworkCode" placeholder="Network Code" required>
-                <mat-option *ngFor="  let code of network" [value]="code.networkCode">
-                  {{ code.networkCode }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-md-2">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchContactNumber" placeholder="Number" mask="0000000"
-                [showMaskTyped]="true" required>
-            </mat-form-field>
-          </div>
-          <div class="col-md-2">
-            <button mat-fab color="primary" (click)="addContact()"> <span class="fa fa-plus"></span> </button>
-          </div>
-        </div>
-        <!--end 7th row-->
-
-        <!-- Contact Table Starts -->
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <table class="table">
-              <thead class="d-flex">
-                <th class="col-2">Sr.#</th>
-                <th class="col-5">Contact Type</th>
-                <th class="col-5">Contact Number</th>
-                <!-- <th class="col-1">Edit</th> -->
-        <!-- </thead>
-              <tbody>
-                <tr class="d-flex" *ngFor="let contact of contactDetail; let i=index">
-                  <td class="col-2">{{i+1}}</td>
-                  <td class="col-5">{{contact.conContactType}}</td>
-                  <td class="col-5">
-                    {{contact.conCountryCode}}{{contact.conAreaCode}}{{contact.conMobileNetworkCode}}{{contact.conContactNumber}}
-                  </td> -->
-        <!-- <td class="col-5" *ngIf="mobileNetworkCode">
-                    {{contact.conCountryCode}}{{contact.conMobileNetworkCode}}{{contact.conContactNumber}}
-                  </td> -->
-        <!-- <td class="col-1 text-right"><span class="pointerCursor fa fa-edit text-primary"
-                      (click)="editContact(contact)"></span></td> -->
-        <!-- </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>  -->
-        <!-- Contact Table Ends -->
-
-        <!-- Contact Number Section Ends -->
-
-        <!-- *________________Form Group Approach Starts_____________________ -->
-        <!-- Let's Starts -->
-        <div [formGroup]="contactForm">
-          <div formArrayName="branches">
-            <div *ngFor="let branch of branchValue.controls; let i=index" [formGroupName]="i">
-              <div class="row">
-                <div class="col-md-3">
-                  <mat-form-field class="fullwidth">
-                    <mat-select formControlName="branchContactType" placeholder="Contact Type"
-                      (ngModelChange)="onChange($event,i)" required>
-                      <mat-option value="Fax">Fax</mat-option>
-                      <mat-option value="Telephone">Telephone</mat-option>
-                      <mat-option value="Mobile">Mobile</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-3">
-                  <mat-form-field class="fullwidth">
-                    <mat-select formControlName="branchCountryCode" placeholder="Country Code" required>
-                      <mat-option *ngFor="  let code of country" [value]="code.countryCode">
-                        {{ code.countryCode }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2" *ngIf="areaCode">
-                  <mat-form-field class="fullwidth">
-                    <mat-select formControlName="branchAreaCode" placeholder="Area Code" required>
-                      <mat-option *ngFor="  let code of area" [value]="code.areaCode">
-                        {{ code.areaCode }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2" *ngIf="mobileNetworkCode">
-                  <mat-form-field class="fullwidth">
-                    <mat-select formControlName="branchMobileNetworkCode" placeholder="Network Code" required>
-                      <mat-option *ngFor="  let code of network" [value]="code.networkCode">
-                        {{ code.networkCode }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field class="fullwidth">
-                    <input matInput formControlName="branchContactNumber" placeholder="Number" mask="0000000"
-                      [showMaskTyped]="true" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <button mat-fab color="warn" (click)="deleteBranch(i)">
-                    <span class="fa fa-minus"></span>
-                  </button>
-                </div>
-              </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h6>Address Info</h6>
             </div>
           </div>
-          <br>
+
+          <div *ngFor="let item of addressDetail; let i=index">
+            <div class="row">
+              <table>
+                <tr>
+
+                  <!--address type combo box-->
+                  <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                    <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
+                      placeholder="Contact Type" required>
+                      <ng-template let-itm pTemplate="item">
+                        <div style="position: relative;height: 25px;">
+                          <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+
+                  </td>
+
+                  <!--address text box-->
+                  <td>
+                    <!-- [showMaskTyped]="true" required -->
+                    <input class="" type="text" pInputText [(ngModel)]="item.address" placeholder="Address"
+                      style="width: 100%;">
+                  </td>
+
+                  <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                    <button mat-fab color="warn" (click)="removeAddress(i)">
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </td>
+
+
+                </tr>
+              </table>
+
+            </div>
+          </div>
+
+
+          <!--Add more Contact button-->
           <div class="row">
             <div class="col-md-3">
-              <button mat-fab *ngIf="branchBox" color="primary" (click)="addBranchContact()">
+              <button mat-fab *ngIf="branchBox" color="primary" (click)="addAddress()">
                 <span class="fa fa-plus"></span>
               </button>
             </div>
           </div>
           <br />
         </div>
-        <!-- Let's Ends -->
-        <!-- *________________Form Group Approach Ends_____________________ -->
+        <!-- *________________End Add Address Detail_____________________ -->
+
+
+        <!-- *________________Start Add Contacts Detail_____________________ -->
+        <div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h6>Contact Info</h6>
+            </div>
+          </div>
+
+          <div *ngFor="let item of contactDetail; let i=index">
+            <div class="row">
+              <table bordre="1">
+                <tr>
+
+                  <!--contact type text box-->
+                  <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                    <p-dropdown [options]="contType" filter="true" [(ngModel)]="item.contactType"
+                      placeholder="Contact Type" (ngModelChange)="onContactChange($event, item)" required>
+                      <ng-template let-itm pTemplate="item">
+                        <div style="position: relative;height: 25px;">
+                          <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+
+                  </td>
+
+                  <!-- Country code combo box-->
+                  <td style="border: 0px solid red; width: 150px;">
+
+                    <p-dropdown [options]="country" filter="true" [(ngModel)]="item.countryCode"
+                      placeholder="Country Code" required>
+                      <ng-template let-code pTemplate="item">
+                        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                          <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+
+                  </td>
+
+                  <!--Contact code combobox -->
+                  <td style="border: 0px solid red; width: 150px;" *ngIf="item.areaCode">
+                    <p-dropdown [options]="area" filter="true" [(ngModel)]="item.contactCode" placeholder="Area Code"
+                      required>
+                      <ng-template let-area pTemplate="item">
+                        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                          <div style="font-size:14px;float:left;margin-top:4px">{{area.label}}</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+                  </td>
+
+                  <td style="border: 0px solid red; width: 150px;" *ngIf="item.mobileCode">
+                    <p-dropdown [options]="network" filter="true" [(ngModel)]="item.contactCode"
+                      placeholder="Network Code" required>
+                      <ng-template let-code pTemplate="item">
+                        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                          <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+                  </td>
+
+                  <!--number text box-->
+                  <td>
+                    <!-- [showMaskTyped]="true" required -->
+                    <input type="text" pInputText [(ngModel)]="item.contactNumber" placeholder="Number" mask="0000000"
+                      style="width: 100%">
+                  </td>
+
+                  <!--Remove button -->
+                  <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                    <button mat-fab color="warn" (click)="removeContact(i)">
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </td>
+
+
+                </tr>
+              </table>
+
+            </div>
+          </div>
+
+
+          <!--Add more Contact button-->
+          <div class="row">
+            <div class="col-md-3">
+              <button mat-fab *ngIf="branchBox" color="primary" (click)="addContact()">
+                <span class="fa fa-plus"></span>
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+        <!-- *________________End Add Contacts Detail_____________________ -->
+
+
+        <!-- *________________Start Add Email Detail_____________________ -->
+        <div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h6>Email Info</h6>
+            </div>
+          </div>
+
+          <div *ngFor="let item of emailDetail; let i=index">
+            <div class="row">
+              <table>
+                <tr>
+
+                  <!--address type combo box-->
+                  <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                    <p-dropdown [options]="emailType" filter="true" [(ngModel)]="item.type" placeholder="Email Type"
+                      required>
+                      <ng-template let-itm pTemplate="item">
+                        <div style="position: relative;height: 25px;">
+                          <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+
+                  </td>
+
+                  <!--address text box-->
+                  <td>
+                    <!-- [showMaskTyped]="true" required -->
+                    <input class="" type="text" pInputText [(ngModel)]="item.email" placeholder="Email"
+                      style="width: 100%;">
+                  </td>
+
+                  <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                    <button mat-fab color="warn" (click)="removeEmail(i)">
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </td>
+
+                </tr>
+              </table>
+
+            </div>
+          </div>
+
+
+          <!--Add more email button-->
+          <div class="row">
+            <div class="col-md-3">
+              <button mat-fab *ngIf="branchBox" color="primary" (click)="addEmail()">
+                <span class="fa fa-plus"></span>
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+        <!-- *________________End Add Email Detail_____________________ -->
 
         <br />
 

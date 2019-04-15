@@ -27,6 +27,9 @@ import { SectionComponent } from './components/section/section.component';
 import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
 import { CurrencyComponent } from './components/currency/currency.component';
 
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+
 import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -60,7 +63,9 @@ import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "i
     NgxPaginationModule,
     OrderModule,
     NgxSpinnerModule,
-    ExportAsModule
+    ExportAsModule,
+    DropdownModule,
+    InputTextModule
   ],
   providers: [IgxExcelExporterService, IgxCsvExporterService],
   bootstrap: [AppComponent],

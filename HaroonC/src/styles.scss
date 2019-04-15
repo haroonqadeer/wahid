@@ -1325,3 +1325,14 @@ thead th {
     text-align: left;
   }
 }
+
+
+//********************Contact inf css *****************
+.ui-dropdown {
+  width: 100% !important;
+}
+
+.ui-dropdown .ui-dropdown-panel {
+  min-width: 100%;
+  width: max-content;
+}
