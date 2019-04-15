@@ -910,6 +910,7 @@ export class BranchComponent implements OnInit {
   }
 
 
+
   onChange(contactType) {
 
     //alert(contactType.value(index.toString()));
