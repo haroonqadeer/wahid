@@ -473,7 +473,7 @@
 
         <!-- Contact Number Section Ends -->
 
-        <!-- *________________Form Group Approach Starts_____________________ -->
+        <!-- *________________Relative Form Approach Starts Contact_____________________ -->
         <!-- Let's Starts -->
         <div [formGroup]="contactForm">
           <div formArrayName="branches">
@@ -482,7 +482,7 @@
                 <div class="col-md-3">
                   <mat-form-field class="fullwidth">
                     <mat-select formControlName="branchContactType" placeholder="Contact Type"
-                      (ngModelChange)="onChange($event,i)" required>
+                      (ngModelChange)="onChange($event)" required>
                       <mat-option value="Fax">Fax</mat-option>
                       <mat-option value="Telephone">Telephone</mat-option>
                       <mat-option value="Mobile">Mobile</mat-option>
@@ -541,8 +541,67 @@
           <br />
         </div>
         <!-- Let's Ends -->
-        <!-- *________________Form Group Approach Ends_____________________ -->
+        <!-- *________________Relative Form Approach Ends_____________________ -->
 
+        <br />
+
+        <div class="row">
+          <div class="col-md-12">
+            <h6>Address Info</h6>
+          </div>
+        </div>
+
+        <!-- *________________Relative Form Approach Starts Address_____________________ -->
+        <!-- Let's Starts -->
+        <div [formGroup]="addressForm">
+          <div formArrayName="branchAddresses">
+            <div *ngFor="let branch of branchAddressValue.controls; let i=index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-3">
+                  <mat-form-field class="fullwidth">
+                    <mat-select formControlName="branchAddressType" placeholder="Address Type"
+                      (ngModelChange)="onChangeAddress($event)" required>
+                      <mat-option value="Work">Work</mat-option>
+                      <mat-option value="Shipping">Shipping</mat-option>
+                      <mat-option value="Postal">Postal</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-7" *ngIf="work">
+                  <mat-form-field class="fullwidth">
+                    <input matInput formControlName="branchWork" placeholder="Work Address" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-7" *ngIf="shipping">
+                  <mat-form-field class="fullwidth">
+                    <input matInput formControlName="branchShipping" placeholder="Shipping Address" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-7" *ngIf="postal">
+                  <mat-form-field class="fullwidth">
+                    <input matInput formControlName="branchPostal" placeholder="Postal Address" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button mat-fab color="warn" (click)="deleteBranchAddress(i)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-3">
+              <button mat-fab *ngIf="branchBox" color="primary" (click)="addBranchAddress()">
+                <span class="fa fa-plus"></span>
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+        <!-- Let's Ends -->
+        <!-- *________________Relative Form Approach Ends_____________________ -->
         <br />
 
         <!--button tag Row Starts-->
