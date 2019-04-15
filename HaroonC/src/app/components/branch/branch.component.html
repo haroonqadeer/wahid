@@ -482,7 +482,7 @@
                 <div class="col-md-3">
                   <mat-form-field class="fullwidth">
                     <mat-select formControlName="branchContactType" placeholder="Contact Type"
-                      (ngModelChange)="onChange($event,i)" required>
+                      (ngModelChange)="onChange($event)" required>
                       <mat-option value="Fax">Fax</mat-option>
                       <mat-option value="Telephone">Telephone</mat-option>
                       <mat-option value="Mobile">Mobile</mat-option>
@@ -567,19 +567,19 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
-                <div class="col-md-9" *ngIf="work">
+                <div class="col-md-7" *ngIf="work">
                   <mat-form-field class="fullwidth">
-                    <input matInput [(ngModel)]="branchWork" placeholder="Work Address" required>
+                    <input matInput formControlName="branchWork" placeholder="Work Address" required>
                   </mat-form-field>
                 </div>
-                <div class="col-md-9" *ngIf="shipping">
+                <div class="col-md-7" *ngIf="shipping">
                   <mat-form-field class="fullwidth">
-                    <input matInput [(ngModel)]="branchShipping" placeholder="Shipping Address" required>
+                    <input matInput formControlName="branchShipping" placeholder="Shipping Address" required>
                   </mat-form-field>
                 </div>
-                <div class="col-md-9" *ngIf="postal">
+                <div class="col-md-7" *ngIf="postal">
                   <mat-form-field class="fullwidth">
-                    <input matInput [(ngModel)]="branchPostal" placeholder="Postal Address" required>
+                    <input matInput formControlName="branchPostal" placeholder="Postal Address" required>
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">

@@ -910,11 +910,11 @@ export class BranchComponent implements OnInit {
   }
 
 
-  onChange(contactType, index) {
+  onChange(contactType) {
 
-    alert(contactType.value(index.toString()));
+    //alert(contactType.value(index.toString()));
 
-    if (contactType.value(index.toString()) == "Fax") {
+    if (contactType == "Fax") {
       this.areaCode = true;
       this.mobileNetworkCode = false;
     }
@@ -1059,7 +1059,7 @@ export class BranchComponent implements OnInit {
 
   onChangeAddress(addressType) {
 
-    //alert(contactType.value(index.toString()));
+    alert(addressType);
 
     if (addressType == "Work") {
       this.work = true;
@@ -1084,6 +1084,7 @@ export class BranchComponent implements OnInit {
   addBranchGroupAddress() {
     return this.fb.group({
       //menuComboText: [''],
+      branchAddressType: ['', Validators.required],
       branchWork: ['', Validators.required],
       branchShipping: ['', Validators.required],
       branchPostal: ['', Validators.required]
