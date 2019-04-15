@@ -490,6 +490,7 @@
             </div>
           </div>
 
+
           <div *ngFor="let item of emailDetail; let i=index">
             <div class="row">
               <table>
@@ -525,41 +526,47 @@
               </table>
 
             </div>
-          </div>
+            <!-- Contact Table Ends -->
+
+            <!-- Contact Number Section Ends -->
 
 
-          <!--Add more email button-->
-          <div class="row">
-            <div class="col-md-3">
-              <button mat-fab *ngIf="branchBox" color="primary" (click)="addEmail()">
-                <span class="fa fa-plus"></span>
-              </button>
-            </div>
           </div>
-          <br />
         </div>
-        <!-- *________________End Add Email Detail_____________________ -->
 
-        <br />
 
-        <!--button tag Row Starts-->
+        <!--Add more email button-->
         <div class="row">
-          <div class="col-md-1 text-left">
-            <button mat-raised-button color="primary" (click)="saveBranch()">Save</button>
-          </div>
-          <div class="col-md-2 text-center">
-            <button mat-raised-button (click)="clear()">Reset</button>
+          <div class="col-md-3">
+            <button mat-fab *ngIf="branchBox" color="primary" (click)="addEmail()">
+              <span class="fa fa-plus"></span>
+            </button>
           </div>
         </div>
-        <!-- Button tag Row Ends -->
-
-        <!--start Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        <!--end Modal footer -->
-
+        <br />
       </div>
+      <!-- *________________End Add Email Detail_____________________ -->
+
+
+
+
+      <!--button tag Row Starts-->
+      <div class="row">
+        <div class="col-md-1 text-left">
+          <button mat-raised-button color="primary" (click)="saveBranch()">Save</button>
+        </div>
+        <div class="col-md-2 text-center">
+          <button mat-raised-button (click)="clear()">Reset</button>
+        </div>
+      </div>
+      <!-- Button tag Row Ends -->
+
+      <!--start Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      <!--end Modal footer -->
+
     </div>
   </div>
 </div>

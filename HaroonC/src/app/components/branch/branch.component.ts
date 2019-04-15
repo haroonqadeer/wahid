@@ -48,10 +48,16 @@ interface City {
 export class BranchComponent implements OnInit {
 
   public contactForm: FormGroup;
+  public addressForm: FormGroup;
 
   areaCode = false;
   mobileNetworkCode = false;
   branchBox = true;
+
+  work = false;
+  shipping = false;
+  postal = false;
+
 
   serverUrl = "http://localhost:55536/";
   tokenKey = "token";
@@ -86,6 +92,11 @@ export class BranchComponent implements OnInit {
   branchAreaCode = "";
   branchMobileNetworkCode = "";
   branchContactNumber = "";
+
+  branchAddressType = "";
+  branchWork = "";
+  branchShipping = "";
+  branchPostal = "";
 
   dbranchId = null;
 
@@ -404,7 +415,13 @@ export class BranchComponent implements OnInit {
       branches: this.fb.array([])
     });
 
-    // this.addBranchContact();
+    //Creating Array of ComboBox "branchAddresses"
+    this.addressForm = this.fb.group({
+      branchAddresses: this.fb.array([])
+    });
+
+    this.addBranchContact();
+    this.addBranchAddress();
   }
 
 
@@ -627,7 +644,10 @@ export class BranchComponent implements OnInit {
     this.branchFax = '';
     this.branchWebsite = '';
 
-    this.clearContact();
+    this.contactForm.reset();
+
+    //this.clearContact();
+
     // this.branchContactType = '';
     // this.branchCountryCode = '';
     // this.branchAreaCode = '';
@@ -919,12 +939,6 @@ export class BranchComponent implements OnInit {
 
   onContactChange(contactType, item) {
 
-    alert(contactType);
-
-    //alert(item.contactType);
-
-    //return false;
-
     if (contactType == "Fax") {
       item.areaCode = true;
       item.mobileCode = false;
@@ -991,6 +1005,7 @@ export class BranchComponent implements OnInit {
     this.branchContactNumber = item.branchContactNumber;
   }
 
+
   addBranchGroup() {
     return this.fb.group({
       //menuComboText: [''],
@@ -1026,6 +1041,61 @@ export class BranchComponent implements OnInit {
   //Deleting address row
   removeEmail(item) {
     this.emailDetail.splice(item, 1);
+  }
+
+
+  //*--------------------------------Address-------------------------------//
+
+  onChangeAddress(addressType) {
+
+    //alert(contactType.value(index.toString()));
+
+    if (addressType == "Work") {
+      this.work = true;
+      this.shipping = false;
+      this.postal = false;
+    }
+    else if (addressType == "Shipping") {
+      this.work = false;
+      this.shipping = true;
+      this.postal = false;
+    }
+    else if (addressType == "Postal") {
+      this.work = false;
+      this.shipping = false;
+      this.postal = true;
+    }
+    else {
+      return;
+    }
+  }
+
+  addBranchGroupAddress() {
+    return this.fb.group({
+      //menuComboText: [''],
+      branchWork: ['', Validators.required],
+      branchShipping: ['', Validators.required],
+      branchPostal: ['', Validators.required]
+      //menuCombo: ['', Validators.required]
+    })
+  }
+
+  // Add New ComboBox to an array()
+  addBranchAddress() {
+    this.branchAddressValue.push(this.addBranchGroupAddress());
+  }
+
+  //Getting new ComboBox from array and show in front page
+  get branchAddressValue() {
+    return <FormArray>this.addressForm.get('branchAddresses');
+  }
+
+  //Deleting every comboBox with specific id which is ([formGroupName]="i")
+  deleteBranchAddress(i) {
+    this.branchAddressValue.removeAt(i);
+    //alert(i);
+    //alert(this.contactFormBranch.get('menuCombo.areaName'));
+    //alert(this.branchValue[i]);
   }
 
 }
