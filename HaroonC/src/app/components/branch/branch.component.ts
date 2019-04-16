@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AppComponent } from '../../app.component';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+
+//import { SelectItem } from 'primeng/api';
+
 import * as jsPDF from 'jspdf';
 import {
   IgxExcelExporterOptions,
@@ -29,11 +32,18 @@ import { FormArray, Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 declare var $: any;
 
+interface City {
+  name: string;
+  code: string;
+}
+
+
 @Component({
   selector: 'app-branch',
   templateUrl: './branch.component.html',
   styleUrls: ['./branch.component.scss']
 })
+
 
 export class BranchComponent implements OnInit {
 
@@ -58,8 +68,12 @@ export class BranchComponent implements OnInit {
 
   // list for excel data
   excelDataList = [];
-  contactDetail = [];
-
+  contType;
+  country;
+  area;
+  network;
+  addressType;
+  emailType;
 
   //*Page Models
   branchId = null;
@@ -105,65 +119,31 @@ export class BranchComponent implements OnInit {
   sortedCollection: any[];
   itemPerPage = '10';
 
-  //Country Code
-  country = [
+  //contact Detail
+  contactDetail = [
     {
-      countryId: 1,
-      countryName: "Pakistan",
-      countryCode: "+92"
-    },
-    {
-      countryId: 2,
-      countryName: "Turkey",
-      countryCode: "+90"
-    },
-    {
-      countryId: 3,
-      countryName: "US",
-      countryCode: "+1"
+      contactType: "",
+      countryCode: "countryCode",
+      contactCode: "",
+      areaCode: true,
+      mobileCode: false,
+      contactNumber: ""
     }
   ];
 
-  //Area Code
-  area = [
+  //address Detail
+  addressDetail = [
     {
-      areaId: 1,
-      areaName: "Islamabad",
-      areaCode: "51"
-    },
-    {
-      areaId: 2,
-      areaName: "Karachi",
-      areaCode: "21"
-    },
-    {
-      areaId: 3,
-      areaName: "Lahore",
-      areaCode: "42"
+      addressType: "",
+      address: ""
     }
   ];
 
-  //Mobile Code
-  network = [
+  //Emails Detail
+  emailDetail = [
     {
-      networkId: 1,
-      networkName: "Jazz",
-      networkCode: "300"
-    },
-    {
-      networkId: 2,
-      networkName: "Zong",
-      networkCode: "313"
-    },
-    {
-      networkId: 3,
-      networkName: "Telenor",
-      networkCode: "345"
-    },
-    {
-      networkId: 4,
-      networkName: "Ufone",
-      networkCode: "333"
+      type: "",
+      email: ""
     }
   ];
 
@@ -384,7 +364,50 @@ export class BranchComponent implements OnInit {
     private http: HttpClient,
     private excelExportService: IgxExcelExporterService,
     private csvExportService: IgxCsvExporterService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder) {
+
+
+    this.contType = [
+      { label: 'Fax', value: 'Fax' },
+      { label: 'Telephone', value: 'Telephone' },
+      { label: 'Mobile', value: 'Mobile' },
+    ];
+
+    //Country Code
+    this.country = [
+      { label: "Pakistan +92", value: "+92" },
+      { label: "Turkey +90", value: "+90" },
+      { label: "US +1", value: "+1" }
+    ];
+
+    //Area Code
+    this.area = [
+      { label: 51, areaName: "Islamabad", value: "51" },
+      { label: 21, areaName: "Karachi", value: "21" },
+      { label: 42, areaName: "Lahore", value: "42" }
+    ];
+
+    //Mobile Code
+    this.network = [
+      { label: 300, networkName: "Jazz", value: "300" },
+      { label: 313, networkName: "Zong", value: "313" },
+      { label: 345, networkName: "Telenor", value: "345" },
+      { label: 333, networkName: "Ufone", value: "333" }
+    ];
+
+    //Address Types
+    this.addressType = [
+      { label: 'Current Address', value: 'Current Address' },
+      { label: 'Office Address', value: 'Office Address' },
+      { label: 'Postal Address', value: 'Postal Address' }
+    ];
+
+    //Email Types
+    this.emailType = [
+      { label: 'Personal Email', value: 'Personal Email' },
+      { label: 'Office Email', value: 'Office Email' }
+    ];
+  }
 
   ngOnInit() {
     //Creating Array of ComboBox "branches"
@@ -606,6 +629,10 @@ export class BranchComponent implements OnInit {
 
   //*Clear the input fields
   clear() {
+
+
+    return false;
+
     this.branchId = 0;
     this.branchType = '';
     this.branchTitle = '';
@@ -910,22 +937,19 @@ export class BranchComponent implements OnInit {
   }
 
 
-
-  onChange(contactType) {
-
-    //alert(contactType.value(index.toString()));
+  onContactChange(contactType, item) {
 
     if (contactType == "Fax") {
-      this.areaCode = true;
-      this.mobileNetworkCode = false;
+      item.areaCode = true;
+      item.mobileCode = false;
     }
     else if (contactType == "Telephone") {
-      this.areaCode = true;
-      this.mobileNetworkCode = false;
+      item.areaCode = true;
+      item.mobileCode = false;
     }
     else if (contactType == "Mobile") {
-      this.areaCode = false;
-      this.mobileNetworkCode = true;
+      item.areaCode = false;
+      item.mobileCode = true;
     }
     else {
       return;
@@ -933,97 +957,54 @@ export class BranchComponent implements OnInit {
   }
 
 
-  // addContact() {
+  addContact() {
 
-  //   if (this.branchContactType.trim() == '') {
-  //     this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-  //     return false;
-  //   }
-  //   else if (this.branchCountryCode.trim() == "") {
-  //     this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-  //     return false;
-  //   }
-  //   else if (this.branchAreaCode.trim() == "" && (this.branchContactType == "Fax" || this.branchContactType == "Telephone")) {
-  //     this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
-  //     return false;
-  //   }
-  //   else if (this.branchMobileNetworkCode.trim() == "" && this.branchContactType == "Mobile") {
-  //     this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
-  //     return false;
-  //   }
-  //   else if (this.branchContactNumber.trim() == "" || this.branchContactNumber.length < 7) {
-  //     this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
-  //     return false;
-  //   }
-  //   else {
-  //     let data = this.contactDetail.find(x => (
-  //       x.conContactType == this.branchContactType,
-  //       x.conCountryCode == this.branchCountryCode,
-  //       x.conAreaCode == this.branchAreaCode,
-  //       x.conMobileNetworkCode == this.branchMobileNetworkCode,
-  //       x.conContactNumber == this.branchContactNumber));
+    this.contactDetail.push({
+      contactType: "",
+      countryCode: "countryCode",
+      contactCode: "",
+      areaCode: true,
+      mobileCode: false,
+      contactNumber: ""
+    });
 
-  //     if (data != undefined) {
-  //       this.toastr.errorToastr('Contact number is already exist', 'Error', { toastTimeout: (2500) });
-  //       return false;
-  //     }
-  //     else {
+  }
 
-  //       this.app.showSpinner();
-  //       this.app.hideSpinner();
+  addAddress() {
 
-  //       // this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
+    this.addressDetail.push({
+      addressType: "",
+      address: ""
+    });
 
-  //       this.contactDetail.push({
-  //         conId: this.contactDetail.length + "",
-  //         conContactType: this.branchContactType,
-  //         conCountryCode: this.branchCountryCode,
-  //         conAreaCode: this.branchAreaCode,
-  //         conMobileNetworkCode: this.branchMobileNetworkCode,
-  //         conContactNumber: this.branchContactNumber
-  //       });
+  }
 
-  //       this.clearContact();
-  //       return false;
+  addEmail() {
 
-  //       // var updateData = { "sectionname": this.cityName };
+    this.emailDetail.push({
+      type: "",
+      email: ""
+    });
 
-  //       // var token = localStorage.getItem(this.tokenKey);
+  }
 
-  //       // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+  clearContact() {
 
-  //       // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+    this.branchContactType = '';
+    this.branchCountryCode = '';
+    this.branchAreaCode = '';
+    this.branchMobileNetworkCode = '';
+    this.branchContactNumber = '';
+  }
 
-  //       //   if (data.msg != undefined) {
-  //       //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-  //       //     return false;
-  //       //   } else {
-  //       //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-  //       //     $('#cityModal').modal('hide');
-  //       //     return false;
-  //       //   }
+  editContact(item) {
+    this.branchContactType = item.branchContactType;
+    this.branchCountryCode = item.branchCountryCode;
+    this.branchAreaCode = item.branchAreaCode;
+    this.branchMobileNetworkCode = item.branchMobileNetworkCode;
+    this.branchContactNumber = item.branchContactNumber;
+  }
 
-  //       // });
-  //     }
-  //   }
-  // }
-
-  // clearContact() {
-
-  //   this.branchContactType = '';
-  //   this.branchCountryCode = '';
-  //   this.branchAreaCode = '';
-  //   this.branchMobileNetworkCode = '';
-  //   this.branchContactNumber = '';
-  // }
-
-  // editContact(item) {
-  //   this.branchContactType = item.branchContactType;
-  //   this.branchCountryCode = item.branchCountryCode;
-  //   this.branchAreaCode = item.branchAreaCode;
-  //   this.branchMobileNetworkCode = item.branchMobileNetworkCode;
-  //   this.branchContactNumber = item.branchContactNumber;
-  // }
 
   addBranchGroup() {
     return this.fb.group({
@@ -1047,12 +1028,19 @@ export class BranchComponent implements OnInit {
     return <FormArray>this.contactForm.get('branches');
   }
 
-  //Deleting every comboBox with specific id which is ([formGroupName]="i")
-  deleteBranch(i) {
-    this.branchValue.removeAt(i);
-    //alert(i);
-    //alert(this.contactFormBranch.get('menuCombo.areaName'));
-    //alert(this.branchValue[i]);
+  //Deleting contact row
+  removeContact(item) {
+    this.contactDetail.splice(item, 1);
+  }
+
+  //Deleting address row
+  removeAddress(item) {
+    this.addressDetail.splice(item, 1);
+  }
+
+  //Deleting address row
+  removeEmail(item) {
+    this.emailDetail.splice(item, 1);
   }
 
 
@@ -1060,7 +1048,7 @@ export class BranchComponent implements OnInit {
 
   onChangeAddress(addressType) {
 
-    alert(addressType);
+    //alert(contactType.value(index.toString()));
 
     if (addressType == "Work") {
       this.work = true;
@@ -1085,7 +1073,6 @@ export class BranchComponent implements OnInit {
   addBranchGroupAddress() {
     return this.fb.group({
       //menuComboText: [''],
-      branchAddressType: ['', Validators.required],
       branchWork: ['', Validators.required],
       branchShipping: ['', Validators.required],
       branchPostal: ['', Validators.required]
