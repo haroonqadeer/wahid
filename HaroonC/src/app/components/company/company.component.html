@@ -293,7 +293,7 @@
               </div>
             </div>
             <br />
-            <!--start 7th row-->
+            <!--start 4th row-->
             <div class="row">
               <div class="col-md-6">
                 <mat-form-field class="fullwidth">
@@ -306,7 +306,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <!--end 7th row-->
+            <!--end 4th row-->
             <br />
 
             <!-- *________________Start Add Address Detail_____________________ -->
@@ -324,7 +324,7 @@
                     <tr>
 
                       <!--address type combo box-->
-                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                      <td style="padding:0 15px 0 15px; width: 200px;">
                         <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
                           placeholder="Address Type" required>
                           <ng-template let-itm pTemplate="item">
@@ -337,13 +337,13 @@
                       </td>
 
                       <!--address text box-->
-                      <td>
+                      <td colspan="3">
                         <!-- [showMaskTyped]="true" required -->
                         <input class="" type="text" pInputText [(ngModel)]="item.address" placeholder="Address"
                           style="width: 100%;">
                       </td>
 
-                      <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                      <td rowspan="2" style="padding:0 0 5px 15px; width: 55px;">
                         <button mat-fab color="warn" (click)="removeAddress(i)">
                           <span class="fa fa-minus"></span>
                         </button>
@@ -354,7 +354,7 @@
                     <!-- Country Province City District -->
                     <tr>
                       <!-- Country -->
-                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                      <td style="padding:8px 15px 8px 15px; width: 200px;">
                         <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
                           placeholder="Select Country" required>
                           <ng-template let-itm pTemplate="item">
@@ -365,7 +365,7 @@
                         </p-dropdown>
                       </td>
                       <!-- Province -->
-                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                      <td>
                         <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
                           placeholder="Select Province" required>
                           <ng-template let-itm pTemplate="item">
@@ -376,7 +376,7 @@
                         </p-dropdown>
                       </td>
                       <!-- City -->
-                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                      <td>
                         <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
                           placeholder="Select City" required>
                           <ng-template let-itm pTemplate="item">
@@ -387,7 +387,7 @@
                         </p-dropdown>
                       </td>
                       <!-- District -->
-                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                      <td>
                         <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
                           placeholder="Select District" required>
                           <ng-template let-itm pTemplate="item">
