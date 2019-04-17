@@ -41,10 +41,11 @@ declare var $: any;
 
 export class SubsidiarieComponent implements OnInit {
 
-    public contactForm: FormGroup;
+    //public contactForm: FormGroup;
 
-    areaCode = false;
-    mobileNetworkCode = false;
+    // areaCode = false;
+    // mobileNetworkCode = false;
+
     subsidiaryBox = true;
 
     serverUrl = "http://localhost:42904/";
@@ -57,7 +58,15 @@ export class SubsidiarieComponent implements OnInit {
 
     // list for excel data
     excelDataList = [];
-    contactDetail = [];
+
+    //contactDetail = [];
+    //contactDetail = [];
+    contactType;
+    country;
+    area;
+    network;
+    addressType;
+    emailType;
 
     //* variables for display values on page
 
@@ -71,20 +80,20 @@ export class SubsidiarieComponent implements OnInit {
     strn = '';
     cmbSubsidiaryType = '';
     representator = '';
-    address = '';
+    //address = '';
     cmbCity = '';
-    email = '';
-    telephone = '';
-    mobile = '';
+    //email = '';
+    //telephone = '';
+    //mobile = '';
     website = '';
-    faxNumber = '';
+    //faxNumber = '';
     agreement = '';
 
-    subsidiaryContactType = "";
-    subsidiaryCountryCode = "";
-    subsidiaryAreaCode = "";
-    subsidiaryMobileNetworkCode = "";
-    subsidiaryContactNumber = "";
+    // subsidiaryContactType = "";
+    // subsidiaryCountryCode = "";
+    // subsidiaryAreaCode = "";
+    // subsidiaryMobileNetworkCode = "";
+    // subsidiaryContactNumber = "";
 
     txtdPassword = '';
     txtdPin = '';
@@ -98,67 +107,34 @@ export class SubsidiarieComponent implements OnInit {
 
     //*List Variables
 
-    //Country Code
-    country = [
+    //contact Detail
+    contactDetail = [
         {
-            countryId: 1,
-            countryName: "Pakistan",
-            countryCode: "+92"
-        },
-        {
-            countryId: 2,
-            countryName: "Turkey",
-            countryCode: "+90"
-        },
-        {
-            countryId: 3,
-            countryName: "US",
-            countryCode: "+1"
+            contactType: "",
+            countryCode: "countryCode",
+            contactCode: "",
+            areaCode: true,
+            mobileCode: false,
+            contactNumber: ""
         }
     ];
 
-    //Area Code
-    area = [
+    //address Detail
+    addressDetail = [
         {
-            areaId: 1,
-            areaName: "Islamabad",
-            areaCode: "51"
-        },
-        {
-            areaId: 2,
-            areaName: "Karachi",
-            areaCode: "21"
-        },
-        {
-            areaId: 3,
-            areaName: "Lahore",
-            areaCode: "42"
+            addressType: "",
+            address: ""
         }
     ];
 
-    //Mobile Code
-    network = [
+    //Emails Detail
+    emailDetail = [
         {
-            networkId: 1,
-            networkName: "Jazz",
-            networkCode: "300"
-        },
-        {
-            networkId: 2,
-            networkName: "Zong",
-            networkCode: "313"
-        },
-        {
-            networkId: 3,
-            networkName: "Telenor",
-            networkCode: "345"
-        },
-        {
-            networkId: 4,
-            networkName: "Ufone",
-            networkCode: "333"
+            type: "",
+            email: ""
         }
     ];
+
 
     cities = [
         { cityId: '1', cityName: 'Islamabad' },
@@ -459,7 +435,48 @@ export class SubsidiarieComponent implements OnInit {
         private app: AppComponent,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService,
-        private fb: FormBuilder) { }
+        private fb: FormBuilder) {
+        this.contactType = [
+            { label: 'Fax', value: 'Fax' },
+            { label: 'Telephone', value: 'Telephone' },
+            { label: 'Mobile', value: 'Mobile' },
+        ];
+
+        //Country Code
+        this.country = [
+            { label: "Pakistan +92", value: "+92" },
+            { label: "Turkey +90", value: "+90" },
+            { label: "US +1", value: "+1" }
+        ];
+
+        //Area Code
+        this.area = [
+            { label: 51, areaName: "Islamabad", value: "51" },
+            { label: 21, areaName: "Karachi", value: "21" },
+            { label: 42, areaName: "Lahore", value: "42" }
+        ];
+
+        //Mobile Code
+        this.network = [
+            { label: 300, networkName: "Jazz", value: "300" },
+            { label: 313, networkName: "Zong", value: "313" },
+            { label: 345, networkName: "Telenor", value: "345" },
+            { label: 333, networkName: "Ufone", value: "333" }
+        ];
+
+        //Address Types
+        this.addressType = [
+            { label: 'Current Address', value: 'Current Address' },
+            { label: 'Office Address', value: 'Office Address' },
+            { label: 'Postal Address', value: 'Postal Address' }
+        ];
+
+        //Email Types
+        this.emailType = [
+            { label: 'Personal Email', value: 'Personal Email' },
+            { label: 'Office Email', value: 'Office Email' }
+        ];
+    }
 
     ngOnInit() {
         //Creating Array of ComboBox "subsidiaryes"
@@ -508,76 +525,95 @@ export class SubsidiarieComponent implements OnInit {
             this.toastr.errorToastr('Please enter representator', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        else if (this.address.trim() == '') {
-            this.toastr.errorToastr('Please enter address', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
         else if (this.cmbCity == '') {
             this.toastr.errorToastr('Please select city', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.email.trim() == '') {
-            this.toastr.errorToastr('Please enter email', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.isEmail(this.email.trim()) == false) {
-            this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.telephone == '' || this.telephone.length < 10) {
-            this.toastr.errorToastr('Please enter telephone', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.mobile == '' || this.mobile.length < 11) {
-            this.toastr.errorToastr('Please enter mobile', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.website.trim() == '') {
             this.toastr.errorToastr('Please enter website', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        else if (this.faxNumber == '' || this.faxNumber.length < 10) {
-            this.toastr.errorToastr('Please enter fax number', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
         else if (this.agreement == '') {
             this.toastr.errorToastr('Please attach agreement copy', 'Error', { toastTimeout: (2500) });
             return false;
         }
+        // address type conditions
+        else if (this.addressDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Address Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
         // contact type conditions
-        else if (this.subsidiaryContactType.trim() == "") {
-            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+        else if (this.contactDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Contact Info Type', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        else if (this.subsidiaryCountryCode.trim() == "") {
-            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.subsidiaryAreaCode.trim() == "" && (this.subsidiaryContactType == "Fax" || this.subsidiaryContactType == "Telephone")) {
-            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.subsidiaryMobileNetworkCode.trim() == "" && this.subsidiaryContactType == "Mobile") {
-            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.subsidiaryContactNumber.trim() == "" || this.subsidiaryContactNumber.length < 7) {
-            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
+        // email type conditions
+        else if (this.emailDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Email Info', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else {
+            // address type conditions
+            if (this.addressDetail.length > 0) {
+                for (let i = 0; i < this.addressDetail.length; i++) {
+                    if (this.addressDetail[i].addressType.trim() == "") {
+                        this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.addressDetail[i].address.trim() == "") {
+                        this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
 
+            // contact type conditions
+            if (this.contactDetail.length > 0) {
+                for (let i = 0; i < this.contactDetail.length; i++) {
+                    if (this.contactDetail[i].contactType.trim() == "") {
+                        this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
+                        this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.contactDetail[i].contactCode.trim() == "") {
+                        this.toastr.errorToastr('Please Select Contact Code', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.contactDetail[i].contactNumber.trim() == "") {
+                        this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
 
-
-
-
+            // email type conditions
+            if (this.emailDetail.length > 0) {
+                for (let i = 0; i < this.emailDetail.length; i++) {
+                    if (this.emailDetail[i].type.trim() == "") {
+                        this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.emailDetail[i].email.trim() == "") {
+                        this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
+                        this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
 
 
             if (this.subsidiaryId != '') {
                 this.app.showSpinner();
-                this.app.hideSpinner();
                 this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
                 this.clear();
+                $('#subsidiaryModal').modal('hide');
+                this.app.hideSpinner();
                 return false;
 
                 var updateData = { "ID": this.subsidiaryId, Password: this.txtdPassword, PIN: this.txtdPin };
@@ -600,9 +636,12 @@ export class SubsidiarieComponent implements OnInit {
             }
             else {
                 this.app.showSpinner();
-                this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
-                //this.clear();
+
+                this.clear();
+                $('#subsidiaryModal').modal('hide');
+                this.app.hideSpinner();
+                return false;
 
 
                 var saveData = {
@@ -611,10 +650,10 @@ export class SubsidiarieComponent implements OnInit {
                     "ntn": this.ntn, "strn": this.strn,
                     "website": this.website,
                     "subsidiaryTypeId": this.cmbSubsidiaryType,
-                    "telephone": this.telephone,
-                    "mobile": this.mobile,
-                    "address": this.address,
-                    "email": this.email
+                    //"telephone": this.telephone,
+                    //"mobile": this.mobile,
+                    //"address": this.address,
+                    //"email": this.email
                 };
 
 
@@ -692,6 +731,7 @@ export class SubsidiarieComponent implements OnInit {
 
     //function for empty all fields
     clear() {
+
         this.dSubsidiaryId = '';
         this.subsidiaryId = '';
         this.cityName = '';
@@ -700,16 +740,41 @@ export class SubsidiarieComponent implements OnInit {
         this.strn = '';
         this.cmbSubsidiaryType = '';
         this.representator = '';
-        this.address = '';
+        //this.address = '';
         this.cmbCity = '';
-        this.email = '';
-        this.telephone = '';
-        this.mobile = '';
+        //this.email = '';
+        //this.telephone = '';
+        //this.mobile = '';
         this.website = '';
-        this.faxNumber = '';
+        //this.faxNumber = '';
         this.agreement = '';
 
-        this.contactForm.reset();
+        this.addressDetail = [
+            {
+                addressType: "",
+                address: ""
+            }
+        ];
+
+        this.contactDetail = [
+            {
+                contactType: "",
+                countryCode: "countryCode",
+                contactCode: "",
+                areaCode: true,
+                mobileCode: false,
+                contactNumber: ""
+            }
+        ];
+
+        this.emailDetail = [
+            {
+                type: "",
+                email: ""
+            }
+        ];
+
+        //this.contactForm.reset();
 
         // this.subsidiaryContactType = '';
         // this.subsidiaryCountryCode = '';
@@ -730,13 +795,13 @@ export class SubsidiarieComponent implements OnInit {
         this.strn = item.strn;
         this.cmbSubsidiaryType = item.subsidiaryType;
         this.representator = item.representator;
-        this.address = item.address;
+        //this.address = item.address;
         this.cmbCity = item.cityId.toString();
-        this.email = item.email;
-        this.telephone = item.telephone;
-        this.mobile = item.mobile;
+        //this.email = item.email;
+        //this.telephone = item.telephone;
+        //this.mobile = item.mobile;
         this.website = item.website;
-        this.faxNumber = item.faxNumber;
+        //this.faxNumber = item.faxNumber;
         this.agreement = item.agreement;
     }
 
@@ -977,115 +1042,70 @@ export class SubsidiarieComponent implements OnInit {
         }
     }
 
-    onChange(contactType) {
+    onContactChange(contactType, item) {
 
         if (contactType == "Fax") {
-            this.areaCode = true;
-            this.mobileNetworkCode = false;
+            item.areaCode = true;
+            item.mobileCode = false;
         }
         else if (contactType == "Telephone") {
-            this.areaCode = true;
-            this.mobileNetworkCode = false;
+            item.areaCode = true;
+            item.mobileCode = false;
         }
         else if (contactType == "Mobile") {
-            this.areaCode = false;
-            this.mobileNetworkCode = true;
+            item.areaCode = false;
+            item.mobileCode = true;
         }
         else {
             return;
         }
     }
 
+
     addContact() {
 
-        if (this.subsidiaryContactType.trim() == '') {
-            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.subsidiaryCountryCode.trim() == "") {
-            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.subsidiaryAreaCode.trim() == "" && (this.subsidiaryContactType == "Fax" || this.subsidiaryContactType == "Telephone")) {
-            this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.subsidiaryMobileNetworkCode.trim() == "" && this.subsidiaryContactType == "Mobile") {
-            this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.subsidiaryContactNumber.trim() == "" || this.subsidiaryContactNumber.length < 7) {
-            this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else {
-            let data = this.contactDetail.find(x => (
-                x.conContactType == this.subsidiaryContactType,
-                x.conCountryCode == this.subsidiaryCountryCode,
-                x.conAreaCode == this.subsidiaryAreaCode,
-                x.conMobileNetworkCode == this.subsidiaryMobileNetworkCode,
-                x.conContactNumber == this.subsidiaryContactNumber));
+        this.contactDetail.push({
+            contactType: "",
+            countryCode: "countryCode",
+            contactCode: "",
+            areaCode: true,
+            mobileCode: false,
+            contactNumber: ""
+        });
 
-            if (data != undefined) {
-                this.toastr.errorToastr('Contact number is already exist', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else {
-
-                this.app.showSpinner();
-                this.app.hideSpinner();
-
-                // this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
-
-                this.contactDetail.push({
-                    conId: this.contactDetail.length + "",
-                    conContactType: this.subsidiaryContactType,
-                    conCountryCode: this.subsidiaryCountryCode,
-                    conAreaCode: this.subsidiaryAreaCode,
-                    conMobileNetworkCode: this.subsidiaryMobileNetworkCode,
-                    conContactNumber: this.subsidiaryContactNumber
-                });
-
-                this.clearContact();
-                return false;
-
-                // var updateData = { "sectionname": this.cityName };
-
-                // var token = localStorage.getItem(this.tokenKey);
-
-                // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-                // this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
-
-                //   if (data.msg != undefined) {
-                //     this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-                //     return false;
-                //   } else {
-                //     this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-                //     $('#cityModal').modal('hide');
-                //     return false;
-                //   }
-
-                // });
-            }
-        }
     }
 
-    clearContact() {
+    addAddress() {
 
-        this.subsidiaryContactType = '';
-        this.subsidiaryCountryCode = '';
-        this.subsidiaryAreaCode = '';
-        this.subsidiaryMobileNetworkCode = '';
-        this.subsidiaryContactNumber = '';
+        this.addressDetail.push({
+            addressType: "",
+            address: ""
+        });
+
     }
 
-    editContact(item) {
-        this.subsidiaryContactType = item.subsidiaryContactType;
-        this.subsidiaryCountryCode = item.subsidiaryCountryCode;
-        this.subsidiaryAreaCode = item.subsidiaryAreaCode;
-        this.subsidiaryMobileNetworkCode = item.subsidiaryMobileNetworkCode;
-        this.subsidiaryContactNumber = item.subsidiaryContactNumber;
+    addEmail() {
+
+        this.emailDetail.push({
+            type: "",
+            email: ""
+        });
+
+    }
+
+    //Deleting contact row
+    removeContact(item) {
+        this.contactDetail.splice(item, 1);
+    }
+
+    //Deleting address row
+    removeAddress(item) {
+        this.addressDetail.splice(item, 1);
+    }
+
+    //Deleting address row
+    removeEmail(item) {
+        this.emailDetail.splice(item, 1);
     }
 
 }

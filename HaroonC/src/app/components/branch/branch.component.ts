@@ -15,6 +15,7 @@ import {
   CsvFileTypes
 } from "igniteui-angular";
 import { FormArray, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { NgForOf } from '@angular/common';
 
 
 //----------------------------------------------------------------------------//
@@ -47,16 +48,17 @@ interface City {
 
 export class BranchComponent implements OnInit {
 
-  public contactForm: FormGroup;
-  public addressForm: FormGroup;
+  // public contactForm: FormGroup;
+  // public addressForm: FormGroup;
 
-  areaCode = false;
-  mobileNetworkCode = false;
+  //areaCode = false;
+  //mobileNetworkCode = false;
+
   branchBox = true;
 
-  work = false;
-  shipping = false;
-  postal = false;
+  //work = false;
+  //shipping = false;
+  //postal = false;
 
 
   serverUrl = "http://localhost:55536/";
@@ -68,7 +70,7 @@ export class BranchComponent implements OnInit {
 
   // list for excel data
   excelDataList = [];
-  contType;
+  contactType;
   country;
   area;
   network;
@@ -79,19 +81,19 @@ export class BranchComponent implements OnInit {
   branchId = null;
   branchType = "";
   branchTitle = "";
-  branchAddress = "";
+  //branchAddress = "";
   branchCity = "";
-  branchEmail = "";
-  branchPhone = "";
-  branchMobile = "";
-  branchFax = "";
+  //branchEmail = "";
+  //branchPhone = "";
+  //branchMobile = "";
+  //branchFax = "";
   branchWebsite = "";
 
-  branchContactType = "";
-  branchCountryCode = "";
-  branchAreaCode = "";
-  branchMobileNetworkCode = "";
-  branchContactNumber = "";
+  // branchContactType = "";
+  // branchCountryCode = "";
+  // branchAreaCode = "";
+  // branchMobileNetworkCode = "";
+  // branchContactNumber = "";
 
   branchAddressType = "";
   branchWork = "";
@@ -153,19 +155,29 @@ export class BranchComponent implements OnInit {
       branId: 1,
       branType: "Head Quarter",
       branTitle: "Infovative Solution",
-      branAddress: "G-11 Markaz",
+
       ctyId: 1,
       ctyName: "Islamabad",
-      branEmail: "abc@gmail.com",
+      branWebsite: "www.google.com",
+      //*------------------------------------//
+      // //address info
+      // branAddress: this.addressDetail[0].address,
+      // //contact info
+      // branContactType: this.contactDetail[0].contactType,
+      // branCountryCode: this.contactDetail[0].countryCode,
+      // branAreaCode: this.contactDetail[0].contactCode,
+      // branMobileNetworkCode: this.contactDetail[0].contactCode,
+      // branContactNumber: this.contactDetail[0].contactNumber,
+      // //email info
+      // branEmail: this.emailDetail[0].email
+      //*--------------------------------------//
+      //branContact: this.contactDetail,
       branPhone: "0512290450",
       branMobile: "03331234567",
       branFax: "0512234567",
-      branWebsite: "www.google.com",
-      // branContactType: '',
-      // branCountryCode: '',
-      // branAreaCode: '',
-      // branMobileNetworkCode: '',
-      // branContactNumber: ''
+      branAddress: "G-14 Markaz",
+      branEmail: "abc@gmail.com"
+
     },
     {
       branId: 2,
@@ -367,7 +379,7 @@ export class BranchComponent implements OnInit {
     private fb: FormBuilder) {
 
 
-    this.contType = [
+    this.contactType = [
       { label: 'Fax', value: 'Fax' },
       { label: 'Telephone', value: 'Telephone' },
       { label: 'Mobile', value: 'Mobile' },
@@ -410,18 +422,22 @@ export class BranchComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Creating Array of ComboBox "branches"
-    this.contactForm = this.fb.group({
-      branches: this.fb.array([])
-    });
+    // //Creating Array of ComboBox "branches"
+    // this.contactForm = this.fb.group({
+    //   branches: this.fb.array([])
+    // });
 
-    //Creating Array of ComboBox "branchAddresses"
-    this.addressForm = this.fb.group({
-      branchAddresses: this.fb.array([])
-    });
+    // //Creating Array of ComboBox "branchAddresses"
+    // this.addressForm = this.fb.group({
+    //   branchAddresses: this.fb.array([])
+    // });
 
-    this.addBranchContact();
-    this.addBranchAddress();
+    // this.addBranchContact();
+    // this.addBranchAddress();
+    // alert("Address Details length = " + this.addressDetail.length);
+    // alert("Contact Details length = " + this.contactDetail.length);
+    // alert("Email Details length = " + this.emailDetail.length);
+
   }
 
 
@@ -453,60 +469,83 @@ export class BranchComponent implements OnInit {
       this.toastr.errorToastr('Please Enter Branch Title', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchAddress.trim() == "") {
-      this.toastr.errorToastr('Please Enter Branch Address', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
     else if (this.branchCity.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch City', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchEmail.trim() == '') {
-      this.toastr.errorToastr('Please enter email', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.isEmail(this.branchEmail.trim()) == false) {
-      this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchPhone == "" || this.branchPhone.length < 10) {
-      this.toastr.errorToastr('Please Enter Branch Phone', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchMobile == "" || this.branchMobile.length < 11) {
-      this.toastr.errorToastr('Please Enter Branch Mobile', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchFax == "" || this.branchFax.length < 10) {
-      this.toastr.errorToastr('Please Enter Branch Fax', 'Error', { toastTimeout: (2500) });
       return false;
     }
     else if (this.branchWebsite.trim() == "") {
       this.toastr.errorToastr('Please Enter Branch Website', 'Error', { toastTimeout: (2500) });
       return false;
     }
+
+    // address type conditions
+    else if (this.addressDetail.length == 0) {
+      this.toastr.errorToastr('Please Add Address Info', 'Error', { toastTimeout: (2500) });
+      return false;
+    }
     // contact type conditions
-    else if (this.branchContactType.trim() == "") {
-      this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+    else if (this.contactDetail.length == 0) {
+      this.toastr.errorToastr('Please Add Contact Info Type', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchCountryCode.trim() == "") {
-      this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+    // email type conditions
+    else if (this.emailDetail.length == 0) {
+      this.toastr.errorToastr('Please Add Email Info', 'Error', { toastTimeout: (2500) });
       return false;
     }
-    else if (this.branchAreaCode.trim() == "" && (this.branchContactType == "Fax" || this.branchContactType == "Telephone")) {
-      this.toastr.errorToastr('Please Select Area Code', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchMobileNetworkCode.trim() == "" && this.branchContactType == "Mobile") {
-      this.toastr.errorToastr('Please Select Mobile Network Code', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
-    else if (this.branchContactNumber.trim() == "" || this.branchContactNumber.length < 7) {
-      this.toastr.errorToastr('Please Enter Full Number', 'Error', { toastTimeout: (2500) });
-      return false;
-    }
+
     else {
+      // address type conditions
+      if (this.addressDetail.length > 0) {
+        for (let i = 0; i < this.addressDetail.length; i++) {
+          if (this.addressDetail[i].addressType.trim() == "") {
+            this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+          else if (this.addressDetail[i].address.trim() == "") {
+            this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+        }
+      }
+      // contact type conditions
+      if (this.contactDetail.length > 0) {
+        for (let i = 0; i < this.contactDetail.length; i++) {
+          if (this.contactDetail[i].contactType.trim() == "") {
+            this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+          else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
+            this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+          else if (this.contactDetail[i].contactCode.trim() == "") {
+            this.toastr.errorToastr('Please Select Contact Code', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+          else if (this.contactDetail[i].contactNumber.trim() == "") {
+            this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+        }
+      }
+      // email type conditions
+      if (this.emailDetail.length > 0) {
+        for (let i = 0; i < this.emailDetail.length; i++) {
+          if (this.emailDetail[i].type.trim() == "") {
+            this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+          else if (this.emailDetail[i].email.trim() == "") {
+            this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+          else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
+            this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
+            return false;
+          }
+        }
+      }
 
       //this.addContact();
 
@@ -545,11 +584,12 @@ export class BranchComponent implements OnInit {
 
       else {
         this.app.showSpinner();
-        this.app.hideSpinner();
         this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
         this.clear();
         //this.contactDetail=[];
         $('#branchModal').modal('hide');
+        this.app.hideSpinner();
+
         return false;
 
         // var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
@@ -630,29 +670,47 @@ export class BranchComponent implements OnInit {
   //*Clear the input fields
   clear() {
 
-
-    return false;
+    //return false;
 
     this.branchId = 0;
     this.branchType = '';
     this.branchTitle = '';
-    this.branchAddress = '';
+    //this.branchAddress = '';
     this.branchCity = '';
-    this.branchEmail = '';
-    this.branchPhone = '';
-    this.branchMobile = '';
-    this.branchFax = '';
+    // this.branchEmail = '';
+    // this.branchPhone = '';
+    // this.branchMobile = '';
+    // this.branchFax = '';
     this.branchWebsite = '';
 
-    this.contactForm.reset();
+    // this.addressDetail = [];
+    // this.contactDetail = [];
+    // this.emailDetail = [];
 
-    //this.clearContact();
+    this.addressDetail = [
+      {
+        addressType: "",
+        address: ""
+      }
+    ];
 
-    // this.branchContactType = '';
-    // this.branchCountryCode = '';
-    // this.branchAreaCode = '';
-    // this.branchMobileNetworkCode = '';
-    // this.branchContactNumber = '';
+    this.contactDetail = [
+      {
+        contactType: "",
+        countryCode: "countryCode",
+        contactCode: "",
+        areaCode: true,
+        mobileCode: false,
+        contactNumber: ""
+      }
+    ];
+
+    this.emailDetail = [
+      {
+        type: "",
+        email: ""
+      }
+    ];
 
     this.cityName = "";
 
@@ -668,13 +726,14 @@ export class BranchComponent implements OnInit {
     this.branchId = item.branId;
     this.branchType = item.branType;
     this.branchTitle = item.branTitle;
-    this.branchAddress = item.branAddress;
+    //this.branchAddress = item.branAddress;
     this.branchCity = item.ctyId.toString();
-    this.branchEmail = item.branEmail;
-    this.branchPhone = item.branPhone;
-    this.branchMobile = item.branMobile;
-    this.branchFax = item.branFax;
+    // this.branchEmail = item.branEmail;
+    // this.branchPhone = item.branPhone;
+    // this.branchMobile = item.branMobile;
+    // this.branchFax = item.branFax;
     this.branchWebsite = item.branWebsite;
+
   }
 
 
@@ -827,113 +886,15 @@ export class BranchComponent implements OnInit {
   //For CSV File 
   public downloadCSV() {
 
-    // case 1: When tblSearch is empty then assign full data list
-    if (this.tblSearch == "") {
-      //var completeDataList = [];
-      for (var i = 0; i < this.branches.length; i++) {
-        this.excelDataList.push({
-          branchType: this.branches[i].branType,
-          branchTitle: this.branches[i].branTitle,
-          branchAddress: this.branches[i].branAddress,
-          cityName: this.branches[i].ctyName,
-          branchPhone: this.branches[i].branPhone,
-          branchEmail: this.branches[i].branEmail,
-          brancMobile: this.branches[i].branMobile,
-          branchFax: this.branches[i].branFax
-        });
-      }
+    return false;
 
-      this.csvExportService.export(this.excelDataContent, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
-      this.excelDataList = [];
-
-      //this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("BranchCompleteCSV", CsvFileTypes.CSV));
-    }
-    // case 2: When tblSearch is not empty then assign new data list
-    else if (this.tblSearch != "") {
-      //var filteredDataList = [];
-      for (var i = 0; i < this.branches.length; i++) {
-        if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].ctyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branPhone.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branMobile.toUpperCase().includes(this.tblSearch.toUpperCase())) {
-          this.excelDataList.push({
-            branchType: this.branches[i].branType,
-            branchTitle: this.branches[i].branTitle,
-            branchAddress: this.branches[i].branAddress,
-            cityName: this.branches[i].ctyName,
-            branchPhone: this.branches[i].branPhone,
-            branchEmail: this.branches[i].branEmail,
-            brancMobile: this.branches[i].branMobile,
-            branchFax: this.branches[i].branFax
-          });
-        }
-      }
-
-      if (this.excelDataList.length > 0) {
-        this.csvExportService.export(this.excelDataContent, new IgxCsvExporterOptions("BranchFilterCSV", CsvFileTypes.CSV));
-        this.excelDataList = [];
-
-        //this.csvExportService.exportData(filteredDataList, new IgxCsvExporterOptions("BranchFilterCSV", CsvFileTypes.CSV));
-      } else {
-        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
-      }
-    }
   }
 
 
   //For Exce File
   public downloadExcel() {
-    //this.excelDataList = [];
+    return false;
 
-    // case 1: When tblSearch is empty then assign full data list
-    if (this.tblSearch == "") {
-      //var completeDataList = [];
-      for (var i = 0; i < this.branches.length; i++) {
-        this.excelDataList.push({
-          branchType: this.branches[i].branType,
-          branchTitle: this.branches[i].branTitle,
-          branchAddress: this.branches[i].branAddress,
-          cityName: this.branches[i].ctyName,
-          branchPhone: this.branches[i].branPhone,
-          branchEmail: this.branches[i].branEmail,
-          brancMobile: this.branches[i].branMobile,
-          branchFax: this.branches[i].branFax
-        });
-      }
-      this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("BranchCompleteExcel"));
-      this.excelDataList = [];
-    }
-    // case 2: When tblSearch is not empty then assign new data list
-    else if (this.tblSearch != "") {
-      for (var i = 0; i < this.branches.length; i++) {
-        if (this.branches[i].branTitle.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branAddress.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].ctyName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branPhone.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branEmail.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.branches[i].branMobile.toUpperCase().includes(this.tblSearch.toUpperCase())) {
-          this.excelDataList.push({
-            branchType: this.branches[i].branType,
-            branchTitle: this.branches[i].branTitle,
-            branchAddress: this.branches[i].branAddress,
-            cityName: this.branches[i].ctyName,
-            branchPhone: this.branches[i].branPhone,
-            branchEmail: this.branches[i].branEmail,
-            brancMobile: this.branches[i].branMobile,
-            branchFax: this.branches[i].branFax
-          });
-        }
-      }
-      if (this.excelDataList.length > 0) {
-        this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("BranchFilterExcel"));
-        this.excelDataList = [];
-      }
-      else {
-        this.toastr.errorToastr('Oops! No data found', 'Error', { toastTimeout: (2500) });
-      }
-    }
   }
 
 
@@ -988,45 +949,45 @@ export class BranchComponent implements OnInit {
 
   }
 
-  clearContact() {
+  // clearContact() {
 
-    this.branchContactType = '';
-    this.branchCountryCode = '';
-    this.branchAreaCode = '';
-    this.branchMobileNetworkCode = '';
-    this.branchContactNumber = '';
-  }
+  //   this.branchContactType = '';
+  //   this.branchCountryCode = '';
+  //   this.branchAreaCode = '';
+  //   this.branchMobileNetworkCode = '';
+  //   this.branchContactNumber = '';
+  // }
 
-  editContact(item) {
-    this.branchContactType = item.branchContactType;
-    this.branchCountryCode = item.branchCountryCode;
-    this.branchAreaCode = item.branchAreaCode;
-    this.branchMobileNetworkCode = item.branchMobileNetworkCode;
-    this.branchContactNumber = item.branchContactNumber;
-  }
+  // editContact(item) {
+  //   this.branchContactType = item.branchContactType;
+  //   this.branchCountryCode = item.branchCountryCode;
+  //   this.branchAreaCode = item.branchAreaCode;
+  //   this.branchMobileNetworkCode = item.branchMobileNetworkCode;
+  //   this.branchContactNumber = item.branchContactNumber;
+  // }
 
 
-  addBranchGroup() {
-    return this.fb.group({
-      //menuComboText: [''],
-      branchContactType: ['', Validators.required],
-      branchCountryCode: ['', Validators.required],
-      branchAreaCode: [''],
-      branchMobileNetworkCode: [''],
-      branchContactNumber: ['', Validators.required]
-      //menuCombo: ['', Validators.required]
-    })
-  }
+  // addBranchGroup() {
+  //   return this.fb.group({
+  //     //menuComboText: [''],
+  //     branchContactType: ['', Validators.required],
+  //     branchCountryCode: ['', Validators.required],
+  //     branchAreaCode: [''],
+  //     branchMobileNetworkCode: [''],
+  //     branchContactNumber: ['', Validators.required]
+  //     //menuCombo: ['', Validators.required]
+  //   })
+  // }
 
   // Add New ComboBox to an array()
-  addBranchContact() {
-    this.branchValue.push(this.addBranchGroup());
-  }
+  // addBranchContact() {
+  //   this.branchValue.push(this.addBranchGroup());
+  // }
 
   //Getting new ComboBox from array and show in front page
-  get branchValue() {
-    return <FormArray>this.contactForm.get('branches');
-  }
+  // get branchValue() {
+  //   return <FormArray>this.contactForm.get('branches');
+  // }
 
   //Deleting contact row
   removeContact(item) {
@@ -1046,56 +1007,56 @@ export class BranchComponent implements OnInit {
 
   //*--------------------------------Address-------------------------------//
 
-  onChangeAddress(addressType) {
+  // onChangeAddress(addressType) {
 
-    //alert(contactType.value(index.toString()));
+  //   //alert(contactType.value(index.toString()));
 
-    if (addressType == "Work") {
-      this.work = true;
-      this.shipping = false;
-      this.postal = false;
-    }
-    else if (addressType == "Shipping") {
-      this.work = false;
-      this.shipping = true;
-      this.postal = false;
-    }
-    else if (addressType == "Postal") {
-      this.work = false;
-      this.shipping = false;
-      this.postal = true;
-    }
-    else {
-      return;
-    }
-  }
+  //   if (addressType == "Work") {
+  //     this.work = true;
+  //     this.shipping = false;
+  //     this.postal = false;
+  //   }
+  //   else if (addressType == "Shipping") {
+  //     this.work = false;
+  //     this.shipping = true;
+  //     this.postal = false;
+  //   }
+  //   else if (addressType == "Postal") {
+  //     this.work = false;
+  //     this.shipping = false;
+  //     this.postal = true;
+  //   }
+  //   else {
+  //     return;
+  //   }
+  // }
 
-  addBranchGroupAddress() {
-    return this.fb.group({
-      //menuComboText: [''],
-      branchWork: ['', Validators.required],
-      branchShipping: ['', Validators.required],
-      branchPostal: ['', Validators.required]
-      //menuCombo: ['', Validators.required]
-    })
-  }
+  // addBranchGroupAddress() {
+  //   return this.fb.group({
+  //     //menuComboText: [''],
+  //     branchWork: ['', Validators.required],
+  //     branchShipping: ['', Validators.required],
+  //     branchPostal: ['', Validators.required]
+  //     //menuCombo: ['', Validators.required]
+  //   })
+  // }
 
-  // Add New ComboBox to an array()
-  addBranchAddress() {
-    this.branchAddressValue.push(this.addBranchGroupAddress());
-  }
+  // // Add New ComboBox to an array()
+  // addBranchAddress() {
+  //   this.branchAddressValue.push(this.addBranchGroupAddress());
+  // }
 
-  //Getting new ComboBox from array and show in front page
-  get branchAddressValue() {
-    return <FormArray>this.addressForm.get('branchAddresses');
-  }
+  // //Getting new ComboBox from array and show in front page
+  // get branchAddressValue() {
+  //   return <FormArray>this.addressForm.get('branchAddresses');
+  // }
 
-  //Deleting every comboBox with specific id which is ([formGroupName]="i")
-  deleteBranchAddress(i) {
-    this.branchAddressValue.removeAt(i);
-    //alert(i);
-    //alert(this.contactFormBranch.get('menuCombo.areaName'));
-    //alert(this.branchValue[i]);
-  }
+  // //Deleting every comboBox with specific id which is ([formGroupName]="i")
+  // deleteBranchAddress(i) {
+  //   this.branchAddressValue.removeAt(i);
+  //   //alert(i);
+  //   //alert(this.contactFormBranch.get('menuCombo.areaName'));
+  //   //alert(this.branchValue[i]);
+  // }
 
 }

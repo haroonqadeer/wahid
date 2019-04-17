@@ -27,9 +27,8 @@ import { SectionComponent } from './components/section/section.component';
 import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
 import { CurrencyComponent } from './components/currency/currency.component';
 
-
-
 import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
+
 
 @NgModule({
   declarations: [

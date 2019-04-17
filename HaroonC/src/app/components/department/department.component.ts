@@ -34,7 +34,7 @@ declare var $: any;
 })
 export class DepartmentComponent implements OnInit {
 
-  serverUrl = "http://localhost:55536/";
+  serverUrl = "https://localhost:7004/";
   tokenKey = "token";
 
   httpOptions = {
@@ -48,12 +48,13 @@ export class DepartmentComponent implements OnInit {
   //Page NgModels
   tblSearch = "";
 
-  // Add Department NgModels
-  deptId = null;
+  // Add Department Details NgModels
+  deptId = "";
   deptName = "";
   deptBranch = "";
 
-  //Add department modal window
+  //Add New department modal window
+  departId = "";
   departName = "";
 
   //Delete NgModels
@@ -74,19 +75,19 @@ export class DepartmentComponent implements OnInit {
   branches = [
     {
       branchId: '1',
-      branchName: "Islamabad(HQ)"
+      branchCity: "Islamabad(HQ)"
     },
     {
       branchId: '2',
-      branchName: "Lahore"
+      branchCity: "Lahore"
     },
     {
       branchId: '3',
-      branchName: "Karachi"
+      branchCity: "Karachi"
     },
     {
       branchId: '4',
-      branchName: "Peshawar"
+      branchCity: "Peshawar"
     }
   ]
 
@@ -121,105 +122,105 @@ export class DepartmentComponent implements OnInit {
       departmentId: 1,
       departmentName: "Finance",
       branchId: 1,
-      branchName: "Islamabad(HQ)"
+      branchCity: "Islamabad(HQ)"
     },
     {
       departmentsDataId: 2,
       departmentId: 2,
       departmentName: "Human Resource",
       branchId: 1,
-      branchName: "Islamabad(HQ)",
+      branchCity: "Islamabad(HQ)",
     },
     {
       departmentsDataId: 3,
       departmentId: 3,
       departmentName: "Admin",
       branchId: 2,
-      branchName: "Lahore"
+      branchCity: "Lahore"
     },
     {
       departmentsDataId: 4,
       departmentId: 4,
       departmentName: "Procurement",
       branchId: 3,
-      branchName: "Karachi"
+      branchCity: "Karachi"
     },
     {
       departmentsDataId: 5,
       departmentId: 5,
       departmentName: "Medical",
       branchId: 4,
-      branchName: "Peshawar"
+      branchCity: "Peshawar"
     },
     {
       departmentsDataId: 6,
       departmentId: 1,
       departmentName: "Finance",
       branchId: 1,
-      branchName: "Islamabad(HQ)"
+      branchCity: "Islamabad(HQ)"
     },
     {
       departmentsDataId: 7,
       departmentId: 2,
       departmentName: "Human Resource",
       branchId: 1,
-      branchName: "Islamabad(HQ)",
+      branchCity: "Islamabad(HQ)",
     },
     {
       departmentsDataId: 8,
       departmentId: 3,
       departmentName: "Admin",
       branchId: 2,
-      branchName: "Lahore"
+      branchCity: "Lahore"
     },
     {
       departmentsDataId: 9,
       departmentId: 4,
       departmentName: "Procurement",
       branchId: 3,
-      branchName: "Karachi"
+      branchCity: "Karachi"
     },
     {
       departmentsDataId: 10,
       departmentId: 5,
       departmentName: "Medical",
       branchId: 4,
-      branchName: "Peshawar"
+      branchCity: "Peshawar"
     },
     {
       departmentsDataId: 11,
       departmentId: 1,
       departmentName: "Finance",
       branchId: 1,
-      branchName: "Islamabad(HQ)"
+      branchCity: "Islamabad(HQ)"
     },
     {
       departmentsDataId: 12,
       departmentId: 2,
       departmentName: "Human Resource",
       branchId: 1,
-      branchName: "Islamabad(HQ)",
+      branchCity: "Islamabad(HQ)",
     },
     {
       departmentsDataId: 13,
       departmentId: 3,
       departmentName: "Admin",
       branchId: 2,
-      branchName: "Lahore"
+      branchCity: "Lahore"
     },
     {
       departmentsDataId: 14,
       departmentId: 4,
       departmentName: "Procurement",
       branchId: 3,
-      branchName: "Karachi"
+      branchCity: "Karachi"
     },
     {
       departmentsDataId: 15,
       departmentId: 5,
       departmentName: "Medical",
       branchId: 4,
-      branchName: "Peshawar"
+      branchCity: "Peshawar"
     }
   ]
 
@@ -276,20 +277,30 @@ export class DepartmentComponent implements OnInit {
     }
     else {
       if (this.deptId != "") {
+        alert(this.deptId);
         this.app.showSpinner();
         this.app.hideSpinner();
-        this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
-        this.clear();
-        $('#departmentModal').modal('hide');
-        return false;
+        //this.toastr.successToastr('Updated Successfully', 'Success', { toastTimeout: (2500) });
+        //this.clear();
+        //$('#departmentModal').modal('hide');
+        //return false;
 
-        var updateData = { "ID": this.deptId, Password: this.userPassword, PIN: this.userPINCode };
+        var updateData = {
+          // "departmentId": this.deptId,
+          // "newDepartmentId": this.deptId,
+          "deptId": this.deptId,
+          "deptName": this.deptName,
+          // "officeId": this.branches[0],
+          // "officeName": this.branches[1],
+          "companyId": 1,
+          "userID": 1
+        };
 
         var token = localStorage.getItem(this.tokenKey);
 
         var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        this.http.put(this.serverUrl + 'api/updateDepartment', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
           if (data.msg != undefined) {
             this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
@@ -297,34 +308,60 @@ export class DepartmentComponent implements OnInit {
           }
           else {
             this.toastr.successToastr('Record updated Successfully', 'Success!', { toastTimeout: (2500) });
+            // this.departmentsData.push({
+            //   departmentsDataId: this.departmentsData.length,
+            //   departmentId: this.departments.length,
+            //   departmentName: this.departName,
+            //   branchId: this.branches.length,
+            //   branchCity: this.deptBranch,
+            // });
+            this.clear();
             $('#departmentModal').modal('hide');
+
             return false;
           }
 
         });
       }
       else {
+        //alert(this.deptName);return false;
         this.app.showSpinner();
-        this.app.hideSpinner();
-        this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
-        $('#departmentModal').modal('hide');
-        return false;
+        // this.app.hideSpinner();
+        // this.toastr.successToastr('Record Save Successfully', 'Success', { toastTimeout: (2500) });
+        // //$('#departmentModal').modal('hide');
 
-        var saveData = { "Password": this.userPassword, "PIN": this.userPINCode };
+        var saveData = {
+          // "departmentId": this.deptId,
+          // "newDepartmentId": this.deptId,
+          "deptName": this.deptName,
+          // "officeId": this.branches[0],
+          // "officeName": this.branches[1],
+          "companyId": 1,
+          "userID": 1
+
+        };
 
         var token = localStorage.getItem(this.tokenKey);
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+        //alert(reqHeader);
+        this.http.post(this.serverUrl + 'api/saveDepartment', saveData, { responseType: 'json' }).subscribe((data: any) => {
+          // this.http.post(this.serverUrl + 'api/saveDepartment', saveData).subscribe((data: any) => {
 
-        this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
-
-          if (data.msg != undefined) {
+          //alert(data.msg);
+          if (data.msg == undefined) {
             this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            this.clear();
+            $('#departmentModal').modal('hide');
+            this.app.hideSpinner();
             return false;
           }
           else {
-            this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+            this.toastr.successToastr(data.msg, 'Record Saved !!!', { toastTimeout: (2500) });
+            this.clear();
             $('#departmentModal').modal('hide');
+            this.app.hideSpinner();
             return false;
           }
         });
@@ -367,14 +404,15 @@ export class DepartmentComponent implements OnInit {
 
         var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-        this.http.post(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+        this.http.post(this.serverUrl + 'api/saveNewDepartment', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
           if (data.msg != undefined) {
             this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
             return false;
           }
           else {
-            this.toastr.successToastr('Saved Successfully', 'Success!', { toastTimeout: (2500) });
+            this.toastr.successToastr('New Department Saved Successfully', 'Success!', { toastTimeout: (2500) });
+            this.clear();
             $('#deptModal').modal('hide');
             return false;
           }
@@ -400,8 +438,17 @@ export class DepartmentComponent implements OnInit {
 
   // edit function
   edit(item) {
-    this.deptName = item.departmentId;
+    //alert("Edit OK - " + item.departmentId + "-" + item.departmentName + "-" + String(item.branchId));
+
+    this.deptId = item.departmentId;
+    this.deptName = item.departmentName;
     this.deptBranch = String(item.branchId);
+
+  }
+
+  editDept(item) {
+    this.departId = item.departmentId;
+    this.departName = item.departmentName;
   }
 
 
@@ -409,6 +456,10 @@ export class DepartmentComponent implements OnInit {
   deleteTemp(item) {
     this.clear();
     this.dDepartmentId = item.departmentsDataId;
+  }
+  deleteDept(item) {
+    this.clear();
+    this.dDepartmentId = item.departmentId;
   }
 
 
@@ -553,7 +604,7 @@ export class DepartmentComponent implements OnInit {
         //alert(this.tblSearch + " - " + this.departmentsData[i].departmentName)
         completeDataList.push({
           departmentName: this.departmentsData[i].departmentName,
-          branchName: this.departmentsData[i].branchName
+          branchCity: this.departmentsData[i].branchCity
         });
       }
       this.csvExportService.exportData(completeDataList, new IgxCsvExporterOptions("DepartmentCompleteCSV", CsvFileTypes.CSV));
@@ -563,10 +614,10 @@ export class DepartmentComponent implements OnInit {
       var filteredDataList = [];
       for (var i = 0; i < this.departmentsData.length; i++) {
         if (this.departmentsData[i].departmentName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.departmentsData[i].branchName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          this.departmentsData[i].branchCity.toUpperCase().includes(this.tblSearch.toUpperCase())) {
           filteredDataList.push({
             departmentName: this.departmentsData[i].departmentName,
-            branchName: this.departmentsData[i].branchName
+            branchCity: this.departmentsData[i].branchCity
           });
         }
       }
@@ -588,7 +639,7 @@ export class DepartmentComponent implements OnInit {
       for (var i = 0; i < this.departmentsData.length; i++) {
         this.excelDataList.push({
           departmentName: this.departmentsData[i].departmentName,
-          branchName: this.departmentsData[i].branchName
+          branchCity: this.departmentsData[i].branchCity
         });
       }
       this.excelExportService.export(this.excelDataContent, new IgxExcelExporterOptions("DepartmentCompleteExcel"));
@@ -598,10 +649,10 @@ export class DepartmentComponent implements OnInit {
     else if (this.tblSearch != "") {
       for (var i = 0; i < this.departmentsData.length; i++) {
         if (this.departmentsData[i].departmentName.toUpperCase().includes(this.tblSearch.toUpperCase()) ||
-          this.departmentsData[i].branchName.toUpperCase().includes(this.tblSearch.toUpperCase())) {
+          this.departmentsData[i].branchCity.toUpperCase().includes(this.tblSearch.toUpperCase())) {
           this.excelDataList.push({
             departmentName: this.departmentsData[i].departmentName,
-            branchName: this.departmentsData[i].branchName
+            branchCity: this.departmentsData[i].branchCity
           });
         }
       }

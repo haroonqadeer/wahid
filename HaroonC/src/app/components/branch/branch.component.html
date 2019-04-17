@@ -249,19 +249,7 @@
 
         <!--start 3rd row-->
         <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchAddress" placeholder="Address" required>
-            </mat-form-field>
-          </div>
-        </div>
-        <!--end 3rd row-->
-
-        <br />
-
-        <!--start 4th row-->
-        <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <mat-form-field class="fullwidth">
               <mat-select [(ngModel)]="branchCity" placeholder="City Name" required>
                 <mat-option *ngFor="  let city of cities" [value]="city.ctyId">
@@ -270,54 +258,17 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-1 text-left">
             <button mat-fab color="primary" data-toggle="modal" data-target="#cityModal"><span
                 class="fa fa-plus"></span></button>
           </div>
-        </div>
-        <!--end 4th row-->
-
-        <br />
-
-        <!--start 5th row-->
-        <div class="row">
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchEmail" placeholder="Email" required>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchPhone" placeholder="Phone" mask="000-0000000" [showMaskTyped]="true"
-                required>
+              <input matInput [(ngModel)]="branchWebsite" placeholder="Branch Website" required>
             </mat-form-field>
           </div>
         </div>
-        <!--end 5th row-->
-
-        <br />
-
-        <!--start 6th row-->
-        <div class="row">
-          <div class="col-md-4">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchMobile" placeholder="Mobile" mask="0000-0000000" [showMaskTyped]="true"
-                required>
-            </mat-form-field>
-          </div>
-          <div class="col-md-4">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchFax" placeholder="Fax" mask="000-0000000" [showMaskTyped]="true"
-                required>
-            </mat-form-field>
-          </div>
-          <div class="col-md-4">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchWebsite" placeholder="Website" required>
-            </mat-form-field>
-          </div>
-        </div>
-        <!--end 6th row-->
+        <!--end 3rd row-->
 
         <br />
 
@@ -398,7 +349,7 @@
 
                   <!--contact type text box-->
                   <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
-                    <p-dropdown [options]="contType" filter="true" [(ngModel)]="item.contactType"
+                    <p-dropdown [options]="contactType" filter="true" [(ngModel)]="item.contactType"
                       placeholder="Contact Type" (ngModelChange)="onContactChange($event, item)" required>
                       <ng-template let-itm pTemplate="item">
                         <div style="position: relative;height: 25px;">
@@ -467,7 +418,6 @@
             </div>
           </div>
 
-
           <!--Add more Contact button-->
           <div class="row">
             <div class="col-md-3">
@@ -530,7 +480,6 @@
 
             <!-- Contact Number Section Ends -->
 
-
           </div>
         </div>
 
@@ -559,12 +508,6 @@
         <!-- Button tag Row Ends -->
 
       </div>
-
-
-
-
-
-
 
       <!--start Modal footer -->
       <div class="modal-footer">
