@@ -47,7 +47,7 @@ export class SubsidiarieComponent implements OnInit {
     mobileNetworkCode = false;
     subsidiaryBox = true;
 
-    serverUrl = "http://localhost:55536/";
+    serverUrl = "http://localhost:42904/";
     tokenKey = "token";
 
     httpOptions = {
@@ -57,7 +57,7 @@ export class SubsidiarieComponent implements OnInit {
 
     // list for excel data
     excelDataList = [];
-  contactDetail = [];
+    contactDetail = [];
 
     //* variables for display values on page
 
@@ -566,6 +566,13 @@ export class SubsidiarieComponent implements OnInit {
             return false;
         }
         else {
+
+
+
+
+
+
+
             if (this.subsidiaryId != '') {
                 this.app.showSpinner();
                 this.app.hideSpinner();
@@ -595,22 +602,35 @@ export class SubsidiarieComponent implements OnInit {
                 this.app.showSpinner();
                 this.app.hideSpinner();
                 this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
-                this.clear();
-                return false;
+                //this.clear();
 
-                var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
 
-                var token = localStorage.getItem(this.tokenKey);
+                var saveData = {
+                    "subsidiaryTitle": this.subsidiaryTitle,
+                    "representator": this.representator,
+                    "ntn": this.ntn, "strn": this.strn,
+                    "website": this.website,
+                    "subsidiaryTypeId": this.cmbSubsidiaryType,
+                    "telephone": this.telephone,
+                    "mobile": this.mobile,
+                    "address": this.address,
+                    "email": this.email
+                };
 
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-                this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+                //var token = localStorage.getItem(this.tokenKey);
 
-                    if (data.msg != undefined) {
+                //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+                this.http.post(this.serverUrl + 'api/saveSubsidiary', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+                    if (data.msg != "Done") {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
                         return false;
                     } else {
-                        this.toastr.successToastr('Record saved Successfully', 'Success!', { toastTimeout: (2500) });
+                        this.toastr.successToastr('Record Saved Successfully', 'Success!', { toastTimeout: (2500) });
                         $('#actionModal').modal('hide');
                         return false;
                     }
