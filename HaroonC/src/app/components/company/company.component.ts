@@ -46,6 +46,35 @@ export interface Partner {
     date: Date;
     share: string;
     position: string;
+    addressList: adresList[];
+    contactList: cntctList[];
+    emailList: emailList[];
+
+}
+
+export interface adresList {
+    addressType: string;
+    address: string,
+    countryCode: string,
+    provinceCode: string,
+    districtCode: string,
+    cityCode: string
+}
+
+
+export interface cntctList {
+    contactType: string,
+    countryCode: string,
+    contactCode: string,
+    areaCode: boolean,
+    mobileCode: boolean,
+    contactNumber: string
+}
+
+
+export interface emailList {
+    type: string;
+    email: string;
 }
 
 @Component({
@@ -78,8 +107,14 @@ export class CompanyComponent implements OnInit {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
 
-    // list for excel data
+    // list variables -----------
     excelDataList = [];
+
+    countryListForAddress;
+    provinceList;
+    districtList;
+    cityList;
+
     //*--For Business--// 
     contactType;
     country;
@@ -236,6 +271,9 @@ export class CompanyComponent implements OnInit {
 
     //*----------------For Partner Ends---------------//
 
+
+
+
     //*----------------For Board of Directors Starts---------------//
     //contact Detail Board of Directors
     bdContactDetail = [
@@ -267,43 +305,54 @@ export class CompanyComponent implements OnInit {
 
     //*----------------For Board of Directors Ends---------------//
 
+
+
+
     //*----------------For Owner Starts---------------//
     //contact Detail Owner
     oContactDetail = [
         {
-            oContactType: "",
-            oCountryCode: "countryCode",
-            oContactCode: "",
-            oAreaCode: true,
-            oMobileCode: false,
-            oContactNumber: ""
+            contactType: "",
+            countryCode: "",
+            contactCode: "",
+            areaCode: true,
+            mobileCode: false,
+            contactNumber: ""
         }
     ];
 
     //address Detail Owner
     oAddressDetail = [
         {
-            oAddressType: "",
-            oAddress: ""
+            addressType: "",
+            address: "",
+            countryCode: "",
+            provinceCode: "",
+            districtCode: "",
+            cityCode: ""
         }
     ];
 
     //Emails Detail Owner
     oEmailDetail = [
         {
-            oType: "",
-            oEmail: ""
+            type: "",
+            email: ""
         }
     ];
 
     //*----------------For Owner Ends---------------//
+
+
+
+
 
     //*----------------For Business Starts---------------//
     //contact Detail Business
     contactDetail = [
         {
             contactType: "",
-            countryCode: "countryCode",
+            countryCode: "",
             contactCode: "",
             areaCode: true,
             mobileCode: false,
@@ -315,7 +364,11 @@ export class CompanyComponent implements OnInit {
     addressDetail = [
         {
             addressType: "",
-            address: ""
+            address: "",
+            countryCode: "",
+            provinceCode: "",
+            districtCode: "",
+            cityCode: ""
         }
     ];
 
@@ -444,7 +497,7 @@ export class CompanyComponent implements OnInit {
             { label: 'Mobile', value: 'Mobile' },
         ];
 
-        //Country Code
+        //Country Code for Mobiles
         this.country = [
             { label: "Pakistan +92", value: "+92" },
             { label: "Turkey +90", value: "+90" },
@@ -609,6 +662,44 @@ export class CompanyComponent implements OnInit {
 
     ngOnInit() {
 
+        //*countrys list for address
+        this.countryListForAddress = [
+            { label: "Pakistan +92", value: "+92" },
+            { label: "Turkey +90", value: "+90" },
+            { label: "US +1", value: "+1" }
+        ];
+
+        //*province List
+        this.provinceList = [
+            { label: "Balochistan", value: "7" },
+            { label: "Khyber Pakhtunkhwa", value: "2" },
+            { label: "Punjab", value: "6" },
+            { label: "Sindh", value: "8" }
+        ];
+
+        //*district List
+        this.districtList = [
+            { label: "Rawalpindi", value: "1" },
+            { label: "Lahore", value: "2" },
+            { label: "Peshawar", value: "3" },
+            { label: "Karachi", value: "4" },
+            { label: "Hyderabad", value: "5" },
+            { label: "Quetta", value: "6" }
+        ];
+
+        //*city List 
+        this.cityList = [
+            { label: "Rawalpindi", value: "1" },
+            { label: "Gujerkhan", value: "2" },
+            { label: "Kahuta", value: "6" },
+            { label: "Karachi", value: "8" },
+            { label: "Lahore", value: "8" },
+            { label: "Quetta", value: "8" },
+            { label: "Peshawar", value: "8" },
+            { label: "Merdan", value: "8" },
+            { label: "Noshera", value: "8" }
+        ];
+
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
@@ -622,8 +713,8 @@ export class CompanyComponent implements OnInit {
             this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        //*----- For Business ------//
 
+        //*----- For Business ------//
         else if (this.bNtn == '' || this.bNtn.length < 8) {
             this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
             return false;
@@ -666,7 +757,6 @@ export class CompanyComponent implements OnInit {
         }
 
         //*----- For Owner ------//
-
         else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
             this.toastr.errorToastr('Please enter owner CNIC', 'Error', { toastTimeout: (2500) });
             return false;
@@ -693,14 +783,12 @@ export class CompanyComponent implements OnInit {
         }
 
         //*----- For Partner ------//
-
         else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
             this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
             return false;
         }
 
         //*----- For Board of Directors ------//
-
         else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
             this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
             return false;
@@ -726,7 +814,7 @@ export class CompanyComponent implements OnInit {
             return false;
         }
         else if (this.ppCom == true && this.bdContactDetail.length == 0) {
-            this.toastr.errorToastr('Please Add BOD Contact Info Type', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please Add BOD Contact Info', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.ppCom == true && this.bdEmailDetail.length == 0) {
@@ -736,7 +824,7 @@ export class CompanyComponent implements OnInit {
 
         else {
 
-            //* For Business Info
+            //* For Business Info ****************************************************************
 
             // address type conditions
             if (this.addressDetail.length > 0) {
@@ -751,6 +839,8 @@ export class CompanyComponent implements OnInit {
                     }
                 }
             }
+
+
             // contact type conditions
             if (this.contactDetail.length > 0) {
                 for (let i = 0; i < this.contactDetail.length; i++) {
@@ -772,6 +862,8 @@ export class CompanyComponent implements OnInit {
                     }
                 }
             }
+
+
             // email type conditions
             if (this.emailDetail.length > 0) {
                 for (let i = 0; i < this.emailDetail.length; i++) {
@@ -790,16 +882,32 @@ export class CompanyComponent implements OnInit {
                 }
             }
 
-            //* For Owner Info
+            //* For Owner Info ***********************************************************************
             // address type conditions
             if (this.solePro == true && this.oAddressDetail.length > 0) {
                 for (let i = 0; i < this.oAddressDetail.length; i++) {
-                    if (this.oAddressDetail[i].oAddressType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Owner Address Type', 'Error', { toastTimeout: (2500) });
+                    if (this.oAddressDetail[i].addressType.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.oAddressDetail[i].oAddress.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Owner Address', 'Error', { toastTimeout: (2500) });
+                    else if (this.oAddressDetail[i].address.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].countryCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].provinceCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].districtCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].cityCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                 }
@@ -807,20 +915,20 @@ export class CompanyComponent implements OnInit {
             // contact type conditions
             if (this.solePro == true && this.oContactDetail.length > 0) {
                 for (let i = 0; i < this.oContactDetail.length; i++) {
-                    if (this.oContactDetail[i].oContactType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Owner Contact Type', 'Error', { toastTimeout: (2500) });
+                    if (this.oContactDetail[i].contactType.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.oContactDetail[i].oCountryCode.trim() == "countryCode") {
-                        this.toastr.errorToastr('Please Select Owner Country Code', 'Error', { toastTimeout: (2500) });
+                    else if (this.oContactDetail[i].countryCode.trim() == "countryCode") {
+                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.oContactDetail[i].oContactCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select Owner Contact Code', 'Error', { toastTimeout: (2500) });
+                    else if (this.oContactDetail[i].contactCode.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.oContactDetail[i].oContactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Owner Contact Number', 'Error', { toastTimeout: (2500) });
+                    else if (this.oContactDetail[i].contactNumber.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                 }
@@ -828,22 +936,23 @@ export class CompanyComponent implements OnInit {
             // email type conditions
             if (this.solePro == true && this.oEmailDetail.length > 0) {
                 for (let i = 0; i < this.oEmailDetail.length; i++) {
-                    if (this.oEmailDetail[i].oType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Owner Email Type', 'Error', { toastTimeout: (2500) });
+                    if (this.oEmailDetail[i].type.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.oEmailDetail[i].oEmail.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Owner Email', 'Error', { toastTimeout: (2500) });
+                    else if (this.oEmailDetail[i].email.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.isEmail(this.oEmailDetail[i].oEmail.trim()) == false) {
-                        this.toastr.errorToastr('Invalid Owner email', 'Error', { toastTimeout: (2500) });
+                    else if (this.isEmail(this.oEmailDetail[i].email.trim()) == false) {
+                        this.toastr.errorToastr('Invalid Owner email detail', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                 }
             }
 
-            //* For Board of Directors
+
+            //* For Board of Directors****************************************************************
             // address type conditions
             if (this.ppCom == true && this.bdAddressDetail.length > 0) {
                 for (let i = 0; i < this.bdAddressDetail.length; i++) {
@@ -857,6 +966,7 @@ export class CompanyComponent implements OnInit {
                     }
                 }
             }
+
             // contact type conditions
             if (this.ppCom == true && this.bdContactDetail.length > 0) {
                 for (let i = 0; i < this.bdContactDetail.length; i++) {
@@ -878,6 +988,7 @@ export class CompanyComponent implements OnInit {
                     }
                 }
             }
+
             // email type conditions
             if (this.ppCom == true && this.bdEmailDetail.length > 0) {
                 for (let i = 0; i < this.bdEmailDetail.length; i++) {
@@ -909,11 +1020,10 @@ export class CompanyComponent implements OnInit {
                     role: null,
                     date: null,
                     share: null,
-                    //telephone: this.sTelephoneNo,
-                    //mobile: this.sMobileNo,
-                    //email: this.sEmail,
-                    //address: this.sAddress,
-                    position: null
+                    position: null,
+                    addressList: this.oAddressDetail,
+                    contactList: this.oContactDetail,
+                    emailList: this.oEmailDetail
                 });
             }
             else if (this.cmbCType == "Public Limited Company" || this.cmbCType == "Private Limited Company") {
@@ -927,13 +1037,16 @@ export class CompanyComponent implements OnInit {
                     role: null,
                     date: null,
                     share: this.ppShare,
-                    //telephone: this.ppTelephone,
-                    //mobile: this.ppMobile,
-                    //email: this.ppEmail,
-                    //address: this.ppAddress,
-                    position: this.ppPosition
+                    position: this.ppPosition,
+                    addressList: this.oAddressDetail,
+                    contactList: this.oContactDetail,
+                    emailList: this.oEmailDetail
                 });
             }
+
+
+
+
             if (this.companyId != '') {
                 this.app.showSpinner();
                 this.toastr.successToastr('update successfully', 'Success', { toastTimeout: (2500) });
@@ -946,13 +1059,13 @@ export class CompanyComponent implements OnInit {
                 this.app.hideSpinner();
                 return false;
 
-                var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
+                var updateData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
 
                 var token = localStorage.getItem(this.tokenKey);
 
                 var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
 
-                this.http.put(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
@@ -970,22 +1083,31 @@ export class CompanyComponent implements OnInit {
             }
             else {
                 this.app.showSpinner();
-                // this.app.hideSpinner();
-                this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
-                //this.clear(this.companyId);
-                this.clear(1);
-                // this.clearPartner();
-                // this.clearBoardDirectors();
-                // this.clearOwner();
-                $('#companyModal').modal('hide');
-                this.app.hideSpinner();
-                return false;
 
-                var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
+                //$('#companyModal').modal('hide');
+                //this.app.hideSpinner();
+                //return false;
 
-                var token = localStorage.getItem(this.tokenKey);
+                var saveData = {
+                    "businessType": this.cmbCType,
+                    "nNtn": this.bNtn,
+                    "bStrn": this.bStrn,
+                    "title": this.bTitle,
+                    "nature": this.bNature,
+                    "description": this.bDescription,
+                    "website": this.bWebsite,
+                    "facebook": this.bFacebook,
+                    "bAddressList": this.addressDetail,
+                    "bContactList": this.contactDetail,
+                    "bEmailList": this.emailDetail,
+                    "partners": this.partners
+                };
 
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+                // var token = localStorage.getItem(this.tokenKey);
+
+                // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
                 this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
@@ -993,15 +1115,14 @@ export class CompanyComponent implements OnInit {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
                         return false;
                     } else {
-                        this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
+                        this.toastr.successToastr('Record Saved Successfully', 'Success!', { toastTimeout: (2500) });
                         $('#actionModal').modal('hide');
                         return false;
                     }
 
                 });
 
-                // this.toastr.successToastr('validation complete information', 'Success!', { toastTimeout: (2500) });
-                // return false;
+
             }
         }
     }
@@ -1120,14 +1241,13 @@ export class CompanyComponent implements OnInit {
                     cnic: this.pCnic,
                     ntn: this.pNtn,
                     name: this.pPartnerName,
-                    //telephone: this.pTelephone,
-                    //mobile: this.pMobile,
-                    //email: this.pEmail,
-                    //address: this.pAddress,
                     role: this.pPartnerRole,
                     date: new Date(this.pDate),
                     share: this.pShare,
-                    position: null
+                    position: null,
+                    addressList: null,
+                    contactList: null,
+                    emailList: null
                 });
 
                 this.clearPartner();
@@ -1188,28 +1308,32 @@ export class CompanyComponent implements OnInit {
         //contact Detail Owner
         this.oContactDetail = [
             {
-                oContactType: "",
-                oCountryCode: "countryCode",
-                oContactCode: "",
-                oAreaCode: true,
-                oMobileCode: false,
-                oContactNumber: ""
+                contactType: "",
+                countryCode: "countryCode",
+                contactCode: "",
+                areaCode: true,
+                mobileCode: false,
+                contactNumber: ""
             }
         ];
 
         //address Detail Owner
         this.oAddressDetail = [
             {
-                oAddressType: "",
-                oAddress: ""
+                addressType: "",
+                address: "",
+                countryCode: "",
+                provinceCode: "",
+                districtCode: "",
+                cityCode: ""
             }
         ];
 
         //Emails Detail Owner
         this.oEmailDetail = [
             {
-                oType: "",
-                oEmail: ""
+                type: "",
+                email: ""
             }
         ];
 
@@ -1310,7 +1434,11 @@ export class CompanyComponent implements OnInit {
             this.addressDetail = [
                 {
                     addressType: "",
-                    address: ""
+                    address: "",
+                    countryCode: "",
+                    provinceCode: "",
+                    districtCode: "",
+                    cityCode: ""
                 }
             ];
 
@@ -2131,12 +2259,12 @@ export class CompanyComponent implements OnInit {
     oAddContact() {
 
         this.oContactDetail.push({
-            oContactType: "",
-            oCountryCode: "countryCode",
-            oContactCode: "",
-            oAreaCode: true,
-            oMobileCode: false,
-            oContactNumber: ""
+            contactType: "",
+            countryCode: "countryCode",
+            contactCode: "",
+            areaCode: true,
+            mobileCode: false,
+            contactNumber: ""
         });
 
     }
@@ -2144,8 +2272,12 @@ export class CompanyComponent implements OnInit {
     oAddAddress() {
 
         this.oAddressDetail.push({
-            oAddressType: "",
-            oAddress: ""
+            addressType: "",
+            address: "",
+            countryCode: "",
+            provinceCode: "",
+            districtCode: "",
+            cityCode: ""
         });
 
     }
@@ -2153,8 +2285,8 @@ export class CompanyComponent implements OnInit {
     oAddEmail() {
 
         this.oEmailDetail.push({
-            oType: "",
-            oEmail: ""
+            type: "",
+            email: ""
         });
 
     }
@@ -2215,7 +2347,11 @@ export class CompanyComponent implements OnInit {
 
         this.addressDetail.push({
             addressType: "",
-            address: ""
+            address: "",
+            countryCode: "",
+            provinceCode: "",
+            districtCode: "",
+            cityCode: ""
         });
 
     }
