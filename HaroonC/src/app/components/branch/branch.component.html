@@ -249,19 +249,7 @@
 
         <!--start 3rd row-->
         <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="fullwidth">
-              <input matInput [(ngModel)]="branchAddress" placeholder="Address" required>
-            </mat-form-field>
-          </div>
-        </div>
-        <!--end 3rd row-->
-
-        <br />
-
-        <!--start 4th row-->
-        <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <mat-form-field class="fullwidth">
               <mat-select [(ngModel)]="branchCity" placeholder="City Name" required>
                 <mat-option *ngFor="  let city of cities" [value]="city.ctyId">
@@ -270,12 +258,17 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-1 text-left">
             <button mat-fab color="primary" data-toggle="modal" data-target="#cityModal"><span
                 class="fa fa-plus"></span></button>
           </div>
+          <div class="col-md-6">
+            <mat-form-field class="fullwidth">
+              <input matInput [(ngModel)]="branchWebsite" placeholder="Branch Website" required>
+            </mat-form-field>
+          </div>
         </div>
-        <!--end 4th row-->
+        <!--end 3rd row-->
 
         <br />
 
@@ -296,7 +289,7 @@
                   <!--address type combo box-->
                   <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
                     <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
-                      placeholder="Contact Type" required>
+                      placeholder="Address Type" required>
                       <ng-template let-itm pTemplate="item">
                         <div style="position: relative;height: 25px;">
                           <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
@@ -356,7 +349,7 @@
 
                   <!--contact type text box-->
                   <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
-                    <p-dropdown [options]="contType" filter="true" [(ngModel)]="item.contactType"
+                    <p-dropdown [options]="contactType" filter="true" [(ngModel)]="item.contactType"
                       placeholder="Contact Type" (ngModelChange)="onContactChange($event, item)" required>
                       <ng-template let-itm pTemplate="item">
                         <div style="position: relative;height: 25px;">

@@ -10,7 +10,7 @@
 <!-- start menubar buttons -->
 <div class="topnav boxShadow">
   <div class="container">
-    <a class="pointerCursor" data-toggle="modal" data-target="#companyModal" (click)="clear(companyId)">
+    <a class="pointerCursor" data-toggle="modal" data-target="#companyModal" (click)="clear(1)">
       <i class="fa fa-plus-square"></i>
       Add New
     </a>
@@ -305,144 +305,250 @@
                 </mat-form-field>
               </div>
             </div>
-            <!--end 3rd row-->
-            <br />
-            <!--start 4th row-->
-            <div class="row">
-              <div class="col-md-12">
-                <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Business Address" [(ngModel)]="bBusinessAddress" required>
-                </mat-form-field>
-              </div>
-            </div>
-            <!--end 4th row-->
-            <br />
-            <!--start 5th row-->
-            <div class="row">
-              <div class="col-md-12">
-                <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Mailing Address" [(ngModel)]="bMailingAddress" required>
-                </mat-form-field>
-              </div>
-            </div>
-            <!--end 5th row-->
-            <br />
-            <!--start 6th row-->
-            <div class="row">
-              <div class="col-md-6">
-                <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Telephone" [(ngModel)]="bTelephone" mask="000-0000000"
-                    [showMaskTyped]="true" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Mobile" [(ngModel)]="bMobile" mask="0000-0000000" [showMaskTyped]="true"
-                    required>
-                </mat-form-field>
-              </div>
-            </div>
-            <!--end 6th row-->
             <br />
             <!--start 7th row-->
             <div class="row">
               <div class="col-md-6">
                 <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Email" [(ngModel)]="bEmail" required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field class="fullwidth">
                   <input matInput placeholder="Website" [(ngModel)]="bWebsite" required>
                 </mat-form-field>
               </div>
-            </div>
-            <!--end 7th row-->
-            <br />
-            <!--start 8th row-->
-            <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <mat-form-field class="fullwidth">
                   <input matInput placeholder="Facebook ID" [(ngModel)]="bFacebook" required>
                 </mat-form-field>
               </div>
             </div>
-            <!--end 8th row-->
+            <!--end 7th row-->
             <br />
-            <div class="row">
-              <div class="col-md-12">
-                <h6>Contact Info</h6>
-              </div>
-            </div>
-            <!-- Let's Starts -->
-            <div [formGroup]="contactFormCompany">
-              <div formArrayName="company">
-                <div *ngFor="let company of companyValue.controls; let i=index" [formGroupName]="i">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <mat-form-field class="fullwidth">
-                        <mat-select formControlName="companyContactType" placeholder="Contact Type"
-                          (ngModelChange)="onChange($event)" required>
-                          <mat-option value="Fax">Fax</mat-option>
-                          <mat-option value="Telephone">Telephone</mat-option>
-                          <mat-option value="Mobile">Mobile</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-3">
-                      <mat-form-field class="fullwidth">
-                        <mat-select formControlName="companyCountryCode" placeholder="Country Code" required>
-                          <mat-option *ngFor="  let code of country" [value]="code.countryCode">
-                            {{ code.countryCode }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-2" *ngIf="areaCode">
-                      <mat-form-field class="fullwidth">
-                        <mat-select formControlName="companyAreaCode" placeholder="Area Code" required>
-                          <mat-option *ngFor="  let code of area" [value]="code.areaCode">
-                            {{ code.areaCode }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-2" *ngIf="mobileNetworkCode">
-                      <mat-form-field class="fullwidth">
-                        <mat-select formControlName="companyMobileNetworkCode" placeholder="Network Code" required>
-                          <mat-option *ngFor="  let code of network" [value]="code.networkCode">
-                            {{ code.networkCode }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                      <mat-form-field class="fullwidth">
-                        <input matInput formControlName="companyContactNumber" placeholder="Number" mask="0000000"
-                          [showMaskTyped]="true" required>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                      <button mat-fab color="warn" (click)="deleteCompany(i)">
-                        <span class="fa fa-minus"></span>
-                      </button>
-                    </div>
-                  </div>
+
+            <!-- *________________Start Add Address Detail_____________________ -->
+            <div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Address Info</h6>
                 </div>
               </div>
-              <br>
+
+              <div *ngFor="let item of addressDetail; let i=index">
+                <div class="row">
+                  <table>
+                    <tr>
+
+                      <!--address type combo box-->
+                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                        <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
+                          placeholder="Address Type" required>
+                          <ng-template let-itm pTemplate="item">
+                            <div style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+
+                      </td>
+
+                      <!--address text box-->
+                      <td>
+                        <!-- [showMaskTyped]="true" required -->
+                        <input class="" type="text" pInputText [(ngModel)]="item.address" placeholder="Address"
+                          style="width: 100%;">
+                      </td>
+
+                      <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                        <button mat-fab color="warn" (click)="removeAddress(i)">
+                          <span class="fa fa-minus"></span>
+                        </button>
+                      </td>
+
+
+                    </tr>
+                  </table>
+
+                </div>
+              </div>
+
+
+              <!--Add more Contact button-->
               <div class="row">
                 <div class="col-md-3">
-                  <button mat-fab *ngIf="companyBox" color="primary" (click)="addCompanyContact()">
+                  <button mat-fab *ngIf="companyBox" color="primary" (click)="addAddress()">
                     <span class="fa fa-plus"></span>
                   </button>
                 </div>
               </div>
               <br />
             </div>
-            <!-- Let's Ends -->
+            <!-- *________________End Add Address Detail_____________________ -->
+
+
+            <!-- *________________Start Add Contacts Detail_____________________ -->
+            <div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Contact Info</h6>
+                </div>
+              </div>
+
+              <div *ngFor="let item of contactDetail; let i=index">
+                <div class="row">
+                  <table bordre="1">
+                    <tr>
+
+                      <!--contact type text box-->
+                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                        <p-dropdown [options]="contactType" filter="true" [(ngModel)]="item.contactType"
+                          placeholder="Contact Type" (ngModelChange)="onContactChange($event, item)" required>
+                          <ng-template let-itm pTemplate="item">
+                            <div style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+
+                      </td>
+
+                      <!-- Country code combo box-->
+                      <td style="border: 0px solid red; width: 150px;">
+
+                        <p-dropdown [options]="country" filter="true" [(ngModel)]="item.countryCode"
+                          placeholder="Country Code" required>
+                          <ng-template let-code pTemplate="item">
+                            <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+
+                      </td>
+
+                      <!--Contact code combobox -->
+                      <td style="border: 0px solid red; width: 150px;" *ngIf="item.areaCode">
+                        <p-dropdown [options]="area" filter="true" [(ngModel)]="item.contactCode"
+                          placeholder="Area Code" required>
+                          <ng-template let-area pTemplate="item">
+                            <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px">{{area.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+                      </td>
+
+                      <td style="border: 0px solid red; width: 150px;" *ngIf="item.mobileCode">
+                        <p-dropdown [options]="network" filter="true" [(ngModel)]="item.contactCode"
+                          placeholder="Network Code" required>
+                          <ng-template let-code pTemplate="item">
+                            <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+                      </td>
+
+                      <!--number text box-->
+                      <td>
+                        <!-- [showMaskTyped]="true" required -->
+                        <input type="text" pInputText [(ngModel)]="item.contactNumber" placeholder="Number"
+                          mask="0000000" style="width: 100%">
+                      </td>
+
+                      <!--Remove button -->
+                      <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                        <button mat-fab color="warn" (click)="removeContact(i)">
+                          <span class="fa fa-minus"></span>
+                        </button>
+                      </td>
+
+                    </tr>
+                  </table>
+
+                </div>
+              </div>
+
+              <!--Add more Contact button-->
+              <div class="row">
+                <div class="col-md-3">
+                  <button mat-fab *ngIf="companyBox" color="primary" (click)="addContact()">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <br />
+            </div>
+            <!-- *________________End Add Contacts Detail_____________________ -->
+
+
+            <!-- *________________Start Add Email Detail_____________________ -->
+            <div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>Email Info</h6>
+                </div>
+              </div>
+
+
+              <div *ngFor="let item of emailDetail; let i=index">
+                <div class="row">
+                  <table>
+                    <tr>
+
+                      <!--address type combo box-->
+                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                        <p-dropdown [options]="emailType" filter="true" [(ngModel)]="item.type" placeholder="Email Type"
+                          required>
+                          <ng-template let-itm pTemplate="item">
+                            <div style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+
+                      </td>
+
+                      <!--address text box-->
+                      <td>
+                        <!-- [showMaskTyped]="true" required -->
+                        <input class="" type="text" pInputText [(ngModel)]="item.email" placeholder="Email"
+                          style="width: 100%;">
+                      </td>
+
+                      <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                        <button mat-fab color="warn" (click)="removeEmail(i)">
+                          <span class="fa fa-minus"></span>
+                        </button>
+                      </td>
+
+                    </tr>
+                  </table>
+
+                </div>
+                <!-- Contact Table Ends -->
+
+                <!-- Contact Number Section Ends -->
+
+              </div>
+            </div>
+
+
+            <!--Add more email button-->
+            <div class="row">
+              <div class="col-md-3">
+                <button mat-fab *ngIf="companyBox" color="primary" (click)="addEmail()">
+                  <span class="fa fa-plus"></span>
+                </button>
+              </div>
+            </div>
+            <!-- *________________End Add Email Detail_____________________ -->
+
+
+
             <br />
             <!--button tag-->
+            <!-- <button *ngIf="!btnStpr2" mat-raised-button color="primary" (click)="checkBusinessInfo()">Next</button>
+            <button *ngIf="btnStpr2" mat-raised-button color="primary" matStepperNext>Next</button> -->
             <button mat-raised-button color="primary" matStepperNext>Next</button>
             <!--end 3rd step form control div-->
           </mat-step>
@@ -488,116 +594,233 @@
                   </mat-form-field>
                 </div>
               </div>
-              <!--end 2nd row-->
+
               <br />
-              <!--start 3rd row-->
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Telephone" [(ngModel)]="sTelephoneNo" mask="000-0000000"
-                      [showMaskTyped]="true" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Mobile" [(ngModel)]="sMobileNo" mask="0000-0000000"
-                      [showMaskTyped]="true" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--end 3rd row-->
-              <br />
-              <!--start 4th row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Email" [(ngModel)]="sEmail" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--end 4th row-->
-              <br />
-              <!--start 5th row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Address" [(ngModel)]="sAddress" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--end 5th row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <h6>Contact Info</h6>
-                </div>
-              </div>
-              <!-- Let's Starts -->
-              <div [formGroup]="contactFormSole">
-                <div formArrayName="sole">
-                  <div *ngFor="let sole of soleValue.controls; let i=index" [formGroupName]="i">
-                    <div class="row">
-                      <div class="col-md-3">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="soleContactType" placeholder="Contact Type"
-                            (ngModelChange)="onChange($event)" required>
-                            <mat-option value="Fax">Fax</mat-option>
-                            <mat-option value="Telephone">Telephone</mat-option>
-                            <mat-option value="Mobile">Mobile</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-3">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="soleCountryCode" placeholder="Country Code" required>
-                            <mat-option *ngFor="  let code of country" [value]="code.countryCode">
-                              {{ code.countryCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2" *ngIf="areaCode">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="soleAreaCode" placeholder="Area Code" required>
-                            <mat-option *ngFor="  let code of area" [value]="code.areaCode">
-                              {{ code.areaCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2" *ngIf="mobileNetworkCode">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="soleMobileNetworkCode" placeholder="Network Code" required>
-                            <mat-option *ngFor="  let code of network" [value]="code.networkCode">
-                              {{ code.networkCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2">
-                        <mat-form-field class="fullwidth">
-                          <input matInput formControlName="soleContactNumber" placeholder="Number" mask="0000000"
-                            [showMaskTyped]="true" required>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2">
-                        <button mat-fab color="warn" (click)="deleteSole(i)">
-                          <span class="fa fa-minus"></span>
-                        </button>
-                      </div>
-                    </div>
+
+              <!-- *________________Start Add Address Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Address Info</h6>
                   </div>
                 </div>
-                <br>
+
+                <div *ngFor="let item of oAddressDetail; let i=index">
+                  <div class="row">
+                    <table>
+                      <tr>
+
+                        <!--address type combo box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="oAddressType" filter="true" [(ngModel)]="item.oAddressType"
+                            placeholder="Address Type" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--address text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input class="" type="text" pInputText [(ngModel)]="item.oAddress" placeholder="Address"
+                            style="width: 100%;">
+                        </td>
+
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="oRemoveAddress(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+
+                      </tr>
+                    </table>
+
+                  </div>
+                </div>
+
+
+                <!--Add more Contact button-->
                 <div class="row">
                   <div class="col-md-3">
-                    <button mat-fab *ngIf="soleBox" color="primary" (click)="addSoleContact()">
+                    <button mat-fab *ngIf="companyBox" color="primary" (click)="oAddAddress()">
                       <span class="fa fa-plus"></span>
                     </button>
                   </div>
                 </div>
                 <br />
               </div>
-              <!-- Let's Ends -->
+              <!-- *________________End Add Address Detail_____________________ -->
+
+
+              <!-- *________________Start Add Contacts Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Contact Info</h6>
+                  </div>
+                </div>
+
+                <div *ngFor="let item of oContactDetail; let i=index">
+                  <div class="row">
+                    <table bordre="1">
+                      <tr>
+
+                        <!--contact type text box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="oContactType" filter="true" [(ngModel)]="item.oContactType"
+                            placeholder="Contact Type" (ngModelChange)="owOnContactChange($event, item)" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!-- Country code combo box-->
+                        <td style="border: 0px solid red; width: 150px;">
+
+                          <p-dropdown [options]="oCountry" filter="true" [(ngModel)]="item.oCountryCode"
+                            placeholder="Country Code" required>
+                            <ng-template let-code pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--Contact code combobox -->
+                        <td style="border: 0px solid red; width: 150px;" *ngIf="item.oAreaCode">
+                          <p-dropdown [options]="area" filter="true" [(ngModel)]="item.oContactCode"
+                            placeholder="Area Code" required>
+                            <ng-template let-area pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{area.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+
+                        <td style="border: 0px solid red; width: 150px;" *ngIf="item.oMobileCode">
+                          <p-dropdown [options]="network" filter="true" [(ngModel)]="item.oContactCode"
+                            placeholder="Network Code" required>
+                            <ng-template let-code pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+
+                        <!--number text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input type="text" pInputText [(ngModel)]="item.oContactNumber" placeholder="Number"
+                            mask="0000000" style="width: 100%">
+                        </td>
+
+                        <!--Remove button -->
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="oRemoveContact(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+
+                      </tr>
+                    </table>
+
+                  </div>
+                </div>
+
+                <!--Add more Contact button-->
+                <div class="row">
+                  <div class="col-md-3">
+                    <button mat-fab *ngIf="companyBox" color="primary" (click)="oAddContact()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <!-- *________________End Add Contacts Detail_____________________ -->
+
+
+              <!-- *________________Start Add Email Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Email Info</h6>
+                  </div>
+                </div>
+
+
+                <div *ngFor="let item of oEmailDetail; let i=index">
+                  <div class="row">
+                    <table>
+                      <tr>
+
+                        <!--address type combo box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="oEmailType" filter="true" [(ngModel)]="item.oType"
+                            placeholder="Email Type" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--address text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input class="" type="text" pInputText [(ngModel)]="item.oEmail" placeholder="Email"
+                            style="width: 100%;">
+                        </td>
+
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="oRemoveEmail(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+                      </tr>
+                    </table>
+
+                  </div>
+                  <!-- Contact Table Ends -->
+
+                  <!-- Contact Number Section Ends -->
+
+                </div>
+              </div>
+
+
+              <!--Add more email button-->
+              <div class="row">
+                <div class="col-md-3">
+                  <button mat-fab *ngIf="companyBox" color="primary" (click)="oAddEmail()">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <!-- *________________End Add Email Detail_____________________ -->
+
+
+
               <br />
             </div>
             <!--end sole proprietorship div-->
@@ -627,9 +850,17 @@
               <br />
               <!--start 2nd row-->
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <mat-form-field class="fullwidth">
                     <input matInput placeholder="Partner Name" [(ngModel)]="pPartnerName" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="fullwidth">
+                    <mat-select placeholder="Partner Role" [(ngModel)]="pPartnerRole" required>
+                      <mat-option value="Sleeping Partner">Sleeping Partner</mat-option>
+                      <mat-option value="Active Partner">Active Partner</mat-option>
+                    </mat-select>
                   </mat-form-field>
                 </div>
               </div>
@@ -639,10 +870,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="fullwidth">
-                    <mat-select placeholder="Partner Role" [(ngModel)]="pPartnerRole" required>
-                      <mat-option value="Sleeping Partner">Sleeping Partner</mat-option>
-                      <mat-option value="Active Partner">Active Partner</mat-option>
-                    </mat-select>
+                    <input matInput placeholder="Share" [(ngModel)]="pShare" required>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
@@ -655,47 +883,231 @@
               </div>
               <!--end 3rd row-->
               <br />
-              <!--start 4th row-->
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Share" [(ngModel)]="pShare" required>
-                  </mat-form-field>
+
+
+              <!-- *________________Start Add Address Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Address Info</h6>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Telephone" [(ngModel)]="pTelephone" mask="000-0000000"
-                      [showMaskTyped]="true" required>
-                  </mat-form-field>
+
+                <div *ngFor="let item of pAddressDetail; let i=index">
+                  <div class="row">
+                    <table>
+                      <tr>
+
+                        <!--address type combo box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="pAddressType" filter="true" [(ngModel)]="item.pAddressType"
+                            placeholder="Address Type" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--address text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input class="" type="text" pInputText [(ngModel)]="item.pAddress" placeholder="Address"
+                            style="width: 100%;">
+                        </td>
+
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="pRemoveAddress(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+
+                      </tr>
+                    </table>
+
+                  </div>
+                </div>
+
+
+                <!--Add more Contact button-->
+                <div class="row">
+                  <div class="col-md-3">
+                    <button mat-fab *ngIf="companyBox" color="primary" (click)="pAddAddress()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <!-- *________________End Add Address Detail_____________________ -->
+
+
+              <!-- *________________Start Add Contacts Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Contact Info</h6>
+                  </div>
+                </div>
+
+                <div *ngFor="let item of pContactDetail; let i=index">
+                  <div class="row">
+                    <table bordre="1">
+                      <tr>
+
+                        <!--contact type text box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="pContactType" filter="true" [(ngModel)]="item.pContactType"
+                            placeholder="Contact Type" (ngModelChange)="pOnContactChange($event, item)" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!-- Country code combo box-->
+                        <td style="border: 0px solid red; width: 150px;">
+
+                          <p-dropdown [options]="pCountry" filter="true" [(ngModel)]="item.pCountryCode"
+                            placeholder="Country Code" required>
+                            <ng-template let-code pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--Contact code combobox -->
+                        <td style="border: 0px solid red; width: 150px;" *ngIf="item.pAreaCode">
+                          <p-dropdown [options]="pArea" filter="true" [(ngModel)]="item.pContactCode"
+                            placeholder="Area Code" required>
+                            <ng-template let-area pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{area.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+
+                        <td style="border: 0px solid red; width: 150px;" *ngIf="item.pMobileCode">
+                          <p-dropdown [options]="pNetwork" filter="true" [(ngModel)]="item.pContactCode"
+                            placeholder="Network Code" required>
+                            <ng-template let-code pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+
+                        <!--number text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input type="text" pInputText [(ngModel)]="item.pContactNumber" placeholder="Number"
+                            mask="0000000" style="width: 100%">
+                        </td>
+
+                        <!--Remove button -->
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="pRemoveContact(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+
+                      </tr>
+                    </table>
+
+                  </div>
+                </div>
+
+                <!--Add more Contact button-->
+                <div class="row">
+                  <div class="col-md-3">
+                    <button mat-fab *ngIf="companyBox" color="primary" (click)="pAddContact()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <!-- *________________End Add Contacts Detail_____________________ -->
+
+
+              <!-- *________________Start Add Email Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Email Info</h6>
+                  </div>
+                </div>
+
+
+                <div *ngFor="let item of pEmailDetail; let i=index">
+                  <div class="row">
+                    <table>
+                      <tr>
+
+                        <!--address type combo box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="pEmailType" filter="true" [(ngModel)]="item.pType"
+                            placeholder="Email Type" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--address text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input class="" type="text" pInputText [(ngModel)]="item.pEmail" placeholder="Email"
+                            style="width: 100%;">
+                        </td>
+
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="pRemoveEmail(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+                      </tr>
+                    </table>
+
+                  </div>
+                  <!-- Contact Table Ends -->
+
+                  <!-- Contact Number Section Ends -->
+
                 </div>
               </div>
-              <!--end 4th row-->
-              <br />
-              <!--start 5th row-->
+
+
+              <!--Add more email button-->
               <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Mobile" [(ngModel)]="pMobile" mask="0000-0000000"
-                      [showMaskTyped]="true" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Email" [(ngModel)]="pEmail" required>
-                  </mat-form-field>
+                <div class="col-md-3">
+                  <button mat-fab *ngIf="companyBox" color="primary" (click)="pAddEmail()">
+                    <span class="fa fa-plus"></span>
+                  </button>
                 </div>
               </div>
-              <!--end 5th row-->
-              <br />
-              <!--start 6th row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Address" [(ngModel)]="pAddress" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--end 6th row-->
+              <!-- *________________End Add Email Detail_____________________ -->
+
+
               <br />
               <!--start 7th button row-->
               <div class="row">
@@ -731,79 +1143,6 @@
                 </div>
               </div>
               <!--end table row with container-->
-              <br />
-              <div class="row">
-                <div class="col-md-12">
-                  <h6>Contact Info</h6>
-                </div>
-              </div>
-              <!-- Let's Starts -->
-              <div [formGroup]="contactFormPartner">
-                <div formArrayName="partnerCon">
-                  <div *ngFor="let partner of partnerValue.controls; let i=index" [formGroupName]="i">
-                    <div class="row">
-                      <div class="col-md-3">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="partnerContactType" placeholder="Contact Type"
-                            (ngModelChange)="onChange($event)" required>
-                            <mat-option value="Fax">Fax</mat-option>
-                            <mat-option value="Telephone">Telephone</mat-option>
-                            <mat-option value="Mobile">Mobile</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-3">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="partnerCountryCode" placeholder="Country Code" required>
-                            <mat-option *ngFor="  let code of country" [value]="code.countryCode">
-                              {{ code.countryCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2" *ngIf="areaCode">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="partnerAreaCode" placeholder="Area Code" required>
-                            <mat-option *ngFor="  let code of area" [value]="code.areaCode">
-                              {{ code.areaCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2" *ngIf="mobileNetworkCode">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="partnerMobileNetworkCode" placeholder="Network Code" required>
-                            <mat-option *ngFor="  let code of network" [value]="code.networkCode">
-                              {{ code.networkCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2">
-                        <mat-form-field class="fullwidth">
-                          <input matInput formControlName="partnerContactNumber" placeholder="Number" mask="0000000"
-                            [showMaskTyped]="true" required>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2">
-                        <button mat-fab color="warn" (click)="deletePartner(i)">
-                          <span class="fa fa-minus"></span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col-md-3">
-                    <button mat-fab *ngIf="partnerBox" color="primary" (click)="addPartnerContact()">
-                      <span class="fa fa-plus"></span>
-                    </button>
-                  </div>
-                </div>
-                <br />
-              </div>
-              <!-- Let's Ends -->
               <br />
             </div>
             <!--end partnership div-->
@@ -843,7 +1182,7 @@
               <br />
               <!--start 3rd row-->
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <mat-form-field class="fullwidth">
                     <mat-select placeholder="Position" [(ngModel)]="ppPosition" required>
                       <mat-option value="CEO">Chief Executive Officer</mat-option>
@@ -853,122 +1192,237 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
-              </div>
-              <!--end 3rd row-->
-              <br />
-              <!--start 4th row-->
-              <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="fullwidth">
                     <input matInput placeholder="Share" [(ngModel)]="ppShare" required>
                   </mat-form-field>
                 </div>
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Telephone" [(ngModel)]="ppTelephone" mask="000-0000000"
-                      [showMaskTyped]="true" required>
-                  </mat-form-field>
-                </div>
               </div>
-              <!--end 4th row-->
+              <!--end 3rd row-->
               <br />
-              <!--start 5th row-->
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Mobile" [(ngModel)]="ppMobile" mask="0000-0000000"
-                      [showMaskTyped]="true" required>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Email" [(ngModel)]="ppEmail" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--end 5th row-->
-              <br />
-              <!--start 6th row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="fullwidth">
-                    <input matInput placeholder="Address" [(ngModel)]="ppAddress" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--end 6th row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <h6>Contact Info</h6>
-                </div>
-              </div>
-              <!-- Let's Starts -->
-              <div [formGroup]="contactFormPPCom">
-                <div formArrayName="ppCom">
-                  <div *ngFor="let ppCom of ppComValue.controls; let i=index" [formGroupName]="i">
-                    <div class="row">
-                      <div class="col-md-3">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="ppComContactType" placeholder="Contact Type"
-                            (ngModelChange)="onChange($event)" required>
-                            <mat-option value="Fax">Fax</mat-option>
-                            <mat-option value="Telephone">Telephone</mat-option>
-                            <mat-option value="Mobile">Mobile</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-3">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="ppComCountryCode" placeholder="Country Code" required>
-                            <mat-option *ngFor="  let code of country" [value]="code.countryCode">
-                              {{ code.countryCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2" *ngIf="areaCode">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="ppComAreaCode" placeholder="Area Code" required>
-                            <mat-option *ngFor="  let code of area" [value]="code.areaCode">
-                              {{ code.areaCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2" *ngIf="mobileNetworkCode">
-                        <mat-form-field class="fullwidth">
-                          <mat-select formControlName="ppComMobileNetworkCode" placeholder="Network Code" required>
-                            <mat-option *ngFor="  let code of network" [value]="code.networkCode">
-                              {{ code.networkCode }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2">
-                        <mat-form-field class="fullwidth">
-                          <input matInput formControlName="ppComContactNumber" placeholder="Number" mask="0000000"
-                            [showMaskTyped]="true" required>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-2">
-                        <button mat-fab color="warn" (click)="deletePPCom(i)">
-                          <span class="fa fa-minus"></span>
-                        </button>
-                      </div>
-                    </div>
+
+              <!-- *________________Start Add Address Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Address Info</h6>
                   </div>
                 </div>
-                <br>
+
+                <div *ngFor="let item of bdAddressDetail; let i=index">
+                  <div class="row">
+                    <table>
+                      <tr>
+
+                        <!--address type combo box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="bdAddressType" filter="true" [(ngModel)]="item.bdAddressType"
+                            placeholder="Address Type" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--address text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input class="" type="text" pInputText [(ngModel)]="item.bdAddress" placeholder="Address"
+                            style="width: 100%;">
+                        </td>
+
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="bdRemoveAddress(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+
+                      </tr>
+                    </table>
+
+                  </div>
+                </div>
+
+
+                <!--Add more Contact button-->
                 <div class="row">
                   <div class="col-md-3">
-                    <button mat-fab *ngIf="ppComBox" color="primary" (click)="addPPComContact()">
+                    <button mat-fab *ngIf="companyBox" color="primary" (click)="bdAddAddress()">
                       <span class="fa fa-plus"></span>
                     </button>
                   </div>
                 </div>
                 <br />
               </div>
-              <!-- Let's Ends -->
+              <!-- *________________End Add Address Detail_____________________ -->
+
+
+              <!-- *________________Start Add Contacts Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Contact Info</h6>
+                  </div>
+                </div>
+
+                <div *ngFor="let item of bdContactDetail; let i=index">
+                  <div class="row">
+                    <table bordre="1">
+                      <tr>
+
+                        <!--contact type text box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="bdContactType" filter="true" [(ngModel)]="item.bdContactType"
+                            placeholder="Contact Type" (ngModelChange)="bdOnContactChange($event, item)" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!-- Country code combo box-->
+                        <td style="border: 0px solid red; width: 150px;">
+
+                          <p-dropdown [options]="bdCountry" filter="true" [(ngModel)]="item.bdCountryCode"
+                            placeholder="Country Code" required>
+                            <ng-template let-code pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--Contact code combobox -->
+                        <td style="border: 0px solid red; width: 150px;" *ngIf="item.bdAreaCode">
+                          <p-dropdown [options]="area" filter="true" [(ngModel)]="item.bdContactCode"
+                            placeholder="Area Code" required>
+                            <ng-template let-area pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{area.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+
+                        <td style="border: 0px solid red; width: 150px;" *ngIf="item.bdMobileCode">
+                          <p-dropdown [options]="network" filter="true" [(ngModel)]="item.bdContactCode"
+                            placeholder="Network Code" required>
+                            <ng-template let-code pTemplate="item">
+                              <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px">{{code.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        </td>
+
+                        <!--number text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input type="text" pInputText [(ngModel)]="item.bdContactNumber" placeholder="Number"
+                            mask="0000000" style="width: 100%">
+                        </td>
+
+                        <!--Remove button -->
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="bdRemoveContact(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+
+                      </tr>
+                    </table>
+
+                  </div>
+                </div>
+
+                <!--Add more Contact button-->
+                <div class="row">
+                  <div class="col-md-3">
+                    <button mat-fab *ngIf="companyBox" color="primary" (click)="bdAddContact()">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <!-- *________________End Add Contacts Detail_____________________ -->
+
+
+              <!-- *________________Start Add Email Detail_____________________ -->
+              <div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6>Email Info</h6>
+                  </div>
+                </div>
+
+
+                <div *ngFor="let item of bdEmailDetail; let i=index">
+                  <div class="row">
+                    <table>
+                      <tr>
+
+                        <!--address type combo box-->
+                        <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                          <p-dropdown [options]="bdEmailType" filter="true" [(ngModel)]="item.bdType"
+                            placeholder="Email Type" required>
+                            <ng-template let-itm pTemplate="item">
+                              <div style="position: relative;height: 25px;">
+                                <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+
+                        </td>
+
+                        <!--address text box-->
+                        <td>
+                          <!-- [showMaskTyped]="true" required -->
+                          <input class="" type="text" pInputText [(ngModel)]="item.bdEmail" placeholder="Email"
+                            style="width: 100%;">
+                        </td>
+
+                        <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">
+                          <button mat-fab color="warn" (click)="bdRemoveEmail(i)">
+                            <span class="fa fa-minus"></span>
+                          </button>
+                        </td>
+
+                      </tr>
+                    </table>
+
+                  </div>
+                  <!-- Contact Table Ends -->
+
+                  <!-- Contact Number Section Ends -->
+
+                </div>
+              </div>
+
+
+              <!--Add more email button-->
+              <div class="row">
+                <div class="col-md-3">
+                  <button mat-fab *ngIf="companyBox" color="primary" (click)="bdAddEmail()">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </div>
+              </div>
+              <!-- *________________End Add Email Detail_____________________ -->
+
               <br />
             </div>
             <!--end Public/Private Limited Company div-->
@@ -999,8 +1453,6 @@
   </div>
 </div>
 <!-- End Add Company Modal Window  -->
-
-
 
 
 <!-- Start Modal Window to delete Payemnt voucher data -->
