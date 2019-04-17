@@ -438,7 +438,7 @@ export class DepartmentComponent implements OnInit {
 
   // edit function
   edit(item) {
-    alert("Edit OK - " + item.departmentId + "-" + item.departmentName + "-" + String(item.branchId));
+    //alert("Edit OK - " + item.departmentId + "-" + item.departmentName + "-" + String(item.branchId));
 
     this.deptId = item.departmentId;
     this.deptName = item.departmentName;
@@ -446,11 +446,20 @@ export class DepartmentComponent implements OnInit {
 
   }
 
+  editDept(item) {
+    this.departId = item.departmentId;
+    this.departName = item.departmentName;
+  }
+
 
   // get the "id" of the delete entry 
   deleteTemp(item) {
     this.clear();
     this.dDepartmentId = item.departmentsDataId;
+  }
+  deleteDept(item) {
+    this.clear();
+    this.dDepartmentId = item.departmentId;
   }
 
 

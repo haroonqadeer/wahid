@@ -280,6 +280,57 @@
         <br />
         <!--button tag-->
         <button mat-raised-button color="primary" (click)="saveDept()">Save</button>
+
+        <br /><br />
+
+        <div class="row">
+          <table class="table table-striped">
+            <thead>
+              <tr class="d-flex">
+                <th class="col-2 text-center">Sr. #</th>
+                <th [class.active]="order === 'departmentName'" (click)="setOrder('departmentName')"
+                  class="col-6 text-left">
+                  Department Name
+                  <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
+                  <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
+                </th>
+                <th class="col-4 text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="d-flex"
+                *ngFor="let dept of departments | search:'departmentName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+                <td class="col-2 text-center">{{dept.departmentId}}</td>
+                <td class="col-6 text-left">{{dept.departmentName}}</td>
+                <td class="col-2 text-right"><span data-toggle="modal" class="pointerCursor fa fa-edit text-primary"
+                    (click)="editDept(dept)"></span></td>
+                <td class="col-2 text-left"><span data-toggle="modal" data-target="#deleteModal"
+                    class="pointerCursor fa fa-trash text-danger" (click)="deleteDept(dept)"></span></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Pagination Starts -->
+          <div class="col-md-7">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+          <div class="col-md-5 text-right">
+            <mat-form-field class="fullwidth pagenateList">
+              <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+                <mat-option value="10">10</mat-option>
+                <mat-option value="15">15</mat-option>
+                <mat-option value="20">20</mat-option>
+                <mat-option value="25">25</mat-option>
+                <mat-option value="30">30</mat-option>
+                <mat-option value="35">35</mat-option>
+                <mat-option value="40">40</mat-option>
+                <mat-option value="45">45</mat-option>
+                <mat-option value="50">50</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- Pagination Ends -->
+        </div>
+
       </div>
       <!--end Modal body -->
 

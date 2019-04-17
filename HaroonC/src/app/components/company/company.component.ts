@@ -641,11 +641,11 @@ export class CompanyComponent implements OnInit {
             return false;
         }
         else if (this.bDescription == '') {
-            this.toastr.errorToastr('Please enter description', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please enter business description', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.bWebsite == '') {
-            this.toastr.errorToastr('Please enter website', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please enter business website', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.bFacebook == '') {
@@ -1011,11 +1011,11 @@ export class CompanyComponent implements OnInit {
     addPartner() {
         //return false;
         if (this.pCnic == '' || this.pCnic.length < 13) {
-            this.toastr.errorToastr('Please enter CNIC', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please enter partner CNIC', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.pNtn == '' || this.pNtn.length < 8) {
-            this.toastr.errorToastr('Please enter NTN', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please enter partner NTN', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.pPartnerName == '') {
@@ -1027,26 +1027,26 @@ export class CompanyComponent implements OnInit {
             return false;
         }
         else if (this.pDate == '') {
-            this.toastr.errorToastr('Please enter date', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please enter partner date', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else if (this.pShare == '') {
-            this.toastr.errorToastr('Please enter share', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please enter partner share', 'Error', { toastTimeout: (2500) });
             return false;
         }
         // address type conditions
         else if (this.pAddressDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Address Info', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please Add partner Address Info', 'Error', { toastTimeout: (2500) });
             return false;
         }
         // contact type conditions
         else if (this.pContactDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Contact Info Type', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please Add partner Contact Info Type', 'Error', { toastTimeout: (2500) });
             return false;
         }
         // email type conditions
         else if (this.pEmailDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Email Info', 'Error', { toastTimeout: (2500) });
+            this.toastr.errorToastr('Please Add partner Email Info', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else {
@@ -1055,11 +1055,11 @@ export class CompanyComponent implements OnInit {
             if (this.pAddressDetail.length > 0) {
                 for (let i = 0; i < this.pAddressDetail.length; i++) {
                     if (this.pAddressDetail[i].pAddressType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Select partner Address Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                     else if (this.pAddressDetail[i].pAddress.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Enter partner Address', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                 }
@@ -1068,19 +1068,19 @@ export class CompanyComponent implements OnInit {
             if (this.pContactDetail.length > 0) {
                 for (let i = 0; i < this.pContactDetail.length; i++) {
                     if (this.pContactDetail[i].pContactType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Select partner Contact Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                     else if (this.pContactDetail[i].pCountryCode.trim() == "countryCode") {
-                        this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Select partner Country Code', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                     else if (this.pContactDetail[i].pContactCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select Contact Code', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Select partner Contact Code', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                     else if (this.pContactDetail[i].pContactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Enter partner Contact Number', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                 }
@@ -1089,15 +1089,15 @@ export class CompanyComponent implements OnInit {
             if (this.pEmailDetail.length > 0) {
                 for (let i = 0; i < this.pEmailDetail.length; i++) {
                     if (this.pEmailDetail[i].pType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Select partner Email Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                     else if (this.pEmailDetail[i].pEmail.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Please Enter partner Email', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                     else if (this.isEmail(this.pEmailDetail[i].pEmail.trim()) == false) {
-                        this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
+                        this.toastr.errorToastr('Invalid partner email', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                 }

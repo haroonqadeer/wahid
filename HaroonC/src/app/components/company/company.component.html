@@ -36,19 +36,6 @@
 
 <br>
 
-<!--start buttons row-->
-<!-- <div class="row">
-  <div class="col-md-6">
-    <button mat-raised-button color="warn">Print</button>
-  </div>
-  <div class="col-md-6 text-right">
-    <button mat-raised-button color="primary" data-toggle="modal" data-target="#companyModal" (click)="clear(companyId)">Add
-      New</button>
-  </div>
-</div> -->
-<!--end buttons row-->
-<br>
-
 <!-- Start Company Profile Table Container -->
 <div class="container ">
   <br>
@@ -257,7 +244,7 @@
 
 
           <!--start 2nd Step -->
-          <mat-step optional>
+          <mat-step>
             <!--stepper 3rd label-->
             <ng-template matStepLabel><b>Step-02</b></ng-template>
             <!--start 3rd step form control div-->
@@ -362,8 +349,56 @@
                         </button>
                       </td>
 
-
                     </tr>
+
+                    <!-- Country Province City District -->
+                    <tr>
+                      <!-- Country -->
+                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                        <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
+                          placeholder="Select Country" required>
+                          <ng-template let-itm pTemplate="item">
+                            <div style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+                      </td>
+                      <!-- Province -->
+                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                        <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
+                          placeholder="Select Province" required>
+                          <ng-template let-itm pTemplate="item">
+                            <div style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+                      </td>
+                      <!-- City -->
+                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                        <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
+                          placeholder="Select City" required>
+                          <ng-template let-itm pTemplate="item">
+                            <div style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+                      </td>
+                      <!-- District -->
+                      <td style="border: 0px solid red; padding:0 15px 0 15px; width: 200px;">
+                        <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
+                          placeholder="Select District" required>
+                          <ng-template let-itm pTemplate="item">
+                            <div style="position: relative;height: 25px;">
+                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
+                            </div>
+                          </ng-template>
+                        </p-dropdown>
+                      </td>
+                    </tr>
+
                   </table>
 
                 </div>
@@ -556,7 +591,7 @@
 
 
           <!--start 3rd Step -->
-          <mat-step optional>
+          <mat-step>
             <!--stepper 2nd label-->
             <ng-template matStepLabel><b>Step-03</b></ng-template>
             <!--start 2nd step form control div-->
