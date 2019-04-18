@@ -233,10 +233,9 @@ export class CompanyComponent implements OnInit {
 
     //* Type combo box  (Business types)
     types = [
-        { TId: '1', TName: 'Sole Proprietorship' },
-        { TId: '2', TName: 'Partnership' },
-        { TId: '3', TName: 'Public Limited Company' },
-        { TId: '4', TName: 'Private Limited Company' }
+        { BusinessTypeCd: 1, BusinessTypeName: 'Sole Proprietorship' },
+        { BusinessTypeCd: 2, BusinessTypeName: 'Partnership' },
+        { BusinessTypeCd: 3, BusinessTypeName: 'Public Company' },
     ];
 
 
@@ -1114,7 +1113,7 @@ export class CompanyComponent implements OnInit {
                 var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
                 // this.http.post(this.serverUrl + 'api/saveCompany', saveData, { headers: reqHeader }).subscribe((data: any) => {
-                this.http.post(this.serverUrl + 'api/saveCompany', { address: JSON.stringify(this.addressDetail), telephone: JSON.stringify(this.contactDetail)}, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.post(this.serverUrl + 'api/saveCompany', { address: JSON.stringify(this.addressDetail), telephone: JSON.stringify(this.contactDetail) }, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
@@ -1725,17 +1724,17 @@ export class CompanyComponent implements OnInit {
             this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        else if (this.cmbCType == 'Sole Proprietorship') {
+        else if (this.cmbCType == '1') {
             this.solePro = true;
             this.partner = false;
             this.ppCom = false;
         }
-        else if (this.cmbCType == 'Partnership') {
+        else if (this.cmbCType == '2') {
             this.partner = true;
             this.solePro = false;
             this.ppCom = false;
         }
-        else if (this.cmbCType == 'Public Limited Company' || this.cmbCType == 'Private Limited Company') {
+        else if (this.cmbCType == '3') {
             this.ppCom = true;
             this.partner = false;
             this.solePro = false;
