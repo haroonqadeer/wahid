@@ -44,7 +44,7 @@ export class CurrencyComponent implements OnInit {
     };
 
 
-    serverUrl = "http://localhost:55536/";
+    serverUrl = "https://localhost:7008/";
     tokenKey = "token";
 
     httpOptions = {
@@ -76,31 +76,31 @@ export class CurrencyComponent implements OnInit {
 
     //*List Variables
     currencies = [
-        { currencyId: '1', currencyName: 'Rupee', countryName: 'Pakistan' },
-        { currencyId: '2', currencyName: 'Doller', countryName: 'America' },
-        { currencyId: '3', currencyName: 'Pound', countryName: 'England' },
-        { currencyId: '4', currencyName: 'Euro', countryName: 'Austria' },
-        { currencyId: '5', currencyName: 'Ngultrum', countryName: 'Bhutan' },
-        { currencyId: '6', currencyName: 'Boliviano', countryName: 'Bolivia' },
-        { currencyId: '7', currencyName: 'Pula', countryName: 'Botswana' },
-        { currencyId: '8', currencyName: 'Lev', countryName: 'Bulgaria' },
-        { currencyId: '9', currencyName: 'Franc', countryName: 'Burundi' },
-        { currencyId: '10', currencyName: 'Escudo', countryName: 'Cabo Verde' },
-        { currencyId: '11', currencyName: 'Riel', countryName: 'Cambodia' },
-        { currencyId: '12', currencyName: 'Peso', countryName: 'Chile' },
-        { currencyId: '13', currencyName: 'Yuan Renminbi', countryName: 'China' },
-        { currencyId: '14', currencyName: 'Colon', countryName: 'Costa Rica' },
-        { currencyId: '15', currencyName: 'Kuna', countryName: 'Croatia' },
-        { currencyId: '16', currencyName: 'Nakfa', countryName: 'Eritrea' },
-        { currencyId: '17', currencyName: 'Birr', countryName: 'Ethiopia' },
-        { currencyId: '18', currencyName: 'Cedi', countryName: 'Ghana' },
-        { currencyId: '19', currencyName: 'Quetzal', countryName: 'Guatemala' },
-        { currencyId: '20', currencyName: 'Gourde', countryName: 'Haiti' },
-        { currencyId: '21', currencyName: 'Forint', countryName: 'Hungary' },
-        { currencyId: '22', currencyName: 'Dinar', countryName: 'Iraq' },
-        { currencyId: '23', currencyName: 'Yen', countryName: 'Japan' },
-        { currencyId: '24', currencyName: 'Tenge', countryName: 'Kazakhstan' },
-        { currencyId: '25', currencyName: 'Kip', countryName: 'Laos' }
+        // { currencyId: '1', currencyName: 'Rupee', countryName: 'Pakistan' },
+        // { currencyId: '2', currencyName: 'Doller', countryName: 'America' },
+        // { currencyId: '3', currencyName: 'Pound', countryName: 'England' },
+        // { currencyId: '4', currencyName: 'Euro', countryName: 'Austria' },
+        // { currencyId: '5', currencyName: 'Ngultrum', countryName: 'Bhutan' },
+        // { currencyId: '6', currencyName: 'Boliviano', countryName: 'Bolivia' },
+        // { currencyId: '7', currencyName: 'Pula', countryName: 'Botswana' },
+        // { currencyId: '8', currencyName: 'Lev', countryName: 'Bulgaria' },
+        // { currencyId: '9', currencyName: 'Franc', countryName: 'Burundi' },
+        // { currencyId: '10', currencyName: 'Escudo', countryName: 'Cabo Verde' },
+        // { currencyId: '11', currencyName: 'Riel', countryName: 'Cambodia' },
+        // { currencyId: '12', currencyName: 'Peso', countryName: 'Chile' },
+        // { currencyId: '13', currencyName: 'Yuan Renminbi', countryName: 'China' },
+        // { currencyId: '14', currencyName: 'Colon', countryName: 'Costa Rica' },
+        // { currencyId: '15', currencyName: 'Kuna', countryName: 'Croatia' },
+        // { currencyId: '16', currencyName: 'Nakfa', countryName: 'Eritrea' },
+        // { currencyId: '17', currencyName: 'Birr', countryName: 'Ethiopia' },
+        // { currencyId: '18', currencyName: 'Cedi', countryName: 'Ghana' },
+        // { currencyId: '19', currencyName: 'Quetzal', countryName: 'Guatemala' },
+        // { currencyId: '20', currencyName: 'Gourde', countryName: 'Haiti' },
+        // { currencyId: '21', currencyName: 'Forint', countryName: 'Hungary' },
+        // { currencyId: '22', currencyName: 'Dinar', countryName: 'Iraq' },
+        // { currencyId: '23', currencyName: 'Yen', countryName: 'Japan' },
+        // { currencyId: '24', currencyName: 'Tenge', countryName: 'Kazakhstan' },
+        // { currencyId: '25', currencyName: 'Kip', countryName: 'Laos' }
     ];
 
     constructor(
@@ -117,6 +117,7 @@ export class CurrencyComponent implements OnInit {
         //this.printCss = "{table : {'border': 'solid 1px'}}";
         //alert(this.printCss);
 
+        this.getCurrency();
     }
 
 
@@ -125,13 +126,14 @@ export class CurrencyComponent implements OnInit {
 
     //function for get all saved currencies from db
     getCurrency() {
-        return false;
+        //return false;
 
-        var Token = localStorage.getItem(this.tokenKey);
+        //var Token = localStorage.getItem(this.tokenKey);
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
+        this.http.get(this.serverUrl + 'api/getCurrency', { headers: reqHeader }).subscribe((data: any) => {
             this.currencies = data
         });
     }
@@ -150,50 +152,62 @@ export class CurrencyComponent implements OnInit {
         else {
             if (this.currencyId != '') {
                 this.app.showSpinner();
-                this.app.hideSpinner();
-                this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
-                this.clear();
-                return false;
+                //this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
+                //this.clear();
+                //return false;
 
-                var updateData = { "ID": this.dCurrencyId, Password: this.txtdPassword, PIN: this.txtdPin };
+                var updateData = { currencyId: this.currencyId, currencyName: this.currencyName, cntryName: this.countryName };
 
-                var token = localStorage.getItem(this.tokenKey);
+                //var token = localStorage.getItem(this.tokenKey);
 
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+                //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-                this.http.put(this.serverUrl + 'api/pwCreate', updateData, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.put(this.serverUrl + 'api/updateCurrency', updateData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
-                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+
+                        this.app.hideSpinner();
+                        this.clear();
+                        $('#currencyModal').modal('hide');
+                        this.getCurrency();
                         return false;
                     } else {
-                        this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-                        $('#actionModal').modal('hide');
+                        this.toastr.errorToastr('Error Occured', 'Error!', { toastTimeout: (2500) });
+                        this.app.hideSpinner();
+                        $('#currencyModal').modal('hide');
                         return false;
                     }
                 });
             }
             else {
                 this.app.showSpinner();
-                this.app.hideSpinner();
-                this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
-                this.clear();
-                return false;
+                // this.app.hideSpinner();
+                // this.toastr.successToastr('saved successfully', 'Error', { toastTimeout: (2500) });
+                // this.clear();
+                // return false;
 
-                var saveData = { "Password": this.txtdPassword, "PIN": this.txtdPin };
+                var saveData = { currencyName: this.currencyName, cntryName: this.countryName };
+                //var token = localStorage.getItem(this.tokenKey);
 
-                var token = localStorage.getItem(this.tokenKey);
+                // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-                this.http.put(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.post(this.serverUrl + 'api/saveCurrency', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
-                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+
+                        this.app.hideSpinner();
+                        $('#currencyModal').modal('hide');
+                        this.getCurrency();
+                        this.clear();
                         return false;
                     } else {
-                        this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-                        $('#actionModal').modal('hide');
+                        this.toastr.errorToastr('Error Occured', 'Error!', { toastTimeout: (2500) });
+                        this.app.hideSpinner();
+                        $('#currencyModal').modal('hide');
                         return false;
                     }
                 });
@@ -217,7 +231,7 @@ export class CurrencyComponent implements OnInit {
     edit(item) {
         this.currencyId = item.currencyId;
         this.currencyName = item.currencyName;
-        this.countryName = item.countryName;
+        this.countryName = item.cntryName;
     }
 
 
@@ -243,29 +257,36 @@ export class CurrencyComponent implements OnInit {
         }
         else {
             this.app.showSpinner();
-            this.app.hideSpinner();
+            // this.app.hideSpinner();
 
-            this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
-            this.clear();
+            // this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
+            // this.clear();
 
-            $('#closeDeleteModel').click();
+            // $('#closeDeleteModel').click();
 
-            return false;
+            // return false;
 
-            var data = { "ID": this.dCurrencyId, Password: this.txtdPassword, PIN: this.txtdPin };
+            // var data = { "ID": this.dCurrencyId, Password: this.txtdPassword, PIN: this.txtdPin };
 
-            var token = localStorage.getItem(this.tokenKey);
+            // var token = localStorage.getItem(this.tokenKey);
 
-            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+            // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-            this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+            this.http.delete(this.serverUrl + 'api/deleteCurrency?currencyId=' + this.dCurrencyId).subscribe((data: any) => {
 
-                if (data.msg != undefined) {
-                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                if (data.msg != "Error Occured") {
+                    this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                    this.app.hideSpinner();
+                    $('#deleteModal').modal('hide');
+                    this.getCurrency();
+                    this.clear();
+
                     return false;
                 } else {
-                    this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-                    $('#actionModal').modal('hide');
+                    this.toastr.errorToastr('Error Occured', 'Error!', { toastTimeout: (2500) });
+                    this.app.hideSpinner();
+                    $('#deleteModal').modal('hide');
                     return false;
                 }
             });
