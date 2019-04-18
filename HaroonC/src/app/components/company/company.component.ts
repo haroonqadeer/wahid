@@ -242,6 +242,7 @@ export class CompanyComponent implements OnInit {
     //contact Detail Owner
     oContactDetail = [
         {
+            id: 0,
             contactType: "",
             countryCode: "",
             contactCode: "",
@@ -255,6 +256,7 @@ export class CompanyComponent implements OnInit {
     //address Detail Owner
     oAddressDetail = [
         {
+            id: 0,
             addressType: "",
             address: "",
             countryCode: "",
@@ -267,6 +269,7 @@ export class CompanyComponent implements OnInit {
     //Emails Detail Owner
     oEmailDetail = [
         {
+            id: 0,
             type: "",
             email: ""
         }
@@ -1103,41 +1106,91 @@ export class CompanyComponent implements OnInit {
 
     }
 
+
     //* Function for empty all fields of Owner information 
     clearOwner() {
 
-        //contact Detail Owner
-        this.oContactDetail = [
-            {
-                contactType: "",
-                countryCode: "",
-                contactCode: "",
-                areaCode: true,
-                mobileCode: false,
-                contactNumber: "",
-                mobileNumber: ""
-            }
-        ];
+        if (this.partner == false) {
 
-        //address Detail Owner
-        this.oAddressDetail = [
-            {
-                addressType: "",
-                address: "",
-                countryCode: "",
-                provinceCode: "",
-                districtCode: "",
-                cityCode: ""
-            }
-        ];
+            //contact Detail Owner
+            this.oContactDetail = [
+                {
+                    contactType: "",
+                    countryCode: "",
+                    contactCode: "",
+                    areaCode: true,
+                    mobileCode: false,
+                    contactNumber: "",
+                    mobileNumber: "",
+                    id: 0
+                }
+            ];
 
-        //Emails Detail Owner
-        this.oEmailDetail = [
-            {
-                type: "",
-                email: ""
-            }
-        ];
+            //address Detail Owner
+            this.oAddressDetail = [
+                {
+                    addressType: "",
+                    address: "",
+                    countryCode: "",
+                    provinceCode: "",
+                    districtCode: "",
+                    cityCode: "",
+                    id: 0
+                }
+            ];
+
+            //Emails Detail Owner
+            this.oEmailDetail = [
+                {
+                    type: "",
+                    email: "",
+                    id: 0
+                }
+            ];
+
+
+        } else {
+
+
+            //contact Detail Owner
+            this.oContactDetail = [
+                {
+                    contactType: "",
+                    countryCode: "",
+                    contactCode: "",
+                    areaCode: true,
+                    mobileCode: false,
+                    contactNumber: "",
+                    mobileNumber: "",
+                    id: this.partners.length
+                }
+            ];
+
+            //address Detail Owner
+            this.oAddressDetail = [
+                {
+                    addressType: "",
+                    address: "",
+                    countryCode: "",
+                    provinceCode: "",
+                    districtCode: "",
+                    cityCode: "",
+                    id: this.partners.length
+                }
+            ];
+
+            //Emails Detail Owner
+            this.oEmailDetail = [
+                {
+                    type: "",
+                    email: "",
+                    id: this.partners.length
+                }
+            ];
+
+
+        }
+
 
     }
 
@@ -1532,43 +1585,111 @@ export class CompanyComponent implements OnInit {
 
     oAddContact() {
 
-        this.oContactDetail.push({
-            contactType: "",
-            countryCode: "",
-            contactCode: "",
-            areaCode: true,
-            mobileCode: false,
-            contactNumber: "",
-            mobileNumber: ""
-        });
+        if (this.partner == false) {
+
+            this.oContactDetail.push({
+                contactType: "",
+                countryCode: "",
+                contactCode: "",
+                areaCode: true,
+                mobileCode: false,
+                contactNumber: "",
+                mobileNumber: "",
+                id: 0
+
+            });
+
+        } else {
+
+            this.oContactDetail.push({
+                contactType: "",
+                countryCode: "",
+                contactCode: "",
+                areaCode: true,
+                mobileCode: false,
+                contactNumber: "",
+                mobileNumber: "",
+                id: this.partners.length
+
+            });
+
+        }
 
     }
 
     oAddAddress() {
 
-        this.oAddressDetail.push({
-            addressType: "",
-            address: "",
-            countryCode: "",
-            provinceCode: "",
-            districtCode: "",
-            cityCode: ""
-        });
+        if (this.partner == false) {
+
+            this.oAddressDetail.push({
+                addressType: "",
+                address: "",
+                countryCode: "",
+                provinceCode: "",
+                districtCode: "",
+                cityCode: "",
+                id: 0
+            });
+
+        } else {
+
+            this.oAddressDetail.push({
+                addressType: "",
+                address: "",
+                countryCode: "",
+                provinceCode: "",
+                districtCode: "",
+                cityCode: "",
+                id: this.partners.length
+            });
+
+        }
 
     }
 
     oAddEmail() {
 
-        this.oEmailDetail.push({
-            type: "",
-            email: ""
-        });
+
+
+        if (this.partner == false) {
+
+            this.oEmailDetail.push({
+                type: "",
+                email: "",
+                id: 0
+            });
+
+        } else {
+
+            this.oEmailDetail.push({
+                type: "",
+                email: "",
+                id: this.partners.length
+            });
+
+        }
 
     }
 
     //Deleting contact row
     oRemoveContact(item) {
-        this.oContactDetail.splice(item, 1);
+
+
+        if (this.partner == false) {
+
+            this.oContactDetail.splice(item, 1);
+
+        } else {
+
+            // this.oContactDetail.splice(item, 1);
+
+            // this.oEmailDetail.push({
+            //     type: "",
+            //     email: "",
+            //     id: this.partners.length
+            // });
+
+        }
     }
 
     //Deleting address row
