@@ -100,7 +100,7 @@ export class CompanyComponent implements OnInit {
     companyBox = true;
 
 
-    serverUrl = "http://localhost:55536/";
+    serverUrl = "https://localhost:7007/";
     tokenKey = "token";
 
     httpOptions = {
@@ -361,16 +361,18 @@ export class CompanyComponent implements OnInit {
     ];
 
     //address Detail Business
-    addressDetail = [
-        {
-            addressType: "",
-            address: "",
-            countryCode: "",
-            provinceCode: "",
-            districtCode: "",
-            cityCode: ""
-        }
-    ];
+    // addressDetail = [
+    //     {
+    //         addressType: "",
+    //         address: "",
+    //         countryCode: "",
+    //         provinceCode: "",
+    //         districtCode: "",
+    //         cityCode: ""
+    //     }
+    // ];
+
+    addressDetail: Array<adresList> = [];
 
     //Emails Detail Business
     emailDetail = [
@@ -714,335 +716,335 @@ export class CompanyComponent implements OnInit {
             return false;
         }
 
-        //*----- For Business ------//
-        else if (this.bNtn == '' || this.bNtn.length < 8) {
-            this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.bStrn == '' || this.bStrn.length < 10) {
-            this.toastr.errorToastr('Please enter business strn', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.bTitle == '') {
-            this.toastr.errorToastr('Please enter business title', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.bNature == '') {
-            this.toastr.errorToastr('Please enter business nature', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.bDescription == '') {
-            this.toastr.errorToastr('Please enter business description', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.bWebsite == '') {
-            this.toastr.errorToastr('Please enter business website', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.bFacebook == '') {
-            this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.addressDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Business Address Info', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.contactDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Business Contact Info Type', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.emailDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Business Email Info', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
+        // //*----- For Business ------//
+        // else if (this.bNtn == '' || this.bNtn.length < 8) {
+        //     this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.bStrn == '' || this.bStrn.length < 10) {
+        //     this.toastr.errorToastr('Please enter business strn', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.bTitle == '') {
+        //     this.toastr.errorToastr('Please enter business title', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.bNature == '') {
+        //     this.toastr.errorToastr('Please enter business nature', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.bDescription == '') {
+        //     this.toastr.errorToastr('Please enter business description', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.bWebsite == '') {
+        //     this.toastr.errorToastr('Please enter business website', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.bFacebook == '') {
+        //     this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.addressDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add Business Address Info', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.contactDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add Business Contact Info Type', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.emailDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add Business Email Info', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
 
-        //*----- For Owner ------//
-        else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
-            this.toastr.errorToastr('Please enter owner CNIC', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
-            this.toastr.errorToastr('Please enter owner NTN', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.solePro == true && this.sOwnerName == '') {
-            this.toastr.errorToastr('Please enter owner name', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.solePro == true && this.oAddressDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Owner Address Info', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.solePro == true && this.oContactDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Owner Contact Info Type', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.solePro == true && this.oEmailDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Owner Email Info', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
+        // //*----- For Owner ------//
+        // else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
+        //     this.toastr.errorToastr('Please enter owner CNIC', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
+        //     this.toastr.errorToastr('Please enter owner NTN', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.solePro == true && this.sOwnerName == '') {
+        //     this.toastr.errorToastr('Please enter owner name', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.solePro == true && this.oAddressDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add Owner Address Info', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.solePro == true && this.oContactDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add Owner Contact Info Type', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.solePro == true && this.oEmailDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add Owner Email Info', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
 
-        //*----- For Partner ------//
-        else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
-            this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
+        // //*----- For Partner ------//
+        // else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
+        //     this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
 
-        //*----- For Board of Directors ------//
-        else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
-            this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.ppCom == true && (this.ppNtn == '' || this.ppNtn.length < 8)) {
-            this.toastr.errorToastr('Please enter director ntn', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.ppCom == true && this.ppDirectorName == '') {
-            this.toastr.errorToastr('Please enter director name', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.ppCom == true && this.ppPosition == '') {
-            this.toastr.errorToastr('Please enter director position', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.ppCom == true && this.ppShare == '') {
-            this.toastr.errorToastr('Please enter director share', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.ppCom == true && this.bdAddressDetail.length == 0) {
-            this.toastr.errorToastr('Please Add BOD Address Info', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.ppCom == true && this.bdContactDetail.length == 0) {
-            this.toastr.errorToastr('Please Add BOD Contact Info', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.ppCom == true && this.bdEmailDetail.length == 0) {
-            this.toastr.errorToastr('Please Add BOD Email Info', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
+        // //*----- For Board of Directors ------//
+        // else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
+        //     this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.ppCom == true && (this.ppNtn == '' || this.ppNtn.length < 8)) {
+        //     this.toastr.errorToastr('Please enter director ntn', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.ppCom == true && this.ppDirectorName == '') {
+        //     this.toastr.errorToastr('Please enter director name', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.ppCom == true && this.ppPosition == '') {
+        //     this.toastr.errorToastr('Please enter director position', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.ppCom == true && this.ppShare == '') {
+        //     this.toastr.errorToastr('Please enter director share', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.ppCom == true && this.bdAddressDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add BOD Address Info', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.ppCom == true && this.bdContactDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add BOD Contact Info', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.ppCom == true && this.bdEmailDetail.length == 0) {
+        //     this.toastr.errorToastr('Please Add BOD Email Info', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
 
         else {
 
             //* For Business Info ****************************************************************
 
-            // address type conditions
-            if (this.addressDetail.length > 0) {
-                for (let i = 0; i < this.addressDetail.length; i++) {
-                    if (this.addressDetail[i].addressType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Business Address Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.addressDetail[i].address.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Business Address', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
+            // // address type conditions
+            // if (this.addressDetail.length > 0) {
+            //     for (let i = 0; i < this.addressDetail.length; i++) {
+            //         if (this.addressDetail[i].addressType.trim() == "") {
+            //             this.toastr.errorToastr('Please Select Business Address Type', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.addressDetail[i].address.trim() == "") {
+            //             this.toastr.errorToastr('Please Enter Business Address', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
 
 
-            // contact type conditions
-            if (this.contactDetail.length > 0) {
-                for (let i = 0; i < this.contactDetail.length; i++) {
-                    if (this.contactDetail[i].contactType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Business Contact Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
-                        this.toastr.errorToastr('Please Select Business Country Code', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.contactDetail[i].contactCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select Business Contact Code', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.contactDetail[i].contactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Business Contact Number', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
+            // // contact type conditions
+            // if (this.contactDetail.length > 0) {
+            //     for (let i = 0; i < this.contactDetail.length; i++) {
+            //         if (this.contactDetail[i].contactType.trim() == "") {
+            //             this.toastr.errorToastr('Please Select Business Contact Type', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
+            //             this.toastr.errorToastr('Please Select Business Country Code', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.contactDetail[i].contactCode.trim() == "") {
+            //             this.toastr.errorToastr('Please Select Business Contact Code', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.contactDetail[i].contactNumber.trim() == "") {
+            //             this.toastr.errorToastr('Please Enter Business Contact Number', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
 
 
-            // email type conditions
-            if (this.emailDetail.length > 0) {
-                for (let i = 0; i < this.emailDetail.length; i++) {
-                    if (this.emailDetail[i].type.trim() == "") {
-                        this.toastr.errorToastr('Please Select Business Email Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.emailDetail[i].email.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Business Email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
-                        this.toastr.errorToastr('Invalid Business email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
+            // // email type conditions
+            // if (this.emailDetail.length > 0) {
+            //     for (let i = 0; i < this.emailDetail.length; i++) {
+            //         if (this.emailDetail[i].type.trim() == "") {
+            //             this.toastr.errorToastr('Please Select Business Email Type', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.emailDetail[i].email.trim() == "") {
+            //             this.toastr.errorToastr('Please Enter Business Email', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
+            //             this.toastr.errorToastr('Invalid Business email', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
 
-            //* For Owner Info ***********************************************************************
-            // address type conditions
-            if (this.solePro == true && this.oAddressDetail.length > 0) {
-                for (let i = 0; i < this.oAddressDetail.length; i++) {
-                    if (this.oAddressDetail[i].addressType.trim() == "") {
-                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oAddressDetail[i].address.trim() == "") {
-                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oAddressDetail[i].countryCode == "") {
-                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oAddressDetail[i].provinceCode == "") {
-                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oAddressDetail[i].districtCode == "") {
-                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oAddressDetail[i].cityCode == "") {
-                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
-            // contact type conditions
-            if (this.solePro == true && this.oContactDetail.length > 0) {
-                for (let i = 0; i < this.oContactDetail.length; i++) {
-                    if (this.oContactDetail[i].contactType.trim() == "") {
-                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oContactDetail[i].countryCode.trim() == "countryCode") {
-                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oContactDetail[i].contactCode.trim() == "") {
-                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oContactDetail[i].contactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
-            // email type conditions
-            if (this.solePro == true && this.oEmailDetail.length > 0) {
-                for (let i = 0; i < this.oEmailDetail.length; i++) {
-                    if (this.oEmailDetail[i].type.trim() == "") {
-                        this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.oEmailDetail[i].email.trim() == "") {
-                        this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.isEmail(this.oEmailDetail[i].email.trim()) == false) {
-                        this.toastr.errorToastr('Invalid Owner email detail', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
+            // //* For Owner Info ***********************************************************************
+            // // address type conditions
+            // if (this.solePro == true && this.oAddressDetail.length > 0) {
+            //     for (let i = 0; i < this.oAddressDetail.length; i++) {
+            //         if (this.oAddressDetail[i].addressType.trim() == "") {
+            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oAddressDetail[i].address.trim() == "") {
+            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oAddressDetail[i].countryCode == "") {
+            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oAddressDetail[i].provinceCode == "") {
+            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oAddressDetail[i].districtCode == "") {
+            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oAddressDetail[i].cityCode == "") {
+            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
+            // // contact type conditions
+            // if (this.solePro == true && this.oContactDetail.length > 0) {
+            //     for (let i = 0; i < this.oContactDetail.length; i++) {
+            //         if (this.oContactDetail[i].contactType.trim() == "") {
+            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oContactDetail[i].countryCode.trim() == "countryCode") {
+            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oContactDetail[i].contactCode.trim() == "") {
+            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oContactDetail[i].contactNumber.trim() == "") {
+            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
+            // // email type conditions
+            // if (this.solePro == true && this.oEmailDetail.length > 0) {
+            //     for (let i = 0; i < this.oEmailDetail.length; i++) {
+            //         if (this.oEmailDetail[i].type.trim() == "") {
+            //             this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.oEmailDetail[i].email.trim() == "") {
+            //             this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.isEmail(this.oEmailDetail[i].email.trim()) == false) {
+            //             this.toastr.errorToastr('Invalid Owner email detail', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
 
 
-            //* For Board of Directors****************************************************************
-            // address type conditions
-            if (this.ppCom == true && this.bdAddressDetail.length > 0) {
-                for (let i = 0; i < this.bdAddressDetail.length; i++) {
-                    if (this.bdAddressDetail[i].bdAddressType.trim() == "") {
-                        this.toastr.errorToastr('Please Select BOD Address Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.bdAddressDetail[i].bdAddress.trim() == "") {
-                        this.toastr.errorToastr('Please Enter BOD Address', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
+            // //* For Board of Directors****************************************************************
+            // // address type conditions
+            // if (this.ppCom == true && this.bdAddressDetail.length > 0) {
+            //     for (let i = 0; i < this.bdAddressDetail.length; i++) {
+            //         if (this.bdAddressDetail[i].bdAddressType.trim() == "") {
+            //             this.toastr.errorToastr('Please Select BOD Address Type', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.bdAddressDetail[i].bdAddress.trim() == "") {
+            //             this.toastr.errorToastr('Please Enter BOD Address', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
 
-            // contact type conditions
-            if (this.ppCom == true && this.bdContactDetail.length > 0) {
-                for (let i = 0; i < this.bdContactDetail.length; i++) {
-                    if (this.bdContactDetail[i].bdContactType.trim() == "") {
-                        this.toastr.errorToastr('Please Select BOD Contact Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.bdContactDetail[i].bdCountryCode.trim() == "countryCode") {
-                        this.toastr.errorToastr('Please Select BOD Country Code', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.bdContactDetail[i].bdContactCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select BOD Contact Code', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.bdContactDetail[i].bdContactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter BOD Contact Number', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
+            // // contact type conditions
+            // if (this.ppCom == true && this.bdContactDetail.length > 0) {
+            //     for (let i = 0; i < this.bdContactDetail.length; i++) {
+            //         if (this.bdContactDetail[i].bdContactType.trim() == "") {
+            //             this.toastr.errorToastr('Please Select BOD Contact Type', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.bdContactDetail[i].bdCountryCode.trim() == "countryCode") {
+            //             this.toastr.errorToastr('Please Select BOD Country Code', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.bdContactDetail[i].bdContactCode.trim() == "") {
+            //             this.toastr.errorToastr('Please Select BOD Contact Code', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.bdContactDetail[i].bdContactNumber.trim() == "") {
+            //             this.toastr.errorToastr('Please Enter BOD Contact Number', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
 
-            // email type conditions
-            if (this.ppCom == true && this.bdEmailDetail.length > 0) {
-                for (let i = 0; i < this.bdEmailDetail.length; i++) {
-                    if (this.bdEmailDetail[i].bdType.trim() == "") {
-                        this.toastr.errorToastr('Please Select BOD Email Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.bdEmailDetail[i].bdEmail.trim() == "") {
-                        this.toastr.errorToastr('Please Enter BOD Email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.isEmail(this.bdEmailDetail[i].bdEmail.trim()) == false) {
-                        this.toastr.errorToastr('Invalid BOD email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
+            // // email type conditions
+            // if (this.ppCom == true && this.bdEmailDetail.length > 0) {
+            //     for (let i = 0; i < this.bdEmailDetail.length; i++) {
+            //         if (this.bdEmailDetail[i].bdType.trim() == "") {
+            //             this.toastr.errorToastr('Please Select BOD Email Type', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.bdEmailDetail[i].bdEmail.trim() == "") {
+            //             this.toastr.errorToastr('Please Enter BOD Email', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //         else if (this.isEmail(this.bdEmailDetail[i].bdEmail.trim()) == false) {
+            //             this.toastr.errorToastr('Invalid BOD email', 'Error', { toastTimeout: (2500) });
+            //             return false;
+            //         }
+            //     }
+            // }
 
             //--------------------------------------------//
 
-            if (this.cmbCType == "Sole Proprietorship") {
-                this.partners = [];
-                this.clearPartner();
+            // if (this.cmbCType == "Sole Proprietorship") {
+            //     this.partners = [];
+            //     this.clearPartner();
 
-                this.partners.push({
-                    cnic: this.sCnic,
-                    ntn: this.sNtn,
-                    name: this.sOwnerName,
-                    role: null,
-                    date: null,
-                    share: null,
-                    position: null,
-                    addressList: this.oAddressDetail,
-                    contactList: this.oContactDetail,
-                    emailList: this.oEmailDetail
-                });
-            }
-            else if (this.cmbCType == "Public Limited Company" || this.cmbCType == "Private Limited Company") {
-                this.partners = [];
-                this.clearPartner();
+            //     this.partners.push({
+            //         cnic: this.sCnic,
+            //         ntn: this.sNtn,
+            //         name: this.sOwnerName,
+            //         role: null,
+            //         date: null,
+            //         share: null,
+            //         position: null,
+            //         addressList: this.oAddressDetail,
+            //         contactList: this.oContactDetail,
+            //         emailList: this.oEmailDetail
+            //     });
+            // }
+            // else if (this.cmbCType == "Public Limited Company" || this.cmbCType == "Private Limited Company") {
+            //     this.partners = [];
+            //     this.clearPartner();
 
-                this.partners.push({
-                    cnic: this.ppCnic,
-                    ntn: this.ppNtn,
-                    name: this.ppDirectorName,
-                    role: null,
-                    date: null,
-                    share: this.ppShare,
-                    position: this.ppPosition,
-                    addressList: this.oAddressDetail,
-                    contactList: this.oContactDetail,
-                    emailList: this.oEmailDetail
-                });
-            }
+            //     this.partners.push({
+            //         cnic: this.ppCnic,
+            //         ntn: this.ppNtn,
+            //         name: this.ppDirectorName,
+            //         role: null,
+            //         date: null,
+            //         share: this.ppShare,
+            //         position: this.ppPosition,
+            //         addressList: this.oAddressDetail,
+            //         contactList: this.oContactDetail,
+            //         emailList: this.oEmailDetail
+            //     });
+            // }
 
 
 
@@ -1089,19 +1091,21 @@ export class CompanyComponent implements OnInit {
                 //return false;
 
                 var saveData = {
+                    "companyTitle": this.bTitle,
                     "businessType": this.cmbCType,
-                    "nNtn": this.bNtn,
-                    "bStrn": this.bStrn,
-                    "title": this.bTitle,
-                    "nature": this.bNature,
-                    "description": this.bDescription,
-                    "website": this.bWebsite,
-                    "facebook": this.bFacebook,
-                    "bAddressList": this.addressDetail,
-                    "bContactList": this.contactDetail,
-                    "bEmailList": this.emailDetail,
-                    "partners": this.partners
+                    "companyNtn": this.bNtn,
+                    "companyStrn": this.bStrn,
+                    "companyNature": this.bNature
+                    // companyDesc: this.bDescription,
+                    // website: this.bWebsite,
+                    // fbId: this.bFacebook,
+                    // address: JSON.stringify(this.addressDetail),
+                    // telephone: JSON.stringify(this.contactDetail),
+                    // email: JSON.stringify(this.emailDetail),
+                    //partners: this.partners
                 };
+
+                alert(saveData.companyStrn);
 
                 // var token = localStorage.getItem(this.tokenKey);
 
@@ -1109,7 +1113,8 @@ export class CompanyComponent implements OnInit {
 
                 var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-                this.http.post(this.serverUrl + 'api/pwCreate', saveData, { headers: reqHeader }).subscribe((data: any) => {
+                // this.http.post(this.serverUrl + 'api/saveCompany', saveData, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.post(this.serverUrl + 'api/saveCompany', { address: JSON.stringify(this.addressDetail), telephone: JSON.stringify(this.contactDetail)}, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
