@@ -1090,21 +1090,21 @@ export class CompanyComponent implements OnInit {
                 //return false;
 
                 var saveData = {
-                    "companyTitle": this.bTitle,
-                    "businessType": Number(this.cmbCType),
-                    "companyNtn": this.bNtn,
-                    "companyStrn": this.bStrn,
-                    "companyNature": this.bNature
-                    // companyDesc: this.bDescription,
-                    // website: this.bWebsite,
-                    // fbId: this.bFacebook,
-                    // address: JSON.stringify(this.addressDetail),
-                    // telephone: JSON.stringify(this.contactDetail),
-                    // email: JSON.stringify(this.emailDetail),
+                    companyTitle: this.bTitle,
+                    businessType: Number(this.cmbCType),
+                    companyNtn: this.bNtn,
+                    companyStrn: this.bStrn,
+                    companyNature: this.bNature,
+                    companyDesc: this.bDescription,
+                    website: this.bWebsite,
+                    fbId: this.bFacebook,
+                    address: JSON.stringify(this.addressDetail),
+                    telephone: JSON.stringify(this.contactDetail),
+                    email: JSON.stringify(this.emailDetail),
                     //partners: this.partners
                 };
 
-                alert(saveData.companyStrn);
+                //alert(saveData.companyStrn);
 
                 // var token = localStorage.getItem(this.tokenKey);
 
@@ -1113,7 +1113,7 @@ export class CompanyComponent implements OnInit {
                 var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
                 // this.http.post(this.serverUrl + 'api/saveCompany', saveData, { headers: reqHeader }).subscribe((data: any) => {
-                this.http.post(this.serverUrl + 'api/saveCompany', { address: JSON.stringify(this.addressDetail), telephone: JSON.stringify(this.contactDetail) }, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.post(this.serverUrl + 'api/saveCompany', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
