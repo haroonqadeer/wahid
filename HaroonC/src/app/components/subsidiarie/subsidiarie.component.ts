@@ -635,13 +635,13 @@ export class SubsidiarieComponent implements OnInit {
                 });
             }
             else {
-                this.app.showSpinner();
-                this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
+                //this.app.showSpinner();
+                //this.toastr.successToastr('saved successfully', 'Success', { toastTimeout: (2500) });
 
-                this.clear();
-                $('#subsidiaryModal').modal('hide');
-                this.app.hideSpinner();
-                return false;
+                //this.clear();
+                //$('#subsidiaryModal').modal('hide');
+                //this.app.hideSpinner();
+                //return false;
 
 
                 var saveData = {
