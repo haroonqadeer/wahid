@@ -1091,7 +1091,7 @@ export class CompanyComponent implements OnInit {
 
                 var saveData = {
                     "companyTitle": this.bTitle,
-                    "businessType": this.cmbCType,
+                    "businessType": Number(this.cmbCType),
                     "companyNtn": this.bNtn,
                     "companyStrn": this.bStrn,
                     "companyNature": this.bNature
