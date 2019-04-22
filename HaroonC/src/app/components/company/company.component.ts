@@ -286,6 +286,7 @@ export class CompanyComponent implements OnInit {
     //contact Detail Business
     contactDetail = [
         {
+            id: 0,
             contactType: "",
             countryCode: "",
             contactCode: "",
@@ -299,6 +300,7 @@ export class CompanyComponent implements OnInit {
     //address Detail Business
     addressDetail = [
         {
+            id: 0,
             addressType: "",
             address: "",
             countryCode: "",
@@ -313,6 +315,7 @@ export class CompanyComponent implements OnInit {
     //Emails Detail Business
     emailDetail = [
         {
+            id: 0,
             type: "",
             email: ""
         }
@@ -910,7 +913,7 @@ export class CompanyComponent implements OnInit {
                 this.partners = [];
                 this.clearPartner();
 
-                
+
                 this.partners.push({
                     pId: this.partners.length + 1,
                     cnic: this.sCnic,
@@ -1255,6 +1258,7 @@ export class CompanyComponent implements OnInit {
 
             this.addressDetail = [
                 {
+                    id: 0,
                     addressType: "",
                     address: "",
                     countryCode: "",
@@ -1266,6 +1270,7 @@ export class CompanyComponent implements OnInit {
 
             this.contactDetail = [
                 {
+                    id: 0,
                     contactType: "",
                     countryCode: "countryCode",
                     contactCode: "",
@@ -1278,6 +1283,7 @@ export class CompanyComponent implements OnInit {
 
             this.emailDetail = [
                 {
+                    id: 0,
                     type: "",
                     email: ""
                 }
@@ -1732,8 +1738,9 @@ export class CompanyComponent implements OnInit {
     addContact() {
 
         this.contactDetail.push({
+            id: 0,
             contactType: "",
-            countryCode: "countryCode",
+            countryCode: "",
             contactCode: "",
             areaCode: true,
             mobileCode: false,
@@ -1746,6 +1753,7 @@ export class CompanyComponent implements OnInit {
     addAddress() {
 
         this.addressDetail.push({
+            id: 0,
             addressType: "",
             address: "",
             countryCode: "",
@@ -1759,6 +1767,7 @@ export class CompanyComponent implements OnInit {
     addEmail() {
 
         this.emailDetail.push({
+            id: 0,
             type: "",
             email: ""
         });
