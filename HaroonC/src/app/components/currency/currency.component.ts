@@ -44,7 +44,7 @@ export class CurrencyComponent implements OnInit {
     };
 
 
-    serverUrl = "https://localhost:7008/";
+    serverUrl = "http://localhost:23842/";
     tokenKey = "token";
 
     httpOptions = {

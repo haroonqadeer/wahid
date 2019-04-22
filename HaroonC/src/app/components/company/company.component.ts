@@ -720,13 +720,11 @@ export class CompanyComponent implements OnInit {
             this.toastr.errorToastr('Please Add Owner Email Info', 'Error', { toastTimeout: (2500) });
             return false;
         }
-
         //*----- For Partner ------//
         else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
             this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
             return false;
         }
-
         //*----- For Board of Directors ------//
         else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
             this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });

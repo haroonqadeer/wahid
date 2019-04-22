@@ -144,7 +144,7 @@
     <table>
       <tr>
         <td width="15%" style="border:none;">
-          <!-- <img src="../../../assets/images/logo.png" width="135px"> -->
+          <img src="../../../assets/images/logo.png" width="135px">
         </td>
 
         <td style="border:none;">
@@ -172,7 +172,7 @@
           <tr *ngFor="let item of currencies | search:'currencyName,countryName' :tblSearch let i=index">
             <td>{{i + 1}}</td>
             <td>{{item.currencyName}}</td>
-            <td>{{item.countryName}}</td>
+            <td>{{item.cntryName}}</td>
           </tr>
         </tbody>
       </table>
