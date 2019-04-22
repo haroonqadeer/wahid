@@ -36,6 +36,7 @@ declare var $: any;
 
 //Partners array
 export interface Partner {
+    pId: number;
     cnic: string;
     ntn: string;
     name: string;
@@ -909,7 +910,9 @@ export class CompanyComponent implements OnInit {
                 this.partners = [];
                 this.clearPartner();
 
+                
                 this.partners.push({
+                    pId: this.partners.length + 1,
                     cnic: this.sCnic,
                     ntn: this.sNtn,
                     name: this.sOwnerName,
@@ -924,6 +927,7 @@ export class CompanyComponent implements OnInit {
                 this.clearPartner();
 
                 this.partners.push({
+                    pId: this.partners.length + 1,
                     cnic: this.ppCnic,
                     ntn: this.ppNtn,
                     name: this.ppDirectorName,
@@ -1076,6 +1080,7 @@ export class CompanyComponent implements OnInit {
             else {
 
                 this.partners.push({
+                    pId: this.partners.length + 1,
                     cnic: this.pCnic,
                     ntn: this.pNtn,
                     name: this.pPartnerName,
