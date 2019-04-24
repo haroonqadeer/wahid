@@ -442,7 +442,7 @@ export class SubsidiarieComponent implements OnInit {
         this.getContactTypes();
         this.getEmailTypes();
         this.getBusinessTypes();
-        
+
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
@@ -696,7 +696,7 @@ export class SubsidiarieComponent implements OnInit {
             // address type conditions for subsidiary
             if (this.addressDetail.length > 0) {
                 for (let i = 0; i < this.addressDetail.length; i++) {
-                    if (this.addressDetail[i].addressType.trim() == "") {
+                    if (this.addressDetail[i].addressType == "") {
                         this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -704,19 +704,19 @@ export class SubsidiarieComponent implements OnInit {
                         this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].countryCode.trim() == "") {
+                    else if (this.addressDetail[i].countryCode == "") {
                         this.toastr.errorToastr('Please Select Country', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].provinceCode.trim() == "") {
+                    else if (this.addressDetail[i].provinceCode == "") {
                         this.toastr.errorToastr('Please Select Province', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].districtCode.trim() == "") {
+                    else if (this.addressDetail[i].districtCode == "") {
                         this.toastr.errorToastr('Please Select District', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].cityCode.trim() == "") {
+                    else if (this.addressDetail[i].cityCode == "") {
                         this.toastr.errorToastr('Please Select City', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -726,11 +726,11 @@ export class SubsidiarieComponent implements OnInit {
             // contact type conditions for subsidiary
             if (this.contactDetail.length > 0) {
                 for (let i = 0; i < this.contactDetail.length; i++) {
-                    if (this.contactDetail[i].contactType.trim() == "") {
+                    if (this.contactDetail[i].contactType == "") {
                         this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
+                    else if (this.contactDetail[i].countryCode == "countryCode") {
                         this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -748,7 +748,7 @@ export class SubsidiarieComponent implements OnInit {
             // email type conditions for subsidiary
             if (this.emailDetail.length > 0) {
                 for (let i = 0; i < this.emailDetail.length; i++) {
-                    if (this.emailDetail[i].type.trim() == "") {
+                    if (this.emailDetail[i].type == "") {
                         this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -756,7 +756,7 @@ export class SubsidiarieComponent implements OnInit {
                         this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
+                    else if (this.isEmail(this.emailDetail[i].email) == false) {
                         this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -1170,16 +1170,6 @@ export class SubsidiarieComponent implements OnInit {
 
     //Function for add new address row 
     addAddress() {
-
-        for (var i = 0; i < this.addressDetail.length; i++) {
-            alert(this.addressDetail[i].addressType);
-            alert(this.addressDetail[i].countryCode);
-            alert(this.addressDetail[i].provinceCode);
-            alert(this.addressDetail[i].districtCode);
-            alert(this.addressDetail[i].cityCode);
-        }
-
-        return false;
 
         this.addressDetail.push({
             id: 0,
