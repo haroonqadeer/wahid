@@ -15,6 +15,7 @@ import {
     CsvFileTypes
 } from "igniteui-angular";
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 //----------------------------------------------------------------------------//
@@ -59,19 +60,15 @@ export class SubsidiarieComponent implements OnInit {
     // list for excel data
     excelDataList = [];
 
-    //contactDetail = [];
-    //contactDetail = [];
-    contactType;
-    countryList;
-    area;
-    network;
-    addressType;
-    emailType;
-
-    countryListForAddress;
-    provinceList;
-    districtList;
-    cityList;
+    contactType = [];
+    countryList = [];
+    addressType = [];
+    emailType = [];
+    countryListForAddress = [];
+    provinceList = [];
+    districtList = [];
+    cityList = [];
+    businessTyleList = [];
 
     //* variables for display values on page
 
@@ -87,6 +84,10 @@ export class SubsidiarieComponent implements OnInit {
     website = '';
     agreement = '';
     representator = '';
+
+    repAddress = '';
+    repMobile = '';
+    repEmail = '';
 
     txtdPassword = '';
     txtdPin = '';
@@ -134,51 +135,6 @@ export class SubsidiarieComponent implements OnInit {
             type: "",
             email: ""
         }
-    ];
-
-
-    //contact Detail
-    rContactDetail = [
-        {
-            id: 0,
-            contactType: "",
-            countryCode: "countryCode",
-            contactCode: "",
-            areaCode: true,
-            mobileCode: false,
-            contactNumber: "",
-            mobileNumber: ""
-        }
-    ];
-
-    //address Detail
-    rAddressDetail = [
-        {
-            id: 0,
-            addressType: "",
-            address: "",
-            countryCode: "",
-            provinceCode: "",
-            districtCode: "",
-            cityCode: ""
-        }
-    ];
-
-    //Emails Detail
-    rEmailDetail = [
-        {
-            id: 0,
-            type: "",
-            email: ""
-        }
-    ];
-
-
-
-    cities = [
-        { cityId: '1', cityName: 'Islamabad' },
-        { cityId: '2', cityName: 'Rawalpindi' },
-        { cityId: '3', cityName: 'Lahore' }
     ];
 
     subsidiaryDetail = [
@@ -474,99 +430,26 @@ export class SubsidiarieComponent implements OnInit {
         private app: AppComponent,
         private excelExportService: IgxExcelExporterService,
         private csvExportService: IgxCsvExporterService,
-        private fb: FormBuilder) {
-        this.contactType = [
-            { label: 'Fax', value: '1' },
-            { label: 'Telephone', value: '2' },
-            { label: 'Mobile', value: '3' },
-        ];
-
-        //Country Code
-        this.countryList = [
-            { label: "Pakistan +92", value: "+92" },
-            { label: "Turkey +90", value: "+90" },
-            { label: "US +1", value: "+1" }
-        ];
-
-        //Area Code
-        this.area = [
-            { label: 51, areaName: "Islamabad", value: "51" },
-            { label: 21, areaName: "Karachi", value: "21" },
-            { label: 42, areaName: "Lahore", value: "42" }
-        ];
-
-        //Mobile Code
-        this.network = [
-            { label: 300, networkName: "Jazz", value: "300" },
-            { label: 313, networkName: "Zong", value: "313" },
-            { label: 345, networkName: "Telenor", value: "345" },
-            { label: 333, networkName: "Ufone", value: "333" }
-        ];
-
-        //Address Types
-        this.addressType = [
-            { label: 'Current Address', value: '1' },
-            { label: 'Office Address', value: '2' },
-            { label: 'Postal Address', value: '3' }
-        ];
-
-        // Country List
-        this.countryListForAddress = [
-            { label: "Pakistan", value: "1" },
-            { label: "Palau", value: "2" },
-            { label: "Palestinian Territory, Occupied", value: "3" }
-        ];
-
-        //Province List
-
-        this.provinceList = [
-            { label: "Punjab ", value: "1" },
-            { label: "Pakhtoon Khuwah  ", value: "2" },
-            { label: "Sindh ", value: "3" },
-            { label: "Balouchistan  ", value: "4" },
-            { label: "Gilgit Baltistan ", value: "5" }
-        ];
-
-        //City List
-
-        this.cityList = [
-            { label: "Islamabad ", value: "1" },
-            { label: "Lahore", value: "2" },
-            { label: "Peshawer", value: "3" },
-            { label: "Karachi ", value: "4" },
-            { label: "Quetta  ", value: "5" },
-            { label: "Gilgit", value: "6" }
-        ];
-
-        //District List
-
-        this.districtList = [
-            { label: "Attock ", value: "1" },
-            { label: "Gujranwala", value: "2" },
-            { label: "Faisalabad ", value: "3 " },
-            { label: "Jhelum  ", value: "4" },
-            { label: "Sialkot", value: "5" },
-        ];
-
-        //Email Types
-        this.emailType = [
-            { label: 'Personal Email', value: '1' },
-            { label: 'Office Email', value: '2' }
-        ];
-    }
+        private fb: FormBuilder) { }
 
     ngOnInit() {
-        //Creating Array of ComboBox "subsidiaryes"
-        // this.contactForm = this.fb.group({
-        //     subsidiary: this.fb.array([])
-        // });
+
+        this.getAddressTypes();
+        this.getCountry();
+        this.getProvince();
+        this.getDistrict();
+        this.getCity();
+        this.getContactTypes();
+        this.getEmailTypes();
+        this.getBusinessTypes();
+
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
     @ViewChild("exportPDF") public exportPDF: ElementRef;
 
 
-    //function for get all saved currencies from db
+    //function for get all saved subsidiaries from db
     getSubsidiaryDetail() {
         return false;
 
@@ -575,9 +458,181 @@ export class SubsidiarieComponent implements OnInit {
         var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
 
         this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
-            this.cities = data
+            //this.cities = data
         });
     }
+
+    //function for get all saved district
+    getCity() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getCity', { headers: reqHeader }).subscribe((data: any) => {
+
+            for (var i = 0; i < data.length; i++) {
+                this.cityList.push({
+                    label: data[i].thslName,
+                    value: data[i].thslCd
+                });
+            }
+
+        });
+
+    }
+
+    //function for get all saved district
+    getDistrict() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getDistrict', { headers: reqHeader }).subscribe((data: any) => {
+
+            for (var i = 0; i < data.length; i++) {
+                this.districtList.push({
+                    label: data[i].districtName,
+                    value: data[i].districtCd
+                });
+            }
+
+        });
+
+    }
+
+    //function for get all saved province
+    getProvince() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getProvince', { headers: reqHeader }).subscribe((data: any) => {
+
+            for (var i = 0; i < data.length; i++) {
+                this.provinceList.push({
+                    label: data[i].prvinceName,
+                    value: data[i].prvncCd
+                });
+            }
+
+        });
+
+    }
+
+    //function for get all saved countrys
+    getCountry() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getCountry', { headers: reqHeader }).subscribe((data: any) => {
+
+            for (var i = 0; i < data.length; i++) {
+                this.countryListForAddress.push({
+                    label: data[i].cntryName,
+                    value: data[i].cntryCd
+                });
+
+                this.countryList.push({
+                    label: data[i].cntryName + ' ' + data[i].cntryCallingCd,
+                    value: data[i].cntryCallingCd
+                });
+            }
+
+
+
+        });
+
+    }
+
+    //function for get all saved address types
+    getAddressTypes() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getAddressType', { headers: reqHeader }).subscribe((data: any) => {
+
+            for (var i = 0; i < data.length; i++) {
+                this.addressType.push({
+                    label: data[i].addressTypeName,
+                    value: data[i].addressTypeCd
+                });
+            }
+
+        });
+
+    }
+
+    //function for get all saved telephone types
+    getContactTypes() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getTelephoneType', { headers: reqHeader }).subscribe((data: any) => {
+
+            for (var i = 0; i < data.length; i++) {
+                this.contactType.push({
+                    label: data[i].teleTypeName,
+                    value: data[i].teleTypeCd
+                });
+            }
+
+        });
+
+    }
+
+    //function for get all saved email types
+    getEmailTypes() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getEmailType', { headers: reqHeader }).subscribe((data: any) => {
+
+            for (var i = 0; i < data.length; i++) {
+                this.emailType.push({
+                    label: data[i].emailTypeName,
+                    value: data[i].emailTypeCd
+                });
+            }
+
+        });
+
+    }
+
+    //function for get all saved telephone type types
+    getBusinessTypes() {
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getBusinessType', { headers: reqHeader }).subscribe((data: any) => {
+
+            this.businessTyleList = data;
+
+            // for (var i = 0; i < data.length; i++) {
+            //     this.businessTyleList.push({
+            //         label: data[i].emailTypeName,
+            //         value: data[i].emailTypeCd
+            //     });
+            // }
+
+        });
+
+    }
+
+
+
 
 
     //Function for save and update currency 
@@ -625,25 +680,23 @@ export class SubsidiarieComponent implements OnInit {
             this.toastr.errorToastr('Please enter representator name', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        else if (this.rAddressDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Representator Address Info', 'Error', { toastTimeout: (2500) });
+        else if (this.repAddress.trim() == '') {
+            this.toastr.errorToastr('Please enter representator address', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        // contact type conditions
-        else if (this.rContactDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Representator Contact Info Type', 'Error', { toastTimeout: (2500) });
+        else if (this.repMobile == '' || this.repMobile.length < 11) {
+            this.toastr.errorToastr('Please enter representator mobile no', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        // email type conditions
-        else if (this.rEmailDetail.length == 0) {
-            this.toastr.errorToastr('Please Add Representator Email Info', 'Error', { toastTimeout: (2500) });
+        else if (this.isEmail(this.repEmail.trim()) == false) {
+            this.toastr.errorToastr('Invalid representator email address', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else {
             // address type conditions for subsidiary
             if (this.addressDetail.length > 0) {
                 for (let i = 0; i < this.addressDetail.length; i++) {
-                    if (this.addressDetail[i].addressType.trim() == "") {
+                    if (this.addressDetail[i].addressType == "") {
                         this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -651,19 +704,19 @@ export class SubsidiarieComponent implements OnInit {
                         this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].countryCode.trim() == "") {
+                    else if (this.addressDetail[i].countryCode == "") {
                         this.toastr.errorToastr('Please Select Country', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].provinceCode.trim() == "") {
+                    else if (this.addressDetail[i].provinceCode == "") {
                         this.toastr.errorToastr('Please Select Province', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].districtCode.trim() == "") {
+                    else if (this.addressDetail[i].districtCode == "") {
                         this.toastr.errorToastr('Please Select District', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.addressDetail[i].cityCode.trim() == "") {
+                    else if (this.addressDetail[i].cityCode == "") {
                         this.toastr.errorToastr('Please Select City', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -673,11 +726,11 @@ export class SubsidiarieComponent implements OnInit {
             // contact type conditions for subsidiary
             if (this.contactDetail.length > 0) {
                 for (let i = 0; i < this.contactDetail.length; i++) {
-                    if (this.contactDetail[i].contactType.trim() == "") {
+                    if (this.contactDetail[i].contactType == "") {
                         this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
+                    else if (this.contactDetail[i].countryCode == "countryCode") {
                         this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -695,7 +748,7 @@ export class SubsidiarieComponent implements OnInit {
             // email type conditions for subsidiary
             if (this.emailDetail.length > 0) {
                 for (let i = 0; i < this.emailDetail.length; i++) {
-                    if (this.emailDetail[i].type.trim() == "") {
+                    if (this.emailDetail[i].type == "") {
                         this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
@@ -703,84 +756,13 @@ export class SubsidiarieComponent implements OnInit {
                         this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
-                    else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
+                    else if (this.isEmail(this.emailDetail[i].email) == false) {
                         this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
                 }
             }
 
-
-            // address type conditions for representator
-            if (this.rAddressDetail.length > 0) {
-                for (let i = 0; i < this.addressDetail.length; i++) {
-                    if (this.addressDetail[i].addressType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.addressDetail[i].address.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-
-                    else if (this.addressDetail[i].countryCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select Country', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.addressDetail[i].provinceCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select Province', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.addressDetail[i].districtCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select District', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.addressDetail[i].cityCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select City', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
-
-            // contact type conditions for representator
-            if (this.rContactDetail.length > 0) {
-                for (let i = 0; i < this.contactDetail.length; i++) {
-                    if (this.contactDetail[i].contactType.trim() == "") {
-                        this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.contactDetail[i].countryCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.contactDetail[i].contactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.contactDetail[i].mobileNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
-
-            // email type conditions for representator
-            if (this.rEmailDetail.length > 0) {
-                for (let i = 0; i < this.emailDetail.length; i++) {
-                    if (this.emailDetail[i].type.trim() == "") {
-                        this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.emailDetail[i].email.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
-                        this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
 
 
             if (this.subsidiaryId != '') {
@@ -821,9 +803,9 @@ export class SubsidiarieComponent implements OnInit {
                     "contactList": JSON.stringify(this.contactDetail),
                     "emailList": JSON.stringify(this.emailDetail),
                     "representator": this.representator,
-                    "rAddressList": JSON.stringify(this.rAddressDetail),
-                    "rContactList": JSON.stringify(this.rContactDetail),
-                    "rEmailList": JSON.stringify(this.rEmailDetail),
+                    "repAddress": this.repAddress,
+                    "repMobile": this.repMobile,
+                    "repEmail": this.repEmail
                 };
 
 
@@ -848,55 +830,6 @@ export class SubsidiarieComponent implements OnInit {
         }
     }
 
-
-    //functin for save new section 
-    addCity() {
-
-        if (this.cityName.trim() == '') {
-            this.toastr.errorToastr('Please enter city name', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
-        else {
-            let data = this.cities.find(x => x.cityName == this.cityName);
-
-            if (data != undefined) {
-                this.toastr.errorToastr('City name already exist', 'Error', { toastTimeout: (2500) });
-                return false;
-            }
-            else {
-                this.app.showSpinner();
-                this.app.hideSpinner();
-
-                //this.toastr.successToastr('Saved successfully', 'Success', { toastTimeout: (2500) });
-
-                //this.cities.push({ cityId: this.cities.length + "", cityName: this.cityName });
-
-                // this.cityName = '';
-                // $('#addCityModel').click();
-
-                return false;
-
-                var updateData = "cityName=" + this.cityName;
-                alert(updateData);
-                //var token = localStorage.getItem(this.tokenKey);
-
-                //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-                var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-                this.http.post(this.serverUrl + 'api/citys?' + updateData, { headers: reqHeader }).subscribe((data: any) => {
-
-                    if (data.msg != undefined) {
-                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-                        return false;
-                    } else {
-                        this.toastr.successToastr('Record Inserted Successfully', 'Success!', { toastTimeout: (2500) });
-                        $('#actionModal').modal('hide');
-                        return false;
-                    }
-                });
-            }
-        }
-    }
 
 
     //function for empty all fields
@@ -946,39 +879,10 @@ export class SubsidiarieComponent implements OnInit {
             }
         ];
 
-        //empt address, contact and email detail for respresentator
-        this.rAddressDetail = [
-            {
-                id: 0,
-                addressType: "",
-                address: "",
-                countryCode: "",
-                provinceCode: "",
-                districtCode: "",
-                cityCode: ""
-            }
-        ];
-
-        this.rContactDetail = [
-            {
-                id: 0,
-                contactType: "",
-                countryCode: "",
-                contactCode: "",
-                areaCode: true,
-                mobileCode: false,
-                contactNumber: "",
-                mobileNumber: ""
-            }
-        ];
-
-        this.rEmailDetail = [
-            {
-                id: 0,
-                type: "",
-                email: ""
-            }
-        ];
+        this.representator = '';
+        this.repAddress = '';
+        this.repMobile = '';
+        this.repEmail = '';
 
         this.txtdPassword = '';
         this.txtdPin = '';
@@ -1292,60 +1196,6 @@ export class SubsidiarieComponent implements OnInit {
 
 
 
-    //Function for add new contact row 
-    rAddContact() {
-
-        this.rContactDetail.push({
-            id: 0,
-            contactType: "",
-            countryCode: "",
-            contactCode: "",
-            areaCode: true,
-            mobileCode: false,
-            contactNumber: "",
-            mobileNumber: ""
-        });
-
-    }
-
-    //Function for add new address row 
-    rAddAddress() {
-
-        this.rAddressDetail.push({
-            id: 0,
-            addressType: "",
-            address: "",
-            countryCode: "",
-            provinceCode: "",
-            districtCode: "",
-            cityCode: ""
-        });
-
-    }
-
-    //Function for add new email row 
-    rAddEmail() {
-
-        this.rEmailDetail.push({
-            id: 0,
-            type: "",
-            email: ""
-        });
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Deleting contact row
     removeContact(item) {
         this.contactDetail.splice(item, 1);
@@ -1359,23 +1209,6 @@ export class SubsidiarieComponent implements OnInit {
     //Deleting address row
     removeEmail(item) {
         this.emailDetail.splice(item, 1);
-    }
-
-
-
-    //Deleting contact row
-    rRemoveContact(item) {
-        this.rContactDetail.splice(item, 1);
-    }
-
-    //Deleting address row
-    rRemoveAddress(item) {
-        this.rAddressDetail.splice(item, 1);
-    }
-
-    //Deleting address row
-    rRemoveEmail(item) {
-        this.rEmailDetail.splice(item, 1);
     }
 
 }
