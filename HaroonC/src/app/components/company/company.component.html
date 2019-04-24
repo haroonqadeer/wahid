@@ -86,7 +86,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of userDetail | search:'businessType,title,nature,ntn,website': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
+          *ngFor="let item of companyDetail | search:'businessType,title,nature,ntn,website': tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index"
           class='d-flex'>
           <td class="col-1 text-center">{{i+1}}</td>
           <td class="col-2">{{item.businessType}}</td>
@@ -360,6 +360,8 @@
                       <td style="padding:8px 15px 8px 15px; width: 200px;">
                         <p-dropdown [options]="countryListForAddress" filter="true" [(ngModel)]="item.countryCode"
                           placeholder="Select Country" required>
+                          <!-- <p-dropdown [options]="countryListForAddress" filter="true" [(ngModel)]="item.countryCode"
+                          placeholder="Select Country" (onChange)="onChangeCountry($event)" required> -->
                           <ng-template let-itm pTemplate="item">
                             <div style="position: relative;height: 25px;">
                               <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
