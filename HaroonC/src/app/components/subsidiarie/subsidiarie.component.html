@@ -303,8 +303,8 @@
               <div class="col-md-6">
                 <mat-form-field class="fullwidth">
                   <mat-select placeholder="Subsidiary Type" [(ngModel)]="cmbSubsidiaryType">
-                    <mat-option *ngFor="let item of businessTyleList" value="item.businessTypeCd">
-                      {{item.businessTypeName}}
+                    <mat-option *ngFor="let item of businessTypeList" [value]="item.businessTypeCd">
+                      {{item.businessTypeName + ' - ' + item.businessTypeCd}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -490,7 +490,11 @@
                       </td>
 
                       <!--Contact code combobox -->
-                      <td colspan="2" style="border: 0px solid red; width: 150px;" *ngIf="item.areaCode">
+                      <td colspan="2" style="border: 0px solid red; width: 150px;">
+                        <input type="text" pInputText [(ngModel)]="item.contactNumber" placeholder="Number"
+                          mask="0000000000" style="width: 100%">
+                      </td>
+                      <!-- <td colspan="2" style="border: 0px solid red; width: 150px;" *ngIf="item.areaCode">
                         <input type="text" pInputText [(ngModel)]="item.contactNumber" placeholder="Number"
                           mask="00-0000000" style="width: 100%">
                       </td>
@@ -498,7 +502,7 @@
                       <td colspan="2" style="border: 0px solid red; width: 150px;" *ngIf="item.mobileCode">
                         <input type="text" pInputText [(ngModel)]="item.mobileNumber" placeholder="Number"
                           mask="000-0000000" style="width: 100%">
-                      </td>
+                      </td> -->
 
                       <!--Remove button -->
                       <td style="border: 0px solid red; padding:0 0 5px 15px; width: 55px;">

@@ -68,7 +68,7 @@ export class SubsidiarieComponent implements OnInit {
     provinceList = [];
     districtList = [];
     cityList = [];
-    businessTyleList = [];
+    businessTypeList = [];
 
     //* variables for display values on page
 
@@ -155,275 +155,9 @@ export class SubsidiarieComponent implements OnInit {
             mobile: '0313-5300471',
             website: 'infovative.com',
             faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 2,
-            subsidiaryId: 2,
-            subsidiaryTitle: 'WORKGEARUK LTD',
-            ntn: '2',
-            strn: '2',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "M. Osama",
-            address: 'G 11, Islamabad',
-            cityId: 2,
-            cityName: 'Rawalpindi',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 3,
-            subsidiaryId: 3,
-            subsidiaryTitle: 'WORKGLOBE DEVELOPMENTS LIMITED',
-            ntn: '3',
-            strn: '3',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "Shahrukh Mirza",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 4,
-            subsidiaryId: 4,
-            subsidiaryTitle: 'WORKGREAT LIMITED',
-            ntn: '4',
-            strn: '4',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "Zain ul Abideen",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 5,
-            subsidiaryId: 5,
-            subsidiaryTitle: 'WORKGROUP TECHNOLOGY LIMITED',
-            ntn: '5',
-            strn: '5',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "Ijaz ul Haq",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 6,
-            subsidiaryId: 6,
-            subsidiaryTitle: 'WORKGUCK LTD',
-            ntn: '6',
-            strn: '6',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "JV",
-            representator: "Ali Imran",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 7,
-            subsidiaryId: 7,
-            subsidiaryTitle: 'WORKGURU LTD',
-            ntn: '7',
-            strn: '7',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "Touseeq Ahmed",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 8,
-            subsidiaryId: 8,
-            subsidiaryTitle: 'WORKHAM (BARNWOOD) LIMITED',
-            ntn: '8',
-            strn: '8',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "Umair Ali",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 9,
-            subsidiaryId: 9,
-            subsidiaryTitle: 'WORKHAM (GLOUCESTER) LIMITED',
-            ntn: '9',
-            strn: '9',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "JV",
-            representator: "Waqas Iqbal",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 10,
-            subsidiaryId: 10,
-            subsidiaryTitle: 'WORKHAM DEVELOPMENTS LIMITED',
-            ntn: '10',
-            strn: '10',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Public Limited Company",
-            representator: "Saad Khan",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 11,
-            subsidiaryId: 11,
-            subsidiaryTitle: 'WORKHAM EUROPEAN PROPERTY LIMITED',
-            ntn: '11',
-            strn: '11',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Private Limited Company",
-            representator: "Usama Nadeem",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 12,
-            subsidiaryId: 12,
-            subsidiaryTitle: 'WORKHAM SERVICES LTD',
-            ntn: '12',
-            strn: '12',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Private Limited Company",
-            representator: "Areeb Zaidi",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 13,
-            subsidiaryId: 13,
-            subsidiaryTitle: 'WORKHARD LIMITED',
-            ntn: '13',
-            strn: '13',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "M. Shahraiz ",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 14,
-            subsidiaryId: 14,
-            subsidiaryTitle: 'WORKHAUS FURNITURE LTD',
-            ntn: '14',
-            strn: '14',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Public Limited Company",
-            representator: "Juniad Khan",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
-        },
-        {
-            subsidiaryDetailId: 15,
-            subsidiaryId: 15,
-            subsidiaryTitle: 'WORKHEALTH LIMITED',
-            ntn: '15',
-            strn: '15',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Private Limited Company",
-            representator: "Shahid Jamil",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-            agreement: 'agrement copy'
         }
     ];
+
 
     constructor(private toastr: ToastrManager,
         private http: HttpClient,
@@ -534,7 +268,7 @@ export class SubsidiarieComponent implements OnInit {
             for (var i = 0; i < data.length; i++) {
                 this.countryListForAddress.push({
                     label: data[i].cntryName,
-                    value: data[i].cntryCd
+                    value: data[i].cntryCd.trim()
                 });
 
                 this.countryList.push({
@@ -618,14 +352,7 @@ export class SubsidiarieComponent implements OnInit {
 
         this.http.get(this.serverUrl + 'api/getBusinessType', { headers: reqHeader }).subscribe((data: any) => {
 
-            this.businessTyleList = data;
-
-            // for (var i = 0; i < data.length; i++) {
-            //     this.businessTyleList.push({
-            //         label: data[i].emailTypeName,
-            //         value: data[i].emailTypeCd
-            //     });
-            // }
+            this.businessTypeList = data;
 
         });
 
@@ -657,10 +384,10 @@ export class SubsidiarieComponent implements OnInit {
             this.toastr.errorToastr('Please enter website', 'Error', { toastTimeout: (2500) });
             return false;
         }
-        else if (this.agreement == '') {
-            this.toastr.errorToastr('Please attach agreement copy', 'Error', { toastTimeout: (2500) });
-            return false;
-        }
+        // else if (this.agreement == '') {
+        //     this.toastr.errorToastr('Please attach agreement copy', 'Error', { toastTimeout: (2500) });
+        //     return false;
+        // }
         // address type conditions
         else if (this.addressDetail.length == 0) {
             this.toastr.errorToastr('Please Add Subsidiary Address Info', 'Error', { toastTimeout: (2500) });
@@ -735,10 +462,6 @@ export class SubsidiarieComponent implements OnInit {
                         return false;
                     }
                     else if (this.contactDetail[i].contactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.contactDetail[i].mobileNumber.trim() == "") {
                         this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
                         return false;
                     }
