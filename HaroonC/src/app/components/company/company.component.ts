@@ -14,6 +14,7 @@ import {
     IgxCsvExporterOptions,
     CsvFileTypes
 } from "igniteui-angular";
+import { jsonpCallbackContext } from '@angular/common/http/src/module';
 
 
 //----------------------------------------------------------------------------//
@@ -35,31 +36,24 @@ declare var $: any;
 
 //Partners array
 export interface Partner {
+    pId: number;
     cnic: string;
     ntn: string;
     name: string;
-    //telephone: string;
-    //mobile: string;
-    //email: string;
-    //address: string;
     role: string;
     date: Date;
     share: string;
     position: string;
-    addressList: adresList[];
-    contactList: cntctList[];
-    emailList: emailList[];
-
 }
 
-export interface adresList {
-    addressType: string;
-    address: string,
-    countryCode: string,
-    provinceCode: string,
-    districtCode: string,
-    cityCode: string
-}
+// export interface adresList {
+//     addressType: string;
+//     address: string,
+//     countryCode: string,
+//     provinceCode: string,
+//     districtCode: string,
+//     cityCode: string
+// }
 
 
 export interface cntctList {
@@ -68,7 +62,8 @@ export interface cntctList {
     contactCode: string,
     areaCode: boolean,
     mobileCode: boolean,
-    contactNumber: string
+    contactNumber: string,
+    mobileNumber: string
 }
 
 
@@ -110,9 +105,9 @@ export class CompanyComponent implements OnInit {
     // list variables -----------
     excelDataList = [];
 
-    countryListForAddress;
-    provinceList;
-    districtList;
+    countryListForAddress = [];
+    provinceList = [];
+    districtList = [];
     cityList;
 
     //*--For Business--// 
@@ -120,7 +115,7 @@ export class CompanyComponent implements OnInit {
     country;
     area;
     network;
-    addressType;
+    addressType = [];
     emailType;
     //*--For Partner--// 
     pContactType;
@@ -239,70 +234,7 @@ export class CompanyComponent implements OnInit {
     ];
 
 
-    //*----------------For Partner Starts---------------//
-    //contact Detail partner
-    pContactDetail = [
-        {
-            pContactType: "",
-            pCountryCode: "countryCode",
-            pContactCode: "",
-            pAreaCode: true,
-            pMobileCode: false,
-            pContactNumber: ""
-        }
-    ];
 
-    //address Detail partner
-    pAddressDetail = [
-        {
-            pAddressType: "",
-            pAddress: ""
-        }
-    ];
-
-    //Emails Detail partner
-    pEmailDetail = [
-        {
-            pType: "",
-            pEmail: ""
-        }
-    ];
-
-    //*----------------For Partner Ends---------------//
-
-
-
-
-    //*----------------For Board of Directors Starts---------------//
-    //contact Detail Board of Directors
-    bdContactDetail = [
-        {
-            bdContactType: "",
-            bdCountryCode: "countryCode",
-            bdContactCode: "",
-            bdAreaCode: true,
-            bdMobileCode: false,
-            bdContactNumber: ""
-        }
-    ];
-
-    //address Detail Board of Directors
-    bdAddressDetail = [
-        {
-            bdAddressType: "",
-            bdAddress: ""
-        }
-    ];
-
-    //Emails Detail Board of Directors
-    bdEmailDetail = [
-        {
-            bdType: "",
-            bdEmail: ""
-        }
-    ];
-
-    //*----------------For Board of Directors Ends---------------//
 
 
 
@@ -311,18 +243,21 @@ export class CompanyComponent implements OnInit {
     //contact Detail Owner
     oContactDetail = [
         {
+            id: 0,
             contactType: "",
             countryCode: "",
             contactCode: "",
             areaCode: true,
             mobileCode: false,
-            contactNumber: ""
+            contactNumber: "",
+            mobileNumber: ""
         }
     ];
 
     //address Detail Owner
     oAddressDetail = [
         {
+            id: 0,
             addressType: "",
             address: "",
             countryCode: "",
@@ -335,6 +270,7 @@ export class CompanyComponent implements OnInit {
     //Emails Detail Owner
     oEmailDetail = [
         {
+            id: 0,
             type: "",
             email: ""
         }
@@ -350,37 +286,45 @@ export class CompanyComponent implements OnInit {
     //contact Detail Business
     contactDetail = [
         {
+            id: 0,
             contactType: "",
             countryCode: "",
             contactCode: "",
             areaCode: true,
             mobileCode: false,
-            contactNumber: ""
+            contactNumber: "",
+            mobileNumber: ""
         }
     ];
 
     //address Detail Business
-    // addressDetail = [
-    //     {
-    //         addressType: "",
-    //         address: "",
-    //         countryCode: "",
-    //         provinceCode: "",
-    //         districtCode: "",
-    //         cityCode: ""
-    //     }
-    // ];
+    addressDetail = [
+        {
+            id: 0,
+            addressType: "",
+            address: "",
+            countryCode: "",
+            provinceCode: "",
+            districtCode: "",
+            cityCode: ""
+        }
+    ];
 
-    addressDetail: Array<adresList> = [];
+    //addressDetail: Array[];
 
     //Emails Detail Business
     emailDetail = [
         {
+            id: 0,
             type: "",
             email: ""
         }
     ];
     //*----------------For Business Ends---------------//
+
+
+    companyDetail = [];
+    compSumDetail = [];
 
     userDetail = [
         {
@@ -493,9 +437,9 @@ export class CompanyComponent implements OnInit {
         private fb: FormBuilder) {
 
         this.contactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code for Mobiles
@@ -521,23 +465,23 @@ export class CompanyComponent implements OnInit {
         ];
 
         //Address Types
-        this.addressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
-        ];
+        // this.addressType = [
+        //     { label: 'Current Address', value: '1' },
+        //     { label: 'Office Address', value: '2' },
+        //     { label: 'Postal Address', value: '3' }
+        // ];
 
         //Email Types
         this.emailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '2' }
         ];
 
         //* For partner ----------------------------------------//
         this.pContactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code
@@ -564,22 +508,22 @@ export class CompanyComponent implements OnInit {
 
         //Address Types
         this.pAddressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
+            { label: 'Current Address', value: '1' },
+            { label: 'Office Address', value: '2' },
+            { label: 'Postal Address', value: '3' }
         ];
 
         //Email Types
         this.pEmailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '2' }
         ];
 
         //* For BOD ----------------------------------------//
         this.bdContactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code
@@ -606,22 +550,22 @@ export class CompanyComponent implements OnInit {
 
         //Address Types
         this.bdAddressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
+            { label: 'Current Address', value: '1' },
+            { label: 'Office Address', value: '2' },
+            { label: 'Postal Address', value: '3' }
         ];
 
         //Email Types
         this.bdEmailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '22' }
         ];
 
         //* For Owner ----------------------------------------//
         this.oContactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code
@@ -648,15 +592,15 @@ export class CompanyComponent implements OnInit {
 
         //Address Types
         this.oAddressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
+            { label: 'Current Address', value: '1' },
+            { label: 'Office Address', value: '2' },
+            { label: 'Postal Address', value: '3' }
         ];
 
         //Email Types
         this.oEmailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '2' }
         ];
 
     }
@@ -664,29 +608,29 @@ export class CompanyComponent implements OnInit {
     ngOnInit() {
 
         //*countrys list for address
-        this.countryListForAddress = [
-            { label: "Pakistan +92", value: "+92" },
-            { label: "Turkey +90", value: "+90" },
-            { label: "US +1", value: "+1" }
-        ];
+        // this.countryListForAddress = [
+        //     { label: "Pakistan +92", value: "+92" },
+        //     { label: "Turkey +90", value: "+90" },
+        //     { label: "US +1", value: "+1" }
+        // ];
 
         //*province List
-        this.provinceList = [
-            { label: "Balochistan", value: "7" },
-            { label: "Khyber Pakhtunkhwa", value: "2" },
-            { label: "Punjab", value: "6" },
-            { label: "Sindh", value: "8" }
-        ];
+        // this.provinceList = [
+        //     { label: "Balochistan", value: "7" },
+        //     { label: "Khyber Pakhtunkhwa", value: "2" },
+        //     { label: "Punjab", value: "6" },
+        //     { label: "Sindh", value: "8" }
+        // ];
 
         //*district List
-        this.districtList = [
-            { label: "Rawalpindi", value: "1" },
-            { label: "Lahore", value: "2" },
-            { label: "Peshawar", value: "3" },
-            { label: "Karachi", value: "4" },
-            { label: "Hyderabad", value: "5" },
-            { label: "Quetta", value: "6" }
-        ];
+        // this.districtList = [
+        //     { label: "Rawalpindi", value: "1" },
+        //     { label: "Lahore", value: "2" },
+        //     { label: "Peshawar", value: "3" },
+        //     { label: "Karachi", value: "4" },
+        //     { label: "Hyderabad", value: "5" },
+        //     { label: "Quetta", value: "6" }
+        // ];
 
         //*city List 
         this.cityList = [
@@ -701,11 +645,141 @@ export class CompanyComponent implements OnInit {
             { label: "Noshera", value: "8" }
         ];
 
+        this.getCompany();
+        this.getAddressType();
+        this.getCountry();
+        this.getProvince();
+        this.getDistrict();
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
     @ViewChild("exportPDF") public exportPDF: ElementRef;//for pdf
 
+    getAddressType() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getAddressType', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.addressType.push({
+                    label: data[i].addressTypeName,
+                    value: data[i].addressTypeCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getCountry() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getCountry', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.countryListForAddress.push({
+                    label: data[i].cntryName,
+                    value: data[i].cntryCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getCompany() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getCompanySummary', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            this.compSumDetail = data;
+            for (var i = 0; i < data.length; i++) {
+                if(this.companyDetail.length == 0){
+                    this.companyDetail.push({
+                        cmpnyCd: data[i].cmpnyCd,
+                        businessType: data[i].businessTypeName,
+                        title: data[i].orgName,
+                        //nature: data[i].n,
+                        ntn: data[i].orgNTN,
+                        website: data[i].orgWebsite
+                    })
+                }else{
+                    for (var j = 0; j < this.companyDetail.length; j++) {
+                        if (this.companyDetail[j].cmpnyCd != data[i].cmpnyCd){
+                            this.companyDetail.push({
+                                cmpnyCd: data[i].cmpnyCd,
+                                businessType: data[i].businessTypeName,
+                                title: data[i].orgName,
+                                //nature: data[i].n,
+                                ntn: data[i].orgNTN,
+                                website: data[i].orgWebsite
+                            })
+                        }
+                    }
+                }
+
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getProvince() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getProvince', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.provinceList.push({
+                    label: data[i].prvinceName,
+                    value: data[i].prvncCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getDistrict() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getDistrict', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.districtList.push({
+                    label: data[i].districtName,
+                    value: data[i].districtCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
 
     //* Function for save and update company 
     save() {
@@ -715,335 +789,289 @@ export class CompanyComponent implements OnInit {
             return false;
         }
 
-        // //*----- For Business ------//
-        // else if (this.bNtn == '' || this.bNtn.length < 8) {
-        //     this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.bStrn == '' || this.bStrn.length < 10) {
-        //     this.toastr.errorToastr('Please enter business strn', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.bTitle == '') {
-        //     this.toastr.errorToastr('Please enter business title', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.bNature == '') {
-        //     this.toastr.errorToastr('Please enter business nature', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.bDescription == '') {
-        //     this.toastr.errorToastr('Please enter business description', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.bWebsite == '') {
-        //     this.toastr.errorToastr('Please enter business website', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.bFacebook == '') {
-        //     this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.addressDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add Business Address Info', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.contactDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add Business Contact Info Type', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.emailDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add Business Email Info', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
+        //*----- For Business ------//
+        else if (this.bNtn == '' || this.bNtn.length < 8) {
+            this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.bStrn == '' || this.bStrn.length < 10) {
+            this.toastr.errorToastr('Please enter business strn', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.bTitle == '') {
+            this.toastr.errorToastr('Please enter business title', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.bNature == '') {
+            this.toastr.errorToastr('Please enter business nature', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.bDescription == '') {
+            this.toastr.errorToastr('Please enter business description', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.bWebsite == '') {
+            this.toastr.errorToastr('Please enter business website', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.bFacebook == '') {
+            this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.addressDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Business Address Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.contactDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Business Contact Info Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.emailDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Business Email Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
 
-        // //*----- For Owner ------//
-        // else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
-        //     this.toastr.errorToastr('Please enter owner CNIC', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
-        //     this.toastr.errorToastr('Please enter owner NTN', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.solePro == true && this.sOwnerName == '') {
-        //     this.toastr.errorToastr('Please enter owner name', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.solePro == true && this.oAddressDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add Owner Address Info', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.solePro == true && this.oContactDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add Owner Contact Info Type', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.solePro == true && this.oEmailDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add Owner Email Info', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-
-        // //*----- For Partner ------//
-        // else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
-        //     this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-
-        // //*----- For Board of Directors ------//
-        // else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
-        //     this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.ppCom == true && (this.ppNtn == '' || this.ppNtn.length < 8)) {
-        //     this.toastr.errorToastr('Please enter director ntn', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.ppCom == true && this.ppDirectorName == '') {
-        //     this.toastr.errorToastr('Please enter director name', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.ppCom == true && this.ppPosition == '') {
-        //     this.toastr.errorToastr('Please enter director position', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.ppCom == true && this.ppShare == '') {
-        //     this.toastr.errorToastr('Please enter director share', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.ppCom == true && this.bdAddressDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add BOD Address Info', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.ppCom == true && this.bdContactDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add BOD Contact Info', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
-        // else if (this.ppCom == true && this.bdEmailDetail.length == 0) {
-        //     this.toastr.errorToastr('Please Add BOD Email Info', 'Error', { toastTimeout: (2500) });
-        //     return false;
-        // }
+        //*----- For Owner ------//
+        else if (this.solePro == true && (this.sCnic == '' || this.sCnic.length < 13)) {
+            this.toastr.errorToastr('Please enter owner CNIC', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && (this.sNtn == '' || this.sNtn.length < 8)) {
+            this.toastr.errorToastr('Please enter owner NTN', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.sOwnerName == '') {
+            this.toastr.errorToastr('Please enter owner name', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.oAddressDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Owner Address Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.oContactDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Owner Contact Info Type', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.solePro == true && this.oEmailDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Owner Email Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        //*----- For Partner ------//
+        else if (this.partner == true && (this.partners.length == undefined || this.partners.length < 1)) {
+            this.toastr.errorToastr('Please enter partner information', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        //*----- For Board of Directors ------//
+        else if (this.ppCom == true && (this.ppCnic == '' || this.ppCnic.length < 13)) {
+            this.toastr.errorToastr('Please enter director cnic', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && (this.ppNtn == '' || this.ppNtn.length < 8)) {
+            this.toastr.errorToastr('Please enter director ntn', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.ppDirectorName == '') {
+            this.toastr.errorToastr('Please enter director name', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.ppPosition == '') {
+            this.toastr.errorToastr('Please enter director position', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.ppShare == '') {
+            this.toastr.errorToastr('Please enter director share', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.oAddressDetail.length == 0) {
+            this.toastr.errorToastr('Please Add BOD Address Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.oContactDetail.length == 0) {
+            this.toastr.errorToastr('Please Add BOD Contact Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
+        else if (this.ppCom == true && this.oEmailDetail.length == 0) {
+            this.toastr.errorToastr('Please Add BOD Email Info', 'Error', { toastTimeout: (2500) });
+            return false;
+        }
 
         else {
 
             //* For Business Info ****************************************************************
 
             // // address type conditions
-            // if (this.addressDetail.length > 0) {
-            //     for (let i = 0; i < this.addressDetail.length; i++) {
-            //         if (this.addressDetail[i].addressType.trim() == "") {
-            //             this.toastr.errorToastr('Please Select Business Address Type', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.addressDetail[i].address.trim() == "") {
-            //             this.toastr.errorToastr('Please Enter Business Address', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
+            if (this.addressDetail.length > 0) {
+                for (let i = 0; i < this.addressDetail.length; i++) {
+                    if (this.addressDetail[i].addressType.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete business address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.addressDetail[i].address.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete business address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.addressDetail[i].countryCode == "") {
+                        this.toastr.errorToastr('Please enter complete business address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.addressDetail[i].provinceCode == "") {
+                        this.toastr.errorToastr('Please enter complete business address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.addressDetail[i].districtCode == "") {
+                        this.toastr.errorToastr('Please enter complete business address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.addressDetail[i].cityCode == "") {
+                        this.toastr.errorToastr('Please enter complete business address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
+
+            // contact type conditions
+            if (this.contactDetail.length > 0) {
+                for (let i = 0; i < this.contactDetail.length; i++) {
+                    if (this.contactDetail[i].contactType.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete business contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.contactDetail[i].countryCode.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete business contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.contactDetail[i].areaCode == true && this.contactDetail[i].contactNumber.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete business contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.contactDetail[i].mobileCode == true && this.contactDetail[i].mobileNumber.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete business contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
+
+            // email type conditions
+            if (this.emailDetail.length > 0) {
+                for (let i = 0; i < this.emailDetail.length; i++) {
+                    if (this.emailDetail[i].type.trim() == "") {
+                        this.toastr.errorToastr('Please Select Business Email Type', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.emailDetail[i].email.trim() == "") {
+                        this.toastr.errorToastr('Please Enter Business Email', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
+                        this.toastr.errorToastr('Invalid Business email', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
 
 
-            // // contact type conditions
-            // if (this.contactDetail.length > 0) {
-            //     for (let i = 0; i < this.contactDetail.length; i++) {
-            //         if (this.contactDetail[i].contactType.trim() == "") {
-            //             this.toastr.errorToastr('Please Select Business Contact Type', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
-            //             this.toastr.errorToastr('Please Select Business Country Code', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.contactDetail[i].contactCode.trim() == "") {
-            //             this.toastr.errorToastr('Please Select Business Contact Code', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.contactDetail[i].contactNumber.trim() == "") {
-            //             this.toastr.errorToastr('Please Enter Business Contact Number', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
 
-
-            // // email type conditions
-            // if (this.emailDetail.length > 0) {
-            //     for (let i = 0; i < this.emailDetail.length; i++) {
-            //         if (this.emailDetail[i].type.trim() == "") {
-            //             this.toastr.errorToastr('Please Select Business Email Type', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.emailDetail[i].email.trim() == "") {
-            //             this.toastr.errorToastr('Please Enter Business Email', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
-            //             this.toastr.errorToastr('Invalid Business email', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
-
-            // //* For Owner Info ***********************************************************************
             // // address type conditions
-            // if (this.solePro == true && this.oAddressDetail.length > 0) {
-            //     for (let i = 0; i < this.oAddressDetail.length; i++) {
-            //         if (this.oAddressDetail[i].addressType.trim() == "") {
-            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oAddressDetail[i].address.trim() == "") {
-            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oAddressDetail[i].countryCode == "") {
-            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oAddressDetail[i].provinceCode == "") {
-            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oAddressDetail[i].districtCode == "") {
-            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oAddressDetail[i].cityCode == "") {
-            //             this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
+            if (this.oAddressDetail.length > 0) {
+                for (let i = 0; i < this.oAddressDetail.length; i++) {
+                    if (this.oAddressDetail[i].addressType.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].address.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].countryCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].provinceCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].districtCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oAddressDetail[i].cityCode == "") {
+                        this.toastr.errorToastr('Please enter complete owner address detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
             // // contact type conditions
-            // if (this.solePro == true && this.oContactDetail.length > 0) {
-            //     for (let i = 0; i < this.oContactDetail.length; i++) {
-            //         if (this.oContactDetail[i].contactType.trim() == "") {
-            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oContactDetail[i].countryCode.trim() == "countryCode") {
-            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oContactDetail[i].contactCode.trim() == "") {
-            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oContactDetail[i].contactNumber.trim() == "") {
-            //             this.toastr.errorToastr('Please enter complete owner contact detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
+            if (this.oContactDetail.length > 0) {
+                for (let i = 0; i < this.oContactDetail.length; i++) {
+                    if (this.oContactDetail[i].contactType.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oContactDetail[i].countryCode.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oContactDetail[i].areaCode == true && this.oContactDetail[i].contactNumber.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oContactDetail[i].mobileCode == true && this.oContactDetail[i].mobileNumber.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete contact detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
             // // email type conditions
-            // if (this.solePro == true && this.oEmailDetail.length > 0) {
-            //     for (let i = 0; i < this.oEmailDetail.length; i++) {
-            //         if (this.oEmailDetail[i].type.trim() == "") {
-            //             this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.oEmailDetail[i].email.trim() == "") {
-            //             this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.isEmail(this.oEmailDetail[i].email.trim()) == false) {
-            //             this.toastr.errorToastr('Invalid Owner email detail', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
-
-
-            // //* For Board of Directors****************************************************************
-            // // address type conditions
-            // if (this.ppCom == true && this.bdAddressDetail.length > 0) {
-            //     for (let i = 0; i < this.bdAddressDetail.length; i++) {
-            //         if (this.bdAddressDetail[i].bdAddressType.trim() == "") {
-            //             this.toastr.errorToastr('Please Select BOD Address Type', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.bdAddressDetail[i].bdAddress.trim() == "") {
-            //             this.toastr.errorToastr('Please Enter BOD Address', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
-
-            // // contact type conditions
-            // if (this.ppCom == true && this.bdContactDetail.length > 0) {
-            //     for (let i = 0; i < this.bdContactDetail.length; i++) {
-            //         if (this.bdContactDetail[i].bdContactType.trim() == "") {
-            //             this.toastr.errorToastr('Please Select BOD Contact Type', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.bdContactDetail[i].bdCountryCode.trim() == "countryCode") {
-            //             this.toastr.errorToastr('Please Select BOD Country Code', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.bdContactDetail[i].bdContactCode.trim() == "") {
-            //             this.toastr.errorToastr('Please Select BOD Contact Code', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.bdContactDetail[i].bdContactNumber.trim() == "") {
-            //             this.toastr.errorToastr('Please Enter BOD Contact Number', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
-
-            // // email type conditions
-            // if (this.ppCom == true && this.bdEmailDetail.length > 0) {
-            //     for (let i = 0; i < this.bdEmailDetail.length; i++) {
-            //         if (this.bdEmailDetail[i].bdType.trim() == "") {
-            //             this.toastr.errorToastr('Please Select BOD Email Type', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.bdEmailDetail[i].bdEmail.trim() == "") {
-            //             this.toastr.errorToastr('Please Enter BOD Email', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //         else if (this.isEmail(this.bdEmailDetail[i].bdEmail.trim()) == false) {
-            //             this.toastr.errorToastr('Invalid BOD email', 'Error', { toastTimeout: (2500) });
-            //             return false;
-            //         }
-            //     }
-            // }
+            if (this.oEmailDetail.length > 0) {
+                for (let i = 0; i < this.oEmailDetail.length; i++) {
+                    if (this.oEmailDetail[i].type.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.oEmailDetail[i].email.trim() == "") {
+                        this.toastr.errorToastr('Please enter complete owner email detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                    else if (this.isEmail(this.oEmailDetail[i].email.trim()) == false) {
+                        this.toastr.errorToastr('Invalid Owner email detail', 'Error', { toastTimeout: (2500) });
+                        return false;
+                    }
+                }
+            }
 
             //--------------------------------------------//
 
-            // if (this.cmbCType == "Sole Proprietorship") {
-            //     this.partners = [];
-            //     this.clearPartner();
+            if (this.cmbCType == "1") {
+                this.partners = [];
+                this.clearPartner();
 
-            //     this.partners.push({
-            //         cnic: this.sCnic,
-            //         ntn: this.sNtn,
-            //         name: this.sOwnerName,
-            //         role: null,
-            //         date: null,
-            //         share: null,
-            //         position: null,
-            //         addressList: this.oAddressDetail,
-            //         contactList: this.oContactDetail,
-            //         emailList: this.oEmailDetail
-            //     });
-            // }
-            // else if (this.cmbCType == "Public Limited Company" || this.cmbCType == "Private Limited Company") {
-            //     this.partners = [];
-            //     this.clearPartner();
 
-            //     this.partners.push({
-            //         cnic: this.ppCnic,
-            //         ntn: this.ppNtn,
-            //         name: this.ppDirectorName,
-            //         role: null,
-            //         date: null,
-            //         share: this.ppShare,
-            //         position: this.ppPosition,
-            //         addressList: this.oAddressDetail,
-            //         contactList: this.oContactDetail,
-            //         emailList: this.oEmailDetail
-            //     });
-            // }
+                this.partners.push({
+                    pId: this.partners.length + 1,
+                    cnic: this.sCnic,
+                    ntn: this.sNtn,
+                    name: this.sOwnerName,
+                    role: null,
+                    date: null,
+                    share: null,
+                    position: null
+                });
+            }
+            else if (this.cmbCType == "3") {
+                this.partners = [];
+                this.clearPartner();
+
+                this.partners.push({
+                    pId: this.partners.length + 1,
+                    cnic: this.ppCnic,
+                    ntn: this.ppNtn,
+                    name: this.ppDirectorName,
+                    role: null,
+                    date: null,
+                    share: this.ppShare,
+                    position: this.ppPosition
+                });
+            }
 
 
 
@@ -1090,21 +1118,24 @@ export class CompanyComponent implements OnInit {
                 //return false;
 
                 var saveData = {
-                    "companyTitle": this.bTitle,
-                    "businessType": Number(this.cmbCType),
-                    "companyNtn": this.bNtn,
-                    "companyStrn": this.bStrn,
-                    "companyNature": this.bNature
-                    // companyDesc: this.bDescription,
-                    // website: this.bWebsite,
-                    // fbId: this.bFacebook,
-                    // address: JSON.stringify(this.addressDetail),
-                    // telephone: JSON.stringify(this.contactDetail),
-                    // email: JSON.stringify(this.emailDetail),
-                    //partners: this.partners
+                    companyTitle: this.bTitle,
+                    businessType: Number(this.cmbCType),
+                    companyNtn: this.bNtn,
+                    companyStrn: this.bStrn,
+                    companyNature: this.bNature,
+                    companyDesc: this.bDescription,
+                    website: this.bWebsite,
+                    fbId: this.bFacebook,
+                    address: JSON.stringify(this.addressDetail),
+                    telephone: JSON.stringify(this.contactDetail),
+                    email: JSON.stringify(this.emailDetail),
+                    partners: JSON.stringify(this.partners),
+                    pAddress: JSON.stringify(this.oAddressDetail),
+                    pTelephone: JSON.stringify(this.oContactDetail),
+                    pEmail: JSON.stringify(this.oEmailDetail)
                 };
 
-                alert(saveData.companyStrn);
+                //alert(saveData.companyStrn);
 
                 // var token = localStorage.getItem(this.tokenKey);
 
@@ -1113,20 +1144,20 @@ export class CompanyComponent implements OnInit {
                 var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
                 // this.http.post(this.serverUrl + 'api/saveCompany', saveData, { headers: reqHeader }).subscribe((data: any) => {
-                this.http.post(this.serverUrl + 'api/saveCompany', { address: JSON.stringify(this.addressDetail), telephone: JSON.stringify(this.contactDetail) }, { headers: reqHeader }).subscribe((data: any) => {
+                this.http.post(this.serverUrl + 'api/saveCompany', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
-                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                        $('#companyModal').modal('hide');
+                        this.app.hideSpinner();
                         return false;
                     } else {
-                        this.toastr.successToastr('Record Saved Successfully', 'Success!', { toastTimeout: (2500) });
-                        $('#actionModal').modal('hide');
+                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        $('#companyModal').modal('hide');
+                        this.app.hideSpinner();
                         return false;
                     }
-
                 });
-
-
             }
         }
     }
@@ -1160,73 +1191,21 @@ export class CompanyComponent implements OnInit {
             return false;
         }
         // address type conditions
-        else if (this.pAddressDetail.length == 0) {
-            this.toastr.errorToastr('Please Add partner Address Info', 'Error', { toastTimeout: (2500) });
+        else if (this.oAddressDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Partner Address Info', 'Error', { toastTimeout: (2500) });
             return false;
         }
         // contact type conditions
-        else if (this.pContactDetail.length == 0) {
-            this.toastr.errorToastr('Please Add partner Contact Info Type', 'Error', { toastTimeout: (2500) });
+        else if (this.oContactDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Partner Contact Info Type', 'Error', { toastTimeout: (2500) });
             return false;
         }
         // email type conditions
-        else if (this.pEmailDetail.length == 0) {
-            this.toastr.errorToastr('Please Add partner Email Info', 'Error', { toastTimeout: (2500) });
+        else if (this.oEmailDetail.length == 0) {
+            this.toastr.errorToastr('Please Add Partner Email Info', 'Error', { toastTimeout: (2500) });
             return false;
         }
         else {
-
-            // address type conditions
-            if (this.pAddressDetail.length > 0) {
-                for (let i = 0; i < this.pAddressDetail.length; i++) {
-                    if (this.pAddressDetail[i].pAddressType.trim() == "") {
-                        this.toastr.errorToastr('Please Select partner Address Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.pAddressDetail[i].pAddress.trim() == "") {
-                        this.toastr.errorToastr('Please Enter partner Address', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
-            // contact type conditions
-            if (this.pContactDetail.length > 0) {
-                for (let i = 0; i < this.pContactDetail.length; i++) {
-                    if (this.pContactDetail[i].pContactType.trim() == "") {
-                        this.toastr.errorToastr('Please Select partner Contact Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.pContactDetail[i].pCountryCode.trim() == "countryCode") {
-                        this.toastr.errorToastr('Please Select partner Country Code', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.pContactDetail[i].pContactCode.trim() == "") {
-                        this.toastr.errorToastr('Please Select partner Contact Code', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.pContactDetail[i].pContactNumber.trim() == "") {
-                        this.toastr.errorToastr('Please Enter partner Contact Number', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
-            // email type conditions
-            if (this.pEmailDetail.length > 0) {
-                for (let i = 0; i < this.pEmailDetail.length; i++) {
-                    if (this.pEmailDetail[i].pType.trim() == "") {
-                        this.toastr.errorToastr('Please Select partner Email Type', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.pEmailDetail[i].pEmail.trim() == "") {
-                        this.toastr.errorToastr('Please Enter partner Email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                    else if (this.isEmail(this.pEmailDetail[i].pEmail.trim()) == false) {
-                        this.toastr.errorToastr('Invalid partner email', 'Error', { toastTimeout: (2500) });
-                        return false;
-                    }
-                }
-            }
 
             let data = this.partners.find(x => x.cnic == this.pCnic);
 
@@ -1238,23 +1217,19 @@ export class CompanyComponent implements OnInit {
             }
             else {
 
-                this.app.showSpinner();
-                this.app.hideSpinner();
-
                 this.partners.push({
+                    pId: this.partners.length + 1,
                     cnic: this.pCnic,
                     ntn: this.pNtn,
                     name: this.pPartnerName,
                     role: this.pPartnerRole,
                     date: new Date(this.pDate),
                     share: this.pShare,
-                    position: null,
-                    addressList: null,
-                    contactList: null,
-                    emailList: null
+                    position: null
                 });
 
                 this.clearPartner();
+                this.clearOwner();
 
             }
         }
@@ -1269,112 +1244,94 @@ export class CompanyComponent implements OnInit {
         this.pPartnerRole = '';
         this.pDate = '';
         this.pShare = '';
-        // this.pTelephone = '';
-        // this.pMobile = '';
-        // this.pEmail = '';
-        // this.pAddress = '';
-        //contact Detail partner
-
-        this.pContactDetail = [
-            {
-                pContactType: "",
-                pCountryCode: "countryCode",
-                pContactCode: "",
-                pAreaCode: true,
-                pMobileCode: false,
-                pContactNumber: ""
-            }
-        ];
-
-        //address Detail partner
-        this.pAddressDetail = [
-            {
-                pAddressType: "",
-                pAddress: ""
-            }
-        ];
-
-        //Emails Detail partner
-        this.pEmailDetail = [
-            {
-                pType: "",
-                pEmail: ""
-            }
-        ];
-
-        // this.contactFormPartner.reset();
 
     }
+
 
     //* Function for empty all fields of Owner information 
     clearOwner() {
 
-        //contact Detail Owner
-        this.oContactDetail = [
-            {
-                contactType: "",
-                countryCode: "countryCode",
-                contactCode: "",
-                areaCode: true,
-                mobileCode: false,
-                contactNumber: ""
-            }
-        ];
+        if (this.partner == false) {
 
-        //address Detail Owner
-        this.oAddressDetail = [
-            {
-                addressType: "",
-                address: "",
-                countryCode: "",
-                provinceCode: "",
-                districtCode: "",
-                cityCode: ""
-            }
-        ];
+            //contact Detail Owner
+            this.oContactDetail = [
+                {
+                    contactType: "",
+                    countryCode: "",
+                    contactCode: "",
+                    areaCode: true,
+                    mobileCode: false,
+                    contactNumber: "",
+                    mobileNumber: "",
+                    id: 0
+                }
+            ];
 
-        //Emails Detail Owner
-        this.oEmailDetail = [
-            {
-                type: "",
-                email: ""
-            }
-        ];
+            //address Detail Owner
+            this.oAddressDetail = [
+                {
+                    addressType: "",
+                    address: "",
+                    countryCode: "",
+                    provinceCode: "",
+                    districtCode: "",
+                    cityCode: "",
+                    id: 0
+                }
+            ];
 
-    }
+            //Emails Detail Owner
+            this.oEmailDetail = [
+                {
+                    type: "",
+                    email: "",
+                    id: 0
+                }
+            ];
 
-    //* Function for empty all fields of Board of Directors information 
-    clearBoardDirectors() {
 
-        //contact Detail Board of Directors
-        this.bdContactDetail = [
-            {
-                bdContactType: "",
-                bdCountryCode: "countryCode",
-                bdContactCode: "",
-                bdAreaCode: true,
-                bdMobileCode: false,
-                bdContactNumber: ""
-            }
-        ];
+        } else {
 
-        //address Detail Board of Directors
-        this.bdAddressDetail = [
-            {
-                bdAddressType: "",
-                bdAddress: ""
-            }
-        ];
 
-        //Emails Detail Board of Directors
-        this.bdEmailDetail = [
-            {
-                bdType: "",
-                bdEmail: ""
-            }
-        ];
+            //contact Detail Owner
+            this.oContactDetail = [
+                {
+                    contactType: "",
+                    countryCode: "",
+                    contactCode: "",
+                    areaCode: true,
+                    mobileCode: false,
+                    contactNumber: "",
+                    mobileNumber: "",
+                    id: this.partners.length
+                }
+            ];
 
-        // this.contactFormPartner.reset();
+            //address Detail Owner
+            this.oAddressDetail = [
+                {
+                    addressType: "",
+                    address: "",
+                    countryCode: "",
+                    provinceCode: "",
+                    districtCode: "",
+                    cityCode: "",
+                    id: this.partners.length
+                }
+            ];
+
+            //Emails Detail Owner
+            this.oEmailDetail = [
+                {
+                    type: "",
+                    email: "",
+                    id: this.partners.length
+                }
+            ];
+
+
+        }
+
 
     }
 
@@ -1401,7 +1358,6 @@ export class CompanyComponent implements OnInit {
             //this.sAddress = '';
 
             this.clearPartner();
-            this.clearBoardDirectors();
             this.clearOwner();
 
             this.ppCnic = '';
@@ -1437,6 +1393,7 @@ export class CompanyComponent implements OnInit {
 
             this.addressDetail = [
                 {
+                    id: 0,
                     addressType: "",
                     address: "",
                     countryCode: "",
@@ -1448,17 +1405,20 @@ export class CompanyComponent implements OnInit {
 
             this.contactDetail = [
                 {
+                    id: 0,
                     contactType: "",
                     countryCode: "countryCode",
                     contactCode: "",
                     areaCode: true,
                     mobileCode: false,
-                    contactNumber: ""
+                    contactNumber: "",
+                    mobileNumber: ""
                 }
             ];
 
             this.emailDetail = [
                 {
+                    id: 0,
                     type: "",
                     email: ""
                 }
@@ -1746,513 +1706,20 @@ export class CompanyComponent implements OnInit {
     }
 
 
-    // checkBusinessInfo() {
-    //     if (this.bNtn == '' || this.bNtn.length < 8) {
-    //         this.toastr.errorToastr('Please enter business ntn', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.bStrn == '' || this.bStrn.length < 10) {
-    //         this.toastr.errorToastr('Please enter business strn', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.bTitle == '') {
-    //         this.toastr.errorToastr('Please enter business title', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.bNature == '') {
-    //         this.toastr.errorToastr('Please enter business nature', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.bDescription == '') {
-    //         this.toastr.errorToastr('Please enter description', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-
-    //     else if (this.bWebsite == '') {
-    //         this.toastr.errorToastr('Please enter website', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.bFacebook == '') {
-    //         this.toastr.errorToastr('Please enter facebook link', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // address type conditions
-    //     else if (this.addressDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Address Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // contact type conditions
-    //     else if (this.contactDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Contact Info Type', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // email type conditions
-    //     else if (this.emailDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Email Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else {
-    //         // address type conditions
-    //         if (this.addressDetail.length > 0) {
-    //             for (let i = 0; i < this.addressDetail.length; i++) {
-    //                 if (this.addressDetail[i].addressType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.addressDetail[i].address.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // contact type conditions
-    //         if (this.contactDetail.length > 0) {
-    //             for (let i = 0; i < this.contactDetail.length; i++) {
-    //                 if (this.contactDetail[i].contactType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.contactDetail[i].countryCode.trim() == "countryCode") {
-    //                     this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.contactDetail[i].contactCode.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.contactDetail[i].contactNumber.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // email type conditions
-    //         if (this.emailDetail.length > 0) {
-    //             for (let i = 0; i < this.emailDetail.length; i++) {
-    //                 if (this.emailDetail[i].type.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.emailDetail[i].email.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.isEmail(this.emailDetail[i].email.trim()) == false) {
-    //                     this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //             this.btnStpr2 = true;
-    //         }
-
-    //         this.btnStpr2 = true;
-
-    //         // if (this.cmbCType != '') {
-    //         //     this.btnStpr2 = true;
-    //         // }
-
-    //         //this.clearPartner();
-
-    //         // else {
-    //         //     this.btnStpr2 = true;
-    //         // }
-    //     }
-    // }
-
-    // checkOwnerInfo() {
-    //     if (this.oAddressDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Address Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // contact type conditions
-    //     else if (this.oContactDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Contact Info Type', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // email type conditions
-    //     else if (this.oEmailDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Email Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-
-    //     else {
-
-    //         // address type conditions
-    //         if (this.oAddressDetail.length > 0) {
-    //             for (let i = 0; i < this.oAddressDetail.length; i++) {
-    //                 if (this.oAddressDetail[i].oAddressType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.oAddressDetail[i].oAddress.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // contact type conditions
-    //         if (this.oContactDetail.length > 0) {
-    //             for (let i = 0; i < this.oContactDetail.length; i++) {
-    //                 if (this.oContactDetail[i].oContactType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.oContactDetail[i].oCountryCode.trim() == "countryCode") {
-    //                     this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.oContactDetail[i].oContactCode.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.oContactDetail[i].oContactNumber.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // email type conditions
-    //         if (this.oEmailDetail.length > 0) {
-    //             for (let i = 0; i < this.oEmailDetail.length; i++) {
-    //                 if (this.oEmailDetail[i].oType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.oEmailDetail[i].oEmail.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.isEmail(this.oEmailDetail[i].oEmail.trim()) == false) {
-    //                     this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    // checkBODInfo() {
-    //     if (this.bdAddressDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Address Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // contact type conditions
-    //     else if (this.bdContactDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Contact Info Type', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // email type conditions
-    //     else if (this.bdEmailDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Email Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-
-    //     else {
-
-    //         // address type conditions
-    //         if (this.bdAddressDetail.length > 0) {
-    //             for (let i = 0; i < this.bdAddressDetail.length; i++) {
-    //                 if (this.bdAddressDetail[i].bdAddressType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.bdAddressDetail[i].bdAddress.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // contact type conditions
-    //         if (this.bdContactDetail.length > 0) {
-    //             for (let i = 0; i < this.bdContactDetail.length; i++) {
-    //                 if (this.bdContactDetail[i].bdContactType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.bdContactDetail[i].bdCountryCode.trim() == "countryCode") {
-    //                     this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.bdContactDetail[i].bdContactCode.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.bdContactDetail[i].bdContactNumber.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // email type conditions
-    //         if (this.bdEmailDetail.length > 0) {
-    //             for (let i = 0; i < this.bdEmailDetail.length; i++) {
-    //                 if (this.bdEmailDetail[i].bdType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.bdEmailDetail[i].bdEmail.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.isEmail(this.bdEmailDetail[i].bdEmail.trim()) == false) {
-    //                     this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    // checkPartnerInfo() {
-    //     if (this.pCnic == '' || this.pCnic.length < 13) {
-    //         this.toastr.errorToastr('Please enter CNIC', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.pNtn == '' || this.pNtn.length < 8) {
-    //         this.toastr.errorToastr('Please enter NTN', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.pPartnerName == '') {
-    //         this.toastr.errorToastr('Please enter partner name', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.pPartnerRole == '') {
-    //         this.toastr.errorToastr('Please enter partner role', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.pDate == '') {
-    //         this.toastr.errorToastr('Please enter date', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else if (this.pShare == '') {
-    //         this.toastr.errorToastr('Please enter share', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // address type conditions
-    //     else if (this.pAddressDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Address Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // contact type conditions
-    //     else if (this.pContactDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Contact Info Type', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     // email type conditions
-    //     else if (this.pEmailDetail.length == 0) {
-    //         this.toastr.errorToastr('Please Add Email Info', 'Error', { toastTimeout: (2500) });
-    //         return false;
-    //     }
-    //     else {
-
-    //         // address type conditions
-    //         if (this.pAddressDetail.length > 0) {
-    //             for (let i = 0; i < this.pAddressDetail.length; i++) {
-    //                 if (this.pAddressDetail[i].pAddressType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Address Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.pAddressDetail[i].pAddress.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Address', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // contact type conditions
-    //         if (this.pContactDetail.length > 0) {
-    //             for (let i = 0; i < this.pContactDetail.length; i++) {
-    //                 if (this.pContactDetail[i].pContactType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.pContactDetail[i].pCountryCode.trim() == "countryCode") {
-    //                     this.toastr.errorToastr('Please Select Country Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.pContactDetail[i].pContactCode.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Contact Code', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.pContactDetail[i].pContactNumber.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Contact Number', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //         // email type conditions
-    //         if (this.pEmailDetail.length > 0) {
-    //             for (let i = 0; i < this.pEmailDetail.length; i++) {
-    //                 if (this.pEmailDetail[i].pType.trim() == "") {
-    //                     this.toastr.errorToastr('Please Select Email Type', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.pEmailDetail[i].pEmail.trim() == "") {
-    //                     this.toastr.errorToastr('Please Enter Email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //                 else if (this.isEmail(this.pEmailDetail[i].pEmail.trim()) == false) {
-    //                     this.toastr.errorToastr('Invalid email', 'Error', { toastTimeout: (2500) });
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    //*----------------For Partner Starts---------------//
-
-    pOnContactChange(pContactType, item) {
-
-        if (pContactType == "Fax") {
-            item.pAreaCode = true;
-            item.pMobileCode = false;
-        }
-        else if (pContactType == "Telephone") {
-            item.pAreaCode = true;
-            item.pMobileCode = false;
-        }
-        else if (pContactType == "Mobile") {
-            item.pAreaCode = false;
-            item.pMobileCode = true;
-        }
-        else {
-            return;
-        }
-    }
-
-
-    pAddContact() {
-
-        this.pContactDetail.push({
-            pContactType: "",
-            pCountryCode: "countryCode",
-            pContactCode: "",
-            pAreaCode: true,
-            pMobileCode: false,
-            pContactNumber: ""
-        });
-
-    }
-
-    pAddAddress() {
-
-        this.pAddressDetail.push({
-            pAddressType: "",
-            pAddress: ""
-        });
-
-    }
-
-    pAddEmail() {
-
-        this.pEmailDetail.push({
-            pType: "",
-            pEmail: ""
-        });
-
-    }
-
-    //Deleting contact row
-    pRemoveContact(item) {
-        this.pContactDetail.splice(item, 1);
-    }
-
-    //Deleting address row
-    pRemoveAddress(item) {
-        this.pAddressDetail.splice(item, 1);
-    }
-
-    //Deleting address row
-    pRemoveEmail(item) {
-        this.pEmailDetail.splice(item, 1);
-    }
-
-    //*----------------For Partner Ends---------------//
-
-    //*----------------For Board of Directors Starts---------------//
-    bdOnContactChange(bdContactType, item) {
-
-        if (bdContactType == "Fax") {
-            item.bdAreaCode = true;
-            item.bdMobileCode = false;
-        }
-        else if (bdContactType == "Telephone") {
-            item.bdAreaCode = true;
-            item.bdMobileCode = false;
-        }
-        else if (bdContactType == "Mobile") {
-            item.bdAreaCode = false;
-            item.bdMobileCode = true;
-        }
-        else {
-            return;
-        }
-    }
-
-
-    bdAddContact() {
-
-        this.bdContactDetail.push({
-            bdContactType: "",
-            bdCountryCode: "countryCode",
-            bdContactCode: "",
-            bdAreaCode: true,
-            bdMobileCode: false,
-            bdContactNumber: ""
-        });
-
-    }
-
-    bdAddAddress() {
-
-        this.bdAddressDetail.push({
-            bdAddressType: "",
-            bdAddress: ""
-        });
-
-    }
-
-    bdAddEmail() {
-
-        this.bdEmailDetail.push({
-            bdType: "",
-            bdEmail: ""
-        });
-
-    }
-
-    //Deleting contact row
-    bdRemoveContact(item) {
-        this.bdContactDetail.splice(item, 1);
-    }
-
-    //Deleting address row
-    bdRemoveAddress(item) {
-        this.bdAddressDetail.splice(item, 1);
-    }
-
-    //Deleting address row
-    bdRemoveEmail(item) {
-        this.bdEmailDetail.splice(item, 1);
-    }
-
-    //*----------------For Board of Directors Ends---------------//
-
-
     //*----------------For Owner Starts---------------//
     owOnContactChange(oContactType, item) {
 
         if (oContactType == "Fax") {
-            item.oAreaCode = true;
-            item.oMobileCode = false;
+            item.areaCode = true;
+            item.mobileCode = false;
         }
         else if (oContactType == "Telephone") {
-            item.oAreaCode = true;
-            item.oMobileCode = false;
+            item.areaCode = true;
+            item.mobileCode = false;
         }
         else if (oContactType == "Mobile") {
-            item.oAreaCode = false;
-            item.oMobileCode = true;
+            item.areaCode = false;
+            item.mobileCode = true;
         }
         else {
             return;
@@ -2262,42 +1729,111 @@ export class CompanyComponent implements OnInit {
 
     oAddContact() {
 
-        this.oContactDetail.push({
-            contactType: "",
-            countryCode: "countryCode",
-            contactCode: "",
-            areaCode: true,
-            mobileCode: false,
-            contactNumber: ""
-        });
+        if (this.partner == false) {
+
+            this.oContactDetail.push({
+                contactType: "",
+                countryCode: "",
+                contactCode: "",
+                areaCode: true,
+                mobileCode: false,
+                contactNumber: "",
+                mobileNumber: "",
+                id: 0
+
+            });
+
+        } else {
+
+            this.oContactDetail.push({
+                contactType: "",
+                countryCode: "",
+                contactCode: "",
+                areaCode: true,
+                mobileCode: false,
+                contactNumber: "",
+                mobileNumber: "",
+                id: this.partners.length
+
+            });
+
+        }
 
     }
 
     oAddAddress() {
 
-        this.oAddressDetail.push({
-            addressType: "",
-            address: "",
-            countryCode: "",
-            provinceCode: "",
-            districtCode: "",
-            cityCode: ""
-        });
+        if (this.partner == false) {
+
+            this.oAddressDetail.push({
+                addressType: "",
+                address: "",
+                countryCode: "",
+                provinceCode: "",
+                districtCode: "",
+                cityCode: "",
+                id: 0
+            });
+
+        } else {
+
+            this.oAddressDetail.push({
+                addressType: "",
+                address: "",
+                countryCode: "",
+                provinceCode: "",
+                districtCode: "",
+                cityCode: "",
+                id: this.partners.length
+            });
+
+        }
 
     }
 
     oAddEmail() {
 
-        this.oEmailDetail.push({
-            type: "",
-            email: ""
-        });
+
+
+        if (this.partner == false) {
+
+            this.oEmailDetail.push({
+                type: "",
+                email: "",
+                id: 0
+            });
+
+        } else {
+
+            this.oEmailDetail.push({
+                type: "",
+                email: "",
+                id: this.partners.length
+            });
+
+        }
 
     }
 
     //Deleting contact row
     oRemoveContact(item) {
-        this.oContactDetail.splice(item, 1);
+
+
+        if (this.partner == false) {
+
+            this.oContactDetail.splice(item, 1);
+
+        } else {
+
+            // this.oContactDetail.splice(item, 1);
+
+            // this.oEmailDetail.push({
+            //     type: "",
+            //     email: "",
+            //     id: this.partners.length
+            // });
+
+        }
     }
 
     //Deleting address row
@@ -2337,12 +1873,14 @@ export class CompanyComponent implements OnInit {
     addContact() {
 
         this.contactDetail.push({
+            id: 0,
             contactType: "",
-            countryCode: "countryCode",
+            countryCode: "",
             contactCode: "",
             areaCode: true,
             mobileCode: false,
-            contactNumber: ""
+            contactNumber: "",
+            mobileNumber: ""
         });
 
     }
@@ -2350,6 +1888,7 @@ export class CompanyComponent implements OnInit {
     addAddress() {
 
         this.addressDetail.push({
+            id: 0,
             addressType: "",
             address: "",
             countryCode: "",
@@ -2363,6 +1902,7 @@ export class CompanyComponent implements OnInit {
     addEmail() {
 
         this.emailDetail.push({
+            id: 0,
             type: "",
             email: ""
         });
