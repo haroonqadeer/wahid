@@ -42,6 +42,7 @@ declare var $: any;
 
 export class SubsidiarieComponent implements OnInit {
 
+
     //public contactForm: FormGroup;
 
     // areaCode = false;
@@ -1210,5 +1211,4 @@ export class SubsidiarieComponent implements OnInit {
     removeEmail(item) {
         this.emailDetail.splice(item, 1);
     }
-
 }
