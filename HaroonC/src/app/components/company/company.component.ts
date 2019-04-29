@@ -710,20 +710,21 @@ export class CompanyComponent implements OnInit {
             //alert(data.length);
             this.compSumDetail = data;
             for (var i = 0; i < data.length; i++) {
-                if(this.companyDetail.length == 0){
+                if (this.companyDetail.length == 0) {
                     this.companyDetail.push({
-                        cmpnyCd: data[i].cmpnyCd,
+                        cmpnyCd: data[i].cmpnyID,
+                        businessTypeCd: data[i].businessTypeCd,
                         businessType: data[i].businessTypeName,
                         title: data[i].orgName,
                         //nature: data[i].n,
                         ntn: data[i].orgNTN,
                         website: data[i].orgWebsite
                     })
-                }else{
+                } else {
                     for (var j = 0; j < this.companyDetail.length; j++) {
-                        if (this.companyDetail[j].cmpnyCd != data[i].cmpnyCd){
+                        if (this.companyDetail[j].cmpnyCd != data[i].cmpnyID) {
                             this.companyDetail.push({
-                                cmpnyCd: data[i].cmpnyCd,
+                                cmpnyCd: data[i].cmpnyID,
                                 businessType: data[i].businessTypeName,
                                 title: data[i].orgName,
                                 //nature: data[i].n,
@@ -1148,12 +1149,13 @@ export class CompanyComponent implements OnInit {
 
                     if (data.msg != undefined) {
                         this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                        this.getCompany();
                         $('#companyModal').modal('hide');
                         this.app.hideSpinner();
                         return false;
                     } else {
                         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-                        $('#companyModal').modal('hide');
+                        //$('#companyModal').modal('hide');
                         this.app.hideSpinner();
                         return false;
                     }
@@ -1432,8 +1434,8 @@ export class CompanyComponent implements OnInit {
     //function for edit existing currency 
     edit(item) {
 
-        this.companyId = item.companyId;
-        this.cmbCType = item.businessType;
+        this.companyId = item.cmpnyCd;
+        this.cmbCType = item.businessTypeCd;
 
         this.allowDiv();
     }
@@ -1441,8 +1443,9 @@ export class CompanyComponent implements OnInit {
 
     //functions for delete company
     deleteTemp(item) {
-        this.clear(item.companyId);
-        this.dCompanyId = item.companyId;
+        //this.clear(item.companyId);
+        this.dCompanyId = item.cmpnyCd;
+        //alert(this.dCompanyId)
     }
 
 
@@ -1461,30 +1464,33 @@ export class CompanyComponent implements OnInit {
         }
         else {
 
+            this.app.showSpinner();
 
-            this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
-            this.clear(1);
+            //this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
 
-            $('#closeDeleteModel').click();
+            //return false;
 
-            return false;
+            //var token = localStorage.getItem(this.tokenKey);
 
-            var data = { "ID": this.dCompanyId, "Password": this.txtdPassword, "PIN": this.txtdPin };
+            //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+            //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-            var token = localStorage.getItem(this.tokenKey);
-
-            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-            this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+            this.http.delete(this.serverUrl + 'api/deleteCompany?companyId=' + this.dCompanyId + '&password=' + this.txtdPassword + '&pin=' + this.txtdPin).subscribe((data: any) => {
 
                 if (data.msg != undefined) {
-                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                    this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                    this.getCompany();
+                    $('#closeDeleteModel').modal('hide');
+                    this.clear(1);
+                    this.app.hideSpinner();
                     return false;
                 } else {
-                    this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-                    $('#actionModal').modal('hide');
+                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                    //$('#companyModal').modal('hide');
+                    this.app.hideSpinner();
                     return false;
                 }
+
             });
         }
     }
@@ -1680,6 +1686,9 @@ export class CompanyComponent implements OnInit {
 
     //* function for hide or unhide div
     allowDiv() {
+
+        //alert(this.cmbCType);
+
         if (this.cmbCType == '') {
             this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
             return false;
