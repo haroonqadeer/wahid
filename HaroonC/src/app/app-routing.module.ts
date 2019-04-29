@@ -9,6 +9,8 @@ import { SectionComponent } from './components/section/section.component';
 import { SubsidiarieComponent } from './components/subsidiarie/subsidiarie.component';
 import { CurrencyComponent } from './components/currency/currency.component';
 
+import { AddressComponent } from './shared/address/address.component';
+
 
 const routes: Routes = [
   {
@@ -49,6 +51,10 @@ const routes: Routes = [
   {
     path: 'currency',
     component: CurrencyComponent
+  },
+  {
+    path: 'address',
+    component: AddressComponent
   }
 ];
 

@@ -1,12 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatBottomSheetModule, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatStepperModule, MatIconModule, MatTabsModule, MatPaginatorModule, MatDialogModule,  MatInputModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatCardModule, MatMenuModule, MatExpansionModule } from '@angular/material';
+import {
+  MatBottomSheetModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatStepperModule,
+  MatIconModule,
+  MatTabsModule,
+  MatPaginatorModule,
+  MatDialogModule,
+  MatInputModule,
+  MatTableModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatMenuModule,
+  MatExpansionModule,
+  MatAutocompleteModule
+} from '@angular/material';
+// import { AddressComponent } from './address/address.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatInputModule, 
-    MatButtonModule, 
+    MatInputModule,
+    MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
     MatTableModule,
@@ -22,11 +43,12 @@ import { MatBottomSheetModule, MatNativeDateModule, MatDatepickerModule, MatForm
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatBottomSheetModule    
+    MatBottomSheetModule,
+    MatAutocompleteModule
   ],
-  exports:[    
-    MatInputModule, 
-    MatButtonModule, 
+  exports: [
+    MatInputModule,
+    MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
     MatTableModule,
@@ -37,12 +59,14 @@ import { MatBottomSheetModule, MatNativeDateModule, MatDatepickerModule, MatForm
     MatExpansionModule,
     MatSidenavModule,
     MatCardModule,
-    MatIconModule ,
+    MatIconModule,
     MatStepperModule,
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatBottomSheetModule    
-]
+    MatBottomSheetModule,
+    MatAutocompleteModule
+  ],
+  //declarations: [AddressComponent]
 })
 export class MaterialModule { }

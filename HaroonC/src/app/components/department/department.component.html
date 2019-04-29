@@ -37,23 +37,8 @@
 
 <br>
 
-<!-- button row -->
-<!-- <div class="row">
-  <div class="col-md-6">
-    <button mat-raised-button color="warn" data-toggle="modal" data-target="#optionModal">Options</button>
-  </div>
-  <div class="col-md-6 text-right">
-    <button mat-raised-button color="primary" data-toggle="modal" data-target="#departmentModal" (click)="clear()">Add
-      New</button>
-  </div>
-</div> -->
-<!-- end button - row -->
-
-<br>
-
 <!-- Table Section Starts -->
-<div class="container ">
-  <br>
+<div class="container">
   <!--Start search textbox Row-->
   <div class="row">
     <div class="col-md-12">
@@ -69,13 +54,13 @@
       <thead>
         <tr class="d-flex">
           <th class="col-1 text-center">Sr. #</th>
-          <th [class.active]="order === 'departmentName'" (click)="setOrder('departmentName')" class="col-4 text-left">
+          <th [class.active]="order === 'deptName'" (click)="setOrder('deptName')" class="col-4 text-left">
             Department Name
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
-          <th [class.active]="order === 'branchCity'" (click)="setOrder('branchCity')" class="col-5 text-left">Branch
-            City
+          <th [class.active]="order === 'locationName'" (click)="setOrder('locationName')" class="col-5 text-left">
+            Branch Location
             <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
             <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
           </th>
@@ -86,33 +71,29 @@
       </thead>
       <tbody>
         <tr class="d-flex"
-          *ngFor="let dept of departmentsData | search:'departmentName,branchCity' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
+          *ngFor="let dept of departmentsDetails | search:'deptName,locationName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p, id: 'first' } | orderBy: order:reverse:'case-insensitive' let i=index">
           <td class="col-1 text-center">{{i+1}}</td>
-          <td class="col-4 text-left">{{dept.departmentName}}</td>
-          <td class="col-5 text-left">{{dept.branchCity}}</td>
-          <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal"
-              class="pointerCursor fa fa-edit text-primary" (click)="edit(dept)"></span></td>
-          <td class="col-1 text-left"><span data-toggle="modal" data-target="#deleteModal"
-              class="pointerCursor fa fa-trash text-danger" (click)="deleteTemp(dept)"></span></td>
+          <td class="col-4 text-left">{{dept.deptName}}</td>
+          <td class="col-5 text-left">{{dept.locationName}}</td>
+          <!-- <td class="col-1 text-right"><span data-toggle="modal" data-target="#departmentModal"
+              class="pointerCursor fa fa-edit text-primary" (click)="edit(dept)"></span></td> -->
+          <td class="col-2 text-center"><span data-toggle="modal" data-target="#deleteModal"
+              class="pointerCursor fa fa-trash text-danger" (click)="deleteDeptDetails(dept)"></span></td>
         </tr>
       </tbody>
     </table>
     <!-- Pagination Starts -->
     <div class="col-md-10">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls id="first" (pageChange)="p = $event"></pagination-controls>
     </div>
     <div class="col-md-2 text-right">
       <mat-form-field class="fullwidth pagenateList">
         <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <mat-option value="5">5</mat-option>
           <mat-option value="10">10</mat-option>
-          <mat-option value="15">15</mat-option>
-          <mat-option value="20">20</mat-option>
           <mat-option value="25">25</mat-option>
-          <mat-option value="30">30</mat-option>
-          <mat-option value="35">35</mat-option>
-          <mat-option value="40">40</mat-option>
-          <mat-option value="45">45</mat-option>
           <mat-option value="50">50</mat-option>
+          <mat-option value="100">100</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -121,13 +102,8 @@
 </div>
 <!-- Table Section Ends -->
 
-<!-- Hidden Table Starts for Excel and CSV files -->
-<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
-</igx-grid>
-<!-- Hidden Table Ends  for Excel and CSV files -->
-
 <!-- Hidden Table for Print and PDF files starts-->
-<div class="container printArea" id="printArea" #exportPDF>
+<div class="container printArea" id="printArea">
   <div class="printDiv">
 
     <!--Start heading table -->
@@ -160,10 +136,10 @@
         </thead>
         <tbody>
           <tr class="d-flex"
-            *ngFor="let dept of departmentsData | search:'departmentName,branchCity' :tblSearch  let i=index">
+            *ngFor="let dept of departmentsDetails | search:'deptName,locationName' :tblSearch  let i=index">
             <td class="col-1 text-center">{{i+1}}</td>
-            <td class="col-4 text-left">{{dept.departmentName}}</td>
-            <td class="col-5 text-left">{{dept.branchCity}}</td>
+            <td class="col-4 text-left">{{dept.deptName}}</td>
+            <td class="col-5 text-left">{{dept.locationName}}</td>
           </tr>
         </tbody>
       </table>
@@ -171,6 +147,11 @@
   </div>
 </div>
 <!-- Hidden Table for Print and PDF files ends-->
+
+<!-- Hidden Table Starts for Excel and CSV files -->
+<igx-grid #excelDataContent [data]="excelDataList" [autoGenerate]="false" height="null" width="null" [hidden]="true">
+</igx-grid>
+<!-- Hidden Table Ends  for Excel and CSV files -->
 
 <!-- Start Department Modal Window -->
 <div class="modal fade" id="departmentModal">
@@ -188,18 +169,44 @@
       <div class="modal-body">
         <br>
         <!-- Hidden deptId Starts -->
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
-            <label [(ngModel)]="deptId" [hidden]=true></label>
+            <input matInput [(ngModel)]="cmpnyId"  [hidden]=true>
           </div>
-        </div>
+        </div> -->
         <!-- Hidden deptId Ends -->
         <!-- row - 01 -->
         <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth">
+              <mat-select [(ngModel)]="departmentLocationCd" placeholder="Head Quarter / Branch"
+                (click)=onLocationClick()>
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput [(ngModel)]="dropSearchLocation" placeholder="Search">
+                  </mat-form-field>
+                </div>
+                <mat-option *ngFor="let location of locations | search:'locationName':dropSearchLocation"
+                  [value]="location.locationCd">{{location.locationName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end row - 01 -->
+
+        <!-- row - 02 -->
+        <div class="row">
           <div class="col-md-10">
             <mat-form-field class="fullwidth">
-              <mat-select [(ngModel)]="deptName" placeholder="Department Name">
-                <mat-option *ngFor="let dept of departments" [value]="dept.departmentName">{{dept.departmentName}}
+              <mat-select [(ngModel)]="departmentNameCd" placeholder="Department Name" (click)=onDeptClick()>
+                <div class="col-md-12">
+                  <mat-form-field class="fullwidth">
+                    <input matInput [(ngModel)]="dropSearchDept" placeholder="Search">
+                  </mat-form-field>
+                </div>
+                <mat-option *ngFor="let dept of departments | search:'deptName':dropSearchDept" [value]=" dept.deptCd">
+                  {{dept.deptName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -208,24 +215,13 @@
             <button mat-fab color="primary" class='noneOutLine' data-toggle="modal" data-target="#deptModal"><span
                 class="fa fa-plus"></span></button>
           </div>
-        </div><!-- end row - 01 -->
-
-        <!-- row - 02 -->
-        <div class="row">
-          <div class="col-md-12">
-            <mat-form-field class="fullwidth">
-              <mat-select [(ngModel)]="deptBranch" placeholder="Head Quarter / Branch">
-                <mat-option *ngFor="let branch of branches" [value]="branch.branchId">{{branch.branchCity}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div><!-- end row - 02 -->
+        </div>
+        <!-- end row - 02 -->
 
         <!--button tag Row Starts-->
         <div class="row">
           <div class="col-md-1 text-left">
-            <button mat-raised-button color="primary" (click)="saveDepartment()">Save</button>
-
+            <button mat-raised-button color="primary" (click)="saveDepartmentDetails()">Save</button>
           </div>
           <div class="col-md-2 text-center">
             <button mat-raised-button (click)="clear()">Reset</button>
@@ -261,11 +257,11 @@
       <!--start Modal body -->
       <div class="modal-body">
         <!-- Hidden deptId Starts -->
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <label [(ngModel)]="departId" [hidden]=true></label>
           </div>
-        </div>
+        </div> -->
         <!-- Hidden deptId Ends -->
 
         <!--start 1st row-->
@@ -288,8 +284,7 @@
             <thead>
               <tr class="d-flex">
                 <th class="col-2 text-center">Sr. #</th>
-                <th [class.active]="order === 'departmentName'" (click)="setOrder('departmentName')"
-                  class="col-6 text-left">
+                <th [class.active]="order === 'deptName'" (click)="setOrder('deptName')" class="col-6 text-left">
                   Department Name
                   <span class="fa fa-angle-double-down" [hidden]="reverse"></span>
                   <span class="fa fa-angle-double-up" [hidden]="!reverse"></span>
@@ -299,9 +294,9 @@
             </thead>
             <tbody>
               <tr class="d-flex"
-                *ngFor="let dept of departments | search:'departmentName' :tblSearch | paginate: { itemsPerPage: itemPerPage, currentPage: p } | orderBy: order:reverse:'case-insensitive' let i=index">
-                <td class="col-2 text-center">{{dept.departmentId}}</td>
-                <td class="col-6 text-left">{{dept.departmentName}}</td>
+                *ngFor="let dept of departments | search:'deptName' :tblSearch | paginate: { itemsPerPage: itemPerPageDept, currentPage: pDept, id: 'second' } | orderBy: order:reverse:'case-insensitive' let i=index">
+                <td class="col-2 text-center">{{i+1}}</td>
+                <td class="col-6 text-left">{{dept.deptName}}</td>
                 <td class="col-2 text-right"><span data-toggle="modal" class="pointerCursor fa fa-edit text-primary"
                     (click)="editDept(dept)"></span></td>
                 <td class="col-2 text-left"><span data-toggle="modal" data-target="#deleteModal"
@@ -310,21 +305,17 @@
             </tbody>
           </table>
           <!-- Pagination Starts -->
-          <div class="col-md-7">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          <div class="col-md-10">
+            <pagination-controls id="second" (pageChange)="pDept = $event"></pagination-controls>
           </div>
-          <div class="col-md-5 text-right">
-            <mat-form-field class="fullwidth pagenateList">
-              <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPage">
+          <div class="col-md-2 text-right">
+            <mat-form-field class="fullwidth pagenateListDept">
+              <mat-select placeholder="Items Per Page" [(ngModel)]="itemPerPageDept">
+                <mat-option value="5">5</mat-option>
                 <mat-option value="10">10</mat-option>
-                <mat-option value="15">15</mat-option>
-                <mat-option value="20">20</mat-option>
                 <mat-option value="25">25</mat-option>
-                <mat-option value="30">30</mat-option>
-                <mat-option value="35">35</mat-option>
-                <mat-option value="40">40</mat-option>
-                <mat-option value="45">45</mat-option>
                 <mat-option value="50">50</mat-option>
+                <mat-option value="100">100</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -344,6 +335,7 @@
   </div>
 </div>
 <!-- End Add Dept Modal Window  -->
+
 
 <!-- Delete Add Department Modal Window Starts -->
 <div class="modal fade" id="deleteModal">
