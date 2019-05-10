@@ -41,33 +41,35 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
 
-        if (this.txtUserName.trim().length == 0) {
-            this.toastr.errorToastr('Please Enter User Name', 'Oops!', { toastTimeout: (2500) });
-            return false;
-        }
-        else if (this.txtPassword.trim().length == 0) {
-            this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
-            return false;
-        }
-        else {
+        // if (this.txtUserName.trim().length == 0) {
+        //     this.toastr.errorToastr('Please Enter User Name', 'Oops!', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else if (this.txtPassword.trim().length == 0) {
+        //     this.toastr.errorToastr('Please Enter Password', 'Oops!', { toastTimeout: (2500) });
+        //     return false;
+        // }
+        // else {
 
-            var data = { "loginname": this.txtUserName, "password": this.txtPassword };
+        //     var data = { "loginname": this.txtUserName, "password": this.txtPassword };
 
-            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+        //     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-            this.http.post(this.serverUrl + 'api/token', data, { headers: reqHeader }).subscribe((data: any) => {
+        //     this.http.post(this.serverUrl + 'api/token', data, { headers: reqHeader }).subscribe((data: any) => {
 
-                if (data.msg != undefined) {
-                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-                    return false;
-                } else {
-                    this.Idle.startWatching();
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('userName', data.userName);
-                    this.router.navigate(['/introPage']);
-                }
-            });
+        //         if (data.msg != undefined) {
+        //             this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+        //             return false;
+        //         } else {
+        //             this.Idle.startWatching();
+        //             localStorage.setItem('token', data.token);
+        //             localStorage.setItem('userName', data.userName);
+        //             this.router.navigate(['/introPage']);
+        //         }
+        //     });
 
-        }
+        // }
+
+        this.router.navigate(['/introPage']);
     }
 }
