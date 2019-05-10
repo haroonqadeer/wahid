@@ -29,6 +29,9 @@ import { CurrencyComponent } from './components/currency/currency.component';
 
 import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
 
+import { AddressComponent } from './shared/address/address.component';
+
+import { ValidationAddressService } from "../app/shared/services/validation-address.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "i
     DepartmentComponent,
     SectionComponent,
     SubsidiarieComponent,
-    CurrencyComponent
+    CurrencyComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,7 @@ import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "i
     NgxSpinnerModule,
     ExportAsModule
   ],
-  providers: [IgxExcelExporterService, IgxCsvExporterService],
+  providers: [IgxExcelExporterService, IgxCsvExporterService, ValidationAddressService],
   bootstrap: [AppComponent],
   entryComponents: [ErpBottomSheetComponent],
 })

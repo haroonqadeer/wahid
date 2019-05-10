@@ -105,9 +105,9 @@ export class CompanyComponent implements OnInit {
     // list variables -----------
     excelDataList = [];
 
-    countryListForAddress;
-    provinceList;
-    districtList;
+    countryListForAddress = [];
+    provinceList = [];
+    districtList = [];
     cityList;
 
     //*--For Business--// 
@@ -115,7 +115,7 @@ export class CompanyComponent implements OnInit {
     country;
     area;
     network;
-    addressType;
+    addressType = [];
     emailType;
     //*--For Partner--// 
     pContactType;
@@ -323,6 +323,8 @@ export class CompanyComponent implements OnInit {
     //*----------------For Business Ends---------------//
 
 
+    companyDetail = [];
+    compSumDetail = [];
 
     userDetail = [
         {
@@ -435,9 +437,9 @@ export class CompanyComponent implements OnInit {
         private fb: FormBuilder) {
 
         this.contactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code for Mobiles
@@ -463,23 +465,23 @@ export class CompanyComponent implements OnInit {
         ];
 
         //Address Types
-        this.addressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
-        ];
+        // this.addressType = [
+        //     { label: 'Current Address', value: '1' },
+        //     { label: 'Office Address', value: '2' },
+        //     { label: 'Postal Address', value: '3' }
+        // ];
 
         //Email Types
         this.emailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '2' }
         ];
 
         //* For partner ----------------------------------------//
         this.pContactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code
@@ -506,22 +508,22 @@ export class CompanyComponent implements OnInit {
 
         //Address Types
         this.pAddressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
+            { label: 'Current Address', value: '1' },
+            { label: 'Office Address', value: '2' },
+            { label: 'Postal Address', value: '3' }
         ];
 
         //Email Types
         this.pEmailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '2' }
         ];
 
         //* For BOD ----------------------------------------//
         this.bdContactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code
@@ -548,22 +550,22 @@ export class CompanyComponent implements OnInit {
 
         //Address Types
         this.bdAddressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
+            { label: 'Current Address', value: '1' },
+            { label: 'Office Address', value: '2' },
+            { label: 'Postal Address', value: '3' }
         ];
 
         //Email Types
         this.bdEmailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '22' }
         ];
 
         //* For Owner ----------------------------------------//
         this.oContactType = [
-            { label: 'Fax', value: 'Fax' },
-            { label: 'Telephone', value: 'Telephone' },
-            { label: 'Mobile', value: 'Mobile' },
+            { label: 'Fax', value: '1' },
+            { label: 'Telephone', value: '2' },
+            { label: 'Mobile', value: '3' },
         ];
 
         //Country Code
@@ -590,15 +592,15 @@ export class CompanyComponent implements OnInit {
 
         //Address Types
         this.oAddressType = [
-            { label: 'Current Address', value: 'Current Address' },
-            { label: 'Office Address', value: 'Office Address' },
-            { label: 'Postal Address', value: 'Postal Address' }
+            { label: 'Current Address', value: '1' },
+            { label: 'Office Address', value: '2' },
+            { label: 'Postal Address', value: '3' }
         ];
 
         //Email Types
         this.oEmailType = [
-            { label: 'Personal Email', value: 'Personal Email' },
-            { label: 'Office Email', value: 'Office Email' }
+            { label: 'Personal Email', value: '1' },
+            { label: 'Office Email', value: '2' }
         ];
 
     }
@@ -606,29 +608,29 @@ export class CompanyComponent implements OnInit {
     ngOnInit() {
 
         //*countrys list for address
-        this.countryListForAddress = [
-            { label: "Pakistan +92", value: "+92" },
-            { label: "Turkey +90", value: "+90" },
-            { label: "US +1", value: "+1" }
-        ];
+        // this.countryListForAddress = [
+        //     { label: "Pakistan +92", value: "+92" },
+        //     { label: "Turkey +90", value: "+90" },
+        //     { label: "US +1", value: "+1" }
+        // ];
 
         //*province List
-        this.provinceList = [
-            { label: "Balochistan", value: "7" },
-            { label: "Khyber Pakhtunkhwa", value: "2" },
-            { label: "Punjab", value: "6" },
-            { label: "Sindh", value: "8" }
-        ];
+        // this.provinceList = [
+        //     { label: "Balochistan", value: "7" },
+        //     { label: "Khyber Pakhtunkhwa", value: "2" },
+        //     { label: "Punjab", value: "6" },
+        //     { label: "Sindh", value: "8" }
+        // ];
 
         //*district List
-        this.districtList = [
-            { label: "Rawalpindi", value: "1" },
-            { label: "Lahore", value: "2" },
-            { label: "Peshawar", value: "3" },
-            { label: "Karachi", value: "4" },
-            { label: "Hyderabad", value: "5" },
-            { label: "Quetta", value: "6" }
-        ];
+        // this.districtList = [
+        //     { label: "Rawalpindi", value: "1" },
+        //     { label: "Lahore", value: "2" },
+        //     { label: "Peshawar", value: "3" },
+        //     { label: "Karachi", value: "4" },
+        //     { label: "Hyderabad", value: "5" },
+        //     { label: "Quetta", value: "6" }
+        // ];
 
         //*city List 
         this.cityList = [
@@ -643,11 +645,142 @@ export class CompanyComponent implements OnInit {
             { label: "Noshera", value: "8" }
         ];
 
+        this.getCompany();
+        this.getAddressType();
+        this.getCountry();
+        this.getProvince();
+        this.getDistrict();
     }
 
     @ViewChild("excelDataContent") public excelDataContent: IgxGridComponent;//For excel
     @ViewChild("exportPDF") public exportPDF: ElementRef;//for pdf
 
+    getAddressType() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getAddressType', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.addressType.push({
+                    label: data[i].addressTypeName,
+                    value: data[i].addressTypeCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getCountry() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getCountry', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.countryListForAddress.push({
+                    label: data[i].cntryName,
+                    value: data[i].cntryCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getCompany() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getCompanySummary', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            this.compSumDetail = data;
+            for (var i = 0; i < data.length; i++) {
+                if (this.companyDetail.length == 0) {
+                    this.companyDetail.push({
+                        cmpnyCd: data[i].cmpnyID,
+                        businessTypeCd: data[i].businessTypeCd,
+                        businessType: data[i].businessTypeName,
+                        title: data[i].orgName,
+                        //nature: data[i].n,
+                        ntn: data[i].orgNTN,
+                        website: data[i].orgWebsite
+                    })
+                } else {
+                    for (var j = 0; j < this.companyDetail.length; j++) {
+                        if (this.companyDetail[j].cmpnyCd != data[i].cmpnyID) {
+                            this.companyDetail.push({
+                                cmpnyCd: data[i].cmpnyID,
+                                businessType: data[i].businessTypeName,
+                                title: data[i].orgName,
+                                //nature: data[i].n,
+                                ntn: data[i].orgNTN,
+                                website: data[i].orgWebsite
+                            })
+                        }
+                    }
+                }
+
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getProvince() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getProvince', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.provinceList.push({
+                    label: data[i].prvinceName,
+                    value: data[i].prvncCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
+
+    getDistrict() {
+        //return false;
+
+        //var Token = localStorage.getItem(this.tokenKey);
+
+        //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.get(this.serverUrl + 'api/getDistrict', { headers: reqHeader }).subscribe((data: any) => {
+            //this.addressType = data
+            //alert(data.length);
+            for (var i = 0; i < data.length; i++) {
+                this.districtList.push({
+                    label: data[i].districtName,
+                    value: data[i].districtCd
+                });
+            }
+            //alert(this.addressType)
+        });
+    }
 
     //* Function for save and update company 
     save() {
@@ -1015,11 +1148,15 @@ export class CompanyComponent implements OnInit {
                 this.http.post(this.serverUrl + 'api/saveCompany', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
                     if (data.msg != undefined) {
-                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                        this.getCompany();
+                        $('#companyModal').modal('hide');
+                        this.app.hideSpinner();
                         return false;
                     } else {
-                        this.toastr.successToastr('Record Saved Successfully', 'Success!', { toastTimeout: (2500) });
-                        $('#actionModal').modal('hide');
+                        this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                        //$('#companyModal').modal('hide');
+                        this.app.hideSpinner();
                         return false;
                     }
                 });
@@ -1297,8 +1434,8 @@ export class CompanyComponent implements OnInit {
     //function for edit existing currency 
     edit(item) {
 
-        this.companyId = item.companyId;
-        this.cmbCType = item.businessType;
+        this.companyId = item.cmpnyCd;
+        this.cmbCType = item.businessTypeCd;
 
         this.allowDiv();
     }
@@ -1306,8 +1443,9 @@ export class CompanyComponent implements OnInit {
 
     //functions for delete company
     deleteTemp(item) {
-        this.clear(item.companyId);
-        this.dCompanyId = item.companyId;
+        //this.clear(item.companyId);
+        this.dCompanyId = item.cmpnyCd;
+        //alert(this.dCompanyId)
     }
 
 
@@ -1326,30 +1464,33 @@ export class CompanyComponent implements OnInit {
         }
         else {
 
+            this.app.showSpinner();
 
-            this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
-            this.clear(1);
+            //this.toastr.successToastr('Deleted successfully', 'Error', { toastTimeout: (2500) });
 
-            $('#closeDeleteModel').click();
+            //return false;
 
-            return false;
+            //var token = localStorage.getItem(this.tokenKey);
 
-            var data = { "ID": this.dCompanyId, "Password": this.txtdPassword, "PIN": this.txtdPin };
+            //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+            //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-            var token = localStorage.getItem(this.tokenKey);
-
-            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
-
-            this.http.put(this.serverUrl + 'api/pwCreate', data, { headers: reqHeader }).subscribe((data: any) => {
+            this.http.delete(this.serverUrl + 'api/deleteCompany?companyId=' + this.dCompanyId + '&password=' + this.txtdPassword + '&pin=' + this.txtdPin).subscribe((data: any) => {
 
                 if (data.msg != undefined) {
-                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                    this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                    this.getCompany();
+                    $('#closeDeleteModel').modal('hide');
+                    this.clear(1);
+                    this.app.hideSpinner();
                     return false;
                 } else {
-                    this.toastr.successToastr('Record Deleted Successfully', 'Success!', { toastTimeout: (2500) });
-                    $('#actionModal').modal('hide');
+                    this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                    //$('#companyModal').modal('hide');
+                    this.app.hideSpinner();
                     return false;
                 }
+
             });
         }
     }
@@ -1545,6 +1686,9 @@ export class CompanyComponent implements OnInit {
 
     //* function for hide or unhide div
     allowDiv() {
+
+        //alert(this.cmbCType);
+
         if (this.cmbCType == '') {
             this.toastr.errorToastr('Please select business type', 'Error', { toastTimeout: (2500) });
             return false;
