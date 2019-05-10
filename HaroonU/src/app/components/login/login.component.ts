@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
                     this.Idle.startWatching();
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userName', data.userName);
-                    this.router.navigate(['/dashboard']);
+                    this.router.navigate(['/introPage']);
                 }
             });
 

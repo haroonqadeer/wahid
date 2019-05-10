@@ -4,30 +4,22 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <!-- Side Menu Title -->
     <div class="row">
-      <div class="col-md-12 bg-light-green">
+      <div class="col-md-12">
         <div class="row">
-          <div class="col-md-4">
-            <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome rightBorderWhite"
-              mat-flat-button>
-              <span class="fa fa-home"></span>
-            </button>
-          </div>
-          <div class="col-md-8">
-            <p style="margin-top: 1.0em !important">UMIS - Menu</p>
+          <div class="row">
+            <div class="col-md-8 bg-white">
+              <img class="mx-auto d-block text-center" src="../assets/images/Ambit-Logo.svg" alt="" width="100%"
+                height="48em">
+            </div>
+            <div class="col-md-3 text-center" (click)="drawer.toggle()">
+              <span class="fa fa-times sideMenuIcon cursorPointer"></span>
+            </div>
           </div>
         </div>
       </div>
     </div><!-- end Side Menu Title -->
     <br>
 
-    <!-- Circle Log -->
-    <div class="row">
-      <div class="col-md-12 mx-auto">
-        <img class="mx-auto d-block" src="../assets/images/logo.png" alt="" width="100em" height="100em">
-      </div>
-    </div>
-    <!--end Circle Logo -->
-    <br>
     <!-- UMIS Menu -->
     <div class="row">
       <div class="col-md-12">
@@ -57,48 +49,64 @@
             </a>
           </li>
         </ul>
+
       </div>
     </div>
     <!-- end UMIS Menu -->
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <div class="row bgWhite bottomBorder" *ngIf="hideDiv">
+    <div class="row bgBlue bottomBorder" *ngIf="hideDiv">
       <div class="col-md-1">
-        <button type="button" class="noneOutLine" mat-flat-button color="warn" (click)="drawer.toggle()">
-          <span class="fa fa-bars sideMenubar"></span>
+        <button type="button" class="noneOutLine menuButton rightBorderWhite" mat-flat-button (click)="drawer.toggle()">
+          <span class="fa fa-bars text-center"></span>
         </button>
       </div>
-      <div class="col-md-5">
-        <h4>UMIS</h4>
+      <div class="offset-md-2 col-md-1 text-right">
+        <mat-icon matPrefix class="menuSIcon"><i class='fa fa-search'></i></mat-icon>
       </div>
-      <div class="col-md-6 text-right">
-        <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
-          {{userName}}
+      <div class="col-md-4">
+        <mat-form-field class='fullwidth menuSearch' appearance="legacy">
+          <mat-label class="inputSearch">Search</mat-label>
+          <input matInput placeholder="Placeholder" class='loginInput'>
+        </mat-form-field>
+        <!-- <h4>UMIS</h4> -->
+      </div>
+      <div class="col-md-3 text-left">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="../assets/images/icon_img.jpg" alt="" height="60em">
+          </div>
+          <div class="col-md-9">
+            <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine menuBtnUser">
+              Welcome! Umer Shaheen
+              <span class="fa fa-caret-down"></span>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item class="noneOutLine" (click)="Logout()">
+                <!-- <mat-icon>dialpad</mat-icon> -->
+                <span class="fa fa-sign-out"></span>
+                <span> Log out</span>
+              </button>
+              <button mat-menu-item class="noneOutLine" (click)=showBottom()>
+                <!-- <mat-icon>voicemail</mat-icon> -->
+                <span class="fa fa-sitemap"></span>
+                <span> Modules</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-1 text-right">
+        <button type="button" class="noneOutLine menuButton leftBorderWhite" mat-flat-button>
+          <span class="fa fa-sliders"></span>
         </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item class="noneOutLine" (click)="Logout()">
-            <!-- <mat-icon>dialpad</mat-icon> -->
-            <span class="fa fa-sign-out"></span>
-            <span> Log out</span>
-          </button>
-          <button mat-menu-item class="noneOutLine" (click)=showBottom()>
-            <!-- <mat-icon>voicemail</mat-icon> -->
-            <span class="fa fa-sitemap"></span>
-            <span> Modules</span>
-          </button>
-        </mat-menu>
       </div>
     </div>
-
-    <!-- Spinner Starts -->
-    <ngx-spinner bdOpacity=0.9 bdColor="rgba(51,51,51,0.91)" size="medium" color="#ff871c" type="ball-clip-rotate-multiple"
-      fullScreen="true">
-      <p style="color: white"> Loading... </p>
-    </ngx-spinner>
-    <!-- Spinner Ends -->
 
     <router-outlet></router-outlet>
   </div>
 
 </mat-drawer-container>
+<!-- //</div> -->

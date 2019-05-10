@@ -1,3 +1,162 @@
-.progress {
-    height: 5px;
+:host {
+  width: 100%;
+  height: 100%;
+  // background: #5942f4;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // color: white;
+  // font-family: Bangers;
+  // font-size: 2rem;
+  // margin: 3rem auto;
+
+  position: absolute;
+}
+
+//loginbody
+.loginbody {
+  //position: absolute;
+  width: 100% !important;
+  //height: 100% !important;
+  //background-color: #ebecef !important;
+  // background-image: url("../../../assets/images/Bg.svg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center; 
+  //background-image: linear-gradient(to bottom right ,#eec450 50%, #fff 20%);
+  //background: #0264d6; /* Old browsers */
+  // background: -moz-radial-gradient(center, ellipse cover,  #777 1%, #222 100%); /* FF3.6+ */
+  // background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#777), color-stop(100%,#222)); /* Chrome,Safari4+ */
+  // background: -webkit-radial-gradient(center, ellipse cover,  #777777 1%,#222 100%); /* Chrome10+,Safari5.1+ */
+  // background: -o-radial-gradient(center, ellipse cover,  #777 1%,#222 100%); /* Opera 12+ */
+  // background: -ms-radial-gradient(center, ellipse cover,  #0264d6 1%,#222 100%); /* IE10+ */
+  // background: radial-gradient(ellipse at center, #d2fff7 1%,#08919e 100%); /* W3C */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777', endColorstr='#222',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  height: calc(100vh);
+  // width:100%;
+  overflow: hidden;
+}
+
+
+
+.h1Login {
+  background: none !important;
+  color: #fff;
+  height: 3em;
+  padding-top: 0.7em;
+  font-size: 2.0em !important;
+  //letter-spacing: 5px;
+  //text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+  font-weight: bold;
+  box-shadow: none !important;
+}
+
+/* login panel */
+.loginPanel {
+  //height: 20em !important;
+  //background-image: linear-gradient(#4c4c4c, #323232);
+  //background-color: #fff;    
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 25em !important;
+  left: 50%;
+  position: fixed;
+  margin-top: 2em;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+
+/* login input box */
+.loginInput {
+  font-family: 'Roboto-Regular' !important;
+  font-size: 1.125em;
+  color: #fff !important;
+}
+
+/* login div footer */
+.loginFooter {
+  bottom: 0 !important;
+  width: 100%;
+  position: absolute !important;
+  color: #e54045 !important;
+  //text-shadow: 2px 4px 3px rgba(0,0,0,0.3);    
+}
+
+.boxShadowLogin {
+  //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.06) !important;
+  // -webkit-box-shadow: 0px 2px 25px -1px rgba(0,0,0,50%);
+  // -moz-box-shadow: 0px 2px 25px -1px rgba(0,0,0,50%);
+  // box-shadow: 0px 2px 25px -1px rgba(0,0,0,50%);
+  -webkit-box-shadow: 3px -2px 20px -5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 3px -2px 20px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px -2px 20px -5px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.rightBorderWhiteShadow {
+  border-right: 1px solid #222 !important;
+}
+
+.bgforgot {
+  font-family: 'Roboto-Medium' !important;
+  font-size: 0.9em;
+  color: #273E94;
+  cursor: pointer;
+}
+
+.bgforgot:hover {
+  font-family: 'Roboto-Medium' !important;
+  font-size: 0.9em;
+  color: black;
+  cursor: pointer;
+
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.boxBottomBorder {
+  margin-top: 34em;
+  margin-left: 32em;
+  margin-right: 32em;
+  padding-top: -20%;
+
+  border-radius: 100px / 10px;
+  -webkit-box-shadow: -1px 1px 8px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: -1px 1px 8px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px 1px 8px 4px rgba(0, 0, 0, 0.2);
+  //background: rgba(255, 255, 255, 0.6);
+  //border: 1px solid red;
+}
+
+.bgRemember {
+  font-family: 'Roboto-Medium' !important;
+  font-size: 0.9em;
+}
+
+// .bgforgot:hover{
+//     color: #eee;
+//     background-color: #222222;
+// }
+.loginButton {
+  font-family: 'Roboto-Regular' !important;
+  font-size: 1.5em;
+  height: 2.5em;
+}
+
+.hLogin {
+  font-family: 'Roboto-Light' !important;
+  font-size: 1.125em !important;
+  color: #6983BA !important;
+  margin-top: -2.5em !important;
+  //letter-spacing: 0.2em !important;
+  // color: #010101 !important;
+  // padding-bottom: 0.5em !important;
+  //box-shadow: 0px 15px 15px -15px #111;
+}
+
+//logo immage setting
+img {
+  //border: 1px solid red;
+  margin-top: -1.5em;
 }

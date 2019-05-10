@@ -30,6 +30,7 @@ import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.c
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "igniteui-angular";
+import { IntroPageComponent } from './components/intro-page/intro-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { IgxGridModule, IgxExcelExporterService, IgxCsvExporterService } from "i
     CreatepasswordComponent,
     UserformComponent,
     UserTreeComponent,
-    TryMenuPageComponent
+    TryMenuPageComponent,
+    IntroPageComponent
   ],
   imports: [
     BrowserModule,

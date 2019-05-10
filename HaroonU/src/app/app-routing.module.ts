@@ -12,6 +12,7 @@ import { UserTreeComponent } from './components/user-tree/user-tree.component';
 import { AuthGuard } from './auth/auth.guard';
 
 import { TryMenuPageComponent } from './components/try-menu-page/try-menu-page.component';
+import { IntroPageComponent } from './components/intro-page/intro-page.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'introPage',
+    component: IntroPageComponent,
+    //canActivate: [AuthGuard]
   },
   {
     path: 'userroles',
