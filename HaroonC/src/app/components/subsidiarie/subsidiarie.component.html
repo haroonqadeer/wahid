@@ -175,12 +175,12 @@
             *ngFor="let item of subsidiaryDetail | search:'subsidiaryTitle,subsidiaryType,representator,cityName' :tblSearch let i=index"
             class='d-flex'>
             <td class="col-1 text-center">{{i + 1}}</td>
-            <td class="col-3">{{item.subsidiaryTitle}}</td>
-            <td class="col-2">{{item.subsidiaryType}}</td>
-            <td class="col-2">{{item.representator}}</td>
-            <td class="col-2">{{item.cityName}}</td>
-            <td class="col-2">{{item.mobile}}</td>
-            <td class="col-2">{{item.website}}</td>
+            <td class="col-3">{{item.orgName}}</td>
+            <td class="col-2">{{item}}</td>
+            <td class="col-2">{{item}}</td>
+            <td class="col-2">{{item}}</td>
+            <td class="col-2">{{item}}</td>
+            <td class="col-2">{{item.orgWebsite}}</td>
           </tr>
         </tbody>
       </table>
@@ -304,7 +304,7 @@
                 <mat-form-field class="fullwidth">
                   <mat-select placeholder="Subsidiary Type" [(ngModel)]="cmbSubsidiaryType">
                     <mat-option *ngFor="let item of businessTypeList" [value]="item.businessTypeCd">
-                      {{item.businessTypeName + ' - ' + item.businessTypeCd}}
+                      {{item.businessTypeName}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -335,116 +335,8 @@
             <br />
 
 
-            <!-- *________________Start Add Address Detail_____________________ -->
-            <div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <h6>Address Info</h6>
-                </div>
-              </div>
-
-              <div *ngFor="let item of addressDetail; let i=index">
-                <div class="row">
-                  <table>
-                    <tr>
-
-                      <!--address type combo box-->
-                      <td style="padding:0 15px 0 15px; width: 200px;">
-                        <p-dropdown [options]="addressType" filter="true" [(ngModel)]="item.addressType"
-                          placeholder="Address Type" required>
-                          <ng-template let-itm pTemplate="item">
-                            <div style="position: relative; height: 25px;">
-                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
-                            </div>
-                          </ng-template>
-                        </p-dropdown>
-
-                      </td>
-
-                      <!--address text box-->
-                      <td colspan="3">
-                        <!-- [showMaskTyped]="true" required -->
-                        <input class="" type="text" pInputText [(ngModel)]="item.address" placeholder="Address"
-                          style="width: 100%;">
-                      </td>
-
-                      <td rowspan="2" style="padding:0 0 5px 15px; width: 55px;">
-                        <button mat-fab color="warn" (click)="removeAddress(i)">
-                          <span class="fa fa-minus"></span>
-                        </button>
-                      </td>
-
-                    </tr>
-
-                    <!-- Country Province City District -->
-                    <tr>
-                      <!-- Country -->
-                      <td style="padding:8px 15px 8px 15px; width: 200px;">
-                        <p-dropdown [options]="countryListForAddress" filter="true" [(ngModel)]="item.countryCode"
-                          placeholder="Select Country" required>
-                          <ng-template let-itm pTemplate="item">
-                            <div style="position: relative;height: 25px;">
-                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
-                            </div>
-                          </ng-template>
-                        </p-dropdown>
-                      </td>
-
-                      <!-- Province -->
-                      <td>
-                        <p-dropdown [options]="provinceList" filter="true" [(ngModel)]="item.provinceCode"
-                          placeholder="Select Province" required>
-                          <ng-template let-itm pTemplate="item">
-                            <div style="position: relative;height: 25px;">
-                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
-                            </div>
-                          </ng-template>
-                        </p-dropdown>
-                      </td>
-
-                      <!-- District -->
-                      <td>
-                        <p-dropdown [options]="districtList" filter="true" [(ngModel)]="item.districtCode"
-                          placeholder="Select District" required>
-                          <ng-template let-itm pTemplate="item">
-                            <div style="position: relative;height: 25px;">
-                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
-                            </div>
-                          </ng-template>
-                        </p-dropdown>
-                      </td>
-
-                      <!-- City -->
-                      <td>
-                        <p-dropdown [options]="cityList" filter="true" [(ngModel)]="item.cityCode"
-                          placeholder="Select City" required>
-                          <ng-template let-itm pTemplate="item">
-                            <div style="position: relative;height: 25px;">
-                              <div style="font-size:14px;float:left;margin-top:4px;">{{itm.label}}</div>
-                            </div>
-                          </ng-template>
-                        </p-dropdown>
-                      </td>
-                    </tr>
-
-                  </table>
-
-                </div>
-              </div>
 
 
-              <!--Add more Contact button-->
-              <div class="row">
-                <div class="col-md-3">
-                  <button mat-fab color="primary" (click)="addAddress()">
-                    <span class="fa fa-plus"></span>
-                  </button>
-                </div>
-              </div>
-              <br />
-            </div>
-            <!-- *________________End Add Address Detail_____________________ -->
 
 
 

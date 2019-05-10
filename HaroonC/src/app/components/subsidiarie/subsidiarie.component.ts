@@ -99,7 +99,22 @@ export class SubsidiarieComponent implements OnInit {
     sortedCollection: any[];
     itemPerPage = '10';
 
-    //*List Variables
+    //address Detail
+    addressDetail = [
+        {
+            id: 0,
+            addressType: "",
+            address: "",
+            countryCode: "",
+            provinceCode: "",
+            districtCode: "",
+            cityCode: "",
+            cntryLst: [], // this.countryListForAddress,
+            provinceList: [], // this.provinceList,
+            districtList: [], // this.districtList,
+            cityList: [] //this.cityList
+        }
+    ];
 
     //contact Detail
     contactDetail = [
@@ -115,19 +130,6 @@ export class SubsidiarieComponent implements OnInit {
         }
     ];
 
-    //address Detail
-    addressDetail = [
-        {
-            id: 0,
-            addressType: "",
-            address: "",
-            countryCode: "",
-            provinceCode: "",
-            districtCode: "",
-            cityCode: ""
-        }
-    ];
-
     //Emails Detail
     emailDetail = [
         {
@@ -137,26 +139,7 @@ export class SubsidiarieComponent implements OnInit {
         }
     ];
 
-    subsidiaryDetail = [
-        {
-            subsidiaryDetailId: 1,
-            subsidiaryId: 1,
-            subsidiaryTitle: 'WORKGAPS LIMITED',
-            ntn: '12345678',
-            strn: '1234567890',
-            subsidiaryTypeId: '2',
-            subsidiaryType: "Partnership",
-            representator: "Zuhaib Mughal",
-            address: 'G 11, Islamabad',
-            cityId: 1,
-            cityName: 'Islamabad',
-            email: '@gmail.com',
-            telephone: '0572212704',
-            mobile: '0313-5300471',
-            website: 'infovative.com',
-            faxNumber: '0572212704',
-        }
-    ];
+    subsidiaryDetail; // = [];
 
 
     constructor(private toastr: ToastrManager,
@@ -168,6 +151,7 @@ export class SubsidiarieComponent implements OnInit {
 
     ngOnInit() {
 
+        this.getSubsidiaryDetail();
         this.getAddressTypes();
         this.getCountry();
         this.getProvince();
@@ -185,14 +169,14 @@ export class SubsidiarieComponent implements OnInit {
 
     //function for get all saved subsidiaries from db
     getSubsidiaryDetail() {
-        return false;
 
-        var Token = localStorage.getItem(this.tokenKey);
+        // var Token = localStorage.getItem(this.tokenKey);
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-        this.http.get(this.serverUrl + 'api/usersDetail', { headers: reqHeader }).subscribe((data: any) => {
-            //this.cities = data
+        this.http.get(this.serverUrl + 'api/getSubsidiary', { headers: reqHeader }).subscribe((data: any) => {
+            this.subsidiaryDetail = data
         });
     }
 
@@ -360,8 +344,6 @@ export class SubsidiarieComponent implements OnInit {
 
 
 
-
-
     //Function for save and update currency 
     save() {
         if (this.subsidiaryTitle.trim() == '') {
@@ -517,11 +499,11 @@ export class SubsidiarieComponent implements OnInit {
             else {
 
                 var saveData = {
-                    "subsidiaryTitle": this.subsidiaryTitle,
-                    "ntn": this.ntn,
-                    "strn": this.strn,
-                    "website": this.website,
-                    "subsidiaryTypeId": Number(this.cmbSubsidiaryType),
+                    "OrgName": this.subsidiaryTitle,
+                    "OrgNTN": this.ntn,
+                    "OrgSTRNNo": this.strn,
+                    "OrgWebsite": this.website,
+                    "OrgTypeCd": Number(this.cmbSubsidiaryType),
                     "addressList": JSON.stringify(this.addressDetail),
                     "contactList": JSON.stringify(this.contactDetail),
                     "emailList": JSON.stringify(this.emailDetail),
@@ -577,7 +559,11 @@ export class SubsidiarieComponent implements OnInit {
                 countryCode: "",
                 provinceCode: "",
                 districtCode: "",
-                cityCode: ""
+                cityCode: "",
+                cntryLst: this.countryListForAddress,
+                provinceList: this.provinceList,
+                districtList: this.districtList,
+                cityList: this.cityList
             }
         ];
 
@@ -901,7 +887,11 @@ export class SubsidiarieComponent implements OnInit {
             countryCode: "",
             provinceCode: "",
             districtCode: "",
-            cityCode: ""
+            cityCode: "",
+            cntryLst: this.countryListForAddress,
+            provinceList: this.provinceList,
+            districtList: this.districtList,
+            cityList: this.cityList
         });
 
     }
@@ -934,4 +924,13 @@ export class SubsidiarieComponent implements OnInit {
         this.emailDetail.splice(item, 1);
     }
 
+
+
+
+
+
+
+    getFilterItem(item) {
+        //return this.tempRoleList.filter(x => x.parentErpObjctCd == item && x.erpObjctTypeCd == 2);
+    }
 }
