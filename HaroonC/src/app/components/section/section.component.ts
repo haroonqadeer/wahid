@@ -495,6 +495,9 @@ export class SectionComponent implements OnInit {
 
 					if (data.msg == "Error Occured") {
 						this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+						this.clear();
+						$('#deleteModal').modal('hide');
+						this.getSectionDetails();
 						return false;
 					}
 					else {
