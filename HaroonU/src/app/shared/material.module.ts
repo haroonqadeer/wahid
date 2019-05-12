@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
+  MatIconModule,
   MatRadioModule,
   MatBottomSheetModule,
   MatTabsModule,
@@ -36,7 +37,8 @@ import {
     MatCardModule,
     MatBottomSheetModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatIconModule
   ],
   exports: [
     MatInputModule,
@@ -53,7 +55,8 @@ import {
     MatCardModule,
     MatBottomSheetModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatIconModule
   ]
 })
 export class MaterialModule { }

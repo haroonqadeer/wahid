@@ -79,13 +79,19 @@ export class AppComponent {
     //method for show and hide manu bar with login and logout user
     showDiv() {
 
-        if (localStorage.getItem('token') != null) {
+        if(this.router.url != "/"){
             this.hideDiv = true;
-            this.userName = localStorage.getItem('userName');
-        }
-        else {
+
+        }else{
             this.hideDiv = false;
         }
+        // if (localStorage.getItem('token') != null) {
+        //     this.hideDiv = true;
+        //     this.userName = localStorage.getItem('userName');
+        // }
+        // else {
+        //     this.hideDiv = false;
+        // }
     }
 
     //show bottom sheet
