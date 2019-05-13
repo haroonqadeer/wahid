@@ -9,6 +9,8 @@ import { Event, Router, NavigationStart, NavigationEnd } from "@angular/router";
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
+declare var $: any;
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -79,10 +81,10 @@ export class AppComponent {
     //method for show and hide manu bar with login and logout user
     showDiv() {
 
-        if(this.router.url != "/"){
+        if (this.router.url != "/") {
             this.hideDiv = true;
 
-        }else{
+        } else {
             this.hideDiv = false;
         }
         // if (localStorage.getItem('token') != null) {
@@ -140,5 +142,16 @@ export class AppComponent {
             /** spinner ends after process done*/
             this.spinner.hide();
         }, 1000);
+    }
+
+
+    /* Set the width of the side navigation to 250px */
+    public openNav() {
+        document.getElementById("mySidenav").style.width = "248px";
+    }
+
+    /* Set the width of the side navigation to 0 */
+    closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
     }
 }
