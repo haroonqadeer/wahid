@@ -469,8 +469,6 @@ export class SubsidiarieComponent implements OnInit {
                 }
             }
 
-
-
             if (this.subsidiaryId != '') {
                 this.app.showSpinner();
                 this.toastr.successToastr('updated successfully', 'Success', { toastTimeout: (2500) });
