@@ -17,12 +17,13 @@ import { PerformanceStandComponent } from './components/performance-stand/perfor
 import { PerformanceEvaComponent } from './components/performance-eva/performance-eva.component';
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
+import { IntroPageComponent } from './components/intro-page/intro-page.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: HRDashboardComponent
+    component: IntroPageComponent,
   },
   {
     path: 'dashboard',

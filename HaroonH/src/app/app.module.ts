@@ -30,6 +30,7 @@ import { PerformanceEvaComponent } from './components/performance-eva/performanc
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
+import { IntroPageComponent } from './components/intro-page/intro-page.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.compo
     PerformanceEvaComponent,
     LeavetypeComponent,
     ErpBottomSheetComponent,
-    HRDashboardComponent
+    HRDashboardComponent,
+    IntroPageComponent
   ],
   imports: [
     BrowserModule,

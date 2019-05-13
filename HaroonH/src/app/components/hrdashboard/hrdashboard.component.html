@@ -1,12 +1,12 @@
-<br/>
+<br />
 <!--heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">HR Dashboard</h1>    
+    <h1 class="bottomBorder">HR Dashboard</h1>
   </div>
 </div>
 <!--end heading row-->
-<br/>
+<br />
 
 <!--container row-->
 <div class="container">
@@ -29,19 +29,19 @@
           <i class="fa fa-line-chart"></i>
         </div>
         <div class="content">
-          <div class="text">Hiring</div>
-          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">25</div>                                                                
+          <div class="text">Permanent</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">102</div>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="info-box bg-cyan hover-expand-effect">
         <div class="icon">
-          <i class="fa fa-plane"></i>
+          <i class="fa fa-sign-out"></i>
         </div>
         <div class="content">
-          <div class="text">Leaving</div>
-          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">13</div>                                                                
+          <div class="text">Contractual</div>
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">13</div>
         </div>
       </div>
     </div>
@@ -52,13 +52,13 @@
         </div>
         <div class="content">
           <div class="text">Job Profile</div>
-          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">56</div>                                                                
+          <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">26</div>
         </div>
       </div>
     </div>
   </div>
   <!--end box row-->
-  <br/>
+  <br />
   <!--chart row-->
   <div class="row">
     <div class="col-md-12">
@@ -66,7 +66,7 @@
     </div>
   </div>
   <!--end chart row-->
-  <br/>
+  <br />
   <!--chart and bar row-->
   <div class="row">
     <div class="col-md-6">
@@ -78,7 +78,7 @@
           <div class=" shadow-md" [chart]="Gender_Bar_Chart" style=" height: 200px;width:100%;"></div>
         </div>
       </div>
-      <br/>
+      <br />
       <div class="row">
         <div class="col-md-12">
           <div class=" shadow-md" [chart]="Vacancy_Bar_Chart" style=" height: 200px;width:100%;"></div>
@@ -87,7 +87,7 @@
     </div>
   </div>
   <!--end chart and bar row-->
-  <br/>
+  <br />
   <!--2nd chart and row-->
   <div class="row">
     <div class="col-md-12">
@@ -95,63 +95,30 @@
     </div>
   </div>
   <!--end 2nd chart row-->
-  <br/>
+  <br />
   <!--progress bar row-->
   <div class="row text-center">
     <div class="col-md-4 shadow-md bgWhite">
       <h4>Present</h4>
-      <circle-progress
-        [percent]="72"
-        [radius]="50"
-        [space]="-12"
-        [outerStrokeWidth]="12"
-        [innerStrokeWidth]="-12"
-        [outerStrokeColor]="'#32CD32'"
-        [innerStrokeColor]="'#e7e8ea'"
-        [animation]="true"
-        [animationDuration]="300"
-        [outerStrokeLinecap] = "'square'"
-        [clockwise] = "false"
-        [showSubtitle]= "false"
-      ></circle-progress>
+      <circle-progress [percent]="72" [radius]="50" [space]="-12" [outerStrokeWidth]="12" [innerStrokeWidth]="-12"
+        [outerStrokeColor]="'#32CD32'" [innerStrokeColor]="'#e7e8ea'" [animation]="true" [animationDuration]="300"
+        [outerStrokeLinecap]="'square'" [clockwise]="false" [showSubtitle]="false"></circle-progress>
     </div>
     <div class="col-md-4 shadow-md bgWhite">
-      <h4>Leave</h4>
-      <circle-progress
-        [percent]="45"
-        [radius]="50"
-        [space]="-12"
-        [outerStrokeWidth]="12"
-        [innerStrokeWidth]="-12"
-        [outerStrokeColor]="'#4882c2'"
-        [innerStrokeColor]="'#e7e8ea'"
-        [animation]="true"
-        [animationDuration]="300"
-        [outerStrokeLinecap] = "'square'"
-        [clockwise] = "false"
-        [showSubtitle]= "false"
-      ></circle-progress>
+      <h4>On Leave</h4>
+      <circle-progress [percent]="45" [radius]="50" [space]="-12" [outerStrokeWidth]="12" [innerStrokeWidth]="-12"
+        [outerStrokeColor]="'#4882c2'" [innerStrokeColor]="'#e7e8ea'" [animation]="true" [animationDuration]="300"
+        [outerStrokeLinecap]="'square'" [clockwise]="false" [showSubtitle]="false"></circle-progress>
     </div>
     <div class="col-md-4 shadow-md bgWhite">
       <h4>Absent</h4>
-      <circle-progress
-        [percent]="20"
-        [radius]="50"
-        [space]="-12"
-        [outerStrokeWidth]="12"
-        [innerStrokeWidth]="-12"
-        [outerStrokeColor]="'#FF6347'"
-        [innerStrokeColor]="'#e7e8ea'"
-        [animation]="true"
-        [animationDuration]="300"
-        [outerStrokeLinecap] = "'square'"
-        [clockwise] = "false"
-        [showSubtitle]= "false"
-      ></circle-progress>
+      <circle-progress [percent]="20" [radius]="50" [space]="-12" [outerStrokeWidth]="12" [innerStrokeWidth]="-12"
+        [outerStrokeColor]="'#FF6347'" [innerStrokeColor]="'#e7e8ea'" [animation]="true" [animationDuration]="300"
+        [outerStrokeLinecap]="'square'" [clockwise]="false" [showSubtitle]="false"></circle-progress>
     </div>
   </div>
   <!--end progress bar row-->
-  <br/>
+  <br />
   <!--3rd chart row-->
   <div class="row">
     <div class="col-md-6">
@@ -164,4 +131,4 @@
   <!--end 3rd chart row-->
 </div>
 <!--end container row-->
-<br/>
+<br />

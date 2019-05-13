@@ -31,10 +31,13 @@ export class JobprofileComponent implements OnInit {
 
   scales: SelectItem[];
   types: SelectItem[];
-  degrees: SelectItem[];
+  // degrees: SelectItem[];
+  degrees = [];
 
-  certificates: SelectItem[];
+  // certificates: SelectItem[];
+  certificates = [];
   roles: SelectItem[];
+  rules: SelectItem[];
   years: SelectItem[];
 
   orgs: SelectItem[];
@@ -44,7 +47,9 @@ export class JobprofileComponent implements OnInit {
   fourthCtrl = '';
   txtdPassword = '';
   txtdPin = '';
-  
+  searchDegree = '';
+  searchcertification = '';
+
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -112,22 +117,27 @@ export class JobprofileComponent implements OnInit {
     ];
 
     this.degrees = [
-      {label: 'BSc', value: 'BSc'},
-      {label: 'MBA', value: 'MBA'},
-      {label: 'ICs', value: 'ICs'}
+      {id: '1', dName: 'BSc', dDesc: 'Bachelor in Computer Science', cName: 'Computer', cDesc: 'Degree Computer Science'},
+      {id: '2', dName: 'MBA', dDesc: 'Masters in Accounts', cName: 'Accounts', cDesc: 'Degree Accounts'},
+      {id: '3', dName: 'ICs', dDesc: 'Inter In Computer Science', cName: 'Computer', cDesc: 'Inter Degree Computer'}
     ];
 
     this.certificates = [
-      {label: 'VB.Net', value: 'VB.Net'},
-      {label: 'Quality Assurance', value: 'Quality Assurance'},
-      {label: 'Game Development', value: 'Game Development'},
-      {label: 'Ethical Hacking', value: 'Ethical Hacking'}
+      {id: '1', dName: 'VB.Net', dDesc: 'Visual Basic', cName: 'Language', cDesc: 'Certification'},
+      {id: '2', dName: 'Quality Assurance', dDesc: 'Software Tesing', cName: 'Testing', cDesc: 'Certifications'},
+      {id: '3', dName: 'Game Development', dDesc: 'Making Games', cName: 'Development', cDesc: 'Certifications'}
     ];
 
     this.roles = [
       {label: 'Voucher Entry', value: 'Voucher Entry'},
       {label: 'Hr Admin', value: 'Hr Admin'},
       {label: 'Finance', value: 'Finance'}
+    ];
+    
+    this.rules = [
+      {label: 'Medical Leave', value: 'Medical Leaves'},
+      {label: 'Casual Leave', value: 'Casual Leave'},
+      {label: 'Sick Leave', value: 'Sick Leave'}
     ];
     
     this.years = [

@@ -46,39 +46,39 @@ export class ErpBottomSheetComponent implements OnInit {
   openModule(val){
     //finance
     if(val==1){
-      window.open('http://192.168.88.16:9004/')
+      window.open('http://192.168.200.16:9004/')
     }
     //hr
     else if (val==2){
-      // window.open('http://192.168.88.16:9003/')
+      // window.open('http://192.168.200.16:9003/')
     }
     //user
     else if (val==3){
-      window.open('http://192.168.88.16:9001/')
+      window.open('http://192.168.200.16:9001/')
     }
     //payroll
     else if (val==4){
-      window.open('http://192.168.88.16:9005/')
+      window.open('http://192.168.200.16:9005/')
     }
     //company
     else if (val==5){
-      window.open('http://192.168.88.16:9002/')
+      window.open('http://192.168.200.16:9002/')
     }
     //disaster
     else if (val==6){
-      window.open('http://192.168.88.16:9006/')
+      window.open('http://192.168.200.16:9006/')
     }
     //procurement
     else if (val==7){
-      window.open('http://192.168.88.16:9007/')
+      window.open('http://192.168.200.16:9007/')
     }
     //warehouse
     else if (val==8){
-      window.open('http://192.168.88.16:9008/')
+      window.open('http://192.168.200.16:9008/')
     }
     //audit
     else if (val==9){
-      window.open('http://192.168.88.16:9009/')
+      window.open('http://192.168.200.16:9009/')
     }
   }
 }

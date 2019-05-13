@@ -15,7 +15,7 @@ export class HRDashboardComponent implements OnInit {
   Type_Bar_Chart: Chart;
   Gender_Bar_Chart: Chart;
   Vacancy_Bar_Chart: Chart;
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class HRDashboardComponent implements OnInit {
     this.VacBarChart_init();
   }
 
-  ColumnChart_init(){
+  ColumnChart_init() {
     let chart = new Chart({
       chart: {
         type: 'column'
@@ -36,9 +36,21 @@ export class HRDashboardComponent implements OnInit {
       title: {
         text: 'Active Employee'
       },
-       xAxis: {
+      legend: {
+        reversed: true,
+        itemStyle: {
+          fontSize:'15px',
+          fontWeight: 'static'
+        }
+      },
+      yAxis: {
+        title: {
+            text: 'No. of Employees'
+        }
+      },
+      xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       },
       credits: {
         enabled: false
@@ -51,7 +63,7 @@ export class HRDashboardComponent implements OnInit {
     this.Column_Chart = chart;
   }
 
-  LeaveColumnChart_init(){
+  LeaveColumnChart_init() {
     let chart = new Chart({
       chart: {
         type: 'column'
@@ -59,9 +71,21 @@ export class HRDashboardComponent implements OnInit {
       title: {
         text: 'Hiring/Leaving'
       },
-       xAxis: {
+      legend: {
+        reversed: true,
+        itemStyle: {
+          fontSize:'15px',
+          fontWeight: 'static'
+        }
+      },
+      yAxis: {
+        title: {
+            text: 'No. of Employees'
+        }
+      },
+      xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       },
       credits: {
         enabled: false
@@ -77,8 +101,8 @@ export class HRDashboardComponent implements OnInit {
     });
     this.Leave_Column_Chart = chart;
   }
-  
-  OffColumnChart_init(){
+
+  OffColumnChart_init() {
     let chart = new Chart({
       chart: {
         type: 'column'
@@ -86,7 +110,19 @@ export class HRDashboardComponent implements OnInit {
       title: {
         text: 'Offices'
       },
-       xAxis: {
+      legend: {
+        reversed: true,
+        itemStyle: {
+          fontSize:'15px',
+          fontWeight: 'static'
+        }
+      },
+      yAxis: {
+        title: {
+            text: 'Amount'
+        }
+      },
+      xAxis: {
         categories: ['HQ', 'Lahore', 'Karachi']
       },
       credits: {
@@ -100,7 +136,7 @@ export class HRDashboardComponent implements OnInit {
     this.Off_Column_Chart = chart;
   }
 
-  DeptColumnChart_init(){
+  DeptColumnChart_init() {
     let chart = new Chart({
       chart: {
         type: 'column'
@@ -108,7 +144,19 @@ export class HRDashboardComponent implements OnInit {
       title: {
         text: 'Department'
       },
-       xAxis: {
+      legend: {
+        reversed: true,
+        itemStyle: {
+          fontSize:'15px',
+          fontWeight: 'static'
+        }
+      },
+      yAxis: {
+        title: {
+            text: 'Amount'
+        }
+      },
+      xAxis: {
         categories: ['IT', 'Finance', 'Admin']
       },
       credits: {
@@ -121,8 +169,8 @@ export class HRDashboardComponent implements OnInit {
     });
     this.Dept_Column_Chart = chart;
   }
-  
-  TypeBarChart_init(){
+
+  TypeBarChart_init() {
     let chart = new Chart({
       chart: {
         type: 'bar'
@@ -131,7 +179,11 @@ export class HRDashboardComponent implements OnInit {
         text: 'Type'
       },
       legend: {
-        reversed: true
+        reversed: true,
+        itemStyle: {
+          fontSize:'15px',
+          fontWeight: 'static'
+        }
       },
       plotOptions: {
         series: {
@@ -143,17 +195,17 @@ export class HRDashboardComponent implements OnInit {
       },
       series: [{
         name: 'Permanent',
-        data: [40]
+        data: [102]
       },
       {
         name: 'Contract',
-        data: [-8]
+        data: [13]
       }]
     });
     this.Type_Bar_Chart = chart;
   }
-  
-  GenderBarChart_init(){
+
+  GenderBarChart_init() {
     let chart = new Chart({
       chart: {
         type: 'bar'
@@ -162,7 +214,11 @@ export class HRDashboardComponent implements OnInit {
         text: 'Gender'
       },
       legend: {
-        reversed: true
+        reversed: true,
+        itemStyle: {
+          fontSize:'15px',
+          fontWeight: 'static'
+        }
       },
       plotOptions: {
         series: {
@@ -174,17 +230,17 @@ export class HRDashboardComponent implements OnInit {
       },
       series: [{
         name: 'Male',
-        data: [30]
+        data: [80]
       },
       {
         name: 'Female',
-        data: [-18]
+        data: [35]
       }]
     });
     this.Gender_Bar_Chart = chart;
   }
-  
-  VacBarChart_init(){
+
+  VacBarChart_init() {
     let chart = new Chart({
       chart: {
         type: 'bar'
@@ -193,7 +249,11 @@ export class HRDashboardComponent implements OnInit {
         text: 'Vacancy'
       },
       legend: {
-        reversed: true
+        reversed: true,
+        itemStyle: {
+          fontSize:'15px',
+          fontWeight: 'static'
+        }
       },
       plotOptions: {
         series: {
@@ -209,7 +269,7 @@ export class HRDashboardComponent implements OnInit {
       },
       {
         name: 'Vacancy',
-        data: [-8]
+        data: [8]
       }]
     });
     this.Vacancy_Bar_Chart = chart;

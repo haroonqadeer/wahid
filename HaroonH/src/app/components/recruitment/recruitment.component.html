@@ -1,79 +1,71 @@
-<div id="alert_msg_success" *ngIf="edited">
-  Action Successfully Created
-</div>
-
-<div id="alert_msg_warn" *ngIf="edited1">
-  Action Successfully Deleted
-</div>
-<br/> 
 <!--heading row-->
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1 class="bottomBorder">Recruitment Process</h1>    
+    <h1 class="bottomBorder">Recruitment Process</h1>
   </div>
 </div>
 <!--end heading row-->
-<br/>
+<br />
 
 <!--start button row-->
-<div class="row">    
+<div class="row">
   <div class="col-md-12 text-right">
     <button mat-raised-button color="primary" data-toggle="modal" data-target="#vacancyModal">Vacancy</button>
   </div>
 </div>
 <!--end button row-->
-<br/>
+<br />
 
 <!--start container tab-->
 <div class="container">
   <!--start top labels row-->
   <div class="row">
-  <div class="col-md-3">
-    <div class="row">
-      <div class="col-md-6">
-        <b>Job Title: </b>
-      </div>
-      <div class="col-md-6">
-        Accountant
-      </div>
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="row">
-      <div class="col-md-6">
-        <b>Vacancies: </b>
-      </div>
-      <div class="col-md-6">
-        05
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-5">
+          <b>Job Title: </b>
+        </div>
+        <div class="col-md-7">
+          Accountant
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-3">
-    <div class="row">
-      <div class="col-md-6">
-        <b>Published on: </b>
-      </div>
-      <div class="col-md-6">
-        June 11, 2018
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="row">
-      <div class="col-md-6">
-        <b>Last Date: </b>
-      </div>
-      <div class="col-md-6">
-        October 8, 2018
+    <div class="col-md-2">
+      <div class="row">
+        <div class="col-md-6">
+          <b>Vacancies: </b>
+        </div>
+        <div class="col-md-6">
+          1
+        </div>
       </div>
     </div>
-  </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-6">
+          <b>Published on: </b>
+        </div>
+        <div class="col-md-6">
+          Jan 3, 2019
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-4">
+          <b>Last Date: </b>
+        </div>
+        <div class="col-md-8">
+          Feb 28, 2019
+        </div>
+      </div>
+    </div>
   </div>
   <!--end top labels row-->
 </div>
 <!--end container tab-->
-<br/>
-  
+<br />
+
 <!--start horizontal Stepper -->
 <div class="container bgWhite allBorder">
   <mat-horizontal-stepper linear>
@@ -88,15 +80,15 @@
           <div class="col-md-6">
             <mat-form-field>
               <mat-select placeholder="Company Type" [(ngModel)]="cmbCType" formControlName="cmbCType" required>
-                <mat-option *ngFor="  let type of types" [value]="type.TName" >
-                  {{ type.TName }} 
+                <mat-option *ngFor="  let type of types" [value]="type.oName">
+                  {{ type.oName }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
         <!--end 1st row-->
-        <br/>
+        <br />
         <!--start table row-->
         <div class="row">
           <table class="table table-striped fullwidth">
@@ -111,27 +103,25 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
-                <td class="col-1 text-center">1</td>
-                <td class="col-3">Adnan</td>
-                <td class="col-3 text-center">July 15, 2018</td>
+              <tr class='d-flex' *ngFor="let item of applicants">
+                <td class="col-1 text-center">{{item.appId}}</td>
+                <td class="col-3">{{item.appName}}</td>
+                <td class="col-3 text-center">{{item.receivedOn}}</td>
                 <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#matchModal">good</a>
+                  <a href="" data-toggle="modal" data-target="#matchModal">{{item.appMatch}}</a>
                 </td>
                 <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#statusModal">In-Process</a>
+                  <a href="" data-toggle="modal" data-target="#statusModal">{{item.appStatus}}</a>
                 </td>
                 <td class="col-1 text-center">
-                  <a href="" data-toggle="modal" data-target="#docModal">---</a>
+                  <a href="" data-toggle="modal" data-target="#docModal"><span class="fa fa-file pointcursor"></span></a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!--end table row-->
-        <br/>
+        <br />
         <!--start next step button div-->
         <div class="text-right">
           <button mat-raised-button color="primary" matStepperNext>Next</button>
@@ -152,15 +142,15 @@
           <div class="col-md-6">
             <mat-form-field>
               <mat-select placeholder="Company Type" [(ngModel)]="cmbCType" formControlName="scndCtrl" required>
-                <mat-option *ngFor="  let type of types" [value]="type.TName" >
-                  {{ type.TName }} 
+                <mat-option *ngFor="  let type of types" [value]="type.oName">
+                  {{ type.oName }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
         <!--end 1st row-->
-        <br/>
+        <br />
         <!--start table row-->
         <div class="row">
           <table class="table table-striped fullwidth">
@@ -173,21 +163,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
-                <td class="col-2 text-center">1</td>
-                <td class="col-5">Qureshi</td>
-                <td class="col-3 text-center">12</td>
+              <tr class='d-flex' *ngFor="let item of shortListTest">
+                <td class="col-2 text-center">{{item.lstTestId}}</td>
+                <td class="col-5">{{item.appName}}</td>
+                <td class="col-3 text-center">{{item.initScreenMarks}}</td>
                 <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#statusModal">In-Process</a>
+                  <a href="" data-toggle="modal" data-target="#statusModal">{{item.appStatus}}</a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!--end table row-->
-        <br/>
+        <br />
         <!--2nd row-->
         <div class="row">
           <div class="col-md-12">
@@ -195,7 +183,7 @@
           </div>
         </div>
         <!--end 2nd row-->
-        <br/>
+        <br />
         <!--3rd row-->
         <div class="row">
           <div class="col-md-12">
@@ -205,11 +193,11 @@
           </div>
         </div>
         <!--end 3rd row-->
-        <br/>
+        <br />
         <div class="text-center">
           <button mat-raised-button color="primary">Seek Approval</button>
         </div>
-        <br/>
+        <br />
         <!--start table row-->
         <div class="row">
           <table class="table table-striped fullwidth">
@@ -224,10 +212,10 @@
             </thead>
             <tbody>
               <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
+                <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+
                 <td class="col-3">Ali Khan</td>
-                <td class="col-4">this is a message from Ali</td>
+                <td class="col-4">This is a message from Ali.</td>
                 <td class="col-2">success</td>
                 <td class="col-2">Nov 11, 2018</td>
                 <td class="col-1">Pending</td>
@@ -236,7 +224,7 @@
           </table>
         </div>
         <!--end table row-->
-        <br/>
+        <br />
         <!--start next step button div-->
         <div class="text-right">
           <button mat-raised-button color="primary" matStepperNext>Next</button>
@@ -257,15 +245,15 @@
           <div class="col-md-6">
             <mat-form-field>
               <mat-select placeholder="Company Type" [(ngModel)]="cmbCType" formControlName="thrdCtrl" required>
-                <mat-option *ngFor="  let type of types" [value]="type.TName" >
-                  {{ type.TName }} 
+                <mat-option *ngFor="  let type of types" [value]="type.oName">
+                  {{ type.oName }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
-        <!--end 1st row--> 
-        <br/>
+        <!--end 1st row-->
+        <br />
         <!--start table row-->
         <div class="row">
           <table class="table table-striped fullwidth">
@@ -279,31 +267,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
-                <td class="col-2">1</td>
-                <td class="col-3">Adnan</td>
-                <td class="col-3">Web</td>
-                <td class="col-2 text-center">89</td>
+              <tr class='d-flex' *ngFor="let item of tests">
+                <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                <td class="col-2">{{item.testId}}</td>
+                <td class="col-3">{{item.appName}}</td>
+                <td class="col-3">{{item.testSource}}</td>
+                <td class="col-2 text-center">{{item.testMarks}}</td>
                 <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#statusModal">In-Process</a>
-                </td>
-              </tr>
-              <tr class='d-flex'>
-                <td class="col-2">2</td>
-                <td class="col-3">Ali</td>
-                <td class="col-3">FPSC</td>
-                <td class="col-2 text-center">79</td>
-                <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#statusModal">In-Process</a>
+                  <a href="" data-toggle="modal" data-target="#statusModal">{{item.appStatus}}</a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!--end table row-->
-        <br/> 
+        <br />
         <!--start next step button div-->
         <div class="text-right">
           <button mat-raised-button color="primary" matStepperNext>Next</button>
@@ -312,7 +290,7 @@
       </form>
       <!--end 3rd step form control div-->
     </mat-step>
-    <!--end 3rd Step --> 
+    <!--end 3rd Step -->
     <!--start 4th Step -->
     <mat-step [stepControl]="formGroup4" optional>
       <!--stepper 4th label-->
@@ -324,20 +302,20 @@
           <div class="col-md-6">
             <mat-form-field>
               <mat-select placeholder="Company Type" [(ngModel)]="cmbCType" formControlName="fourthCtrl" required>
-                <mat-option *ngFor="  let type of types" [value]="type.TName" >
-                  {{ type.TName }} 
+                <mat-option *ngFor="  let type of types" [value]="type.oName">
+                  {{ type.oName }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
-        <!--end 1st row-->  
-        <br/>
+        <!--end 1st row-->
+        <br />
         <!--button tag-->
         <div class="text-center">
           <button mat-raised-button color="primary" data-toggle="modal" data-target="#activityModal">Seek Approval</button>
         </div>
-        <br/>
+        <br />
         <!--start table row-->
         <div class="row">
           <table class="table table-striped fullwidth">
@@ -351,22 +329,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
-                <td class="col-1 text-center">1</td>
-                <td class="col-3">Adnan</td>
-                <td class="col-3 text-center">12</td>
-                <td class="col-3 text-center">89</td>
+              <tr class='d-flex' *ngFor="let item of sListInterview">
+                <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+
+                <td class="col-1 text-center">{{item.listInterId}}</td>
+                <td class="col-3">{{item.appName}}</td>
+                <td class="col-3 text-center">{{item.screeningMarks}}</td>
+                <td class="col-3 text-center">{{item.testMarks}}</td>
                 <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#statusModal">In-Process</a>
+                  <a href="" data-toggle="modal" data-target="#statusModal">{{item.appStatus}}</a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!--end table row-->
-        <br/>
+        <br />
         <!--start next step button div-->
         <div class="text-right">
           <button mat-raised-button color="primary" matStepperNext>Next</button>
@@ -387,15 +365,15 @@
           <div class="col-md-6">
             <mat-form-field>
               <mat-select placeholder="Company Type" [(ngModel)]="cmbCType" formControlName="fifthCtrl" required>
-                <mat-option *ngFor="  let type of types" [value]="type.TName" >
-                  {{ type.TName }} 
+                <mat-option *ngFor="  let type of types" [value]="type.oName">
+                  {{ type.oName }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
         <!--end 1st row-->
-        <br/>
+        <br />
         <!--start table row-->
         <div class="row">
           <table class="table table-striped fullwidth">
@@ -416,23 +394,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
-                <td class="col-1 text-center">1</td>
-                <td class="col-3">Adnan</td>
-                <td class="col-2 text-center">6</td>
-                <td class="col-2 text-center">8</td>
-                <td class="col-2 text-center">7</td>
+              <tr class='d-flex' *ngFor="let item of interviews">
+                <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+
+                <td class="col-1 text-center">{{item.interviewId}}</td>
+                <td class="col-3">{{item.appName}}</td>
+                <td class="col-2 text-center">{{item.interviewerA}}</td>
+                <td class="col-2 text-center">{{item.interviewerB}}</td>
+                <td class="col-2 text-center">{{item.interviewerC}}</td>
                 <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#statusModal">In-Process</a>
+                  <a href="" data-toggle="modal" data-target="#statusModal">{{item.appStatus}}</a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!--end table row-->
-        <br/>
+        <br />
         <!--start next step button div-->
         <div class="text-right">
           <button mat-raised-button color="primary" matStepperNext>Next</button>
@@ -453,20 +431,20 @@
           <div class="col-md-6">
             <mat-form-field>
               <mat-select placeholder="Company Type" [(ngModel)]="cmbCType" formControlName="sixthCtrl" required>
-                <mat-option *ngFor="  let type of types" [value]="type.TName" >
-                  {{ type.TName }} 
+                <mat-option *ngFor="  let type of types" [value]="type.oName">
+                  {{ type.oName }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
-        <!--end 1st row--> 
-        <br/>
+        <!--end 1st row-->
+        <br />
         <!--button tag-->
         <div class="text-center">
-          <button mat-raised-button color="primary" data-toggle="modal" data-target="#activityModal">Seek Approval</button>
+          <button mat-raised-button color="primary" data-toggle="modal">Seek Approval</button>
         </div>
-        <br/>
+        <br />
         <!--start table row-->
         <div class="row">
           <table class="table table-striped fullwidth">
@@ -481,23 +459,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
-                <td class="col-1 text-center">1</td>
-                <td class="col-3">Adnan</td>
-                <td class="col-2 text-center">12</td>
-                <td class="col-2 text-center">89</td>
-                <td class="col-2 text-center">7.5</td>
+              <tr class='d-flex' *ngFor="let item of appointments">
+                <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+
+                <td class="col-1 text-center">{{item.appointId}}</td>
+                <td class="col-3">{{item.appName}}</td>
+                <td class="col-2 text-center">{{item.appointInitScreening}}</td>
+                <td class="col-2 text-center">{{item.appointTestMarks}}</td>
+                <td class="col-2 text-center">{{item.appointInterviewAvgMarks}}</td>
                 <td class="col-2 text-center">
-                  <a href="" data-toggle="modal" data-target="#statusModal">In-Process</a>
+                  <a href="" data-toggle="modal">{{item.appStatus}}</a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!--end table row-->
-        <br/>
+        <br />
         <!--start next step button div-->
         <div class="text-right">
           <button mat-raised-button color="primary">Save</button>
@@ -510,8 +488,8 @@
   </mat-horizontal-stepper>
 </div>
 <!--end horizontal Stepper -->
-<br/>
- 
+<br />
+
 <!-- Start Search vacancy Modal Window -->
 <div class="modal fade" id="vacancyModal">
   <div class="modal-dialog shadow-lg-dark modal-lg">
@@ -541,13 +519,13 @@
             </thead>
             <tbody>
               <tr class='d-flex'>
-              <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
-                
+                <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+
                 <td class="col-1 text-center">1</td>
                 <td class="col-2">Accountant</td>
-                <td class="col-2 text-center">05</td>
-                <td class="col-3">June 11, 2018</td>
-                <td class="col-3">October 8, 2018</td>
+                <td class="col-2 text-center">1</td>
+                <td class="col-3">Jan 3, 2019</td>
+                <td class="col-3">Feb 28, 2019</td>
                 <td class="col-1">
                   <a href="" data-dismiss="modal">select</a>
                 </td>
@@ -595,12 +573,12 @@
           </div>
         </div>
         <!--end 1st row-->
-        <br/>
+        <br />
         <!--start table row-->
         <div class="row">
           <div class="col-md-6">
             <div class="example-container mat-elevation-z8 fullwidth">
-              <div class="example-table-container fullwidth"> 
+              <div class="example-table-container fullwidth">
                 <table class="table table-striped fullwidth">
                   <thead>
                     <tr class='d-flex'>
@@ -612,7 +590,7 @@
                   </thead>
                   <tbody>
                     <tr class='d-flex'>
-                    <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                      <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
                       <td class="col-2 text-center">1</td>
                       <td class="col-4">English</td>
                       <td class="col-3">Advanced</td>
@@ -662,11 +640,11 @@
 
       <!--start Modal body -->
       <div class="modal-body">
-        
+
         <!--start table row-->
         <div class="row">
           <div class="example-container mat-elevation-z8 fullwidth">
-            <div class="example-table-container fullwidth"> 
+            <div class="example-table-container fullwidth">
               <table class="table table-striped fullwidth">
                 <thead>
                   <tr class='d-flex'>
@@ -677,7 +655,7 @@
                 </thead>
                 <tbody>
                   <tr class='d-flex'>
-                  <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
+                    <!-- <tr *ngFor="let item of taxDetail | search:'UserName,Email': query" class='d-flex'> -->
                     <td class="col-2 text-center">1</td>
                     <td class="col-7">CV</td>
                     <td class="col-3">
@@ -732,12 +710,13 @@
 
       <!--start Modal body -->
       <div class="modal-body">
-        
+
         <!--1st row-->
         <div class="row">
           <div class="col-md-6">
-            <br/>
-            <p-dropdown class="fullwidth" [options]="status" [(ngModel)]="cmbStatus" placeholder="Status" optionLabel="sName" [style]="{'width':'100%'}"></p-dropdown>
+            <br />
+            <p-dropdown class="fullwidth" [options]="status" [(ngModel)]="cmbStatus" placeholder="Status" optionLabel="sName"
+              [style]="{'width':'100%'}"></p-dropdown>
           </div>
           <div class="col-md-6">
             <mat-form-field class="fullwidth">
@@ -746,7 +725,7 @@
           </div>
         </div>
         <!--end 1st row-->
-        <br/>
+        <br />
         <!--2nd row-->
         <div class="row">
           <div class="col-md-12">
@@ -756,7 +735,7 @@
           </div>
         </div>
         <!--end 2nd row-->
-        <br/>
+        <br />
         <div class="row">
           <div class="col-md-12 text-right">
             <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
@@ -775,7 +754,7 @@
   </div>
 </div>
 <!-- End Document Modal Window  -->
- 
+
 <!-- Start Activity Modal Window -->
 <div class="modal fade" id="activityModal">
   <div class="modal-dialog shadow-lg-dark modal-md">
@@ -790,7 +769,7 @@
 
       <!--start Modal body -->
       <div class="modal-body">
-        <!--Row #1-->  
+        <!--Row #1-->
         <div class="row">
           <div class="col-md-7">
             <mat-card class="example-card">
@@ -808,49 +787,49 @@
                     </p>
                   </div>
                 </div>
-                
+
               </mat-card-content>
               <mat-card-actions class="text-right">
                 <span class="fa fa-share"></span>
               </mat-card-actions>
             </mat-card>
           </div>
+        </div>
+        <!--end of row #1 -->
+
+        <br />
+
+        <!--start row #2-->
+        <div class="row">
+          <div class="col-md-5"></div>
+          <div class="col-md-offset-5 col-md-7">
+            <mat-card class="example-card-r">
+
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image-r"></div>
+                <mat-card-title>Ali Khan</mat-card-title>
+                <mat-card-subtitle>English</mat-card-subtitle>
+
+              </mat-card-header>
+
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-10 text-center">
+                    <p>
+                      Sept 23, 2018
+                    </p>
+                  </div>
+                </div>
+              </mat-card-content>
+              <mat-card-actions class="">
+                <span class="fa fa-reply"></span>
+              </mat-card-actions>
+            </mat-card>
           </div>
-          <!--end of row #1 -->
+        </div>
+        <!--end row 2-->
 
-          <br/>
-          
-          <!--start row #2-->
-          <div class="row">
-            <div class="col-md-5"></div> 
-            <div class="col-md-offset-5 col-md-7">
-              <mat-card class="example-card-r">
-
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image-r"></div>
-                  <mat-card-title>Ali Khan</mat-card-title>
-                  <mat-card-subtitle>English</mat-card-subtitle>
-                  
-                </mat-card-header>
-
-                <mat-card-content>
-                  <div class="row">
-                    <div class="col-md-10 text-center">
-                      <p>
-                        Sept 23, 2018
-                      </p>
-                    </div>
-                  </div>  
-                </mat-card-content>
-                <mat-card-actions class="">
-                  <span class="fa fa-reply"></span>
-                </mat-card-actions>
-              </mat-card>
-            </div>
-          </div>
-          <!--end row 2-->
-
-          <br/>
+        <br />
 
       </div>
       <!--end Modal body -->
@@ -865,4 +844,3 @@
   </div>
 </div>
 <!-- End Activity Modal Window  -->
-

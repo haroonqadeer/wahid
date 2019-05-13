@@ -1,156 +1,242 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <!-- Side Menu Title -->
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <!-- Side Menu Title -->
+    <div class="row">
+      <div class="col-md-12">
         <div class="row">
-            <div class="col-md-12 bg-light-green">
-                <div class="row">
-                    <div class="col-md-4">
-                        <button type="button" routerLink='' class="noneOutLine bg-light-green sideMenuHome rightBorderWhite"  mat-flat-button>
-                            <span class="fa fa-home"></span>
-                        </button>
-                    </div>
-                    <div class="col-md-8">
-                        <p style="margin-top: 1.0em !important">HRMIS - Menu</p>
-                    </div>
-                </div>                
-            </div>        
-        </div><!-- end Side Menu Title -->
-        <br>
-
-        <!-- Circle Log -->
-        <div class="row">
-            <div class="col-md-12 mx-auto">                
-                <img class="mx-auto d-block" src="../assets/images/logo.png" alt="" width="100em" height="100em">                
+          <div class="row">
+            <div class="col-md-8 bg-white">
+              <img class="mx-auto d-block text-center" src="../assets/images/Ambit-Logo.svg" alt="" width="100%"
+                height="48em">
             </div>
-        </div><!--end Circle Logo -->        
-        <br>
-        <!-- UMIS Menu -->
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="nav">
-                    <li routerLinkActive='active'>
-                        <a routerLink='dashboard'>
-                            <span class="fa fa-tachometer"></span>
-                            <span class="text">Dashboard</span>
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="post">
-                            <span class="fa fa-share-square-o"></span>
-                            <span class="text">Post</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="job">
-                            <span class="fa fa-briefcase"></span>
-                            <span class="text">Job Profile</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="recruitmentApproval">
-                            <span class="fa fa-user-plus"></span>
-                            <span class="text">Recruitment Approval</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="recruitment">
-                            <span class="fa fa-recycle"></span>
-                            <span class="text">Recruitment Process</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink='employee'>
-                            <span class="fa fa-user"></span>
-                            <span class="text">Employee Profile</span>
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="performanceStandard">
-                            <span class="fa fa-list-alt"></span>
-                            <span class="text">Performance Standard</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="performanceEvaluation">
-                            <span class="fa fa-line-chart"></span>
-                            <span class="text">Performance Evaluation</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="leaveType">
-                            <span class="fa fa-list-ol"></span>
-                            <span class="text">Leave Type</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="leaveRules">
-                            <span class="fa fa-wheelchair"></span>
-                            <span class="text">Leave Rules</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="skillstandard">
-                            <span class="fa fa-gears"></span>
-                            <span class="text">Skill Standard</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="test">
-                            <span class="fa fa-calendar-check-o"></span>
-                            <span class="text">Test</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="trainingreq">
-                            <span class="fa fa-envelope"></span>
-                            <span class="text">Training Request</span>    
-                        </a>
-                    </li>
-                    <li routerLinkActive='active'>
-                        <a routerLink="yearcalendar">
-                            <span class="fa fa-calendar"></span>
-                            <span class="text">Year Calendar</span>    
-                        </a>
-                    </li>
-                </ul>
+            <div class="col-md-3 text-center" (click)="drawer.toggle()">
+              <span class="fa fa-times sideMenuIcon cursorPointer"></span>
             </div>
-        </div><!-- end UMIS Menu -->
-
-    </mat-drawer>
-
-    <div class="example-sidenav-content">
-        <div class="row bgWhite bottomBorder">
-            <div class="col-md-1">
-                <button type="button" class="noneOutLine"  mat-flat-button color="warn" (click)="drawer.toggle()">
-                    <span class="fa fa-bars sideMenubar"></span>
-                </button>
-            </div>
-            <div class="col-md-5">
-                <h4>HRMIS</h4>
-            </div>
-            <div class="col-md-6 text-right">
-                <button mat-button [matMenuTriggerFor]="menu" class="noneOutLine">
-                    Haroon Qadeer
-                </button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item class="noneOutLine" routerLink="">
-                        <!-- <mat-icon>dialpad</mat-icon> -->
-                        <span class="fa fa-sign-out"></span>
-                        <span>  Log out</span>
-                    </button>
-                    <button mat-menu-item class="noneOutLine" (click)=showBottom()>
-                        <!-- <mat-icon>voicemail</mat-icon> -->
-                        <span class="fa fa-sitemap"></span>
-                        <span>  Modules</span>
-                    </button>                
-                </mat-menu>
-            </div>
-            
+          </div>
         </div>
-        
-        <router-outlet></router-outlet>
+      </div>
+    </div><!-- end Side Menu Title -->
+    <br>
+
+    <!-- UMIS Menu -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav">
+          <li routerLinkActive='active'>
+            <a routerLink='dashboard'>
+              <span class="fa fa-tachometer"></span>
+              <span class="text">Dashboard</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink='userprofile'>
+              <span class="fa fa-user"></span>
+              <span class="text">User Profile</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink='userroles'>
+              <span class="fa fa-sitemap"></span>
+              <span class="text">User Role</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink='usertree'>
+              <span class="fa fa-sitemap"></span>
+              <span class="text">Menu</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <!-- end UMIS Menu -->
+  </mat-drawer>
+
+
+  <!--Menu Side Bar -->
+  <div id="mySidenav" class="sidenav">
+
+    <div class="row">
+      <!--Ambit Logo -->
+      <div class="col-md-12">
+        <button type="button" class="noneOutLine closeBtn" mat-flat-button (click)="closeNav()">
+          <img src="../assets/images/Ambit-Logo.svg" height="25px">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="fa fa-times text-center" style="color:#4F6EB1;"></span>
+        </button>
+      </div>
+
+
+      <!--Menu btns -->
+      <div class="col-md-12">
+        <ul class="nav">
+          <li>
+            <a>
+              <span class="fa logo"><img src="../assets/images/search.svg"></span>
+              <!-- <span class="text">Dashboard</span> -->
+              <input class="noneOutLine menuSearchBox" type="text" maxlength="32" placeholder="Search">
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink='dashboard'>
+              <span class="fa logo"><img src="../assets/images/Dashboard.svg"></span>
+              <span class="text">Dashboard</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="post">
+              <span class="fa logo"><img src="../assets/images/Post.svg"></span>
+              <span class="text">Post</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="job">
+              <span class="fa logo"><img src="../assets/images/JobProfile.svg"></span>
+              <span class="text">Job Profile</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="recruitmentApproval">
+              <span class="fa logo"><img src="../assets/images/Recruitment-Approval.svg"></span>
+              <span class="text">Recruitment Approval</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="recruitment">
+              <span class="fa logo"><img src="../assets/images/Recruitment-Process.svg"></span>
+              <span class="text">Recruitment Process</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink='employee'>
+              <span class="fa logo"><img src="../assets/images/Employe-Profile.svg"></span>
+              <span class="text">Employee Profile</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="performanceStandard">
+              <span class="fa logo"><img src="../assets/images/PerformanceStandards.svg"></span>
+              <span class="text">Performance Standard</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="performanceEvaluation">
+              <span class="fa logo"><img src="../assets/images/PerformanceEvaluation.svg"></span>
+              <span class="text">Performance Evaluation</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="leaveType">
+              <span class="fa logo"><img src="../assets/images/Dashboard.svg"></span>
+              <span class="text">Leave Type</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="leaveRules">
+              <span class="fa logo"><img src="../assets/images/Dashboard.svg"></span>
+              <span class="text">Leave Rules</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="skillstandard">
+              <span class="fa logo"><img src="../assets/images/skills.svg"></span>
+              <span class="text">Skill Standard</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="test">
+              <span class="fa logo"><img src="../assets/images/Dashboard.svg"></span>
+              <span class="text">Test</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="trainingreq">
+              <span class="fa logo"><img src="../assets/images/Training.svg"></span>
+              <span class="text">Training Request</span>
+            </a>
+          </li>
+          <li routerLinkActive='active'>
+            <a routerLink="yearcalendar">
+              <span class="fa logo"><img src="../assets/images/Year-Calendar.svg"></span>
+              <span class="text">Year Calendar</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
+  </div>
+
+  <!--Menu Top Bar -->
+  <div class="example-sidenav-content">
+    <div class="row bgBlue" *ngIf="hideDiv">
+
+      <!--Ambit Logo Button -->
+      <div class="col-md-1" style="border:0px solid red; background-color: #E6E6E6;">
+
+        <button type="button" class="noneOutLine menuButton" mat-flat-button>
+          <img src="../assets/images/Ambit-Logo.svg" height="25px">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="fa fa-bars text-center" style="color:#4F6EB1;" (click)="openNav()"></span>
+        </button>
+      </div>
+
+
+      <div class=" offset-md-2 col-md-1 text-right">
+        <!-- <mat-icon matPrefix class="menuSIcon"><i class='fa fa-search'></i></mat-icon> -->
+      </div>
+
+      <div class="col-md-4" style="padding: 0;">
+
+        <!-- <h4>UMIS</h4> -->
+      </div>
+
+      <div class="col-md-3 text-right" style="border:0px solid red; padding: 0;">
+
+        <img src="../assets/images/icon_img.jpg" alt="" height="40px">
+
+        <div class="dropdown">
+          <button class="dropbtn">
+            Welcome! Umer Shaheen
+            <span class="fa fa-caret-down"></span>
+          </button>
+
+          <div class="dropdown-content">
+            <a href="#" (click)="Logout()">
+              <span class="fa fa-sign-out"></span>
+              <span> Log out</span>
+            </a>
+
+            <a href="#" (click)=showBottom()>
+              <span class="fa fa-sitemap"></span>
+              <span> Modules</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row" style="border:0px solid red; padding: 0;">
+          <div class="col-md-2" style="border: 0px solid yellow; padding-right: 0;">
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-1 text-right">
+        <!-- <button type="button" class="noneOutLine leftBorderWhite" mat-flat-button>
+            
+        </button> -->
+
+        <div class="btnSlider border-left">
+          <span class="fa fa-sliders"></span>
+        </div>
+
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+
 </mat-drawer-container>
+<!-- //</div> -->
