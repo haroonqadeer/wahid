@@ -6,8 +6,8 @@ import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
-import {HttpModule} from '@angular/http';
-import {MatRadioModule} from '@angular/material/radio';
+import { HttpModule } from '@angular/http';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +32,11 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 import { IntroPageComponent } from './components/intro-page/intro-page.component';
 
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { OrderModule } from 'ngx-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -65,10 +70,14 @@ import { IntroPageComponent } from './components/intro-page/intro-page.component
     PNPrimeModule,
     HttpModule,
     MatRadioModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    ToastrModule.forRoot(),
+    HttpClientModule,
+    OrderModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ErpBottomSheetComponent],  
+  entryComponents: [ErpBottomSheetComponent],
 })
 export class AppModule { }

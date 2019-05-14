@@ -101,6 +101,10 @@ mat-drawer-container {
   //border: 1px solid red;
 }
 
+.bgWhite {
+  background-color: #fff;
+}
+
 ///// headings
 h1 {
   border: 0px solid red;
@@ -1397,6 +1401,7 @@ h1 {
   background-color: #1c2b68;
   border-top: 1px solid #fff;
   border-bottom: 3px solid #fff;
+  min-height: 41px;
 }
 
 .topnav h1 {
@@ -1409,12 +1414,23 @@ h1 {
   padding: 5px 0 0 0;
 }
 
+.topnav h2 {
+  border: 0px solid red;
+  color: #fff !important;
+  display: inline;
+  font-size: 20px;
+  position: absolute;
+  left: 15px;
+  padding: 6px 0 0 0;
+}
+
 .topnav .logo {
   border: 0px solid yellow;
   width: 30px;
   position: absolute;
   margin: 5px 0 0 50px;
   color: #fff !important;
+  fill: #fff;
 }
 
 .topnav a {
@@ -1478,4 +1494,30 @@ h1 {
     display: block;
     text-align: left;
   }
+}
+
+
+
+.tab-margin {
+  width: 98%;
+  margin-left: 1% !important;
+}
+
+
+//********************** Css for order by pipe ***********
+thead th {
+  cursor: pointer;
+
+  span {
+    visibility: hidden;
+  }
+
+  &.active {
+    color: #000;
+
+    span {
+      visibility: visible;
+    }
+  }
+
 }

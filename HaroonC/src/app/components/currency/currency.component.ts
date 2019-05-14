@@ -75,33 +75,7 @@ export class CurrencyComponent implements OnInit {
     txtdPin = '';
 
     //*List Variables
-    currencies = [
-        // { currencyId: '1', currencyName: 'Rupee', countryName: 'Pakistan' },
-        // { currencyId: '2', currencyName: 'Doller', countryName: 'America' },
-        // { currencyId: '3', currencyName: 'Pound', countryName: 'England' },
-        // { currencyId: '4', currencyName: 'Euro', countryName: 'Austria' },
-        // { currencyId: '5', currencyName: 'Ngultrum', countryName: 'Bhutan' },
-        // { currencyId: '6', currencyName: 'Boliviano', countryName: 'Bolivia' },
-        // { currencyId: '7', currencyName: 'Pula', countryName: 'Botswana' },
-        // { currencyId: '8', currencyName: 'Lev', countryName: 'Bulgaria' },
-        // { currencyId: '9', currencyName: 'Franc', countryName: 'Burundi' },
-        // { currencyId: '10', currencyName: 'Escudo', countryName: 'Cabo Verde' },
-        // { currencyId: '11', currencyName: 'Riel', countryName: 'Cambodia' },
-        // { currencyId: '12', currencyName: 'Peso', countryName: 'Chile' },
-        // { currencyId: '13', currencyName: 'Yuan Renminbi', countryName: 'China' },
-        // { currencyId: '14', currencyName: 'Colon', countryName: 'Costa Rica' },
-        // { currencyId: '15', currencyName: 'Kuna', countryName: 'Croatia' },
-        // { currencyId: '16', currencyName: 'Nakfa', countryName: 'Eritrea' },
-        // { currencyId: '17', currencyName: 'Birr', countryName: 'Ethiopia' },
-        // { currencyId: '18', currencyName: 'Cedi', countryName: 'Ghana' },
-        // { currencyId: '19', currencyName: 'Quetzal', countryName: 'Guatemala' },
-        // { currencyId: '20', currencyName: 'Gourde', countryName: 'Haiti' },
-        // { currencyId: '21', currencyName: 'Forint', countryName: 'Hungary' },
-        // { currencyId: '22', currencyName: 'Dinar', countryName: 'Iraq' },
-        // { currencyId: '23', currencyName: 'Yen', countryName: 'Japan' },
-        // { currencyId: '24', currencyName: 'Tenge', countryName: 'Kazakhstan' },
-        // { currencyId: '25', currencyName: 'Kip', countryName: 'Laos' }
-    ];
+    currencies = [];
 
     constructor(
         private exportAsService: ExportAsService,
@@ -113,9 +87,6 @@ export class CurrencyComponent implements OnInit {
         private csvExportService: IgxCsvExporterService) { }
 
     ngOnInit() {
-
-        //this.printCss = "{table : {'border': 'solid 1px'}}";
-        //alert(this.printCss);
 
         this.getCurrency();
     }
