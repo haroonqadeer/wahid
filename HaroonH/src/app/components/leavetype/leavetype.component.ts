@@ -413,7 +413,6 @@ export class LeavetypeComponent implements OnInit {
   }
 
 
-
   //function for sort table data 
   setOrder(value: string) {
     if (this.order === value) {

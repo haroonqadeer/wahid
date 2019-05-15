@@ -37,6 +37,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { OrderModule } from 'ngx-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ToastrModule.forRoot(),
     HttpClientModule,
     OrderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    InputTextModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent],
