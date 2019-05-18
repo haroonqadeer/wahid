@@ -6,8 +6,9 @@ import { PNPrimeModule } from './shared/pnprime/pnprime.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
-import {HttpModule} from '@angular/http';
-import {MatRadioModule} from '@angular/material/radio';
+import { HttpModule } from '@angular/http';
+import { MatRadioModule } from '@angular/material/radio';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +32,7 @@ import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 import { IntroPageComponent } from './components/intro-page/intro-page.component';
-
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 @NgModule({
   declarations: [
@@ -64,11 +65,13 @@ import { IntroPageComponent } from './components/intro-page/intro-page.component
     ReactiveFormsModule,
     PNPrimeModule,
     HttpModule,
+    HttpClientModule,
     MatRadioModule,
+    ToastrModule.forRoot(),
     NgCircleProgressModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ErpBottomSheetComponent],  
+  entryComponents: [ErpBottomSheetComponent],
 })
 export class AppModule { }

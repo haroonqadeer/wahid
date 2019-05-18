@@ -30,9 +30,6 @@
       Add New
     </a>
 
-
-
-
   </div>
 </div>
 <!-- end menubar buttons -->
@@ -66,13 +63,13 @@
       <tbody>
         <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
         <tr class='d-flex'
-          *ngFor="let post of posts | search:'posId,posOffice,posDepartment,posSection,posJobTitle,posQuantity':postSearch">
-          <td class='col-1 text-center'>{{post.posId}}</td>
-          <td class='col-3'>{{post.posOffice}}</td>
-          <td class='col-2'>{{post.posDepartment}}</td>
-          <td class='col-3'>{{post.posSection}}</td>
-          <td class='col-2'>{{post.posJobTitle}}</td>
-          <td class='col-1 text-center'>{{post.posQuantity}}</td>
+          *ngFor="let post of posts | search:'offices,department,section,jobTitle,qty':postSearch let i=index">
+          <td class='col-1 text-center'>{{i+1}}</td>
+          <td class='col-3'>{{post.office}}</td>
+          <td class='col-2'>{{post.department}}</td>
+          <td class='col-3'>{{post.section}}</td>
+          <td class='col-2'>{{post.designation}}</td>
+          <td class='col-1 text-center'>{{post.desigCount}}</td>
         </tr>
       </tbody>
     </table>
@@ -105,8 +102,8 @@
           <!-- Office -->
           <div class="col-md-4">
             <mat-form-field>
-              <mat-select placeholder="Office" [(ngModel)]="officeName">
-                <mat-option *ngFor="let item of offices" [value]="item.offId">{{item.offName}}</mat-option>
+              <mat-select placeholder="Office" [(ngModel)]="officeName" (ngModelChange)="onBranchChange($event)">
+                <mat-option *ngFor="let item of offices" [value]="item.locationCd">{{item.locationName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -115,7 +112,7 @@
           <div class="col-md-4">
             <mat-form-field>
               <mat-select placeholder="Department" [(ngModel)]="departmentName" (ngModelChange)="onDeptChange($event)">
-                <mat-option *ngFor="let item of departments" [value]="item.deptId">{{item.deptName}}</mat-option>
+                <mat-option *ngFor="let item of departments" [value]="item.deptCd">{{item.deptName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -123,14 +120,30 @@
           <!-- Section -->
           <div class="col-md-4">
             <mat-form-field>
-              <mat-select placeholder="Section" [(ngModel)]="sectionName">
-                <mat-option *ngFor="let item of sections" [value]="item.secId">{{item.secName}}</mat-option>
+              <mat-select placeholder="Section" [(ngModel)]="sectionName" (ngModelChange)="onSectionChange($event)">
+                <mat-option *ngFor="let item of sections" [value]="item.deptCd">{{item.deptName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
 
         </div>
         <!--end of row #1 -->
+        <br />
+        <div class="row">
+          <div class="col-md-4">
+            <button mat-raised-button color="primary" (click)="getOrganoGram()">Organo Gram</button>
+          </div>
+          <div class="col-md-3">
+            <button mat-raised-button color="primary" (click)="addPost()" *ngIf="btnAddPost">Add New Post</button>
+          </div>
+          <div class="offset-md-1 col-md-4">
+            <mat-form-field *ngIf="cmbPost">
+              <mat-select placeholder="Job Designation" [(ngModel)]="jobPostName">
+                <mat-option *ngFor="let item of jobPost" [value]="item.jobDesigID">{{item.jobDesigName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
         <br />
         <div class="row">
           <div class="col-md-12">
@@ -181,133 +194,8 @@
 </div>
 <!-- End chart of account Modal Window  -->
 
-
-<!-- Start Modal Window to generate depriciation modal -->
-<div class="modal fade" id="gDepModal">
-  <div class="modal-dialog shadow-lg-dark modal-lg">
-    <div class="modal-content">
-
-      <!--start Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Generate Depriciation</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <!--end Modal Header -->
-
-      <!--start Modal body -->
-      <div class="modal-body">
-        <!--start date row  -->
-        <div class="row">
-          <div class="col-md-12">
-            <p-calendar [(ngModel)]="voucherDate" placeholder="Voucher Date" [showIcon]="true"></p-calendar>
-          </div>
-        </div>
-        <!--end date row-->
-        <br />
-        <!--start table row-->
-        <div class="example-container mat-elevation-z8">
-          <div class="example-table-container">
-            <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-2'>G/L Code</th>
-                  <th class='col-5'>Description</th>
-                  <th class='col-3'>Dep. Amount</th>
-                  <th class='col-1'>Detail</th>
-                  <th class='col-1'>Post</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class='col-2'>100100</td>
-                  <td class='col-5'>Vehicle</td>
-                  <td class='col-3'>550,000</td>
-                  <td class='col-1 text-right'><span class="fa fa-file-text pointerCursor" data-toggle="modal"
-                      data-target="#gDepDetailModal"></span></td>
-                  <td class='col-1 text-right'><span class="fa fa-check-circle pointerCursor"
-                      data-dismiss="modal"></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <!--end table row-->
-        <br />
-      </div>
-      <!--end Modal body -->
-
-      <!--start Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      <!--end Modal footer -->
-
-    </div>
-  </div>
-</div>
-<!-- End Modal Window to generate depriciation modal -->
-
-<!-- Start Modal Window to generate depriciation detail modal -->
-<div class="modal fade" id="gDepDetailModal">
-  <div class="modal-dialog shadow-lg-dark modal-lg">
-    <div class="modal-content">
-
-      <!--start Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Generate Depriciation Detail</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <!--end Modal Header -->
-
-      <!--start Modal body -->
-      <div class="modal-body">
-        <!--start table row-->
-        <div class="example-container mat-elevation-z8">
-          <div class="example-table-container">
-            <table class="table table-striped">
-              <thead>
-                <tr class='d-flex'>
-                  <th class='col-4'>Item</th>
-                  <th class='col-2'>Amount Before Dep.</th>
-                  <th class='col-2'>Dep.</th>
-                  <th class='col-2'>Amount After Dep.</th>
-                  <th class='col-2 text-right'>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
-                <tr class='d-flex'>
-                  <td class='col-4'>Corolla XLI</td>
-                  <td class='col-2'>1,400,000</td>
-                  <td class='col-2'>50,000</td>
-                  <td class='col-2'>1,350,000</td>
-                  <td class='col-2 text-right'><span class="fa fa-trash pointerCursor text-right"
-                      data-dismiss="modal"></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <!--end table row-->
-        <br />
-      </div>
-      <!--end Modal body -->
-
-      <!--start Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      <!--end Modal footer -->
-
-    </div>
-  </div>
-</div>
-<!-- End Modal Window to generate depriciation detail modal -->
-
-
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="jobModal" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
@@ -320,28 +208,27 @@
         <!--1st row-->
         <div class="row">
           <div class="col-md-6">
-            <mat-form-field class="fullwidth">
-              <input matInput placeholder="Job Title">
+            <mat-form-field>
+              <mat-select placeholder="Job Type" [(ngModel)]="jobType">
+                <mat-option *ngFor="let item of jobTypes" [value]="item.jobTypeCd">{{item.jobTypeName}}</mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <mat-form-field class="fullwidth">
-              <input matInput placeholder="Job Type">
+            <mat-form-field>
+              <mat-select placeholder="Job Nature" [(ngModel)]="jobNature">
+                <mat-option *ngFor="let item of jobNatures" [value]="item.jobNatureCd">{{item.jobNatureName}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
         </div>
         <!--end 1st row-->
-        <br />
         <!--2nd row-->
         <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="fullwidth">
-              <input matInput placeholder="Designation">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="fullwidth">
-              <input matInput placeholder="BPS">
+          <div class="col-md-12">
+            <mat-form-field class="fullwidth inputBox">
+              <input matInput placeholder="Job Title" [(ngModel)]="jobTitle">
             </mat-form-field>
           </div>
         </div>
@@ -350,20 +237,24 @@
         <!--3rd row-->
         <div class="row">
           <div class="col-md-6">
-            <mat-form-field class="fullwidth">
-              <input matInput placeholder="Post Name">
+            <mat-form-field>
+              <mat-select placeholder="BPS" [(ngModel)]="BPS" (ngModelChange)="onBPSChange($event)">
+                <mat-option *ngFor="let item of bpsList" [value]="item.payGradeCd">{{item.payGradeName}}</mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <mat-form-field class="fullwidth">
-              <input matInput placeholder="Post BPS">
+            <mat-form-field>
+              <mat-select placeholder="Designation" [(ngModel)]="designation">
+                <mat-option *ngFor="let item of designations" [value]="item.desigCd">{{item.desigName}}</mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
         </div>
         <!--end 3rd row-->
         <br />
         <!--button tag-->
-        <button mat-raised-button color="primary" data-dismiss="modal">Save</button>
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
