@@ -8,9 +8,6 @@ import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import { HttpModule } from '@angular/http';
 import { MatRadioModule } from '@angular/material/radio';
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobprofileComponent } from './components/jobprofile/jobprofile.component';
@@ -33,6 +30,13 @@ import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-botto
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 import { IntroPageComponent } from './components/intro-page/intro-page.component';
 import { ToastrModule } from 'ng6-toastr-notifications';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { OrderModule } from 'ngx-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -69,6 +73,10 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     MatRadioModule,
     ToastrModule.forRoot(),
     NgCircleProgressModule.forRoot({})
+    OrderModule,
+    NgxPaginationModule,
+    InputTextModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent],
