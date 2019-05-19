@@ -13,7 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgxMaskModule } from "ngx-mask";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
-import { NgxSpinnerModule } from 'ngx-spinner'
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ExportAsModule } from 'ngx-export-as';
 
 import { AppRoutingModule } from './app-routing.module';

@@ -87,6 +87,23 @@ export class TestComponent implements OnInit {
 
   }
 
+  getJobProfileTest(item) {
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getJobProfile?testSubjectCd=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      this.jobProfileList = data;
+
+    });
+
+    this.http.get(this.serverUrl + 'api/getJobDesig?subjectCd=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      this.jobDesigList = data;
+    });
+
+  }
+
   getJobQuestion(item) {
 
     this.clear();
@@ -101,6 +118,22 @@ export class TestComponent implements OnInit {
     });
 
     this.http.get(this.serverUrl + 'api/getTestQuestion?subjectCd=' + item.testSbjctCd, { headers: reqHeader }).subscribe((data: any) => {
+
+      this.testQuestionList = data;
+    });
+  }
+
+  getJobPostQuestion(item) {
+
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getTestQuestionCount?subjectCd=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      this.testQuestionListCount = data;
+    });
+
+    this.http.get(this.serverUrl + 'api/getTestQuestion?subjectCd=' + item, { headers: reqHeader }).subscribe((data: any) => {
 
       this.testQuestionList = data;
     });
@@ -282,7 +315,7 @@ export class TestComponent implements OnInit {
           if (data.msg != undefined) {
             this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
             this.getTest();
-            this.getJobQuestion(this.lblSubjectID);
+            this.getJobPostQuestion(this.lblSubjectID);
             subjectID = this.lblSubjectID;
             $('#addQuestionsModal').modal('hide');
             //this.app.hideSpinner();
@@ -322,7 +355,7 @@ export class TestComponent implements OnInit {
           if (data.msg != undefined) {
             this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
             this.getTest();
-            this.getJobQuestion(this.lblSubjectID);
+            this.getJobPostQuestion(this.lblSubjectID);
             subjectID = this.lblSubjectID;
             $('#addQuestionsModal').modal('hide');
             //this.app.hideSpinner();
@@ -360,7 +393,7 @@ export class TestComponent implements OnInit {
         if (data.msg != undefined) {
           this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
           this.getTest();
-          $('#addSubject').modal('hide');
+          $('#jobProfileModal').modal('hide');
           //this.app.hideSpinner();
           this.clear();
           return false;
@@ -417,6 +450,8 @@ export class TestComponent implements OnInit {
   }
 
   delete() {
+    var subjectID;
+
     if (this.txtdPassword == '') {
       this.toastr.errorToastr('Please enter password', 'Error', { toastTimeout: (2500) });
       return false
@@ -434,15 +469,18 @@ export class TestComponent implements OnInit {
           if (data.msg != "Error Occured") {
             this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
             //this.app.hideSpinner();
+            this.getTest();
+            this.getJobProfileTest(this.lblSubjectID);
+            subjectID = this.lblSubjectID;
             $('#deleteModal').modal('hide');
             //this.getCurrency();
             this.clear();
-
+            this.lblSubjectID = subjectID;
             return false;
           } else {
             this.toastr.errorToastr('Error Occured', 'Error!', { toastTimeout: (2500) });
             //this.app.hideSpinner();
-            $('#deleteModal').modal('hide');
+            //$('#deleteModal').modal('hide');
             return false;
           }
         });
@@ -465,17 +503,16 @@ export class TestComponent implements OnInit {
           subjectCd: this.lblSubjectID
         };
 
-        var subjectID;
         var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-        this.http.put(this.serverUrl + 'api/updateQuestion', saveData1, { headers: reqHeader }).subscribe((data: any) => {
+        this.http.put(this.serverUrl + 'api/deleteQuestion', saveData1, { headers: reqHeader }).subscribe((data: any) => {
 
           if (data.msg != undefined) {
             this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
             this.getTest();
-            this.getJobQuestion(this.lblSubjectID);
+            this.getJobPostQuestion(this.lblSubjectID);
             subjectID = this.lblSubjectID;
-            $('#addQuestionsModal').modal('hide');
+            $('#deleteModal').modal('hide');
             //this.app.hideSpinner();
             this.clear();
             this.lblSubjectID = subjectID;
@@ -495,12 +532,14 @@ export class TestComponent implements OnInit {
 
   clear() {
 
+    this.jobProfileTestList = [];
+    this.jobProfile = "";
     this.subjectName = '';
     this.subjectGroup = '';
     this.lblSubject = "";
     this.lblSubjectID = "";
     this.txtdPassword = "";
-    this.txtdPassword = "";
+    this.txtdPin = "";
     this.lblJobDesigID = "";
     this.lblQuestionID = "";
     this.question = "";

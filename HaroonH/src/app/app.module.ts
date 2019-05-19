@@ -32,7 +32,6 @@ import { IntroPageComponent } from './components/intro-page/intro-page.component
 import { ToastrModule } from 'ng6-toastr-notifications';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { ToastrModule } from 'ng6-toastr-notifications';
 import { OrderModule } from 'ngx-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InputTextModule } from 'primeng/inputtext';
@@ -72,7 +71,7 @@ import { DropdownModule } from 'primeng/dropdown';
     HttpClientModule,
     MatRadioModule,
     ToastrModule.forRoot(),
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
     OrderModule,
     NgxPaginationModule,
     InputTextModule,
