@@ -8,6 +8,7 @@ import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import { HttpModule } from '@angular/http';
 import { MatRadioModule } from '@angular/material/radio';
+
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,10 +32,9 @@ import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { ErpBottomSheetComponent } from './components/erp-bottom-sheet/erp-bottom-sheet.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 import { IntroPageComponent } from './components/intro-page/intro-page.component';
-
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { ToastrModule } from 'ng6-toastr-notifications';
 import { OrderModule } from 'ngx-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InputTextModule } from 'primeng/inputtext';
@@ -71,10 +71,10 @@ import { DropdownModule } from 'primeng/dropdown';
     ReactiveFormsModule,
     PNPrimeModule,
     HttpModule,
-    MatRadioModule,
-    NgCircleProgressModule.forRoot({}),
-    ToastrModule.forRoot(),
     HttpClientModule,
+    MatRadioModule,
+    ToastrModule.forRoot(),
+    NgCircleProgressModule.forRoot({}),
     OrderModule,
     NgxPaginationModule,
     InputTextModule,

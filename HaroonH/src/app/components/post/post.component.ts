@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import { AppComponent } from '../../app.component';
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 declare var $: any;
 
@@ -13,8 +15,7 @@ declare var $: any;
 })
 export class PostComponent implements OnInit {
 
-
-  voucherDate = '';
+  serverUrl = "http://localhost:3001/";
 
   //ngprime organization chart 
   data1: TreeNode[];
@@ -24,268 +25,546 @@ export class PostComponent implements OnInit {
   // lblOrg = '';
   // count = 0;
 
-  public sections: any;
-
   //Page Models
   postSearch = "";
+  cmbPost = false;
+  btnAddPost = true;
 
   //Modal Window Add New Models
   officeName = "";
   departmentName = "";
   sectionName = "";
 
-  offices = [
+  jobPostName = "";
+  jobType = "";
+  jobNature = "";
+  jobTitle = "";
+  BPS = "";
+  designation = "";
+  sectionQty = 0;
+
+  orgChartDesigID = "";
+  orgChartLocationCd = "";
+  orgChartParentLocationCd = "";
+  orgChartParentDeptCd = "";
+  orgChartDeptCd = "";
+  orgChartParentDesigID = "";
+  orgChartBPSCd = "";
+  orgChartDesigName = "";
+
+  //lists
+  offices = []
+  departments = []
+  sections = []
+  jobTypes = []
+  jobNatures = []
+  bpsList = []
+  designations = []
+  posts = []
+  jobPost = [];
+
+  public orgList = [];
+  public orgChild = [];
+  
+
+  public orgData = [
     {
-      offId: 1,
-      offName: "Islamabad (HQ)"
+      jobDesigID: 12,
+      jobDesignName: "Director Finance",
+      jobPostDeptCd: 1,
+      jobPostLocationCd: 1,
+      managerJobPostLocationCd: 0,
+      managerJobPostDesigID: 0,
+      managerJobPostDeptCd: 0,
+      payGradeCd: 18
     },
     {
-      offId: 2,
-      offName: "Lahore"
+      jobDesigID: 2,
+      jobDesignName: "Director IT",
+      jobPostDeptCd: 6,
+      jobPostLocationCd: 1,
+      managerJobPostLocationCd: 0,
+      managerJobPostDesigID: 0,
+      managerJobPostDeptCd: 0,
+      payGradeCd: 18
     },
     {
-      offId: 3,
-      offName: "Karachi"
+      jobDesigID: 3,
+      jobDesignName: "AD Finance 1",
+      jobPostDeptCd: 3,
+      jobPostLocationCd: 1,
+      managerJobPostLocationCd: 1,
+      managerJobPostDesigID: 12,
+      managerJobPostDeptCd: 1,
+      payGradeCd: 17
     },
     {
-      offId: 4,
-      offName: "Peshawar"
-    }, {
-      offId: 5,
-      offName: "Los Angeles, USA"
-    }, {
-      offId: 6,
-      offName: "Toronto, Canada"
-    }, {
-      offId: 7,
-      offName: "Dubai, UAE"
+      jobDesigID: 4,
+      jobDesignName: "AD Finance 2",
+      jobPostDeptCd: 3,
+      jobPostLocationCd: 1,
+      managerJobPostLocationCd: 1,
+      managerJobPostDesigID: 12,
+      managerJobPostDeptCd: 1,
+      payGradeCd: 17
+    },
+    {
+      jobDesigID: 5,
+      jobDesignName: "AD IT",
+      jobPostDeptCd: 8,
+      jobPostLocationCd: 1,
+      managerJobPostLocationCd: 1,
+      managerJobPostDesigID: 2,
+      managerJobPostDeptCd: 6,
+      payGradeCd: 17
+    },
+    {
+      jobDesigID: 6,
+      jobDesignName: "Assistant Finance",
+      jobPostDeptCd: 3,
+      jobPostLocationCd: 1,
+      managerJobPostLocationCd: 1,
+      managerJobPostDesigID: 3,
+      managerJobPostDeptCd: 3,
+      payGradeCd: 15
     }
   ]
 
-  departments = [
-    {
-      deptId: 1,
-      deptName: "Finance"
-    },
-    {
-      deptId: 2,
-      deptName: "Human Resource"
-    },
-    {
-      deptId: 3,
-      deptName: "IT"
-    },
-    {
-      deptId: 4,
-      deptName: "Sales & Marketing"
-    }
-  ]
-
-  section1 = [
-    {
-      secId: 1,
-      secName: "Internal Audit & Compliance",
-      deptId: 1,
-      deptName: "Finance"
-    },
-    {
-      secId: 2,
-      secName: "Budgeting & Forecasting",
-      deptId: 1,
-      deptName: "Finance"
-    }
-  ]
-
-  section2 = [
-    {
-      secId: 1,
-      secName: "Recruitment",
-      deptId: 2,
-      deptName: "Human Resource"
-    },
-    {
-      secId: 2,
-      secName: "HR Management",
-      deptId: 2,
-      deptName: "Human Resource"
-    }
-  ]
-
-  section3 = [
-    {
-      secId: 1,
-      secName: "IT Technologies",
-      deptId: 3,
-      deptName: "IT"
-    },
-    {
-      secId: 2,
-      secName: "Software Development",
-      deptId: 3,
-      deptName: "IT"
-    }
-  ]
-
-  section4 = [
-    {
-      secId: 1,
-      secName: "Business Development",
-      deptId: 4,
-      deptName: "Sales & Marketing"
-    }
-  ]
-
-  posts = [
-    {
-      posId: 1,
-      posOffice: "Islamabad (HQ)",
-      posDepartment: "Finance",
-      posSection: "Internal Audit & Compliance",
-      posJobTitle: "Auditor",
-      posQuantity: 3
-    },
-    {
-      posId: 2,
-      posOffice: "Lahore",
-      posDepartment: "Human Resource",
-      posSection: "Recruitment",
-      posJobTitle: "HR Assistant",
-      posQuantity: 1
-    },
-    {
-      posId: 3,
-      posOffice: "Karachi",
-      posDepartment: "IT",
-      posSection: "IT Technologies",
-      posJobTitle: "IT Solution Architect",
-      posQuantity: 2
-    },
-    {
-      posId: 4,
-      posOffice: "Peshawar",
-      posDepartment: "Sales & Marketing",
-      posSection: "Business Development",
-      posJobTitle: "Marketing Assistant",
-      posQuantity: 2
-    },
-    {
-      posId: 5,
-      posOffice: "Los Angeles, USA",
-      posDepartment: "IT",
-      posSection: "Software Development",
-      posJobTitle: "Software Engineer",
-      posQuantity: 1
-    },
-    {
-      posId: 6,
-      posOffice: "Toronto, Canada",
-      posDepartment: "Finance",
-      posSection: "Budgeting & Forecasting",
-      posJobTitle: "Financial Analyst",
-      posQuantity: 1
-    },
-    {
-      posId: 7,
-      posOffice: "Dubai, UAE",
-      posDepartment: "Human Resource",
-      posSection: "HR Management",
-      posJobTitle: "HR Manager",
-      posQuantity: 1
-    }
-  ]
-
-  constructor(private app: AppComponent, ) { }
+  constructor(private toastr: ToastrManager,
+    private app: AppComponent,
+    private http: HttpClient) { }
 
   ngOnInit() {
-    //ngprime organizational chart data
-    this.data1 = [{
-      label: 'Director',
-      type: 'person',
-      styleClass: 'ui-person',
-      expanded: true,
-      data: { name: 'Ali' },
-      children: [{
-        label: 'Deputy Director',
-        type: 'person',
-        styleClass: 'ui-person',
-        expanded: true,
-        data: { name: 'Qureshi' },
-        children: [{
-          label: 'Assistant Director',
-          styleClass: 'department-cfo',
-          children: [{
-            label: 'APS',
-            styleClass: 'department-cto'
-          },
-          {
-            label: 'Assistant',
-            styleClass: 'department-cto'
-          }]
-        }]
-      },
-      {
-        label: 'Deputy Director',
-        type: 'person',
-        styleClass: 'ui-person',
-        expanded: true,
-        data: { name: 'Razzaq' },
-        children: [{
-          label: 'Assistant Director',
-          styleClass: 'department-cfo'
-        }]
-      }
-      ]
-    }];
-
+    this.getOffices();
+    this.getPost();
+    this.getJobType();
+    this.getBPS();
+    this.getJobNature();
   }
 
   onNodeSelect(event) {
 
-    // this.count=this.count + 1;
-    // if(this.count==1){
-    //   this.lblOrg=event.node.label;
-    // }
+    this.orgChartDesigName = event.node.label;
 
-    // if(this.count==2){
+    for (var i = 0; i < this.orgData.length; i++) {
+      if (this.orgChartDesigName == this.orgData[i].jobDesignName) {
+        this.orgChartBPSCd = String(this.orgData[i].payGradeCd);
+        this.orgChartDesigID = String(this.orgData[i].jobDesigID);
 
-    //   if(this.lblOrg==event.node.label){
-    $('#myModal').modal('show');
-    //     this.count=0;
-    //   }
-    //   else{
-    //     this.count=0;
-    //   }
+        i = this.orgData.length + 1;
+      }
+    }
 
 
-    // }
-
-    // window.alert(this.lblOrg);window.alert(event.node.label);window.alert(this.count);
-
+    $('#jobModal').modal('show');
 
   }
 
-  onDeptChange(value) {
-    if (value == 1) {
-      this.sections = this.section1;
-    }
-    else if (value == 2) {
-      this.sections = this.section2;
-    }
-    else if (value == 3) {
-      this.sections = this.section3;
-    }
-    else if (value == 4) {
-      this.sections = this.section4;
+  onDeptChange(item) {
+
+    this.clearJob();
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getSection?DeptCd=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      this.sections = data;
+    });
+
+    this.http.get(this.serverUrl + 'api/getSectionPostQty?DeptCd=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      if (data != "")
+        this.sectionQty = data[0].qty;
+      else
+        this.sectionQty = 0;
+    });
+  }
+
+  onSectionChange(item) {
+
+    this.clearJob();
+    this.sectionName = item;
+
+    //alert(this.sectionQty);
+    if (this.sectionQty == 0) {
+      this.cmbPost = true;
+      this.btnAddPost = true;
+
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.get(this.serverUrl + 'api/getjobDesignation?deptCd=' + this.departmentName, { headers: reqHeader }).subscribe((data: any) => {
+
+        this.jobPost = data;
+      });
+    } else {
+      this.cmbPost = false;
+      this.btnAddPost = false;
     }
   }
 
+  onBranchChange(item) {
 
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getDepartments?LocationCd=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      this.departments = data;
+    });
+  }
+
+  onBPSChange(item) {
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getDesignation?BPS=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      this.designations = data;
+    });
+  }
+
+  getOrganoGram() {
+
+    if (this.officeName == '') {
+      this.toastr.errorToastr('Please select Office', 'Error', { toastTimeout: (2500) });
+      return;
+    } else if (this.departmentName == '') {
+      this.toastr.errorToastr('Please select Department', 'Error', { toastTimeout: (2500) });
+      return;
+    } else {
+
+      if (this.sectionQty == 0) {
+        this.toastr.errorToastr('Sorry No Post Entered', 'Error', { toastTimeout: (2500) });
+        return;
+      } else {
+        //alert(this.sectionName);
+        if (this.sectionName == '') {
+          this.toastr.errorToastr('Please select Section', 'Error', { toastTimeout: (2500) });
+          return;
+        } else {
+
+          // for(var i=0;i<this.orgData.length;i++){
+
+          //   if(this.orgData[i].managerJobPostDesigID == null){
+
+          //     for(var j=0;j<this.orgData.length;j++){
+
+          //       if(this.orgData[i].jobDesigID == this.orgData[j].managerJobPostDesigID){
+
+          //       }
+          //     }
+          //   }
+          // }
+
+          //ngprime organizational chart data
+          this.data1 = [{
+            label: 'Director Finance',
+            type: 'person',
+            styleClass: 'ui-person',
+            expanded: true,
+            data: { name: 'Ali' },
+            children: [{
+              label: 'Deputy Director',
+              type: 'person',
+              styleClass: 'ui-person',
+              expanded: true,
+              data: { name: 'Qureshi' },
+              children: [{
+                label: 'Assistant Director',
+                styleClass: 'department-cfo',
+                children: [{
+                  label: 'APS',
+                  styleClass: 'department-cto'
+                },
+                {
+                  label: 'Assistant',
+                  styleClass: 'department-cto'
+                }]
+              }]
+            },
+            {
+              label: 'Deputy Director',
+              type: 'person',
+              styleClass: 'ui-person',
+              expanded: true,
+              data: { name: 'Razzaq' },
+              children: [{
+                label: 'Assistant Director',
+                styleClass: 'department-cfo'
+              }]
+            }
+            ]
+          }];
+
+        }
+
+      }
+
+    }
+
+  }
+
+  getPost() {
+    //return false;
+
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getPost', { headers: reqHeader }).subscribe((data: any) => {
+
+      this.posts = data;
+    });
+  }
+
+  getJobType() {
+    //return false;
+
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getJobType', { headers: reqHeader }).subscribe((data: any) => {
+
+      this.jobTypes = data;
+    });
+  }
+
+  getJobNature() {
+    //return false;
+
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getJobNature', { headers: reqHeader }).subscribe((data: any) => {
+
+      this.jobNatures = data;
+    });
+  }
+
+  getBPS() {
+    //return false;
+
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getBPS', { headers: reqHeader }).subscribe((data: any) => {
+
+      this.bpsList = data;
+    });
+  }
+
+  getOffices() {
+    //return false;
+
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getBranches', { headers: reqHeader }).subscribe((data: any) => {
+
+      this.offices = data;
+    });
+  }
+
+  addPost() {
+    if (this.officeName == '') {
+      this.toastr.errorToastr('Please select Office', 'Error', { toastTimeout: (2500) });
+      return;
+    } else if (this.departmentName == '') {
+      this.toastr.errorToastr('Please select Department', 'Error', { toastTimeout: (2500) });
+      return;
+    } else if (this.cmbPost == true && this.jobPostName == '') {
+      this.toastr.errorToastr('Please select Job Post', 'Error', { toastTimeout: (2500) });
+      return;
+    } else {
+
+      $('#jobModal').modal('show');
+    }
+  }
+
+  save() {
+
+    var bpsJobPost = 0;
+
+    if (this.jobType == '') {
+      this.toastr.errorToastr('Please select Job Type', 'Error', { toastTimeout: (2500) });
+      return;
+    } else if (this.jobNature == '') {
+      this.toastr.errorToastr('Please select Job Nature', 'Error', { toastTimeout: (2500) });
+      return;
+    } else if (this.jobTitle == '') {
+      this.toastr.errorToastr('Please select Job Title', 'Error', { toastTimeout: (2500) });
+      return;
+    } else if (this.BPS == '') {
+      this.toastr.errorToastr('Please select BPS', 'Error', { toastTimeout: (2500) });
+      return;
+    } else if (this.designation == '') {
+      this.toastr.errorToastr('Please select Designation', 'Error', { toastTimeout: (2500) });
+      return;
+    } else {
+
+      if (this.sectionName == '') {
+
+        var saveData = {
+          jobTypeCd: this.jobType,
+          jobNatureCd: this.jobNature,
+          payGradeCd: this.BPS,
+          JobPostLocationCd: this.officeName,
+          jobPostDeptCd: this.departmentName,
+          DesigCd: this.designation,
+          jobDesigName: this.jobTitle
+        };
+
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.post(this.serverUrl + 'api/saveDeptJobPost', saveData, { headers: reqHeader }).subscribe((data: any) => {
+
+          if (data.msg != undefined) {
+            this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+            this.getPost();
+            $('#jobModal').modal('hide');
+            //this.app.hideSpinner();
+            this.clearJob();
+            return false;
+          } else {
+            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+            //$('#companyModal').modal('hide');
+            //this.app.hideSpinner();
+            return false;
+          }
+        });
+
+      } else {
+
+        if (this.cmbPost == true) {
+
+          for (var i = 0; i < this.jobPost.length; i++) {
+            if (this.jobPostName == this.jobPost[i].jobDesigID) {
+              bpsJobPost = this.jobPost[i].payGradeCd;
+            }
+          }
+
+          if (bpsJobPost <= parseInt(this.BPS)) {
+            this.toastr.errorToastr('BPS is Greater than Old Post BPS', 'Error', { toastTimeout: (2500) });
+            return;
+          } else {
+
+            var savedata = {
+              jobTypeCd: this.jobType,
+              jobNatureCd: this.jobNature,
+              payGradeCd: this.BPS,
+              JobPostLocationCd: this.officeName,
+              jobPostDeptCd: this.sectionName,
+              DesigCd: this.designation,
+              jobDesigName: this.jobTitle,
+              ManagerJobDesigID: this.jobPostName,
+              ManagerJobPostDeptCd: this.departmentName
+            };
+
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+            this.http.post(this.serverUrl + 'api/saveJobPost', savedata, { headers: reqHeader }).subscribe((data: any) => {
+
+              if (data.msg != undefined) {
+                this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                this.getPost();
+                $('#jobModal').modal('hide');
+                //this.app.hideSpinner();
+                this.clearJob();
+                return false;
+              } else {
+                this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                //$('#companyModal').modal('hide');
+                //this.app.hideSpinner();
+                return false;
+              }
+            });
+          }
+
+        } else {
+
+
+          if (this.orgChartBPSCd <= this.BPS) {
+            this.toastr.errorToastr('BPS is Greater than Old Post BPS', 'Error', { toastTimeout: (2500) });
+            return;
+          } else {
+
+            var savedata = {
+              jobTypeCd: this.jobType,
+              jobNatureCd: this.jobNature,
+              payGradeCd: this.BPS,
+              JobPostLocationCd: this.officeName,
+              jobPostDeptCd: this.sectionName,
+              DesigCd: this.designation,
+              jobDesigName: this.jobTitle,
+              ManagerJobDesigID: this.orgChartDesigID,
+              ManagerJobPostDeptCd: this.departmentName
+            };
+
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+            this.http.post(this.serverUrl + 'api/saveJobPost', savedata, { headers: reqHeader }).subscribe((data: any) => {
+
+              if (data.msg != undefined) {
+                this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                this.getPost();
+                $('#jobModal').modal('hide');
+                //this.app.hideSpinner();
+                this.clearJob();
+                return false;
+              } else {
+                this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                //$('#companyModal').modal('hide');
+                //this.app.hideSpinner();
+                return false;
+              }
+            });
+          }
+
+
+        }
+      }
+
+    }
+  }
   //if you want to clear input
   clear() {
 
+    this.officeName = '';
+    this.departmentName = '';
+    this.sectionName = '';
+    this.jobNature = '';
+    this.jobType = '';
+    this.jobTitle = '';
+    this.BPS = '';
+    this.designation = '';
+    this.data1 = [];
     // this.userId = 0;
     // this.txtUsername = '';
 
+  }
+
+  clearJob() {
+
+    //this.officeName = '';
+    //this.departmentName = '';
+    this.sectionName = '';
+    //this.sections = [];
+    this.jobNature = '';
+    this.jobType = '';
+    this.jobTitle = '';
+    this.BPS = '';
+    this.designation = '';
+    this.data1 = [];
+    this.cmbPost = false;
+    this.btnAddPost = true;
+    //alert(this.sectionName);
   }
 
   printDiv() {
