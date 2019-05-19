@@ -8,7 +8,7 @@ import { SearchPipe } from './shared/pipe-filters/pipe-search';
 import { ChartModule } from 'angular-highcharts';
 import { HttpModule } from '@angular/http';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +16,7 @@ import { JobprofileComponent } from './components/jobprofile/jobprofile.componen
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { PostComponent } from './components/post/post.component';
 import { RecruitmentappComponent } from './components/recruitmentapp/recruitmentapp.component';
-import { NgCircleProgressModule } from 'ng-circle-progress';
+
 
 import { TestComponent } from './components/test/test.component';
 import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeeprofile.component';
