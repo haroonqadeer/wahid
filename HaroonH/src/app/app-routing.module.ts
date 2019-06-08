@@ -18,20 +18,39 @@ import { PerformanceEvaComponent } from './components/performance-eva/performanc
 import { LeavetypeComponent } from './components/leavetype/leavetype.component';
 import { HRDashboardComponent } from './components/hrdashboard/hrdashboard.component';
 import { IntroPageComponent } from './components/intro-page/intro-page.component';
-
+import { JobComponent } from './components/job/job.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { OnlineJobProfileComponent } from './components/online-job-profile/online-job-profile.component';
 
 const routes: Routes = [
   {
     path: '',
     component: IntroPageComponent,
+    //component: LoginComponent,
+  },{
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'dashboard',
     component: HRDashboardComponent
   },
   {
+    path: 'signUp',
+    component: SignInComponent
+  },
+  {
+    path: 'onlineJobProfile',
+    component: OnlineJobProfileComponent
+  },
+  {
     path: 'recruitmentApproval',
     component: RecruitmentappComponent
+  },
+  {
+    path: 'onlineJob',
+    component: JobComponent
   },
   {
     path: 'job',
@@ -48,7 +67,7 @@ const routes: Routes = [
   {
     path: 'test',
     component: TestComponent
-  }, 
+  },
   {
     path: 'employee',
     component: EmpolyeeprofileComponent

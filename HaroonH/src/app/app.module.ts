@@ -21,6 +21,7 @@ import { EmpolyeeprofileComponent } from './components/empolyeeprofile/empolyeep
 import { SkillstandardComponent } from './components/skillstandard/skillstandard.component';
 import { TrainingrequirementsComponent } from './components/trainingrequirements/trainingrequirements.component';
 import { YearcalendarComponent } from './components/yearcalendar/yearcalendar.component';
+import { LoginComponent } from './components/login/login.component';
 
 import { LeaverulesComponent } from './components/leaverules/leaverules.component';
 import { PerformanceStandComponent } from './components/performance-stand/performance-stand.component';
@@ -36,6 +37,9 @@ import { OrderModule } from 'ngx-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { JobComponent } from './components/job/job.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { OnlineJobProfileComponent } from './components/online-job-profile/online-job-profile.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { DropdownModule } from 'primeng/dropdown';
     LeavetypeComponent,
     ErpBottomSheetComponent,
     HRDashboardComponent,
-    IntroPageComponent
+    IntroPageComponent,
+    JobComponent,
+    LoginComponent,
+    SignInComponent,
+    OnlineJobProfileComponent
   ],
   imports: [
     BrowserModule,

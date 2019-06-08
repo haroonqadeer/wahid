@@ -65,70 +65,9 @@ export class PostComponent implements OnInit {
 
   public orgList = [];
   public orgChild = [];
-  
 
-  public orgData = [
-    {
-      jobDesigID: 12,
-      jobDesignName: "Director Finance",
-      jobPostDeptCd: 1,
-      jobPostLocationCd: 1,
-      managerJobPostLocationCd: 0,
-      managerJobPostDesigID: 0,
-      managerJobPostDeptCd: 0,
-      payGradeCd: 18
-    },
-    {
-      jobDesigID: 2,
-      jobDesignName: "Director IT",
-      jobPostDeptCd: 6,
-      jobPostLocationCd: 1,
-      managerJobPostLocationCd: 0,
-      managerJobPostDesigID: 0,
-      managerJobPostDeptCd: 0,
-      payGradeCd: 18
-    },
-    {
-      jobDesigID: 3,
-      jobDesignName: "AD Finance 1",
-      jobPostDeptCd: 3,
-      jobPostLocationCd: 1,
-      managerJobPostLocationCd: 1,
-      managerJobPostDesigID: 12,
-      managerJobPostDeptCd: 1,
-      payGradeCd: 17
-    },
-    {
-      jobDesigID: 4,
-      jobDesignName: "AD Finance 2",
-      jobPostDeptCd: 3,
-      jobPostLocationCd: 1,
-      managerJobPostLocationCd: 1,
-      managerJobPostDesigID: 12,
-      managerJobPostDeptCd: 1,
-      payGradeCd: 17
-    },
-    {
-      jobDesigID: 5,
-      jobDesignName: "AD IT",
-      jobPostDeptCd: 8,
-      jobPostLocationCd: 1,
-      managerJobPostLocationCd: 1,
-      managerJobPostDesigID: 2,
-      managerJobPostDeptCd: 6,
-      payGradeCd: 17
-    },
-    {
-      jobDesigID: 6,
-      jobDesignName: "Assistant Finance",
-      jobPostDeptCd: 3,
-      jobPostLocationCd: 1,
-      managerJobPostLocationCd: 1,
-      managerJobPostDesigID: 3,
-      managerJobPostDeptCd: 3,
-      payGradeCd: 15
-    }
-  ]
+
+  public chartData = []
 
   constructor(private toastr: ToastrManager,
     private app: AppComponent,
@@ -144,17 +83,21 @@ export class PostComponent implements OnInit {
 
   onNodeSelect(event) {
 
+    this.clearPost();
+
     this.orgChartDesigName = event.node.label;
+    //alert(event.node.label)
+    //alert(this.chartData.length)
+    for (var i = 0; i < this.chartData.length; i++) {
+      if (this.orgChartDesigName == this.chartData[i].jobDesigName) {
+        this.orgChartBPSCd = String(this.chartData[i].payGradeCd);
+        this.orgChartDesigID = String(this.chartData[i].jobDesigID);
+        this.orgChartDeptCd = String(this.chartData[i].jobPostDeptCd);
 
-    for (var i = 0; i < this.orgData.length; i++) {
-      if (this.orgChartDesigName == this.orgData[i].jobDesignName) {
-        this.orgChartBPSCd = String(this.orgData[i].payGradeCd);
-        this.orgChartDesigID = String(this.orgData[i].jobDesigID);
-
-        i = this.orgData.length + 1;
+        i = this.chartData.length + 1;
       }
-    }
 
+    }
 
     $('#jobModal').modal('show');
 
@@ -229,73 +172,38 @@ export class PostComponent implements OnInit {
     } else if (this.departmentName == '') {
       this.toastr.errorToastr('Please select Department', 'Error', { toastTimeout: (2500) });
       return;
+    } else if (this.sectionName == '') {
+
+      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.get(this.serverUrl + 'api/getOrgChartDept?deptCd=' + this.departmentName + '&locCd=' + this.officeName, { headers: reqHeader }).subscribe((data: any) => {
+
+        this.data1 = data;
+      });
+
+      this.http.get(this.serverUrl + 'api/getOrgChart?sectCd=' + this.departmentName + '&locCd=' + this.officeName, { headers: reqHeader }).subscribe((data: any) => {
+
+        this.chartData = data;
+      });
+
     } else {
 
       if (this.sectionQty == 0) {
         this.toastr.errorToastr('Sorry No Post Entered', 'Error', { toastTimeout: (2500) });
         return;
       } else {
-        //alert(this.sectionName);
-        if (this.sectionName == '') {
-          this.toastr.errorToastr('Please select Section', 'Error', { toastTimeout: (2500) });
-          return;
-        } else {
 
-          // for(var i=0;i<this.orgData.length;i++){
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-          //   if(this.orgData[i].managerJobPostDesigID == null){
+        this.http.get(this.serverUrl + 'api/getOrgChartSection?sectCd=' + this.sectionName + '&locCd=' + this.officeName, { headers: reqHeader }).subscribe((data: any) => {
 
-          //     for(var j=0;j<this.orgData.length;j++){
+          this.data1 = data;
+        });
 
-          //       if(this.orgData[i].jobDesigID == this.orgData[j].managerJobPostDesigID){
+        this.http.get(this.serverUrl + 'api/getOrgChart?sectCd=' + this.sectionName + '&locCd=' + this.officeName, { headers: reqHeader }).subscribe((data: any) => {
 
-          //       }
-          //     }
-          //   }
-          // }
-
-          //ngprime organizational chart data
-          this.data1 = [{
-            label: 'Director Finance',
-            type: 'person',
-            styleClass: 'ui-person',
-            expanded: true,
-            data: { name: 'Ali' },
-            children: [{
-              label: 'Deputy Director',
-              type: 'person',
-              styleClass: 'ui-person',
-              expanded: true,
-              data: { name: 'Qureshi' },
-              children: [{
-                label: 'Assistant Director',
-                styleClass: 'department-cfo',
-                children: [{
-                  label: 'APS',
-                  styleClass: 'department-cto'
-                },
-                {
-                  label: 'Assistant',
-                  styleClass: 'department-cto'
-                }]
-              }]
-            },
-            {
-              label: 'Deputy Director',
-              type: 'person',
-              styleClass: 'ui-person',
-              expanded: true,
-              data: { name: 'Razzaq' },
-              children: [{
-                label: 'Assistant Director',
-                styleClass: 'department-cfo'
-              }]
-            }
-            ]
-          }];
-
-        }
-
+          this.chartData = data;
+        });
       }
 
     }
@@ -410,35 +318,77 @@ export class PostComponent implements OnInit {
     } else {
 
       if (this.sectionName == '') {
+        if (this.chartData.length == 0) {
 
-        var saveData = {
-          jobTypeCd: this.jobType,
-          jobNatureCd: this.jobNature,
-          payGradeCd: this.BPS,
-          JobPostLocationCd: this.officeName,
-          jobPostDeptCd: this.departmentName,
-          DesigCd: this.designation,
-          jobDesigName: this.jobTitle
-        };
+          var saveData = {
+            jobTypeCd: this.jobType,
+            jobNatureCd: this.jobNature,
+            payGradeCd: this.BPS,
+            JobPostLocationCd: this.officeName,
+            jobPostDeptCd: this.departmentName,
+            DesigCd: this.designation,
+            jobDesigName: this.jobTitle
+          };
 
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+          var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-        this.http.post(this.serverUrl + 'api/saveDeptJobPost', saveData, { headers: reqHeader }).subscribe((data: any) => {
+          this.http.post(this.serverUrl + 'api/saveDeptJobPost', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
-          if (data.msg != undefined) {
-            this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
-            this.getPost();
-            $('#jobModal').modal('hide');
-            //this.app.hideSpinner();
-            this.clearJob();
-            return false;
+            if (data.msg != undefined) {
+              this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+              this.getPost();
+              $('#jobModal').modal('hide');
+              //this.app.hideSpinner();
+              this.clearJob();
+              return false;
+            } else {
+              this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+              //$('#companyModal').modal('hide');
+              //this.app.hideSpinner();
+              return false;
+            }
+          });
+
+        } else {
+
+          if (this.orgChartBPSCd <= this.BPS) {
+            this.toastr.errorToastr('BPS is Greater than Old Post BPS', 'Error', { toastTimeout: (2500) });
+            return;
           } else {
-            this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
-            //$('#companyModal').modal('hide');
-            //this.app.hideSpinner();
-            return false;
+
+            var savedata = {
+              jobTypeCd: this.jobType,
+              jobNatureCd: this.jobNature,
+              payGradeCd: this.BPS,
+              JobPostLocationCd: this.officeName,
+              jobPostDeptCd: this.orgChartDeptCd,
+              DesigCd: this.designation,
+              jobDesigName: this.jobTitle,
+              ManagerJobDesigID: this.orgChartDesigID,
+              ManagerJobPostDeptCd: this.orgChartDeptCd
+            };
+
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+            this.http.post(this.serverUrl + 'api/saveJobPost', savedata, { headers: reqHeader }).subscribe((data: any) => {
+
+              if (data.msg != undefined) {
+                this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+                this.getPost();
+                $('#jobModal').modal('hide');
+                //this.app.hideSpinner();
+                this.clearJob();
+                return false;
+              } else {
+                this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
+                //$('#companyModal').modal('hide');
+                //this.app.hideSpinner();
+                return false;
+              }
+            });
           }
-        });
+
+        }
 
       } else {
 
@@ -489,7 +439,7 @@ export class PostComponent implements OnInit {
 
         } else {
 
-
+          //alert(this.orgChartBPSCd + ' - ' + this.BPS);
           if (this.orgChartBPSCd <= this.BPS) {
             this.toastr.errorToastr('BPS is Greater than Old Post BPS', 'Error', { toastTimeout: (2500) });
             return;
@@ -504,7 +454,7 @@ export class PostComponent implements OnInit {
               DesigCd: this.designation,
               jobDesigName: this.jobTitle,
               ManagerJobDesigID: this.orgChartDesigID,
-              ManagerJobPostDeptCd: this.departmentName
+              ManagerJobPostDeptCd: this.orgChartDeptCd
             };
 
             var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -567,6 +517,15 @@ export class PostComponent implements OnInit {
     //alert(this.sectionName);
   }
 
+  clearPost() {
+
+    this.jobNature = '';
+    this.jobType = '';
+    this.jobTitle = '';
+    this.BPS = '';
+    this.designation = '';
+
+  }
   printDiv() {
 
     // var commonCss = ".commonCss{font-family: Arial, Helvetica, sans-serif; text-align: center; }";

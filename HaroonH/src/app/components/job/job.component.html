@@ -1,0 +1,57 @@
+<!-- start menubar buttons -->
+<div class="topnav boxShadow">
+  <div>
+    <!--class="container" -->
+    <div class="logo"><img src="../../../assets/images/JobProfile.svg"></div>
+    <h1> Job</h1>
+  </div>
+</div>
+<!-- end menubar buttons -->
+<br /><br />
+
+<div class="container bgWhite boxShadow">
+  <div class="row">
+    <div class="col-md-12"><br />
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let data of jobVcncy; let i = index" (opened)="onAccordionCLick(data.jobDesigID)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{data.jobDesigName}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <b>No. of Jobs: </b>&nbsp;{{data.jobPostVcncyQty}} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <b>Last Date : </b>&nbsp;{{data.vcncyExprtnDt|date:'dd-MM-yyyy'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+            <div class="col-md-2"><b>Required Education:</b></div>
+            <div class="col-md-1" *ngFor="let degree of jobQualDegree; let i = index">
+              {{degree.qlfctnCriteriaName}}</div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-2"><b>Required Certification:</b></div>
+            <div class="col-md-1" *ngFor="let certificate of jobQualCertificate; let i = index">
+              {{certificate.qlfctnCriteriaName}},&nbsp;</div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-2"><b>Required Skills:</b></div>
+            <div class="col-md-1" *ngFor="let skill of jobQualSkill; let i = index">
+              {{skill.qlfctnCriteriaName}},&nbsp;</div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-12 text-right">
+              <button mat-raised-button color="primary" (click)="onApply(data.jobDesigID)">Apply</button>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion><br />
+    </div>
+  </div>
+
+</div>
