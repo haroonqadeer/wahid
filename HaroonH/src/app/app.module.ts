@@ -43,6 +43,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { JobComponent } from './components/job/job.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { OnlineJobProfileComponent } from './components/online-job-profile/online-job-profile.component';
+import { OnlineTestComponent } from './components/online-test/online-test.component'
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { OnlineJobProfileComponent } from './components/online-job-profile/onlin
     JobComponent,
     LoginComponent,
     SignInComponent,
-    OnlineJobProfileComponent
+    OnlineJobProfileComponent,
+    OnlineTestComponent
   ],
   imports: [
     BrowserModule,

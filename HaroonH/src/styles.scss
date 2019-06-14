@@ -1,3 +1,4 @@
+// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import './assets/font.scss';
 
@@ -110,6 +111,29 @@ h1 {
   border: 0px solid red;
 }
 
+
+////////////////////////////////////////
+////////////// Test UL /////////////////
+////////////////////////////////////////@at-root
+.ulTest {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ulTest li {
+  list-style-type: none !important;
+
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ulTest li .info-box {
+  padding: 0.5em !important;
+  height: auto !important;
+  widows: 100% !important;
+}
 
 ////////////////////////////////////////
 //////////////// Login /////////////////
@@ -943,14 +967,24 @@ h1 {
   color: #fff !important;
 }
 
-.bg-orchid {
-  background-color: #BA55D3 !important;
+.bg-warn {
+  background-color: #f44336 !important;
   color: #fff;
 }
 
-.bg-orchid .content .text,
-.bg-orchid .content .number {
+.bg-warn .content .text,
+.bg-warn .content .number {
   color: #fff !important;
+}
+
+.bg-blueWhite {
+  background-color: #e6e6e6 !important;
+  color: #3f51b5;
+}
+
+.bg-blueWhite .content .text,
+.bg-blueWhite .content .number {
+  color: #3f51b5 !important;
 }
 
 /* Infobox ===================================== */

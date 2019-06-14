@@ -84,4 +84,8 @@ export class LoginComponent implements OnInit {
             this.onSubmit();
         }
     }
+
+    signUp() {
+        this.router.navigate(['/signUp']);
+    }
 }

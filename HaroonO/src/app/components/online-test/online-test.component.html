@@ -1,0 +1,122 @@
+<br>
+<div class="container bg-white boxShadow">
+  <br>
+  <!-- row - 01 -->
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Applicant Info -->
+      <div class="row">
+        <div class="col-md-4">
+          <label>Application ID:</label>
+        </div>
+        <div class="col-md-8">
+          <label><b>{{lblEmail}}</b></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label>Application Name:</label>
+        </div>
+        <div class="col-md-8">
+          <label><b>{{lblFullName}}</b></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label>Job Title:</label>
+        </div>
+        <div class="col-md-8">
+          <label><b>{{lblJobTitle}}</b></label>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-6">
+      <!-- Marks Info -->
+    <!--<div class="row">
+      <div class="offset-md-8 col-md-4 text-center">
+        <label><b>Test Marks</b></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-md-8 col-md-4 text-center">
+        <button mat-fab color="warn">25</button>
+        &nbsp;<label style="font-size:2.0em !important">/</label>&nbsp;
+        <button mat-fab color="primary">100</button>
+      </div>
+    </div>
+  </div> -->
+  </div><!-- end row - 01 -->
+  <br>
+  <hr>
+  <br>
+  <!-- test block -->
+  <div class="row" *ngIf="hideDiv">
+    <div class="col-md-10 offset-md-1">
+      <ul class='ulTest'>
+        <li *ngFor="let question of questions  | paginate: {
+            itemsPerPage: 1, currentPage: p }  let i = index">
+
+          <div class="row">
+            <div class="col-md-12">
+              <label>Question No. {{question.id}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="info-box bg-indigo">{{question.question}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-radio-group aria-label="Select an option" [(ngModel)]="rdbOptID">
+                <mat-radio-button value="1">{{question.option01}}</mat-radio-button>
+                <br>
+                <mat-radio-button value="2">{{question.option02}}</mat-radio-button>
+                <br>
+                <mat-radio-button value="3">{{question.option03}}</mat-radio-button>
+                <br>
+                <mat-radio-button value="4">{{question.option04}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="hideSubmit">
+    <div class="col-md-12 text-center">
+      <h1><span class="fa fa-check-circle" style="color: #00b200"></span></h1>
+      <h2>Thank You for the Test!</h2>
+    </div>
+  </div><br />
+  <div class="row" *ngIf="hideSubmit">
+    <div class="col-md-12 text-center">
+      <button mat-raised-button color="primary" (click)="saveTest()">Submit</button>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <!-- pagination -->
+
+  <div class="row" *ngIf="hideDiv">
+    <div class="col-md-6 text-left">
+      <button mat-button class="noneOutLine" [disabled]="isValid" (click)="getPreviousItem(p)">
+        <h5>
+          <span class="fa fa-angle-double-left"></span>
+        </h5>
+        &nbsp;Previous
+      </button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button mat-button class="noneOutLine" (click)="getNextItem(p)">
+        <h5>
+          <span class="fa fa-angle-double-right"></span>
+        </h5>
+        &nbsp;Next
+      </button>
+      <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+    </div>
+  </div><!-- end - pagination -->
+</div>

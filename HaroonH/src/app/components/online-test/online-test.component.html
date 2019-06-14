@@ -1,0 +1,110 @@
+<br>
+<div class="container bg-white boxShadow">
+  <br>
+  <!-- row - 01 -->
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Applicant Info -->
+      <div class="row">
+        <div class="col-md-4">
+          <label>Application ID:</label>
+        </div>
+        <div class="col-md-8">
+          <label><b>haroon.qadeer@hotmail.com</b></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label>Application Name:</label>
+        </div>
+        <div class="col-md-8">
+          <label><b>Haroon Qadeer</b></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label>Job Title:</label>
+        </div>
+        <div class="col-md-8">
+          <label><b>IT Analyst</b></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Marks Info -->
+      <div class="row">
+        <div class="offset-md-8 col-md-4 text-center">
+          <label><b>Test Marks</b></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="offset-md-8 col-md-4 text-center">
+          <button mat-fab color="warn">25</button>
+          &nbsp;<label style="font-size:2.0em !important">/</label>&nbsp;
+          <button mat-fab color="primary">100</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- end row - 01 -->
+  <br>
+  <hr>
+  <br>
+  <!-- test block -->
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class='ulTest'>
+        <li *ngFor="let question of questions  | paginate: {
+            itemsPerPage: 1, currentPage: p }  let i = index">
+
+          <div class="row">
+            <div class="col-md-12">
+              <label>Question No. {{question.id}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="info-box bg-indigo">{{question.question}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="{{question.option01Id}}">{{question.option01}}</mat-radio-button>
+                <br>
+                <mat-radio-button value="{{question.option02Id}}">{{question.option02}}</mat-radio-button>
+                <br>
+                <mat-radio-button value="{{question.option03Id}}">{{question.option03}}</mat-radio-button>
+                <br>
+                <mat-radio-button value="{{question.option04Id}}">{{question.option04}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+  <!-- pagination -->
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button mat-button class="noneOutLine" (click)="getPreviousItem(p)">
+        <h5>
+          <span class="fa fa-angle-double-left"></span>
+        </h5>
+        &nbsp;Previous
+      </button>
+    </div>
+    <div class="col-md-6 text-right">
+      <button mat-button class="noneOutLine" (click)="getNextItem(p)">
+        <h5>
+          <span class="fa fa-angle-double-right"></span>
+        </h5>
+        &nbsp;Next
+      </button>
+      <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+    </div>
+  </div><!-- end - pagination -->
+</div>

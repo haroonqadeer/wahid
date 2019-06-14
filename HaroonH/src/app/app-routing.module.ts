@@ -22,19 +22,25 @@ import { JobComponent } from './components/job/job.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { OnlineJobProfileComponent } from './components/online-job-profile/online-job-profile.component';
+import { OnlineTestComponent } from './components/online-test/online-test.component'
 
 const routes: Routes = [
   {
     path: '',
     component: IntroPageComponent,
     //component: LoginComponent,
-  },{
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: 'dashboard',
     component: HRDashboardComponent
+  },
+  {
+    path: 'onlineTest',
+    component: OnlineTestComponent
   },
   {
     path: 'signUp',
