@@ -12,7 +12,8 @@ import { MatStepper } from '@angular/material';
 })
 export class OnlineJobProfileComponent implements OnInit {
 
-  serverUrl = "http://localhost:3003/";
+  // serverUrl = "http://localhost:3003/";
+  serverUrl = "http://192.168.200.19:3012/";
 
   docLink = "abc";
   txtFullName = "";
@@ -73,6 +74,8 @@ export class OnlineJobProfileComponent implements OnInit {
         mobile: this.txtMobile,
         telephone: this.txtTelephone,
         address: this.txtAddress,
+        jobPostVcncyID: localStorage.getItem("jobPostVcncyID"),
+        vcncyID: localStorage.getItem("vcncyID"),
         indvdlID: localStorage.getItem("indvdlID")
       };
 

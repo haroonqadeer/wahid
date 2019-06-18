@@ -19,7 +19,9 @@ var $: any;
 })
 export class LoginComponent implements OnInit {
 
-    serverUrl = "http://localhost:3004/";
+    // serverUrl = "http://localhost:3004/";
+    serverUrl = "http://192.168.200.19:3010/";
+
     // serverUrl = "http://localhost:11664/";
     // serverUrl = "http://192.168.200.19:3006/";
     // tokenKey = "token";

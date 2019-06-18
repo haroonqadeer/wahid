@@ -11,7 +11,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class JobComponent implements OnInit {
 
-  serverUrl = "http://localhost:3003/";
+  // serverUrl = "http://localhost:3003/";
+  serverUrl = "http://192.168.200.19:3012/";
+
   jobVcncy = [];
   jobVcncyQual = [];
   jobQualDegree = [];

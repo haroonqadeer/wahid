@@ -11,7 +11,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class OnlineTestComponent implements OnInit {
 
-  serverUrl = "http://localhost:3003/";
+  // serverUrl = "http://localhost:3003/";
+  serverUrl = "http://192.168.200.19:3012/";
 
   isValid = true;
   hideDiv = true;
