@@ -11,8 +11,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class OnlineTestComponent implements OnInit {
 
-  // serverUrl = "http://localhost:3003/";
-  serverUrl = "http://192.168.200.19:3012/";
+  serverUrl = "http://localhost:3003/";
+  // serverUrl = "http://192.168.200.19:3012/";
 
   isValid = true;
   hideDiv = true;
@@ -36,11 +36,13 @@ export class OnlineTestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.app.getUserDetail(localStorage.getItem('userName'));
     this.gettestQuestions();
     this.app.showDiv();
 
-    this.lblEmail = localStorage.getItem('email');
-    this.lblFullName = localStorage.getItem('fullName');
+    this.lblEmail = this.app.empEmail;
+    this.lblFullName = this.app.empFullName;
     this.lblJobTitle = localStorage.getItem('jobDesigName');
   }
 
@@ -101,7 +103,7 @@ export class OnlineTestComponent implements OnInit {
         testQuesID: this.questions[0].testQuesID,
         testSbjctCd: this.questions[0].testSbjctCd,
         correctOption: this.questions[0].correctOption,
-        appID: localStorage.getItem('indvdlID'),
+        appID: this.app.empId,
         jobVcncyID: localStorage.getItem('jobPostVcncyID')
       })
       i = this.questions.length + 1;
@@ -131,7 +133,7 @@ export class OnlineTestComponent implements OnInit {
           testQuesID: this.questions[itemIndex].testQuesID,
           testSbjctCd: this.questions[itemIndex].testSbjctCd,
           correctOption: this.questions[itemIndex].correctOption,
-          appID: localStorage.getItem('indvdlID'),
+          appID: this.app.empId,
           jobVcncyID: localStorage.getItem('jobPostVcncyID')
         })
       } else {
@@ -143,7 +145,7 @@ export class OnlineTestComponent implements OnInit {
           testQuesID: this.questions[itemIndex].testQuesID,
           testSbjctCd: this.questions[itemIndex].testSbjctCd,
           correctOption: this.questions[itemIndex].correctOption,
-          appID: localStorage.getItem('indvdlID'),
+          appID: this.app.empId,
           jobVcncyID: localStorage.getItem('jobPostVcncyID')
         })
       }

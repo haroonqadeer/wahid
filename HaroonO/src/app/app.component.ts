@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Event, Router, NavigationStart, NavigationEnd } from "@angular/router";
+import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,23 @@ import { Event, Router, NavigationStart, NavigationEnd } from "@angular/router";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private router: Router) {
+
+  serverUrl = "http://localhost:3004/";
+
+  public branchList = [];
+  public locationId;
+  public cmpnyId;
+  public empId;
+  public cmpnyName;
+  public empfirstName;
+  public empFullName;
+  public empEmail;
+
+  logedInUserName = '';
+
+  constructor(private spinner: NgxSpinnerService,
+    private http: HttpClient,
+    private router: Router) {
 
   }
 
@@ -25,7 +43,9 @@ export class AppComponent {
 
   ngOnInit() {
 
-    this.showDiv();
+    this.checkLogin("No");
+
+    // this.showDiv();
     this.items = [
       {
         label: 'File',
@@ -104,17 +124,111 @@ export class AppComponent {
       }
     ];
   }
+  //*function for checking login already logedin or not 
+  checkLogin(loginChk) {
 
+    if (localStorage.getItem('userName') != null) {
+
+      this.logedInUserName = localStorage.getItem('userName');
+      this.showDiv();
+      if (loginChk == "Yes") {
+        this.router.navigate(['onlineJobProfile']);
+        this.getUserDetail(UserName);
+      }
+
+
+      if (this.cmpnyId == undefined) {
+
+        var UserName = localStorage.getItem('userName');
+        // this.getUserDetail(UserName);
+
+      }
+
+    } else {
+      this.router.navigate(['']);
+    }
+
+  }
+  getUserDetail(name) {
+
+    var loginData = { "IndvdlERPUsrID": name };
+
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.post(this.serverUrl + 'api/getUserDetail', loginData, { headers: reqHeader }).subscribe((data: any) => {
+
+      // alert(data.userDetail[0].cmpnyID); return
+      this.cmpnyId = data.userDetail[0].cmpnyID;
+      this.cmpnyName = data.userDetail[0].locationName;
+      this.locationId = data.userDetail[0].locationCd;
+      this.empId = data.userDetail[0].indvdlID;
+      this.empfirstName = data.userDetail[0].firstName;
+      this.empFullName = data.userDetail[0].fullName;
+      this.empEmail = data.userDetail[0].email;
+
+      for (var i = 0; i < data.userDetail.length; i++) {
+        this.branchList.push({
+          label: data.userDetail[i].locationName,
+          value: data.userDetail[i].locationCd
+        });
+      }
+      this.lblUserName = data.userDetail[0].firstName;
+
+      this.chkApplcntQual(data.userDetail[0].indvdlID);
+    });
+
+  }
+
+  chkApplcntQual(item) {
+    
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getchkApplcntQual?applicantID=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      // this.employeeListMain = data;
+      if (data.length > 0) {
+
+        localStorage.removeItem('jobPostVcncyID');
+        localStorage.removeItem('vcncyID');
+        localStorage.removeItem('jobDesigID');
+        localStorage.removeItem('jobDesigName');
+
+        localStorage.setItem('jobPostVcncyID', data[0].jobPostVcncyID);
+        localStorage.setItem('vcncyID', data[0].vcncyID);
+        localStorage.setItem('jobDesigID', data[0].jobDesigID);
+        localStorage.setItem('jobDesigName', data[0].jobDesigName);
+
+      }
+    });
+
+  }
   //method for show and hide manu bar with login and logout user
   showDiv() {
+    this.hideDiv = true;
+    // this.lblUserName = this.empfirstName;
+    // if (localStorage.getItem('token') != null) {
+    //   this.hideDiv = true;
+    //   this.lblUserName = localStorage.getItem('userName');
+    // }
+    // else {
+    //   this.hideDiv = false;
+    // }
+  }
 
-    if (localStorage.getItem('token') != null) {
-      this.hideDiv = true;
-      this.lblUserName = localStorage.getItem('userName');
-    }
-    else {
-      this.hideDiv = false;
-    }
+  //*Functions for Show & Hide Spinner
+  showSpinner() {
+    this.spinner.show();
+  }
+
+
+  hideSpinner() {
+    setTimeout(() => {
+      /** spinner ends after process done*/
+      this.spinner.hide();
+    }, 1000);
   }
 
   //mehtod for logout user
@@ -122,9 +236,15 @@ export class AppComponent {
     //this.stopWatching();
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
+    localStorage.removeItem('jobPostVcncyID');
+    localStorage.removeItem('vcncyID');
+    localStorage.removeItem('jobDesigID');
+    localStorage.removeItem('jobDesigName');
+
     this.router.navigate(['login']);
 
-    this.showDiv();
+    this.hideDiv = false;
+    // this.showDiv();
   }
   public printCSS() {
 

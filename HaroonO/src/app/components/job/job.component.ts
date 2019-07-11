@@ -11,8 +11,11 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class JobComponent implements OnInit {
 
-  // serverUrl = "http://localhost:3003/";
-  serverUrl = "http://192.168.200.19:3012/";
+  serverUrl = "http://localhost:3003/";
+  // serverUrl = "http://192.168.200.19:3012/";
+  hideEducation = true;
+  hideCertificate = true;
+  hideSkill = true;
 
   jobVcncy = [];
   jobVcncyQual = [];
@@ -31,6 +34,7 @@ export class JobComponent implements OnInit {
     this.getJobVcncy();
     this.getJobVcncyQualification();
 
+    this.app.hideDiv;
   }
 
   onAccordionCLick(item) {
@@ -95,10 +99,24 @@ export class JobComponent implements OnInit {
         });
       }
     }
+
+    if (this.jobQualDegree.length == 0) {
+      this.hideEducation = false;
+    }
+
+    if (this.jobQualCertificate.length == 0) {
+      this.hideCertificate = false;
+    }
+
+    if (this.jobQualSkill.length == 0) {
+      this.hideSkill = false;
+    }
   }
 
   getJobVcncy() {
     //return false;
+
+    this.app.showSpinner();
 
     //var Token = localStorage.getItem(this.tokenKey);
 
@@ -108,6 +126,8 @@ export class JobComponent implements OnInit {
     this.http.get(this.serverUrl + 'api/getJobVcncy', { headers: reqHeader }).subscribe((data: any) => {
 
       this.jobVcncy = data;
+
+      this.app.hideSpinner();
     });
   }
 
@@ -116,20 +136,26 @@ export class JobComponent implements OnInit {
 
     //var Token = localStorage.getItem(this.tokenKey);
 
+    this.app.showSpinner();
+
     //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     this.http.get(this.serverUrl + 'api/getJobVcncyQualification', { headers: reqHeader }).subscribe((data: any) => {
 
       this.jobVcncyQual = data;
+
+      this.app.hideSpinner();
     });
   }
 
   onApply(item) {
 
+    // this.app.hideDiv = false;
+
     localStorage.removeItem('jobDesigID');
     localStorage.removeItem('vcncyID');
-    localStorage.removeItem('cmpnyID');
+    // localStorage.removeItem('cmpnyID');
     localStorage.removeItem('jobPostVcncyID');
     localStorage.removeItem('jobDesigName');
 
@@ -138,15 +164,14 @@ export class JobComponent implements OnInit {
     for (var i = 0; i < this.jobVcncy.length; i++) {
       if (item == this.jobVcncy[i].jobDesigID) {
         localStorage.setItem('vcncyID', this.jobVcncy[i].vcncyID);
-        localStorage.setItem('cmpnyID', this.jobVcncy[i].cmpnyID);
+        // localStorage.setItem('cmpnyID', this.jobVcncy[i].cmpnyID);
         localStorage.setItem('jobPostVcncyID', this.jobVcncy[i].jobPostVcncyID);
         localStorage.setItem('jobDesigName', this.jobVcncy[i].jobDesigName);
 
         i = this.jobVcncy.length + 1;
       }
     }
-    this.router.navigate(['/login']);
 
-    //alert(localStorage.getItem('vcncyID'));
+    this.router.navigate(['/login']);
   }
 }

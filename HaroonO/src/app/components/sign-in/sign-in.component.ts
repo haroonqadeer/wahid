@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../../app.component';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
@@ -11,8 +12,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class SignInComponent implements OnInit {
 
-  // serverUrl = "http://localhost:3004/";
-  serverUrl = "http://192.168.200.19:3010/";
+  serverUrl = "http://localhost:3004/";
+  // serverUrl = "http://192.168.200.19:3010/";
 
   txtEmail = "";
   txtFirstName = "";
@@ -23,6 +24,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
+    private app: AppComponent,
     public toastr: ToastrManager,
     private router: Router,
   ) { }
@@ -56,7 +58,7 @@ export class SignInComponent implements OnInit {
         middleName: this.txtMiddleName,
         lastName: this.txtLastName,
         userPsswrd: this.txtPassword,
-        cmpnyID: localStorage.getItem("cmpnyID")
+        cmpnyID: this.app.cmpnyId
       };
 
       var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });

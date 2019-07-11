@@ -43,19 +43,19 @@
             </mat-panel-description> -->
           </mat-expansion-panel-header>
 
-          <div class="row">
+          <div class="row" *ngIf="hideEducation">
             <div class="col-md-2"><b>Required Education:</b></div>
             <div class="col-md-1" *ngFor="let degree of jobQualDegree; let i = index">
               {{degree.qlfctnCriteriaName}}</div>
           </div>
           <br />
-          <div class="row">
+          <div class="row" *ngIf="hideCertificate">
             <div class="col-md-2"><b>Required Certification:</b></div>
             <div class="col-md-1" *ngFor="let certificate of jobQualCertificate; let i = index">
               {{certificate.qlfctnCriteriaName}},&nbsp;</div>
           </div>
           <br />
-          <div class="row">
+          <div class="row" *ngIf="hideSkill">
             <div class="col-md-2"><b>Required Skills:</b></div>
             <div class="col-md-1" *ngFor="let skill of jobQualSkill; let i = index">
               {{skill.qlfctnCriteriaName}},&nbsp;</div>

@@ -79,7 +79,7 @@
             </a>
           </li>
           <li routerLinkActive='active'>
-            <a routerLink="onlineJob">
+            <a routerLink="onlineJobProfile">
               <span class="fa logo"><img src="../assets/images/JobProfile.svg"></span>
               <span class="text">Job</span>
             </a>
@@ -162,6 +162,11 @@
 
       </div>
     </div>
+
+    <ngx-spinner bdOpacity=0.9 bdColor="rgba(51,51,51,0.91)" size="medium" color="#ff871c"
+      type="ball-clip-rotate-multiple" fullScreen="true">
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
 
     <router-outlet></router-outlet>
   </div>

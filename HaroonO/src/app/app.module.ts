@@ -11,6 +11,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { OrderModule } from 'ngx-order-pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { JobComponent } from './components/job/job.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -39,7 +40,8 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     ToastrModule.forRoot(),
     OrderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

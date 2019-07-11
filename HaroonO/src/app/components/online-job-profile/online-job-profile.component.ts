@@ -12,8 +12,8 @@ import { MatStepper } from '@angular/material';
 })
 export class OnlineJobProfileComponent implements OnInit {
 
-  // serverUrl = "http://localhost:3003/";
-  serverUrl = "http://192.168.200.19:3012/";
+  serverUrl = "http://localhost:3003/";
+  // serverUrl = "http://192.168.200.19:3012/";
 
   docLink = "abc";
   txtFullName = "";
@@ -37,6 +37,7 @@ export class OnlineJobProfileComponent implements OnInit {
 
   ngOnInit() {
 
+    this.app.getUserDetail(localStorage.getItem('userName'));
     this.app.showDiv();
     this.getJobVcncyQualification();
   }
@@ -66,6 +67,8 @@ export class OnlineJobProfileComponent implements OnInit {
       return;
     } else {
 
+      this.app.showSpinner();
+
       var saveData = {
         fullName: this.txtFullName,
         cnic: this.txtCNIC,
@@ -76,7 +79,7 @@ export class OnlineJobProfileComponent implements OnInit {
         address: this.txtAddress,
         jobPostVcncyID: localStorage.getItem("jobPostVcncyID"),
         vcncyID: localStorage.getItem("vcncyID"),
-        indvdlID: localStorage.getItem("indvdlID")
+        indvdlID: this.app.empId
       };
 
       var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -85,13 +88,13 @@ export class OnlineJobProfileComponent implements OnInit {
 
         if (data.msg != undefined) {
           this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
-          //this.app.hideSpinner();
+          this.app.hideSpinner();
           stepper.next();
           return false;
         } else {
           this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
           //$('#companyModal').modal('hide');
-          //this.app.hideSpinner();
+          this.app.hideSpinner();
           return false;
         }
       });
@@ -111,8 +114,19 @@ export class OnlineJobProfileComponent implements OnInit {
       } else if (this.jobQualDegree[i].passingYear == null || this.jobQualDegree[i].passingYear == " ") {
         this.toastr.errorToastr('Please Enter Passing Year!  ', 'Error!', { toastTimeout: (2500) });
         return;
+      } else if (this.jobQualDegree[i].passingYear > (new Date()).getFullYear()) {
+        this.toastr.errorToastr('Passing Year is greater than Current Year!  ', 'Error!', { toastTimeout: (2500) });
+        return;
+      } else if (((new Date()).getFullYear() - this.jobQualDegree[i].passingYear) > 30) {
+        this.toastr.errorToastr('Passing Year cannot older than 30 years!  ', 'Error!', { toastTimeout: (2500) });
+        return;
       }
+      // alert((new Date()).getFullYear() - this.jobQualDegree[i].passingYear);
     }
+
+    // return;
+
+    this.app.showSpinner();
 
     var saveData = {
       jobQualList: JSON.stringify(this.jobQualDegree),
@@ -125,13 +139,13 @@ export class OnlineJobProfileComponent implements OnInit {
 
       if (data.msg == "Record Saved Successfully!") {
         this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
-        //this.app.hideSpinner();
+        this.app.hideSpinner();
         stepper.next();
         return false;
       } else {
         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
         //$('#companyModal').modal('hide');
-        //this.app.hideSpinner();
+        this.app.hideSpinner();
         return false;
       }
     });
@@ -148,8 +162,16 @@ export class OnlineJobProfileComponent implements OnInit {
       } else if (this.jobQualCertificate[i].passingYear == null || this.jobQualCertificate[i].passingYear == " ") {
         this.toastr.errorToastr('Please Enter Passing Year!  ', 'Error!', { toastTimeout: (2500) });
         return;
+      } else if (this.jobQualCertificate[i].passingYear > (new Date()).getFullYear()) {
+        this.toastr.errorToastr('Passing Year is greater than Current Year!  ', 'Error!', { toastTimeout: (2500) });
+        return;
+      } else if (((new Date()).getFullYear() - this.jobQualCertificate[i].passingYear) > 30) {
+        this.toastr.errorToastr('Passing Year cannot older than 30 years!  ', 'Error!', { toastTimeout: (2500) });
+        return;
       }
     }
+
+    this.app.showSpinner();
 
     var saveData = {
       jobQualList: JSON.stringify(this.jobQualCertificate),
@@ -162,13 +184,13 @@ export class OnlineJobProfileComponent implements OnInit {
 
       if (data.msg == "Record Saved Successfully!") {
         this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
-        //this.app.hideSpinner();
+        this.app.hideSpinner();
         stepper.next();
         return false;
       } else {
         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
         //$('#companyModal').modal('hide');
-        //this.app.hideSpinner();
+        this.app.hideSpinner();
         return false;
       }
     });
@@ -185,6 +207,8 @@ export class OnlineJobProfileComponent implements OnInit {
       }
     }
 
+    this.app.showSpinner();
+
     var saveData = {
       jobQualList: JSON.stringify(this.jobQualSkill),
       docLink: this.docLink
@@ -196,13 +220,13 @@ export class OnlineJobProfileComponent implements OnInit {
 
       if (data.msg == "Record Saved Successfully!") {
         this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
-        //this.app.hideSpinner();
+        this.app.hideSpinner();
         stepper.next();
         return false;
       } else {
         this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
         //$('#companyModal').modal('hide');
-        //this.app.hideSpinner();
+        this.app.hideSpinner();
         return false;
       }
     });
@@ -238,7 +262,7 @@ export class OnlineJobProfileComponent implements OnInit {
             qlfctnTypeName: data[i].qlfctnTypeName,
             avail: null,
             passingYear: null,
-            applcntID: localStorage.getItem('indvdlID'),
+            applcntID: this.app.empId,
             jobPostVcncyID: localStorage.getItem('jobPostVcncyID')
           });
         }
@@ -260,7 +284,7 @@ export class OnlineJobProfileComponent implements OnInit {
             qlfctnTypeName: data[i].qlfctnTypeName,
             avail: null,
             passingYear: null,
-            applcntID: localStorage.getItem('indvdlID'),
+            applcntID: this.app.empId,
             jobPostVcncyID: localStorage.getItem('jobPostVcncyID')
           });
         }
@@ -282,7 +306,7 @@ export class OnlineJobProfileComponent implements OnInit {
             qlfctnTypeName: data[i].qlfctnTypeName,
             avail: null,
             passingYear: null,
-            applcntID: localStorage.getItem('indvdlID'),
+            applcntID: this.app.empId,
             jobPostVcncyID: localStorage.getItem('jobPostVcncyID')
           });
         }
@@ -290,4 +314,46 @@ export class OnlineJobProfileComponent implements OnInit {
     });
   }
 
+  clearInfo() {
+
+    this.txtFullName = '';
+    this.txtCNIC = '';
+    this.txtFatherName = '';
+    this.cmbGender = '';
+    this.txtMobile = '';
+    this.txtTelephone = '';
+    this.txtAddress = '';
+  }
+
+  clearEducation() {
+
+    for (var i = 0; i < this.jobQualDegree.length; i++) {
+      this.jobQualDegree[i].avail = '';
+      this.jobQualDegree[i].passingYear = '';
+    }
+  }
+
+  clearCertificate() {
+
+    for (var i = 0; i < this.jobQualCertificate.length; i++) {
+      this.jobQualCertificate[i].avail = '';
+      this.jobQualCertificate[i].passingYear = '';
+    }
+  }
+
+  clearSkills() {
+
+    for (var i = 0; i < this.jobQualSkill.length; i++) {
+      this.jobQualSkill[i].avail = '';
+      // this.jobQualSkill[i].passingYear = '';
+    }
+  }
+
+  clearExperience() {
+
+    // for (var i = 0; i < this.jobQualDegree.length; i++) {
+    //   this.jobQualDegree[i].avail = '';
+    //   this.jobQualDegree[i].passingYear = '';
+    // }
+  }
 }

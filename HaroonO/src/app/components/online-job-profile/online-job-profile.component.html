@@ -73,11 +73,12 @@
       <div class="row">
         <div class="col-md-12 text-right">
           <button mat-raised-button color="primary" (click)="saveInfo(stepper)">Save & Next</button>
+          <button mat-raised-button color="warn" (click)="clearInfo()">Reset</button>
         </div>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Qualification</ng-template>
+      <ng-template matStepLabel>Education</ng-template>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-striped">
@@ -107,6 +108,7 @@
       <div class="row">
         <div class="col-md-12 text-right">
           <button mat-raised-button color="primary" (click)="saveQualification(stepper)">Save & Next</button>
+          <button mat-raised-button color="warn" (click)="clearEducation()">Reset</button>
         </div>
       </div>
     </mat-step>
@@ -142,6 +144,7 @@
       <div class="row">
         <div class="col-md-12 text-right">
           <button mat-raised-button color="primary" (click)="saveCertification(stepper)">Save & Next</button>
+          <button mat-raised-button color="warn" (click)="clearCertificate()">Reset</button>
         </div>
       </div>
     </mat-step>
@@ -172,6 +175,7 @@
       <div class="row">
         <div class="col-md-12 text-right">
           <button mat-raised-button color="primary" (click)="saveSkill(stepper)">Save & Next</button>
+          <button mat-raised-button color="warn" (click)="clearSkills()">Reset</button>
         </div>
       </div>
     </mat-step>
@@ -206,6 +210,7 @@
       <div class="row">
         <div class="col-md-12 text-right">
           <button mat-raised-button color="primary">Save</button>
+          <button mat-raised-button color="warn" (click)="clearExperience()">Reset</button>
         </div>
       </div>
     </mat-step>
