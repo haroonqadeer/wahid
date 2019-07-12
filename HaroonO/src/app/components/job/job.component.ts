@@ -164,7 +164,7 @@ export class JobComponent implements OnInit {
     for (var i = 0; i < this.jobVcncy.length; i++) {
       if (item == this.jobVcncy[i].jobDesigID) {
         localStorage.setItem('vcncyID', this.jobVcncy[i].vcncyID);
-        // localStorage.setItem('cmpnyID', this.jobVcncy[i].cmpnyID);
+        localStorage.setItem('cmpnyID', this.jobVcncy[i].cmpnyID);
         localStorage.setItem('jobPostVcncyID', this.jobVcncy[i].jobPostVcncyID);
         localStorage.setItem('jobDesigName', this.jobVcncy[i].jobDesigName);
 

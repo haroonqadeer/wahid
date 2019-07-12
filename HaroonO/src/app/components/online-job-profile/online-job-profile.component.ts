@@ -79,7 +79,7 @@ export class OnlineJobProfileComponent implements OnInit {
         address: this.txtAddress,
         jobPostVcncyID: localStorage.getItem("jobPostVcncyID"),
         vcncyID: localStorage.getItem("vcncyID"),
-        indvdlID: this.app.empId
+        indvdlID: localStorage.getItem('empID')
       };
 
       var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -88,6 +88,7 @@ export class OnlineJobProfileComponent implements OnInit {
 
         if (data.msg != undefined) {
           this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
+          this.getJobVcncyQualification();
           this.app.hideSpinner();
           stepper.next();
           return false;
@@ -236,6 +237,9 @@ export class OnlineJobProfileComponent implements OnInit {
   getJobVcncyQualification() {
     //return false;
 
+    this.jobQualDegree = [];
+    this.jobQualCertificate = [];
+    this.jobQualSkill = [];
     //var Token = localStorage.getItem(this.tokenKey);
 
     //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
@@ -243,7 +247,9 @@ export class OnlineJobProfileComponent implements OnInit {
 
     this.http.get(this.serverUrl + 'api/getJobVcncyQualification', { headers: reqHeader }).subscribe((data: any) => {
 
+      // alert(data.length)
       for (var i = 0; i < data.length; i++) {
+
         if (localStorage.getItem('jobDesigID') == data[i].jobDesigID && data[i].qlfctnTypeName == "Degree") {
           this.jobQualDegree.push({
             reqdQlfctnRuleNo: data[i].reqdQlfctnRuleNo,
@@ -262,7 +268,7 @@ export class OnlineJobProfileComponent implements OnInit {
             qlfctnTypeName: data[i].qlfctnTypeName,
             avail: null,
             passingYear: null,
-            applcntID: this.app.empId,
+            applcntID: localStorage.getItem('empID'),
             jobPostVcncyID: localStorage.getItem('jobPostVcncyID')
           });
         }
@@ -284,7 +290,7 @@ export class OnlineJobProfileComponent implements OnInit {
             qlfctnTypeName: data[i].qlfctnTypeName,
             avail: null,
             passingYear: null,
-            applcntID: this.app.empId,
+            applcntID: localStorage.getItem('empID'),
             jobPostVcncyID: localStorage.getItem('jobPostVcncyID')
           });
         }
@@ -306,7 +312,7 @@ export class OnlineJobProfileComponent implements OnInit {
             qlfctnTypeName: data[i].qlfctnTypeName,
             avail: null,
             passingYear: null,
-            applcntID: this.app.empId,
+            applcntID: localStorage.getItem('empID'),
             jobPostVcncyID: localStorage.getItem('jobPostVcncyID')
           });
         }

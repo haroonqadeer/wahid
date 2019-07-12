@@ -52,29 +52,32 @@ export class SignInComponent implements OnInit {
     } else {
       //localStorage.setItem('userName', data.userName);
 
+      this.app.showSpinner();
+
       var saveData = {
         email: this.txtEmail,
         firstName: this.txtFirstName,
         middleName: this.txtMiddleName,
         lastName: this.txtLastName,
         userPsswrd: this.txtPassword,
-        cmpnyID: this.app.cmpnyId
+        cmpnyID: localStorage.getItem('cmpnyID')
       };
 
       var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
       this.http.post(this.serverUrl + 'api/saveUser', saveData, { headers: reqHeader }).subscribe((data: any) => {
 
-        if (data.msg != undefined) {
+        if (data.msg == 'Record Saved Successfully!') {
           this.toastr.successToastr(data.msg, 'Success!', { toastTimeout: (2500) });
-          //this.app.hideSpinner();
+          this.app.hideSpinner();
           this.router.navigate(['/login']);
+          localStorage.removeItem('cmpnyID');
           this.clear();
           return false;
         } else {
           this.toastr.errorToastr(data.msg, 'Error!', { toastTimeout: (2500) });
           //$('#companyModal').modal('hide');
-          //this.app.hideSpinner();
+          this.app.hideSpinner();
           return false;
         }
       });

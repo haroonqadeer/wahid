@@ -131,9 +131,10 @@ export class AppComponent {
 
       this.logedInUserName = localStorage.getItem('userName');
       this.showDiv();
+      this.getUserDetail(UserName);
+
       if (loginChk == "Yes") {
         this.router.navigate(['onlineJobProfile']);
-        this.getUserDetail(UserName);
       }
 
 
@@ -157,7 +158,11 @@ export class AppComponent {
 
     this.http.post(this.serverUrl + 'api/getUserDetail', loginData, { headers: reqHeader }).subscribe((data: any) => {
 
-      // alert(data.userDetail[0].cmpnyID); return
+      // alert(data.userDetail[0].indvdlID); return
+      localStorage.setItem('empID', data.userDetail[0].indvdlID)
+      // localStorage.setItem('cmpnyID', data[0].cmpnyID);
+      // localStorage.setItem('locationCd', data[0].locationCd);
+
       this.cmpnyId = data.userDetail[0].cmpnyID;
       this.cmpnyName = data.userDetail[0].locationName;
       this.locationId = data.userDetail[0].locationCd;
@@ -180,7 +185,7 @@ export class AppComponent {
   }
 
   chkApplcntQual(item) {
-    
+
     //var Token = localStorage.getItem(this.tokenKey);
 
     //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
