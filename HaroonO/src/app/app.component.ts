@@ -11,7 +11,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
 
-  serverUrl = "http://localhost:3004/";
+  serverUrl = "http://localhost:9010/";
 
   public branchList = [];
   public locationId;

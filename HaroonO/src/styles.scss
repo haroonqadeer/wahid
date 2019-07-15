@@ -105,6 +105,10 @@ mat-drawer-container {
   background-color: #fff;
 }
 
+.bgWhiteGrey{
+  background-color: #f2f2f2 !important;
+}
+
 ///// headings
 h1 {
   border: 0px solid red;
@@ -343,7 +347,9 @@ h1 {
 .topBorderOnBlackBg {
   border-top: 1px solid #666 !important;
 }
-
+.rightBorder{
+  border-right: 1px solid #ccc !important;
+}
 .rightBorderWhite {
   border-right: 1px solid red !important;
 }

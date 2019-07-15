@@ -50,7 +50,7 @@ export class OnlineTestComponent implements OnInit {
 
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.get(this.serverUrl + 'api/getTestQuestions?rn=3&jobDesigID=15&jobPostDeptCd=3&jobPostLocCd=1', { headers: reqHeader }).subscribe((data: any) => {
+    this.http.get(this.serverUrl + 'api/getTestQuestions?rn=' + localStorage.getItem('rn') + '&jobDesigID=15&jobPostDeptCd=3&jobPostLocCd=1', { headers: reqHeader }).subscribe((data: any) => {
 
       this.testQuestions = data;
       for (var i = 0; i < data.length; i++) {

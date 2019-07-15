@@ -7,29 +7,28 @@
   </div>
 </div>
 <!-- end menubar buttons -->
-<br /><br />
-
-<div class="container bgWhite boxShadow">
+<div class="container-fluid bgWhite bottomBorder">
+  <br>
   <div class="row">
     <div class="col-md-12"><br />
       <mat-accordion>
         <mat-expansion-panel *ngFor="let data of jobVcncy; let i = index" (opened)="onAccordionCLick(data.jobDesigID)">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header class="bottomBorder ">
 
             <div class="row" style="width: 100% !important">
               <div class="col-md-4">
-                <mat-panel-title>
-                  {{data.jobDesigName}}
+                <mat-panel-title class='text-uppercase'>
+                  <mark>{{data.jobDesigName}}</mark>
                 </mat-panel-title>
               </div>
               <div class="col-md-4">
                 <mat-panel-description>
-                  <b>No. of Jobs: </b>&nbsp;{{data.jobPostVcncyQty}}
+                  <label>Vacancies:</label> &nbsp;&nbsp;<mark>{{data.jobPostVcncyQty}}</mark>
                 </mat-panel-description>
               </div>
               <div class="col-md-4">
                 <mat-panel-description>
-                  <b>Last Date : </b>&nbsp;{{data.vcncyExprtnDt|date:'dd-MM-yyyy'}}
+                  <label>Application Last Date : </label>&nbsp;<mark>{{data.vcncyExprtnDt|date:'dd-MM-yyyy'}}</mark>
                 </mat-panel-description>
               </div>
             </div>
@@ -42,28 +41,28 @@
               <b>Last Date : </b>&nbsp;{{data.vcncyExprtnDt|date:'dd-MM-yyyy'}}
             </mat-panel-description> -->
           </mat-expansion-panel-header>
-
+          <br><br>
           <div class="row" *ngIf="hideEducation">
-            <div class="col-md-2"><b>Required Education:</b></div>
-            <div class="col-md-1" *ngFor="let degree of jobQualDegree; let i = index">
+            <div class="col-md-2 ">Required Education:</div>
+            <div class="col-md-1 bgWhiteGrey bottomBorder" *ngFor="let degree of jobQualDegree; let i = index">
               {{degree.qlfctnCriteriaName}}</div>
           </div>
           <br />
           <div class="row" *ngIf="hideCertificate">
-            <div class="col-md-2"><b>Required Certification:</b></div>
-            <div class="col-md-1" *ngFor="let certificate of jobQualCertificate; let i = index">
+            <div class="col-md-2">Required Certification:</div>
+            <div class="col-md-1 bgWhiteGrey bottomBorder" *ngFor="let certificate of jobQualCertificate; let i = index">
               {{certificate.qlfctnCriteriaName}},&nbsp;</div>
           </div>
           <br />
           <div class="row" *ngIf="hideSkill">
-            <div class="col-md-2"><b>Required Skills:</b></div>
-            <div class="col-md-1" *ngFor="let skill of jobQualSkill; let i = index">
+            <div class="col-md-2">Required Skills:</div>
+            <div class="col-md-1 bgWhiteGrey bottomBorder" *ngFor="let skill of jobQualSkill; let i = index">
               {{skill.qlfctnCriteriaName}},&nbsp;</div>
           </div>
           <br />
           <div class="row">
-            <div class="col-md-12 text-right">
-              <button mat-raised-button color="primary" (click)="onApply(data.jobDesigID)">Apply</button>
+            <div class="offset-md-10 col-md-2">
+              <button class='fullwidth' mat-raised-button color="primary" (click)="onApply(data.jobDesigID)">Apply Online</button>
             </div>
           </div>
 

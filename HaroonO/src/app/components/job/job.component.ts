@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class JobComponent implements OnInit {
 
+  // serverUrl = "http://localhost:9033/";
   serverUrl = "http://localhost:3003/";
   // serverUrl = "http://192.168.200.19:3012/";
   hideEducation = true;
@@ -38,6 +39,10 @@ export class JobComponent implements OnInit {
   }
 
   onAccordionCLick(item) {
+
+    this.hideCertificate = true;
+    this.hideEducation = true;
+    this.hideSkill = true;
 
     this.jobQualDegree = [];
     this.jobQualCertificate = [];
@@ -149,6 +154,24 @@ export class JobComponent implements OnInit {
     });
   }
 
+  getRandomNumber(item) {
+
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    // this.app.showSpinner();
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get(this.serverUrl + 'api/getRandomNo?jobPostVcncyID=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      localStorage.setItem('rn', data);
+
+      // this.app.hideSpinner();
+    });
+
+  }
+
   onApply(item) {
 
     // this.app.hideDiv = false;
@@ -172,6 +195,9 @@ export class JobComponent implements OnInit {
       }
     }
 
+    this.getRandomNumber(localStorage.getItem('jobPostVcncyID'));
+
     this.router.navigate(['/login']);
   }
+
 }
