@@ -11,7 +11,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
 
-  serverUrl = "http://localhost:9010/";
+  // serverUrl = "http://localhost:3004/";
+  serverUrl = "http://192.168.200.19:9010/";
 
   public branchList = [];
   public locationId;
@@ -131,7 +132,7 @@ export class AppComponent {
 
       this.logedInUserName = localStorage.getItem('userName');
       this.showDiv();
-      this.getUserDetail(UserName);
+      this.getUserDetail(this.logedInUserName);
 
       if (loginChk == "Yes") {
         this.router.navigate(['onlineJobProfile']);
@@ -152,7 +153,7 @@ export class AppComponent {
   }
   getUserDetail(name) {
 
-    var loginData = { "IndvdlERPUsrID": name };
+    var loginData = { IndvdlERPUsrID: name };
 
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -196,6 +197,7 @@ export class AppComponent {
       // this.employeeListMain = data;
       if (data.length > 0) {
 
+        localStorage.removeItem('rn');
         localStorage.removeItem('jobPostVcncyID');
         localStorage.removeItem('vcncyID');
         localStorage.removeItem('jobDesigID');
@@ -203,13 +205,35 @@ export class AppComponent {
 
         localStorage.setItem('jobPostVcncyID', data[0].jobPostVcncyID);
         localStorage.setItem('vcncyID', data[0].vcncyID);
+        localStorage.setItem('jobPostDeptCd', data[0].jobPostDeptCd);
+        localStorage.setItem('jobPostLocationCd', data[0].jobPostLocationCd);
         localStorage.setItem('jobDesigID', data[0].jobDesigID);
         localStorage.setItem('jobDesigName', data[0].jobDesigName);
 
+        this.getRandomNumber(localStorage.getItem('jobPostVcncyID'));
       }
     });
 
   }
+
+  getRandomNumber(item) {
+
+    //var Token = localStorage.getItem(this.tokenKey);
+
+    // this.app.showSpinner();
+
+    //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.get('http://192.168.200.19:9033/api/getRandomNo?jobPostVcncyID=' + item, { headers: reqHeader }).subscribe((data: any) => {
+
+      localStorage.setItem('rn', data[0].rn);
+
+      // this.app.hideSpinner();
+    });
+
+  }
+
   //method for show and hide manu bar with login and logout user
   showDiv() {
     this.hideDiv = true;

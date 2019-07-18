@@ -11,8 +11,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class OnlineTestComponent implements OnInit {
 
-  serverUrl = "http://localhost:3003/";
-  // serverUrl = "http://192.168.200.19:3012/";
+  // serverUrl = "http://localhost:3003/";
+  serverUrl = "http://192.168.200.19:9033/";
 
   isValid = true;
   hideDiv = true;
@@ -50,7 +50,7 @@ export class OnlineTestComponent implements OnInit {
 
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.get(this.serverUrl + 'api/getTestQuestions?rn=' + localStorage.getItem('rn') + '&jobDesigID=15&jobPostDeptCd=3&jobPostLocCd=1', { headers: reqHeader }).subscribe((data: any) => {
+    this.http.get(this.serverUrl + 'api/getTestQuestions?rn=' + localStorage.getItem('rn') + '&jobDesigID=' + localStorage.getItem('jobDesigID') + '&jobPostDeptCd=' + localStorage.getItem('jobPostDeptCd') + '&jobPostLocCd=' + localStorage.getItem('jobPostLocationCd') + '&jobPostVcncyID=' + localStorage.getItem('jobPostVcncyID'), { headers: reqHeader }).subscribe((data: any) => {
 
       this.testQuestions = data;
       for (var i = 0; i < data.length; i++) {

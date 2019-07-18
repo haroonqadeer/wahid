@@ -12,8 +12,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 export class JobComponent implements OnInit {
 
   // serverUrl = "http://localhost:9033/";
-  serverUrl = "http://localhost:3003/";
-  // serverUrl = "http://192.168.200.19:3012/";
+  //serverUrl = "http://localhost:3003/";
+  serverUrl = "http://192.168.200.19:9033/";
   hideEducation = true;
   hideCertificate = true;
   hideSkill = true;
@@ -165,7 +165,7 @@ export class JobComponent implements OnInit {
 
     this.http.get(this.serverUrl + 'api/getRandomNo?jobPostVcncyID=' + item, { headers: reqHeader }).subscribe((data: any) => {
 
-      localStorage.setItem('rn', data);
+      localStorage.setItem('rn', data[0].rn);
 
       // this.app.hideSpinner();
     });

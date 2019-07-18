@@ -81,6 +81,7 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Education</ng-template>
+      <br>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-striped">
@@ -118,6 +119,7 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Certification</ng-template>
+      <br>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-striped">
@@ -156,6 +158,7 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Skills</ng-template>
+      <br>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-striped">
@@ -163,7 +166,7 @@
               <tr class='d-flex'>
                 <th class='col-2 text-center'>Sr #</th>
                 <th class='col-4'>Skill</th>
-                <th class='col-4 text-center'>Avail</th>
+                <th class='col-4 text-center'>Expertise</th>
               </tr>
             </thead>
             <tbody>
@@ -179,9 +182,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 text-right">
-          <button mat-raised-button color="primary" (click)="saveSkill(stepper)">Save & Next</button>
-          <button mat-raised-button color="warn" (click)="clearSkills()">Reset</button>
+        <div class="offset-md-8 col-md-2 ">
+          <button class='fullwidth' mat-raised-button color="primary" (click)="saveSkill(stepper)">Save & Next</button>          
+        </div>
+        <div class="col-md-2">
+          <button class='fulwidth' mat-raised-button color="warn" (click)="clearSkills()">Reset</button>
         </div>
       </div>
     </mat-step>
@@ -199,7 +204,7 @@
               </tr>
             </thead>
             <tbody>
-              <!-- <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
+              <tr *ngFor="let item of userDetail | search:'UserName,Email': query" class='d-flex'> -->
     <!-- <tr class='d-flex'
               *ngFor="let post of posts | search:'offices,department,section,jobTitle,qty':postSearch let i=index">
               <td class='col-1 text-center'>{{i+1}}</td>
