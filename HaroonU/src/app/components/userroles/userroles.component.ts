@@ -180,7 +180,7 @@ export class UserrolesComponent implements OnInit {
 
 
 
-  serverUrl = "https://localhost:5001/";
+  serverUrl = "http://localhost:4000/";
 
   //constructor(private http: HttpClient, public toastr: ToastrManager, private nodeService: NodeService) { }
 

@@ -12,7 +12,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class AppComponent {
 
   // serverUrl = "http://localhost:3004/";
-  serverUrl = "http://192.168.200.19:9010/";
+  serverUrl = "http://52.163.189.189:9010/";
 
   public branchList = [];
   public locationId;
@@ -225,7 +225,7 @@ export class AppComponent {
     //var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Token });
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.get('http://192.168.200.19:9033/api/getRandomNo?jobPostVcncyID=' + item, { headers: reqHeader }).subscribe((data: any) => {
+    this.http.get('http://52.163.189.189:9033/api/getRandomNo?jobPostVcncyID=' + item, { headers: reqHeader }).subscribe((data: any) => {
 
       localStorage.setItem('rn', data[0].rn);
 

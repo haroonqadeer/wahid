@@ -13,7 +13,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class SignInComponent implements OnInit {
 
   // serverUrl = "http://localhost:9011/";
-  serverUrl = "http://192.168.200.19:9010/";
+  serverUrl = "http://52.163.189.189:9010/";
 
   txtEmail = "";
   txtFirstName = "";
