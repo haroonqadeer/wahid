@@ -26,7 +26,7 @@
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "ng6-toastr-notifications": "^1.0.4",
     "ngx-bootstrap": "^3.1.1",
     "ngx-order-pipe": "^2.0.2",
