@@ -37,7 +37,7 @@
     "ngx-bootstrap": "^3.1.1",
     "ngx-order-pipe": "^2.0.2",
     "ngx-pagination": "^3.2.1",
-    "node-sass": "^4.10.0",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.14.5",
     "primeicons": "^1.0.0",
     "primeng": "^6.1.6",
