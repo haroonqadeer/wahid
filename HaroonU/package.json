@@ -35,7 +35,7 @@
     "highcharts": "^6.1.4",
     "igniteui-angular": "^7.2.2",
     "jquery": "^3.3.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.5.1",
     "mdbootstrap": "^4.7.1",
     "ng-recaptcha": "^4.2.1",
     "ng6-toastr-notifications": "^1.0.4",
